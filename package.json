@@ -1,0 +1,21 @@
+{
+  "name": "@neynar/nodejs-sdk",
+  "version": "0.0.1",
+  "description": "SDK to interact with Neynar APIs (https://docs.neynar.com/)",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "files": [
+    "build/**/*"
+  ],
+  "scripts": {
+    "clean": "del-cli ./build/*",
+    "build": "yarn run clean && tsc"
+  },
+  "author": "Neynar",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.8.4",
+    "del-cli": "^5.1.0",
+    "typescript": "^5.2.2"
+  }
+}

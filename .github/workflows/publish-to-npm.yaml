@@ -1,0 +1,16 @@
+name: "Publish to NPM"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
+      - run: npm install
+      - run: npm run build
+      - run: npm publish --access public
