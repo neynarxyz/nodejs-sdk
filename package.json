@@ -9,7 +9,9 @@
   ],
   "scripts": {
     "clean": "del-cli ./build/*",
-    "build": "yarn run clean && tsc"
+    "build": "yarn run clean && tsc",
+    "generate:neynar-oas": "rm -rf src/neynar-api/neynar-v1-api/openapi-tmp; openapi-generator-cli generate -i src/oas/src/v1/spec.yaml -g typescript-axios -o src/neynar-api/neynar-v1-api/openapi --config src/oas/openapi-generator-config.json",
+    "generate:neynar-oas-v2": "rm -rf src/neynar-api/neynar-v2-api/openapi-tmp; openapi-generator-cli generate -i src/oas/src/v2/spec.yaml -g typescript-axios -o src/neynar-api/neynar-v2-api/openapi --config src/oas/openapi-generator-config.json"
   },
   "author": "Neynar",
   "license": "ISC",
@@ -17,5 +19,8 @@
     "@types/node": "^20.8.4",
     "del-cli": "^5.1.0",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@openapitools/openapi-generator-cli": "^2.7.0"
   }
 }

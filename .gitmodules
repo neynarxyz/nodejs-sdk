@@ -1,0 +1,3 @@
+[submodule "src/oas"]
+	path = src/oas
+	url = git@github.com:neynarxyz/OAS.git
