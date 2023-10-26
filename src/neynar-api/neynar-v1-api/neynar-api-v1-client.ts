@@ -88,6 +88,20 @@ export class NeynarV1APIClient {
   }
 
   /**
+   * Fetches a single cast by its hash. See [Neynar documentation](https://docs.neynar.com/reference/cast-v1)
+   */
+  public async fetchCast(
+    hash: string,
+    options?: { viewerFid?: number }
+  ): Promise<Cast | null> {
+    const response = await this.apis.cast.cast({
+      hash,
+      viewerFid: options?.viewerFid,
+    });
+    return response.data.result.cast;
+  }
+
+  /**
    * Fetches casts in a given thread. See [Neynar documentation](https://docs.neynar.com/reference/get-all-casts-in-thread)
    * Note that the parent provided by the caller is included in the response.
    */
