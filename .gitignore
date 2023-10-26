@@ -8,3 +8,4 @@ build
 
 # Temporary generated files
 src/neynar-api/neynar-v1-api/openapi-tmp
+src/neynar-api/neynar-v2-api/openapi-tmp
