@@ -1,1 +1,1 @@
-export * from './greetings/greet'
+export * from './neynar-api'
