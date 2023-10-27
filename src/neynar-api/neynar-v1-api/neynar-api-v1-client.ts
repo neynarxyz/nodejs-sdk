@@ -26,6 +26,7 @@ export class NeynarV1APIClient {
 
   public readonly apis: {
     cast: CastApi;
+    follows: FollowsApi;
   };
 
   /**
@@ -69,6 +70,7 @@ export class NeynarV1APIClient {
     });
     this.apis = {
       cast: new CastApi(config, undefined, axiosInstance),
+      follows: new FollowsApi(config, undefined, axiosInstance),
     };
   }
 
@@ -87,8 +89,12 @@ export class NeynarV1APIClient {
     );
   }
 
+  // ------------ Cast ------------
+
   /**
-   * Fetches a single cast by its hash. See [Neynar documentation](https://docs.neynar.com/reference/cast-v1)
+   * Fetches a single cast by its hash.
+   * See [Neynar documentation](https://docs.neynar.com/reference/cast-v1)
+   *
    */
   public async fetchCast(
     hash: string,
@@ -102,8 +108,10 @@ export class NeynarV1APIClient {
   }
 
   /**
-   * Fetches casts in a given thread. See [Neynar documentation](https://docs.neynar.com/reference/all-casts-in-thread-v1)
+   * Fetches casts in a given thread.
+   * See [Neynar documentation](https://docs.neynar.com/reference/all-casts-in-thread-v1)
    * Note that the parent provided by the caller is included in the response.
+   *
    */
   public async fetchCastsInThread(
     threadParent: Cast | { hash: string },
@@ -117,7 +125,8 @@ export class NeynarV1APIClient {
   }
 
   /**
-   * Gets all casts (including replies and recasts) created by the specified user. See [Neynar documentation](https://docs.neynar.com/reference/casts-v1)
+   * Gets all casts (including replies and recasts) created by the specified user.
+   * See [Neynar documentation](https://docs.neynar.com/reference/casts-v1)
    *
    */
   public async *fetchCastsForUser(
@@ -147,7 +156,8 @@ export class NeynarV1APIClient {
   }
 
   /**
-   * Gets recent casts created by the specified user. See [Neynar documentation](https://docs.neynar.com/reference/recent-casts-v1)
+   * Gets recent casts created by the specified user.
+   * See [Neynar documentation](https://docs.neynar.com/reference/recent-casts-v1)
    *
    */
   public async *fetchRecentCasts(options?: {
@@ -172,5 +182,35 @@ export class NeynarV1APIClient {
       }
       cursor = response.data.result.next.cursor;
     }
+  }
+
+  // ------------ Follow ------------
+
+  /**
+   * Get all users that follow the specified user.
+   * See [Neynar documentation](https://docs.neynar.com/reference/followers-v1)
+   *
+   */
+  public async fetchUserFollowers(
+    fid: number,
+    viewerFid?: number
+  ): Promise<User[]> {
+    const response = await this.apis.follows.followers({ fid, viewerFid });
+
+    return response.data.result.users;
+  }
+
+  /**
+   * Get all users the specified user is following.
+   * See [Neynar documentation](https://docs.neynar.com/reference/following-v1)
+   *
+   */
+  public async fetchUserFollowing(
+    fid: number,
+    viewerFid?: number
+  ): Promise<User[]> {
+    const response = await this.apis.follows.following({ fid, viewerFid });
+
+    return response.data.result.users;
   }
 }
