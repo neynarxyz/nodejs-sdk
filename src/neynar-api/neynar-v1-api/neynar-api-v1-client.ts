@@ -102,7 +102,7 @@ export class NeynarV1APIClient {
   }
 
   /**
-   * Fetches casts in a given thread. See [Neynar documentation](https://docs.neynar.com/reference/get-all-casts-in-thread)
+   * Fetches casts in a given thread. See [Neynar documentation](https://docs.neynar.com/reference/all-casts-in-thread-v1)
    * Note that the parent provided by the caller is included in the response.
    */
   public async fetchCastsInThread(
@@ -117,7 +117,7 @@ export class NeynarV1APIClient {
   }
 
   /**
-   * Gets all casts (including replies and recasts) created by the specified user. See [Neynar documentation](https://docs.neynar.com/reference/get-all-casts-from-user)
+   * Gets all casts (including replies and recasts) created by the specified user. See [Neynar documentation](https://docs.neynar.com/reference/casts-v1)
    *
    */
   public async *fetchCastsForUser(
@@ -147,7 +147,7 @@ export class NeynarV1APIClient {
   }
 
   /**
-   * Gets recent casts created by the specified user. See [Neynar documentation](https://docs.neynar.com/reference/get-recent-casts-from-protocol)
+   * Gets recent casts created by the specified user. See [Neynar documentation](https://docs.neynar.com/reference/recent-casts-v1)
    *
    */
   public async *fetchRecentCasts(options?: {
