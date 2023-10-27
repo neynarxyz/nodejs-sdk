@@ -28,6 +28,7 @@ export class NeynarV1APIClient {
     user: UserApi;
     cast: CastApi;
     follows: FollowsApi;
+    verification: VerificationApi;
   };
 
   /**
@@ -73,6 +74,7 @@ export class NeynarV1APIClient {
       user: new UserApi(config, undefined, axiosInstance),
       cast: new CastApi(config, undefined, axiosInstance),
       follows: new FollowsApi(config, undefined, axiosInstance),
+      verification: new VerificationApi(config, undefined, axiosInstance),
     };
   }
 
@@ -291,6 +293,45 @@ export class NeynarV1APIClient {
         break;
       }
       cursor = response.data.result.next.cursor;
+    }
+  }
+
+  // ------------ Verification ------------
+
+  /**
+   * Gets all known verifications of a user.
+   * See [Neynar documentation](https://docs.neynar.com/reference/verifications-v1)
+   *
+   */
+  public async fetchUserVerifications(
+    fid: number
+  ): Promise<VerificationResponseResult | null> {
+    const response = await this.apis.verification.verifications({ fid });
+    return response.data.result;
+  }
+
+  /**
+   * Checks if a given Ethereum address has a Farcaster user associated with it.
+   * Note: if an address is associated with multiple users, the API will return
+   * the user who most recently published a verification with the address
+   * (based on when Warpcast received the proof, not a self-reported timestamp).
+   * See [Neynar documentation](https://docs.neynar.com/reference/user-by-verification-v1)
+   *
+   */
+  public async lookupUserByVerification(address: string): Promise<User | null> {
+    try {
+      const response = await this.apis.verification.userByVerification({
+        address,
+      });
+      return response.data.result.user;
+    } catch (error) {
+      if (NeynarV1APIClient.isApiErrorResponse(error)) {
+        const status = error.response.status;
+        if (status === 404) {
+          return null;
+        }
+      }
+      throw error;
     }
   }
 
