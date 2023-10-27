@@ -25,6 +25,7 @@ export class NeynarV1APIClient {
   private readonly logger: Logger;
 
   public readonly apis: {
+    user: UserApi;
     cast: CastApi;
     follows: FollowsApi;
   };
@@ -69,6 +70,7 @@ export class NeynarV1APIClient {
       apiKey: apiKey,
     });
     this.apis = {
+      user: new UserApi(config, undefined, axiosInstance),
       cast: new CastApi(config, undefined, axiosInstance),
       follows: new FollowsApi(config, undefined, axiosInstance),
     };
@@ -89,6 +91,114 @@ export class NeynarV1APIClient {
     );
   }
 
+  // ------------ User ------------
+
+  /**
+   * A list of users in reverse chronological order based on sign up.
+   * See [Neynar documentation](https://docs.neynar.com/reference/recent-users-v1)
+   *
+   */
+  public async *fetchRecentUsers(options?: {
+    viewerFid?: number;
+    pageSize?: number;
+  }): AsyncGenerator<User, void, undefined> {
+    let cursor: string | undefined;
+
+    while (true) {
+      // fetch one page of casts (with refreshed auth if necessary)
+      const response = await this.apis.user.recentUsers({
+        viewerFid: options?.viewerFid,
+        cursor: cursor,
+        limit: options?.pageSize,
+      });
+
+      yield* response.data.result.users;
+      // prep for next page
+      if (response.data.result.next.cursor === null) {
+        break;
+      }
+      cursor = response.data.result.next.cursor;
+    }
+  }
+
+  /**
+   * Fetch all likes by a given user.
+   * See [Neynar documentation](https://docs.neynar.com/reference/user-cast-likes-v1)
+   *
+   */
+  public async *fetchUserCastLikes(
+    fid: number,
+    options?: { viewerFid?: number; pageSize?: number }
+  ): AsyncGenerator<ReactionWithCastMeta, void, undefined> {
+    let cursor: string | undefined;
+
+    while (true) {
+      // fetch one page of likes
+      const response = await this.apis.user.userCastLikes({
+        fid: fid,
+        viewerFid: options?.viewerFid,
+        limit: options?.pageSize,
+        cursor: cursor,
+      });
+
+      yield* response.data.result.likes;
+
+      // prep for next page
+      if (response.data.result.next.cursor === null) {
+        break;
+      }
+      cursor = response.data.result.next.cursor;
+    }
+  }
+
+  /**
+   * Gets the specified user via their FID (if found).
+   * See [Neynar documentation](https://docs.neynar.com/reference/user-v1)
+   *
+   */
+  public async lookupUserByFid(
+    fid: number,
+    viewerFid?: number
+  ): Promise<User | null> {
+    try {
+      const response = await this.apis.user.user({ fid, viewerFid });
+      return response.data.result.user;
+    } catch (error) {
+      if (NeynarV1APIClient.isApiErrorResponse(error)) {
+        if (error.response.status === 404) return null;
+      }
+      throw error;
+    }
+  }
+
+  /**
+   * Gets the specified user via their username (if found).
+   * See [Neynar documentation](https://docs.neynar.com/reference/user-by-username-v1)
+   *
+   */
+  public async lookupUserByUsername(
+    username: string,
+    viewerFid?: number
+  ): Promise<User | null> {
+    const response = await this.apis.user.userByUsername({
+      username,
+      viewerFid,
+    });
+    // result.user is undefined if not found
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    return response.data.result.user ?? null;
+  }
+
+  /**
+   * Gets the custody address for the specified user via their username (if found).
+   * See [Neynar documentation](https://docs.neynar.com/reference/custody-address-v1)
+   *
+   */
+  public async fetchCustodyAddressForUser(fid: number): Promise<string | null> {
+    const response = await this.apis.user.custodyAddress({ fid });
+    return response.data.result.custodyAddress;
+  }
+
   // ------------ Cast ------------
 
   /**
@@ -96,7 +206,7 @@ export class NeynarV1APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/cast-v1)
    *
    */
-  public async fetchCast(
+  public async lookUpCastByHash(
     hash: string,
     options?: { viewerFid?: number }
   ): Promise<Cast | null> {
