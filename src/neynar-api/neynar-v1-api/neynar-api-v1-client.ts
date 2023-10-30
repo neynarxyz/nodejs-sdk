@@ -29,6 +29,7 @@ export class NeynarV1APIClient {
     cast: CastApi;
     follows: FollowsApi;
     verification: VerificationApi;
+    notifications: NotificationsApi;
   };
 
   /**
@@ -75,6 +76,7 @@ export class NeynarV1APIClient {
       cast: new CastApi(config, undefined, axiosInstance),
       follows: new FollowsApi(config, undefined, axiosInstance),
       verification: new VerificationApi(config, undefined, axiosInstance),
+      notifications: new NotificationsApi(config, undefined, axiosInstance),
     };
   }
 
@@ -332,6 +334,70 @@ export class NeynarV1APIClient {
         }
       }
       throw error;
+    }
+  }
+
+  // ------------ Notifications ------------
+
+  /**
+   * Gets a list of mentions and replies to the user’s casts in reverse chronological order.
+   * See [Neynar documentation](https://docs.neynar.com/reference/mentions-and-replies-v1)
+   *
+   */
+  public async *fetchMentionAndReplyNotifications(
+    fid: number,
+    options?: { viewerFid?: number; pageSize?: number }
+  ): AsyncGenerator<Cast, void, undefined> {
+    let cursor: string | undefined;
+
+    while (true) {
+      // fetch one page of notifications
+      const response = await this.apis.notifications.mentionsAndReplies({
+        fid: fid,
+        viewerFid: options?.viewerFid,
+        cursor: cursor,
+        limit: options?.pageSize,
+      });
+
+      // yield current page
+      yield* response.data.result.notifications;
+
+      // prep for next page
+      if (response.data.result.next.cursor === null) {
+        break;
+      }
+      cursor = response.data.result.next.cursor;
+    }
+  }
+
+  /**
+   * Get a list of likes and recasts to the users’s casts in reverse chronological order.
+   * See [Neynar documentation](https://docs.neynar.com/reference/reactions-and-recasts-v1)
+   *
+   */
+  public async *fetchUserLikesAndRecasts(
+    fid: number,
+    options?: { viewerFid?: number; pageSize?: number }
+  ): AsyncGenerator<ReactionsAndRecastsNotification, void, undefined> {
+    let cursor: string | undefined;
+
+    while (true) {
+      // fetch one page of notifications
+      const response = await this.apis.notifications.reactionsAndRecasts({
+        fid: fid,
+        viewerFid: options?.viewerFid,
+        cursor: cursor,
+        limit: options?.pageSize,
+      });
+
+      // yield current page
+      yield* response.data.result.notifications;
+
+      // prep for next page
+      if (response.data.result.next.cursor === null) {
+        break;
+      }
+      cursor = response.data.result.next.cursor;
     }
   }
 
