@@ -30,6 +30,7 @@ export class NeynarV1APIClient {
     follows: FollowsApi;
     verification: VerificationApi;
     notifications: NotificationsApi;
+    reactions: ReactionsApi;
   };
 
   /**
@@ -77,6 +78,7 @@ export class NeynarV1APIClient {
       follows: new FollowsApi(config, undefined, axiosInstance),
       verification: new VerificationApi(config, undefined, axiosInstance),
       notifications: new NotificationsApi(config, undefined, axiosInstance),
+      reactions: new ReactionsApi(config, undefined, axiosInstance),
     };
   }
 
@@ -401,7 +403,114 @@ export class NeynarV1APIClient {
     }
   }
 
-  // ------------ Follow ------------
+  // ------------ Reactions ------------
+
+  /**
+   * Lists a given cast's likes.
+   * See [Neynar documentation](https://docs.neynar.com/reference/cast-likes-v1)
+   *
+   */
+  public async *fetchCastLikes(
+    castOrCastHash: Cast | string,
+    options?: { viewerFid?: number; pageSize?: number }
+  ): AsyncGenerator<Reaction, void, undefined> {
+    let cursor: string | undefined;
+    let castHash: string;
+    if (typeof castOrCastHash === "string") {
+      castHash = castOrCastHash;
+    } else {
+      castHash = castOrCastHash.hash;
+    }
+
+    while (true) {
+      const response = await this.apis.reactions.castLikes({
+        castHash: castHash,
+        viewerFid: options?.viewerFid,
+        cursor: cursor,
+        limit: options?.pageSize,
+      });
+
+      yield* response.data.result.likes;
+
+      // prep for next page
+      if (response.data.result.next.cursor === null) {
+        break;
+      }
+      cursor = response.data.result.next.cursor;
+    }
+  }
+
+  /**
+   * Get All Reactions For a Cast.
+   * See [Neynar documentation](https://docs.neynar.com/reference/cast-reactions-v1)
+   *
+   */
+  public async *fetchCastReactions(
+    castOrCastHash: Cast | string,
+    options?: { viewerFid?: number; pageSize?: number }
+  ): AsyncGenerator<Reaction, void, undefined> {
+    let cursor: string | undefined;
+    let castHash: string;
+    if (typeof castOrCastHash === "string") {
+      castHash = castOrCastHash;
+    } else {
+      castHash = castOrCastHash.hash;
+    }
+
+    while (true) {
+      const response = await this.apis.reactions.castReactions({
+        castHash: castHash,
+        viewerFid: options?.viewerFid,
+        cursor: cursor,
+        limit: options?.pageSize,
+      });
+
+      yield* response.data.result.casts;
+
+      // prep for next page
+      if (response.data.result.next.cursor === null) {
+        break;
+      }
+      cursor = response.data.result.next.cursor;
+    }
+  }
+
+  /**
+   * Get the list of users who have recasted a specific cast.
+   * See [Neynar documentation](https://docs.neynar.com/reference/cast-recasters-v1)
+   *
+   */
+  public async *fetchRecasters(
+    castOrCastHash: Cast | string,
+    options?: { viewerFid?: number; pageSize?: number }
+  ): AsyncGenerator<Recaster, void, undefined> {
+    let cursor: string | undefined;
+    let castHash: string;
+    if (typeof castOrCastHash === "string") {
+      castHash = castOrCastHash;
+    } else {
+      castHash = castOrCastHash.hash;
+    }
+
+    while (true) {
+      const response = await this.apis.reactions.castRecasters({
+        castHash: castHash,
+        viewerFid: options?.viewerFid,
+        cursor: cursor,
+        limit: options?.pageSize,
+      });
+
+      yield* response.data.result.users;
+
+      // prep for next page
+      if (response.data.result.next.cursor === null) {
+        break;
+      }
+      cursor = response.data.result.next.cursor;
+    }
+  }
+
+  // ------------ Follows ------------
 
   /**
    * Get all users that follow the specified user.
