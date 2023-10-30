@@ -107,5 +107,9 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
   "include": ["src/**/*"],
-  "exclude": ["src/oas/*"]
+  "exclude": [
+    "src/oas/*",
+    "src/neynar-api/neynar-v1-api/openapi-tmp/*",
+    "src/neynar-api/neynar-v2-api/openapi-tmp/*"
+  ]
 }
