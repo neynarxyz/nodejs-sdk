@@ -408,13 +408,30 @@ export class NeynarV1APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/followers-v1)
    *
    */
-  public async fetchUserFollowers(
+  public async *fetchUserFollowers(
     fid: number,
-    viewerFid?: number
-  ): Promise<User[]> {
-    const response = await this.apis.follows.followers({ fid, viewerFid });
+    options?: { viewerFid?: number; pageSize?: number }
+  ): AsyncGenerator<User, void, undefined> {
+    let cursor: string | undefined;
 
-    return response.data.result.users;
+    while (true) {
+      const response = await this.apis.follows.followers({
+        fid,
+        viewerFid: options?.viewerFid,
+        cursor: cursor,
+        limit: options?.pageSize,
+      });
+
+      // yield current page of users
+      yield* response.data.result.users;
+
+      // prep for next page
+      if (response.data.result.next.cursor === null) {
+        break;
+      }
+
+      cursor = response.data.result.next.cursor;
+    }
   }
 
   /**
@@ -422,12 +439,29 @@ export class NeynarV1APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/following-v1)
    *
    */
-  public async fetchUserFollowing(
+  public async *fetchUserFollowing(
     fid: number,
-    viewerFid?: number
-  ): Promise<User[]> {
-    const response = await this.apis.follows.following({ fid, viewerFid });
+    options?: { viewerFid?: number; pageSize?: number }
+  ): AsyncGenerator<User, void, undefined> {
+    let cursor: string | undefined;
 
-    return response.data.result.users;
+    while (true) {
+      const response = await this.apis.follows.following({
+        fid,
+        viewerFid: options?.viewerFid,
+        cursor: cursor,
+        limit: options?.pageSize,
+      });
+
+      // yield current page of users
+      yield* response.data.result.users;
+
+      // prep for next page
+      if (response.data.result.next.cursor === null) {
+        break;
+      }
+
+      cursor = response.data.result.next.cursor;
+    }
   }
 }

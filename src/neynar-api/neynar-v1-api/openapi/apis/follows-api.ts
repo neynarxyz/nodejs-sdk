@@ -54,12 +54,16 @@ export const FollowsApiAxiosParamCreator = function (
      * @summary Gets all followers for a given FID
      * @param {number} fid FID of the user
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+     * @param {string} [cursor] Pagination cursor.
+     * @param {number} [limit] Number of results to retrieve (default 25, max 150)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     followers: async (
       fid: number,
       viewerFid?: number,
+      cursor?: string,
+      limit?: number,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'fid' is not null or undefined
@@ -95,6 +99,14 @@ export const FollowsApiAxiosParamCreator = function (
         localVarQueryParameter["viewerFid"] = viewerFid;
       }
 
+      if (cursor !== undefined) {
+        localVarQueryParameter["cursor"] = cursor;
+      }
+
+      if (limit !== undefined) {
+        localVarQueryParameter["limit"] = limit;
+      }
+
       setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -114,12 +126,16 @@ export const FollowsApiAxiosParamCreator = function (
      * @summary Gets all following users of a FID
      * @param {number} fid FID of the user
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+     * @param {string} [cursor] Pagination cursor.
+     * @param {number} [limit] Number of results to retrieve (default 25, max 150)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     following: async (
       fid: number,
       viewerFid?: number,
+      cursor?: string,
+      limit?: number,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'fid' is not null or undefined
@@ -155,6 +171,14 @@ export const FollowsApiAxiosParamCreator = function (
         localVarQueryParameter["viewerFid"] = viewerFid;
       }
 
+      if (cursor !== undefined) {
+        localVarQueryParameter["cursor"] = cursor;
+      }
+
+      if (limit !== undefined) {
+        localVarQueryParameter["limit"] = limit;
+      }
+
       setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -184,12 +208,16 @@ export const FollowsApiFp = function (configuration?: Configuration) {
      * @summary Gets all followers for a given FID
      * @param {number} fid FID of the user
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+     * @param {string} [cursor] Pagination cursor.
+     * @param {number} [limit] Number of results to retrieve (default 25, max 150)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async followers(
       fid: number,
       viewerFid?: number,
+      cursor?: string,
+      limit?: number,
       options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<FollowResponse>
@@ -197,6 +225,8 @@ export const FollowsApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs = await localVarAxiosParamCreator.followers(
         fid,
         viewerFid,
+        cursor,
+        limit,
         options
       );
       return createRequestFunction(
@@ -211,12 +241,16 @@ export const FollowsApiFp = function (configuration?: Configuration) {
      * @summary Gets all following users of a FID
      * @param {number} fid FID of the user
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+     * @param {string} [cursor] Pagination cursor.
+     * @param {number} [limit] Number of results to retrieve (default 25, max 150)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async following(
       fid: number,
       viewerFid?: number,
+      cursor?: string,
+      limit?: number,
       options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<FollowResponse>
@@ -224,6 +258,8 @@ export const FollowsApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs = await localVarAxiosParamCreator.following(
         fid,
         viewerFid,
+        cursor,
+        limit,
         options
       );
       return createRequestFunction(
@@ -259,7 +295,13 @@ export const FollowsApiFactory = function (
       options?: AxiosRequestConfig
     ): AxiosPromise<FollowResponse> {
       return localVarFp
-        .followers(requestParameters.fid, requestParameters.viewerFid, options)
+        .followers(
+          requestParameters.fid,
+          requestParameters.viewerFid,
+          requestParameters.cursor,
+          requestParameters.limit,
+          options
+        )
         .then((request) => request(axios, basePath));
     },
     /**
@@ -274,7 +316,13 @@ export const FollowsApiFactory = function (
       options?: AxiosRequestConfig
     ): AxiosPromise<FollowResponse> {
       return localVarFp
-        .following(requestParameters.fid, requestParameters.viewerFid, options)
+        .following(
+          requestParameters.fid,
+          requestParameters.viewerFid,
+          requestParameters.cursor,
+          requestParameters.limit,
+          options
+        )
         .then((request) => request(axios, basePath));
     },
   };
@@ -299,6 +347,20 @@ export interface FollowsApiFollowersRequest {
    * @memberof FollowsApiFollowers
    */
   readonly viewerFid?: number;
+
+  /**
+   * Pagination cursor.
+   * @type {string}
+   * @memberof FollowsApiFollowers
+   */
+  readonly cursor?: string;
+
+  /**
+   * Number of results to retrieve (default 25, max 100)
+   * @type {number}
+   * @memberof FollowsApiFollowers
+   */
+  readonly limit?: number;
 }
 
 /**
@@ -320,6 +382,20 @@ export interface FollowsApiFollowingRequest {
    * @memberof FollowsApiFollowing
    */
   readonly viewerFid?: number;
+
+  /**
+   * Pagination cursor.
+   * @type {string}
+   * @memberof FollowsApiFollowing
+   */
+  readonly cursor?: string;
+
+  /**
+   * Number of results to retrieve (default 25, max 100)
+   * @type {number}
+   * @memberof FollowsApiFollowing
+   */
+  readonly limit?: number;
 }
 
 /**
@@ -342,7 +418,13 @@ export class FollowsApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return FollowsApiFp(this.configuration)
-      .followers(requestParameters.fid, requestParameters.viewerFid, options)
+      .followers(
+        requestParameters.fid,
+        requestParameters.viewerFid,
+        requestParameters.cursor,
+        requestParameters.limit,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -359,7 +441,13 @@ export class FollowsApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return FollowsApiFp(this.configuration)
-      .following(requestParameters.fid, requestParameters.viewerFid, options)
+      .following(
+        requestParameters.fid,
+        requestParameters.viewerFid,
+        requestParameters.cursor,
+        requestParameters.limit,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 }

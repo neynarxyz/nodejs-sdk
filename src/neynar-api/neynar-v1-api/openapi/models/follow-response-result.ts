@@ -16,6 +16,9 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import { FollowResponseUser } from './follow-response-user';
+// May contain unused imports in some cases
+// @ts-ignore
+import { NextCursor } from './next-cursor';
 
 /**
  * 
@@ -29,5 +32,11 @@ export interface FollowResponseResult {
      * @memberof FollowResponseResult
      */
     'users': Array<FollowResponseUser>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof FollowResponseResult
+     */
+    'next': NextCursor;
 }
 
