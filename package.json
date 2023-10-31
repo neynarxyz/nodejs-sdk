@@ -1,6 +1,6 @@
 {
   "name": "@neynar/nodejs-sdk",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "SDK to interact with Neynar APIs (https://docs.neynar.com/)",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -11,7 +11,7 @@
     "clean": "del-cli ./build/*",
     "build": "yarn run clean && tsc",
     "generate:neynar-oas": "rm -rf src/neynar-api/neynar-v1-api/openapi-tmp; openapi-generator-cli generate -i src/oas/src/v1/spec.yaml -g typescript-axios -o src/neynar-api/neynar-v1-api/openapi-tmp --config src/oas/openapi-generator-config.json",
-    "generate:neynar-oas-v2": "rm -rf src/neynar-api/neynar-v2-api/openapi-tmp; openapi-generator-cli generate -i src/oas/src/v2/spec.yaml -g typescript-axios -o src/neynar-api/neynar-v2-api/openapi --config src/oas/openapi-generator-config.json"
+    "generate:neynar-oas-v2-farcaster": "rm -rf src/neynar-api/neynar-v2-api/openapi-farcaster-tmp; openapi-generator-cli generate -i src/oas/src/v2/spec.yaml -g typescript-axios -o src/neynar-api/neynar-v2-api/openapi-farcaster --config src/oas/openapi-generator-config.json"
   },
   "author": "Neynar",
   "license": "ISC",
