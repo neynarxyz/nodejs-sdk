@@ -193,7 +193,7 @@ export class NeynarV2APIClient {
   public async deleteCast(
     signerUuid: string,
     castOrCastHash: Cast | string
-  ): Promise<void> {
+  ): Promise<OperationResponse> {
     let castHash: string;
     if (typeof castOrCastHash === "string") {
       castHash = castOrCastHash;
@@ -204,6 +204,9 @@ export class NeynarV2APIClient {
       signer_uuid: signerUuid,
       target_hash: castHash,
     };
-    await this.apis.cast.deleteCast({ deleteCastReqBody: body });
+    const response = await this.apis.cast.deleteCast({
+      deleteCastReqBody: body,
+    });
+    return response.data;
   }
 }
