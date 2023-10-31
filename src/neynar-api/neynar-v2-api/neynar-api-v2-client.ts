@@ -93,39 +93,21 @@ export class NeynarV2APIClient {
     );
   }
 
-  /**
-   * Gets information about an individual cast by cast hash.
-   * See [Neynar documentation](https://docs.neynar.com/reference/cast)
-   *
-   */
-  public async fetchCastByHash(castHash: string): Promise<Cast | null> {
-    try {
-      const response = await this.apis.cast.cast({
-        type: CastParamType.Hash,
-        identifier: castHash,
-      });
-      return response.data.cast;
-    } catch (error) {
-      if (NeynarV2APIClient.isApiErrorResponse(error)) {
-        const status = error.response.status;
-        if (status === 404) {
-          return null;
-        }
-      }
-      throw error;
-    }
-  }
+  // ------------ Cast ------------
 
   /**
-   * Gets information about an individual cast by cast hash.
+   * Gets information about an individual cast.
    * See [Neynar documentation](https://docs.neynar.com/reference/cast)
    *
    */
-  public async fetchCastByUrl(castUrl: string): Promise<Cast | null> {
+  public async fetchCast(
+    castHashOrUrl: string,
+    type: CastParamType
+  ): Promise<Cast | null> {
     try {
       const response = await this.apis.cast.cast({
-        type: CastParamType.Url,
-        identifier: castUrl,
+        type,
+        identifier: castHashOrUrl,
       });
       return response.data.cast;
     } catch (error) {
