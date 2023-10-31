@@ -32,6 +32,7 @@ export class NeynarV2APIClient {
 
   public readonly apis: {
     cast: CastApi;
+    reaction: ReactionApi;
   };
 
   /**
@@ -75,6 +76,7 @@ export class NeynarV2APIClient {
     });
     this.apis = {
       cast: new CastApi(config, undefined, axiosInstance),
+      reaction: new ReactionApi(config, undefined, axiosInstance),
     };
   }
 
@@ -188,6 +190,60 @@ export class NeynarV2APIClient {
     };
     const response = await this.apis.cast.deleteCast({
       deleteCastReqBody: body,
+    });
+    return response.data;
+  }
+
+  // ------------ Rection ------------
+
+  /**
+   * React to a cast.
+   * See [Neynar documentation](https://docs.neynar.com/reference/post-reaction)
+   *
+   */
+  public async reactToCast(
+    signerUuid: string,
+    reaction: ReactionType,
+    castOrCastHash: Cast | string
+  ): Promise<OperationResponse> {
+    let castHash: string;
+    if (typeof castOrCastHash === "string") {
+      castHash = castOrCastHash;
+    } else {
+      castHash = castOrCastHash.hash;
+    }
+    const body: ReactionReqBody = {
+      signer_uuid: signerUuid,
+      reaction_type: reaction,
+      target: castHash,
+    };
+    const response = await this.apis.reaction.postReaction({
+      reactionReqBody: body,
+    });
+    return response.data;
+  }
+
+  /**
+   * Remove a reaction to a cast. See [Neynar documentation](https://docs.neynar.com/reference/delete-reaction)
+   */
+  public async removeReactionToCast(
+    signerUuid: string,
+    reaction: ReactionType,
+    castOrCastHash: Cast | string
+  ): Promise<OperationResponse> {
+    let castHash: string;
+    if (typeof castOrCastHash === "string") {
+      castHash = castOrCastHash;
+    } else {
+      castHash = castOrCastHash.hash;
+    }
+    const body: ReactionReqBody = {
+      signer_uuid: signerUuid,
+      reaction_type: reaction,
+      target: castHash,
+    };
+    const response = await this.apis.reaction.deleteReaction({
+      reactionReqBody: body,
     });
     return response.data;
   }
