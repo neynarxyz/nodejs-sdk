@@ -10,15 +10,13 @@ import {
   ReactionReqBody,
   ReactionType,
   OperationResponse,
-  FollowApi,
   FollowReqBody,
   BulkFollowResponse,
-  CastEmbed,
+  EmbeddedCast,
   Configuration,
   ErrorRes,
   FeedApi,
   UserApi,
-  SignerApiRegisterSignedKeyRequest,
   CastApiPostCastRequest,
   CastWithInteractions,
   SearchedUser,
@@ -96,17 +94,11 @@ export class NeynarV2APIClient {
   }
 
   /**
-   * Gets information about an individual cast.
+   * Gets information about an individual cast by cast hash.
    * See [Neynar documentation](https://docs.neynar.com/reference/cast)
    *
    */
-  public async fetchCast(castOrCastHash: Cast | string): Promise<Cast | null> {
-    let castHash: string;
-    if (typeof castOrCastHash === "string") {
-      castHash = castOrCastHash;
-    } else {
-      castHash = castOrCastHash.hash;
-    }
+  public async fetchCastByHash(castHash: string): Promise<Cast | null> {
     try {
       const response = await this.apis.cast.cast({
         type: CastParamType.Hash,
@@ -125,7 +117,32 @@ export class NeynarV2APIClient {
   }
 
   /**
-   * Gets information about an array of casts. See [Neynar documentation](https://docs.neynar.com/reference/get-array-of-casts)
+   * Gets information about an individual cast by cast hash.
+   * See [Neynar documentation](https://docs.neynar.com/reference/cast)
+   *
+   */
+  public async fetchCastByUrl(castUrl: string): Promise<Cast | null> {
+    try {
+      const response = await this.apis.cast.cast({
+        type: CastParamType.Url,
+        identifier: castUrl,
+      });
+      return response.data.cast;
+    } catch (error) {
+      if (NeynarV2APIClient.isApiErrorResponse(error)) {
+        const status = error.response.status;
+        if (status === 404) {
+          return null;
+        }
+      }
+      throw error;
+    }
+  }
+
+  /**
+   * Gets information about an array of casts.
+   * See [Neynar documentation](https://docs.neynar.com/reference/casts)
+   *
    */
   public async fetchCasts(castHashes: string[]): Promise<Cast[] | null> {
     try {
@@ -147,12 +164,14 @@ export class NeynarV2APIClient {
   }
 
   /**
-   * Publishes a cast for the currently authenticated user. See [Neynar documentation](https://docs.neynar.com/reference/post-a-cast)
+   * Publishes a cast for the currently authenticated user.
+   * See [Neynar documentation](https://docs.neynar.com/reference/post-cast)
+   *
    */
   public async publishCast(
     signerUuid: string,
     text: string,
-    options?: { embeds?: CastEmbed[]; replyTo?: string }
+    options?: { embeds?: EmbeddedCast[]; replyTo?: string }
   ): Promise<PostCastResponseCast> {
     const request: CastApiPostCastRequest = {
       postCastReqBody: {
@@ -167,7 +186,9 @@ export class NeynarV2APIClient {
   }
 
   /**
-   * Delete a cast. See [Neynar documentation](https://docs.neynar.com/reference/delete-a-cast)
+   * Delete a cast.
+   * See [Neynar documentation](https://docs.neynar.com/reference/delete-cast)
+   *
    */
   public async deleteCast(
     signerUuid: string,
