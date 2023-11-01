@@ -22,6 +22,7 @@ import {
   SearchedUser,
   FeedType,
   FilterType,
+  FeedResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -269,7 +270,7 @@ export class NeynarV2APIClient {
       limit?: number;
       cursor?: string;
     }
-  ): Promise<{ casts: CastWithInteractions[]; nextCursor: string | null }> {
+  ): Promise<FeedResponse> {
     const response = await this.apis.feed.feed({
       feedType: options?.feedType,
       filterType: options?.filterType,
@@ -281,9 +282,6 @@ export class NeynarV2APIClient {
     });
 
     // Return the current page of casts and the next cursor
-    return {
-      casts: response.data.casts,
-      nextCursor: response.data.next.cursor,
-    };
+    return response.data;
   }
 }
