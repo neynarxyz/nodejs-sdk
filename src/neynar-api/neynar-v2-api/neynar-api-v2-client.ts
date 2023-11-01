@@ -255,9 +255,11 @@ export class NeynarV2APIClient {
   // ------------ Feed ------------
 
   /**
-   * Get reverse chronological feed for a user based on their follow graph. See [Neynar documentation](https://docs.neynar.com/reference/get-feed)
+   * Get reverse chronological feed page for a user based on their follow graph.
+   * See [Neynar documentation](https://docs.neynar.com/reference/feed)
+   *
    */
-  public async *fetchFeed(
+  public async *fetchFeedPage(
     fid: number,
     options?: {
       feedType?: FeedType;
@@ -266,7 +268,7 @@ export class NeynarV2APIClient {
       parentUrl?: string;
       pageSize?: number;
     }
-  ): AsyncGenerator<CastWithInteractions, void, undefined> {
+  ): AsyncGenerator<CastWithInteractions[], void, undefined> {
     let cursor: string | undefined;
 
     while (true) {
@@ -281,7 +283,7 @@ export class NeynarV2APIClient {
       });
 
       // yield current page of casts
-      yield* response.data.casts;
+      yield response.data.casts;
 
       // prep for next page
       if (response.data.next.cursor === null) {
