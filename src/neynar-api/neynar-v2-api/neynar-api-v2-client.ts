@@ -259,37 +259,31 @@ export class NeynarV2APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/feed)
    *
    */
-  public async *fetchFeedPage(
+  public async fetchFeedPage(
     fid: number,
     options?: {
       feedType?: FeedType;
       filterType?: FilterType;
       fids?: string;
       parentUrl?: string;
-      pageSize?: number;
+      limit?: number;
+      cursor?: string;
     }
-  ): AsyncGenerator<CastWithInteractions[], void, undefined> {
-    let cursor: string | undefined;
+  ): Promise<{ casts: CastWithInteractions[]; nextCursor: string | null }> {
+    const response = await this.apis.feed.feed({
+      feedType: options?.feedType,
+      filterType: options?.filterType,
+      fid: fid,
+      fids: options?.fids,
+      parentUrl: options?.parentUrl,
+      cursor: options?.cursor,
+      limit: options?.limit,
+    });
 
-    while (true) {
-      const response = await this.apis.feed.feed({
-        feedType: options?.feedType,
-        filterType: options?.filterType,
-        fid: fid,
-        fids: options?.fids,
-        parentUrl: options?.parentUrl,
-        cursor: cursor,
-        limit: options?.pageSize,
-      });
-
-      // yield current page of casts
-      yield response.data.casts;
-
-      // prep for next page
-      if (response.data.next.cursor === null) {
-        break;
-      }
-      cursor = response.data.next.cursor;
-    }
+    // Return the current page of casts and the next cursor
+    return {
+      casts: response.data.casts,
+      nextCursor: response.data.next.cursor,
+    };
   }
 }
