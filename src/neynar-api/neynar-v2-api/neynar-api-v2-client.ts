@@ -20,6 +20,8 @@ import {
   CastApiPostCastRequest,
   CastWithInteractions,
   SearchedUser,
+  FeedType,
+  FilterType,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -33,6 +35,7 @@ export class NeynarV2APIClient {
   public readonly apis: {
     cast: CastApi;
     reaction: ReactionApi;
+    feed: FeedApi;
   };
 
   /**
@@ -77,6 +80,7 @@ export class NeynarV2APIClient {
     this.apis = {
       cast: new CastApi(config, undefined, axiosInstance),
       reaction: new ReactionApi(config, undefined, axiosInstance),
+      feed: new FeedApi(config, undefined, axiosInstance),
     };
   }
 
@@ -246,5 +250,44 @@ export class NeynarV2APIClient {
       reactionReqBody: body,
     });
     return response.data;
+  }
+
+  // ------------ Feed ------------
+
+  /**
+   * Get reverse chronological feed for a user based on their follow graph. See [Neynar documentation](https://docs.neynar.com/reference/get-feed)
+   */
+  public async *fetchFeed(
+    fid: number,
+    options?: {
+      feedType?: FeedType;
+      filterType?: FilterType;
+      fids?: string;
+      parentUrl?: string;
+      pageSize?: number;
+    }
+  ): AsyncGenerator<CastWithInteractions, void, undefined> {
+    let cursor: string | undefined;
+
+    while (true) {
+      const response = await this.apis.feed.feed({
+        feedType: options?.feedType,
+        filterType: options?.filterType,
+        fid: fid,
+        fids: options?.fids,
+        parentUrl: options?.parentUrl,
+        cursor: cursor,
+        limit: options?.pageSize,
+      });
+
+      // yield current page of casts
+      yield* response.data.casts;
+
+      // prep for next page
+      if (response.data.next.cursor === null) {
+        break;
+      }
+      cursor = response.data.next.cursor;
+    }
   }
 }
