@@ -128,19 +128,9 @@ export class NeynarV2APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/signer)
    *
    */
-  public async fetchSigner(signerUuid: string): Promise<Signer | null> {
-    try {
-      const response = await this.apis.signer.signer({ signerUuid });
-      return response.data;
-    } catch (error) {
-      if (NeynarV2APIClient.isApiErrorResponse(error)) {
-        const status = error.response.status;
-        if (status === 404) {
-          return null;
-        }
-      }
-      throw error;
-    }
+  public async lookUpSigner(signerUuid: string): Promise<Signer | null> {
+    const response = await this.apis.signer.signer({ signerUuid });
+    return response.data;
   }
 
   /**
@@ -369,7 +359,7 @@ export class NeynarV2APIClient {
   }
 
   // ------------ Follows ------------
-  
+
   /**
    * Returns a list of relevant followers for a specific FID.
    * See [Neynar documentation](https://docs.neynar.com/reference/relevant-followers)
