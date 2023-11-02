@@ -9,11 +9,17 @@ import {
   FollowsApi,
   Configuration,
   ErrorRes,
-  Reaction,
-  ReactionWithCastMeta,
   VerificationResponseResult,
-  ReactionsAndRecastsNotification,
-  Recaster,
+  RecentUsersResponse,
+  RecentCastsResponse,
+  UserCastLikeResponse,
+  CastsResponse,
+  MentionsAndRepliesResponse,
+  ReactionsAndRecastsResponse,
+  CastLikesResponse,
+  CastReactionsResponse,
+  CastRecasterResponse,
+  FollowResponse,
 } from "./openapi";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -104,27 +110,18 @@ export class NeynarV1APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/recent-users-v1)
    *
    */
-  public async *fetchRecentUsers(options?: {
+  public async fetchRecentUsers(options?: {
     viewerFid?: number;
-    pageSize?: number;
-  }): AsyncGenerator<User, void, undefined> {
-    let cursor: string | undefined;
+    limit?: number;
+    cursor?: string;
+  }): Promise<RecentUsersResponse> {
+    const response = await this.apis.user.recentUsers({
+      viewerFid: options?.viewerFid,
+      cursor: options?.cursor,
+      limit: options?.limit,
+    });
 
-    while (true) {
-      // fetch one page of casts (with refreshed auth if necessary)
-      const response = await this.apis.user.recentUsers({
-        viewerFid: options?.viewerFid,
-        cursor: cursor,
-        limit: options?.pageSize,
-      });
-
-      yield* response.data.result.users;
-      // prep for next page
-      if (response.data.result.next.cursor === null) {
-        break;
-      }
-      cursor = response.data.result.next.cursor;
-    }
+    return response.data;
   }
 
   /**
@@ -132,29 +129,18 @@ export class NeynarV1APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/user-cast-likes-v1)
    *
    */
-  public async *fetchUserCastLikes(
+  public async fetchUserCastLikes(
     fid: number,
-    options?: { viewerFid?: number; pageSize?: number }
-  ): AsyncGenerator<ReactionWithCastMeta, void, undefined> {
-    let cursor: string | undefined;
+    options?: { viewerFid?: number; limit?: number; cursor?: string }
+  ): Promise<UserCastLikeResponse> {
+    const response = await this.apis.user.userCastLikes({
+      fid: fid,
+      viewerFid: options?.viewerFid,
+      limit: options?.limit,
+      cursor: options?.cursor,
+    });
 
-    while (true) {
-      // fetch one page of likes
-      const response = await this.apis.user.userCastLikes({
-        fid: fid,
-        viewerFid: options?.viewerFid,
-        limit: options?.pageSize,
-        cursor: cursor,
-      });
-
-      yield* response.data.result.likes;
-
-      // prep for next page
-      if (response.data.result.next.cursor === null) {
-        break;
-      }
-      cursor = response.data.result.next.cursor;
-    }
+    return response.data;
   }
 
   /**
@@ -245,30 +231,24 @@ export class NeynarV1APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/casts-v1)
    *
    */
-  public async *fetchCastsForUser(
+  public async fetchCastsForUser(
     fid: number,
-    options?: { parentUrl?: string; viewerFid?: number; pageSize?: number }
-  ): AsyncGenerator<Cast, void, undefined> {
-    let cursor: string | undefined;
-
-    while (true) {
-      const response = await this.apis.cast.casts({
-        fid: fid,
-        viewerFid: options?.viewerFid,
-        parentUrl: options?.parentUrl,
-        cursor: cursor,
-        limit: options?.pageSize,
-      });
-
-      // yield current page of casts
-      yield* response.data.result.casts;
-
-      // prep for next page
-      if (response.data.result.next.cursor === null) {
-        break;
-      }
-      cursor = response.data.result.next.cursor;
+    options?: {
+      parentUrl?: string;
+      viewerFid?: number;
+      limit?: number;
+      cursor?: string;
     }
+  ): Promise<CastsResponse> {
+    const response = await this.apis.cast.casts({
+      fid: fid,
+      viewerFid: options?.viewerFid,
+      parentUrl: options?.parentUrl,
+      cursor: options?.cursor,
+      limit: options?.limit,
+    });
+
+    return response.data;
   }
 
   /**
@@ -276,28 +256,18 @@ export class NeynarV1APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/recent-casts-v1)
    *
    */
-  public async *fetchRecentCasts(options?: {
+  public async fetchRecentCasts(options?: {
     viewerFid?: number;
-    pageSize?: number;
-  }): AsyncGenerator<Cast, void, undefined> {
-    let cursor: string | undefined;
+    limit?: number;
+    cursor?: string;
+  }): Promise<RecentCastsResponse> {
+    const response = await this.apis.cast.recentCasts({
+      viewerFid: options?.viewerFid,
+      cursor: options?.cursor,
+      limit: options?.limit,
+    });
 
-    while (true) {
-      // fetch one page of casts (with refreshed auth if necessary)
-      const response = await this.apis.cast.recentCasts({
-        viewerFid: options?.viewerFid,
-        cursor: cursor,
-        limit: options?.pageSize,
-      });
-
-      yield* response.data.result.casts;
-
-      // prep for next page
-      if (response.data.result.next.cursor === null) {
-        break;
-      }
-      cursor = response.data.result.next.cursor;
-    }
+    return response.data;
   }
 
   // ------------ Verification ------------
@@ -346,30 +316,18 @@ export class NeynarV1APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/mentions-and-replies-v1)
    *
    */
-  public async *fetchMentionAndReplyNotifications(
+  public async fetchMentionAndReplyNotifications(
     fid: number,
-    options?: { viewerFid?: number; pageSize?: number }
-  ): AsyncGenerator<Cast, void, undefined> {
-    let cursor: string | undefined;
+    options?: { viewerFid?: number; limit?: number; cursor?: string }
+  ): Promise<MentionsAndRepliesResponse> {
+    const response = await this.apis.notifications.mentionsAndReplies({
+      fid: fid,
+      viewerFid: options?.viewerFid,
+      cursor: options?.cursor,
+      limit: options?.limit,
+    });
 
-    while (true) {
-      // fetch one page of notifications
-      const response = await this.apis.notifications.mentionsAndReplies({
-        fid: fid,
-        viewerFid: options?.viewerFid,
-        cursor: cursor,
-        limit: options?.pageSize,
-      });
-
-      // yield current page
-      yield* response.data.result.notifications;
-
-      // prep for next page
-      if (response.data.result.next.cursor === null) {
-        break;
-      }
-      cursor = response.data.result.next.cursor;
-    }
+    return response.data;
   }
 
   /**
@@ -377,30 +335,18 @@ export class NeynarV1APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/reactions-and-recasts-v1)
    *
    */
-  public async *fetchUserLikesAndRecasts(
+  public async fetchUserLikesAndRecasts(
     fid: number,
-    options?: { viewerFid?: number; pageSize?: number }
-  ): AsyncGenerator<ReactionsAndRecastsNotification, void, undefined> {
-    let cursor: string | undefined;
+    options?: { viewerFid?: number; limit?: number; cursor?: string }
+  ): Promise<ReactionsAndRecastsResponse> {
+    const response = await this.apis.notifications.reactionsAndRecasts({
+      fid: fid,
+      viewerFid: options?.viewerFid,
+      cursor: options?.cursor,
+      limit: options?.limit,
+    });
 
-    while (true) {
-      // fetch one page of notifications
-      const response = await this.apis.notifications.reactionsAndRecasts({
-        fid: fid,
-        viewerFid: options?.viewerFid,
-        cursor: cursor,
-        limit: options?.pageSize,
-      });
-
-      // yield current page
-      yield* response.data.result.notifications;
-
-      // prep for next page
-      if (response.data.result.next.cursor === null) {
-        break;
-      }
-      cursor = response.data.result.next.cursor;
-    }
+    return response.data;
   }
 
   // ------------ Reactions ------------
@@ -410,11 +356,10 @@ export class NeynarV1APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/cast-likes-v1)
    *
    */
-  public async *fetchCastLikes(
+  public async fetchCastLikes(
     castOrCastHash: Cast | string,
-    options?: { viewerFid?: number; pageSize?: number }
-  ): AsyncGenerator<Reaction, void, undefined> {
-    let cursor: string | undefined;
+    options?: { viewerFid?: number; limit?: number; cursor?: string }
+  ): Promise<CastLikesResponse> {
     let castHash: string;
     if (typeof castOrCastHash === "string") {
       castHash = castOrCastHash;
@@ -422,22 +367,14 @@ export class NeynarV1APIClient {
       castHash = castOrCastHash.hash;
     }
 
-    while (true) {
-      const response = await this.apis.reactions.castLikes({
-        castHash: castHash,
-        viewerFid: options?.viewerFid,
-        cursor: cursor,
-        limit: options?.pageSize,
-      });
+    const response = await this.apis.reactions.castLikes({
+      castHash: castHash,
+      viewerFid: options?.viewerFid,
+      cursor: options?.cursor,
+      limit: options?.limit,
+    });
 
-      yield* response.data.result.likes;
-
-      // prep for next page
-      if (response.data.result.next.cursor === null) {
-        break;
-      }
-      cursor = response.data.result.next.cursor;
-    }
+    return response.data;
   }
 
   /**
@@ -445,11 +382,10 @@ export class NeynarV1APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/cast-reactions-v1)
    *
    */
-  public async *fetchCastReactions(
+  public async fetchCastReactions(
     castOrCastHash: Cast | string,
-    options?: { viewerFid?: number; pageSize?: number }
-  ): AsyncGenerator<Reaction, void, undefined> {
-    let cursor: string | undefined;
+    options?: { viewerFid?: number; limit?: number, cursor?: string }
+  ): Promise<CastReactionsResponse> {
     let castHash: string;
     if (typeof castOrCastHash === "string") {
       castHash = castOrCastHash;
@@ -457,22 +393,14 @@ export class NeynarV1APIClient {
       castHash = castOrCastHash.hash;
     }
 
-    while (true) {
-      const response = await this.apis.reactions.castReactions({
-        castHash: castHash,
-        viewerFid: options?.viewerFid,
-        cursor: cursor,
-        limit: options?.pageSize,
-      });
+    const response = await this.apis.reactions.castReactions({
+      castHash: castHash,
+      viewerFid: options?.viewerFid,
+      cursor: options?.cursor,
+      limit: options?.limit,
+    });
 
-      yield* response.data.result.casts;
-
-      // prep for next page
-      if (response.data.result.next.cursor === null) {
-        break;
-      }
-      cursor = response.data.result.next.cursor;
-    }
+    return response.data;
   }
 
   /**
@@ -480,11 +408,10 @@ export class NeynarV1APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/cast-recasters-v1)
    *
    */
-  public async *fetchRecasters(
+  public async fetchRecasters(
     castOrCastHash: Cast | string,
-    options?: { viewerFid?: number; pageSize?: number }
-  ): AsyncGenerator<Recaster, void, undefined> {
-    let cursor: string | undefined;
+    options?: { viewerFid?: number; limit?: number; cursor?: string }
+  ): Promise<CastRecasterResponse> {
     let castHash: string;
     if (typeof castOrCastHash === "string") {
       castHash = castOrCastHash;
@@ -492,22 +419,14 @@ export class NeynarV1APIClient {
       castHash = castOrCastHash.hash;
     }
 
-    while (true) {
-      const response = await this.apis.reactions.castRecasters({
-        castHash: castHash,
-        viewerFid: options?.viewerFid,
-        cursor: cursor,
-        limit: options?.pageSize,
-      });
+    const response = await this.apis.reactions.castRecasters({
+      castHash: castHash,
+      viewerFid: options?.viewerFid,
+      cursor: options?.cursor,
+      limit: options?.limit,
+    });
 
-      yield* response.data.result.users;
-
-      // prep for next page
-      if (response.data.result.next.cursor === null) {
-        break;
-      }
-      cursor = response.data.result.next.cursor;
-    }
+    return response.data;
   }
 
   // ------------ Follows ------------
@@ -517,30 +436,18 @@ export class NeynarV1APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/followers-v1)
    *
    */
-  public async *fetchUserFollowers(
+  public async fetchUserFollowers(
     fid: number,
-    options?: { viewerFid?: number; pageSize?: number }
-  ): AsyncGenerator<User, void, undefined> {
-    let cursor: string | undefined;
+    options?: { viewerFid?: number; limit?: number; cursor?: string }
+  ): Promise<FollowResponse> {
+    const response = await this.apis.follows.followers({
+      fid,
+      viewerFid: options?.viewerFid,
+      cursor: options?.cursor,
+      limit: options?.limit,
+    });
 
-    while (true) {
-      const response = await this.apis.follows.followers({
-        fid,
-        viewerFid: options?.viewerFid,
-        cursor: cursor,
-        limit: options?.pageSize,
-      });
-
-      // yield current page of users
-      yield* response.data.result.users;
-
-      // prep for next page
-      if (response.data.result.next.cursor === null) {
-        break;
-      }
-
-      cursor = response.data.result.next.cursor;
-    }
+    return response.data;
   }
 
   /**
@@ -548,29 +455,17 @@ export class NeynarV1APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/following-v1)
    *
    */
-  public async *fetchUserFollowing(
+  public async fetchUserFollowing(
     fid: number,
-    options?: { viewerFid?: number; pageSize?: number }
-  ): AsyncGenerator<User, void, undefined> {
-    let cursor: string | undefined;
+    options?: { viewerFid?: number; limit?: number; cursor?: string }
+  ): Promise<FollowResponse> {
+    const response = await this.apis.follows.following({
+      fid,
+      viewerFid: options?.viewerFid,
+      cursor: options?.cursor,
+      limit: options?.limit,
+    });
 
-    while (true) {
-      const response = await this.apis.follows.following({
-        fid,
-        viewerFid: options?.viewerFid,
-        cursor: cursor,
-        limit: options?.pageSize,
-      });
-
-      // yield current page of users
-      yield* response.data.result.users;
-
-      // prep for next page
-      if (response.data.result.next.cursor === null) {
-        break;
-      }
-
-      cursor = response.data.result.next.cursor;
-    }
+    return response.data;
   }
 }
