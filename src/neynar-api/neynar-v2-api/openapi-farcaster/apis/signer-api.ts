@@ -52,18 +52,15 @@ export const SignerApiAxiosParamCreator = function (
 ) {
   return {
     /**
-     * Creates a signer and returns the signer status. \\ **Note**: While tesing please reuse the signer, it costs money to approve a signer.
+     * Creates a signer and returns the signer status. 
+     * **Note**: While testing please reuse the signer, it costs money to approve a signer.
      * @summary Creates a signer and returns the signer status
-     * @param {string} apiKey API key required for authentication.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createSigner: async (
-      apiKey: string,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'apiKey' is not null or undefined
-      assertParamExists("createSigner", "apiKey", apiKey);
       const localVarPath = `/farcaster/signer`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -80,9 +77,12 @@ export const SignerApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      if (apiKey != null) {
-        localVarHeaderParameter["api_key"] = String(apiKey);
-      }
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "api_key",
+        configuration
+      );
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
@@ -101,18 +101,14 @@ export const SignerApiAxiosParamCreator = function (
     /**
      * Registers an app fid, deadline and a signature. Returns the signer status with an approval url.
      * @summary Register Signed Key
-     * @param {string} apiKey API key required for authentication.
      * @param {RegisterSignerKeyReqBody} registerSignerKeyReqBody
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     registerSignedKey: async (
-      apiKey: string,
       registerSignerKeyReqBody: RegisterSignerKeyReqBody,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'apiKey' is not null or undefined
-      assertParamExists("registerSignedKey", "apiKey", apiKey);
       // verify required parameter 'registerSignerKeyReqBody' is not null or undefined
       assertParamExists(
         "registerSignedKey",
@@ -135,9 +131,12 @@ export const SignerApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      if (apiKey != null) {
-        localVarHeaderParameter["api_key"] = String(apiKey);
-      }
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "api_key",
+        configuration
+      );
 
       localVarHeaderParameter["Content-Type"] = "application/json";
 
@@ -163,18 +162,14 @@ export const SignerApiAxiosParamCreator = function (
     /**
      * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
      * @summary Fetches the status of a signer
-     * @param {string} apiKey API key required for authentication.
      * @param {string} signerUuid
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     signer: async (
-      apiKey: string,
       signerUuid: string,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'apiKey' is not null or undefined
-      assertParamExists("signer", "apiKey", apiKey);
       // verify required parameter 'signerUuid' is not null or undefined
       assertParamExists("signer", "signerUuid", signerUuid);
       const localVarPath = `/farcaster/signer`;
@@ -193,12 +188,15 @@ export const SignerApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "api_key",
+        configuration
+      );
+
       if (signerUuid !== undefined) {
         localVarQueryParameter["signer_uuid"] = signerUuid;
-      }
-
-      if (apiKey != null) {
-        localVarHeaderParameter["api_key"] = String(apiKey);
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -226,20 +224,17 @@ export const SignerApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = SignerApiAxiosParamCreator(configuration);
   return {
     /**
-     * Creates a signer and returns the signer status. \\ **Note**: While tesing please reuse the signer, it costs money to approve a signer.
+     * Creates a signer and returns the signer status. \\ **Note**: While testing please reuse the signer, it costs money to approve a signer.
      * @summary Creates a signer and returns the signer status
-     * @param {string} apiKey API key required for authentication.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createSigner(
-      apiKey: string,
       options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signer>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.createSigner(
-        apiKey,
         options
       );
       return createRequestFunction(
@@ -252,13 +247,11 @@ export const SignerApiFp = function (configuration?: Configuration) {
     /**
      * Registers an app fid, deadline and a signature. Returns the signer status with an approval url.
      * @summary Register Signed Key
-     * @param {string} apiKey API key required for authentication.
      * @param {RegisterSignerKeyReqBody} registerSignerKeyReqBody
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async registerSignedKey(
-      apiKey: string,
       registerSignerKeyReqBody: RegisterSignerKeyReqBody,
       options?: AxiosRequestConfig
     ): Promise<
@@ -266,7 +259,6 @@ export const SignerApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.registerSignedKey(
-          apiKey,
           registerSignerKeyReqBody,
           options
         );
@@ -280,20 +272,17 @@ export const SignerApiFp = function (configuration?: Configuration) {
     /**
      * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
      * @summary Fetches the status of a signer
-     * @param {string} apiKey API key required for authentication.
      * @param {string} signerUuid
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async signer(
-      apiKey: string,
       signerUuid: string,
       options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signer>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.signer(
-        apiKey,
         signerUuid,
         options
       );
@@ -319,53 +308,76 @@ export const SignerApiFactory = function (
   const localVarFp = SignerApiFp(configuration);
   return {
     /**
-     * Creates a signer and returns the signer status. \\ **Note**: While tesing please reuse the signer, it costs money to approve a signer.
+     * Creates a signer and returns the signer status. \\ **Note**: While testing please reuse the signer, it costs money to approve a signer.
      * @summary Creates a signer and returns the signer status
-     * @param {string} apiKey API key required for authentication.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createSigner(apiKey: string, options?: any): AxiosPromise<Signer> {
+    createSigner(options?: AxiosRequestConfig): AxiosPromise<Signer> {
       return localVarFp
-        .createSigner(apiKey, options)
+        .createSigner(options)
         .then((request) => request(axios, basePath));
     },
     /**
      * Registers an app fid, deadline and a signature. Returns the signer status with an approval url.
      * @summary Register Signed Key
-     * @param {string} apiKey API key required for authentication.
-     * @param {RegisterSignerKeyReqBody} registerSignerKeyReqBody
+     * @param {SignerApiRegisterSignedKeyRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     registerSignedKey(
-      apiKey: string,
-      registerSignerKeyReqBody: RegisterSignerKeyReqBody,
-      options?: any
+      requestParameters: SignerApiRegisterSignedKeyRequest,
+      options?: AxiosRequestConfig
     ): AxiosPromise<Signer> {
       return localVarFp
-        .registerSignedKey(apiKey, registerSignerKeyReqBody, options)
+        .registerSignedKey(requestParameters.registerSignerKeyReqBody, options)
         .then((request) => request(axios, basePath));
     },
     /**
      * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
      * @summary Fetches the status of a signer
-     * @param {string} apiKey API key required for authentication.
-     * @param {string} signerUuid
+     * @param {SignerApiSignerRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     signer(
-      apiKey: string,
-      signerUuid: string,
-      options?: any
+      requestParameters: SignerApiSignerRequest,
+      options?: AxiosRequestConfig
     ): AxiosPromise<Signer> {
       return localVarFp
-        .signer(apiKey, signerUuid, options)
+        .signer(requestParameters.signerUuid, options)
         .then((request) => request(axios, basePath));
     },
   };
 };
+
+/**
+ * Request parameters for registerSignedKey operation in SignerApi.
+ * @export
+ * @interface SignerApiRegisterSignedKeyRequest
+ */
+export interface SignerApiRegisterSignedKeyRequest {
+  /**
+   *
+   * @type {RegisterSignerKeyReqBody}
+   * @memberof SignerApiRegisterSignedKey
+   */
+  readonly registerSignerKeyReqBody: RegisterSignerKeyReqBody;
+}
+
+/**
+ * Request parameters for signer operation in SignerApi.
+ * @export
+ * @interface SignerApiSignerRequest
+ */
+export interface SignerApiSignerRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof SignerApiSigner
+   */
+  readonly signerUuid: string;
+}
 
 /**
  * SignerApi - object-oriented interface
@@ -375,54 +387,49 @@ export const SignerApiFactory = function (
  */
 export class SignerApi extends BaseAPI {
   /**
-   * Creates a signer and returns the signer status. \\ **Note**: While tesing please reuse the signer, it costs money to approve a signer.
+   * Creates a signer and returns the signer status. \\ **Note**: While testing please reuse the signer, it costs money to approve a signer.
    * @summary Creates a signer and returns the signer status
-   * @param {string} apiKey API key required for authentication.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SignerApi
    */
-  public createSigner(apiKey: string, options?: AxiosRequestConfig) {
+  public createSigner(options?: AxiosRequestConfig) {
     return SignerApiFp(this.configuration)
-      .createSigner(apiKey, options)
+      .createSigner(options)
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Registers an app fid, deadline and a signature. Returns the signer status with an approval url.
    * @summary Register Signed Key
-   * @param {string} apiKey API key required for authentication.
-   * @param {RegisterSignerKeyReqBody} registerSignerKeyReqBody
+   * @param {SignerApiRegisterSignedKeyRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SignerApi
    */
   public registerSignedKey(
-    apiKey: string,
-    registerSignerKeyReqBody: RegisterSignerKeyReqBody,
+    requestParameters: SignerApiRegisterSignedKeyRequest,
     options?: AxiosRequestConfig
   ) {
     return SignerApiFp(this.configuration)
-      .registerSignedKey(apiKey, registerSignerKeyReqBody, options)
+      .registerSignedKey(requestParameters.registerSignerKeyReqBody, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
    * @summary Fetches the status of a signer
-   * @param {string} apiKey API key required for authentication.
-   * @param {string} signerUuid
+   * @param {SignerApiSignerRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SignerApi
    */
   public signer(
-    apiKey: string,
-    signerUuid: string,
+    requestParameters: SignerApiSignerRequest,
     options?: AxiosRequestConfig
   ) {
     return SignerApiFp(this.configuration)
-      .signer(apiKey, signerUuid, options)
+      .signer(requestParameters.signerUuid, options)
       .then((request) => request(this.axios, this.basePath));
   }
 }
