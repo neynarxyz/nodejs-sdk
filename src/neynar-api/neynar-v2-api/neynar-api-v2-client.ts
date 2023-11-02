@@ -329,17 +329,14 @@ export class NeynarV2APIClient {
       cursor?: string;
     }
   ): Promise<FeedResponse> {
-    const response = await this.apis.feed.feed({
+    const response = await this.apis.feed.feed(fid, {
       feedType: options?.feedType,
       filterType: options?.filterType,
-      fid: fid,
       fids: options?.fids,
       parentUrl: options?.parentUrl,
       cursor: options?.cursor,
       limit: options?.limit,
     });
-
-    // Return the current page of casts and the next cursor
     return response.data;
   }
 }
