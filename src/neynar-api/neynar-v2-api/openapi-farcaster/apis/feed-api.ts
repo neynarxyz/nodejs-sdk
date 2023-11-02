@@ -54,9 +54,9 @@ export const FeedApiAxiosParamCreator = function (
      * @summary Retrieve casts based on filters
      * @param {number} [fid] fid of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
      * @param {FeedType} [feedType] Defaults to following (requires fid or address). If set to filter (requires filter_type)
-     * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
-     * @param {string} [fids] Used when filter_type&#x3D;fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
-     * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
+     * @param {FilterType} [filterType] Used when feed_type=filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
+     * @param {string} [fids] Used when filter_type=fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
+     * @param {string} [parentUrl] Used when filter_type=parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
      * @param {string} [cursor] Pagination cursor.
      * @param {number} [limit] Number of results to retrieve (default 25, max 150)
      * @param {*} [options] Override http request option.
@@ -72,10 +72,9 @@ export const FeedApiAxiosParamCreator = function (
       limit?: number,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      const localVarPath = `/farcaster/feed`;
-
+      // verify required parameter 'fid' is not null or undefined
       assertParamExists("feed", "fid", options);
-
+      const localVarPath = `/farcaster/feed`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
       let baseOptions;
@@ -155,9 +154,9 @@ export const FeedApiFp = function (configuration?: Configuration) {
      * @summary Retrieve casts based on filters
      * @param {number} [fid] fid of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
      * @param {FeedType} [feedType] Defaults to following (requires fid or address). If set to filter (requires filter_type)
-     * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
-     * @param {string} [fids] Used when filter_type&#x3D;fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
-     * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
+     * @param {FilterType} [filterType] Used when feed_type=filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
+     * @param {string} [fids] Used when filter_type=fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
+     * @param {string} [parentUrl] Used when filter_type=parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
      * @param {string} [cursor] Pagination cursor.
      * @param {number} [limit] Number of results to retrieve (default 25, max 150)
      * @param {*} [options] Override http request option.
@@ -214,13 +213,12 @@ export const FeedApiFactory = function (
      * @throws {RequiredError}
      */
     feed(
-      fid: number,
       requestParameters: FeedApiFeedRequest,
       options?: AxiosRequestConfig
     ): AxiosPromise<FeedResponse> {
       return localVarFp
         .feed(
-          fid,
+          requestParameters.fid,
           requestParameters.feedType,
           requestParameters.filterType,
           requestParameters.fids,
@@ -241,6 +239,13 @@ export const FeedApiFactory = function (
  */
 export interface FeedApiFeedRequest {
   /**
+   * fid of a user
+   * @type {number}
+   * @memberof FeedApiFeed
+   */
+  readonly fid: number;
+
+  /**
    * Defaults to following (requires fid or address). If set to filter (requires filter_type)
    * @type {'filter' | 'following'}
    * @memberof FeedApiFeed
@@ -248,21 +253,21 @@ export interface FeedApiFeedRequest {
   readonly feedType?: FeedType;
 
   /**
-   * Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
+   * Used when feed_type=filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
    * @type {'fids' | 'parent_url'}
    * @memberof FeedApiFeed
    */
   readonly filterType?: FilterType;
 
   /**
-   * Used when filter_type&#x3D;fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
+   * Used when filter_type=fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
    * @type {string}
    * @memberof FeedApiFeed
    */
   readonly fids?: string;
 
   /**
-   * Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
+   * Used when filter_type=parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
    * @type {string}
    * @memberof FeedApiFeed
    */
@@ -299,13 +304,12 @@ export class FeedApi extends BaseAPI {
    * @memberof FeedApi
    */
   public feed(
-    fid: number,
     requestParameters: FeedApiFeedRequest,
     options?: AxiosRequestConfig
   ) {
     return FeedApiFp(this.configuration)
       .feed(
-        fid,
+        requestParameters.fid,
         requestParameters.feedType,
         requestParameters.filterType,
         requestParameters.fids,

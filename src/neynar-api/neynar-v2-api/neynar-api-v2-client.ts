@@ -24,6 +24,8 @@ import {
   FilterType,
   FeedResponse,
   SignerApiRegisterSignedKeyRequest,
+  NotificationsResponse,
+  NotificationsApi,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -39,6 +41,7 @@ export class NeynarV2APIClient {
     cast: CastApi;
     reaction: ReactionApi;
     feed: FeedApi;
+    notifications: NotificationsApi;
   };
 
   /**
@@ -85,6 +88,7 @@ export class NeynarV2APIClient {
       cast: new CastApi(config, undefined, axiosInstance),
       reaction: new ReactionApi(config, undefined, axiosInstance),
       feed: new FeedApi(config, undefined, axiosInstance),
+      notifications: new NotificationsApi(config, undefined, axiosInstance),
     };
   }
 
@@ -329,11 +333,30 @@ export class NeynarV2APIClient {
       cursor?: string;
     }
   ): Promise<FeedResponse> {
-    const response = await this.apis.feed.feed(fid, {
+    const response = await this.apis.feed.feed({
+      fid,
       feedType: options?.feedType,
       filterType: options?.filterType,
       fids: options?.fids,
       parentUrl: options?.parentUrl,
+      cursor: options?.cursor,
+      limit: options?.limit,
+    });
+    return response.data;
+  }
+
+  // ------------ Feed ------------
+  /**
+   * Returns a list of notifications for a specific FID in reverse chronological order.
+   * See [Neynar documentation](https://docs.neynar.com/reference/notifications)
+   *
+   */
+  public async fetchNotifications(
+    fid: number,
+    options?: { cursor?: string; limit?: number }
+  ): Promise<NotificationsResponse> {
+    const response = await this.apis.notifications.notifications({
+      fid,
       cursor: options?.cursor,
       limit: options?.limit,
     });

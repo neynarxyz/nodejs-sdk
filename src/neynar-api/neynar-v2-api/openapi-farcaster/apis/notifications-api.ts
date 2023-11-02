@@ -52,7 +52,6 @@ export const NotificationsApiAxiosParamCreator = function (
     /**
      * Returns a list of notifications for a specific FID.
      * @summary Retrieve notifications for a given user
-     * @param {string} apiKey API key required for authentication.
      * @param {number} fid
      * @param {string} [cursor] Pagination cursor.
      * @param {number} [limit] Number of results to retrieve (default 25, max 50)
@@ -60,14 +59,11 @@ export const NotificationsApiAxiosParamCreator = function (
      * @throws {RequiredError}
      */
     notifications: async (
-      apiKey: string,
       fid: number,
       cursor?: string,
       limit?: number,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'apiKey' is not null or undefined
-      assertParamExists("notifications", "apiKey", apiKey);
       // verify required parameter 'fid' is not null or undefined
       assertParamExists("notifications", "fid", fid);
       const localVarPath = `/farcaster/notifications`;
@@ -98,9 +94,12 @@ export const NotificationsApiAxiosParamCreator = function (
         localVarQueryParameter["limit"] = limit;
       }
 
-      if (apiKey != null) {
-        localVarHeaderParameter["api_key"] = String(apiKey);
-      }
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "api_key",
+        configuration
+      );
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
@@ -130,7 +129,6 @@ export const NotificationsApiFp = function (configuration?: Configuration) {
     /**
      * Returns a list of notifications for a specific FID.
      * @summary Retrieve notifications for a given user
-     * @param {string} apiKey API key required for authentication.
      * @param {number} fid
      * @param {string} [cursor] Pagination cursor.
      * @param {number} [limit] Number of results to retrieve (default 25, max 50)
@@ -138,7 +136,6 @@ export const NotificationsApiFp = function (configuration?: Configuration) {
      * @throws {RequiredError}
      */
     async notifications(
-      apiKey: string,
       fid: number,
       cursor?: string,
       limit?: number,
@@ -150,7 +147,6 @@ export const NotificationsApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<NotificationsResponse>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.notifications(
-        apiKey,
         fid,
         cursor,
         limit,
@@ -180,26 +176,53 @@ export const NotificationsApiFactory = function (
     /**
      * Returns a list of notifications for a specific FID.
      * @summary Retrieve notifications for a given user
-     * @param {string} apiKey API key required for authentication.
-     * @param {number} fid
-     * @param {string} [cursor] Pagination cursor.
-     * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+     * @param {NotificationsApiNotificationRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     notifications(
-      apiKey: string,
-      fid: number,
-      cursor?: string,
-      limit?: number,
+      requestParameters: NotificationsApiNotificationRequest,
       options?: any
     ): AxiosPromise<NotificationsResponse> {
       return localVarFp
-        .notifications(apiKey, fid, cursor, limit, options)
+        .notifications(
+          requestParameters.fid,
+          requestParameters.cursor,
+          requestParameters.limit,
+          options
+        )
         .then((request) => request(axios, basePath));
     },
   };
 };
+
+/**
+ * Request parameters for notifications operation in NotificationsApi.
+ * @export
+ * @interface NotificationsApiNotificationRequest
+ */
+export interface NotificationsApiNotificationRequest {
+  /**
+   * fid of a user
+   * @type {number}
+   * @memberof NotificationsApiNotification
+   */
+  readonly fid: number;
+
+  /**
+   * Pagination cursor.
+   * @type {string}
+   * @memberof NotificationsApiNotification
+   */
+  readonly cursor?: string;
+
+  /**
+   * Number of results to retrieve (default 25, max 150)
+   * @type {number}
+   * @memberof NotificationsApiNotification
+   */
+  readonly limit?: number;
+}
 
 /**
  * NotificationsApi - object-oriented interface
@@ -211,23 +234,22 @@ export class NotificationsApi extends BaseAPI {
   /**
    * Returns a list of notifications for a specific FID.
    * @summary Retrieve notifications for a given user
-   * @param {string} apiKey API key required for authentication.
-   * @param {number} fid
-   * @param {string} [cursor] Pagination cursor.
-   * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+   * @param {NotificationsApiNotificationRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof NotificationsApi
    */
   public notifications(
-    apiKey: string,
-    fid: number,
-    cursor?: string,
-    limit?: number,
+    requestParameters: NotificationsApiNotificationRequest,
     options?: AxiosRequestConfig
   ) {
     return NotificationsApiFp(this.configuration)
-      .notifications(apiKey, fid, cursor, limit, options)
+      .notifications(
+        requestParameters.fid,
+        requestParameters.cursor,
+        requestParameters.limit,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 }
