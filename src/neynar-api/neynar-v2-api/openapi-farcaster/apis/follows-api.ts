@@ -52,20 +52,16 @@ export const FollowsApiAxiosParamCreator = function (
     /**
      * Returns a list of relevant followers for a specific FID.
      * @summary Retrieve relevant followers for a given user
-     * @param {string} apiKey API key required for authentication.
-     * @param {number} targetFid User who\&#39;s profile you are looking at
-     * @param {number} viewerFid Viewer who\&#39;s looking at the profile
+     * @param {number} targetFid User who's profile you are looking at
+     * @param {number} viewerFid Viewer who's looking at the profile
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     relevantFollowers: async (
-      apiKey: string,
       targetFid: number,
       viewerFid: number,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'apiKey' is not null or undefined
-      assertParamExists("relevantFollowers", "apiKey", apiKey);
       // verify required parameter 'targetFid' is not null or undefined
       assertParamExists("relevantFollowers", "targetFid", targetFid);
       // verify required parameter 'viewerFid' is not null or undefined
@@ -94,9 +90,12 @@ export const FollowsApiAxiosParamCreator = function (
         localVarQueryParameter["viewer_fid"] = viewerFid;
       }
 
-      if (apiKey != null) {
-        localVarHeaderParameter["api_key"] = String(apiKey);
-      }
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "api_key",
+        configuration
+      );
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
@@ -125,14 +124,12 @@ export const FollowsApiFp = function (configuration?: Configuration) {
     /**
      * Returns a list of relevant followers for a specific FID.
      * @summary Retrieve relevant followers for a given user
-     * @param {string} apiKey API key required for authentication.
-     * @param {number} targetFid User who\&#39;s profile you are looking at
-     * @param {number} viewerFid Viewer who\&#39;s looking at the profile
+     * @param {number} targetFid User who's profile you are looking at
+     * @param {number} viewerFid Viewer who's looking at the profile
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async relevantFollowers(
-      apiKey: string,
       targetFid: number,
       viewerFid: number,
       options?: AxiosRequestConfig
@@ -144,7 +141,6 @@ export const FollowsApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.relevantFollowers(
-          apiKey,
           targetFid,
           viewerFid,
           options
@@ -173,24 +169,45 @@ export const FollowsApiFactory = function (
     /**
      * Returns a list of relevant followers for a specific FID.
      * @summary Retrieve relevant followers for a given user
-     * @param {string} apiKey API key required for authentication.
-     * @param {number} targetFid User who\&#39;s profile you are looking at
-     * @param {number} viewerFid Viewer who\&#39;s looking at the profile
+     * @param {FollowsApiRelaventFollowersRequest} requestParameters
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     relevantFollowers(
-      apiKey: string,
-      targetFid: number,
-      viewerFid: number,
-      options?: any
+      requestParameters: FollowsApiRelaventFollowersRequest,
+      options?: AxiosRequestConfig
     ): AxiosPromise<RelevantFollowersResponse> {
       return localVarFp
-        .relevantFollowers(apiKey, targetFid, viewerFid, options)
+        .relevantFollowers(
+          requestParameters.targetFid,
+          requestParameters.viewerFid,
+          options
+        )
         .then((request) => request(axios, basePath));
     },
   };
 };
+
+/**
+ * Request parameters for relavant followers operation in FollowsApi.
+ * @export
+ * @interface FollowsApiRelaventFollowersRequest
+ */
+export interface FollowsApiRelaventFollowersRequest {
+  /**
+   * User who's profile you are looking at
+   * @type {number}
+   * @memberof FollowsApiRelaventFollowers
+   */
+  readonly targetFid: number;
+
+  /**
+   * Viewer who's looking at the profile
+   * @type {number}
+   * @memberof FollowsApiRelaventFollowers
+   */
+  readonly viewerFid: number;
+}
 
 /**
  * FollowsApi - object-oriented interface
@@ -202,21 +219,21 @@ export class FollowsApi extends BaseAPI {
   /**
    * Returns a list of relevant followers for a specific FID.
    * @summary Retrieve relevant followers for a given user
-   * @param {string} apiKey API key required for authentication.
-   * @param {number} targetFid User who\&#39;s profile you are looking at
-   * @param {number} viewerFid Viewer who\&#39;s looking at the profile
+   * @param {FollowsApiRelaventFollowersRequest} requestParameters
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FollowsApi
    */
   public relevantFollowers(
-    apiKey: string,
-    targetFid: number,
-    viewerFid: number,
+    requestParameters: FollowsApiRelaventFollowersRequest,
     options?: AxiosRequestConfig
   ) {
     return FollowsApiFp(this.configuration)
-      .relevantFollowers(apiKey, targetFid, viewerFid, options)
+      .relevantFollowers(
+        requestParameters.targetFid,
+        requestParameters.viewerFid,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 }

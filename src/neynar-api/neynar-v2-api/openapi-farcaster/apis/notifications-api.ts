@@ -182,7 +182,7 @@ export const NotificationsApiFactory = function (
      */
     notifications(
       requestParameters: NotificationsApiNotificationRequest,
-      options?: any
+      options?: AxiosRequestConfig
     ): AxiosPromise<NotificationsResponse> {
       return localVarFp
         .notifications(
@@ -197,7 +197,7 @@ export const NotificationsApiFactory = function (
 };
 
 /**
- * Request parameters for notifications operation in NotificationsApi.
+ * Request parameters for fetch notifications operation in NotificationsApi.
  * @export
  * @interface NotificationsApiNotificationRequest
  */
