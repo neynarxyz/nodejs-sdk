@@ -26,6 +26,8 @@ import {
   SignerApiRegisterSignedKeyRequest,
   NotificationsResponse,
   NotificationsApi,
+  FollowsApi,
+  RelevantFollowersResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -42,6 +44,7 @@ export class NeynarV2APIClient {
     reaction: ReactionApi;
     feed: FeedApi;
     notifications: NotificationsApi;
+    follows: FollowsApi;
   };
 
   /**
@@ -89,6 +92,7 @@ export class NeynarV2APIClient {
       reaction: new ReactionApi(config, undefined, axiosInstance),
       feed: new FeedApi(config, undefined, axiosInstance),
       notifications: new NotificationsApi(config, undefined, axiosInstance),
+      follows: new FollowsApi(config, undefined, axiosInstance),
     };
   }
 
@@ -345,7 +349,8 @@ export class NeynarV2APIClient {
     return response.data;
   }
 
-  // ------------ Feed ------------
+  // ------------ Notifications ------------
+
   /**
    * Returns a list of notifications for a specific FID in reverse chronological order.
    * See [Neynar documentation](https://docs.neynar.com/reference/notifications)
@@ -359,6 +364,24 @@ export class NeynarV2APIClient {
       fid,
       cursor: options?.cursor,
       limit: options?.limit,
+    });
+    return response.data;
+  }
+
+  // ------------ Follows ------------
+  
+  /**
+   * Returns a list of relevant followers for a specific FID.
+   * See [Neynar documentation](https://docs.neynar.com/reference/relevant-followers)
+   *
+   */
+  public async fetchRelaventFollowers(
+    targetFid: number,
+    viewerFid: number
+  ): Promise<RelevantFollowersResponse> {
+    const response = await this.apis.follows.relevantFollowers({
+      targetFid,
+      viewerFid,
     });
     return response.data;
   }
