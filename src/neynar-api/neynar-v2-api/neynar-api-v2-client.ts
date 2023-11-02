@@ -23,6 +23,9 @@ import {
   FeedType,
   FilterType,
   FeedResponse,
+  SignerApiRegisterSignedKeyRequest,
+  NotificationsResponse,
+  NotificationsApi,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -34,9 +37,11 @@ export class NeynarV2APIClient {
   private readonly logger: Logger;
 
   public readonly apis: {
+    signer: SignerApi;
     cast: CastApi;
     reaction: ReactionApi;
     feed: FeedApi;
+    notifications: NotificationsApi;
   };
 
   /**
@@ -79,9 +84,11 @@ export class NeynarV2APIClient {
       apiKey: apiKey,
     });
     this.apis = {
+      signer: new SignerApi(config, undefined, axiosInstance),
       cast: new CastApi(config, undefined, axiosInstance),
       reaction: new ReactionApi(config, undefined, axiosInstance),
       feed: new FeedApi(config, undefined, axiosInstance),
+      notifications: new NotificationsApi(config, undefined, axiosInstance),
     };
   }
 
@@ -98,6 +105,61 @@ export class NeynarV2APIClient {
     return (
       error.response?.data !== undefined && "message" in error.response.data
     );
+  }
+
+  // ------------ Signer ------------
+
+  /**
+   * Creates a Signer.
+   * See [Neynar documentation](https://docs.neynar.com/reference/create-signer)
+   *
+   */
+  public async createSigner(): Promise<Signer> {
+    const response = await this.apis.signer.createSigner();
+    return response.data;
+  }
+
+  /**
+   * Fetches an existing Signer.
+   * See [Neynar documentation](https://docs.neynar.com/reference/signer)
+   *
+   */
+  public async fetchSigner(signerUuid: string): Promise<Signer | null> {
+    try {
+      const response = await this.apis.signer.signer({ signerUuid });
+      return response.data;
+    } catch (error) {
+      if (NeynarV2APIClient.isApiErrorResponse(error)) {
+        const status = error.response.status;
+        if (status === 404) {
+          return null;
+        }
+      }
+      throw error;
+    }
+  }
+
+  /**
+   * Registers a Signer with an fid.
+   * See [Neynar documentation](https://docs.neynar.com/reference/register-signed-key)
+   *
+   */
+  public async registerSigner(
+    signerUuid: string,
+    fid: number,
+    deadline: number,
+    signature: string
+  ): Promise<Signer> {
+    const request: SignerApiRegisterSignedKeyRequest = {
+      registerSignerKeyReqBody: {
+        signer_uuid: signerUuid,
+        app_fid: fid,
+        deadline: deadline,
+        signature: signature,
+      },
+    };
+    const response = await this.apis.signer.registerSignedKey(request);
+    return response.data;
   }
 
   // ------------ Cast ------------
@@ -272,16 +334,32 @@ export class NeynarV2APIClient {
     }
   ): Promise<FeedResponse> {
     const response = await this.apis.feed.feed({
+      fid,
       feedType: options?.feedType,
       filterType: options?.filterType,
-      fid: fid,
       fids: options?.fids,
       parentUrl: options?.parentUrl,
       cursor: options?.cursor,
       limit: options?.limit,
     });
+    return response.data;
+  }
 
-    // Return the current page of casts and the next cursor
+  // ------------ Feed ------------
+  /**
+   * Returns a list of notifications for a specific FID in reverse chronological order.
+   * See [Neynar documentation](https://docs.neynar.com/reference/notifications)
+   *
+   */
+  public async fetchNotifications(
+    fid: number,
+    options?: { cursor?: string; limit?: number }
+  ): Promise<NotificationsResponse> {
+    const response = await this.apis.notifications.notifications({
+      fid,
+      cursor: options?.cursor,
+      limit: options?.limit,
+    });
     return response.data;
   }
 }
