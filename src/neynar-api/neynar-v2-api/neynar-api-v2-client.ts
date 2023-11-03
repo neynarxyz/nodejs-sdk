@@ -28,6 +28,13 @@ import {
   NotificationsApi,
   FollowsApi,
   RelevantFollowersResponse,
+  UserApiRemoveVerificationRequest,
+  UserApiAddVerificationRequest,
+  UserApiFollowRequest,
+  UpdateUserReqBody,
+  UserApiUpdateUserRequest,
+  UserBulk200Response,
+  UserSearchResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -40,6 +47,7 @@ export class NeynarV2APIClient {
 
   public readonly apis: {
     signer: SignerApi;
+    user: UserApi;
     cast: CastApi;
     reaction: ReactionApi;
     feed: FeedApi;
@@ -88,6 +96,7 @@ export class NeynarV2APIClient {
     });
     this.apis = {
       signer: new SignerApi(config, undefined, axiosInstance),
+      user: new UserApi(config, undefined, axiosInstance),
       cast: new CastApi(config, undefined, axiosInstance),
       reaction: new ReactionApi(config, undefined, axiosInstance),
       feed: new FeedApi(config, undefined, axiosInstance),
@@ -153,6 +162,151 @@ export class NeynarV2APIClient {
       },
     };
     const response = await this.apis.signer.registerSignedKey(request);
+    return response.data;
+  }
+
+  // ------------ User ------------
+
+  /**
+   * Removes verification for an eth address for the user.
+   * See [Neynar documentation](https://docs.neynar.com/reference/remove-verification)
+   *
+   */
+  public async removeVerification(
+    signerUuid: string,
+    address: string
+  ): Promise<OperationResponse> {
+    const request: UserApiRemoveVerificationRequest = {
+      removeVerificationReqBody: {
+        signer_uuid: signerUuid,
+        address,
+      },
+    };
+
+    const response = await this.apis.user.farcasterUserVerificationDelete(
+      request
+    );
+    return response.data;
+  }
+
+  /**
+   * Adds verification for an eth address for the user
+   * See [Neynar documentation](https://docs.neynar.com/reference/add-verification)
+   *
+   */
+  public async addVerification(
+    signerUuid: string,
+    address: string,
+    block_hash: string,
+    eth_signature: string
+  ): Promise<OperationResponse> {
+    const request: UserApiAddVerificationRequest = {
+      addVerificationReqBody: {
+        signer_uuid: signerUuid,
+        address,
+        block_hash,
+        eth_signature,
+      },
+    };
+
+    const response = await this.apis.user.farcasterUserVerificationPost(
+      request
+    );
+    return response.data;
+  }
+
+  /**
+   * Follow a user.
+   * See [Neynar documentation](https://docs.neynar.com/reference/follow-user)
+   *
+   */
+
+  public async followUser(
+    signerUuid: string,
+    targetFid: number[]
+  ): Promise<BulkFollowResponse> {
+    const request: UserApiFollowRequest = {
+      followReqBody: {
+        signer_uuid: signerUuid,
+        target_fids: targetFid,
+      },
+    };
+
+    const response = await this.apis.user.followUser(request);
+    return response.data;
+  }
+
+  /**
+   * Unfollow a user
+   * See [Neynar documentation](https://docs.neynar.com/reference/unfollow-user)
+   *
+   */
+  public async unfollowUser(
+    signerUuid: string,
+    targetFid: number[]
+  ): Promise<BulkFollowResponse> {
+    const request: UserApiFollowRequest = {
+      followReqBody: {
+        signer_uuid: signerUuid,
+        target_fids: targetFid,
+      },
+    };
+    const response = await this.apis.user.unfollowUser(request);
+    return response.data;
+  }
+
+  /**
+   * Update user profile
+   * See [Neynar documentation](https://docs.neynar.com/reference/update-user)
+   *
+   */
+  public async updateUserProfile(
+    signerUuid: string,
+    options?: {
+      bio?: string;
+      pfp_url?: string;
+      url?: string;
+      username?: string;
+      display_name?: string;
+    }
+  ): Promise<OperationResponse> {
+    const request: UserApiUpdateUserRequest = {
+      updateUserReqBody: {
+        signer_uuid: signerUuid,
+        bio: options?.bio,
+        pfp_url: options?.pfp_url,
+        url: options?.url,
+        username: options?.username,
+        display_name: options?.display_name,
+      },
+    };
+
+    const response = await this.apis.user.updateUser(request);
+    return response.data;
+  }
+
+  /**
+   * Fetches information about multiple users based on FIDs
+   * See [Neynar documentation](https://docs.neynar.com/reference/user-bulk)
+   *
+   */
+  public async fetchUsersInBulk(
+    fids: string,
+    viewerFid?: number
+  ): Promise<UserBulk200Response> {
+    const response = await this.apis.user.userBulk({ fids, viewerFid });
+    return response.data;
+  }
+
+  /**
+   * Fetches information about multiple users based on FIDs
+   * See [Neynar documentation](https://docs.neynar.com/reference/user-bulk)
+   */
+  public async searchUser(
+    q: string,
+    viewerFid: number
+  ): Promise<UserSearchResponse> {
+    const response = await this.apis.user.userSearch({ q, viewerFid });
     return response.data;
   }
 

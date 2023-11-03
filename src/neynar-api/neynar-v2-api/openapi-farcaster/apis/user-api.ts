@@ -64,20 +64,18 @@ export const UserApiAxiosParamCreator = function (
 ) {
   return {
     /**
-     * Removes verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved)
+     * Removes verification for an eth address for the user
+     * (In order to add verification `signer_uuid` must be approved)
+     * 
      * @summary Removes verification for an eth address for the user
-     * @param {string} apiKey API key required for authentication.
      * @param {RemoveVerificationReqBody} removeVerificationReqBody
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     farcasterUserVerificationDelete: async (
-      apiKey: string,
       removeVerificationReqBody: RemoveVerificationReqBody,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'apiKey' is not null or undefined
-      assertParamExists("farcasterUserVerificationDelete", "apiKey", apiKey);
       // verify required parameter 'removeVerificationReqBody' is not null or undefined
       assertParamExists(
         "farcasterUserVerificationDelete",
@@ -100,9 +98,12 @@ export const UserApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      if (apiKey != null) {
-        localVarHeaderParameter["api_key"] = String(apiKey);
-      }
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "api_key",
+        configuration
+      );
 
       localVarHeaderParameter["Content-Type"] = "application/json";
 
@@ -126,20 +127,18 @@ export const UserApiAxiosParamCreator = function (
       };
     },
     /**
-     * Adds verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved)
+     * Adds verification for an eth address for the user
+     * (In order to add verification `signer_uuid` must be approved)
+     * 
      * @summary Adds verification for an eth address for the user
-     * @param {string} apiKey API key required for authentication.
      * @param {AddVerificationReqBody} addVerificationReqBody
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     farcasterUserVerificationPost: async (
-      apiKey: string,
       addVerificationReqBody: AddVerificationReqBody,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'apiKey' is not null or undefined
-      assertParamExists("farcasterUserVerificationPost", "apiKey", apiKey);
       // verify required parameter 'addVerificationReqBody' is not null or undefined
       assertParamExists(
         "farcasterUserVerificationPost",
@@ -162,9 +161,12 @@ export const UserApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      if (apiKey != null) {
-        localVarHeaderParameter["api_key"] = String(apiKey);
-      }
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "api_key",
+        configuration
+      );
 
       localVarHeaderParameter["Content-Type"] = "application/json";
 
@@ -188,20 +190,18 @@ export const UserApiAxiosParamCreator = function (
       };
     },
     /**
-     * Follow a user \\ (In order to follow a user `signer_uuid` must be approved)
+     * Follow a user
+     * (In order to follow a user `signer_uuid` must be approved)
+     * 
      * @summary Follow a user
-     * @param {string} apiKey API key required for authentication.
      * @param {FollowReqBody} followReqBody
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     followUser: async (
-      apiKey: string,
       followReqBody: FollowReqBody,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'apiKey' is not null or undefined
-      assertParamExists("followUser", "apiKey", apiKey);
       // verify required parameter 'followReqBody' is not null or undefined
       assertParamExists("followUser", "followReqBody", followReqBody);
       const localVarPath = `/farcaster/user/follow`;
@@ -220,9 +220,12 @@ export const UserApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      if (apiKey != null) {
-        localVarHeaderParameter["api_key"] = String(apiKey);
-      }
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "api_key",
+        configuration
+      );
 
       localVarHeaderParameter["Content-Type"] = "application/json";
 
@@ -246,20 +249,17 @@ export const UserApiAxiosParamCreator = function (
       };
     },
     /**
-     * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved)
+     * Unfollow a user
+   * (In order to unfollow a user `signer_uuid` must be approved)
      * @summary Unfollow a user
-     * @param {string} apiKey API key required for authentication.
      * @param {FollowReqBody} followReqBody
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     unfollowUser: async (
-      apiKey: string,
       followReqBody: FollowReqBody,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'apiKey' is not null or undefined
-      assertParamExists("unfollowUser", "apiKey", apiKey);
       // verify required parameter 'followReqBody' is not null or undefined
       assertParamExists("unfollowUser", "followReqBody", followReqBody);
       const localVarPath = `/farcaster/user/follow`;
@@ -278,9 +278,12 @@ export const UserApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      if (apiKey != null) {
-        localVarHeaderParameter["api_key"] = String(apiKey);
-      }
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "api_key",
+        configuration
+      );
 
       localVarHeaderParameter["Content-Type"] = "application/json";
 
@@ -304,20 +307,17 @@ export const UserApiAxiosParamCreator = function (
       };
     },
     /**
-     * Update user profile \\ (In order to update user\'s profile `signer_uuid` must be approved)
+     * Update user profile
+   * (In order to update user\'s profile `signer_uuid` must be approved)
      * @summary Update user profile
-     * @param {string} apiKey API key required for authentication.
      * @param {UpdateUserReqBody} updateUserReqBody
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateUser: async (
-      apiKey: string,
       updateUserReqBody: UpdateUserReqBody,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'apiKey' is not null or undefined
-      assertParamExists("updateUser", "apiKey", apiKey);
       // verify required parameter 'updateUserReqBody' is not null or undefined
       assertParamExists("updateUser", "updateUserReqBody", updateUserReqBody);
       const localVarPath = `/farcaster/user`;
@@ -336,9 +336,12 @@ export const UserApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      if (apiKey != null) {
-        localVarHeaderParameter["api_key"] = String(apiKey);
-      }
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "api_key",
+        configuration
+      );
 
       localVarHeaderParameter["Content-Type"] = "application/json";
 
@@ -364,20 +367,16 @@ export const UserApiAxiosParamCreator = function (
     /**
      * Fetches information about multiple users based on FIDs
      * @summary Fetches information about multiple users based on FIDs
-     * @param {string} apiKey API key required for authentication.
      * @param {string} fids
      * @param {number} [viewerFid]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     userBulk: async (
-      apiKey: string,
       fids: string,
       viewerFid?: number,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'apiKey' is not null or undefined
-      assertParamExists("userBulk", "apiKey", apiKey);
       // verify required parameter 'fids' is not null or undefined
       assertParamExists("userBulk", "fids", fids);
       const localVarPath = `/farcaster/user/bulk`;
@@ -404,9 +403,12 @@ export const UserApiAxiosParamCreator = function (
         localVarQueryParameter["viewer_fid"] = viewerFid;
       }
 
-      if (apiKey != null) {
-        localVarHeaderParameter["api_key"] = String(apiKey);
-      }
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "api_key",
+        configuration
+      );
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
@@ -425,20 +427,16 @@ export const UserApiAxiosParamCreator = function (
     /**
      * Search for Usernames
      * @summary Search for Usernames
-     * @param {string} apiKey API key required for authentication.
      * @param {number} viewerFid
      * @param {string} q
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     userSearch: async (
-      apiKey: string,
       viewerFid: number,
       q: string,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'apiKey' is not null or undefined
-      assertParamExists("userSearch", "apiKey", apiKey);
       // verify required parameter 'viewerFid' is not null or undefined
       assertParamExists("userSearch", "viewerFid", viewerFid);
       // verify required parameter 'q' is not null or undefined
@@ -467,9 +465,12 @@ export const UserApiAxiosParamCreator = function (
         localVarQueryParameter["q"] = q;
       }
 
-      if (apiKey != null) {
-        localVarHeaderParameter["api_key"] = String(apiKey);
-      }
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "api_key",
+        configuration
+      );
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
@@ -496,15 +497,14 @@ export const UserApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = UserApiAxiosParamCreator(configuration);
   return {
     /**
-     * Removes verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved)
+     * Removes verification for an eth address for the user
+   * (In order to add verification `signer_uuid` must be approved)
      * @summary Removes verification for an eth address for the user
-     * @param {string} apiKey API key required for authentication.
      * @param {RemoveVerificationReqBody} removeVerificationReqBody
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async farcasterUserVerificationDelete(
-      apiKey: string,
       removeVerificationReqBody: RemoveVerificationReqBody,
       options?: AxiosRequestConfig
     ): Promise<
@@ -515,7 +515,6 @@ export const UserApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.farcasterUserVerificationDelete(
-          apiKey,
           removeVerificationReqBody,
           options
         );
@@ -527,15 +526,14 @@ export const UserApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     * Adds verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved)
+     * Adds verification for an eth address for the user
+   * (In order to add verification `signer_uuid` must be approved)
      * @summary Adds verification for an eth address for the user
-     * @param {string} apiKey API key required for authentication.
      * @param {AddVerificationReqBody} addVerificationReqBody
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async farcasterUserVerificationPost(
-      apiKey: string,
       addVerificationReqBody: AddVerificationReqBody,
       options?: AxiosRequestConfig
     ): Promise<
@@ -546,7 +544,6 @@ export const UserApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.farcasterUserVerificationPost(
-          apiKey,
           addVerificationReqBody,
           options
         );
@@ -558,15 +555,14 @@ export const UserApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     * Follow a user \\ (In order to follow a user `signer_uuid` must be approved)
+     * Follow a user
+   * (In order to follow a user `signer_uuid` must be approved)
      * @summary Follow a user
-     * @param {string} apiKey API key required for authentication.
      * @param {FollowReqBody} followReqBody
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async followUser(
-      apiKey: string,
       followReqBody: FollowReqBody,
       options?: AxiosRequestConfig
     ): Promise<
@@ -576,7 +572,6 @@ export const UserApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<BulkFollowResponse>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.followUser(
-        apiKey,
         followReqBody,
         options
       );
@@ -588,15 +583,14 @@ export const UserApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved)
+     * Unfollow a user
+   * (In order to unfollow a user `signer_uuid` must be approved)
      * @summary Unfollow a user
-     * @param {string} apiKey API key required for authentication.
      * @param {FollowReqBody} followReqBody
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async unfollowUser(
-      apiKey: string,
       followReqBody: FollowReqBody,
       options?: AxiosRequestConfig
     ): Promise<
@@ -606,7 +600,6 @@ export const UserApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<BulkFollowResponse>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.unfollowUser(
-        apiKey,
         followReqBody,
         options
       );
@@ -618,15 +611,14 @@ export const UserApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     * Update user profile \\ (In order to update user\'s profile `signer_uuid` must be approved)
+     * Update user profile
+   * (In order to update user\'s profile `signer_uuid` must be approved)
      * @summary Update user profile
-     * @param {string} apiKey API key required for authentication.
      * @param {UpdateUserReqBody} updateUserReqBody
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateUser(
-      apiKey: string,
       updateUserReqBody: UpdateUserReqBody,
       options?: AxiosRequestConfig
     ): Promise<
@@ -636,7 +628,6 @@ export const UserApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<OperationResponse>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.updateUser(
-        apiKey,
         updateUserReqBody,
         options
       );
@@ -650,14 +641,12 @@ export const UserApiFp = function (configuration?: Configuration) {
     /**
      * Fetches information about multiple users based on FIDs
      * @summary Fetches information about multiple users based on FIDs
-     * @param {string} apiKey API key required for authentication.
      * @param {string} fids
      * @param {number} [viewerFid]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async userBulk(
-      apiKey: string,
       fids: string,
       viewerFid?: number,
       options?: AxiosRequestConfig
@@ -668,7 +657,6 @@ export const UserApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<UserBulk200Response>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.userBulk(
-        apiKey,
         fids,
         viewerFid,
         options
@@ -683,14 +671,12 @@ export const UserApiFp = function (configuration?: Configuration) {
     /**
      * Search for Usernames
      * @summary Search for Usernames
-     * @param {string} apiKey API key required for authentication.
      * @param {number} viewerFid
      * @param {string} q
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async userSearch(
-      apiKey: string,
       viewerFid: number,
       q: string,
       options?: AxiosRequestConfig
@@ -701,7 +687,6 @@ export const UserApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<UserSearchResponse>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.userSearch(
-        apiKey,
         viewerFid,
         q,
         options
@@ -728,134 +713,217 @@ export const UserApiFactory = function (
   const localVarFp = UserApiFp(configuration);
   return {
     /**
-     * Removes verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved)
+     * Removes verification for an eth address for the user
+   * (In order to add verification `signer_uuid` must be approved)
      * @summary Removes verification for an eth address for the user
-     * @param {string} apiKey API key required for authentication.
-     * @param {RemoveVerificationReqBody} removeVerificationReqBody
+     * @param {UserApiRemoveVerificationRequest} requestParameters
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     farcasterUserVerificationDelete(
-      apiKey: string,
-      removeVerificationReqBody: RemoveVerificationReqBody,
-      options?: any
+      requestParameters: UserApiRemoveVerificationRequest,
+      options?: AxiosRequestConfig
     ): AxiosPromise<OperationResponse> {
       return localVarFp
         .farcasterUserVerificationDelete(
-          apiKey,
-          removeVerificationReqBody,
+          requestParameters.removeVerificationReqBody,
           options
         )
         .then((request) => request(axios, basePath));
     },
     /**
-     * Adds verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved)
+     * Adds verification for an eth address for the user
+   * (In order to add verification `signer_uuid` must be approved)
      * @summary Adds verification for an eth address for the user
-     * @param {string} apiKey API key required for authentication.
-     * @param {AddVerificationReqBody} addVerificationReqBody
+     * @param {UserApiAddVerificationRequest} requestParameters
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     farcasterUserVerificationPost(
-      apiKey: string,
-      addVerificationReqBody: AddVerificationReqBody,
-      options?: any
+      requestParameters: UserApiAddVerificationRequest,
+      options?: AxiosRequestConfig
     ): AxiosPromise<OperationResponse> {
       return localVarFp
-        .farcasterUserVerificationPost(apiKey, addVerificationReqBody, options)
+        .farcasterUserVerificationPost(
+          requestParameters.addVerificationReqBody,
+          options
+        )
         .then((request) => request(axios, basePath));
     },
     /**
-     * Follow a user \\ (In order to follow a user `signer_uuid` must be approved)
+     * Follow a user
+     *(In order to follow a user `signer_uuid` must be approved)
      * @summary Follow a user
-     * @param {string} apiKey API key required for authentication.
-     * @param {FollowReqBody} followReqBody
+     * @param {UserApiFollowRequest} requestParameters
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     followUser(
-      apiKey: string,
-      followReqBody: FollowReqBody,
-      options?: any
+      requestParameters: UserApiFollowRequest,
+      options?: AxiosRequestConfig
     ): AxiosPromise<BulkFollowResponse> {
       return localVarFp
-        .followUser(apiKey, followReqBody, options)
+        .followUser(requestParameters.followReqBody, options)
         .then((request) => request(axios, basePath));
     },
     /**
-     * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved)
+     * Unfollow a user
+     * (In order to unfollow a user `signer_uuid` must be approved)
      * @summary Unfollow a user
-     * @param {string} apiKey API key required for authentication.
-     * @param {FollowReqBody} followReqBody
+     * @param {UserApiFollowRequest} requestParameters
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     unfollowUser(
-      apiKey: string,
-      followReqBody: FollowReqBody,
-      options?: any
+      requestParameters: UserApiFollowRequest,
+      options?: AxiosRequestConfig
     ): AxiosPromise<BulkFollowResponse> {
       return localVarFp
-        .unfollowUser(apiKey, followReqBody, options)
+        .unfollowUser(requestParameters.followReqBody, options)
         .then((request) => request(axios, basePath));
     },
     /**
-     * Update user profile \\ (In order to update user\'s profile `signer_uuid` must be approved)
+     * Update user profile 
+     * (In order to update user\'s profile `signer_uuid` must be approved)
      * @summary Update user profile
-     * @param {string} apiKey API key required for authentication.
-     * @param {UpdateUserReqBody} updateUserReqBody
+     * @param {UserApiUpdateUserRequest} requestParameters
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateUser(
-      apiKey: string,
-      updateUserReqBody: UpdateUserReqBody,
-      options?: any
+      requestParameters: UserApiUpdateUserRequest,
+      options?: AxiosRequestConfig
     ): AxiosPromise<OperationResponse> {
       return localVarFp
-        .updateUser(apiKey, updateUserReqBody, options)
+        .updateUser(requestParameters.updateUserReqBody, options)
         .then((request) => request(axios, basePath));
     },
     /**
      * Fetches information about multiple users based on FIDs
      * @summary Fetches information about multiple users based on FIDs
-     * @param {string} apiKey API key required for authentication.
-     * @param {string} fids
-     * @param {number} [viewerFid]
+     * @param {UserApiBulkUserRequest} requestParameters
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     userBulk(
-      apiKey: string,
-      fids: string,
-      viewerFid?: number,
-      options?: any
+      requestParameters: UserApiBulkUserRequest,
+      options?: AxiosRequestConfig
     ): AxiosPromise<UserBulk200Response> {
       return localVarFp
-        .userBulk(apiKey, fids, viewerFid, options)
+        .userBulk(requestParameters.fids, requestParameters.viewerFid, options)
         .then((request) => request(axios, basePath));
     },
     /**
      * Search for Usernames
      * @summary Search for Usernames
-     * @param {string} apiKey API key required for authentication.
-     * @param {number} viewerFid
-     * @param {string} q
+     * @param {UserApiUserSearchRequest} requestParameters
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     userSearch(
-      apiKey: string,
-      viewerFid: number,
-      q: string,
-      options?: any
+      requestParameters: UserApiUserSearchRequest,
+      options?: AxiosRequestConfig
     ): AxiosPromise<UserSearchResponse> {
       return localVarFp
-        .userSearch(apiKey, viewerFid, q, options)
+        .userSearch(requestParameters.viewerFid, requestParameters.q, options)
         .then((request) => request(axios, basePath));
     },
   };
 };
+
+/**
+ * Request parameters to remove verification for an eth address operation in UserApi.
+ * @export
+ * @interface UserApiRemoveVerificationRequest
+ */
+export interface UserApiRemoveVerificationRequest {
+  /**
+   *
+   * @type {RemoveVerificationReqBody}
+   * @memberof UserApiRemoveVerification
+   */
+  readonly removeVerificationReqBody: RemoveVerificationReqBody;
+}
+
+/**
+ * Request parameters add verification for an eth address operation in UserApi.
+ * @export
+ * @interface UserApiAddVerificationRequest
+ */
+export interface UserApiAddVerificationRequest {
+  /**
+   *
+   * @type {AddVerificationReqBody}
+   * @memberof UserApiAddVerification
+   */
+  readonly addVerificationReqBody: AddVerificationReqBody;
+}
+
+/**
+ * Request parameters to follow user operation in UserApi.
+ * @export
+ * @interface UserApiFollowRequest
+ */
+export interface UserApiFollowRequest {
+  /**
+   *
+   * @type {FollowReqBody}
+   * @memberof UserApiFollow
+   */
+  readonly followReqBody: FollowReqBody;
+}
+
+/**
+ * Request parameters to update user operation in UserApi.
+ * @export
+ * @interface UserApiUpdateUserRequest
+ */
+export interface UserApiUpdateUserRequest {
+  /**
+   *
+   * @type {UpdateUserReqBody}
+   * @memberof UserApiUpdateUser
+   */
+  readonly updateUserReqBody: UpdateUserReqBody;
+}
+
+/**
+ * Request parameters for fetch users in bulk operation in UserApi.
+ * @export
+ * @interface UserApiBulkUserRequest
+ */
+export interface UserApiBulkUserRequest {
+  /**
+   * @type {string}
+   * @memberof UserApiBulkUser
+   */
+  readonly fids: string;
+
+  /**
+   * @type {number}
+   * @memberof UserApiBulkUser
+   */
+  readonly viewerFid?: number;
+}
+
+/**
+ * Request parameters for search user in operation in UserApi.
+ * @export
+ * @interface UserApiUserSearchRequest
+ */
+export interface UserApiUserSearchRequest {
+  /**
+   * @type {string}
+   * @memberof UserApiUserSearch
+   */
+  readonly q: string;
+
+  /**
+   * @type {number}
+   * @memberof UserApiUserSearch
+   */
+  readonly viewerFid: number;
+}
 
 /**
  * UserApi - object-oriented interface
@@ -865,143 +933,132 @@ export const UserApiFactory = function (
  */
 export class UserApi extends BaseAPI {
   /**
-   * Removes verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved)
+   * Removes verification for an eth address for the user
+   * (In order to add verification `signer_uuid` must be approved)
    * @summary Removes verification for an eth address for the user
-   * @param {string} apiKey API key required for authentication.
-   * @param {RemoveVerificationReqBody} removeVerificationReqBody
+   * @param {UserApiRemoveVerificationRequest} requestParameters
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UserApi
    */
   public farcasterUserVerificationDelete(
-    apiKey: string,
-    removeVerificationReqBody: RemoveVerificationReqBody,
+    requestParameters: UserApiRemoveVerificationRequest,
     options?: AxiosRequestConfig
   ) {
     return UserApiFp(this.configuration)
       .farcasterUserVerificationDelete(
-        apiKey,
-        removeVerificationReqBody,
+        requestParameters.removeVerificationReqBody,
         options
       )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
-   * Adds verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved)
+   * Adds verification for an eth address for the user
+   * (In order to add verification `signer_uuid` must be approved)
    * @summary Adds verification for an eth address for the user
-   * @param {string} apiKey API key required for authentication.
-   * @param {AddVerificationReqBody} addVerificationReqBody
+   * @param {UserApiAddVerificationRequest} requestParameters
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UserApi
    */
   public farcasterUserVerificationPost(
-    apiKey: string,
-    addVerificationReqBody: AddVerificationReqBody,
+    requestParameters: UserApiAddVerificationRequest,
     options?: AxiosRequestConfig
   ) {
     return UserApiFp(this.configuration)
-      .farcasterUserVerificationPost(apiKey, addVerificationReqBody, options)
+      .farcasterUserVerificationPost(
+        requestParameters.addVerificationReqBody,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
-   * Follow a user \\ (In order to follow a user `signer_uuid` must be approved)
+   * Follow a user
+   * (In order to follow a user `signer_uuid` must be approved)
    * @summary Follow a user
-   * @param {string} apiKey API key required for authentication.
-   * @param {FollowReqBody} followReqBody
+   * @param {UserApiFollowRequest} requestParameters
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UserApi
    */
   public followUser(
-    apiKey: string,
-    followReqBody: FollowReqBody,
+    requestParameters: UserApiFollowRequest,
     options?: AxiosRequestConfig
   ) {
     return UserApiFp(this.configuration)
-      .followUser(apiKey, followReqBody, options)
+      .followUser(requestParameters.followReqBody, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
-   * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved)
+   * Unfollow a user
+   * (In order to unfollow a user `signer_uuid` must be approved)
    * @summary Unfollow a user
-   * @param {string} apiKey API key required for authentication.
-   * @param {FollowReqBody} followReqBody
+   * @param {UserApiFollowRequest} requestParameters
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UserApi
    */
   public unfollowUser(
-    apiKey: string,
-    followReqBody: FollowReqBody,
+    requestParameters: UserApiFollowRequest,
     options?: AxiosRequestConfig
   ) {
     return UserApiFp(this.configuration)
-      .unfollowUser(apiKey, followReqBody, options)
+      .unfollowUser(requestParameters.followReqBody, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
-   * Update user profile \\ (In order to update user\'s profile `signer_uuid` must be approved)
+   * Update user profile
+   * (In order to update user\'s profile `signer_uuid` must be approved)
    * @summary Update user profile
-   * @param {string} apiKey API key required for authentication.
-   * @param {UpdateUserReqBody} updateUserReqBody
+   * @param {UserApiUpdateUserRequest} requestParameters
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UserApi
    */
   public updateUser(
-    apiKey: string,
-    updateUserReqBody: UpdateUserReqBody,
+    requestParameters: UserApiUpdateUserRequest,
     options?: AxiosRequestConfig
   ) {
     return UserApiFp(this.configuration)
-      .updateUser(apiKey, updateUserReqBody, options)
+      .updateUser(requestParameters.updateUserReqBody, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Fetches information about multiple users based on FIDs
    * @summary Fetches information about multiple users based on FIDs
-   * @param {string} apiKey API key required for authentication.
-   * @param {string} fids
-   * @param {number} [viewerFid]
+   * @param {UserApiBulkUserRequest} requestParameters
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UserApi
    */
   public userBulk(
-    apiKey: string,
-    fids: string,
-    viewerFid?: number,
+    requestParameters: UserApiBulkUserRequest,
     options?: AxiosRequestConfig
   ) {
     return UserApiFp(this.configuration)
-      .userBulk(apiKey, fids, viewerFid, options)
+      .userBulk(requestParameters.fids, requestParameters.viewerFid, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Search for Usernames
    * @summary Search for Usernames
-   * @param {string} apiKey API key required for authentication.
-   * @param {number} viewerFid
-   * @param {string} q
+   * @param {UserApiUserSearchRequest} requestParameters
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UserApi
    */
   public userSearch(
-    apiKey: string,
-    viewerFid: number,
-    q: string,
+    requestParameters: UserApiUserSearchRequest,
     options?: AxiosRequestConfig
   ) {
     return UserApiFp(this.configuration)
-      .userSearch(apiKey, viewerFid, q, options)
+      .userSearch(requestParameters.viewerFid, requestParameters.q, options)
       .then((request) => request(this.axios, this.basePath));
   }
 }

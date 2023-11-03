@@ -183,7 +183,9 @@ export const CastApiAxiosParamCreator = function (
       };
     },
     /**
-     * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved)
+     * Delete an existing cast.
+     * (In order to delete a cast `signer_uuid` must be approved)
+     * 
      * @summary Delete a cast
      * @param {DeleteCastReqBody} deleteCastReqBody
      * @param {*} [options] Override http request option.
@@ -358,7 +360,8 @@ export const CastApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved)
+     * Delete an existing cast.
+     * (In order to delete a cast `signer_uuid` must be approved)
      * @summary Delete a cast
      * @param {DeleteCastReqBody} deleteCastReqBody
      * @param {*} [options] Override http request option.
@@ -456,7 +459,8 @@ export const CastApiFactory = function (
         .then((request) => request(axios, basePath));
     },
     /**
-     * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved)
+     * Delete an existing cast.
+     * (In order to delete a cast `signer_uuid` must be approved)
      * @summary Delete a cast
      * @param {CastApiDeleteCastRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
@@ -593,7 +597,8 @@ export class CastApi extends BaseAPI {
   }
 
   /**
-   * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved)
+   * Delete an existing cast.
+   * (In order to delete a cast `signer_uuid` must be approved)
    * @summary Delete a cast
    * @param {CastApiDeleteCastRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
