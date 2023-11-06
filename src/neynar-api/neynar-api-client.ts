@@ -321,20 +321,7 @@ export class NeynarAPIClient {
    *
    */
   public async lookupUserByVerification(address: string): Promise<User | null> {
-    try {
-      const response = await this.apis.verificationV1.userByVerification({
-        address,
-      });
-      return response.data.result.user;
-    } catch (error) {
-      if (NeynarAPIClient.isApiErrorResponse(error)) {
-        const status = error.response.status;
-        if (status === 404) {
-          return null;
-        }
-      }
-      throw error;
-    }
+    return await this.clients.v1.lookupUserByVerification(address);
   }
 
   // ------------ Notifications ------------
