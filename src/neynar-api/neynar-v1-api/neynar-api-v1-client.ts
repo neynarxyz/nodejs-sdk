@@ -210,7 +210,7 @@ export class NeynarV1APIClient {
   }
 
   /**
-   * Fetches casts in a given thread.
+   * Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
    * See [Neynar documentation](https://docs.neynar.com/reference/all-casts-in-thread-v1)
    * Note that the parent provided by the caller is included in the response.
    *
@@ -384,7 +384,7 @@ export class NeynarV1APIClient {
    */
   public async fetchCastReactions(
     castOrCastHash: Cast | string,
-    options?: { viewerFid?: number; limit?: number, cursor?: string }
+    options?: { viewerFid?: number; limit?: number; cursor?: string }
   ): Promise<CastReactionsResponse> {
     let castHash: string;
     if (typeof castOrCastHash === "string") {

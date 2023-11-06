@@ -58,7 +58,8 @@ export const FeedApiAxiosParamCreator = function (
      * @param {string} [fids] Used when filter_type=fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
      * @param {string} [parentUrl] Used when filter_type=parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
      * @param {string} [cursor] Pagination cursor.
-     * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+     * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+     * @param {boolean} [withRecasts] Include recasts in the response, true by default
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -70,6 +71,7 @@ export const FeedApiAxiosParamCreator = function (
       parentUrl?: string,
       cursor?: string,
       limit?: number,
+      withRecasts?: boolean,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'fid' is not null or undefined
@@ -125,6 +127,10 @@ export const FeedApiAxiosParamCreator = function (
         localVarQueryParameter["limit"] = limit;
       }
 
+      if (withRecasts !== undefined) {
+        localVarQueryParameter["with_recasts"] = withRecasts;
+      }
+
       setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -158,7 +164,8 @@ export const FeedApiFp = function (configuration?: Configuration) {
      * @param {string} [fids] Used when filter_type=fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
      * @param {string} [parentUrl] Used when filter_type=parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
      * @param {string} [cursor] Pagination cursor.
-     * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+     * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+     * @param {boolean} [withRecasts] Include recasts in the response, true by default
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -170,6 +177,7 @@ export const FeedApiFp = function (configuration?: Configuration) {
       parentUrl?: string,
       cursor?: string,
       limit?: number,
+      withRecasts?: boolean,
       options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>
@@ -182,6 +190,7 @@ export const FeedApiFp = function (configuration?: Configuration) {
         parentUrl,
         cursor,
         limit,
+        withRecasts,
         options
       );
       return createRequestFunction(
@@ -225,6 +234,7 @@ export const FeedApiFactory = function (
           requestParameters.parentUrl,
           requestParameters.cursor,
           requestParameters.limit,
+          requestParameters.withRecasts,
           options
         )
         .then((request) => request(axios, basePath));
@@ -281,11 +291,18 @@ export interface FeedApiFeedRequest {
   readonly cursor?: string;
 
   /**
-   * Number of results to retrieve (default 25, max 150)
+   * Number of results to retrieve (default 25, max 100)
    * @type {number}
    * @memberof FeedApiFeed
    */
   readonly limit?: number;
+
+  /**
+   * Include recasts in the response, true by default
+   * @type {boolean}
+   * @memberof FeedApiFeed
+   */
+  readonly withRecasts?: boolean;
 }
 
 /**
@@ -316,6 +333,7 @@ export class FeedApi extends BaseAPI {
         requestParameters.parentUrl,
         requestParameters.cursor,
         requestParameters.limit,
+        requestParameters.withRecasts,
         options
       )
       .then((request) => request(this.axios, this.basePath));

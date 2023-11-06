@@ -64,8 +64,8 @@ export const CastApiAxiosParamCreator = function (
 ) {
   return {
     /**
-     * Gets information about an individual cast by passing in a web URL or cast hash
-     * @summary Retrieve cast for a given hash
+     * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
+     * @summary Retrieve cast for a given hash or Warpcast URL
      * @param {CastParamType} type
      * @param {string} identifier Cast identifier (Its either a url or a hash)
      * @param {*} [options] Override http request option.
@@ -185,7 +185,7 @@ export const CastApiAxiosParamCreator = function (
     /**
      * Delete an existing cast.
      * (In order to delete a cast `signer_uuid` must be approved)
-     * 
+     *
      * @summary Delete a cast
      * @param {DeleteCastReqBody} deleteCastReqBody
      * @param {*} [options] Override http request option.
@@ -309,8 +309,8 @@ export const CastApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = CastApiAxiosParamCreator(configuration);
   return {
     /**
-     * Gets information about an individual cast by passing in a web URL or cast hash
-     * @summary Retrieve cast for a given hash
+     * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
+     * @summary Retrieve cast for a given hash or Warpcast URL
      * @param {CastParamType} type
      * @param {string} identifier Cast identifier (Its either a url or a hash)
      * @param {*} [options] Override http request option.
@@ -429,8 +429,8 @@ export const CastApiFactory = function (
   const localVarFp = CastApiFp(configuration);
   return {
     /**
-     * Gets information about an individual cast by passing in a web URL or cast hash
-     * @summary Retrieve cast for a given hash
+     * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
+     * @summary Retrieve cast for a given hash or Warpcast URL
      * @param {CastApiCastRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -563,8 +563,8 @@ export interface CastApiPostCastRequest {
  */
 export class CastApi extends BaseAPI {
   /**
-   * Gets information about an individual cast by passing in a web URL or cast hash
-   * @summary Retrieve cast for a given hash
+   * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
+   * @summary Retrieve cast for a given hash or Warpcast URL
    * @param {CastApiCastRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}

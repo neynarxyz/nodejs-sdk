@@ -56,7 +56,7 @@ export const CastApiAxiosParamCreator = function (
 ) {
   return {
     /**
-     * Gets the most recent casts for a user in reverse-chronological order
+     * Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
      * @summary Retrieve all casts in a given thread hash
      * @param {string} threadHash The hash of the thread to retrieve casts from.
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
@@ -328,7 +328,7 @@ export const CastApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = CastApiAxiosParamCreator(configuration);
   return {
     /**
-     * Gets the most recent casts for a user in reverse-chronological order
+     * Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
      * @summary Retrieve all casts in a given thread hash
      * @param {string} threadHash The hash of the thread to retrieve casts from.
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
@@ -469,7 +469,7 @@ export const CastApiFactory = function (
   const localVarFp = CastApiFp(configuration);
   return {
     /**
-     * Gets the most recent casts for a user in reverse-chronological order
+     * Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
      * @summary Retrieve all casts in a given thread hash
      * @param {CastApiAllCastsInThreadRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
@@ -667,7 +667,7 @@ export interface CastApiRecentCastsRequest {
  */
 export class CastApi extends BaseAPI {
   /**
-   * Gets the most recent casts for a user in reverse-chronological order
+   * Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
    * @summary Retrieve all casts in a given thread hash
    * @param {CastApiAllCastsInThreadRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
