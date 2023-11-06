@@ -305,8 +305,8 @@ export class NeynarV2APIClient {
   }
 
   /**
-   * Fetches information about multiple users based on FIDs
-   * See [Neynar documentation](https://docs.neynar.com/reference/user-bulk)
+   * Search User
+   * See [Neynar documentation](https://docs.neynar.com/reference/user-search)
    */
   public async searchUser(
     q: string,
@@ -415,7 +415,39 @@ export class NeynarV2APIClient {
     return response.data;
   }
 
-  // ------------ Rection ------------
+  // ------------ Feed ------------
+
+  /**
+   * Get reverse chronological feed page for a user based on their follow graph.
+   * See [Neynar documentation](https://docs.neynar.com/reference/feed)
+   *
+   */
+  public async fetchFeedPage(
+    fid: number,
+    options?: {
+      feedType?: FeedType;
+      filterType?: FilterType;
+      fids?: string;
+      parentUrl?: string;
+      limit?: number;
+      cursor?: string;
+      withRecasts?: boolean;
+    }
+  ): Promise<FeedResponse> {
+    const response = await this.apis.feed.feed({
+      fid,
+      feedType: options?.feedType,
+      filterType: options?.filterType,
+      fids: options?.fids,
+      parentUrl: options?.parentUrl,
+      cursor: options?.cursor,
+      limit: options?.limit,
+      withRecasts: options?.withRecasts,
+    });
+    return response.data;
+  }
+
+  // ------------ Reaction ------------
 
   /**
    * React to a cast.
@@ -465,38 +497,6 @@ export class NeynarV2APIClient {
     };
     const response = await this.apis.reaction.deleteReaction({
       reactionReqBody: body,
-    });
-    return response.data;
-  }
-
-  // ------------ Feed ------------
-
-  /**
-   * Get reverse chronological feed page for a user based on their follow graph.
-   * See [Neynar documentation](https://docs.neynar.com/reference/feed)
-   *
-   */
-  public async fetchFeedPage(
-    fid: number,
-    options?: {
-      feedType?: FeedType;
-      filterType?: FilterType;
-      fids?: string;
-      parentUrl?: string;
-      limit?: number;
-      cursor?: string;
-      withRecasts?: boolean;
-    }
-  ): Promise<FeedResponse> {
-    const response = await this.apis.feed.feed({
-      fid,
-      feedType: options?.feedType,
-      filterType: options?.filterType,
-      fids: options?.fids,
-      parentUrl: options?.parentUrl,
-      cursor: options?.cursor,
-      limit: options?.limit,
-      withRecasts: options?.withRecasts,
     });
     return response.data;
   }
