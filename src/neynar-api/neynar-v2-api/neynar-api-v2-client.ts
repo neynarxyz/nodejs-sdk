@@ -39,6 +39,10 @@ import {
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
 import type { SetRequired } from "type-fest";
+import {
+  FetchRelevantMints200Response,
+  NFTApi,
+} from "./openapi-recommendation";
 
 const BASE_PATH = "https://api.neynar.com/v2";
 
@@ -53,6 +57,7 @@ export class NeynarV2APIClient {
     feed: FeedApi;
     notifications: NotificationsApi;
     follows: FollowsApi;
+    nft: NFTApi;
   };
 
   /**
@@ -102,6 +107,7 @@ export class NeynarV2APIClient {
       feed: new FeedApi(config, undefined, axiosInstance),
       notifications: new NotificationsApi(config, undefined, axiosInstance),
       follows: new FollowsApi(config, undefined, axiosInstance),
+      nft: new NFTApi(config, undefined, axiosInstance),
     };
   }
 
@@ -528,6 +534,26 @@ export class NeynarV2APIClient {
     const response = await this.apis.follows.relevantFollowers({
       targetFid,
       viewerFid,
+    });
+    return response.data;
+  }
+
+  // ------------ Recommendation ------------
+
+  /**
+   * Fetches all mint actions relevant for a contract address (and optionally tokenId for ERC1155s) given a user's ethereum address
+   * See [Neynar documentation](https://docs.neynar.com/reference/fetch-relevant-mints)
+   *
+   */
+  public async fetchRelevantMints(
+    address: string,
+    contractAddress: string,
+    tokenId?: string
+  ): Promise<FetchRelevantMints200Response> {
+    const response = await this.apis.nft.fetchRelevantMints({
+      address,
+      contractAddress,
+      tokenId,
     });
     return response.data;
   }
