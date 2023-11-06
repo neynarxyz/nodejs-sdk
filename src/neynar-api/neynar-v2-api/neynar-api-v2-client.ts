@@ -313,7 +313,7 @@ export class NeynarV2APIClient {
   // ------------ Cast ------------
 
   /**
-   * Gets information about an individual cast.
+   * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
    * See [Neynar documentation](https://docs.neynar.com/reference/cast)
    *
    */
@@ -479,6 +479,7 @@ export class NeynarV2APIClient {
       parentUrl?: string;
       limit?: number;
       cursor?: string;
+      withRecasts?: boolean;
     }
   ): Promise<FeedResponse> {
     const response = await this.apis.feed.feed({
@@ -489,6 +490,7 @@ export class NeynarV2APIClient {
       parentUrl: options?.parentUrl,
       cursor: options?.cursor,
       limit: options?.limit,
+      withRecasts: options?.withRecasts,
     });
     return response.data;
   }
