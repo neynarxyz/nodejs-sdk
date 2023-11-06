@@ -1,46 +1,22 @@
 import {
-  CastApi,
-  SignerApi,
   Signer,
   Cast,
   CastParamType,
   PostCastResponseCast,
-  DeleteCastReqBody,
-  ReactionApi,
-  ReactionReqBody,
   ReactionType,
   OperationResponse,
   BulkFollowResponse,
   EmbeddedCast,
-  Configuration,
-  ErrorRes,
-  FeedApi,
-  UserApi,
-  CastApiPostCastRequest,
   FeedType,
   FilterType,
   FeedResponse,
-  SignerApiRegisterSignedKeyRequest,
   NotificationsResponse,
-  NotificationsApi,
-  FollowsApi,
   RelevantFollowersResponse,
-  UserApiRemoveVerificationRequest,
-  UserApiAddVerificationRequest,
-  UserApiFollowRequest,
-  UserApiUpdateUserRequest,
   UserBulk200Response,
   UserSearchResponse,
 } from "./neynar-v2-api/openapi-farcaster";
 
 import {
-  UserApi as UserApiV1,
-  CastApi as CastApiV1,
-  NotificationsApi as NotificationsApiV1,
-  VerificationApi as VerificationApiV1,
-  ReactionsApi as ReactionsApiV1,
-  Configuration as ConfigurationV1,
-  FollowsApi as FollowsApiV1,
   RecentUsersResponse,
   UserCastLikeResponse,
   User,
@@ -56,18 +32,11 @@ import {
   FollowResponse,
 } from "./neynar-v1-api/openapi";
 
-import {
-  FetchRelevantMints200Response,
-  NFTApi,
-} from "./neynar-v2-api/openapi-recommendation";
-import axios, { AxiosError, AxiosInstance } from "axios";
+import { FetchRelevantMints200Response } from "./neynar-v2-api/openapi-recommendation";
+import { AxiosInstance } from "axios";
 import { silentLogger, Logger } from "./common/logger";
-import type { SetRequired } from "type-fest";
 import { NeynarV1APIClient } from "./neynar-v1-api";
 import { NeynarV2APIClient } from "./neynar-v2-api";
-
-const BASE_PATH_V1 = "https://api.neynar.com/v1";
-const BASE_PATH_V2 = "https://api.neynar.com/v2";
 
 export class NeynarAPIClient {
   private readonly logger: Logger;
@@ -75,23 +44,6 @@ export class NeynarAPIClient {
   public readonly clients: {
     v1: NeynarV1APIClient;
     v2: NeynarV2APIClient;
-  };
-
-  public readonly apis: {
-    signer: SignerApi;
-    user: UserApi;
-    cast: CastApi;
-    reaction: ReactionApi;
-    feed: FeedApi;
-    notifications: NotificationsApi;
-    follows: FollowsApi;
-    nft: NFTApi;
-    userV1: UserApiV1;
-    castV1: CastApiV1;
-    verificationV1: VerificationApiV1;
-    notificationsV1: NotificationsApiV1;
-    reactionsV1: ReactionsApiV1;
-    followsV1: FollowsApiV1;
   };
 
   /**
@@ -113,71 +65,11 @@ export class NeynarAPIClient {
         "Attempt to use an authenticated API method without first providing an api key"
       );
     }
-    if (axiosInstance === undefined) {
-      axiosInstance = axios.create();
-    }
-    axiosInstance.defaults.decompress = true;
-    axiosInstance.interceptors.response.use(
-      (response) => response,
-      (error) => {
-        if (NeynarAPIClient.isApiErrorResponse(error)) {
-          const apiErrors = error.response.data;
-          this.logger.warn(`API errors: ${JSON.stringify(apiErrors)}`);
-        }
-        throw error;
-      }
-    );
-
-    const config: Configuration = new Configuration({
-      basePath: BASE_PATH_V2,
-      apiKey: apiKey,
-    });
-
-    const configV1: ConfigurationV1 = new ConfigurationV1({
-      basePath: BASE_PATH_V1,
-      apiKey: apiKey,
-    });
-
-    this.apis = {
-      signer: new SignerApi(config, undefined, axiosInstance),
-      user: new UserApi(config, undefined, axiosInstance),
-      cast: new CastApi(config, undefined, axiosInstance),
-      reaction: new ReactionApi(config, undefined, axiosInstance),
-      feed: new FeedApi(config, undefined, axiosInstance),
-      notifications: new NotificationsApi(config, undefined, axiosInstance),
-      follows: new FollowsApi(config, undefined, axiosInstance),
-      nft: new NFTApi(config, undefined, axiosInstance),
-      userV1: new UserApiV1(configV1, undefined, axiosInstance),
-      castV1: new CastApiV1(configV1, undefined, axiosInstance),
-      verificationV1: new VerificationApiV1(configV1, undefined, axiosInstance),
-      notificationsV1: new NotificationsApiV1(
-        configV1,
-        undefined,
-        axiosInstance
-      ),
-      reactionsV1: new ReactionsApiV1(configV1, undefined, axiosInstance),
-      followsV1: new FollowsApiV1(configV1, undefined, axiosInstance),
-    };
 
     this.clients = {
       v1: new NeynarV1APIClient(apiKey, { logger, axiosInstance }),
       v2: new NeynarV2APIClient(apiKey, { logger, axiosInstance }),
     };
-  }
-
-  /**
-   * Utility for parsing errors returned by the Neynar API servers. Returns true
-   * if the given error is caused by an error response from the server, and
-   * narrows the type of `error` accordingly.
-   */
-  public static isApiErrorResponse(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    error: any
-  ): error is SetRequired<AxiosError<ErrorRes>, "response"> {
-    if (!(error instanceof AxiosError)) return false;
-    return (
-      error.response?.data !== undefined && "message" in error.response.data
-    );
   }
 
   // ============ v1 APIs ============
