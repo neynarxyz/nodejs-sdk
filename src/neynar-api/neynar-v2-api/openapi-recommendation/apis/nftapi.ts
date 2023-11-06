@@ -52,7 +52,6 @@ export const NFTApiAxiosParamCreator = function (
     /**
      * Fetches all mint actions relevant for a contract address (and optionally tokenId for ERC1155s) given a user\'s ethereum address
      * @summary Relevant Mints for a User
-     * @param {string} apiKey API key required for authentication.
      * @param {string} address
      * @param {string} contractAddress
      * @param {string} [tokenId]
@@ -60,14 +59,11 @@ export const NFTApiAxiosParamCreator = function (
      * @throws {RequiredError}
      */
     fetchRelevantMints: async (
-      apiKey: string,
       address: string,
       contractAddress: string,
       tokenId?: string,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'apiKey' is not null or undefined
-      assertParamExists("fetchRelevantMints", "apiKey", apiKey);
       // verify required parameter 'address' is not null or undefined
       assertParamExists("fetchRelevantMints", "address", address);
       // verify required parameter 'contractAddress' is not null or undefined
@@ -104,9 +100,12 @@ export const NFTApiAxiosParamCreator = function (
         localVarQueryParameter["token_id"] = tokenId;
       }
 
-      if (apiKey != null) {
-        localVarHeaderParameter["api_key"] = String(apiKey);
-      }
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "api_key",
+        configuration
+      );
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
@@ -135,7 +134,6 @@ export const NFTApiFp = function (configuration?: Configuration) {
     /**
      * Fetches all mint actions relevant for a contract address (and optionally tokenId for ERC1155s) given a user\'s ethereum address
      * @summary Relevant Mints for a User
-     * @param {string} apiKey API key required for authentication.
      * @param {string} address
      * @param {string} contractAddress
      * @param {string} [tokenId]
@@ -143,7 +141,6 @@ export const NFTApiFp = function (configuration?: Configuration) {
      * @throws {RequiredError}
      */
     async fetchRelevantMints(
-      apiKey: string,
       address: string,
       contractAddress: string,
       tokenId?: string,
@@ -156,7 +153,6 @@ export const NFTApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.fetchRelevantMints(
-          apiKey,
           address,
           contractAddress,
           tokenId,
@@ -186,26 +182,52 @@ export const NFTApiFactory = function (
     /**
      * Fetches all mint actions relevant for a contract address (and optionally tokenId for ERC1155s) given a user\'s ethereum address
      * @summary Relevant Mints for a User
-     * @param {string} apiKey API key required for authentication.
-     * @param {string} address
-     * @param {string} contractAddress
-     * @param {string} [tokenId]
+     * @param {NFTApiGetRelaventMintsRequest} [requestParameters] Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     fetchRelevantMints(
-      apiKey: string,
-      address: string,
-      contractAddress: string,
-      tokenId?: string,
+      requestParameters: NFTApiGetRelaventMintsRequest,
       options?: any
     ): AxiosPromise<FetchRelevantMints200Response> {
       return localVarFp
-        .fetchRelevantMints(apiKey, address, contractAddress, tokenId, options)
+        .fetchRelevantMints(
+          requestParameters.address,
+          requestParameters.contractAddress,
+          requestParameters.tokenId,
+          options
+        )
         .then((request) => request(axios, basePath));
     },
   };
 };
+
+/**
+ * Request parameters to fetch relevant mints operation in NFTApi.
+ * @export
+ * @interface NFTApiGetRelaventMintsRequest
+ */
+export interface NFTApiGetRelaventMintsRequest {
+  /**
+   * Ethereum address
+   * @type {string}
+   * @memberof NFTApiGetRelaventMints
+   */
+  readonly address: string;
+
+  /**
+   * Ethereum address
+   * @type {string}
+   * @memberof NFTApiGetRelaventMints
+   */
+  readonly contractAddress: string;
+
+  /**
+   * @type {string}
+   * @memberof NFTApiGetRelaventMints
+   */
+  readonly tokenId?: string;
+}
 
 /**
  * NFTApi - object-oriented interface
@@ -217,23 +239,23 @@ export class NFTApi extends BaseAPI {
   /**
    * Fetches all mint actions relevant for a contract address (and optionally tokenId for ERC1155s) given a user\'s ethereum address
    * @summary Relevant Mints for a User
-   * @param {string} apiKey API key required for authentication.
-   * @param {string} address
-   * @param {string} contractAddress
+   * @param {NFTApiGetRelaventMintsRequest} [requestParameters] Request parameters.
    * @param {string} [tokenId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof NFTApi
    */
   public fetchRelevantMints(
-    apiKey: string,
-    address: string,
-    contractAddress: string,
-    tokenId?: string,
+    requestParameters: NFTApiGetRelaventMintsRequest,
     options?: AxiosRequestConfig
   ) {
     return NFTApiFp(this.configuration)
-      .fetchRelevantMints(apiKey, address, contractAddress, tokenId, options)
+      .fetchRelevantMints(
+        requestParameters.address,
+        requestParameters.contractAddress,
+        requestParameters.tokenId,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 }
