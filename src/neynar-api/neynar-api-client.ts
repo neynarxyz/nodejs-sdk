@@ -361,24 +361,10 @@ export class NeynarAPIClient {
    *
    */
   public async fetchCastLikes(
-    castOrCastHash: Cast | string,
+    castOrCastHash: CastV1 | string,
     options?: { viewerFid?: number; limit?: number; cursor?: string }
   ): Promise<CastLikesResponse> {
-    let castHash: string;
-    if (typeof castOrCastHash === "string") {
-      castHash = castOrCastHash;
-    } else {
-      castHash = castOrCastHash.hash;
-    }
-
-    const response = await this.apis.reactionsV1.castLikes({
-      castHash: castHash,
-      viewerFid: options?.viewerFid,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
-
-    return response.data;
+    return await this.clients.v1.fetchCastLikes(castOrCastHash, options);
   }
 
   /**
@@ -387,24 +373,10 @@ export class NeynarAPIClient {
    *
    */
   public async fetchCastReactions(
-    castOrCastHash: Cast | string,
+    castOrCastHash: CastV1 | string,
     options?: { viewerFid?: number; limit?: number; cursor?: string }
   ): Promise<CastReactionsResponse> {
-    let castHash: string;
-    if (typeof castOrCastHash === "string") {
-      castHash = castOrCastHash;
-    } else {
-      castHash = castOrCastHash.hash;
-    }
-
-    const response = await this.apis.reactionsV1.castReactions({
-      castHash: castHash,
-      viewerFid: options?.viewerFid,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
-
-    return response.data;
+    return await this.clients.v1.fetchCastReactions(castOrCastHash, options);
   }
 
   /**
@@ -413,24 +385,10 @@ export class NeynarAPIClient {
    *
    */
   public async fetchRecasters(
-    castOrCastHash: Cast | string,
+    castOrCastHash: CastV1 | string,
     options?: { viewerFid?: number; limit?: number; cursor?: string }
   ): Promise<CastRecasterResponse> {
-    let castHash: string;
-    if (typeof castOrCastHash === "string") {
-      castHash = castOrCastHash;
-    } else {
-      castHash = castOrCastHash.hash;
-    }
-
-    const response = await this.apis.reactionsV1.castRecasters({
-      castHash: castHash,
-      viewerFid: options?.viewerFid,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
-
-    return response.data;
+    return await this.clients.v1.fetchRecasters(castOrCastHash, options);
   }
 
   // ------------ Follows ------------
@@ -444,14 +402,7 @@ export class NeynarAPIClient {
     fid: number,
     options?: { viewerFid?: number; limit?: number; cursor?: string }
   ): Promise<FollowResponse> {
-    const response = await this.apis.followsV1.followers({
-      fid,
-      viewerFid: options?.viewerFid,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
-
-    return response.data;
+    return await this.clients.v1.fetchUserFollowers(fid, options);
   }
 
   /**
@@ -463,14 +414,7 @@ export class NeynarAPIClient {
     fid: number,
     options?: { viewerFid?: number; limit?: number; cursor?: string }
   ): Promise<FollowResponse> {
-    const response = await this.apis.followsV1.following({
-      fid,
-      viewerFid: options?.viewerFid,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
-
-    return response.data;
+    return await this.clients.v1.fetchUserFollowing(fid, options);
   }
 
   // ============ v2 APIs ============
