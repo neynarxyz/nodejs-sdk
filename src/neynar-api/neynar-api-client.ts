@@ -427,8 +427,7 @@ export class NeynarAPIClient {
    *
    */
   public async createSigner(): Promise<Signer> {
-    const response = await this.apis.signer.createSigner();
-    return response.data;
+    return await this.clients.v2.createSigner();
   }
 
   /**
@@ -437,8 +436,7 @@ export class NeynarAPIClient {
    *
    */
   public async lookupSigner(signerUuid: string): Promise<Signer | null> {
-    const response = await this.apis.signer.signer({ signerUuid });
-    return response.data;
+    return await this.clients.v2.lookupSigner(signerUuid);
   }
 
   /**
@@ -452,16 +450,12 @@ export class NeynarAPIClient {
     deadline: number,
     signature: string
   ): Promise<Signer> {
-    const request: SignerApiRegisterSignedKeyRequest = {
-      registerSignerKeyReqBody: {
-        signer_uuid: signerUuid,
-        app_fid: fid,
-        deadline: deadline,
-        signature: signature,
-      },
-    };
-    const response = await this.apis.signer.registerSignedKey(request);
-    return response.data;
+    return await this.clients.v2.registerSigner(
+      signerUuid,
+      fid,
+      deadline,
+      signature
+    );
   }
 
   // ------------ User ------------
@@ -475,17 +469,7 @@ export class NeynarAPIClient {
     signerUuid: string,
     address: string
   ): Promise<OperationResponse> {
-    const request: UserApiRemoveVerificationRequest = {
-      removeVerificationReqBody: {
-        signer_uuid: signerUuid,
-        address,
-      },
-    };
-
-    const response = await this.apis.user.farcasterUserVerificationDelete(
-      request
-    );
-    return response.data;
+    return await this.clients.v2.removeVerification(signerUuid, address);
   }
 
   /**
@@ -496,22 +480,15 @@ export class NeynarAPIClient {
   public async addVerification(
     signerUuid: string,
     address: string,
-    block_hash: string,
-    eth_signature: string
+    blockHash: string,
+    ethSignature: string
   ): Promise<OperationResponse> {
-    const request: UserApiAddVerificationRequest = {
-      addVerificationReqBody: {
-        signer_uuid: signerUuid,
-        address,
-        block_hash,
-        eth_signature,
-      },
-    };
-
-    const response = await this.apis.user.farcasterUserVerificationPost(
-      request
+    return await this.clients.v2.addVerification(
+      signerUuid,
+      address,
+      blockHash,
+      ethSignature
     );
-    return response.data;
   }
 
   /**
@@ -522,17 +499,9 @@ export class NeynarAPIClient {
 
   public async followUser(
     signerUuid: string,
-    targetFid: number[]
+    targetFids: number[]
   ): Promise<BulkFollowResponse> {
-    const request: UserApiFollowRequest = {
-      followReqBody: {
-        signer_uuid: signerUuid,
-        target_fids: targetFid,
-      },
-    };
-
-    const response = await this.apis.user.followUser(request);
-    return response.data;
+    return await this.clients.v2.followUser(signerUuid, targetFids);
   }
 
   /**
@@ -542,16 +511,9 @@ export class NeynarAPIClient {
    */
   public async unfollowUser(
     signerUuid: string,
-    targetFid: number[]
+    targetFids: number[]
   ): Promise<BulkFollowResponse> {
-    const request: UserApiFollowRequest = {
-      followReqBody: {
-        signer_uuid: signerUuid,
-        target_fids: targetFid,
-      },
-    };
-    const response = await this.apis.user.unfollowUser(request);
-    return response.data;
+    return await this.clients.v2.unfollowUser(signerUuid, targetFids);
   }
 
   /**
@@ -569,19 +531,7 @@ export class NeynarAPIClient {
       display_name?: string;
     }
   ): Promise<OperationResponse> {
-    const request: UserApiUpdateUserRequest = {
-      updateUserReqBody: {
-        signer_uuid: signerUuid,
-        bio: options?.bio,
-        pfp_url: options?.pfp_url,
-        url: options?.url,
-        username: options?.username,
-        display_name: options?.display_name,
-      },
-    };
-
-    const response = await this.apis.user.updateUser(request);
-    return response.data;
+    return await this.clients.v2.updateUserProfile(signerUuid, options);
   }
 
   /**
@@ -593,8 +543,7 @@ export class NeynarAPIClient {
     fids: string,
     viewerFid?: number
   ): Promise<UserBulk200Response> {
-    const response = await this.apis.user.userBulk({ fids, viewerFid });
-    return response.data;
+    return await this.clients.v2.fetchUsersInBulk(fids, viewerFid);
   }
 
   /**
@@ -605,8 +554,7 @@ export class NeynarAPIClient {
     q: string,
     viewerFid: number
   ): Promise<UserSearchResponse> {
-    const response = await this.apis.user.userSearch({ q, viewerFid });
-    return response.data;
+    return await this.clients.v2.searchUser(q, viewerFid);
   }
 
   // ------------ Cast ------------
