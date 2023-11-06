@@ -143,7 +143,7 @@ export class NeynarV2APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/signer)
    *
    */
-  public async lookUpSigner(signerUuid: string): Promise<Signer | null> {
+  public async lookupSigner(signerUuid: string): Promise<Signer | null> {
     const response = await this.apis.signer.signer({ signerUuid });
     return response.data;
   }
@@ -203,15 +203,15 @@ export class NeynarV2APIClient {
   public async addVerification(
     signerUuid: string,
     address: string,
-    block_hash: string,
-    eth_signature: string
+    blockHash: string,
+    ethSignature: string
   ): Promise<OperationResponse> {
     const request: UserApiAddVerificationRequest = {
       addVerificationReqBody: {
         signer_uuid: signerUuid,
         address,
-        block_hash,
-        eth_signature,
+        block_hash: blockHash,
+        eth_signature: ethSignature,
       },
     };
 
@@ -229,12 +229,12 @@ export class NeynarV2APIClient {
 
   public async followUser(
     signerUuid: string,
-    targetFid: number[]
+    targetFids: number[]
   ): Promise<BulkFollowResponse> {
     const request: UserApiFollowRequest = {
       followReqBody: {
         signer_uuid: signerUuid,
-        target_fids: targetFid,
+        target_fids: targetFids,
       },
     };
 
@@ -249,12 +249,12 @@ export class NeynarV2APIClient {
    */
   public async unfollowUser(
     signerUuid: string,
-    targetFid: number[]
+    targetFids: number[]
   ): Promise<BulkFollowResponse> {
     const request: UserApiFollowRequest = {
       followReqBody: {
         signer_uuid: signerUuid,
-        target_fids: targetFid,
+        target_fids: targetFids,
       },
     };
     const response = await this.apis.user.unfollowUser(request);
@@ -270,20 +270,20 @@ export class NeynarV2APIClient {
     signerUuid: string,
     options?: {
       bio?: string;
-      pfp_url?: string;
+      pfpUrl?: string;
       url?: string;
       username?: string;
-      display_name?: string;
+      displayName?: string;
     }
   ): Promise<OperationResponse> {
     const request: UserApiUpdateUserRequest = {
       updateUserReqBody: {
         signer_uuid: signerUuid,
         bio: options?.bio,
-        pfp_url: options?.pfp_url,
+        pfp_url: options?.pfpUrl,
         url: options?.url,
         username: options?.username,
-        display_name: options?.display_name,
+        display_name: options?.displayName,
       },
     };
 
@@ -323,7 +323,7 @@ export class NeynarV2APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/cast)
    *
    */
-  public async fetchCast(
+  public async lookUpCastByHashOrWarpcastUrl(
     castHashOrUrl: string,
     type: CastParamType
   ): Promise<Cast | null> {
@@ -349,7 +349,9 @@ export class NeynarV2APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/casts)
    *
    */
-  public async fetchCasts(castHashes: string[]): Promise<Cast[] | null> {
+  public async fetchBulkCastsByHash(
+    castHashes: string[]
+  ): Promise<Cast[] | null> {
     try {
       const response = await this.apis.cast.casts({
         getCastsReqBody: {
@@ -479,7 +481,7 @@ export class NeynarV2APIClient {
   /**
    * Remove a reaction to a cast. See [Neynar documentation](https://docs.neynar.com/reference/delete-reaction)
    */
-  public async removeReactionToCast(
+  public async removeReactionFromCast(
     signerUuid: string,
     reaction: ReactionType,
     castOrCastHash: Cast | string
@@ -508,7 +510,7 @@ export class NeynarV2APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/notifications)
    *
    */
-  public async fetchNotifications(
+  public async fetchAllNotifications(
     fid: number,
     options?: { cursor?: string; limit?: number }
   ): Promise<NotificationsResponse> {
