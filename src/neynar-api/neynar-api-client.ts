@@ -568,21 +568,10 @@ export class NeynarAPIClient {
     castHashOrUrl: string,
     type: CastParamType
   ): Promise<Cast | null> {
-    try {
-      const response = await this.apis.cast.cast({
-        type,
-        identifier: castHashOrUrl,
-      });
-      return response.data.cast;
-    } catch (error) {
-      if (NeynarAPIClient.isApiErrorResponse(error)) {
-        const status = error.response.status;
-        if (status === 404) {
-          return null;
-        }
-      }
-      throw error;
-    }
+    return await this.clients.v2.lookUpCastByHashOrWarpcastUrl(
+      castHashOrUrl,
+      type
+    );
   }
 
   /**
@@ -593,22 +582,7 @@ export class NeynarAPIClient {
   public async fetchBulkCastsByHash(
     castHashes: string[]
   ): Promise<Cast[] | null> {
-    try {
-      const response = await this.apis.cast.casts({
-        getCastsReqBody: {
-          casts: castHashes.map((hash) => ({ hash })),
-        },
-      });
-      return response.data.result.casts;
-    } catch (error) {
-      if (NeynarAPIClient.isApiErrorResponse(error)) {
-        const status = error.response.status;
-        if (status === 404) {
-          return null;
-        }
-      }
-      throw error;
-    }
+    return await this.clients.v2.fetchBulkCastsByHash(castHashes);
   }
 
   /**
@@ -621,16 +595,7 @@ export class NeynarAPIClient {
     text: string,
     options?: { embeds?: EmbeddedCast[]; replyTo?: string }
   ): Promise<PostCastResponseCast> {
-    const request: CastApiPostCastRequest = {
-      postCastReqBody: {
-        signer_uuid: signerUuid,
-        text: text,
-        embeds: options?.embeds,
-        parent: options?.replyTo,
-      },
-    };
-    const response = await this.apis.cast.postCast(request);
-    return response.data.cast;
+    return await this.clients.v2.publishCast(signerUuid, text, options);
   }
 
   /**
@@ -642,20 +607,7 @@ export class NeynarAPIClient {
     signerUuid: string,
     castOrCastHash: Cast | string
   ): Promise<OperationResponse> {
-    let castHash: string;
-    if (typeof castOrCastHash === "string") {
-      castHash = castOrCastHash;
-    } else {
-      castHash = castOrCastHash.hash;
-    }
-    const body: DeleteCastReqBody = {
-      signer_uuid: signerUuid,
-      target_hash: castHash,
-    };
-    const response = await this.apis.cast.deleteCast({
-      deleteCastReqBody: body,
-    });
-    return response.data;
+    return await this.clients.v2.deleteCast(signerUuid, castOrCastHash);
   }
 
   // ------------ Feed ------------
@@ -677,17 +629,7 @@ export class NeynarAPIClient {
       withRecasts?: boolean;
     }
   ): Promise<FeedResponse> {
-    const response = await this.apis.feed.feed({
-      fid,
-      feedType: options?.feedType,
-      filterType: options?.filterType,
-      fids: options?.fids,
-      parentUrl: options?.parentUrl,
-      cursor: options?.cursor,
-      limit: options?.limit,
-      withRecasts: options?.withRecasts,
-    });
-    return response.data;
+    return await this.clients.v2.fetchFeedPage(fid, options);
   }
 
   // ------------ Reaction ------------
@@ -702,21 +644,11 @@ export class NeynarAPIClient {
     reaction: ReactionType,
     castOrCastHash: Cast | string
   ): Promise<OperationResponse> {
-    let castHash: string;
-    if (typeof castOrCastHash === "string") {
-      castHash = castOrCastHash;
-    } else {
-      castHash = castOrCastHash.hash;
-    }
-    const body: ReactionReqBody = {
-      signer_uuid: signerUuid,
-      reaction_type: reaction,
-      target: castHash,
-    };
-    const response = await this.apis.reaction.postReaction({
-      reactionReqBody: body,
-    });
-    return response.data;
+    return await this.clients.v2.reactToCast(
+      signerUuid,
+      reaction,
+      castOrCastHash
+    );
   }
 
   /**
@@ -727,21 +659,11 @@ export class NeynarAPIClient {
     reaction: ReactionType,
     castOrCastHash: Cast | string
   ): Promise<OperationResponse> {
-    let castHash: string;
-    if (typeof castOrCastHash === "string") {
-      castHash = castOrCastHash;
-    } else {
-      castHash = castOrCastHash.hash;
-    }
-    const body: ReactionReqBody = {
-      signer_uuid: signerUuid,
-      reaction_type: reaction,
-      target: castHash,
-    };
-    const response = await this.apis.reaction.deleteReaction({
-      reactionReqBody: body,
-    });
-    return response.data;
+    return await this.clients.v2.removeReactionFromCast(
+      signerUuid,
+      reaction,
+      castOrCastHash
+    );
   }
 
   // ------------ Notifications ------------
@@ -755,12 +677,7 @@ export class NeynarAPIClient {
     fid: number,
     options?: { cursor?: string; limit?: number }
   ): Promise<NotificationsResponse> {
-    const response = await this.apis.notifications.notifications({
-      fid,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
-    return response.data;
+    return await this.clients.v2.fetchAllNotifications(fid, options);
   }
 
   // ------------ Follows ------------
@@ -774,11 +691,7 @@ export class NeynarAPIClient {
     targetFid: number,
     viewerFid: number
   ): Promise<RelevantFollowersResponse> {
-    const response = await this.apis.follows.relevantFollowers({
-      targetFid,
-      viewerFid,
-    });
-    return response.data;
+    return await this.clients.v2.fetchRelaventFollowers(targetFid, viewerFid);
   }
 
   // ------------ Recommendation ------------
@@ -793,11 +706,10 @@ export class NeynarAPIClient {
     contractAddress: string,
     tokenId?: string
   ): Promise<FetchRelevantMints200Response> {
-    const response = await this.apis.nft.fetchRelevantMints({
+    return await this.clients.v2.fetchRelevantMints(
       address,
       contractAddress,
-      tokenId,
-    });
-    return response.data;
+      tokenId
+    );
   }
 }

@@ -323,7 +323,7 @@ export class NeynarV2APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/cast)
    *
    */
-  public async fetchCast(
+  public async lookUpCastByHashOrWarpcastUrl(
     castHashOrUrl: string,
     type: CastParamType
   ): Promise<Cast | null> {
@@ -349,7 +349,9 @@ export class NeynarV2APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/casts)
    *
    */
-  public async fetchCasts(castHashes: string[]): Promise<Cast[] | null> {
+  public async fetchBulkCastsByHash(
+    castHashes: string[]
+  ): Promise<Cast[] | null> {
     try {
       const response = await this.apis.cast.casts({
         getCastsReqBody: {
@@ -479,7 +481,7 @@ export class NeynarV2APIClient {
   /**
    * Remove a reaction to a cast. See [Neynar documentation](https://docs.neynar.com/reference/delete-reaction)
    */
-  public async removeReactionToCast(
+  public async removeReactionFromCast(
     signerUuid: string,
     reaction: ReactionType,
     castOrCastHash: Cast | string
@@ -508,7 +510,7 @@ export class NeynarV2APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/notifications)
    *
    */
-  public async fetchNotifications(
+  public async fetchAllNotifications(
     fid: number,
     options?: { cursor?: string; limit?: number }
   ): Promise<NotificationsResponse> {
