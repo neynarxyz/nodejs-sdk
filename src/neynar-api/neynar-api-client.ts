@@ -63,12 +63,19 @@ import {
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "./common/logger";
 import type { SetRequired } from "type-fest";
+import { NeynarV1APIClient } from "./neynar-v1-api";
+import { NeynarV2APIClient } from "./neynar-v2-api";
 
 const BASE_PATH_V1 = "https://api.neynar.com/v1";
 const BASE_PATH_V2 = "https://api.neynar.com/v2";
 
 export class NeynarAPIClient {
   private readonly logger: Logger;
+
+  public readonly clients: {
+    v1: NeynarV1APIClient;
+    v2: NeynarV2APIClient;
+  };
 
   public readonly apis: {
     signer: SignerApi;
@@ -151,6 +158,11 @@ export class NeynarAPIClient {
       reactionsV1: new ReactionsApiV1(configV1, undefined, axiosInstance),
       followsV1: new FollowsApiV1(configV1, undefined, axiosInstance),
     };
+
+    this.clients = {
+      v1: new NeynarV1APIClient(apiKey, { logger, axiosInstance }),
+      v2: new NeynarV2APIClient(apiKey, { logger, axiosInstance }),
+    };
   }
 
   /**
@@ -182,13 +194,7 @@ export class NeynarAPIClient {
     limit?: number;
     cursor?: string;
   }): Promise<RecentUsersResponse> {
-    const response = await this.apis.userV1.recentUsers({
-      viewerFid: options?.viewerFid,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
-
-    return response.data;
+    return await this.clients.v1.fetchRecentUsers(options);
   }
 
   /**
@@ -200,14 +206,7 @@ export class NeynarAPIClient {
     fid: number,
     options?: { viewerFid?: number; limit?: number; cursor?: string }
   ): Promise<UserCastLikeResponse> {
-    const response = await this.apis.userV1.userCastLikes({
-      fid: fid,
-      viewerFid: options?.viewerFid,
-      limit: options?.limit,
-      cursor: options?.cursor,
-    });
-
-    return response.data;
+    return await this.clients.v1.fetchAllCastsLikedByUser(fid, options);
   }
 
   /**
@@ -219,15 +218,7 @@ export class NeynarAPIClient {
     fid: number,
     viewerFid?: number
   ): Promise<User | null> {
-    try {
-      const response = await this.apis.userV1.user({ fid, viewerFid });
-      return response.data.result.user;
-    } catch (error) {
-      if (NeynarAPIClient.isApiErrorResponse(error)) {
-        if (error.response.status === 404) return null;
-      }
-      throw error;
-    }
+    return await this.clients.v1.lookupUserByFid(fid, viewerFid);
   }
 
   /**
@@ -239,13 +230,7 @@ export class NeynarAPIClient {
     username: string,
     viewerFid?: number
   ): Promise<User | null> {
-    const response = await this.apis.userV1.userByUsername({
-      username,
-      viewerFid,
-    });
-    // result.user is undefined if not found
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    return response.data.result.user ?? null;
+    return await this.clients.v1.lookupUserByUsername(username, viewerFid);
   }
 
   /**
@@ -254,8 +239,7 @@ export class NeynarAPIClient {
    *
    */
   public async fetchCustodyAddressForUser(fid: number): Promise<string | null> {
-    const response = await this.apis.userV1.custodyAddress({ fid });
-    return response.data.result.custodyAddress;
+    return await this.clients.v1.fetchCustodyAddressForUser(fid);
   }
 
   // ------------ Cast ------------
@@ -269,11 +253,7 @@ export class NeynarAPIClient {
     hash: string,
     options?: { viewerFid?: number }
   ): Promise<CastV1 | null> {
-    const response = await this.apis.castV1.cast({
-      hash,
-      viewerFid: options?.viewerFid,
-    });
-    return response.data.result.cast;
+    return await this.clients.v1.lookUpCastByHash(hash, options);
   }
 
   /**
@@ -286,11 +266,7 @@ export class NeynarAPIClient {
     threadParent: CastV1 | { hash: string },
     viewerFid?: number
   ): Promise<CastV1[] | null> {
-    const response = await this.apis.castV1.allCastsInThread({
-      threadHash: threadParent.hash,
-      viewerFid: viewerFid,
-    });
-    return response.data.result.casts;
+    return await this.clients.v1.fetchAllCastsInThread(threadParent, viewerFid);
   }
 
   /**
@@ -307,15 +283,7 @@ export class NeynarAPIClient {
       cursor?: string;
     }
   ): Promise<CastsResponse> {
-    const response = await this.apis.castV1.casts({
-      fid: fid,
-      viewerFid: options?.viewerFid,
-      parentUrl: options?.parentUrl,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
-
-    return response.data;
+    return await this.clients.v1.fetchAllCastsCreatedByUser(fid, options);
   }
 
   /**
@@ -328,13 +296,7 @@ export class NeynarAPIClient {
     limit?: number;
     cursor?: string;
   }): Promise<RecentCastsResponse> {
-    const response = await this.apis.castV1.recentCasts({
-      viewerFid: options?.viewerFid,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
-
-    return response.data;
+    return await this.clients.v1.fetchRecentCasts(options);
   }
 
   // ------------ Verification ------------
@@ -347,8 +309,7 @@ export class NeynarAPIClient {
   public async fetchUserVerifications(
     fid: number
   ): Promise<VerificationResponseResult | null> {
-    const response = await this.apis.verificationV1.verifications({ fid });
-    return response.data.result;
+    return await this.clients.v1.fetchUserVerifications(fid);
   }
 
   /**

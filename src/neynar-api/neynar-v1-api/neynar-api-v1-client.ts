@@ -129,7 +129,7 @@ export class NeynarV1APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/user-cast-likes-v1)
    *
    */
-  public async fetchUserCastLikes(
+  public async fetchAllCastsLikedByUser(
     fid: number,
     options?: { viewerFid?: number; limit?: number; cursor?: string }
   ): Promise<UserCastLikeResponse> {
@@ -215,7 +215,7 @@ export class NeynarV1APIClient {
    * Note that the parent provided by the caller is included in the response.
    *
    */
-  public async fetchCastsInThread(
+  public async fetchAllCastsInThread(
     threadParent: Cast | { hash: string },
     viewerFid?: number
   ): Promise<Cast[] | null> {
@@ -231,7 +231,7 @@ export class NeynarV1APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/casts-v1)
    *
    */
-  public async fetchCastsForUser(
+  public async fetchAllCastsCreatedByUser(
     fid: number,
     options?: {
       parentUrl?: string;
