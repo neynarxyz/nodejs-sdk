@@ -335,14 +335,10 @@ export class NeynarAPIClient {
     fid: number,
     options?: { viewerFid?: number; limit?: number; cursor?: string }
   ): Promise<MentionsAndRepliesResponse> {
-    const response = await this.apis.notificationsV1.mentionsAndReplies({
-      fid: fid,
-      viewerFid: options?.viewerFid,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
-
-    return response.data;
+    return await this.clients.v1.fetchMentionAndReplyNotifications(
+      fid,
+      options
+    );
   }
 
   /**
@@ -354,14 +350,7 @@ export class NeynarAPIClient {
     fid: number,
     options?: { viewerFid?: number; limit?: number; cursor?: string }
   ): Promise<ReactionsAndRecastsResponse> {
-    const response = await this.apis.notificationsV1.reactionsAndRecasts({
-      fid: fid,
-      viewerFid: options?.viewerFid,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
-
-    return response.data;
+    return await this.clients.v1.fetchUserLikesAndRecasts(fid, options);
   }
 
   // ------------ Reactions ------------
