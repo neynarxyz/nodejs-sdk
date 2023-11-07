@@ -31,6 +31,8 @@ import {
   UserApiUpdateUserRequest,
   UserBulk200Response,
   UserSearchResponse,
+  CastResponse,
+  CastsResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -322,22 +324,12 @@ export class NeynarV2APIClient {
   public async lookUpCastByHashOrWarpcastUrl(
     castHashOrUrl: string,
     type: CastParamType
-  ): Promise<Cast | null> {
-    try {
-      const response = await this.apis.cast.cast({
-        type,
-        identifier: castHashOrUrl,
-      });
-      return response.data.cast;
-    } catch (error) {
-      if (NeynarV2APIClient.isApiErrorResponse(error)) {
-        const status = error.response.status;
-        if (status === 404) {
-          return null;
-        }
-      }
-      throw error;
-    }
+  ): Promise<CastResponse> {
+    const response = await this.apis.cast.cast({
+      type,
+      identifier: castHashOrUrl,
+    });
+    return response.data;
   }
 
   /**
@@ -347,23 +339,13 @@ export class NeynarV2APIClient {
    */
   public async fetchBulkCastsByHash(
     castHashes: string[]
-  ): Promise<Cast[] | null> {
-    try {
-      const response = await this.apis.cast.casts({
-        getCastsReqBody: {
-          casts: castHashes.map((hash) => ({ hash })),
-        },
-      });
-      return response.data.result.casts;
-    } catch (error) {
-      if (NeynarV2APIClient.isApiErrorResponse(error)) {
-        const status = error.response.status;
-        if (status === 404) {
-          return null;
-        }
-      }
-      throw error;
-    }
+  ): Promise<CastsResponse> {
+    const response = await this.apis.cast.casts({
+      getCastsReqBody: {
+        casts: castHashes.map((hash) => ({ hash })),
+      },
+    });
+    return response.data;
   }
 
   /**

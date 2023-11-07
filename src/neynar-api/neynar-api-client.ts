@@ -14,6 +14,8 @@ import {
   RelevantFollowersResponse,
   UserBulk200Response,
   UserSearchResponse,
+  CastResponse,
+  CastsResponse,
 } from "./neynar-v2-api/openapi-farcaster";
 
 import {
@@ -21,7 +23,7 @@ import {
   UserCastLikeResponse,
   User,
   Cast as CastV1,
-  CastsResponse,
+  CastsResponse as CastsResponseV1,
   RecentCastsResponse,
   VerificationResponseResult,
   MentionsAndRepliesResponse,
@@ -174,7 +176,7 @@ export class NeynarAPIClient {
       limit?: number;
       cursor?: string;
     }
-  ): Promise<CastsResponse> {
+  ): Promise<CastsResponseV1> {
     return await this.clients.v1.fetchAllCastsCreatedByUser(fid, options);
   }
 
@@ -459,7 +461,7 @@ export class NeynarAPIClient {
   public async lookUpCastByHashOrWarpcastUrl(
     castHashOrUrl: string,
     type: CastParamType
-  ): Promise<Cast | null> {
+  ): Promise<CastResponse> {
     return await this.clients.v2.lookUpCastByHashOrWarpcastUrl(
       castHashOrUrl,
       type
@@ -473,7 +475,7 @@ export class NeynarAPIClient {
    */
   public async fetchBulkCastsByHash(
     castHashes: string[]
-  ): Promise<Cast[] | null> {
+  ): Promise<CastsResponse> {
     return await this.clients.v2.fetchBulkCastsByHash(castHashes);
   }
 
