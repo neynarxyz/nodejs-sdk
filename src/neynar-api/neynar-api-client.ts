@@ -510,10 +510,10 @@ export class NeynarAPIClient {
    *
    */
   public async fetchFeedPage(
-    fid: number,
+    feedType: FeedType,
     options?: {
-      feedType?: FeedType;
       filterType?: FilterType;
+      fid?: number;
       fids?: string;
       parentUrl?: string;
       limit?: number;
@@ -521,7 +521,7 @@ export class NeynarAPIClient {
       withRecasts?: boolean;
     }
   ): Promise<FeedResponse> {
-    return await this.clients.v2.fetchFeedPage(fid, options);
+    return await this.clients.v2.fetchFeedPage(feedType, options);
   }
 
   // ------------ Reaction ------------

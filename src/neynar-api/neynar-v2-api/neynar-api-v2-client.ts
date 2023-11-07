@@ -421,10 +421,10 @@ export class NeynarV2APIClient {
    *
    */
   public async fetchFeedPage(
-    fid: number,
+    feedType: FeedType,
     options?: {
-      feedType?: FeedType;
       filterType?: FilterType;
+      fid?: number;
       fids?: string;
       parentUrl?: string;
       limit?: number;
@@ -433,9 +433,9 @@ export class NeynarV2APIClient {
     }
   ): Promise<FeedResponse> {
     const response = await this.apis.feed.feed({
-      fid,
-      feedType: options?.feedType,
+      feedType,
       filterType: options?.filterType,
+      fid: options?.fid,
       fids: options?.fids,
       parentUrl: options?.parentUrl,
       cursor: options?.cursor,
