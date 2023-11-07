@@ -20,6 +20,7 @@ import {
   CastReactionsResponse,
   CastRecasterResponse,
   FollowResponse,
+  User200Response,
 } from "./openapi";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -151,16 +152,9 @@ export class NeynarV1APIClient {
   public async lookupUserByFid(
     fid: number,
     viewerFid?: number
-  ): Promise<User | null> {
-    try {
-      const response = await this.apis.user.user({ fid, viewerFid });
-      return response.data.result.user;
-    } catch (error) {
-      if (NeynarV1APIClient.isApiErrorResponse(error)) {
-        if (error.response.status === 404) return null;
-      }
-      throw error;
-    }
+  ): Promise<User200Response> {
+    const response = await this.apis.user.user({ fid, viewerFid });
+    return response.data;
   }
 
   /**
@@ -292,21 +286,13 @@ export class NeynarV1APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/user-by-verification-v1)
    *
    */
-  public async lookupUserByVerification(address: string): Promise<User | null> {
-    try {
-      const response = await this.apis.verification.userByVerification({
-        address,
-      });
-      return response.data.result.user;
-    } catch (error) {
-      if (NeynarV1APIClient.isApiErrorResponse(error)) {
-        const status = error.response.status;
-        if (status === 404) {
-          return null;
-        }
-      }
-      throw error;
-    }
+  public async lookupUserByVerification(
+    address: string
+  ): Promise<User200Response> {
+    const response = await this.apis.verification.userByVerification({
+      address,
+    });
+    return response.data;
   }
 
   // ------------ Notifications ------------

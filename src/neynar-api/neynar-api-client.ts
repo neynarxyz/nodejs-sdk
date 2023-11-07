@@ -32,6 +32,7 @@ import {
   CastReactionsResponse,
   CastRecasterResponse,
   FollowResponse,
+  User200Response,
 } from "./neynar-v1-api/openapi";
 
 import { FetchRelevantMints200Response } from "./neynar-v2-api/openapi-recommendation";
@@ -111,7 +112,7 @@ export class NeynarAPIClient {
   public async lookupUserByFid(
     fid: number,
     viewerFid?: number
-  ): Promise<User | null> {
+  ): Promise<User200Response> {
     return await this.clients.v1.lookupUserByFid(fid, viewerFid);
   }
 
@@ -214,7 +215,9 @@ export class NeynarAPIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/user-by-verification-v1)
    *
    */
-  public async lookupUserByVerification(address: string): Promise<User | null> {
+  public async lookupUserByVerification(
+    address: string
+  ): Promise<User200Response> {
     return await this.clients.v1.lookupUserByVerification(address);
   }
 
