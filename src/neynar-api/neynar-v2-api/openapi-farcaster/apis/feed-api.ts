@@ -52,9 +52,9 @@ export const FeedApiAxiosParamCreator = function (
     /**
      *
      * @summary Retrieve casts based on filters
-     * @param {number} [fid] fid of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
-     * @param {FeedType} [feedType] Defaults to following (requires fid or address). If set to filter (requires filter_type)
+     * @param {FeedType} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
      * @param {FilterType} [filterType] Used when feed_type=filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
+     * @param {number} [fid] (Optional) fid of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
      * @param {string} [fids] Used when filter_type=fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
      * @param {string} [parentUrl] Used when filter_type=parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
      * @param {string} [cursor] Pagination cursor.
@@ -64,9 +64,9 @@ export const FeedApiAxiosParamCreator = function (
      * @throws {RequiredError}
      */
     feed: async (
-      fid: number,
-      feedType?: FeedType,
+      feedType: FeedType,
       filterType?: FilterType,
+      fid?: number,
       fids?: string,
       parentUrl?: string,
       cursor?: string,
@@ -74,8 +74,8 @@ export const FeedApiAxiosParamCreator = function (
       withRecasts?: boolean,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'fid' is not null or undefined
-      assertParamExists("feed", "fid", options);
+      // verify required parameter 'feedType' is not null or undefined
+      assertParamExists("feed", "feedType", feedType);
       const localVarPath = `/farcaster/feed`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -91,7 +91,6 @@ export const FeedApiAxiosParamCreator = function (
       };
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
-
       // authentication ApiKeyAuth required
       await setApiKeyToObject(
         localVarHeaderParameter,
@@ -158,9 +157,9 @@ export const FeedApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary Retrieve casts based on filters
-     * @param {number} [fid] fid of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
-     * @param {FeedType} [feedType] Defaults to following (requires fid or address). If set to filter (requires filter_type)
+     * @param {FeedType} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
      * @param {FilterType} [filterType] Used when feed_type=filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
+     * @param {number} [fid] (Optional) fid of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
      * @param {string} [fids] Used when filter_type=fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
      * @param {string} [parentUrl] Used when filter_type=parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
      * @param {string} [cursor] Pagination cursor.
@@ -170,9 +169,9 @@ export const FeedApiFp = function (configuration?: Configuration) {
      * @throws {RequiredError}
      */
     async feed(
-      fid: number,
-      feedType?: FeedType,
+      feedType: FeedType,
       filterType?: FilterType,
+      fid?: number,
       fids?: string,
       parentUrl?: string,
       cursor?: string,
@@ -183,9 +182,9 @@ export const FeedApiFp = function (configuration?: Configuration) {
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.feed(
-        fid,
         feedType,
         filterType,
+        fid,
         fids,
         parentUrl,
         cursor,
@@ -227,9 +226,9 @@ export const FeedApiFactory = function (
     ): AxiosPromise<FeedResponse> {
       return localVarFp
         .feed(
-          requestParameters.fid,
           requestParameters.feedType,
           requestParameters.filterType,
+          requestParameters.fid,
           requestParameters.fids,
           requestParameters.parentUrl,
           requestParameters.cursor,
@@ -249,25 +248,25 @@ export const FeedApiFactory = function (
  */
 export interface FeedApiFeedRequest {
   /**
-   * fid of a user
-   * @type {number}
-   * @memberof FeedApiFeed
-   */
-  readonly fid: number;
-
-  /**
    * Defaults to following (requires fid or address). If set to filter (requires filter_type)
    * @type {'filter' | 'following'}
    * @memberof FeedApiFeed
    */
-  readonly feedType?: FeedType;
+  readonly feedType: FeedType;
 
   /**
    * Used when feed_type=filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
-   * @type {'fids' | 'parent_url'}
+   * @type {'fids' | 'parent_url' | 'global_trending'}
    * @memberof FeedApiFeed
    */
   readonly filterType?: FilterType;
+
+  /**
+   * fid of a user
+   * @type {number}
+   * @memberof FeedApiFeed
+   */
+  readonly fid?: number;
 
   /**
    * Used when filter_type=fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
@@ -326,9 +325,9 @@ export class FeedApi extends BaseAPI {
   ) {
     return FeedApiFp(this.configuration)
       .feed(
-        requestParameters.fid,
         requestParameters.feedType,
         requestParameters.filterType,
+        requestParameters.fid,
         requestParameters.fids,
         requestParameters.parentUrl,
         requestParameters.cursor,
@@ -341,11 +340,12 @@ export class FeedApi extends BaseAPI {
 }
 
 export enum FeedType {
-  Filter = "filter",
   Following = "following",
+  Filter = "filter",
 }
 
 export enum FilterType {
   Fids = "fids",
   ParentUrl = "parent_url",
+  GlobalTrending = "global_trending",
 }
