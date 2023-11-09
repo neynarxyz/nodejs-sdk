@@ -84,6 +84,7 @@ export class NeynarV1APIClient {
       basePath: basePath ? `${basePath}/v1` : BASE_PATH,
       apiKey: apiKey,
     });
+    console.log("basepath", basePath, config);
     this.apis = {
       user: new UserApi(config, undefined, axiosInstance),
       cast: new CastApi(config, undefined, axiosInstance),
