@@ -102,6 +102,7 @@ export class NeynarV2APIClient {
       basePath: basePath ? `${basePath}/v2` : BASE_PATH,
       apiKey: apiKey,
     });
+    console.log("basepath", basePath, config);
     this.apis = {
       signer: new SignerApi(config, undefined, axiosInstance),
       user: new UserApi(config, undefined, axiosInstance),
