@@ -66,9 +66,14 @@ export class NeynarV2APIClient {
   constructor(
     apiKey: string,
     {
+      basePath,
       logger = silentLogger,
       axiosInstance,
-    }: { logger?: Logger; axiosInstance?: AxiosInstance } = {}
+    }: {
+      basePath?: string;
+      logger?: Logger;
+      axiosInstance?: AxiosInstance;
+    } = {}
   ) {
     this.logger = logger;
 
@@ -94,7 +99,7 @@ export class NeynarV2APIClient {
     );
 
     const config: Configuration = new Configuration({
-      basePath: BASE_PATH,
+      basePath: basePath ?? BASE_PATH,
       apiKey: apiKey,
     });
     this.apis = {
