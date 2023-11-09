@@ -16,7 +16,7 @@ export default neynarClient;
 
 ## Use Client
 
-Errors are propagated, so the user can handle them as they please, so use try/catch or .catch() and handle erros accordingly
+Errors are propagated, so the user can handle them as they please, so use try/catch or .catch() and handle errors accordingly
 
 ```
 try {
