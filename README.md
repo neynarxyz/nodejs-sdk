@@ -1,5 +1,4 @@
-# [@neynar/nodejs-sdk](https://www.npmjs.com/package/@neynar/nodejs-sdk)
-
+# @neynar/nodejs-sdk
 @neynar/nodejs-sdk typescript-based, easy-to-use SDK built to interact with [Neynar API's](https://docs.neynar.com/).
 
 ## Instantiate Client
