@@ -81,7 +81,7 @@ export class NeynarV1APIClient {
     );
 
     const config: Configuration = new Configuration({
-      basePath: basePath ?? BASE_PATH,
+      basePath: basePath ? `${basePath}/v1` : BASE_PATH,
       apiKey: apiKey,
     });
     this.apis = {
