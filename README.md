@@ -21,7 +21,7 @@ Errors are propagated, so the user can handle them as they please, so use try/ca
 ```
 try {
     const recentCasts = await neynarClient.fetchRecentCasts();
-    console.log("Cast published successfully");
+    console.log("Recent Casts", recentCasts);
 } catch (error) {
     console.log((error as AxiosError).response?.data || (error as Error));
 }
