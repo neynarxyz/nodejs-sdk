@@ -1,6 +1,6 @@
 # [@neynar/nodejs-sdk](https://www.npmjs.com/package/@neynar/nodejs-sdk)
 
-@neynar/nodejs-sdk typescript-based, easy to use sdk built to interact with [Neynar API's](https://docs.neynar.com/).
+@neynar/nodejs-sdk typescript-based, easy-to-use SDK built to interact with [Neynar API's](https://docs.neynar.com/).
 
 ## Instantiate Client
 
@@ -16,7 +16,7 @@ export default neynarClient;
 
 ## Use Client
 
-Errors are propagated, so the user can handle them as they please, so use try/catch or .catch() and handle erros accordingly
+Errors are propagated, so the user can handle them as they please, so use try/catch or .catch() and handle errors accordingly
 
 ```
 try {
