@@ -531,7 +531,7 @@ export interface CastApiCastsRequest {
    * @type {GetCastsReqBody}
    * @memberof CastApiCasts
    */
-  readonly getCastsReqBody: GetCastsReqBody;
+  readonly getCastsReqBody?: GetCastsReqBody;
 
   /**
    * Hashes of the cast to be retrived (Comma separated)

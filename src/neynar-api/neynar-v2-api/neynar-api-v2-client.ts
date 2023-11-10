@@ -344,12 +344,18 @@ export class NeynarV2APIClient {
    *
    */
   public async fetchBulkCastsByHash(
-    castHashes: string[]
+    casts: string,
+    castHashes?: string[]
   ): Promise<CastsResponse> {
     const response = await this.apis.cast.casts({
-      getCastsReqBody: {
-        casts: castHashes.map((hash) => ({ hash })),
-      },
+      casts,
+      ...(castHashes
+        ? {
+            getCastsReqBody: {
+              casts: castHashes.map((hash) => ({ hash })),
+            },
+          }
+        : {}),
     });
     return response.data;
   }
