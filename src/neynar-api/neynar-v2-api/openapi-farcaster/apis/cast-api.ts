@@ -128,16 +128,16 @@ export const CastApiAxiosParamCreator = function (
     /**
      * Retrieve multiple casts using their respective hashes.
      * @summary Gets information about an array of casts
-     * @param {GetCastsReqBody} getCastsReqBody
+     * @param {string} [casts] Hashes of the cast to be retrived (Comma separated)
+     * @param {GetCastsReqBody} [getCastsReqBody] **Note :** While testing, please send hashes through params Avoid using requestBody as it is not supported by some tools like readme docs, swagger editor etc. Since GET operations cannot have a requestBody.  Though API supports both.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     casts: async (
-      getCastsReqBody: GetCastsReqBody,
+      casts?: string,
+      getCastsReqBody?: GetCastsReqBody,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'getCastsReqBody' is not null or undefined
-      assertParamExists("casts", "getCastsReqBody", getCastsReqBody);
       const localVarPath = `/farcaster/casts`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -153,6 +153,10 @@ export const CastApiAxiosParamCreator = function (
       };
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
+
+      if (casts !== undefined) {
+        localVarQueryParameter["casts"] = casts;
+      }
 
       // authentication ApiKeyAuth required
       await setApiKeyToObject(
@@ -183,9 +187,7 @@ export const CastApiAxiosParamCreator = function (
       };
     },
     /**
-     * Delete an existing cast.
-     * (In order to delete a cast `signer_uuid` must be approved)
-     *
+     * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved)
      * @summary Delete a cast
      * @param {DeleteCastReqBody} deleteCastReqBody
      * @param {*} [options] Override http request option.
@@ -338,17 +340,20 @@ export const CastApiFp = function (configuration?: Configuration) {
     /**
      * Retrieve multiple casts using their respective hashes.
      * @summary Gets information about an array of casts
-     * @param {GetCastsReqBody} getCastsReqBody
+     * @param {string} [casts] Hashes of the cast to be retrived (Comma separated)
+     * @param {GetCastsReqBody} [getCastsReqBody] **Note :** While testing, please send hashes through params Avoid using requestBody as it is not supported by some tools like readme docs, swagger editor etc. Since GET operations cannot have a requestBody.  Though API supports both.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async casts(
-      getCastsReqBody: GetCastsReqBody,
+      casts?: string,
+      getCastsReqBody?: GetCastsReqBody,
       options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsResponse>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.casts(
+        casts,
         getCastsReqBody,
         options
       );
@@ -360,8 +365,7 @@ export const CastApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     * Delete an existing cast.
-     * (In order to delete a cast `signer_uuid` must be approved)
+     * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved)
      * @summary Delete a cast
      * @param {DeleteCastReqBody} deleteCastReqBody
      * @param {*} [options] Override http request option.
@@ -455,12 +459,15 @@ export const CastApiFactory = function (
       options?: AxiosRequestConfig
     ): AxiosPromise<CastsResponse> {
       return localVarFp
-        .casts(requestParameters.getCastsReqBody, options)
+        .casts(
+          requestParameters.casts,
+          requestParameters.getCastsReqBody,
+          options
+        )
         .then((request) => request(axios, basePath));
     },
     /**
-     * Delete an existing cast.
-     * (In order to delete a cast `signer_uuid` must be approved)
+     * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved)
      * @summary Delete a cast
      * @param {CastApiDeleteCastRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
@@ -525,6 +532,13 @@ export interface CastApiCastsRequest {
    * @memberof CastApiCasts
    */
   readonly getCastsReqBody: GetCastsReqBody;
+
+  /**
+   * Hashes of the cast to be retrived (Comma separated)
+   * @type {string}
+   * @memberof CastApiCasts
+   */
+  readonly casts?: string;
 }
 
 /**
@@ -592,13 +606,16 @@ export class CastApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return CastApiFp(this.configuration)
-      .casts(requestParameters.getCastsReqBody, options)
+      .casts(
+        requestParameters.casts,
+        requestParameters.getCastsReqBody,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
-   * Delete an existing cast.
-   * (In order to delete a cast `signer_uuid` must be approved)
+   * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved)
    * @summary Delete a cast
    * @param {CastApiDeleteCastRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
