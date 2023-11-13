@@ -52,6 +52,7 @@ export * from './user-bulk200-response';
 export * from './user-dehydrated';
 export * from './user-profile';
 export * from './user-profile-bio';
+export * from './user-response';
 export * from './user-search-response';
 export * from './user-search-response-result';
 export * from './user-viewer-context';
