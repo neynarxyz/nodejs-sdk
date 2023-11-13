@@ -48,8 +48,6 @@ import { DeleteCastReqBody } from "../models";
 // @ts-ignore
 import { ErrorRes } from "../models";
 // @ts-ignore
-import { GetCastsReqBody } from "../models";
-// @ts-ignore
 import { OperationResponse } from "../models";
 // @ts-ignore
 import { PostCastReqBody } from "../models";
@@ -128,16 +126,16 @@ export const CastApiAxiosParamCreator = function (
     /**
      * Retrieve multiple casts using their respective hashes.
      * @summary Gets information about an array of casts
-     * @param {string} [casts] Hashes of the cast to be retrived (Comma separated)
-     * @param {GetCastsReqBody} [getCastsReqBody] **Note :** While testing, please send hashes through params Avoid using requestBody as it is not supported by some tools like readme docs, swagger editor etc. Since GET operations cannot have a requestBody.  Though API supports both.
+     * @param {string} casts Hashes of the cast to be retrived (Comma separated)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     casts: async (
-      casts?: string,
-      getCastsReqBody?: GetCastsReqBody,
+      casts: string,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
+      // verify required parameter 'casts' is not null or undefined
+      assertParamExists("casts", "casts", casts);
       const localVarPath = `/farcaster/casts`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -165,8 +163,6 @@ export const CastApiAxiosParamCreator = function (
         configuration
       );
 
-      localVarHeaderParameter["Content-Type"] = "application/json";
-
       setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -175,11 +171,6 @@ export const CastApiAxiosParamCreator = function (
         ...headersFromBaseOptions,
         ...options.headers,
       };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        getCastsReqBody,
-        localVarRequestOptions,
-        configuration
-      );
 
       return {
         url: toPathString(localVarUrlObj),
@@ -340,21 +331,18 @@ export const CastApiFp = function (configuration?: Configuration) {
     /**
      * Retrieve multiple casts using their respective hashes.
      * @summary Gets information about an array of casts
-     * @param {string} [casts] Hashes of the cast to be retrived (Comma separated)
-     * @param {GetCastsReqBody} [getCastsReqBody] **Note :** While testing, please send hashes through params Avoid using requestBody as it is not supported by some tools like readme docs, swagger editor etc. Since GET operations cannot have a requestBody.  Though API supports both.
+     * @param {string} casts Hashes of the cast to be retrived (Comma separated)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async casts(
-      casts?: string,
-      getCastsReqBody?: GetCastsReqBody,
+      casts: string,
       options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsResponse>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.casts(
         casts,
-        getCastsReqBody,
         options
       );
       return createRequestFunction(
@@ -459,11 +447,7 @@ export const CastApiFactory = function (
       options?: AxiosRequestConfig
     ): AxiosPromise<CastsResponse> {
       return localVarFp
-        .casts(
-          requestParameters.casts,
-          requestParameters.getCastsReqBody,
-          options
-        )
+        .casts(requestParameters.casts, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -526,19 +510,13 @@ export interface CastApiCastRequest {
  * @interface CastApiCastsRequest
  */
 export interface CastApiCastsRequest {
-  /**
-   *
-   * @type {GetCastsReqBody}
-   * @memberof CastApiCasts
-   */
-  readonly getCastsReqBody?: GetCastsReqBody;
 
   /**
    * Hashes of the cast to be retrived (Comma separated)
    * @type {string}
    * @memberof CastApiCasts
    */
-  readonly casts?: string;
+  readonly casts: string;
 }
 
 /**
@@ -606,11 +584,7 @@ export class CastApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return CastApiFp(this.configuration)
-      .casts(
-        requestParameters.casts,
-        requestParameters.getCastsReqBody,
-        options
-      )
+      .casts(requestParameters.casts, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
