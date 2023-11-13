@@ -16,6 +16,7 @@ import {
   UserSearchResponse,
   CastResponse,
   CastsResponse,
+  UserResponse,
 } from "./neynar-v2-api/openapi-farcaster";
 
 import {
@@ -457,6 +458,16 @@ export class NeynarAPIClient {
     viewerFid: number
   ): Promise<UserSearchResponse> {
     return await this.clients.v2.searchUser(q, viewerFid);
+  }
+
+  /**
+   * Lookup User by Custody Address
+   * See [Neynar documentation](https://docs.neynar.com/reference/lookup-user-by-custody-address)
+   */
+  public async lookupUserByCustodyAddress(
+    custodyAddress: string
+  ): Promise<UserResponse> {
+    return await this.clients.v2.lookupUserByCustodyAddress(custodyAddress);
   }
 
   // ------------ Cast ------------
