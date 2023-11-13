@@ -102,7 +102,7 @@ export class NeynarV2APIClient {
       basePath: basePath ? `${basePath}/v2` : BASE_PATH,
       apiKey: apiKey,
     });
-    
+
     this.apis = {
       signer: new SignerApi(config, undefined, axiosInstance),
       user: new UserApi(config, undefined, axiosInstance),
@@ -343,13 +343,9 @@ export class NeynarV2APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/casts)
    *
    */
-  public async fetchBulkCastsByHash(
-    castHashes: string[]
-  ): Promise<CastsResponse> {
+  public async fetchBulkCastsByHash(casts: string): Promise<CastsResponse> {
     const response = await this.apis.cast.casts({
-      getCastsReqBody: {
-        casts: castHashes.map((hash) => ({ hash })),
-      },
+      casts,
     });
     return response.data;
   }
