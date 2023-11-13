@@ -479,13 +479,11 @@ export class NeynarAPIClient {
   /**
    * Gets information about an array of casts.
    * See [Neynar documentation](https://docs.neynar.com/reference/casts)
+   * @param casts - Cast hashes (Comma Separated)
    *
    */
-  public async fetchBulkCastsByHash(
-    casts: string,
-    castHashes: string[]
-  ): Promise<CastsResponse> {
-    return await this.clients.v2.fetchBulkCastsByHash(casts, castHashes);
+  public async fetchBulkCastsByHash(casts: string): Promise<CastsResponse> {
+    return await this.clients.v2.fetchBulkCastsByHash(casts);
   }
 
   /**
