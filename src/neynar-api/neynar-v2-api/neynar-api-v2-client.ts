@@ -33,6 +33,7 @@ import {
   UserSearchResponse,
   CastResponse,
   CastsResponse,
+  UserResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -317,6 +318,19 @@ export class NeynarV2APIClient {
     viewerFid: number
   ): Promise<UserSearchResponse> {
     const response = await this.apis.user.userSearch({ q, viewerFid });
+    return response.data;
+  }
+
+  /**
+   * Lookup User by Custody Address
+   * See [Neynar documentation](https://docs.neynar.com/reference/lookup-user-by-custody-address)
+   */
+  public async lookupUserByCustodyAddress(
+    custodyAddress: string
+  ): Promise<UserResponse> {
+    const response = await this.apis.user.lookupUserByCustodyAddress({
+      custodyAddress,
+    });
     return response.data;
   }
 

@@ -54,6 +54,8 @@ import { UpdateUserReqBody } from "../models";
 // @ts-ignore
 import { UserBulk200Response } from "../models";
 // @ts-ignore
+import { UserResponse } from "../models";
+// @ts-ignore
 import { UserSearchResponse } from "../models";
 /**
  * UserApi - axios parameter creator
@@ -64,9 +66,7 @@ export const UserApiAxiosParamCreator = function (
 ) {
   return {
     /**
-     * Removes verification for an eth address for the user
-     * (In order to add verification `signer_uuid` must be approved)
-     * 
+     * Removes verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved)
      * @summary Removes verification for an eth address for the user
      * @param {RemoveVerificationReqBody} removeVerificationReqBody
      * @param {*} [options] Override http request option.
@@ -127,9 +127,7 @@ export const UserApiAxiosParamCreator = function (
       };
     },
     /**
-     * Adds verification for an eth address for the user
-     * (In order to add verification `signer_uuid` must be approved)
-     * 
+     * Adds verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved)
      * @summary Adds verification for an eth address for the user
      * @param {AddVerificationReqBody} addVerificationReqBody
      * @param {*} [options] Override http request option.
@@ -190,9 +188,7 @@ export const UserApiAxiosParamCreator = function (
       };
     },
     /**
-     * Follow a user
-     * (In order to follow a user `signer_uuid` must be approved)
-     * 
+     * Follow a user \\ (In order to follow a user `signer_uuid` must be approved)
      * @summary Follow a user
      * @param {FollowReqBody} followReqBody
      * @param {*} [options] Override http request option.
@@ -249,8 +245,66 @@ export const UserApiAxiosParamCreator = function (
       };
     },
     /**
-     * Unfollow a user
-   * (In order to unfollow a user `signer_uuid` must be approved)
+     * Lookup a user by custody-address
+     * @summary Lookup a user by custody-address
+     * @param {string} custodyAddress Custody Address of the associated with mnemonic
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    lookupUserByCustodyAddress: async (
+      custodyAddress: string,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'custodyAddress' is not null or undefined
+      assertParamExists(
+        "lookupUserByCustodyAddress",
+        "custodyAddress",
+        custodyAddress
+      );
+
+      const localVarPath = `/farcaster/user/custody-address`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "GET",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (custodyAddress !== undefined) {
+        localVarQueryParameter["custody_address"] = custodyAddress;
+      }
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "api_key",
+        configuration
+      );
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved)
      * @summary Unfollow a user
      * @param {FollowReqBody} followReqBody
      * @param {*} [options] Override http request option.
@@ -307,8 +361,7 @@ export const UserApiAxiosParamCreator = function (
       };
     },
     /**
-     * Update user profile
-   * (In order to update user\'s profile `signer_uuid` must be approved)
+     * Update user profile \\ (In order to update user\'s profile `signer_uuid` must be approved)
      * @summary Update user profile
      * @param {UpdateUserReqBody} updateUserReqBody
      * @param {*} [options] Override http request option.
@@ -497,8 +550,7 @@ export const UserApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = UserApiAxiosParamCreator(configuration);
   return {
     /**
-     * Removes verification for an eth address for the user
-   * (In order to add verification `signer_uuid` must be approved)
+     * Removes verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved)
      * @summary Removes verification for an eth address for the user
      * @param {RemoveVerificationReqBody} removeVerificationReqBody
      * @param {*} [options] Override http request option.
@@ -526,8 +578,7 @@ export const UserApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     * Adds verification for an eth address for the user
-   * (In order to add verification `signer_uuid` must be approved)
+     * Adds verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved)
      * @summary Adds verification for an eth address for the user
      * @param {AddVerificationReqBody} addVerificationReqBody
      * @param {*} [options] Override http request option.
@@ -555,8 +606,7 @@ export const UserApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     * Follow a user
-   * (In order to follow a user `signer_uuid` must be approved)
+     * Follow a user \\ (In order to follow a user `signer_uuid` must be approved)
      * @summary Follow a user
      * @param {FollowReqBody} followReqBody
      * @param {*} [options] Override http request option.
@@ -583,8 +633,32 @@ export const UserApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     * Unfollow a user
-   * (In order to unfollow a user `signer_uuid` must be approved)
+     * Lookup a user by custody-address
+     * @summary Lookup a user by custody-address
+     * @param {string} custodyAddress Custody Address of the associated with mnemonic
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async lookupUserByCustodyAddress(
+      custodyAddress: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.lookupUserByCustodyAddress(
+          custodyAddress,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
+     * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved)
      * @summary Unfollow a user
      * @param {FollowReqBody} followReqBody
      * @param {*} [options] Override http request option.
@@ -611,8 +685,7 @@ export const UserApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     * Update user profile
-   * (In order to update user\'s profile `signer_uuid` must be approved)
+     * Update user profile \\ (In order to update user\'s profile `signer_uuid` must be approved)
      * @summary Update user profile
      * @param {UpdateUserReqBody} updateUserReqBody
      * @param {*} [options] Override http request option.
@@ -713,8 +786,7 @@ export const UserApiFactory = function (
   const localVarFp = UserApiFp(configuration);
   return {
     /**
-     * Removes verification for an eth address for the user
-   * (In order to add verification `signer_uuid` must be approved)
+     * Removes verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved)
      * @summary Removes verification for an eth address for the user
      * @param {UserApiRemoveVerificationRequest} requestParameters
      * @param {*} [options] Override http request option.
@@ -732,8 +804,7 @@ export const UserApiFactory = function (
         .then((request) => request(axios, basePath));
     },
     /**
-     * Adds verification for an eth address for the user
-   * (In order to add verification `signer_uuid` must be approved)
+     * Adds verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved)
      * @summary Adds verification for an eth address for the user
      * @param {UserApiAddVerificationRequest} requestParameters
      * @param {*} [options] Override http request option.
@@ -751,8 +822,7 @@ export const UserApiFactory = function (
         .then((request) => request(axios, basePath));
     },
     /**
-     * Follow a user
-     *(In order to follow a user `signer_uuid` must be approved)
+     * Follow a user \\ (In order to follow a user `signer_uuid` must be approved)
      * @summary Follow a user
      * @param {UserApiFollowRequest} requestParameters
      * @param {*} [options] Override http request option.
@@ -767,8 +837,22 @@ export const UserApiFactory = function (
         .then((request) => request(axios, basePath));
     },
     /**
-     * Unfollow a user
-     * (In order to unfollow a user `signer_uuid` must be approved)
+     * Lookup a user by custody-address
+     * @summary Lookup a user by custody-address
+     * @param {UserApiLookupUserByCustodyAddressRequest} requestParameters
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    lookupUserByCustodyAddress(
+      requestParameters: UserApiLookupUserByCustodyAddressRequest,
+      options?: AxiosRequestConfig
+    ): AxiosPromise<UserResponse> {
+      return localVarFp
+        .lookupUserByCustodyAddress(requestParameters.custodyAddress, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved)
      * @summary Unfollow a user
      * @param {UserApiFollowRequest} requestParameters
      * @param {*} [options] Override http request option.
@@ -783,8 +867,7 @@ export const UserApiFactory = function (
         .then((request) => request(axios, basePath));
     },
     /**
-     * Update user profile 
-     * (In order to update user\'s profile `signer_uuid` must be approved)
+     * Update user profile \\ (In order to update user\'s profile `signer_uuid` must be approved)
      * @summary Update user profile
      * @param {UserApiUpdateUserRequest} requestParameters
      * @param {*} [options] Override http request option.
@@ -907,6 +990,21 @@ export interface UserApiBulkUserRequest {
 }
 
 /**
+ * Request parameters for lookup user by custody address operation in UserApi.
+ * @export
+ * @interface UserApiLookupUserByCustodyAddressRequest
+ */
+export interface UserApiLookupUserByCustodyAddressRequest {
+  /**
+   * Custody Address of the associated with mnemonic
+   *
+   * @type {string}
+   * @memberof UserApiLookupUserByCustodyAddress
+   */
+  readonly custodyAddress: string;
+}
+
+/**
  * Request parameters for search user in operation in UserApi.
  * @export
  * @interface UserApiUserSearchRequest
@@ -933,8 +1031,7 @@ export interface UserApiUserSearchRequest {
  */
 export class UserApi extends BaseAPI {
   /**
-   * Removes verification for an eth address for the user
-   * (In order to add verification `signer_uuid` must be approved)
+   * Removes verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved)
    * @summary Removes verification for an eth address for the user
    * @param {UserApiRemoveVerificationRequest} requestParameters
    * @param {*} [options] Override http request option.
@@ -954,8 +1051,7 @@ export class UserApi extends BaseAPI {
   }
 
   /**
-   * Adds verification for an eth address for the user
-   * (In order to add verification `signer_uuid` must be approved)
+   * Adds verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved)
    * @summary Adds verification for an eth address for the user
    * @param {UserApiAddVerificationRequest} requestParameters
    * @param {*} [options] Override http request option.
@@ -975,8 +1071,7 @@ export class UserApi extends BaseAPI {
   }
 
   /**
-   * Follow a user
-   * (In order to follow a user `signer_uuid` must be approved)
+   * Follow a user \\ (In order to follow a user `signer_uuid` must be approved)
    * @summary Follow a user
    * @param {UserApiFollowRequest} requestParameters
    * @param {*} [options] Override http request option.
@@ -993,8 +1088,24 @@ export class UserApi extends BaseAPI {
   }
 
   /**
-   * Unfollow a user
-   * (In order to unfollow a user `signer_uuid` must be approved)
+   * Lookup a user by custody-address
+   * @summary Lookup a user by custody-address
+   * @param {UserApiLookupUserByCustodyAddressRequest} requestParameters
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UserApi
+   */
+  public lookupUserByCustodyAddress(
+    requestParameters: UserApiLookupUserByCustodyAddressRequest,
+    options?: AxiosRequestConfig
+  ) {
+    return UserApiFp(this.configuration)
+      .lookupUserByCustodyAddress(requestParameters.custodyAddress, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved)
    * @summary Unfollow a user
    * @param {UserApiFollowRequest} requestParameters
    * @param {*} [options] Override http request option.
@@ -1011,8 +1122,7 @@ export class UserApi extends BaseAPI {
   }
 
   /**
-   * Update user profile
-   * (In order to update user\'s profile `signer_uuid` must be approved)
+   * Update user profile \\ (In order to update user\'s profile `signer_uuid` must be approved)
    * @summary Update user profile
    * @param {UserApiUpdateUserRequest} requestParameters
    * @param {*} [options] Override http request option.

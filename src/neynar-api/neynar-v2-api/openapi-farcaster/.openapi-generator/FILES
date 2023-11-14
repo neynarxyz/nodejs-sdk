@@ -67,6 +67,7 @@ models/user-bulk200-response.ts
 models/user-dehydrated.ts
 models/user-profile-bio.ts
 models/user-profile.ts
+models/user-response.ts
 models/user-search-response-result.ts
 models/user-search-response.ts
 models/user-viewer-context.ts
