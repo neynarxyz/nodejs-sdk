@@ -16,7 +16,7 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Read Setup.md Content
+      - name: Read getting-started.md Content
         id: read-file
         run: |
           content=$(cat docs/getting-started.md)
