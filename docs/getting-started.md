@@ -135,7 +135,7 @@ const client = new NeynarAPIClient(NEYNAR_API_KEY);
 ```json
 {
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "npx ts-node src/index.ts"
   }
 }
 ```
