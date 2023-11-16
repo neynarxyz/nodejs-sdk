@@ -17,14 +17,11 @@ jobs:
         run: npm install
 
       - name: Read getting-started.md Content
-        id: read-file
         run: |
-          content=$(cat docs/getting-started.md | base64)
-          echo "::set-output name=content::$content"
+          cat docs/getting-started.md | base64 > /tmp/getting-started-content.txt
 
       - name: Update ReadMe Documentation
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-          SETUP_MD_CONTENT: ${{ steps.read-file.outputs.content }}
         run: |
-          npx ts-node scripts/getting-started.ts "$SETUP_MD_CONTENT"
+          npx ts-node scripts/getting-started.ts /tmp/getting-started-content.txt
