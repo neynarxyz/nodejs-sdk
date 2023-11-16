@@ -26,5 +26,6 @@ async function updateReadMeDocumentation(content: string): Promise<void> {
   }
 }
 
-const content: string = process.argv[2];
+const contentBase64: string = process.argv[2];
+const content: string = Buffer.from(contentBase64, "base64").toString("utf-8");
 updateReadMeDocumentation(content);

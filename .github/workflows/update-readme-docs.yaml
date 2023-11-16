@@ -19,7 +19,7 @@ jobs:
       - name: Read getting-started.md Content
         id: read-file
         run: |
-          content=$(cat docs/getting-started.md)
+          content=$(cat docs/getting-started.md | base64)
           echo "::set-output name=content::$content"
 
       - name: Update ReadMe Documentation
