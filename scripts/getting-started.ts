@@ -1,6 +1,8 @@
 import axios from "axios";
 
 async function updateReadMeDocumentation(content: string): Promise<void> {
+  console.log("content", content);
+
   const apiKey: string = process.env.README_API_KEY || "";
   const slug: string = "getting-started-with-sdk";
 

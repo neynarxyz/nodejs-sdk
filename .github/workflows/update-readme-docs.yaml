@@ -27,4 +27,4 @@ jobs:
           README_API_KEY: ${{ secrets.README_API_KEY }}
           SETUP_MD_CONTENT: ${{ steps.read-file.outputs.content }}
         run: |
-          npx ts-node scripts/getting-started.ts "$SETUP_MD_CONTENT"
+          ts-node scripts/getting-started.ts "$SETUP_MD_CONTENT"

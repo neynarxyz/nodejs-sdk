@@ -19,6 +19,7 @@
   "devDependencies": {
     "@types/node": "^20.8.4",
     "del-cli": "^5.1.0",
+    "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   },
   "dependencies": {
