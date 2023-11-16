@@ -1,5 +1,3 @@
-## Getting Started
-
 Checkout the full github repo here:
 https://github.com/neynarxyz/nodejs-sdk
 
@@ -63,9 +61,9 @@ touch .env
 vim .env
 ```
 
-Either use vim or your favourite editor to add NEYNAR_API_KEY in .env file as shown in .env.example file
+Either use vim or your favourite editor to add `NEYNAR_API_KEY` in .env file as shown in .env.example file
 
-You can get the NEYNAR_API_KEY from our official site: https://neynar.com/
+You can get the `NEYNAR_API_KEY` from our official site: https://neynar.com/
 
 ```ini
 # .env.example file
@@ -88,7 +86,7 @@ config();
 export const NEYNAR_API_KEY = process.env.NEYNAR_API_KEY;
 ```
 
-Congratulations..!! You have successfully done your installations and are ready to use environment variables in your project
+You have successfully done your installations and are ready to use environment variables in your project
 
 ### Let use sdk to look up a user by their fid
 
@@ -147,7 +145,7 @@ cd ..
 yarn start
 ```
 
-You should see a response like this. (You might not get beautified/ formated response since we JSON.stringify the response in order to log everything)
+You should see a response like this. (You might not get beautified/ formated response since we `JSON.stringify` the response in order to log everything)
 
 ```json
 {

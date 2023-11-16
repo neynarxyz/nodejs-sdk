@@ -1,8 +1,7 @@
 import axios from "axios";
 import { readFileSync } from "fs";
 
-async function updateReadMeDocumentation(content: string): Promise<void> {
-  console.log("content", content);
+async function updateGettingStartedWithSDK(content: string): Promise<void> {
 
   const apiKey: string = process.env.README_API_KEY || "";
   const slug: string = "getting-started-with-sdk";
@@ -30,4 +29,4 @@ async function updateReadMeDocumentation(content: string): Promise<void> {
 const filePath: string = process.argv[2];
 const contentBase64: string = readFileSync(filePath, "utf-8");
 const content: string = Buffer.from(contentBase64, "base64").toString("utf-8");
-updateReadMeDocumentation(content);
+updateGettingStartedWithSDK(content);
