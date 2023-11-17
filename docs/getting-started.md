@@ -48,7 +48,7 @@ Add following code in index.ts
 ```typescript
 // index.ts
 
-import { NeynarAPIClient } from "@neynar/nodejs-sdk";
+import { NeynarAPIClient, isApiErrorResponse } from "@neynar/nodejs-sdk";
 import { AxiosError } from "axios";
 
 // Instantiate the client
@@ -64,8 +64,13 @@ const client = new NeynarAPIClient("<YOUR_API_KEY_HERE>"); // Replace with your 
     // Stringify and log the response
     console.log(JSON.stringify(user));
   } catch (error) {
-    // Log the error
-    console.log((error as AxiosError).response?.data);
+    // isApiErrorResponse can be used to check for Neynar API errors
+    // handle errors accordingly
+    if (isApiErrorResponse(error)) {
+      console.log("API Error", error.response.data);
+    } else {
+      console.log("Generic Error", error);
+    }
   }
 })();
 ```
