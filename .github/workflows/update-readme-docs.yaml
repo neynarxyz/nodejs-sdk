@@ -1,0 +1,27 @@
+name: Update ReadMe Documentation 🦉
+
+on:
+  push:
+    branches:
+      - docs
+
+jobs:
+  update-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Read getting-started.md Content
+        run: |
+          cat docs/getting-started.md | base64 > /tmp/getting-started-content.txt
+
+      - name: Update ReadMe Documentation
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        run: |
+          npx ts-node scripts/getting-started.ts /tmp/getting-started-content.txt
