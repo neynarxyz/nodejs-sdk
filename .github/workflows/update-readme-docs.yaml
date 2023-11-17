@@ -3,7 +3,7 @@ name: Update ReadMe Documentation 🦉
 on:
   push:
     branches:
-      - docs
+      - main
 
 jobs:
   update-docs:
