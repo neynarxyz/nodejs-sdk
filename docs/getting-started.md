@@ -37,6 +37,8 @@ tsc --init
 
 ### Let's use sdk to look up a user by their FID
 
+Create index.ts file at root level
+
 ```bash
 touch index.ts
 ```
@@ -68,20 +70,10 @@ const client = new NeynarAPIClient("<YOUR_API_KEY_HERE>"); // Replace with your 
 })();
 ```
 
-#### Update script section in package.json
-
-```json
-{
-  "scripts": {
-    "start": "npx ts-node index.ts"
-  }
-}
-```
-
-Run the script
+Run the project
 
 ```bash
-yarn start
+npx ts-node index.ts
 ```
 
 You should see a response like this. (You might not get beautified/ formated response since we `JSON.stringify` the response in order to log everything)
