@@ -35,7 +35,7 @@ tsc --init
 <!-- Following text is indented with non-breaking spaces. -->
 &nbsp;&nbsp;&nbsp;&nbsp;
 
-### Let's use sdk to look up a user by their FID
+### Example: Let's use sdk to look up a user by their FID
 
 Create index.ts file at root level
 
