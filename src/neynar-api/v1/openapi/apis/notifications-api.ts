@@ -39,12 +39,12 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        mentionsAndReplies: async (apiKey: string, fid: number, viewerFid?: number, cursor?: string, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        mentionsAndReplies: async (apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('mentionsAndReplies', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -69,12 +69,12 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
                 localVarQueryParameter['viewerFid'] = viewerFid;
             }
 
-            if (cursor !== undefined) {
-                localVarQueryParameter['cursor'] = cursor;
-            }
-
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
             }
 
             if (apiKey != null) {
@@ -98,12 +98,12 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        reactionsAndRecasts: async (apiKey: string, fid: number, viewerFid?: number, cursor?: string, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        reactionsAndRecasts: async (apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('reactionsAndRecasts', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -128,12 +128,12 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
                 localVarQueryParameter['viewerFid'] = viewerFid;
             }
 
-            if (cursor !== undefined) {
-                localVarQueryParameter['cursor'] = cursor;
-            }
-
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
             }
 
             if (apiKey != null) {
@@ -167,13 +167,13 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async mentionsAndReplies(apiKey: string, fid: number, viewerFid?: number, cursor?: string, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MentionsAndRepliesResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.mentionsAndReplies(apiKey, fid, viewerFid, cursor, limit, options);
+        async mentionsAndReplies(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MentionsAndRepliesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.mentionsAndReplies(apiKey, fid, viewerFid, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -182,13 +182,13 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async reactionsAndRecasts(apiKey: string, fid: number, viewerFid?: number, cursor?: string, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsAndRecastsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.reactionsAndRecasts(apiKey, fid, viewerFid, cursor, limit, options);
+        async reactionsAndRecasts(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsAndRecastsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.reactionsAndRecasts(apiKey, fid, viewerFid, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -207,13 +207,13 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        mentionsAndReplies(apiKey: string, fid: number, viewerFid?: number, cursor?: string, limit?: number, options?: any): AxiosPromise<MentionsAndRepliesResponse> {
-            return localVarFp.mentionsAndReplies(apiKey, fid, viewerFid, cursor, limit, options).then((request) => request(axios, basePath));
+        mentionsAndReplies(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<MentionsAndRepliesResponse> {
+            return localVarFp.mentionsAndReplies(apiKey, fid, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Get a list of reactions and recasts to the users’s casts in reverse chronological order
@@ -221,13 +221,13 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        reactionsAndRecasts(apiKey: string, fid: number, viewerFid?: number, cursor?: string, limit?: number, options?: any): AxiosPromise<ReactionsAndRecastsResponse> {
-            return localVarFp.reactionsAndRecasts(apiKey, fid, viewerFid, cursor, limit, options).then((request) => request(axios, basePath));
+        reactionsAndRecasts(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<ReactionsAndRecastsResponse> {
+            return localVarFp.reactionsAndRecasts(apiKey, fid, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -245,14 +245,14 @@ export class NotificationsApi extends BaseAPI {
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid fid of a user
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-     * @param {string} [cursor] Pagination cursor.
      * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+     * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotificationsApi
      */
-    public mentionsAndReplies(apiKey: string, fid: number, viewerFid?: number, cursor?: string, limit?: number, options?: AxiosRequestConfig) {
-        return NotificationsApiFp(this.configuration).mentionsAndReplies(apiKey, fid, viewerFid, cursor, limit, options).then((request) => request(this.axios, this.basePath));
+    public mentionsAndReplies(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return NotificationsApiFp(this.configuration).mentionsAndReplies(apiKey, fid, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -261,14 +261,14 @@ export class NotificationsApi extends BaseAPI {
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid fid of a user
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-     * @param {string} [cursor] Pagination cursor.
      * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+     * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotificationsApi
      */
-    public reactionsAndRecasts(apiKey: string, fid: number, viewerFid?: number, cursor?: string, limit?: number, options?: AxiosRequestConfig) {
-        return NotificationsApiFp(this.configuration).reactionsAndRecasts(apiKey, fid, viewerFid, cursor, limit, options).then((request) => request(this.axios, this.basePath));
+    public reactionsAndRecasts(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return NotificationsApiFp(this.configuration).reactionsAndRecasts(apiKey, fid, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

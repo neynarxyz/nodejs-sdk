@@ -86,12 +86,12 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Get Recent Users
          * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 100, max 1000)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        recentUsers: async (apiKey: string, viewerFid?: number, cursor?: string, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        recentUsers: async (apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('recentUsers', 'apiKey', apiKey)
             const localVarPath = `/farcaster/recent-users`;
@@ -110,12 +110,12 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['viewerFid'] = viewerFid;
             }
 
-            if (cursor !== undefined) {
-                localVarQueryParameter['cursor'] = cursor;
-            }
-
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
             }
 
             if (apiKey != null) {
@@ -317,13 +317,13 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @summary Get Recent Users
          * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 100, max 1000)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async recentUsers(apiKey: string, viewerFid?: number, cursor?: string, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RecentUsersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.recentUsers(apiKey, viewerFid, cursor, limit, options);
+        async recentUsers(apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RecentUsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.recentUsers(apiKey, viewerFid, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -393,13 +393,13 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @summary Get Recent Users
          * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 100, max 1000)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        recentUsers(apiKey: string, viewerFid?: number, cursor?: string, limit?: number, options?: any): AxiosPromise<RecentUsersResponse> {
-            return localVarFp.recentUsers(apiKey, viewerFid, cursor, limit, options).then((request) => request(axios, basePath));
+        recentUsers(apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<RecentUsersResponse> {
+            return localVarFp.recentUsers(apiKey, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns metadata about a specific user
@@ -467,14 +467,14 @@ export class UserApi extends BaseAPI {
      * @summary Get Recent Users
      * @param {string} apiKey API key required for authentication.
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-     * @param {string} [cursor] Pagination cursor.
      * @param {number} [limit] Number of results to retrieve (default 100, max 1000)
+     * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public recentUsers(apiKey: string, viewerFid?: number, cursor?: string, limit?: number, options?: AxiosRequestConfig) {
-        return UserApiFp(this.configuration).recentUsers(apiKey, viewerFid, cursor, limit, options).then((request) => request(this.axios, this.basePath));
+    public recentUsers(apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).recentUsers(apiKey, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

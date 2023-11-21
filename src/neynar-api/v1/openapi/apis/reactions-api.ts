@@ -41,12 +41,12 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
          * @param {string} apiKey API key required for authentication.
          * @param {string} castHash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        castLikes: async (apiKey: string, castHash: string, viewerFid?: number, cursor?: string, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        castLikes: async (apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('castLikes', 'apiKey', apiKey)
             // verify required parameter 'castHash' is not null or undefined
@@ -71,12 +71,12 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
                 localVarQueryParameter['viewerFid'] = viewerFid;
             }
 
-            if (cursor !== undefined) {
-                localVarQueryParameter['cursor'] = cursor;
-            }
-
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
             }
 
             if (apiKey != null) {
@@ -100,12 +100,12 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
          * @param {string} apiKey API key required for authentication.
          * @param {string} castHash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        castReactions: async (apiKey: string, castHash: string, viewerFid?: number, cursor?: string, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        castReactions: async (apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('castReactions', 'apiKey', apiKey)
             // verify required parameter 'castHash' is not null or undefined
@@ -130,12 +130,12 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
                 localVarQueryParameter['viewerFid'] = viewerFid;
             }
 
-            if (cursor !== undefined) {
-                localVarQueryParameter['cursor'] = cursor;
-            }
-
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
             }
 
             if (apiKey != null) {
@@ -159,12 +159,12 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
          * @param {string} apiKey API key required for authentication.
          * @param {string} castHash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        castRecasters: async (apiKey: string, castHash: string, viewerFid?: number, cursor?: string, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        castRecasters: async (apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('castRecasters', 'apiKey', apiKey)
             // verify required parameter 'castHash' is not null or undefined
@@ -189,12 +189,12 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
                 localVarQueryParameter['viewerFid'] = viewerFid;
             }
 
-            if (cursor !== undefined) {
-                localVarQueryParameter['cursor'] = cursor;
-            }
-
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
             }
 
             if (apiKey != null) {
@@ -228,13 +228,13 @@ export const ReactionsApiFp = function(configuration?: Configuration) {
          * @param {string} apiKey API key required for authentication.
          * @param {string} castHash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async castLikes(apiKey: string, castHash: string, viewerFid?: number, cursor?: string, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastLikesResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.castLikes(apiKey, castHash, viewerFid, cursor, limit, options);
+        async castLikes(apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastLikesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.castLikes(apiKey, castHash, viewerFid, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -243,13 +243,13 @@ export const ReactionsApiFp = function(configuration?: Configuration) {
          * @param {string} apiKey API key required for authentication.
          * @param {string} castHash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async castReactions(apiKey: string, castHash: string, viewerFid?: number, cursor?: string, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastReactionsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.castReactions(apiKey, castHash, viewerFid, cursor, limit, options);
+        async castReactions(apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastReactionsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.castReactions(apiKey, castHash, viewerFid, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -258,13 +258,13 @@ export const ReactionsApiFp = function(configuration?: Configuration) {
          * @param {string} apiKey API key required for authentication.
          * @param {string} castHash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async castRecasters(apiKey: string, castHash: string, viewerFid?: number, cursor?: string, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastRecasterResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.castRecasters(apiKey, castHash, viewerFid, cursor, limit, options);
+        async castRecasters(apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastRecasterResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.castRecasters(apiKey, castHash, viewerFid, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -283,13 +283,13 @@ export const ReactionsApiFactory = function (configuration?: Configuration, base
          * @param {string} apiKey API key required for authentication.
          * @param {string} castHash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        castLikes(apiKey: string, castHash: string, viewerFid?: number, cursor?: string, limit?: number, options?: any): AxiosPromise<CastLikesResponse> {
-            return localVarFp.castLikes(apiKey, castHash, viewerFid, cursor, limit, options).then((request) => request(axios, basePath));
+        castLikes(apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<CastLikesResponse> {
+            return localVarFp.castLikes(apiKey, castHash, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Get all reactions (likes and recasts) for a specific cast.
@@ -297,13 +297,13 @@ export const ReactionsApiFactory = function (configuration?: Configuration, base
          * @param {string} apiKey API key required for authentication.
          * @param {string} castHash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        castReactions(apiKey: string, castHash: string, viewerFid?: number, cursor?: string, limit?: number, options?: any): AxiosPromise<CastReactionsResponse> {
-            return localVarFp.castReactions(apiKey, castHash, viewerFid, cursor, limit, options).then((request) => request(axios, basePath));
+        castReactions(apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<CastReactionsResponse> {
+            return localVarFp.castReactions(apiKey, castHash, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Get all recasters for a specific cast.
@@ -311,13 +311,13 @@ export const ReactionsApiFactory = function (configuration?: Configuration, base
          * @param {string} apiKey API key required for authentication.
          * @param {string} castHash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        castRecasters(apiKey: string, castHash: string, viewerFid?: number, cursor?: string, limit?: number, options?: any): AxiosPromise<CastRecasterResponse> {
-            return localVarFp.castRecasters(apiKey, castHash, viewerFid, cursor, limit, options).then((request) => request(axios, basePath));
+        castRecasters(apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<CastRecasterResponse> {
+            return localVarFp.castRecasters(apiKey, castHash, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -335,14 +335,14 @@ export class ReactionsApi extends BaseAPI {
      * @param {string} apiKey API key required for authentication.
      * @param {string} castHash Cast hash
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-     * @param {string} [cursor] Pagination cursor.
      * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+     * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReactionsApi
      */
-    public castLikes(apiKey: string, castHash: string, viewerFid?: number, cursor?: string, limit?: number, options?: AxiosRequestConfig) {
-        return ReactionsApiFp(this.configuration).castLikes(apiKey, castHash, viewerFid, cursor, limit, options).then((request) => request(this.axios, this.basePath));
+    public castLikes(apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return ReactionsApiFp(this.configuration).castLikes(apiKey, castHash, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -351,14 +351,14 @@ export class ReactionsApi extends BaseAPI {
      * @param {string} apiKey API key required for authentication.
      * @param {string} castHash Cast hash
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-     * @param {string} [cursor] Pagination cursor.
      * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+     * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReactionsApi
      */
-    public castReactions(apiKey: string, castHash: string, viewerFid?: number, cursor?: string, limit?: number, options?: AxiosRequestConfig) {
-        return ReactionsApiFp(this.configuration).castReactions(apiKey, castHash, viewerFid, cursor, limit, options).then((request) => request(this.axios, this.basePath));
+    public castReactions(apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return ReactionsApiFp(this.configuration).castReactions(apiKey, castHash, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -367,14 +367,14 @@ export class ReactionsApi extends BaseAPI {
      * @param {string} apiKey API key required for authentication.
      * @param {string} castHash Cast hash
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-     * @param {string} [cursor] Pagination cursor.
      * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+     * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReactionsApi
      */
-    public castRecasters(apiKey: string, castHash: string, viewerFid?: number, cursor?: string, limit?: number, options?: AxiosRequestConfig) {
-        return ReactionsApiFp(this.configuration).castRecasters(apiKey, castHash, viewerFid, cursor, limit, options).then((request) => request(this.axios, this.basePath));
+    public castRecasters(apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return ReactionsApiFp(this.configuration).castRecasters(apiKey, castHash, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

@@ -140,14 +140,14 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Retrieve casts for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {string} [parentUrl] A cast can be part of a certain channel. The channel is identified by &#x60;parent_url&#x60;. All casts in the channel ladder up to the same parent_url.
-         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        casts: async (apiKey: string, fid: number, viewerFid?: number, parentUrl?: string, cursor?: string, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        casts: async (apiKey: string, fid: number, parentUrl?: string, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('casts', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -168,20 +168,20 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (viewerFid !== undefined) {
-                localVarQueryParameter['viewerFid'] = viewerFid;
-            }
-
             if (parentUrl !== undefined) {
                 localVarQueryParameter['parent_url'] = parentUrl;
             }
 
-            if (cursor !== undefined) {
-                localVarQueryParameter['cursor'] = cursor;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewerFid'] = viewerFid;
             }
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
             }
 
             if (apiKey != null) {
@@ -204,12 +204,12 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Get Recent Casts
          * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        recentCasts: async (apiKey: string, viewerFid?: number, cursor?: string, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        recentCasts: async (apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('recentCasts', 'apiKey', apiKey)
             const localVarPath = `/farcaster/recent-casts`;
@@ -228,12 +228,12 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['viewerFid'] = viewerFid;
             }
 
-            if (cursor !== undefined) {
-                localVarQueryParameter['cursor'] = cursor;
-            }
-
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
             }
 
             if (apiKey != null) {
@@ -292,15 +292,15 @@ export const CastApiFp = function(configuration?: Configuration) {
          * @summary Retrieve casts for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {string} [parentUrl] A cast can be part of a certain channel. The channel is identified by &#x60;parent_url&#x60;. All casts in the channel ladder up to the same parent_url.
-         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async casts(apiKey: string, fid: number, viewerFid?: number, parentUrl?: string, cursor?: string, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.casts(apiKey, fid, viewerFid, parentUrl, cursor, limit, options);
+        async casts(apiKey: string, fid: number, parentUrl?: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.casts(apiKey, fid, parentUrl, viewerFid, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -308,13 +308,13 @@ export const CastApiFp = function(configuration?: Configuration) {
          * @summary Get Recent Casts
          * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async recentCasts(apiKey: string, viewerFid?: number, cursor?: string, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RecentCastsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.recentCasts(apiKey, viewerFid, cursor, limit, options);
+        async recentCasts(apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RecentCastsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.recentCasts(apiKey, viewerFid, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -356,28 +356,28 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * @summary Retrieve casts for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {string} [parentUrl] A cast can be part of a certain channel. The channel is identified by &#x60;parent_url&#x60;. All casts in the channel ladder up to the same parent_url.
-         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        casts(apiKey: string, fid: number, viewerFid?: number, parentUrl?: string, cursor?: string, limit?: number, options?: any): AxiosPromise<CastsResponse> {
-            return localVarFp.casts(apiKey, fid, viewerFid, parentUrl, cursor, limit, options).then((request) => request(axios, basePath));
+        casts(apiKey: string, fid: number, parentUrl?: string, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<CastsResponse> {
+            return localVarFp.casts(apiKey, fid, parentUrl, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Get a list of casts from the protocol in reverse chronological order based on timestamp
          * @summary Get Recent Casts
          * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        recentCasts(apiKey: string, viewerFid?: number, cursor?: string, limit?: number, options?: any): AxiosPromise<RecentCastsResponse> {
-            return localVarFp.recentCasts(apiKey, viewerFid, cursor, limit, options).then((request) => request(axios, basePath));
+        recentCasts(apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<RecentCastsResponse> {
+            return localVarFp.recentCasts(apiKey, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -422,16 +422,16 @@ export class CastApi extends BaseAPI {
      * @summary Retrieve casts for a given user
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid fid of a user
-     * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
      * @param {string} [parentUrl] A cast can be part of a certain channel. The channel is identified by &#x60;parent_url&#x60;. All casts in the channel ladder up to the same parent_url.
-     * @param {string} [cursor] Pagination cursor.
+     * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
      * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+     * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CastApi
      */
-    public casts(apiKey: string, fid: number, viewerFid?: number, parentUrl?: string, cursor?: string, limit?: number, options?: AxiosRequestConfig) {
-        return CastApiFp(this.configuration).casts(apiKey, fid, viewerFid, parentUrl, cursor, limit, options).then((request) => request(this.axios, this.basePath));
+    public casts(apiKey: string, fid: number, parentUrl?: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return CastApiFp(this.configuration).casts(apiKey, fid, parentUrl, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -439,14 +439,14 @@ export class CastApi extends BaseAPI {
      * @summary Get Recent Casts
      * @param {string} apiKey API key required for authentication.
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-     * @param {string} [cursor] Pagination cursor.
      * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+     * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CastApi
      */
-    public recentCasts(apiKey: string, viewerFid?: number, cursor?: string, limit?: number, options?: AxiosRequestConfig) {
-        return CastApiFp(this.configuration).recentCasts(apiKey, viewerFid, cursor, limit, options).then((request) => request(this.axios, this.basePath));
+    public recentCasts(apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return CastApiFp(this.configuration).recentCasts(apiKey, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
