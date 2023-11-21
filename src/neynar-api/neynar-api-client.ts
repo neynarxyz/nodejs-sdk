@@ -17,7 +17,7 @@ import {
   CastResponse,
   CastsResponse,
   UserResponse,
-} from "./neynar-v2-api/openapi-farcaster";
+} from "./v2/openapi-farcaster";
 
 import {
   RecentUsersResponse,
@@ -34,13 +34,13 @@ import {
   CastRecasterResponse,
   FollowResponse,
   User200Response,
-} from "./neynar-v1-api/openapi";
+} from "./v1/openapi";
 
-import { FetchRelevantMints200Response } from "./neynar-v2-api/openapi-recommendation";
+import { FetchRelevantMints200Response } from "./v2/openapi-recommendation";
 import { AxiosInstance } from "axios";
 import { silentLogger, Logger } from "./common/logger";
-import { NeynarV1APIClient } from "./neynar-v1-api";
-import { NeynarV2APIClient } from "./neynar-v2-api";
+import { NeynarV1APIClient } from "./v1";
+import { NeynarV2APIClient } from "./v2";
 
 export class NeynarAPIClient {
   private readonly logger: Logger;
@@ -164,7 +164,7 @@ export class NeynarAPIClient {
    *
    */
   public async fetchAllCastsInThread(
-    threadParent: CastV1 | { hash: string },
+    threadParent: CastV1 | string,
     viewerFid?: number
   ): Promise<CastV1[] | null> {
     return await this.clients.v1.fetchAllCastsInThread(threadParent, viewerFid);

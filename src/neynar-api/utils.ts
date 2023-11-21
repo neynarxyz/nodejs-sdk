@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { ErrorRes } from "./neynar-v1-api";
+import { ErrorRes } from "./v1";
 import type { SetRequired } from "type-fest";
 
 /**

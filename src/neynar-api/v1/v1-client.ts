@@ -30,6 +30,7 @@ const BASE_PATH = "https://api.neynar.com/v1";
 
 export class NeynarV1APIClient {
   private readonly logger: Logger;
+  private readonly apiKey: string;
 
   public readonly apis: {
     user: UserApi;
@@ -58,12 +59,13 @@ export class NeynarV1APIClient {
     } = {}
   ) {
     this.logger = logger;
-
     if (apiKey === "") {
       throw new Error(
         "Attempt to use an authenticated API method without first providing an api key"
       );
     }
+    
+    this.apiKey = apiKey;
 
     if (axiosInstance === undefined) {
       axiosInstance = axios.create();
@@ -122,11 +124,12 @@ export class NeynarV1APIClient {
     limit?: number;
     cursor?: string;
   }): Promise<RecentUsersResponse> {
-    const response = await this.apis.user.recentUsers({
-      viewerFid: options?.viewerFid,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
+    const response = await this.apis.user.recentUsers(
+      this.apiKey,
+      options?.viewerFid,
+      options?.limit,
+      options?.cursor
+    );
 
     return response.data;
   }
@@ -140,12 +143,13 @@ export class NeynarV1APIClient {
     fid: number,
     options?: { viewerFid?: number; limit?: number; cursor?: string }
   ): Promise<UserCastLikeResponse> {
-    const response = await this.apis.user.userCastLikes({
-      fid: fid,
-      viewerFid: options?.viewerFid,
-      limit: options?.limit,
-      cursor: options?.cursor,
-    });
+    const response = await this.apis.user.userCastLikes(
+      this.apiKey,
+      fid,
+      options?.viewerFid,
+      options?.limit,
+      options?.cursor
+    );
 
     return response.data;
   }
@@ -159,7 +163,7 @@ export class NeynarV1APIClient {
     fid: number,
     viewerFid?: number
   ): Promise<User200Response> {
-    const response = await this.apis.user.user({ fid, viewerFid });
+    const response = await this.apis.user.user(this.apiKey, fid, viewerFid);
     return response.data;
   }
 
@@ -172,10 +176,11 @@ export class NeynarV1APIClient {
     username: string,
     viewerFid?: number
   ): Promise<User | null> {
-    const response = await this.apis.user.userByUsername({
+    const response = await this.apis.user.userByUsername(
+      this.apiKey,
       username,
-      viewerFid,
-    });
+      viewerFid
+    );
     // result.user is undefined if not found
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     return response.data.result.user ?? null;
@@ -187,7 +192,7 @@ export class NeynarV1APIClient {
    *
    */
   public async fetchCustodyAddressForUser(fid: number): Promise<string | null> {
-    const response = await this.apis.user.custodyAddress({ fid });
+    const response = await this.apis.user.custodyAddress(this.apiKey, fid);
     return response.data.result.custodyAddress;
   }
 
@@ -202,10 +207,11 @@ export class NeynarV1APIClient {
     hash: string,
     options?: { viewerFid?: number }
   ): Promise<Cast | null> {
-    const response = await this.apis.cast.cast({
+    const response = await this.apis.cast.cast(
+      this.apiKey,
       hash,
-      viewerFid: options?.viewerFid,
-    });
+      options?.viewerFid
+    );
     return response.data.result.cast;
   }
 
@@ -216,13 +222,22 @@ export class NeynarV1APIClient {
    *
    */
   public async fetchAllCastsInThread(
-    threadParent: Cast | { hash: string },
+    threadParent: Cast | string,
     viewerFid?: number
   ): Promise<Cast[] | null> {
-    const response = await this.apis.cast.allCastsInThread({
-      threadHash: threadParent.hash,
-      viewerFid: viewerFid,
-    });
+    let threadHash: string;
+
+    if (typeof threadParent === "string") {
+      threadHash = threadParent;
+    } else {
+      threadHash = threadParent.hash;
+    }
+
+    const response = await this.apis.cast.allCastsInThread(
+      this.apiKey,
+      threadHash,
+      viewerFid
+    );
     return response.data.result.casts;
   }
 
@@ -240,13 +255,14 @@ export class NeynarV1APIClient {
       cursor?: string;
     }
   ): Promise<CastsResponse> {
-    const response = await this.apis.cast.casts({
-      fid: fid,
-      viewerFid: options?.viewerFid,
-      parentUrl: options?.parentUrl,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
+    const response = await this.apis.cast.casts(
+      this.apiKey,
+      fid,
+      options?.parentUrl,
+      options?.viewerFid,
+      options?.limit,
+      options?.cursor
+    );
 
     return response.data;
   }
@@ -261,11 +277,12 @@ export class NeynarV1APIClient {
     limit?: number;
     cursor?: string;
   }): Promise<RecentCastsResponse> {
-    const response = await this.apis.cast.recentCasts({
-      viewerFid: options?.viewerFid,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
+    const response = await this.apis.cast.recentCasts(
+      this.apiKey,
+      options?.viewerFid,
+      options?.limit,
+      options?.cursor
+    );
 
     return response.data;
   }
@@ -280,7 +297,10 @@ export class NeynarV1APIClient {
   public async fetchUserVerifications(
     fid: number
   ): Promise<VerificationResponseResult | null> {
-    const response = await this.apis.verification.verifications({ fid });
+    const response = await this.apis.verification.verifications(
+      this.apiKey,
+      fid
+    );
     return response.data.result;
   }
 
@@ -295,9 +315,10 @@ export class NeynarV1APIClient {
   public async lookupUserByVerification(
     address: string
   ): Promise<User200Response> {
-    const response = await this.apis.verification.userByVerification({
-      address,
-    });
+    const response = await this.apis.verification.userByVerification(
+      this.apiKey,
+      address
+    );
     return response.data;
   }
 
@@ -312,12 +333,13 @@ export class NeynarV1APIClient {
     fid: number,
     options?: { viewerFid?: number; limit?: number; cursor?: string }
   ): Promise<MentionsAndRepliesResponse> {
-    const response = await this.apis.notifications.mentionsAndReplies({
-      fid: fid,
-      viewerFid: options?.viewerFid,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
+    const response = await this.apis.notifications.mentionsAndReplies(
+      this.apiKey,
+      fid,
+      options?.viewerFid,
+      options?.limit,
+      options?.cursor
+    );
 
     return response.data;
   }
@@ -331,12 +353,13 @@ export class NeynarV1APIClient {
     fid: number,
     options?: { viewerFid?: number; limit?: number; cursor?: string }
   ): Promise<ReactionsAndRecastsResponse> {
-    const response = await this.apis.notifications.reactionsAndRecasts({
-      fid: fid,
-      viewerFid: options?.viewerFid,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
+    const response = await this.apis.notifications.reactionsAndRecasts(
+      this.apiKey,
+      fid,
+      options?.viewerFid,
+      options?.limit,
+      options?.cursor
+    );
 
     return response.data;
   }
@@ -359,12 +382,13 @@ export class NeynarV1APIClient {
       castHash = castOrCastHash.hash;
     }
 
-    const response = await this.apis.reactions.castLikes({
-      castHash: castHash,
-      viewerFid: options?.viewerFid,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
+    const response = await this.apis.reactions.castLikes(
+      this.apiKey,
+      castHash,
+      options?.viewerFid,
+      options?.limit,
+      options?.cursor
+    );
 
     return response.data;
   }
@@ -385,12 +409,13 @@ export class NeynarV1APIClient {
       castHash = castOrCastHash.hash;
     }
 
-    const response = await this.apis.reactions.castReactions({
-      castHash: castHash,
-      viewerFid: options?.viewerFid,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
+    const response = await this.apis.reactions.castReactions(
+      this.apiKey,
+      castHash,
+      options?.viewerFid,
+      options?.limit,
+      options?.cursor
+    );
 
     return response.data;
   }
@@ -411,12 +436,13 @@ export class NeynarV1APIClient {
       castHash = castOrCastHash.hash;
     }
 
-    const response = await this.apis.reactions.castRecasters({
-      castHash: castHash,
-      viewerFid: options?.viewerFid,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
+    const response = await this.apis.reactions.castRecasters(
+      this.apiKey,
+      castHash,
+      options?.viewerFid,
+      options?.limit,
+      options?.cursor
+    );
 
     return response.data;
   }
@@ -432,12 +458,13 @@ export class NeynarV1APIClient {
     fid: number,
     options?: { viewerFid?: number; limit?: number; cursor?: string }
   ): Promise<FollowResponse> {
-    const response = await this.apis.follows.followers({
+    const response = await this.apis.follows.followers(
+      this.apiKey,
       fid,
-      viewerFid: options?.viewerFid,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
+      options?.viewerFid,
+      options?.limit,
+      options?.cursor
+    );
 
     return response.data;
   }
@@ -451,12 +478,13 @@ export class NeynarV1APIClient {
     fid: number,
     options?: { viewerFid?: number; limit?: number; cursor?: string }
   ): Promise<FollowResponse> {
-    const response = await this.apis.follows.following({
+    const response = await this.apis.follows.following(
+      this.apiKey,
       fid,
-      viewerFid: options?.viewerFid,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
+      options?.viewerFid,
+      options?.limit,
+      options?.cursor
+    );
 
     return response.data;
   }
