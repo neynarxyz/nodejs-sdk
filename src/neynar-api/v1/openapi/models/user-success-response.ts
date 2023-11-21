@@ -15,19 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { User200ResponseResult } from './user200-response-result';
+import { UserSuccessResponseResult } from './user-success-response-result';
 
 /**
  * 
  * @export
- * @interface User200Response
+ * @interface UserSuccessResponse
  */
-export interface User200Response {
+export interface UserSuccessResponse {
     /**
      * 
-     * @type {User200ResponseResult}
-     * @memberof User200Response
+     * @type {UserSuccessResponseResult}
+     * @memberof UserSuccessResponse
      */
-    'result': User200ResponseResult;
+    'result': UserSuccessResponseResult;
 }
 

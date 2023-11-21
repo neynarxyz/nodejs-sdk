@@ -31,6 +31,6 @@ export interface UserProfileBio {
      * @type {Array<string>}
      * @memberof UserProfileBio
      */
-    'mentions': Array<string>;
+    'mentionedProfiles'?: Array<string>;
 }
 

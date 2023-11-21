@@ -28,9 +28,9 @@ import { ErrorRes } from '../models';
 // @ts-ignore
 import { RecentUsersResponse } from '../models';
 // @ts-ignore
-import { User200Response } from '../models';
-// @ts-ignore
 import { UserCastLikeResponse } from '../models';
+// @ts-ignore
+import { UserSuccessResponse } from '../models';
 /**
  * UserApi - axios parameter creator
  * @export
@@ -335,7 +335,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async user(apiKey: string, fid: number, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User200Response>> {
+        async user(apiKey: string, fid: number, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserSuccessResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.user(apiKey, fid, viewerFid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -348,7 +348,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async userByUsername(apiKey: string, username: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User200Response>> {
+        async userByUsername(apiKey: string, username: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserSuccessResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.userByUsername(apiKey, username, viewerFid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -410,7 +410,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        user(apiKey: string, fid: number, viewerFid?: number, options?: any): AxiosPromise<User200Response> {
+        user(apiKey: string, fid: number, viewerFid?: number, options?: any): AxiosPromise<UserSuccessResponse> {
             return localVarFp.user(apiKey, fid, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
@@ -422,7 +422,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userByUsername(apiKey: string, username: string, viewerFid?: number, options?: any): AxiosPromise<User200Response> {
+        userByUsername(apiKey: string, username: string, viewerFid?: number, options?: any): AxiosPromise<UserSuccessResponse> {
             return localVarFp.userByUsername(apiKey, username, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**

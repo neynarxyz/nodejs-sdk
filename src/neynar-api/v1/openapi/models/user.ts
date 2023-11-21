@@ -45,6 +45,12 @@ export interface User {
      */
     'username': string;
     /**
+     * Custody Address of the user.
+     * @type {string}
+     * @memberof User
+     */
+    'custodyAddress': string;
+    /**
      * The display of the reactor.
      * @type {string}
      * @memberof User
