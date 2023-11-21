@@ -24,7 +24,7 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { ErrorRes } from '../models';
 // @ts-ignore
-import { UserSuccessResponse } from '../models';
+import { UserResponse } from '../models';
 // @ts-ignore
 import { VerificationResponse } from '../models';
 /**
@@ -139,7 +139,7 @@ export const VerificationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async userByVerification(apiKey: string, address: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserSuccessResponse>> {
+        async userByVerification(apiKey: string, address: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.userByVerification(apiKey, address, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -173,7 +173,7 @@ export const VerificationApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userByVerification(apiKey: string, address: string, options?: any): AxiosPromise<UserSuccessResponse> {
+        userByVerification(apiKey: string, address: string, options?: any): AxiosPromise<UserResponse> {
             return localVarFp.userByVerification(apiKey, address, options).then((request) => request(axios, basePath));
         },
         /**

@@ -69,8 +69,8 @@ models/user-cast-like-response.ts
 models/user-pfp.ts
 models/user-profile-bio.ts
 models/user-profile.ts
-models/user-success-response-result.ts
-models/user-success-response.ts
+models/user-response-result.ts
+models/user-response.ts
 models/user.ts
 models/verification-response-result.ts
 models/verification-response.ts

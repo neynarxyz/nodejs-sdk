@@ -20,13 +20,13 @@ import { User } from './user';
 /**
  * 
  * @export
- * @interface UserSuccessResponseResult
+ * @interface UserResponseResult
  */
-export interface UserSuccessResponseResult {
+export interface UserResponseResult {
     /**
      * 
      * @type {User}
-     * @memberof UserSuccessResponseResult
+     * @memberof UserResponseResult
      */
     'user': User;
 }
