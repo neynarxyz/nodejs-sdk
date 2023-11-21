@@ -33,7 +33,8 @@ import {
   CastReactionsResponse,
   CastRecasterResponse,
   FollowResponse,
-  User200Response,
+  UserResponse as UserResponseV1,
+  CustodyAddressResponse,
 } from "./v1/openapi";
 
 import { FetchRelevantMints200Response } from "./v2/openapi-recommendation";
@@ -118,7 +119,7 @@ export class NeynarAPIClient {
   public async lookupUserByFid(
     fid: number,
     viewerFid?: number
-  ): Promise<User200Response> {
+  ): Promise<UserResponseV1> {
     return await this.clients.v1.lookupUserByFid(fid, viewerFid);
   }
 
@@ -130,7 +131,7 @@ export class NeynarAPIClient {
   public async lookupUserByUsername(
     username: string,
     viewerFid?: number
-  ): Promise<User | null> {
+  ): Promise<UserResponseV1> {
     return await this.clients.v1.lookupUserByUsername(username, viewerFid);
   }
 
@@ -139,8 +140,10 @@ export class NeynarAPIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/custody-address-v1)
    *
    */
-  public async fetchCustodyAddressForUser(fid: number): Promise<string | null> {
-    return await this.clients.v1.fetchCustodyAddressForUser(fid);
+  public async lookupCustodyAddressForUser(
+    fid: number
+  ): Promise<CustodyAddressResponse> {
+    return await this.clients.v1.lookupCustodyAddressForUser(fid);
   }
 
   // ------------ Cast ------------
@@ -223,7 +226,7 @@ export class NeynarAPIClient {
    */
   public async lookupUserByVerification(
     address: string
-  ): Promise<User200Response> {
+  ): Promise<UserResponseV1> {
     return await this.clients.v1.lookupUserByVerification(address);
   }
 

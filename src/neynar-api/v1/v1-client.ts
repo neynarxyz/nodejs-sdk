@@ -20,7 +20,8 @@ import {
   CastReactionsResponse,
   CastRecasterResponse,
   FollowResponse,
-  User200Response,
+  UserResponse,
+  CustodyAddressResponse,
 } from "./openapi";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -64,7 +65,7 @@ export class NeynarV1APIClient {
         "Attempt to use an authenticated API method without first providing an api key"
       );
     }
-    
+
     this.apiKey = apiKey;
 
     if (axiosInstance === undefined) {
@@ -137,7 +138,6 @@ export class NeynarV1APIClient {
   /**
    * Fetch all likes by a given user.
    * See [Neynar documentation](https://docs.neynar.com/reference/user-cast-likes-v1)
-   *
    */
   public async fetchAllCastsLikedByUser(
     fid: number,
@@ -162,7 +162,7 @@ export class NeynarV1APIClient {
   public async lookupUserByFid(
     fid: number,
     viewerFid?: number
-  ): Promise<User200Response> {
+  ): Promise<UserResponse> {
     const response = await this.apis.user.user(this.apiKey, fid, viewerFid);
     return response.data;
   }
@@ -175,15 +175,13 @@ export class NeynarV1APIClient {
   public async lookupUserByUsername(
     username: string,
     viewerFid?: number
-  ): Promise<User | null> {
+  ): Promise<UserResponse> {
     const response = await this.apis.user.userByUsername(
       this.apiKey,
       username,
       viewerFid
     );
-    // result.user is undefined if not found
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    return response.data.result.user ?? null;
+    return response.data;
   }
 
   /**
@@ -191,9 +189,11 @@ export class NeynarV1APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/custody-address-v1)
    *
    */
-  public async fetchCustodyAddressForUser(fid: number): Promise<string | null> {
+  public async lookupCustodyAddressForUser(
+    fid: number
+  ): Promise<CustodyAddressResponse> {
     const response = await this.apis.user.custodyAddress(this.apiKey, fid);
-    return response.data.result.custodyAddress;
+    return response.data;
   }
 
   // ------------ Cast ------------
@@ -314,7 +314,7 @@ export class NeynarV1APIClient {
    */
   public async lookupUserByVerification(
     address: string
-  ): Promise<User200Response> {
+  ): Promise<UserResponse> {
     const response = await this.apis.verification.userByVerification(
       this.apiKey,
       address
