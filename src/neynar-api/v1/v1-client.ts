@@ -391,9 +391,30 @@ export class NeynarV1APIClient {
   }
 
   /**
-   * Gets recent casts created by the specified user.
-   * See [Neynar documentation](https://docs.neynar.com/reference/recent-casts-v1)
+   * Retrieves a list of casts from the protocol in reverse chronological order based on timestamp
    *
+   * @param {Object} [options] - Optional parameters to tailor the request.
+   * @param {number} [options.viewerFid] - The FID of the user viewing this information,
+   *   used for providing contextual data specific to the viewer.
+   * @param {number} [options.limit] - The maximum number of casts to be returned in a single response.
+   *   Defaults to 25, with a maximum allowable value of 100.
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results.
+   *   Omit this parameter for the initial request. Useful for paginated retrieval of subsequent data.
+   *
+   * @returns {Promise<RecentCastsResponse>} A promise that resolves to a `RecentCastsResponse` object,
+   *   containing the recent casts along with any associated metadata.
+   *
+   * @example
+   * // Example: Retrieve recent casts with a limit of 50, as viewed by a user with FID 3
+   * client.fetchRecentCasts({
+   *   viewerFid: 3,
+   *   limit: 50 // Fetching up to 50 casts
+   *   cursor: 'nextPageCursor' // Pagination cursor for the next set of results, Omit this parameter for the initial request.
+   * }).then(response => {
+   *   console.log('Recent Casts:', response); // Outputs the recent casts
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/recent-casts-v1).
    */
   public async fetchRecentCasts(options?: {
     viewerFid?: number;
