@@ -330,7 +330,7 @@ export class NeynarAPIClient {
    * // Example: Retrieve recent casts with a limit of 50, as viewed by a user with FID 3
    * client.fetchRecentCasts({
    *   viewerFid: 3,
-   *   limit: 50 // Fetching up to 50 casts
+   *   limit: 50, // Fetching up to 50 casts
    *   cursor: 'nextPageCursor' // Pagination cursor for the next set of results, Omit this parameter for the initial request.
    * }).then(response => {
    *   console.log('Recent Casts:', response); // Outputs the recent casts
