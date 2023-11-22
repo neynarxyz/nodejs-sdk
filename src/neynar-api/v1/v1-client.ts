@@ -135,7 +135,7 @@ export class NeynarV1APIClient {
    * client.fetchRecentUsers({
    *   viewerFid: 3,
    *   limit: 50, // Fetching up to 50 users
-   *   cursor: 'nextPageCursor' // Pagination cursor for the next set of results, Omit this parameter for the initial request.
+   *   // cursor: 'nextPageCursor' // Pagination cursor for the next set of results, Omit this parameter for the initial request.
    * }).then(response => {
    *   console.log('Recent Users:', response);
    * });
@@ -178,7 +178,7 @@ export class NeynarV1APIClient {
    * client.fetchAllCastsLikedByUser(3, {
    *   viewerFid: 2,
    *   limit: 50, // Fetching up to 50 casts
-   *   cursor: 'nextPageCursor' // Pagination cursor for the next set of results, Omit this parameter for the initial request.
+   *   // cursor: 'nextPageCursor' // Pagination cursor for the next set of results, Omit this parameter for the initial request.
    * }).then(response => {
    *   console.log('Liked Casts:', response);
    * });
@@ -362,7 +362,7 @@ export class NeynarV1APIClient {
    *   parentUrl: 'https://ethereum.org',
    *   viewerFid: 2,
    *   limit: 50, // Fetching up to 50 casts
-   *   cursor: 'nextPageCursor' // Pagination cursor for the next set of results, Omit this parameter for the initial request.
+   *   // cursor: 'nextPageCursor' // Pagination cursor for the next set of results, Omit this parameter for the initial request.
    * }).then(response => {
    *   console.log('User Casts:', response);
    * });
@@ -409,7 +409,7 @@ export class NeynarV1APIClient {
    * client.fetchRecentCasts({
    *   viewerFid: 3,
    *   limit: 50, // Fetching up to 50 casts
-   *   cursor: 'nextPageCursor' // Pagination cursor for the next set of results, Omit this parameter for the initial request.
+   *   // cursor: 'nextPageCursor' // Pagination cursor for the next set of results, Omit this parameter for the initial request.
    * }).then(response => {
    *   console.log('Recent Casts:', response); // Outputs the recent casts
    * });
@@ -501,7 +501,7 @@ export class NeynarV1APIClient {
    * client.fetchMentionAndReplyNotifications(3, {
    *   viewerFid: 2, // The FID of the user viewing this information
    *   limit: 50, // Fetching up to 50 mentions and replies
-   *   cursor: 'nextPageCursor' // Pagination cursor for the next set of results, Omit this parameter for the initial request.
+   *   // cursor: 'nextPageCursor' // Pagination cursor for the next set of results, Omit this parameter for the initial request.
    * }).then(response => {
    *   console.log('Mentions and Replies:', response); // Outputs the mentions and replies
    * });
@@ -543,7 +543,7 @@ export class NeynarV1APIClient {
    * client.fetchUserLikesAndRecasts(3, {
    *   viewerFid: 2, // The FID of the user viewing this information
    *   limit: 50, // Fetching up to 50 likes and recasts
-   *   cursor: 'nextPageCursor' // Pagination cursor for the next set of results, Omit this parameter for the initial request.
+   *   // cursor: 'nextPageCursor' // Pagination cursor for the next set of results, Omit this parameter for the initial request.
    * }).then(response => {
    *   console.log('Likes and Recasts:', response); // Outputs the likes and recasts
    * });
