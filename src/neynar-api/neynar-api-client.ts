@@ -35,6 +35,7 @@ import {
   FollowResponse,
   UserResponse as UserResponseV1,
   CustodyAddressResponse,
+  CastResponse as CastResponseV1,
 } from "./v1/openapi";
 
 import { FetchRelevantMints200Response } from "./v2/openapi-recommendation";
@@ -88,8 +89,21 @@ export class NeynarAPIClient {
 
   /**
    * A list of users in reverse chronological order based on sign up.
-   * See [Neynar documentation](https://docs.neynar.com/reference/recent-users-v1)
    *
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {number} [options.viewerFid] - The FID (unique identifier) of the user viewing the data.
+   *   This can be used for providing contextual information specific to the viewer.
+   * @param {number} [options.limit] - The maximum number of users to be returned in the response.
+   *   By default, 100 users are returned, but this can be adjusted up to a maximum of 1000.
+   * @param {string} [options.cursor] - A pagination cursor to fetch a specific set of results.
+   *   This is useful for implementing paginated retrieval of the data.
+   *
+   *
+   * @returns {Promise<RecentUsersResponse>} A promise that resolves to a `RecentUsersResponse` object,
+   *   containing the list of recent users and any associated metadata.
+   *
+   * For more information, refer to the Neynar documentation:
+   * [Neynar documentation](https://docs.neynar.com/reference/recent-users-v1)
    */
   public async fetchRecentUsers(options?: {
     viewerFid?: number;
@@ -156,7 +170,7 @@ export class NeynarAPIClient {
   public async lookUpCastByHash(
     hash: string,
     options?: { viewerFid?: number }
-  ): Promise<CastV1 | null> {
+  ): Promise<CastResponseV1> {
     return await this.clients.v1.lookUpCastByHash(hash, options);
   }
 

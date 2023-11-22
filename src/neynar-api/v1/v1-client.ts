@@ -22,6 +22,7 @@ import {
   FollowResponse,
   UserResponse,
   CustodyAddressResponse,
+  CastResponse,
 } from "./openapi";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -117,8 +118,20 @@ export class NeynarV1APIClient {
 
   /**
    * A list of users in reverse chronological order based on sign up.
-   * See [Neynar documentation](https://docs.neynar.com/reference/recent-users-v1)
    *
+   * @param {Object} options - Optional configuration for fine-tuning the request.
+   * @param {number} options.viewerFid - The FID (unique identifier) of the user making the request.
+   *   Specifying this can provide contextual data tailored to the viewer.
+   * @param {number} options.limit=100 - Limits the number of users returned in a single request.
+   *   Defaults to 100, with a maximum allowable value of 1000.
+   * @param {string} options.cursor - A cursor for pagination. Use this to fetch subsequent
+   *   sets of users after the initial request.
+   *
+   * @returns {Promise<RecentUsersResponse>} A promise that resolves to a `RecentUsersResponse` object,
+   *   containing the list of recent users and any associated metadata.
+   *
+   * For more information, refer to the Neynar documentation:
+   * [Neynar documentation](https://docs.neynar.com/reference/recent-users-v1)
    */
   public async fetchRecentUsers(options?: {
     viewerFid?: number;
@@ -206,13 +219,13 @@ export class NeynarV1APIClient {
   public async lookUpCastByHash(
     hash: string,
     options?: { viewerFid?: number }
-  ): Promise<Cast | null> {
+  ): Promise<CastResponse> {
     const response = await this.apis.cast.cast(
       this.apiKey,
       hash,
       options?.viewerFid
     );
-    return response.data.result.cast;
+    return response.data;
   }
 
   /**
