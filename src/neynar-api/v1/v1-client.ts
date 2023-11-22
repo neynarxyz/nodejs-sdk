@@ -449,12 +449,25 @@ export class NeynarV1APIClient {
   }
 
   /**
+   * Retrieve user information using a verification address
+   *
    * Checks if a given Ethereum address has a Farcaster user associated with it.
    * Note: if an address is associated with multiple users, the API will return
    * the user who most recently published a verification with the address
    * (based on when Warpcast received the proof, not a self-reported timestamp).
-   * See [Neynar documentation](https://docs.neynar.com/reference/user-by-verification-v1)
    *
+   * @param {string} address - The Ethereum address that have has a Farcaster user associated with it
+   *
+   * @returns {Promise<UserResponse>} A promise that resolves to a `UserResponse` object,
+   *   containing user information linked to the given verification address.
+   *
+   * @example
+   * // Example: Retrieve user information using a verification address
+   * client.lookupUserByVerification('0x7ea5dada4021c2c625e73d2a78882e91b93c174c').then(response => {
+   *   console.log('User Information:', response); // Outputs the user information associated with the verification address
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-by-verification-v1).
    */
   public async lookupUserByVerification(
     address: string
@@ -469,9 +482,31 @@ export class NeynarV1APIClient {
   // ------------ Notifications ------------
 
   /**
-   * Gets a list of mentions and replies to the user’s casts in reverse chronological order.
-   * See [Neynar documentation](https://docs.neynar.com/reference/mentions-and-replies-v1)
+   * Retrieves a list of mentions and replies to the user’s casts in reverse chronological order.
    *
+   * @param {number} fid - The FID (unique identifier) of the user whose mentions and replies are being retrieved.
+   * @param {Object} [options] - Optional parameters to tailor the request.
+   * @param {number} [options.viewerFid] - The FID of the user viewing this information,
+   *   used for providing contextual data specific to the viewer.
+   * @param {number} [options.limit] - The maximum number of results to be returned in a single response.
+   *   Defaults to 25, with a maximum allowable value of 150.
+   * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
+   *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
+   *
+   * @returns {Promise<MentionsAndRepliesResponse>} A promise that resolves to a `MentionsAndRepliesResponse` object,
+   *   containing a list of mentions and replies to the user's casts.
+   *
+   * @example
+   * // Example: Retrieve the first set of mentions and replies for a user with FID 12345, limited to 50
+   * client.fetchMentionAndReplyNotifications(3, {
+   *   viewerFid: 2, // The FID of the user viewing this information
+   *   limit: 50, // Fetching up to 50 mentions and replies
+   *   cursor: 'nextPageCursor' // Pagination cursor for the next set of results, Omit this parameter for the initial request.
+   * }).then(response => {
+   *   console.log('Mentions and Replies:', response); // Outputs the mentions and replies
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/mentions-and-replies-v1).
    */
   public async fetchMentionAndReplyNotifications(
     fid: number,
@@ -489,9 +524,31 @@ export class NeynarV1APIClient {
   }
 
   /**
-   * Get a list of likes and recasts to the users’s casts in reverse chronological order.
-   * See [Neynar documentation](https://docs.neynar.com/reference/reactions-and-recasts-v1)
+   * Retrieves a list of likes and recasts to the user’s casts in reverse chronological order.
    *
+   * @param {number} fid - The FID (unique identifier) of the user whose likes and recasts are being retrieved.
+   * @param {Object} [options] - Optional parameters to tailor the request.
+   * @param {number} [options.viewerFid] - The FID of the user viewing this information,
+   *   used for providing contextual data specific to the viewer.
+   * @param {number} [options.limit] - The maximum number of results to be returned in a single response.
+   *   Defaults to 25, with a maximum allowable value of 150.
+   * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
+   *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
+   *
+   * @returns {Promise<ReactionsAndRecastsResponse>} A promise that resolves to a `ReactionsAndRecastsResponse` object,
+   *   containing a list of likes and recasts to the user's casts.
+   *
+   * @example
+   * // Example: Retrieve the first set of likes and recasts for a user with FID 12345, limited to 50
+   * client.fetchUserLikesAndRecasts(3, {
+   *   viewerFid: 2, // The FID of the user viewing this information
+   *   limit: 50, // Fetching up to 50 likes and recasts
+   *   cursor: 'nextPageCursor' // Pagination cursor for the next set of results, Omit this parameter for the initial request.
+   * }).then(response => {
+   *   console.log('Likes and Recasts:', response); // Outputs the likes and recasts
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/reactions-and-recasts-v1).
    */
   public async fetchUserLikesAndRecasts(
     fid: number,
