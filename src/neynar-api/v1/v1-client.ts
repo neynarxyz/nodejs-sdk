@@ -583,10 +583,10 @@ export class NeynarV1APIClient {
    *   containing a list of likes for the given cast.
    *
    * @example
-   * // Example: Retrieve the first set of likes for a cast with a specific hash, limited to 5
+   * // Example: Retrieve the first set of likes for a cast with a specific hash, limited to 2
    * client.fetchCastLikes('0xfe90f9de682273e05b201629ad2338bdcd89b6be', {
    *   viewerFid: 3, // The FID of the user viewing this information
-   *   limit: 5, // Fetching up to 5 likes
+   *   limit: 2, // Fetching up to 2 likes
    *   // cursor: "nextPageCursor", // Pagination cursor for the next set of results, Omit this parameter for the initial request.
    * }).then(response => {
    *   console.log('Cast Likes:', response); // Outputs the cast likes
@@ -681,10 +681,10 @@ export class NeynarV1APIClient {
    *   containing a list of recasters for the given cast.
    *
    * @example
-   * // Example: Retrieve the first set of recasters for a cast with a specific hash, limited to 5
-   * client.fetchRecasters('0xfe90f9de682273e05b201629ad2338bdcd89b6be', {
+   * // Example: Retrieve the first set of recasters for a cast with a specific hash, limited to 3
+   * client.fetchRecasters('0xafadc0478ede366e3f5232af3190a82dea20b169', {
    *   viewerFid: 3, // The FID of the user viewing this information
-   *   limit: 5, // Fetching up to 5 recasters
+   *   limit: 3, // Fetching up to 3 recasters
    *   // cursor: "nextPageCursor", // Pagination cursor for the next set of results, Omit this parameter for the initial request.
    * }).then(response => {
    *   console.log('Cast Recasters:', response); // Outputs the cast recasters
