@@ -103,7 +103,7 @@ export class NeynarAPIClient {
    *
    * @example
    * // Fetch a specific number of recent users, using viewer FID and a pagination cursor
-   * apiClient.fetchRecentUsers({
+   * client.fetchRecentUsers({
    *   viewerFid: 3,
    *   limit: 50,
    *   cursor: 'nextPageCursor'
@@ -139,7 +139,7 @@ export class NeynarAPIClient {
    *
    * @example
    * // Fetch a specific number of casts liked by a user, using viewer FID and a pagination cursor
-   * apiClient.fetchAllCastsLikedByUser(3, {
+   * client.fetchAllCastsLikedByUser(3, {
    *   viewerFid: 2,
    *   limit: 50,
    *   cursor: 'nextPageCursor'
@@ -158,8 +158,21 @@ export class NeynarAPIClient {
 
   /**
    * Gets the specified user via their FID (if found).
-   * See [Neynar documentation](https://docs.neynar.com/reference/user-v1)
    *
+   * @param {number} fid - The FID of the user whose information is being retrieved.
+   * @param {number} [viewerFid] - Optional. The FID of the user viewing this information,
+   *   used for providing contextual data specific to the viewer.
+   *
+   * @returns {Promise<UserResponseV1>} A promise that resolves to a `UserResponseV1` object,
+   *   containing the metadata about the specified user.
+   *
+   * @example
+   * // Example: Retrieve information about a user with FID 19960 as viewed by a user with FID 194
+   * client.lookupUserByFid(19960, 194).then(response => {
+   *   console.log('User Information:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-v1).
    */
   public async lookupUserByFid(
     fid: number,
@@ -169,9 +182,22 @@ export class NeynarAPIClient {
   }
 
   /**
-   * Gets the specified user via their username (if found).
-   * See [Neynar documentation](https://docs.neynar.com/reference/user-by-username-v1)
+   * Retrieves the specified user via their username (if found).
    *
+   * @param {string} username - The username of the user whose information is being retrieved.
+   * @param {number} [viewerFid] - Optional. The FID of the user viewing this information,
+   *   used for providing contextual data specific to the viewer.
+   *
+   * @returns {Promise<UserResponseV1>} A promise that resolves to a `UserResponseV1` object,
+   *   containing the metadata about the user associated with the given username.
+   *
+   * @example
+   * // Example: Retrieve information about a user with username 'manan' as viewed by a user with FID 3
+   * client.lookupUserByUsername('manan', 3).then(response => {
+   *   console.log('User Information:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-by-username-v1).
    */
   public async lookupUserByUsername(
     username: string,
@@ -181,9 +207,20 @@ export class NeynarAPIClient {
   }
 
   /**
-   * Gets the custody address for the specified user via their username (if found).
-   * See [Neynar documentation](https://docs.neynar.com/reference/custody-address-v1)
+   * Gets the custody address for the specified user via their fid (if found).
    *
+   * @param {number} fid - The FID (unique identifier) of the user whose custody address is being retrieved.
+   *
+   * @returns {Promise<CustodyAddressResponse>} A promise that resolves to a `CustodyAddressResponse` object,
+   *   containing the custody address associated with the specified user.
+   *
+   * @example
+   * // Example: Retrieve the custody address for a user with FID 194
+   * client.lookupCustodyAddressForUser(194).then(response => {
+   *   console.log('Custody Address:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/custody-address-v1).
    */
   public async lookupCustodyAddressForUser(
     fid: number
