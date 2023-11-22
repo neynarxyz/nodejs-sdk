@@ -117,15 +117,15 @@ export class NeynarV1APIClient {
   // ------------ User ------------
 
   /**
-   * A list of users in reverse chronological order based on sign up.
+   * Retrieves a list of users in reverse chronological order based on sign up.
    *
-   * @param {Object} [options] - Optional parameters for the request.
+   * @param {Object} [options] - Optional parameters to tailor the request.
    * @param {number} [options.viewerFid] - The FID (unique identifier) of the user viewing the data.
    *   This can be used for providing contextual information specific to the viewer.
    * @param {number} [options.limit] - The maximum number of users to be returned in the response.
-   *   Can be adjusted up to a maximum of 1000.
-   * @param {string} [options.cursor] - A pagination cursor to fetch a specific set of results.
-   *   This is useful for implementing paginated retrieval of the data.
+   *   Defaults to 100, with a maximum allowable value of 1000.
+   * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
+   *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
    *
    * @returns {Promise<RecentUsersResponse>} A promise that resolves to a `RecentUsersResponse` object,
    *   containing the list of recent users and any associated metadata.
@@ -134,8 +134,8 @@ export class NeynarV1APIClient {
    * // Fetch a specific number of recent users, using viewer FID and a pagination cursor
    * client.fetchRecentUsers({
    *   viewerFid: 3,
-   *   limit: 50,
-   *   cursor: 'nextPageCursor'
+   *   limit: 50, // Fetching up to 50 users
+   *   cursor: 'nextPageCursor' // Pagination cursor for the next set of results, Omit this parameter for the initial request.
    * }).then(response => {
    *   console.log('Recent Users:', response);
    * });
@@ -158,7 +158,7 @@ export class NeynarV1APIClient {
   }
 
   /**
-   * Fetches all casts liked by a specific user. This method returns a list of casts that
+   * Retrieves all casts liked by a specific user. This method returns a list of casts that
    * the specified user has liked, with support for pagination through optional parameters.
    *
    * @param {number} fid - The FID (unique identifier) of the user whose liked casts are to be fetched.
@@ -166,9 +166,9 @@ export class NeynarV1APIClient {
    * @param {number} [options.viewerFid] - The FID of the user viewing this information,
    *   used for providing contextual data specific to the viewer.
    * @param {number} [options.limit] - The maximum number of liked casts to be returned in the response.
-   *   This can be adjusted, with a sensible maximum to ensure performance.
-   * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results,
-   *   useful for implementing paginated data retrieval.
+   *   Defaults to 25, with a maximum allowable value of 150.
+   * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
+   *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
    *
    * @returns {Promise<UserCastLikeResponse>} A promise that resolves to a `UserCastLikeResponse` object,
    *   containing the list of casts liked by the user and any associated metadata.
@@ -177,8 +177,8 @@ export class NeynarV1APIClient {
    * // Fetch a specific number of casts liked by a user, using viewer FID and a pagination cursor
    * client.fetchAllCastsLikedByUser(3, {
    *   viewerFid: 2,
-   *   limit: 50,
-   *   cursor: 'nextPageCursor'
+   *   limit: 50, // Fetching up to 50 casts
+   *   cursor: 'nextPageCursor' // Pagination cursor for the next set of results, Omit this parameter for the initial request.
    * }).then(response => {
    *   console.log('Liked Casts:', response);
    * });
@@ -201,7 +201,7 @@ export class NeynarV1APIClient {
   }
 
   /**
-   * Gets the specified user via their FID (if found).
+   * Retrieves the specified user via their FID (if found).
    *
    * @param {number} fid - The FID of the user whose information is being retrieved.
    * @param {number} [viewerFid] - Optional. The FID of the user viewing this information,
@@ -257,7 +257,7 @@ export class NeynarV1APIClient {
   }
 
   /**
-   * Gets the custody address for the specified user via their fid (if found).
+   * Retrieves the custody address for the specified user via their fid (if found).
    *
    * @param {number} fid - The FID (unique identifier) of the user whose custody address is being retrieved.
    *
@@ -282,9 +282,23 @@ export class NeynarV1APIClient {
   // ------------ Cast ------------
 
   /**
-   * Fetches a single cast by its hash.
-   * See [Neynar documentation](https://docs.neynar.com/reference/cast-v1)
+   * Retrieves information about a single cast using its unique hash identifier.
    *
+   * @param {string} hash - The unique hash identifier of the cast to be retrieved.
+   * @param {Object} [options] - Optional parameters to tailor the request.
+   * @param {number} [options.viewerFid] - Optional. The FID of the user viewing the information,
+   *   used for providing contextual data specific to the viewer.
+   *
+   * @returns {Promise<CastResponse>} A promise that resolves to a `CastResponse` object,
+   *   containing detailed information about the specified cast.
+   *
+   * @example
+   * // Example: Retrieve information about a cast with a specific hash, as viewed by a user with FID 3
+   * client.lookUpCastByHash('0xfe90f9de682273e05b201629ad2338bdcd89b6be', { viewerFid: 3 }).then(response => {
+   *   console.log('Cast Information:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/cast-v1).
    */
   public async lookUpCastByHash(
     hash: string,
@@ -325,9 +339,35 @@ export class NeynarV1APIClient {
   }
 
   /**
-   * Gets all casts (including replies and recasts) created by the specified user.
-   * See [Neynar documentation](https://docs.neynar.com/reference/casts-v1)
+   * Retrieves all casts (including replies and recasts) created by the specified user.
    *
+   * @param {number} fid - The FID (unique identifier) of the user whose casts are being retrieved.
+   * @param {Object} [options] - Optional parameters to tailor the request.
+   * @param {string} [options.parentUrl] - Optional. A URL identifying the channel to which the casts belong.
+   *   A cast can be part of a certain channel. The channel is identified by parent_url.
+   *   All casts in the channel ladder up to the same parent_url.
+   * @param {number} [options.viewerFid] - Optional. The FID of the user viewing this information,
+   *   used for providing contextual data specific to the viewer.
+   * @param {number} [options.limit] - Optional. The maximum number of casts to be returned in a single response.
+   *   Defaults to 25, with a maximum allowable value of 150.
+   * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
+   *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
+   *
+   * @returns {Promise<CastsResponse>} A promise that resolves to a `CastsResponse` object,
+   *   containing the casts created by the specified user along with any associated metadata.
+   *
+   * @example
+   * // Example: Retrieve casts created by a user with FID 3, including contextual information for a viewer
+   * client.fetchAllCastsCreatedByUser(3, {
+   *   parentUrl: 'https://ethereum.org',
+   *   viewerFid: 2,
+   *   limit: 50, // Fetching up to 50 casts
+   *   cursor: 'nextPageCursor' // Pagination cursor for the next set of results, Omit this parameter for the initial request.
+   * }).then(response => {
+   *   console.log('User Casts:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/casts-v1).
    */
   public async fetchAllCastsCreatedByUser(
     fid: number,
