@@ -532,7 +532,7 @@ export class NeynarAPIClient {
   /**
    * Retrieves the list of users who have recasted a specific cast.
    *
-   * @param {Cast | string} castOrCastHash - The Cast object or its hash for which recasters are being retrieved.
+   * @param {CastV1 | string} castOrCastHash - The Cast object or its hash for which recasters are being retrieved.
    * @param {Object} [options] - Optional parameters to tailor the request.
    * @param {number} [options.viewerFid] - The FID of the user viewing this information,
    *   used for providing contextual data specific to the viewer.
@@ -566,9 +566,31 @@ export class NeynarAPIClient {
   // ------------ Follows ------------
 
   /**
-   * Get all users that follow the specified user.
-   * See [Neynar documentation](https://docs.neynar.com/reference/followers-v1)
+   * Retrieves all users that follow the specified user.
    *
+   * @param {number} fid - The FID (unique identifier) of the user whose followers are being retrieved.
+   * @param {Object} [options] - Optional parameters to tailor the request.
+   * @param {number} [options.viewerFid] - The FID of the user viewing this information,
+   *   used for providing contextual data specific to the viewer.
+   * @param {number} [options.limit] - The maximum number of results to be returned in a single response.
+   *   Defaults to 25, with a maximum allowable value of 150.
+   * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
+   *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
+   *
+   * @returns {Promise<FollowResponse>} A promise that resolves to a `FollowResponse` object,
+   *   containing a list of the user's followers.
+   *
+   * @example
+   * // Example: Retrieve the first set of followers for a user with FID 12345, limited to 50
+   * client.fetchUserFollowers(3, {
+   *   viewerFid: 2, // The FID of the user viewing this information
+   *   limit: 50, // Fetching up to 50 followers
+   *   // cursor: "nextPageCursor", // Pagination cursor for the next set of results, Omit this parameter for the initial request.
+   * }).then(response => {
+   *   console.log('User Followers:', response); // Outputs the user's followers
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/followers-v1).
    */
   public async fetchUserFollowers(
     fid: number,
@@ -578,9 +600,31 @@ export class NeynarAPIClient {
   }
 
   /**
-   * Get all users the specified user is following.
-   * See [Neynar documentation](https://docs.neynar.com/reference/following-v1)
+   * Retrieves all users the specified user is following.
    *
+   * @param {number} fid - The FID (unique identifier) of the user whose following list is being retrieved.
+   * @param {Object} [options] - Optional parameters to tailor the request.
+   * @param {number} [options.viewerFid] - The FID of the user viewing this information,
+   *   used for providing contextual data specific to the viewer.
+   * @param {number} [options.limit] - The maximum number of results to be returned in a single response.
+   *   Defaults to 25, with a maximum allowable value of 150.
+   * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
+   *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
+   *
+   * @returns {Promise<FollowResponse>} A promise that resolves to a `FollowResponse` object,
+   *   containing a list of users followed by the given user.
+   *
+   * @example
+   * // Example: Retrieve the first set of users followed by a user with FID 12345, limited to 50
+   * client.fetchUserFollowing(3, {
+   *   viewerFid: 2, // The FID of the user viewing this information
+   *   limit: 50, // Fetching up to 50 users
+   *   // cursor: "nextPageCursor", // Pagination cursor for the next set of results, Omit this parameter for the initial request.
+   * }).then(response => {
+   *   console.log('Following Users:', response); // Outputs the list of users followed by the user
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/following-v1).
    */
   public async fetchUserFollowing(
     fid: number,
