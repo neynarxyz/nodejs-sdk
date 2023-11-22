@@ -94,16 +94,24 @@ export class NeynarAPIClient {
    * @param {number} [options.viewerFid] - The FID (unique identifier) of the user viewing the data.
    *   This can be used for providing contextual information specific to the viewer.
    * @param {number} [options.limit] - The maximum number of users to be returned in the response.
-   *   By default, 100 users are returned, but this can be adjusted up to a maximum of 1000.
+   *   Can be adjusted up to a maximum of 1000.
    * @param {string} [options.cursor] - A pagination cursor to fetch a specific set of results.
    *   This is useful for implementing paginated retrieval of the data.
-   *
    *
    * @returns {Promise<RecentUsersResponse>} A promise that resolves to a `RecentUsersResponse` object,
    *   containing the list of recent users and any associated metadata.
    *
-   * For more information, refer to the Neynar documentation:
-   * [Neynar documentation](https://docs.neynar.com/reference/recent-users-v1)
+   * @example
+   * // Fetch a specific number of recent users, using viewer FID and a pagination cursor
+   * apiClient.fetchRecentUsers({
+   *   viewerFid: 3,
+   *   limit: 50,
+   *   cursor: 'nextPageCursor'
+   * }).then(response => {
+   *   console.log('Recent Users:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/recent-users-v1)
    */
   public async fetchRecentUsers(options?: {
     viewerFid?: number;
@@ -114,9 +122,32 @@ export class NeynarAPIClient {
   }
 
   /**
-   * Fetch all likes by a given user.
-   * See [Neynar documentation](https://docs.neynar.com/reference/user-cast-likes-v1)
+   * Fetches all casts liked by a specific user. This method returns a list of casts that
+   * the specified user has liked, with support for pagination through optional parameters.
    *
+   * @param {number} fid - The FID (unique identifier) of the user whose liked casts are to be fetched.
+   * @param {Object} [options] - Optional parameters to tailor the request.
+   * @param {number} [options.viewerFid] - The FID of the user viewing this information,
+   *   used for providing contextual data specific to the viewer.
+   * @param {number} [options.limit] - The maximum number of liked casts to be returned in the response.
+   *   This can be adjusted, with a sensible maximum to ensure performance.
+   * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results,
+   *   useful for implementing paginated data retrieval.
+   *
+   * @returns {Promise<UserCastLikeResponse>} A promise that resolves to a `UserCastLikeResponse` object,
+   *   containing the list of casts liked by the user and any associated metadata.
+   *
+   * @example
+   * // Fetch a specific number of casts liked by a user, using viewer FID and a pagination cursor
+   * apiClient.fetchAllCastsLikedByUser(3, {
+   *   viewerFid: 2,
+   *   limit: 50,
+   *   cursor: 'nextPageCursor'
+   * }).then(response => {
+   *   console.log('Liked Casts:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-cast-likes-v1).
    */
   public async fetchAllCastsLikedByUser(
     fid: number,
