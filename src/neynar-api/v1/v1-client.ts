@@ -1,6 +1,5 @@
 import {
   Cast,
-  User,
   CastApi,
   UserApi,
   VerificationApi,
@@ -9,7 +8,6 @@ import {
   FollowsApi,
   Configuration,
   ErrorRes,
-  VerificationResponseResult,
   RecentUsersResponse,
   RecentCastsResponse,
   UserCastLikeResponse,
@@ -23,6 +21,8 @@ import {
   UserResponse,
   CustodyAddressResponse,
   CastResponse,
+  VerificationResponse,
+  AllCastsInThreadResponse,
 } from "./openapi";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -313,15 +313,29 @@ export class NeynarV1APIClient {
   }
 
   /**
-   * Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
-   * See [Neynar documentation](https://docs.neynar.com/reference/all-casts-in-thread-v1)
-   * Note that the parent provided by the caller is included in the response.
+   * Retrieves all casts, including root cast and all replies for a given thread hash. No limit to the depth of replies.
+   * **Note :** The parent provided by the caller is included in the response.
    *
+   * @param {Cast | string} threadParent - The parent cast or the hash of the thread for which
+   *   all related casts are to be fetched. If a Cast object is provided, its hash is used.
+   * @param {number} [viewerFid] - The FID of the user viewing this information,
+   *   used for providing contextual data specific to the viewer.
+   *
+   * @returns {Promise<AllCastsInThreadResponse>} A promise that resolves to an `AllCastsInThreadResponse` object,
+   *   containing all casts within the specified thread.
+   *
+   * @example
+   * // Example: Fetch all casts in a thread using a thread hash
+   * client.fetchAllCastsInThread('0xfe90f9de682273e05b201629ad2338bdcd89b6be', 3).then(response => {
+   *   console.log('Thread Casts:', response); // Outputs all casts in the thread
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/all-casts-in-thread-v1).
    */
   public async fetchAllCastsInThread(
     threadParent: Cast | string,
     viewerFid?: number
-  ): Promise<Cast[] | null> {
+  ): Promise<AllCastsInThreadResponse> {
     let threadHash: string;
 
     if (typeof threadParent === "string") {
@@ -335,7 +349,7 @@ export class NeynarV1APIClient {
       threadHash,
       viewerFid
     );
-    return response.data.result.casts;
+    return response.data;
   }
 
   /**
@@ -434,18 +448,28 @@ export class NeynarV1APIClient {
   // ------------ Verification ------------
 
   /**
-   * Gets all known verifications of a user.
-   * See [Neynar documentation](https://docs.neynar.com/reference/verifications-v1)
+   * Retrieve all known verifications of a user.
    *
+   * @param {number} fid - The FID (unique identifier) of the user whose verifications are being retrieved.
+   *
+   * @returns {Promise<VerificationResponse>} A promise that resolves to a `VerificationResponse` object
+   *
+   * @example
+   * // Example: Retrieve all verifications for a user with FID 3
+   * client.fetchUserVerifications(3).then(response => {
+   *   console.log('User Verifications:', response); // Outputs the user's verifications
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/verifications-v1).
    */
   public async fetchUserVerifications(
     fid: number
-  ): Promise<VerificationResponseResult | null> {
+  ): Promise<VerificationResponse> {
     const response = await this.apis.verification.verifications(
       this.apiKey,
       fid
     );
-    return response.data.result;
+    return response.data;
   }
 
   /**
