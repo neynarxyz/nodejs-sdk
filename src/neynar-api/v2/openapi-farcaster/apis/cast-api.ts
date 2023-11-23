@@ -47,18 +47,18 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
          * @summary Retrieve cast for a given hash or Warpcast URL
          * @param {string} apiKey API key required for authentication.
-         * @param {CastParamType} type 
          * @param {string} identifier Cast identifier (Its either a url or a hash)
+         * @param {CastParamType} type 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cast: async (apiKey: string, type: CastParamType, identifier: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        cast: async (apiKey: string, identifier: string, type: CastParamType, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('cast', 'apiKey', apiKey)
-            // verify required parameter 'type' is not null or undefined
-            assertParamExists('cast', 'type', type)
             // verify required parameter 'identifier' is not null or undefined
             assertParamExists('cast', 'identifier', identifier)
+            // verify required parameter 'type' is not null or undefined
+            assertParamExists('cast', 'type', type)
             const localVarPath = `/farcaster/cast`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -71,12 +71,12 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            if (type !== undefined) {
-                localVarQueryParameter['type'] = type;
-            }
-
             if (identifier !== undefined) {
                 localVarQueryParameter['identifier'] = identifier;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
             }
 
             if (apiKey != null) {
@@ -238,13 +238,13 @@ export const CastApiFp = function(configuration?: Configuration) {
          * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
          * @summary Retrieve cast for a given hash or Warpcast URL
          * @param {string} apiKey API key required for authentication.
-         * @param {CastParamType} type 
          * @param {string} identifier Cast identifier (Its either a url or a hash)
+         * @param {CastParamType} type 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async cast(apiKey: string, type: CastParamType, identifier: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.cast(apiKey, type, identifier, options);
+        async cast(apiKey: string, identifier: string, type: CastParamType, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cast(apiKey, identifier, type, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -297,13 +297,13 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
          * @summary Retrieve cast for a given hash or Warpcast URL
          * @param {string} apiKey API key required for authentication.
-         * @param {CastParamType} type 
          * @param {string} identifier Cast identifier (Its either a url or a hash)
+         * @param {CastParamType} type 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cast(apiKey: string, type: CastParamType, identifier: string, options?: any): AxiosPromise<CastResponse> {
-            return localVarFp.cast(apiKey, type, identifier, options).then((request) => request(axios, basePath));
+        cast(apiKey: string, identifier: string, type: CastParamType, options?: any): AxiosPromise<CastResponse> {
+            return localVarFp.cast(apiKey, identifier, type, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve multiple casts using their respective hashes.
@@ -352,14 +352,14 @@ export class CastApi extends BaseAPI {
      * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
      * @summary Retrieve cast for a given hash or Warpcast URL
      * @param {string} apiKey API key required for authentication.
-     * @param {CastParamType} type 
      * @param {string} identifier Cast identifier (Its either a url or a hash)
+     * @param {CastParamType} type 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CastApi
      */
-    public cast(apiKey: string, type: CastParamType, identifier: string, options?: AxiosRequestConfig) {
-        return CastApiFp(this.configuration).cast(apiKey, type, identifier, options).then((request) => request(this.axios, this.basePath));
+    public cast(apiKey: string, identifier: string, type: CastParamType, options?: AxiosRequestConfig) {
+        return CastApiFp(this.configuration).cast(apiKey, identifier, type, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
