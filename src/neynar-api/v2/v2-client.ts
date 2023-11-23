@@ -183,7 +183,7 @@ export class NeynarV2APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/remove-verification)
    *
    */
-  public async removeVerification(
+  public async deleteVerification(
     signerUuid: string,
     address: string
   ): Promise<OperationResponse> {
@@ -205,7 +205,7 @@ export class NeynarV2APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/add-verification)
    *
    */
-  public async addVerification(
+  public async publishVerification(
     signerUuid: string,
     address: string,
     blockHash: string,
@@ -271,7 +271,7 @@ export class NeynarV2APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/update-user)
    *
    */
-  public async updateUserProfile(
+  public async updateUser(
     signerUuid: string,
     options?: {
       bio?: string;
@@ -301,7 +301,7 @@ export class NeynarV2APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/user-bulk)
    *
    */
-  public async fetchUsersInBulk(
+  public async fetchBulkUsers(
     fids: string,
     viewerFid?: number
   ): Promise<UserBulk200Response> {
@@ -357,7 +357,7 @@ export class NeynarV2APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/casts)
    *
    */
-  public async fetchBulkCastsByHash(casts: string): Promise<CastsResponse> {
+  public async fetchBulkCasts(casts: string): Promise<CastsResponse> {
     const response = await this.apis.cast.casts({
       casts,
     });
@@ -418,7 +418,7 @@ export class NeynarV2APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/feed)
    *
    */
-  public async fetchFeedPage(
+  public async fetchFeed(
     feedType: FeedType,
     options?: {
       filterType?: FilterType;
@@ -450,7 +450,7 @@ export class NeynarV2APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/post-reaction)
    *
    */
-  public async reactToCast(
+  public async publishReactionToCast(
     signerUuid: string,
     reaction: ReactionType,
     castOrCastHash: Cast | string
@@ -475,7 +475,7 @@ export class NeynarV2APIClient {
   /**
    * Remove a reaction to a cast. See [Neynar documentation](https://docs.neynar.com/reference/delete-reaction)
    */
-  public async removeReactionFromCast(
+  public async deleteReactionFromCast(
     signerUuid: string,
     reaction: ReactionType,
     castOrCastHash: Cast | string
@@ -523,7 +523,7 @@ export class NeynarV2APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/relevant-followers)
    *
    */
-  public async fetchRelaventFollowers(
+  public async fetchRelevantFollowers(
     targetFid: number,
     viewerFid: number
   ): Promise<RelevantFollowersResponse> {

@@ -707,11 +707,11 @@ export class NeynarAPIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/remove-verification)
    *
    */
-  public async removeVerification(
+  public async deleteVerification(
     signerUuid: string,
     address: string
   ): Promise<OperationResponse> {
-    return await this.clients.v2.removeVerification(signerUuid, address);
+    return await this.clients.v2.deleteVerification(signerUuid, address);
   }
 
   /**
@@ -719,13 +719,13 @@ export class NeynarAPIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/add-verification)
    *
    */
-  public async addVerification(
+  public async publishVerification(
     signerUuid: string,
     address: string,
     blockHash: string,
     ethSignature: string
   ): Promise<OperationResponse> {
-    return await this.clients.v2.addVerification(
+    return await this.clients.v2.publishVerification(
       signerUuid,
       address,
       blockHash,
@@ -763,7 +763,7 @@ export class NeynarAPIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/update-user)
    *
    */
-  public async updateUserProfile(
+  public async updateUser(
     signerUuid: string,
     options?: {
       bio?: string;
@@ -773,7 +773,7 @@ export class NeynarAPIClient {
       display_name?: string;
     }
   ): Promise<OperationResponse> {
-    return await this.clients.v2.updateUserProfile(signerUuid, options);
+    return await this.clients.v2.updateUser(signerUuid, options);
   }
 
   /**
@@ -781,11 +781,11 @@ export class NeynarAPIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/user-bulk)
    *
    */
-  public async fetchUsersInBulk(
+  public async fetchBulkUsers(
     fids: string,
     viewerFid?: number
   ): Promise<UserBulk200Response> {
-    return await this.clients.v2.fetchUsersInBulk(fids, viewerFid);
+    return await this.clients.v2.fetchBulkUsers(fids, viewerFid);
   }
 
   /**
@@ -832,8 +832,8 @@ export class NeynarAPIClient {
    * @param casts - Cast hashes (Comma Separated)
    *
    */
-  public async fetchBulkCastsByHash(casts: string): Promise<CastsResponse> {
-    return await this.clients.v2.fetchBulkCastsByHash(casts);
+  public async fetchBulkCasts(casts: string): Promise<CastsResponse> {
+    return await this.clients.v2.fetchBulkCasts(casts);
   }
 
   /**
@@ -868,7 +868,7 @@ export class NeynarAPIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/feed)
    *
    */
-  public async fetchFeedPage(
+  public async fetchFeed(
     feedType: FeedType,
     options?: {
       filterType?: FilterType;
@@ -880,7 +880,7 @@ export class NeynarAPIClient {
       withRecasts?: boolean;
     }
   ): Promise<FeedResponse> {
-    return await this.clients.v2.fetchFeedPage(feedType, options);
+    return await this.clients.v2.fetchFeed(feedType, options);
   }
 
   // ------------ Reaction ------------
@@ -890,12 +890,12 @@ export class NeynarAPIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/post-reaction)
    *
    */
-  public async reactToCast(
+  public async publishReactionToCast(
     signerUuid: string,
     reaction: ReactionType,
     castOrCastHash: Cast | string
   ): Promise<OperationResponse> {
-    return await this.clients.v2.reactToCast(
+    return await this.clients.v2.publishReactionToCast(
       signerUuid,
       reaction,
       castOrCastHash
@@ -905,12 +905,12 @@ export class NeynarAPIClient {
   /**
    * Remove a reaction to a cast. See [Neynar documentation](https://docs.neynar.com/reference/delete-reaction)
    */
-  public async removeReactionFromCast(
+  public async deleteReactionFromCast(
     signerUuid: string,
     reaction: ReactionType,
     castOrCastHash: Cast | string
   ): Promise<OperationResponse> {
-    return await this.clients.v2.removeReactionFromCast(
+    return await this.clients.v2.deleteReactionFromCast(
       signerUuid,
       reaction,
       castOrCastHash
@@ -938,11 +938,11 @@ export class NeynarAPIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/relevant-followers)
    *
    */
-  public async fetchRelaventFollowers(
+  public async fetchRelevantFollowers(
     targetFid: number,
     viewerFid: number
   ): Promise<RelevantFollowersResponse> {
-    return await this.clients.v2.fetchRelaventFollowers(targetFid, viewerFid);
+    return await this.clients.v2.fetchRelevantFollowers(targetFid, viewerFid);
   }
 
   // ------------ Recommendation ------------
