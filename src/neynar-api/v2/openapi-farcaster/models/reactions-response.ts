@@ -15,32 +15,28 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { User } from './user';
+import { NextCursor } from './next-cursor';
+// May contain unused imports in some cases
+// @ts-ignore
+import { Reactions } from './reactions';
 
 /**
  * 
  * @export
- * @interface NotificationFollow
+ * @interface ReactionsResponse
  */
-export interface NotificationFollow {
+export interface ReactionsResponse {
     /**
      * 
-     * @type {string}
-     * @memberof NotificationFollow
+     * @type {Array<Reactions>}
+     * @memberof ReactionsResponse
      */
-    'object': NotificationFollowObjectEnum;
+    'reactions': Array<Reactions>;
     /**
      * 
-     * @type {User}
-     * @memberof NotificationFollow
+     * @type {NextCursor}
+     * @memberof ReactionsResponse
      */
-    'user': User;
+    'next': NextCursor;
 }
-
-export const NotificationFollowObjectEnum = {
-    Follow: 'follow'
-} as const;
-
-export type NotificationFollowObjectEnum = typeof NotificationFollowObjectEnum[keyof typeof NotificationFollowObjectEnum];
-
 

@@ -20,10 +20,12 @@
  * @enum {string}
  */
 
-export enum CastParamType {
-    Url = 'url',
-    Hash = 'hash'
-}
+export const CastParamType = {
+    Url: 'url',
+    Hash: 'hash'
+} as const;
+
+export type CastParamType = typeof CastParamType[keyof typeof CastParamType];
 
 
 

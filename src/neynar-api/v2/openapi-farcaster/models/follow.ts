@@ -13,31 +13,34 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { User } from './user';
 
 /**
  * 
  * @export
- * @interface NotificationReactionsCast
+ * @interface Follow
  */
-export interface NotificationReactionsCast {
+export interface Follow {
     /**
      * 
      * @type {string}
-     * @memberof NotificationReactionsCast
+     * @memberof Follow
      */
-    'hash': string;
+    'object': FollowObjectEnum;
     /**
      * 
-     * @type {string}
-     * @memberof NotificationReactionsCast
+     * @type {User}
+     * @memberof Follow
      */
-    'object': NotificationReactionsCastObjectEnum;
+    'user': User;
 }
 
-export const NotificationReactionsCastObjectEnum = {
-    CastDehydrated: 'cast_dehydrated'
+export const FollowObjectEnum = {
+    Follow: 'follow'
 } as const;
 
-export type NotificationReactionsCastObjectEnum = typeof NotificationReactionsCastObjectEnum[keyof typeof NotificationReactionsCastObjectEnum];
+export type FollowObjectEnum = typeof FollowObjectEnum[keyof typeof FollowObjectEnum];
 
 

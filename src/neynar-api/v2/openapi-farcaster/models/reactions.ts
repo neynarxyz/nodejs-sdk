@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { NotificationReactionsCast } from './notification-reactions-cast';
+import { ReactionsCast } from './reactions-cast';
 // May contain unused imports in some cases
 // @ts-ignore
 import { User } from './user';
@@ -23,34 +23,34 @@ import { User } from './user';
 /**
  * 
  * @export
- * @interface NotificationReactions
+ * @interface Reactions
  */
-export interface NotificationReactions {
+export interface Reactions {
     /**
      * 
      * @type {string}
-     * @memberof NotificationReactions
+     * @memberof Reactions
      */
-    'object': NotificationReactionsObjectEnum;
+    'object': ReactionsObjectEnum;
     /**
      * 
-     * @type {NotificationReactionsCast}
-     * @memberof NotificationReactions
+     * @type {ReactionsCast}
+     * @memberof Reactions
      */
-    'cast': NotificationReactionsCast;
+    'cast': ReactionsCast;
     /**
      * 
      * @type {User}
-     * @memberof NotificationReactions
+     * @memberof Reactions
      */
     'user': User;
 }
 
-export const NotificationReactionsObjectEnum = {
+export const ReactionsObjectEnum = {
     Likes: 'likes',
     Recasts: 'recasts'
 } as const;
 
-export type NotificationReactionsObjectEnum = typeof NotificationReactionsObjectEnum[keyof typeof NotificationReactionsObjectEnum];
+export type ReactionsObjectEnum = typeof ReactionsObjectEnum[keyof typeof ReactionsObjectEnum];
 
 

@@ -14,12 +14,19 @@
 
 
 
-export * from './apis/cast-api';
-export * from './apis/feed-api';
-export * from './apis/follows-api';
-export * from './apis/notifications-api';
-export * from './apis/reaction-api';
-export * from './apis/signer-api';
-export * from './apis/storage-api';
-export * from './apis/user-api';
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const ReactionsType = {
+    Likes: 'likes',
+    Recasts: 'recasts',
+    All: 'all'
+} as const;
+
+export type ReactionsType = typeof ReactionsType[keyof typeof ReactionsType];
+
+
 

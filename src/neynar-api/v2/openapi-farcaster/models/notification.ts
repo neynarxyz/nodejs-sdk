@@ -18,10 +18,10 @@
 import { CastWithInteractions } from './cast-with-interactions';
 // May contain unused imports in some cases
 // @ts-ignore
-import { NotificationFollow } from './notification-follow';
+import { Follow } from './follow';
 // May contain unused imports in some cases
 // @ts-ignore
-import { NotificationReactions } from './notification-reactions';
+import { Reactions } from './reactions';
 
 /**
  * 
@@ -49,10 +49,10 @@ export interface Notification {
     'type': NotificationTypeEnum;
     /**
      * 
-     * @type {Array<NotificationFollow>}
+     * @type {Array<Follow>}
      * @memberof Notification
      */
-    'follows'?: Array<NotificationFollow>;
+    'follows'?: Array<Follow>;
     /**
      * 
      * @type {CastWithInteractions}
@@ -61,10 +61,10 @@ export interface Notification {
     'cast'?: CastWithInteractions;
     /**
      * 
-     * @type {Array<NotificationReactions>}
+     * @type {Array<Reactions>}
      * @memberof Notification
      */
-    'reactions'?: Array<NotificationReactions>;
+    'reactions'?: Array<Reactions>;
 }
 
 export const NotificationTypeEnum = {

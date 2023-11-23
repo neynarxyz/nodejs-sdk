@@ -14,12 +14,29 @@
 
 
 
-export * from './apis/cast-api';
-export * from './apis/feed-api';
-export * from './apis/follows-api';
-export * from './apis/notifications-api';
-export * from './apis/reaction-api';
-export * from './apis/signer-api';
-export * from './apis/storage-api';
-export * from './apis/user-api';
+/**
+ * 
+ * @export
+ * @interface StorageObject
+ */
+export interface StorageObject {
+    /**
+     * 
+     * @type {string}
+     * @memberof StorageObject
+     */
+    'object'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof StorageObject
+     */
+    'used'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof StorageObject
+     */
+    'capacity'?: number;
+}
 
