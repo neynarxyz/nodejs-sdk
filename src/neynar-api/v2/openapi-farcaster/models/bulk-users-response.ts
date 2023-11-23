@@ -20,13 +20,13 @@ import { User } from './user';
 /**
  * 
  * @export
- * @interface UserBulk200Response
+ * @interface BulkUsersResponse
  */
-export interface UserBulk200Response {
+export interface BulkUsersResponse {
     /**
      * 
      * @type {Array<User>}
-     * @memberof UserBulk200Response
+     * @memberof BulkUsersResponse
      */
     'users': Array<User>;
 }

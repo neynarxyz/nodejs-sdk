@@ -1,6 +1,7 @@
 export * from './active-status';
 export * from './add-verification-req-body';
 export * from './bulk-follow-response';
+export * from './bulk-users-response';
 export * from './cast';
 export * from './cast-id';
 export * from './cast-notification-type';
@@ -54,7 +55,6 @@ export * from './storage-object';
 export * from './storage-usage-response';
 export * from './update-user-req-body';
 export * from './user';
-export * from './user-bulk200-response';
 export * from './user-dehydrated';
 export * from './user-profile';
 export * from './user-profile-bio';

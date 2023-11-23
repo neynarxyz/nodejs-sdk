@@ -26,6 +26,8 @@ import { AddVerificationReqBody } from '../models';
 // @ts-ignore
 import { BulkFollowResponse } from '../models';
 // @ts-ignore
+import { BulkUsersResponse } from '../models';
+// @ts-ignore
 import { ErrorRes } from '../models';
 // @ts-ignore
 import { FollowReqBody } from '../models';
@@ -35,8 +37,6 @@ import { OperationResponse } from '../models';
 import { RemoveVerificationReqBody } from '../models';
 // @ts-ignore
 import { UpdateUserReqBody } from '../models';
-// @ts-ignore
-import { UserBulk200Response } from '../models';
 // @ts-ignore
 import { UserResponse } from '../models';
 // @ts-ignore
@@ -497,7 +497,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async userBulk(apiKey: string, fids: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserBulk200Response>> {
+        async userBulk(apiKey: string, fids: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkUsersResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.userBulk(apiKey, fids, viewerFid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -599,7 +599,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userBulk(apiKey: string, fids: string, viewerFid?: number, options?: any): AxiosPromise<UserBulk200Response> {
+        userBulk(apiKey: string, fids: string, viewerFid?: number, options?: any): AxiosPromise<BulkUsersResponse> {
             return localVarFp.userBulk(apiKey, fids, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
