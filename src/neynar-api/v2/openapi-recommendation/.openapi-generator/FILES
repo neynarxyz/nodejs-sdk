@@ -10,9 +10,10 @@ git_push.sh
 index.ts
 models/active-status.ts
 models/error-res.ts
-models/fetch-relevant-mints200-response.ts
 models/index.ts
 models/relevant-mint.ts
+models/relevant-mints.ts
 models/user-profile-bio.ts
 models/user-profile.ts
+models/user-viewer-context.ts
 models/user.ts

@@ -18,15 +18,15 @@
 import { RelevantMint } from './relevant-mint';
 
 /**
- * 
+ * A list of mint objects relevant to the user
  * @export
- * @interface FetchRelevantMints200Response
+ * @interface RelevantMints
  */
-export interface FetchRelevantMints200Response {
+export interface RelevantMints {
     /**
      * 
      * @type {Array<RelevantMint>}
-     * @memberof FetchRelevantMints200Response
+     * @memberof RelevantMints
      */
     'mints': Array<RelevantMint>;
 }
