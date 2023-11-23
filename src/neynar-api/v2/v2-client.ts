@@ -16,37 +16,29 @@ import {
   ErrorRes,
   FeedApi,
   UserApi,
-  CastApiPostCastRequest,
-  FeedType,
-  FilterType,
   FeedResponse,
-  SignerApiRegisterSignedKeyRequest,
   NotificationsResponse,
   NotificationsApi,
   FollowsApi,
   RelevantFollowersResponse,
-  UserApiRemoveVerificationRequest,
-  UserApiAddVerificationRequest,
-  UserApiFollowRequest,
-  UserApiUpdateUserRequest,
-  UserBulk200Response,
   UserSearchResponse,
   CastResponse,
   CastsResponse,
   UserResponse,
+  BulkUsersResponse,
+  FeedFeedTypeEnum,
+  FeedFilterTypeEnum,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
 import type { SetRequired } from "type-fest";
-import {
-  FetchRelevantMints200Response,
-  NFTApi,
-} from "./openapi-recommendation";
+import { NFTApi, RelevantMints } from "./openapi-recommendation";
 
 const BASE_PATH = "https://api.neynar.com/v2";
 
 export class NeynarV2APIClient {
   private readonly logger: Logger;
+  private readonly apiKey: string;
 
   public readonly apis: {
     signer: SignerApi;
@@ -83,6 +75,8 @@ export class NeynarV2APIClient {
         "Attempt to use an authenticated API method without first providing an api key"
       );
     }
+
+    this.apiKey = apiKey;
 
     if (axiosInstance === undefined) {
       axiosInstance = axios.create();
@@ -139,7 +133,7 @@ export class NeynarV2APIClient {
    *
    */
   public async createSigner(): Promise<Signer> {
-    const response = await this.apis.signer.createSigner();
+    const response = await this.apis.signer.createSigner(this.apiKey);
     return response.data;
   }
 
@@ -149,7 +143,7 @@ export class NeynarV2APIClient {
    *
    */
   public async lookupSigner(signerUuid: string): Promise<Signer | null> {
-    const response = await this.apis.signer.signer({ signerUuid });
+    const response = await this.apis.signer.signer(this.apiKey, signerUuid);
     return response.data;
   }
 
@@ -164,15 +158,16 @@ export class NeynarV2APIClient {
     deadline: number,
     signature: string
   ): Promise<Signer> {
-    const request: SignerApiRegisterSignedKeyRequest = {
-      registerSignerKeyReqBody: {
-        signer_uuid: signerUuid,
-        app_fid: fid,
-        deadline: deadline,
-        signature: signature,
-      },
+    const registerSignerKeyReqBody = {
+      signer_uuid: signerUuid,
+      app_fid: fid,
+      deadline: deadline,
+      signature: signature,
     };
-    const response = await this.apis.signer.registerSignedKey(request);
+    const response = await this.apis.signer.registerSignedKey(
+      this.apiKey,
+      registerSignerKeyReqBody
+    );
     return response.data;
   }
 
@@ -187,15 +182,14 @@ export class NeynarV2APIClient {
     signerUuid: string,
     address: string
   ): Promise<OperationResponse> {
-    const request: UserApiRemoveVerificationRequest = {
-      removeVerificationReqBody: {
-        signer_uuid: signerUuid,
-        address,
-      },
+    const removeVerificationReqBody = {
+      signer_uuid: signerUuid,
+      address,
     };
 
     const response = await this.apis.user.farcasterUserVerificationDelete(
-      request
+      this.apiKey,
+      removeVerificationReqBody
     );
     return response.data;
   }
@@ -211,17 +205,16 @@ export class NeynarV2APIClient {
     blockHash: string,
     ethSignature: string
   ): Promise<OperationResponse> {
-    const request: UserApiAddVerificationRequest = {
-      addVerificationReqBody: {
-        signer_uuid: signerUuid,
-        address,
-        block_hash: blockHash,
-        eth_signature: ethSignature,
-      },
+    const addVerificationReqBody = {
+      signer_uuid: signerUuid,
+      address,
+      block_hash: blockHash,
+      eth_signature: ethSignature,
     };
 
     const response = await this.apis.user.farcasterUserVerificationPost(
-      request
+      this.apiKey,
+      addVerificationReqBody
     );
     return response.data;
   }
@@ -236,14 +229,15 @@ export class NeynarV2APIClient {
     signerUuid: string,
     targetFids: number[]
   ): Promise<BulkFollowResponse> {
-    const request: UserApiFollowRequest = {
-      followReqBody: {
-        signer_uuid: signerUuid,
-        target_fids: targetFids,
-      },
+    const followReqBody = {
+      signer_uuid: signerUuid,
+      target_fids: targetFids,
     };
 
-    const response = await this.apis.user.followUser(request);
+    const response = await this.apis.user.followUser(
+      this.apiKey,
+      followReqBody
+    );
     return response.data;
   }
 
@@ -256,13 +250,14 @@ export class NeynarV2APIClient {
     signerUuid: string,
     targetFids: number[]
   ): Promise<BulkFollowResponse> {
-    const request: UserApiFollowRequest = {
-      followReqBody: {
-        signer_uuid: signerUuid,
-        target_fids: targetFids,
-      },
+    const followReqBody = {
+      signer_uuid: signerUuid,
+      target_fids: targetFids,
     };
-    const response = await this.apis.user.unfollowUser(request);
+    const response = await this.apis.user.unfollowUser(
+      this.apiKey,
+      followReqBody
+    );
     return response.data;
   }
 
@@ -281,18 +276,18 @@ export class NeynarV2APIClient {
       displayName?: string;
     }
   ): Promise<OperationResponse> {
-    const request: UserApiUpdateUserRequest = {
-      updateUserReqBody: {
-        signer_uuid: signerUuid,
-        bio: options?.bio,
-        pfp_url: options?.pfpUrl,
-        url: options?.url,
-        username: options?.username,
-        display_name: options?.displayName,
-      },
+    const updateUserReqBody = {
+      signer_uuid: signerUuid,
+      bio: options?.bio,
+      pfp_url: options?.pfpUrl,
+      url: options?.url,
+      username: options?.username,
+      display_name: options?.displayName,
     };
-
-    const response = await this.apis.user.updateUser(request);
+    const response = await this.apis.user.updateUser(
+      this.apiKey,
+      updateUserReqBody
+    );
     return response.data;
   }
 
@@ -302,10 +297,15 @@ export class NeynarV2APIClient {
    *
    */
   public async fetchBulkUsers(
-    fids: string,
+    fids: number[],
     viewerFid?: number
-  ): Promise<UserBulk200Response> {
-    const response = await this.apis.user.userBulk({ fids, viewerFid });
+  ): Promise<BulkUsersResponse> {
+    const _fids = fids.join(",");
+    const response = await this.apis.user.userBulk(
+      this.apiKey,
+      _fids,
+      viewerFid
+    );
     return response.data;
   }
 
@@ -317,7 +317,7 @@ export class NeynarV2APIClient {
     q: string,
     viewerFid: number
   ): Promise<UserSearchResponse> {
-    const response = await this.apis.user.userSearch({ q, viewerFid });
+    const response = await this.apis.user.userSearch(this.apiKey, q, viewerFid);
     return response.data;
   }
 
@@ -328,9 +328,10 @@ export class NeynarV2APIClient {
   public async lookupUserByCustodyAddress(
     custodyAddress: string
   ): Promise<UserResponse> {
-    const response = await this.apis.user.lookupUserByCustodyAddress({
-      custodyAddress,
-    });
+    const response = await this.apis.user.lookupUserByCustodyAddress(
+      this.apiKey,
+      custodyAddress
+    );
     return response.data;
   }
 
@@ -345,10 +346,11 @@ export class NeynarV2APIClient {
     castHashOrUrl: string,
     type: CastParamType
   ): Promise<CastResponse> {
-    const response = await this.apis.cast.cast({
-      type,
-      identifier: castHashOrUrl,
-    });
+    const response = await this.apis.cast.cast(
+      this.apiKey,
+      castHashOrUrl,
+      type
+    );
     return response.data;
   }
 
@@ -357,10 +359,9 @@ export class NeynarV2APIClient {
    * See [Neynar documentation](https://docs.neynar.com/reference/casts)
    *
    */
-  public async fetchBulkCasts(casts: string): Promise<CastsResponse> {
-    const response = await this.apis.cast.casts({
-      casts,
-    });
+  public async fetchBulkCasts(castsHashes: string[]): Promise<CastsResponse> {
+    const _castsHashes = castsHashes.join(",");
+    const response = await this.apis.cast.casts(this.apiKey, _castsHashes);
     return response.data;
   }
 
@@ -374,15 +375,16 @@ export class NeynarV2APIClient {
     text: string,
     options?: { embeds?: EmbeddedCast[]; replyTo?: string }
   ): Promise<PostCastResponseCast> {
-    const request: CastApiPostCastRequest = {
-      postCastReqBody: {
-        signer_uuid: signerUuid,
-        text: text,
-        embeds: options?.embeds,
-        parent: options?.replyTo,
-      },
+    const postCastReqBody = {
+      signer_uuid: signerUuid,
+      text: text,
+      embeds: options?.embeds,
+      parent: options?.replyTo,
     };
-    const response = await this.apis.cast.postCast(request);
+    const response = await this.apis.cast.postCast(
+      this.apiKey,
+      postCastReqBody
+    );
     return response.data.cast;
   }
 
@@ -401,13 +403,14 @@ export class NeynarV2APIClient {
     } else {
       castHash = castOrCastHash.hash;
     }
-    const body: DeleteCastReqBody = {
+    const deleteCastReqBody: DeleteCastReqBody = {
       signer_uuid: signerUuid,
       target_hash: castHash,
     };
-    const response = await this.apis.cast.deleteCast({
-      deleteCastReqBody: body,
-    });
+    const response = await this.apis.cast.deleteCast(
+      this.apiKey,
+      deleteCastReqBody
+    );
     return response.data;
   }
 
@@ -419,27 +422,30 @@ export class NeynarV2APIClient {
    *
    */
   public async fetchFeed(
-    feedType: FeedType,
+    feedType: FeedFeedTypeEnum,
     options?: {
-      filterType?: FilterType;
+      filterType?: FeedFilterTypeEnum;
       fid?: number;
-      fids?: string;
+      fids?: number[];
       parentUrl?: string;
       limit?: number;
       cursor?: string;
       withRecasts?: boolean;
     }
   ): Promise<FeedResponse> {
-    const response = await this.apis.feed.feed({
+    const _fids = options?.fids?.join(",");
+
+    const response = await this.apis.feed.feed(
+      this.apiKey,
       feedType,
-      filterType: options?.filterType,
-      fid: options?.fid,
-      fids: options?.fids,
-      parentUrl: options?.parentUrl,
-      cursor: options?.cursor,
-      limit: options?.limit,
-      withRecasts: options?.withRecasts,
-    });
+      options?.filterType,
+      options?.fid,
+      _fids,
+      options?.parentUrl,
+      options?.withRecasts,
+      options?.limit,
+      options?.cursor
+    );
     return response.data;
   }
 
@@ -466,9 +472,7 @@ export class NeynarV2APIClient {
       reaction_type: reaction,
       target: castHash,
     };
-    const response = await this.apis.reaction.postReaction({
-      reactionReqBody: body,
-    });
+    const response = await this.apis.reaction.postReaction(this.apiKey, body);
     return response.data;
   }
 
@@ -491,9 +495,7 @@ export class NeynarV2APIClient {
       reaction_type: reaction,
       target: castHash,
     };
-    const response = await this.apis.reaction.deleteReaction({
-      reactionReqBody: body,
-    });
+    const response = await this.apis.reaction.deleteReaction(this.apiKey, body);
     return response.data;
   }
 
@@ -508,11 +510,12 @@ export class NeynarV2APIClient {
     fid: number,
     options?: { cursor?: string; limit?: number }
   ): Promise<NotificationsResponse> {
-    const response = await this.apis.notifications.notifications({
+    const response = await this.apis.notifications.notifications(
+      this.apiKey,
       fid,
-      cursor: options?.cursor,
-      limit: options?.limit,
-    });
+      options?.limit,
+      options?.cursor
+    );
     return response.data;
   }
 
@@ -527,10 +530,11 @@ export class NeynarV2APIClient {
     targetFid: number,
     viewerFid: number
   ): Promise<RelevantFollowersResponse> {
-    const response = await this.apis.follows.relevantFollowers({
+    const response = await this.apis.follows.relevantFollowers(
+      this.apiKey,
       targetFid,
-      viewerFid,
-    });
+      viewerFid
+    );
     return response.data;
   }
 
@@ -545,12 +549,13 @@ export class NeynarV2APIClient {
     address: string,
     contractAddress: string,
     tokenId?: string
-  ): Promise<FetchRelevantMints200Response> {
-    const response = await this.apis.nft.fetchRelevantMints({
+  ): Promise<RelevantMints> {
+    const response = await this.apis.nft.fetchRelevantMints(
+      this.apiKey,
       address,
       contractAddress,
-      tokenId,
-    });
+      tokenId
+    );
     return response.data;
   }
 }

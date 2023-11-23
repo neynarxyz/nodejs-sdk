@@ -7,26 +7,24 @@ import {
   OperationResponse,
   BulkFollowResponse,
   EmbeddedCast,
-  FeedType,
-  FilterType,
   FeedResponse,
   NotificationsResponse,
   RelevantFollowersResponse,
-  UserBulk200Response,
   UserSearchResponse,
   CastResponse,
   CastsResponse,
   UserResponse,
+  BulkUsersResponse,
+  FeedFeedTypeEnum,
+  FeedFilterTypeEnum,
 } from "./v2/openapi-farcaster";
 
 import {
   RecentUsersResponse,
   UserCastLikeResponse,
-  User,
   Cast as CastV1,
   CastsResponse as CastsResponseV1,
   RecentCastsResponse,
-  VerificationResponseResult,
   MentionsAndRepliesResponse,
   ReactionsAndRecastsResponse,
   CastLikesResponse,
@@ -40,7 +38,7 @@ import {
   AllCastsInThreadResponse,
 } from "./v1/openapi";
 
-import { FetchRelevantMints200Response } from "./v2/openapi-recommendation";
+import { RelevantMints } from "./v2/openapi-recommendation";
 import { AxiosInstance } from "axios";
 import { silentLogger, Logger } from "./common/logger";
 import { NeynarV1APIClient } from "./v1";
@@ -49,7 +47,7 @@ import { NeynarV2APIClient } from "./v2";
 export class NeynarAPIClient {
   private readonly logger: Logger;
 
-  public readonly clients: {
+  private readonly clients: {
     v1: NeynarV1APIClient;
     v2: NeynarV2APIClient;
   };
@@ -782,9 +780,9 @@ export class NeynarAPIClient {
    *
    */
   public async fetchBulkUsers(
-    fids: string,
+    fids: number[],
     viewerFid?: number
-  ): Promise<UserBulk200Response> {
+  ): Promise<BulkUsersResponse> {
     return await this.clients.v2.fetchBulkUsers(fids, viewerFid);
   }
 
@@ -832,8 +830,8 @@ export class NeynarAPIClient {
    * @param casts - Cast hashes (Comma Separated)
    *
    */
-  public async fetchBulkCasts(casts: string): Promise<CastsResponse> {
-    return await this.clients.v2.fetchBulkCasts(casts);
+  public async fetchBulkCasts(castsHashes: string[]): Promise<CastsResponse> {
+    return await this.clients.v2.fetchBulkCasts(castsHashes);
   }
 
   /**
@@ -869,11 +867,11 @@ export class NeynarAPIClient {
    *
    */
   public async fetchFeed(
-    feedType: FeedType,
+    feedType: FeedFeedTypeEnum,
     options?: {
-      filterType?: FilterType;
+      filterType?: FeedFilterTypeEnum;
       fid?: number;
-      fids?: string;
+      fids?: number[];
       parentUrl?: string;
       limit?: number;
       cursor?: string;
@@ -956,7 +954,7 @@ export class NeynarAPIClient {
     address: string,
     contractAddress: string,
     tokenId?: string
-  ): Promise<FetchRelevantMints200Response> {
+  ): Promise<RelevantMints> {
     return await this.clients.v2.fetchRelevantMints(
       address,
       contractAddress,
