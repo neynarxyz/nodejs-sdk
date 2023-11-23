@@ -17,6 +17,10 @@ import {
   BulkUsersResponse,
   FeedFeedTypeEnum,
   FeedFilterTypeEnum,
+  ReactionsResponse,
+  ReactionsType,
+  StorageAllocationsResponse,
+  StorageUsageResponse,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -915,6 +919,18 @@ export class NeynarAPIClient {
     );
   }
 
+  /**
+   * Fetches reactions for a given user
+   * See [Neynar documentation](https://docs.neynar.com/reference/reactions-user)
+   */
+  public async fetchUserReactions(
+    fid: number,
+    type: ReactionsType,
+    options?: { limit?: number; cursor?: string }
+  ): Promise<ReactionsResponse> {
+    return await this.clients.v2.fetchUserReactions(fid, type, options);
+  }
+
   // ------------ Notifications ------------
 
   /**
@@ -941,6 +957,28 @@ export class NeynarAPIClient {
     viewerFid: number
   ): Promise<RelevantFollowersResponse> {
     return await this.clients.v2.fetchRelevantFollowers(targetFid, viewerFid);
+  }
+
+  // ------------ Storage ------------
+
+  /**
+   * Retrieves storage allocations for a given user.
+   * See [Neynar documentation](https://docs.neynar.com/reference/storage-allocations)
+   */
+  public async lookupUserStorageAllocations(
+    fid: number
+  ): Promise<StorageAllocationsResponse> {
+    return await this.clients.v2.lookupUserStorageAllocations(fid);
+  }
+
+  /**
+   * Retrieves storage usage for a given user
+   * See [Neynar documentation](https://docs.neynar.com/reference/storage-usage)
+   */
+  public async lookupUserStorageUsage(
+    fid: number
+  ): Promise<StorageUsageResponse> {
+    return await this.clients.v2.lookupUserStorageUsage(fid);
   }
 
   // ------------ Recommendation ------------

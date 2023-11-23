@@ -28,6 +28,11 @@ import {
   BulkUsersResponse,
   FeedFeedTypeEnum,
   FeedFilterTypeEnum,
+  ReactionsType,
+  ReactionsResponse,
+  StorageApi,
+  StorageAllocationsResponse,
+  StorageUsageResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -48,6 +53,7 @@ export class NeynarV2APIClient {
     feed: FeedApi;
     notifications: NotificationsApi;
     follows: FollowsApi;
+    storage: StorageApi;
     nft: NFTApi;
   };
 
@@ -106,6 +112,7 @@ export class NeynarV2APIClient {
       feed: new FeedApi(config, undefined, axiosInstance),
       notifications: new NotificationsApi(config, undefined, axiosInstance),
       follows: new FollowsApi(config, undefined, axiosInstance),
+      storage: new StorageApi(config, undefined, axiosInstance),
       nft: new NFTApi(config, undefined, axiosInstance),
     };
   }
@@ -499,6 +506,25 @@ export class NeynarV2APIClient {
     return response.data;
   }
 
+  /**
+   * Fetches reactions for a given user
+   * See [Neynar documentation](https://docs.neynar.com/reference/reactions-user)
+   */
+  public async fetchUserReactions(
+    fid: number,
+    type: ReactionsType,
+    options?: { limit?: number; cursor?: string }
+  ): Promise<ReactionsResponse> {
+    const response = await this.apis.reaction.reactionsUser(
+      this.apiKey,
+      fid,
+      type,
+      options?.limit,
+      options?.cursor
+    );
+    return response.data;
+  }
+
   // ------------ Notifications ------------
 
   /**
@@ -538,6 +564,32 @@ export class NeynarV2APIClient {
     return response.data;
   }
 
+  // ------------ Storage ------------
+
+  /**
+   * Retrieves storage allocations for a given user.
+   * See [Neynar documentation](https://docs.neynar.com/reference/storage-allocations)
+   */
+  public async lookupUserStorageAllocations(
+    fid: number
+  ): Promise<StorageAllocationsResponse> {
+    const response = await this.apis.storage.storageAllocations(
+      this.apiKey,
+      fid
+    );
+    return response.data;
+  }
+
+  /**
+   * Retrieves storage usage for a given user
+   * See [Neynar documentation](https://docs.neynar.com/reference/storage-usage)
+   */
+  public async lookupUserStorageUsage(
+    fid: number
+  ): Promise<StorageUsageResponse> {
+    const response = await this.apis.storage.storageUsage(this.apiKey, fid);
+    return response.data;
+  }
   // ------------ Recommendation ------------
 
   /**
