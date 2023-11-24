@@ -15,5 +15,4 @@ models/relevant-mint.ts
 models/relevant-mints.ts
 models/user-profile-bio.ts
 models/user-profile.ts
-models/user-viewer-context.ts
 models/user.ts

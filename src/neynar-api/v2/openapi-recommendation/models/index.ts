@@ -5,4 +5,3 @@ export * from './relevant-mints';
 export * from './user';
 export * from './user-profile';
 export * from './user-profile-bio';
-export * from './user-viewer-context';

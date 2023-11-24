@@ -19,9 +19,6 @@ import { ActiveStatus } from './active-status';
 // May contain unused imports in some cases
 // @ts-ignore
 import { UserProfile } from './user-profile';
-// May contain unused imports in some cases
-// @ts-ignore
-import { UserViewerContext } from './user-viewer-context';
 
 /**
  * 
@@ -29,12 +26,6 @@ import { UserViewerContext } from './user-viewer-context';
  * @interface User
  */
 export interface User {
-    /**
-     * 
-     * @type {string}
-     * @memberof User
-     */
-    'object': UserObjectEnum;
     /**
      * User identifier (unsigned integer)
      * @type {number}
@@ -95,18 +86,7 @@ export interface User {
      * @memberof User
      */
     'activeStatus': ActiveStatus;
-    /**
-     * 
-     * @type {UserViewerContext}
-     * @memberof User
-     */
-    'viewer_context'?: UserViewerContext;
 }
 
-export const UserObjectEnum = {
-    User: 'user'
-} as const;
-
-export type UserObjectEnum = typeof UserObjectEnum[keyof typeof UserObjectEnum];
 
 
