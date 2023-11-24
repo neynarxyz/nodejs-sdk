@@ -1310,7 +1310,19 @@ export class NeynarAPIClient {
 
   /**
    * Retrieves storage allocations for a given user.
-   * See [Neynar documentation](https://docs.neynar.com/reference/storage-allocations)
+   *
+   * @param {number} fid - The FID of the user whose storage allocations are being retrieved.
+   *
+   * @returns {Promise<StorageAllocationsResponse>} A promise that resolves to a `StorageAllocationsResponse` object,
+   *   containing information about the user's storage allocations.
+   *
+   * @example
+   * // Example: Retrieve storage allocations for a user
+   * client.lookupUserStorageAllocations(3).then(response => {
+   *   console.log('User Storage Allocations:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/storage-allocations).
    */
   public async lookupUserStorageAllocations(
     fid: number
@@ -1319,8 +1331,20 @@ export class NeynarAPIClient {
   }
 
   /**
-   * Retrieves storage usage for a given user
-   * See [Neynar documentation](https://docs.neynar.com/reference/storage-usage)
+   * Retrieves storage usage for a given user.
+   *
+   * @param {number} fid - The FID of the user whose storage usage is being queried.
+   *
+   * @returns {Promise<StorageUsageResponse>} A promise that resolves to a `StorageUsageResponse` object,
+   *   containing details about the user's storage usage.
+   *
+   * @example
+   * // Example: Retrieve storage usage for a user
+   * client.lookupUserStorageUsage(3).then(response => {
+   *   console.log('User Storage Usage:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/storage-usage).
    */
   public async lookupUserStorageUsage(
     fid: number
