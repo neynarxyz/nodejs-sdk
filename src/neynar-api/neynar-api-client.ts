@@ -990,7 +990,7 @@ export class NeynarAPIClient {
    *   containing information about the specified cast.
    *
    * @example
-   * import { CastParamType } from "@neynar/nodejs-sdk/build/neynar-api/neynar-v2-api";
+   * import { CastParamType } from "@neynar/nodejs-sdk/build/neynar-api/v2";
    *
    * // Example: Retrieve information for a cast using its hash
    * client.lookUpCastByHashOrWarpcastUrl('0xfe90f9de682273e05b201629ad2338bdcd89b6be', CastParamType.Hash).then(response => {
@@ -1144,9 +1144,26 @@ export class NeynarAPIClient {
   // ------------ Reaction ------------
 
   /**
-   * React to a cast.
-   * See [Neynar documentation](https://docs.neynar.com/reference/post-reaction)
+   * Posts a reaction (like or recast) to a given cast.
+   * (In order to post a reaction signerUuid must be approved)
    *
+   * @param {string} signerUuid - UUID of the signer expressing the reaction.
+   * @param {ReactionType} reaction - The type of reaction being expressed (like or recast).
+   * @param {Cast | string} castOrCastHash - The Cast object or its hash to which the reaction is targeted.
+   *
+   * @returns {Promise<OperationResponse>} A promise that resolves to an `OperationResponse` object,
+   *   indicating the success or failure of the reaction post.
+   *
+   * @example
+   *
+   * import { ReactionType } from "@neynar/nodejs-sdk/build/neynar-api/v2";
+   *
+   * // Example: Post a 'like' reaction to a cast
+   * client.publishReactionToCast('19d0c5fd-9b33-4a48-a0e2-bc7b0555baec', ReactionType.Like, '0x1ea99cbed57e4020314ba3fadd7c692d2de34d5f').then(response => {
+   *   console.log('Publish Reaction Operation Status:', response); // Outputs the status of the reaction post
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/post-reaction).
    */
   public async publishReactionToCast(
     signerUuid: string,
@@ -1161,7 +1178,26 @@ export class NeynarAPIClient {
   }
 
   /**
-   * Remove a reaction to a cast. See [Neynar documentation](https://docs.neynar.com/reference/delete-reaction)
+   * Removes a reaction (like or recast) from a given cast.
+   * (In order to delete a reaction signerUuid must be approved)
+   *
+   * @param {string} signerUuid - UUID of the signer who is removing the reaction.
+   * @param {ReactionType} reaction - The type of reaction being removed.
+   * @param {Cast | string} castOrCastHash - The Cast object or its hash from which the reaction is to be removed.
+   *
+   * @returns {Promise<OperationResponse>} A promise that resolves to an `OperationResponse` object,
+   *   indicating the success or failure of the reaction removal.
+   *
+   * @example
+   *
+   * import { ReactionType } from "@neynar/nodejs-sdk/build/neynar-api/v2";
+   *
+   * // Example: Remove a 'like' reaction from a cast
+   * client.deleteReactionFromCast('19d0c5fd-9b33-4a48-a0e2-bc7b0555baec', ReactionType.Like, '0x1ea99cbed57e4020314ba3fadd7c692d2de34d5f').then(response => {
+   *   console.log('Delete Reaction Operation Status:', response); // Outputs the status of the reaction removal operation
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/delete-reaction).
    */
   public async deleteReactionFromCast(
     signerUuid: string,
@@ -1176,8 +1212,32 @@ export class NeynarAPIClient {
   }
 
   /**
-   * Fetches reactions for a given user
-   * See [Neynar documentation](https://docs.neynar.com/reference/reactions-user)
+   * Fetches reactions (likes, recasts, or all) for a given user. This method allows retrieving
+   * the reactions associated with a user's casts, specified by the user's FID.
+   *
+   * @param {number} fid - The FID of the user whose reactions are being fetched.
+   * @param {ReactionsType} type - The type of reaction to fetch (likes, recasts, or all).
+   * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {number} [options.limit] - Limits the number of results. Default is 25, with a maximum of 100.
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
+   *   omit this parameter for the initial request.
+   *
+   * @returns {Promise<ReactionsResponse>} A promise that resolves to a `ReactionsResponse` object,
+   *   containing the reactions associated with the user's casts.
+   *
+   * @example
+   *
+   * import { ReactionsType } from "@neynar/nodejs-sdk/build/neynar-api/v2";
+   *
+   * // Example: Fetch a user's reactions
+   * client.fetchUserReactions(3, ReactionsType.All, {
+   * limit: 50,
+   * // cursor: "nextPageCursor" // Omit this parameter for the initial request
+   *  }).then(response => {
+   *   console.log('User Reactions:', response); // Outputs the user's reactions
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/reactions-user).
    */
   public async fetchUserReactions(
     fid: number,
