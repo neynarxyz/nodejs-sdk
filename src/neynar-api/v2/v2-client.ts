@@ -660,9 +660,30 @@ export class NeynarV2APIClient {
   // ------------ Feed ------------
 
   /**
-   * Get reverse chronological feed page for a user based on their follow graph.
-   * See [Neynar documentation](https://docs.neynar.com/reference/feed)
+   * Retrieves a reverse chronological feed for a user based on their follow graph.
+   * This method allows users to fetch casts in their feed based on various filters, such as
+   * following a specific user, a list of users, or content under a specific parent URL.
    *
+   * @param {FeedType} feedType - Type of the feed, defaults to 'following' but can be set to 'filter' for specific filtering.
+   * @param {Object} [options] - Optional parameters for customizing the feed.
+   * @param {FilterType} [options.filterType] - Used when feedType is 'filter'. Determines the filter criteria (e.g., 'fids' or 'parent_url').
+   * @param {number} [options.fid] - FID of the user whose feed is being created. Required unless a 'filterType' is provided.
+   * @param {Array<number>} [options.fids] - Used for creating a feed based on a list of FIDs. Requires 'feedType' and 'filterType'.
+   * @param {string} [options.parentUrl] - Used for fetching content under a specific parent URL. Requires 'feedType' and 'filterType'.
+   * @param {boolean} [options.withRecasts] - Whether to include recasts in the response. True by default.
+   * @param {number} [options.limit] - Number of results to retrieve, with a default of 25 and a maximum of 100.
+   * @param {string} [options.cursor] - Pagination cursor for fetching specific subsets of results.
+   *
+   * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
+   *   containing the requested feed data.
+   *
+   * @example
+   * // Example: Retrieve a user's feed based on their following graph with specific limits
+   * client.fetchFeed('following', { fid: 3, limit: 50, withRecasts: true }).then(response => {
+   *   console.log('User Feed:', response); // Outputs the user's feed
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed).
    */
   public async fetchFeed(
     feedType: FeedType,
