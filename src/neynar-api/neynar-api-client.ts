@@ -1283,9 +1283,21 @@ export class NeynarAPIClient {
   // ------------ Follows ------------
 
   /**
-   * Returns a list of relevant followers for a specific FID.
-   * See [Neynar documentation](https://docs.neynar.com/reference/relevant-followers)
+   * Retrieves a list of relevant followers for a specific FID.
    *
+   * @param {number} targetFid - The FID of the user whose relevant followers are being fetched.
+   * @param {number} viewerFid - The FID of the viewer who is looking at the target user's profile.
+   *
+   * @returns {Promise<RelevantFollowersResponse>} A promise that resolves to a `RelevantFollowersResponse` object,
+   *   containing a list of relevant followers for the specified user.
+   *
+   * @example
+   * // Example: Retrieve relevant followers for a user from the perspective of another user
+   * client.fetchRelevantFollowers(3, 19960).then(response => {
+   *   console.log('Relevant Followers:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/relevant-followers).
    */
   public async fetchRelevantFollowers(
     targetFid: number,
