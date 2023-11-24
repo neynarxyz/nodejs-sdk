@@ -981,9 +981,28 @@ export class NeynarAPIClient {
   // ------------ Cast ------------
 
   /**
-   * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
-   * See [Neynar documentation](https://docs.neynar.com/reference/cast)
+   * Retrieves information about an individual cast by passing in a Warpcast web URL or cast hash.
    *
+   * @param {string} castHashOrUrl - The identifier for the cast, which can be either a cast hash or a Warpcast web URL.
+   * @param {CastParamType} type - The parameter type indicating whether the identifier is a hash or a URL.
+   *
+   * @returns {Promise<CastResponse>} A promise that resolves to a `CastResponse` object,
+   *   containing information about the specified cast.
+   *
+   * @example
+   * import { CastParamType } from "@neynar/nodejs-sdk/build/neynar-api/neynar-v2-api";
+   *
+   * // Example: Retrieve information for a cast using its hash
+   * client.lookUpCastByHashOrWarpcastUrl('0xfe90f9de682273e05b201629ad2338bdcd89b6be', CastParamType.Hash).then(response => {
+   *   console.log('Cast Information:', response); // Outputs information about the cast
+   * });
+   *
+   * // Example: Retrieve information for a cast using its Warpcast URL
+   * client.lookUpCastByHashOrWarpcastUrl('https://warpcast.com/rish/0x9288c1', CastParamType.Url).then(response => {
+   *   console.log('Cast Information:', response); // Outputs information about the cast
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/cast).
    */
   public async lookUpCastByHashOrWarpcastUrl(
     castHashOrUrl: string,
@@ -996,19 +1015,54 @@ export class NeynarAPIClient {
   }
 
   /**
-   * Gets information about an array of casts.
-   * See [Neynar documentation](https://docs.neynar.com/reference/casts)
-   * @param casts - Cast hashes (Comma Separated)
+   * Retrieves information about multiple casts using an array of their hashes. This method is useful
+   * for fetching details of several casts at once, identified by their unique hashes.
    *
+   * @param {Array<string>} castsHashes - An array of strings representing the hashes of the casts
+   *   to be retrieved.
+   *
+   * @returns {Promise<CastsResponse>} A promise that resolves to a `CastsResponse` object,
+   *   containing information about the requested casts.
+   *
+   * @example
+   * // Example: Fetch information about multiple casts using their hashes
+   * client.fetchBulkCasts(['0xa896906a5e397b4fec247c3ee0e9e4d4990b8004','0x27ff810f7f718afd8c40be236411f017982e0994']).then(response => {
+   *   console.log('Bulk Casts Information:', response); // Outputs information about the specified casts
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/casts).
    */
   public async fetchBulkCasts(castsHashes: string[]): Promise<CastsResponse> {
     return await this.clients.v2.fetchBulkCasts(castsHashes);
   }
 
   /**
-   * Publishes a cast for the currently authenticated user.
-   * See [Neynar documentation](https://docs.neynar.com/reference/post-cast)
+   * Publishes a cast for the currently authenticated user. This method allows users to post
+   * content, including text and embeds, and can also be used to reply to existing casts.
+   * (In order to publish a cast signerUuid must be approved)
    *
+   * @param {string} signerUuid - UUID of the signer associated with the user posting the cast.
+   * @param {string} text - The text content of the cast.
+   * @param {Object} [options] - Optional parameters for the cast.
+   * @param {Array<EmbeddedCast>} [options.embeds] - An array of embeds to be included in the cast.
+   * @param {string} [options.replyTo] - The URL or hash of the parent cast if this is a reply.
+   *
+   * @returns {Promise<PostCastResponseCast>} A promise that resolves to a `PostCastResponseCast` object,
+   *   representing the published cast.
+   *
+   * @example
+   * // Example: Publish a simple cast
+   * client.publishCast('19d0c5fd-9b33-4a48-a0e2-bc7b0555baec', 'Testing publishCast() method').then(response => {
+   *   console.log('Published Cast:', response); // Outputs the published cast
+   * });
+   * // Example: Reply to a Cast
+   * client.publishCast('19d0c5fd-9b33-4a48-a0e2-bc7b0555baec', 'Testing publishCast() method', {
+   *   replyTo: '0x9e95c380791fce11ffbb14b2ea458b233161bafd',
+   * }).then(response => {
+   *   console.log('Published Cast:', response); // Outputs the published reply cast with embeds
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/post-cast).
    */
   public async publishCast(
     signerUuid: string,
@@ -1019,9 +1073,23 @@ export class NeynarAPIClient {
   }
 
   /**
-   * Delete a cast.
-   * See [Neynar documentation](https://docs.neynar.com/reference/delete-cast)
+   * Deletes an existing cast. This method is used to remove a cast, identified by its hash,
+   * from the system.
+   * (In order to delete a cast signerUuid must be approved)
    *
+   * @param {string} signerUuid - UUID of the signer associated with the user who is deleting the cast.
+   * @param {Cast | string} castOrCastHash - The Cast object or its hash that is to be deleted.
+   *
+   * @returns {Promise<OperationResponse>} A promise that resolves to an `OperationResponse` object,
+   *   indicating the success or failure of the deletion operation.
+   *
+   * @example
+   * // Example: Delete a cast using its hash
+   * client.deleteCast('19d0c5fd-9b33-4a48-a0e2-bc7b0555baec', '0x1ea99cbed57e4020314ba3fadd7c692d2de34d5f').then(response => {
+   *   console.log('Cast Deletion:', response); // Outputs the result of the cast deletion operation
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/delete-cast).
    */
   public async deleteCast(
     signerUuid: string,
