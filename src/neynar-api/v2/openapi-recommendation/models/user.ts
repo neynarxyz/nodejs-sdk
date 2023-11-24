@@ -27,6 +27,12 @@ import { UserProfile } from './user-profile';
  */
 export interface User {
     /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'object': UserObjectEnum;
+    /**
      * User identifier (unsigned integer)
      * @type {number}
      * @memberof User
@@ -88,5 +94,10 @@ export interface User {
     'activeStatus': ActiveStatus;
 }
 
+export const UserObjectEnum = {
+    User: 'user'
+} as const;
+
+export type UserObjectEnum = typeof UserObjectEnum[keyof typeof UserObjectEnum];
 
 
