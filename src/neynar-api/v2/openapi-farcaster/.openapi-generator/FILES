@@ -37,6 +37,8 @@ models/embed-url.ts
 models/embedded-cast.ts
 models/error-res.ts
 models/feed-response.ts
+models/feed-type.ts
+models/filter-type.ts
 models/follow-req-body.ts
 models/follow-response.ts
 models/follow.ts

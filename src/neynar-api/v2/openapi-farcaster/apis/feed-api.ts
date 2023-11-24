@@ -25,6 +25,10 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 import { ErrorRes } from '../models';
 // @ts-ignore
 import { FeedResponse } from '../models';
+// @ts-ignore
+import { FeedType } from '../models';
+// @ts-ignore
+import { FilterType } from '../models';
 /**
  * FeedApi - axios parameter creator
  * @export
@@ -35,8 +39,8 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @summary Retrieve casts based on filters
          * @param {string} apiKey API key required for authentication.
-         * @param {FeedFeedTypeEnum} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
-         * @param {FeedFilterTypeEnum} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
+         * @param {FeedType} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
+         * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
          * @param {number} [fid] (Optional) fid of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
          * @param {string} [fids] Used when filter_type&#x3D;fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
          * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
@@ -46,7 +50,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feed: async (apiKey: string, feedType: FeedFeedTypeEnum, filterType?: FeedFilterTypeEnum, fid?: number, fids?: string, parentUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feed: async (apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feed', 'apiKey', apiKey)
             // verify required parameter 'feedType' is not null or undefined
@@ -124,8 +128,8 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * 
          * @summary Retrieve casts based on filters
          * @param {string} apiKey API key required for authentication.
-         * @param {FeedFeedTypeEnum} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
-         * @param {FeedFilterTypeEnum} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
+         * @param {FeedType} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
+         * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
          * @param {number} [fid] (Optional) fid of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
          * @param {string} [fids] Used when filter_type&#x3D;fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
          * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
@@ -135,7 +139,7 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feed(apiKey: string, feedType: FeedFeedTypeEnum, filterType?: FeedFilterTypeEnum, fid?: number, fids?: string, parentUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+        async feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.feed(apiKey, feedType, filterType, fid, fids, parentUrl, withRecasts, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -153,8 +157,8 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * 
          * @summary Retrieve casts based on filters
          * @param {string} apiKey API key required for authentication.
-         * @param {FeedFeedTypeEnum} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
-         * @param {FeedFilterTypeEnum} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
+         * @param {FeedType} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
+         * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
          * @param {number} [fid] (Optional) fid of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
          * @param {string} [fids] Used when filter_type&#x3D;fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
          * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
@@ -164,7 +168,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feed(apiKey: string, feedType: FeedFeedTypeEnum, filterType?: FeedFilterTypeEnum, fid?: number, fids?: string, parentUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
+        feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
             return localVarFp.feed(apiKey, feedType, filterType, fid, fids, parentUrl, withRecasts, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
@@ -181,8 +185,8 @@ export class FeedApi extends BaseAPI {
      * 
      * @summary Retrieve casts based on filters
      * @param {string} apiKey API key required for authentication.
-     * @param {FeedFeedTypeEnum} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
-     * @param {FeedFilterTypeEnum} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
+     * @param {FeedType} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
+     * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
      * @param {number} [fid] (Optional) fid of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
      * @param {string} [fids] Used when filter_type&#x3D;fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
      * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
@@ -193,25 +197,8 @@ export class FeedApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feed(apiKey: string, feedType: FeedFeedTypeEnum, filterType?: FeedFilterTypeEnum, fid?: number, fids?: string, parentUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+    public feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
         return FeedApiFp(this.configuration).feed(apiKey, feedType, filterType, fid, fids, parentUrl, withRecasts, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
-export const FeedFeedTypeEnum = {
-    Following: 'following',
-    Filter: 'filter'
-} as const;
-export type FeedFeedTypeEnum = typeof FeedFeedTypeEnum[keyof typeof FeedFeedTypeEnum];
-/**
- * @export
- */
-export const FeedFilterTypeEnum = {
-    Fids: 'fids',
-    ParentUrl: 'parent_url',
-    GlobalTrending: 'global_trending'
-} as const;
-export type FeedFilterTypeEnum = typeof FeedFilterTypeEnum[keyof typeof FeedFilterTypeEnum];

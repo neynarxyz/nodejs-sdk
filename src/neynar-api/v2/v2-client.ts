@@ -26,8 +26,8 @@ import {
   CastsResponse,
   UserResponse,
   BulkUsersResponse,
-  FeedFeedTypeEnum,
-  FeedFilterTypeEnum,
+  FeedType,
+  FilterType,
   ReactionsType,
   ReactionsResponse,
   StorageApi,
@@ -596,9 +596,9 @@ export class NeynarV2APIClient {
    *
    */
   public async fetchFeed(
-    feedType: FeedFeedTypeEnum,
+    feedType: FeedType,
     options?: {
-      filterType?: FeedFilterTypeEnum;
+      filterType?: FilterType;
       fid?: number;
       fids?: number[];
       parentUrl?: string;

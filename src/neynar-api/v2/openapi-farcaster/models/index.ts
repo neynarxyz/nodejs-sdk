@@ -20,6 +20,8 @@ export * from './embed-url';
 export * from './embedded-cast';
 export * from './error-res';
 export * from './feed-response';
+export * from './feed-type';
+export * from './filter-type';
 export * from './follow';
 export * from './follow-req-body';
 export * from './follow-response';

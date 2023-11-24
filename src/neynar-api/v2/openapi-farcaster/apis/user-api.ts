@@ -48,7 +48,7 @@ import { UserSearchResponse } from '../models';
 export const UserApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Removes verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved) 
+         * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
          * @summary Removes verification for an eth address for the user
          * @param {string} apiKey API key required for authentication.
          * @param {RemoveVerificationReqBody} removeVerificationReqBody 
@@ -417,7 +417,7 @@ export const UserApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = UserApiAxiosParamCreator(configuration)
     return {
         /**
-         * Removes verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved) 
+         * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
          * @summary Removes verification for an eth address for the user
          * @param {string} apiKey API key required for authentication.
          * @param {RemoveVerificationReqBody} removeVerificationReqBody 
@@ -525,7 +525,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
     const localVarFp = UserApiFp(configuration)
     return {
         /**
-         * Removes verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved) 
+         * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
          * @summary Removes verification for an eth address for the user
          * @param {string} apiKey API key required for authentication.
          * @param {RemoveVerificationReqBody} removeVerificationReqBody 
@@ -625,7 +625,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
  */
 export class UserApi extends BaseAPI {
     /**
-     * Removes verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved) 
+     * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
      * @summary Removes verification for an eth address for the user
      * @param {string} apiKey API key required for authentication.
      * @param {RemoveVerificationReqBody} removeVerificationReqBody 
