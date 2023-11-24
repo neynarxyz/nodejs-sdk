@@ -1250,9 +1250,28 @@ export class NeynarAPIClient {
   // ------------ Notifications ------------
 
   /**
-   * Returns a list of notifications for a specific FID in reverse chronological order.
-   * See [Neynar documentation](https://docs.neynar.com/reference/notifications)
+   * Retrieves a list of notifications for a specific FID in reverse chronological order.
+   * This method is useful for obtaining a user's notifications, keeping them updated on various interactions and updates.
    *
+   * @param {number} fid - The FID of the user whose notifications are being fetched.
+   * @param {Object} [options] - Optional parameters to tailor the request.
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 50).
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
+   *   omit this parameter for the initial request.
+   *
+   * @returns {Promise<NotificationsResponse>} A promise that resolves to a `NotificationsResponse` object,
+   *   containing the user's notifications.
+   *
+   * @example
+   * // Example: Fetch the first 30 notifications for a user
+   * client.fetchAllNotifications(3, {
+   * limit: 30,
+   * // cursor: "nextPageCursor" // Omit this parameter for the initial request
+   *  }).then(response => {
+   *   console.log('User Notifications:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/notifications).
    */
   public async fetchAllNotifications(
     fid: number,
