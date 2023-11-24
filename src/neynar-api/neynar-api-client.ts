@@ -893,10 +893,10 @@ export class NeynarAPIClient {
     signerUuid: string,
     options?: {
       bio?: string;
-      pfp_url?: string;
+      pfpUrl?: string;
       url?: string;
       username?: string;
-      display_name?: string;
+      displayName?: string;
     }
   ): Promise<OperationResponse> {
     return await this.clients.v2.updateUser(signerUuid, options);
