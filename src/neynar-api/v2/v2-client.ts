@@ -966,20 +966,36 @@ export class NeynarV2APIClient {
   // ------------ Recommendation ------------
 
   /**
-   * Fetches all mint actions relevant for a contract address (and optionally tokenId for ERC1155s) given a user's ethereum address
-   * See [Neynar documentation](https://docs.neynar.com/reference/fetch-relevant-mints)
+   * Fetches all mint actions relevant for a given contract address and user's Ethereum address,
+   * with an optional focus on a specific tokenId for ERC1155 contracts. This method is useful for
+   * tracking NFT minting activities linked to specific contracts and user addresses.
    *
+   * @param {string} address - The Ethereum address of the user.
+   * @param {string} contractAddress - The contract address associated with the NFTs.
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {string} [options.tokenId] - (Optional) The tokenId, particularly for ERC1155 contract types.
+   *
+   * @returns {Promise<RelevantMints>} A promise that resolves to a `RelevantMints` object,
+   *   containing information about mint actions relevant to the user and contract.
+   *
+   * @example
+   * // Example: Fetch mint actions for a contract address with a specific tokenId
+   * client.fetchRelevantMints('0x5a927ac639636e534b678e81768ca19e2c6280b7', '0xe8e0e543a3dd32d366cb756fa4d112f30172bcb1', { tokenId: '1' }).then(response => {
+   *   console.log('Relevant Mint Actions:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/fetch-relevant-mints).
    */
   public async fetchRelevantMints(
     address: string,
     contractAddress: string,
-    tokenId?: string
+    options?: { tokenId?: string }
   ): Promise<RelevantMints> {
     const response = await this.apis.nft.fetchRelevantMints(
       this.apiKey,
       address,
       contractAddress,
-      tokenId
+      options?.tokenId
     );
     return response.data;
   }
