@@ -223,4 +223,3 @@ export class VerificationApi extends BaseAPI {
         return VerificationApiFp(this.configuration).verifications(apiKey, fid, options).then((request) => request(this.axios, this.basePath));
     }
 }
-

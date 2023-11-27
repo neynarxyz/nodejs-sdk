@@ -33,12 +33,15 @@ import { EmbedUrl } from './embed-url';
 import { ReactionType } from './reaction-type';
 // May contain unused imports in some cases
 // @ts-ignore
+import { ReactionsAndRecastsNotificationAllOf } from './reactions-and-recasts-notification-all-of';
+// May contain unused imports in some cases
+// @ts-ignore
 import { User } from './user';
 
 /**
  * @type ReactionsAndRecastsNotification
  * @export
  */
-export type ReactionsAndRecastsNotification = Cast;
+export type ReactionsAndRecastsNotification = Cast & ReactionsAndRecastsNotificationAllOf;
 
 

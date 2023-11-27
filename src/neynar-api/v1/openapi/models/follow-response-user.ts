@@ -18,6 +18,9 @@
 import { ActiveStatus } from './active-status';
 // May contain unused imports in some cases
 // @ts-ignore
+import { FollowResponseUserAllOf } from './follow-response-user-all-of';
+// May contain unused imports in some cases
+// @ts-ignore
 import { User } from './user';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -33,6 +36,6 @@ import { ViewerContext } from './viewer-context';
  * @type FollowResponseUser
  * @export
  */
-export type FollowResponseUser = User;
+export type FollowResponseUser = FollowResponseUserAllOf & User;
 
 

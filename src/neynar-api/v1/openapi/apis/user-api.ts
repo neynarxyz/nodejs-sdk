@@ -521,4 +521,3 @@ export class UserApi extends BaseAPI {
         return UserApiFp(this.configuration).userCastLikes(apiKey, fid, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
-

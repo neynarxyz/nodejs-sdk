@@ -269,4 +269,3 @@ export class FollowsApi extends BaseAPI {
         return FollowsApiFp(this.configuration).following(apiKey, fid, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
-

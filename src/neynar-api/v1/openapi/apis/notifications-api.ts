@@ -271,4 +271,3 @@ export class NotificationsApi extends BaseAPI {
         return NotificationsApiFp(this.configuration).reactionsAndRecasts(apiKey, fid, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
-

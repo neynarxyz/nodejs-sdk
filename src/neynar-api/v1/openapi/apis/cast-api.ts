@@ -449,4 +449,3 @@ export class CastApi extends BaseAPI {
         return CastApiFp(this.configuration).recentCasts(apiKey, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
-

@@ -377,4 +377,3 @@ export class ReactionsApi extends BaseAPI {
         return ReactionsApiFp(this.configuration).castRecasters(apiKey, castHash, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
-

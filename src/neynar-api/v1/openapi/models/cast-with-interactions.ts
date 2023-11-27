@@ -27,6 +27,9 @@ import { CastParentAuthor } from './cast-parent-author';
 import { CastType } from './cast-type';
 // May contain unused imports in some cases
 // @ts-ignore
+import { CastWithInteractionsAllOf } from './cast-with-interactions-all-of';
+// May contain unused imports in some cases
+// @ts-ignore
 import { CastWithInteractionsReactionsOrRecasts } from './cast-with-interactions-reactions-or-recasts';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -42,6 +45,6 @@ import { ViewerContext } from './viewer-context';
  * @type CastWithInteractions
  * @export
  */
-export type CastWithInteractions = Cast;
+export type CastWithInteractions = Cast & CastWithInteractionsAllOf;
 
 

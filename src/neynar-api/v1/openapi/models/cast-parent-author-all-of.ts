@@ -13,14 +13,18 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { CastParentAuthorAllOf } from './cast-parent-author-all-of';
 
 /**
- * @type CastParentAuthor
+ * 
  * @export
+ * @interface CastParentAuthorAllOf
  */
-export type CastParentAuthor = CastParentAuthorAllOf;
-
+export interface CastParentAuthorAllOf {
+    /**
+     * 
+     * @type {string}
+     * @memberof CastParentAuthorAllOf
+     */
+    'fid': string | null;
+}
 
