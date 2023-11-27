@@ -26,5 +26,11 @@ export interface UserProfileBio {
      * @memberof UserProfileBio
      */
     'text': string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UserProfileBio
+     */
+    'mentionedProfiles': Array<string>;
 }
 

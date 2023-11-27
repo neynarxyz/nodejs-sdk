@@ -94,7 +94,7 @@ export interface User {
      * @type {ActiveStatus}
      * @memberof User
      */
-    'activeStatus': ActiveStatus;
+    'active_status': ActiveStatus;
     /**
      * 
      * @type {UserViewerContext}

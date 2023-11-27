@@ -22,15 +22,15 @@
 export interface UserViewerContext {
     /**
      * 
-     * @type {number}
+     * @type {boolean}
      * @memberof UserViewerContext
      */
-    'following': number;
+    'following': boolean;
     /**
      * 
-     * @type {number}
+     * @type {boolean}
      * @memberof UserViewerContext
      */
-    'followed_by': number;
+    'followed_by': boolean;
 }
 
