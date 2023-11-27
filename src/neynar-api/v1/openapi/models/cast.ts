@@ -52,6 +52,12 @@ export interface Cast {
     'parentUrl': string | null;
     /**
      * 
+     * @type {string}
+     * @memberof Cast
+     */
+    'threadHash': string;
+    /**
+     * 
      * @type {CastParentAuthor}
      * @memberof Cast
      */
