@@ -107,7 +107,7 @@ export const convertToV2Cast = (
   return v2Cast;
 };
 
-export const convertToV2CastsList = (
+export const convertToV2CastList = (
   v1Casts: ICastV1[] | ICastWithInteractionsV1[]
 ): ICastV2[] => {
   const v2Casts = [];
