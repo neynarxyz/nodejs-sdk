@@ -32,5 +32,11 @@ export interface CastWithInteractionsReactionsOrRecasts {
      * @memberof CastWithInteractionsReactionsOrRecasts
      */
     'fids': Array<number>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CastWithInteractionsReactionsOrRecasts
+     */
+    'fnames': Array<string>;
 }
 
