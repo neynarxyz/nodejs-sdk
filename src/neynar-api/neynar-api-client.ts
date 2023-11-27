@@ -1,3 +1,5 @@
+import { mnemonicToAccount } from "viem/accounts";
+
 import {
   Signer,
   Cast,
@@ -21,6 +23,7 @@ import {
   ReactionsType,
   StorageAllocationsResponse,
   StorageUsageResponse,
+  SignerStatusEnum,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -47,6 +50,10 @@ import { AxiosInstance } from "axios";
 import { silentLogger, Logger } from "./common/logger";
 import { NeynarV1APIClient } from "./v1";
 import { NeynarV2APIClient } from "./v2";
+import { encodeAbiParameters } from "viem";
+import { viemPublicClient } from "./common/viemClient";
+import { SignedKeyRequestMetadataABI } from "./abi/signed-key-request-metadata";
+import { keyGatewayAbi } from "./abi/key-gateway";
 
 export class NeynarAPIClient {
   private readonly logger: Logger;
@@ -1385,5 +1392,151 @@ export class NeynarAPIClient {
       contractAddress,
       options
     );
+  }
+
+  // ------------ Misc ------------
+
+  /**
+   * Retri
+   * @param farcasterDeveloperMnemonic - mnemonic of the farcaster developer account
+   *
+   */
+  public async generateApprovedSigner(farcasterDeveloperMnemonic: string) {
+    try {
+      const { public_key: signerPublicKey, signer_uuid } =
+        await this.createSigner();
+
+      // DO NOT CHANGE ANY VALUES IN THIS CONSTANT
+      const SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN = {
+        name: "Farcaster SignedKeyRequestValidator",
+        version: "1",
+        chainId: 10,
+        verifyingContract:
+          "0x00000000fc700472606ed4fa22623acf62c60553" as `0x${string}`,
+      };
+
+      // DO NOT CHANGE ANY VALUES IN THIS CONSTANT
+      const SIGNED_KEY_REQUEST_TYPE = [
+        { name: "requestFid", type: "uint256" },
+        { name: "key", type: "bytes" },
+        { name: "deadline", type: "uint256" },
+      ];
+
+      const account = mnemonicToAccount(farcasterDeveloperMnemonic);
+
+      const { user: farcasterDeveloper } =
+        await this.lookupUserByCustodyAddress(account.address);
+
+      console.log(
+        `✅ Detected user with fid ${farcasterDeveloper.fid} and custody address: ${farcasterDeveloper.custody_address}`
+      );
+
+      // Generates an expiration date for the signature
+      // e.g. 1693927665
+      const deadline = Math.floor(Date.now() / 1000) + 86400; // signature is valid for 1 day from now
+
+      let signature = await account.signTypedData({
+        domain: SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN,
+        types: {
+          SignedKeyRequest: SIGNED_KEY_REQUEST_TYPE,
+        },
+        primaryType: "SignedKeyRequest",
+        message: {
+          requestFid: BigInt(farcasterDeveloper.fid),
+          key: signerPublicKey,
+          deadline: BigInt(deadline),
+        },
+      });
+
+      const metadata = encodeAbiParameters(SignedKeyRequestMetadataABI.inputs, [
+        {
+          requestFid: BigInt(farcasterDeveloper.fid),
+          requestSigner: account.address,
+          signature: signature,
+          deadline: BigInt(deadline),
+        },
+      ]);
+
+      const developerKeyGatewayNonce = await viemPublicClient.readContract({
+        address: "0x00000000fc56947c7e7183f8ca4b62398caadf0b", // gateway address
+        abi: keyGatewayAbi,
+        functionName: "nonces",
+        args: [farcasterDeveloper.custody_address as `0x${string}`],
+      });
+
+      const SIGNED_KEY_REQUEST_VALIDATOR = {
+        name: "Farcaster SignedKeyRequestValidator",
+        version: "1",
+        chainId: 10,
+        verifyingContract:
+          "0x00000000fc700472606ed4fa22623acf62c60553" as `0x${string}`,
+      };
+
+      const SIGNED_KEY_REQUEST_TYPE_FOR_ADD_FOR = [
+        { name: "owner", type: "address" },
+        { name: "keyType", type: "uint32" },
+        { name: "key", type: "bytes" },
+        { name: "metadataType", type: "uint8" },
+        { name: "metadata", type: "bytes" },
+        { name: "nonce", type: "uint256" },
+        { name: "deadline", type: "uint256" },
+      ];
+
+      signature = await account.signTypedData({
+        domain: SIGNED_KEY_REQUEST_VALIDATOR,
+        types: {
+          SignedKeyRequest: SIGNED_KEY_REQUEST_TYPE_FOR_ADD_FOR,
+        },
+        primaryType: "SignedKeyRequest",
+        message: {
+          owner: account.address,
+          keyType: 1,
+          key: signerPublicKey,
+          metadataType: 1,
+          metadata: metadata,
+          nonce: BigInt(developerKeyGatewayNonce),
+          deadline: BigInt(deadline),
+        },
+      });
+
+      console.log("✅ Generated signer", "\n");
+
+      console.log(
+        "In order to get an approved signer you need to do an on-chain transaction on OP mainnet. \nGo to Farcaster KeyGateway optimism explorer\nhttps://optimistic.etherscan.io/address/0x00000000fc56947c7e7183f8ca4b62398caadf0b#writeContract \n"
+      );
+      console.log(
+        "Connect to Web3.\n\nNavigate to `addFor` function and add following values inside the respective placeholders.\n"
+      );
+
+      console.log(
+        "fidOwner (address) :=> ",
+        farcasterDeveloper.custody_address,
+        "\n -"
+      );
+      console.log("keyType (uint32) :=> ", 1, "\n -");
+      console.log("key (bytes) :=> ", signerPublicKey, "\n -");
+      console.log("metadataType (uint8) :=> ", 1, "\n -");
+      console.log("metadata (bytes) :=> ", metadata, "\n -");
+      console.log("deadline (uint256) :=> ", deadline, "\n -");
+      console.log("sig (bytes) :=> ", signature, "\n -\n");
+      console.log(
+        "We are polling for the signer to be approved. It will be approved once the onchain transaction is confirmed."
+      );
+      console.log("Checking for the status of signer...");
+
+      while (true) {
+        const res = await this.lookupSigner(signer_uuid);
+        if (res && res.status === SignerStatusEnum.Approved) {
+          break;
+        }
+        console.log("Waiting for signer to be approved...");
+        await new Promise((r) => setTimeout(r, 5000));
+      }
+
+      console.log("✅ Transaction confirmed\n");
+      return signer_uuid;
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
