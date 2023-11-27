@@ -25,6 +25,9 @@ import { CastType } from './cast-type';
 // May contain unused imports in some cases
 // @ts-ignore
 import { EmbedUrl } from './embed-url';
+// May contain unused imports in some cases
+// @ts-ignore
+import { User } from './user';
 
 /**
  * 
@@ -62,6 +65,12 @@ export interface Cast {
      * @memberof Cast
      */
     'parentAuthor': CastParentAuthor;
+    /**
+     * 
+     * @type {Array<User>}
+     * @memberof Cast
+     */
+    'mentionedProfiles': Array<User>;
     /**
      * 
      * @type {CastAuthor}

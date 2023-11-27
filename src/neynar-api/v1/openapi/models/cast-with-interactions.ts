@@ -39,6 +39,9 @@ import { CastWithInteractionsReplies } from './cast-with-interactions-replies';
 import { EmbedUrl } from './embed-url';
 // May contain unused imports in some cases
 // @ts-ignore
+import { User } from './user';
+// May contain unused imports in some cases
+// @ts-ignore
 import { ViewerContext } from './viewer-context';
 
 /**
