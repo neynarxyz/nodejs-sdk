@@ -1401,18 +1401,31 @@ export class NeynarAPIClient {
     );
   }
 
-  // ------------ Misc ------------
+  // ------------ Additional utility methods ------------
 
   /**
-   * Generate and Retrieve approved signer
-   * Using this signer you can do CRUD operations on farcaster.
+   * Creates a signer and registers a signed key for the signer.
+   * It returns a Signer which includes `signer_approval_url` that can be used to create a QR Code for the user to scan and approve the signer.
    *
    * @param {string} farcasterDeveloperMnemonic - mnemonic of the farcaster developer account
-   * @param {Object} [options] - Optional parameters for the request.   
+   * @param {Object} [options] - Optional parameters for the request.
    * @param {number} [options.deadline] - (Optional) Unix timestamp in seconds that controls how long the signed key
    *   request is valid for. A 24-hour duration from now is recommended.
+   *
+   * @returns {Promise<Signer>} A promise that resolves to a `Signer` object,
+   *   that includes signer_approval_url.
+   *
+   * @example
+   * // Example: Create a signer and register a signed key
+   * const mnemonic = 'farcaster developer mnemonic';
+   * client.createSignerAndRegisterSignedKey(mnemonic, { deadline: 1693927665 }).then(response => {
+   *   console.log('Signer', response);
+   * });
    */
-  public async createSignerAndRegisterSignedKey(farcasterDeveloperMnemonic: string, options?: { deadline?: number }) {
+  public async createSignerAndRegisterSignedKey(
+    farcasterDeveloperMnemonic: string,
+    options?: { deadline?: number }
+  ) {
     try {
       const { public_key: signerPublicKey, signer_uuid } =
         await this.createSigner();
@@ -1423,7 +1436,8 @@ export class NeynarAPIClient {
 
       // Generates an expiration date for the signature
       // e.g. 1693927665
-      const signed_key_deadline = options?.deadline ?? Math.floor(Date.now() / 1000) + 86400; // signature is valid for 1 day from now
+      const signed_key_deadline =
+        options?.deadline ?? Math.floor(Date.now() / 1000) + 86400; // signature is valid for 1 day from now
 
       let signature = await account.signTypedData({
         domain: SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN,
@@ -1438,7 +1452,12 @@ export class NeynarAPIClient {
         },
       });
 
-      let signer_pending = await this.registerSignedKey(signer_uuid, farcasterDeveloper.fid, signed_key_deadline, signature);
+      let signer_pending = await this.registerSignedKey(
+        signer_uuid,
+        farcasterDeveloper.fid,
+        signed_key_deadline,
+        signature
+      );
       return signer_pending;
     } catch (err) {
       if (isApiErrorResponse(err)) {
