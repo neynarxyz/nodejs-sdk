@@ -54,6 +54,7 @@ import { encodeAbiParameters } from "viem";
 import { viemPublicClient } from "./common/viemClient";
 import { SignedKeyRequestMetadataABI } from "./abi/signed-key-request-metadata";
 import { keyGatewayAbi } from "./abi/key-gateway";
+import { SIGNED_KEY_REQUEST_TYPE, SIGNED_KEY_REQUEST_TYPE_FOR_ADD_FOR, SIGNED_KEY_REQUEST_VALIDATOR, SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN } from "./common/constants";
 
 export class NeynarAPIClient {
   private readonly logger: Logger;
@@ -1406,22 +1407,6 @@ export class NeynarAPIClient {
       const { public_key: signerPublicKey, signer_uuid } =
         await this.createSigner();
 
-      // DO NOT CHANGE ANY VALUES IN THIS CONSTANT
-      const SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN = {
-        name: "Farcaster SignedKeyRequestValidator",
-        version: "1",
-        chainId: 10,
-        verifyingContract:
-          "0x00000000fc700472606ed4fa22623acf62c60553" as `0x${string}`,
-      };
-
-      // DO NOT CHANGE ANY VALUES IN THIS CONSTANT
-      const SIGNED_KEY_REQUEST_TYPE = [
-        { name: "requestFid", type: "uint256" },
-        { name: "key", type: "bytes" },
-        { name: "deadline", type: "uint256" },
-      ];
-
       const account = mnemonicToAccount(farcasterDeveloperMnemonic);
 
       const { user: farcasterDeveloper } =
@@ -1463,24 +1448,6 @@ export class NeynarAPIClient {
         functionName: "nonces",
         args: [farcasterDeveloper.custody_address as `0x${string}`],
       });
-
-      const SIGNED_KEY_REQUEST_VALIDATOR = {
-        name: "Farcaster SignedKeyRequestValidator",
-        version: "1",
-        chainId: 10,
-        verifyingContract:
-          "0x00000000fc700472606ed4fa22623acf62c60553" as `0x${string}`,
-      };
-
-      const SIGNED_KEY_REQUEST_TYPE_FOR_ADD_FOR = [
-        { name: "owner", type: "address" },
-        { name: "keyType", type: "uint32" },
-        { name: "key", type: "bytes" },
-        { name: "metadataType", type: "uint8" },
-        { name: "metadata", type: "bytes" },
-        { name: "nonce", type: "uint256" },
-        { name: "deadline", type: "uint256" },
-      ];
 
       signature = await account.signTypedData({
         domain: SIGNED_KEY_REQUEST_VALIDATOR,
