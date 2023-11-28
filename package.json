@@ -1,6 +1,6 @@
 {
   "name": "@neynar/nodejs-sdk",
-  "version": "0.11.4",
+  "version": "1.0.0",
   "description": "SDK to interact with Neynar APIs (https://docs.neynar.com/)",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -10,12 +10,12 @@
   "scripts": {
     "clean": "del-cli ./build/*",
     "build": "yarn run clean && tsc",
-    "generate:neynar-oas": "openapi-generator-cli generate -i src/oas/src/v1/spec.yaml -g typescript-axios -o src/neynar-api/neynar-v1-api/openapi --config src/oas/openapi-generator-config.json",
-    "generate:neynar-oas-v2-farcaster": "openapi-generator-cli generate -i src/oas/src/v2/spec.yaml -g typescript-axios -o src/neynar-api/neynar-v2-api/openapi-farcaster --config src/oas/openapi-generator-config.json",
-    "generate:neynar-oas-v2-recommendation": "openapi-generator-cli generate -i src/oas/src/v2/recommendation/spec.yaml -g typescript-axios -o src/neynar-api/neynar-v2-api/openapi-recommendation --config src/oas/openapi-generator-config.json"
+    "generate:neynar-oas-v1-farcaster": "del-cli src/neynar-api/v1/openapi; openapi-generator-cli generate -i src/oas/src/v1/spec.yaml -g typescript-axios -o src/neynar-api/v1/openapi --config src/oas/openapi-generator-config.json",
+    "generate:neynar-oas-v2-farcaster": "del-cli src/neynar-api/v2/openapi-farcaster; openapi-generator-cli generate -i src/oas/src/v2/spec.yaml -g typescript-axios -o src/neynar-api/v2/openapi-farcaster --config src/oas/openapi-generator-config.json",
+    "generate:neynar-oas-v2-recommendation": "del-cli src/neynar-api/v2/openapi-recommendation; openapi-generator-cli generate -i src/oas/src/v2/recommendation/spec.yaml -g typescript-axios -o src/neynar-api/v2/openapi-recommendation --config src/oas/openapi-generator-config.json"
   },
   "author": "Neynar",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.8.4",
     "del-cli": "^5.1.0",
@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@openapitools/openapi-generator-cli": "^2.7.0",
-    "axios": "^1.6.2"
+    "axios": "^1.6.2",
+    "viem": "^1.19.9"
   }
 }
