@@ -1,27 +1,13 @@
 # @neynar/nodejs-sdk
+
 @neynar/nodejs-sdk typescript-based, easy-to-use SDK built to interact with [Neynar API's](https://docs.neynar.com/).
 
-## Instantiate Client
+## Usage
 
-Just set the NEYNAR_API_KEY while instantiating a client and you are good to go.
+Please refer our [Getting Started Guide](https://docs.neynar.com/reference/getting-started-with-sdk)
 
-```
-import { NeynarAPIClient } from "@neynar/nodejs-sdk";
+Checkout [examples](https://github.com/neynarxyz/farcaster-examples) using this SDK
 
-const neynarClient = new NeynarAPIClient(process.env.NEYNAR_API_KEY);
+## License
 
-export default neynarClient;
-```
-
-## Use Client
-
-Errors are propagated, so the user can handle them as they please, so use try/catch or .catch() and handle errors accordingly
-
-```
-try {
-    const recentCasts = await neynarClient.fetchRecentCasts();
-    console.log("Recent Casts", recentCasts);
-} catch (error) {
-    console.log((error as AxiosError).response?.data || (error as Error));
-}
-```
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/neynarxyz/nodejs-sdk/blob/main/LICENSE) file for details.
