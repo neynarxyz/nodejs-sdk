@@ -1126,8 +1126,10 @@ export class NeynarAPIClient {
    * @param {Array<number>} [options.fids] - Used for creating a feed based on a list of FIDs. Requires 'feedType' and 'filterType'.
    * @param {string} [options.parentUrl] - Used for fetching content under a specific parent URL. Requires 'feedType' and 'filterType'.
    * @param {boolean} [options.withRecasts] - Whether to include recasts in the response. True by default.
-   * @param {number} [options.limit] - Number of results to retrieve, with a default of 25 and a maximum of 100.
-   * @param {string} [options.cursor] - Pagination cursor for fetching specific subsets of results.
+   * @param {number} [options.limit] - The maximum number of users to be returned in the response.
+   *   Defaults to 25, with a maximum allowable value of 100.
+   * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
+   *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
    *
    * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
    *   containing the requested feed data.
@@ -1232,9 +1234,10 @@ export class NeynarAPIClient {
    * @param {number} fid - The FID of the user whose reactions are being fetched.
    * @param {ReactionsType} type - The type of reaction to fetch (likes, recasts, or all).
    * @param {Object} [options] - Optional parameters for customizing the response.
-   * @param {number} [options.limit] - Limits the number of results. Default is 25, with a maximum of 100.
-   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
-   *   omit this parameter for the initial request.
+   * @param {number} [options.limit] - The maximum number of users to be returned in the response.
+   *   Defaults to 25, with a maximum allowable value of 100.
+   * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
+   *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
    *
    * @returns {Promise<ReactionsResponse>} A promise that resolves to a `ReactionsResponse` object,
    *   containing the reactions associated with the user's casts.
@@ -1269,9 +1272,10 @@ export class NeynarAPIClient {
    *
    * @param {number} fid - The FID of the user whose notifications are being fetched.
    * @param {Object} [options] - Optional parameters to tailor the request.
-   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 50).
-   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
-   *   omit this parameter for the initial request.
+   * @param {number} [options.limit] - The maximum number of users to be returned in the response.
+   *   Defaults to 25, with a maximum allowable value of 50.
+   * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
+   *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
    *
    * @returns {Promise<NotificationsResponse>} A promise that resolves to a `NotificationsResponse` object,
    *   containing the user's notifications.
