@@ -199,13 +199,13 @@ export class NeynarV2APIClient {
    * // Following is an example of how to generate a signer, it may not work. Please fill in the correct values here.
    * // Please refer https://github.com/manan19/example-farcaster-app to get started
    *
-   * client.registerSigner('19d0c5fd-9b33-4a48-a0e2-bc7b0555baec', 18949, 1625097600, '0xe5d95c391e165dac8efea373efe301d3ea823e1f41713f8943713cbe2850566672e33ff3e17e19abb89703f650a2597f62b4fda0ce28ca15d59eb6d4e971ee531b').then(response => {
+   * client.registerSignedKey('19d0c5fd-9b33-4a48-a0e2-bc7b0555baec', 18949, 1625097600, '0xe5d95c391e165dac8efea373efe301d3ea823e1f41713f8943713cbe2850566672e33ff3e17e19abb89703f650a2597f62b4fda0ce28ca15d59eb6d4e971ee531b').then(response => {
    *   console.log('Signer Registration:', response); // Outputs the registration status of the signer
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/register-signed-key).
    */
-  public async registerSigner(
+  public async registerSignedKey(
     signerUuid: string,
     fid: number,
     deadline: number,
