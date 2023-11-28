@@ -1398,7 +1398,9 @@ export class NeynarAPIClient {
   // ------------ Misc ------------
 
   /**
-   * Retri
+   * Generate and Retrieve approved signer
+   * Using this signer you can do CRUD operations on farcaster.
+   * 
    * @param farcasterDeveloperMnemonic - mnemonic of the farcaster developer account
    *
    */
