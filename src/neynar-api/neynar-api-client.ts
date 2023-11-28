@@ -1499,9 +1499,12 @@ export class NeynarAPIClient {
       );
       console.log("Checking for the status of signer...");
 
+      let approvedSignerUuid: string; 
+
       while (true) {
         const res = await this.lookupSigner(signer_uuid);
         if (res && res.status === SignerStatusEnum.Approved) {
+          approvedSignerUuid = res.signer_uuid;
           break;
         }
         console.log("Waiting for signer to be approved...");
@@ -1509,7 +1512,7 @@ export class NeynarAPIClient {
       }
 
       console.log("✅ Transaction confirmed\n");
-      return signer_uuid;
+      return approvedSignerUuid;
     } catch (err) {
       if (isApiErrorResponse(err)) {
         console.log(err.response.data);
