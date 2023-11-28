@@ -54,7 +54,13 @@ import { encodeAbiParameters } from "viem";
 import { viemPublicClient } from "./common/viemClient";
 import { SignedKeyRequestMetadataABI } from "./abi/signed-key-request-metadata";
 import { keyGatewayAbi } from "./abi/key-gateway";
-import { SIGNED_KEY_REQUEST_TYPE, SIGNED_KEY_REQUEST_TYPE_FOR_ADD_FOR, SIGNED_KEY_REQUEST_VALIDATOR, SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN } from "./common/constants";
+import {
+  SIGNED_KEY_REQUEST_TYPE,
+  SIGNED_KEY_REQUEST_TYPE_FOR_ADD_FOR,
+  SIGNED_KEY_REQUEST_VALIDATOR,
+  SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN,
+} from "./common/constants";
+import { isApiErrorResponse } from "./utils";
 
 export class NeynarAPIClient {
   private readonly logger: Logger;
@@ -1400,7 +1406,7 @@ export class NeynarAPIClient {
   /**
    * Generate and Retrieve approved signer
    * Using this signer you can do CRUD operations on farcaster.
-   * 
+   *
    * @param farcasterDeveloperMnemonic - mnemonic of the farcaster developer account
    *
    */
@@ -1505,7 +1511,9 @@ export class NeynarAPIClient {
       console.log("✅ Transaction confirmed\n");
       return signer_uuid;
     } catch (err) {
-      console.log(err);
+      if (isApiErrorResponse(err)) {
+        console.log(err.response.data);
+      } else console.log(err);
     }
   }
 }
