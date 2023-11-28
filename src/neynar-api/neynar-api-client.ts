@@ -1407,26 +1407,23 @@ export class NeynarAPIClient {
    * Generate and Retrieve approved signer
    * Using this signer you can do CRUD operations on farcaster.
    *
-   * @param farcasterDeveloperMnemonic - mnemonic of the farcaster developer account
-   *
+   * @param {string} farcasterDeveloperMnemonic - mnemonic of the farcaster developer account
+   * @param {Object} [options] - Optional parameters for the request.   
+   * @param {number} [options.deadline] - (Optional) Unix timestamp in seconds that controls how long the signed key
+   *   request is valid for. A 24-hour duration from now is recommended.
    */
-  public async generateApprovedSigner(farcasterDeveloperMnemonic: string) {
+  public async createSignerAndRegisterSignedKey(farcasterDeveloperMnemonic: string, options?: { deadline?: number }) {
     try {
       const { public_key: signerPublicKey, signer_uuid } =
         await this.createSigner();
 
       const account = mnemonicToAccount(farcasterDeveloperMnemonic);
-
       const { user: farcasterDeveloper } =
         await this.lookupUserByCustodyAddress(account.address);
 
-      console.log(
-        `✅ Detected user with fid ${farcasterDeveloper.fid} and custody address: ${farcasterDeveloper.custody_address}`
-      );
-
       // Generates an expiration date for the signature
       // e.g. 1693927665
-      const deadline = Math.floor(Date.now() / 1000) + 86400; // signature is valid for 1 day from now
+      const signed_key_deadline = options?.deadline ?? Math.floor(Date.now() / 1000) + 86400; // signature is valid for 1 day from now
 
       let signature = await account.signTypedData({
         domain: SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN,
@@ -1437,82 +1434,12 @@ export class NeynarAPIClient {
         message: {
           requestFid: BigInt(farcasterDeveloper.fid),
           key: signerPublicKey,
-          deadline: BigInt(deadline),
+          deadline: BigInt(signed_key_deadline),
         },
       });
 
-      const metadata = encodeAbiParameters(SignedKeyRequestMetadataABI.inputs, [
-        {
-          requestFid: BigInt(farcasterDeveloper.fid),
-          requestSigner: account.address,
-          signature: signature,
-          deadline: BigInt(deadline),
-        },
-      ]);
-
-      const developerKeyGatewayNonce = await viemPublicClient.readContract({
-        address: "0x00000000fc56947c7e7183f8ca4b62398caadf0b", // gateway address
-        abi: keyGatewayAbi,
-        functionName: "nonces",
-        args: [farcasterDeveloper.custody_address as `0x${string}`],
-      });
-
-      signature = await account.signTypedData({
-        domain: SIGNED_KEY_REQUEST_VALIDATOR,
-        types: {
-          SignedKeyRequest: SIGNED_KEY_REQUEST_TYPE_FOR_ADD_FOR,
-        },
-        primaryType: "SignedKeyRequest",
-        message: {
-          owner: account.address,
-          keyType: 1,
-          key: signerPublicKey,
-          metadataType: 1,
-          metadata: metadata,
-          nonce: BigInt(developerKeyGatewayNonce),
-          deadline: BigInt(deadline),
-        },
-      });
-
-      console.log("✅ Generated signer", "\n");
-
-      console.log(
-        "In order to get an approved signer you need to do an on-chain transaction on OP mainnet. \nGo to Farcaster KeyGateway optimism explorer\nhttps://optimistic.etherscan.io/address/0x00000000fc56947c7e7183f8ca4b62398caadf0b#writeContract \n"
-      );
-      console.log(
-        "Connect to Web3.\n\nNavigate to `addFor` function and add following values inside the respective placeholders.\n"
-      );
-
-      console.log(
-        "fidOwner (address) :=> ",
-        farcasterDeveloper.custody_address,
-        "\n -"
-      );
-      console.log("keyType (uint32) :=> ", 1, "\n -");
-      console.log("key (bytes) :=> ", signerPublicKey, "\n -");
-      console.log("metadataType (uint8) :=> ", 1, "\n -");
-      console.log("metadata (bytes) :=> ", metadata, "\n -");
-      console.log("deadline (uint256) :=> ", deadline, "\n -");
-      console.log("sig (bytes) :=> ", signature, "\n -\n");
-      console.log(
-        "We are polling for the signer to be approved. It will be approved once the onchain transaction is confirmed."
-      );
-      console.log("Checking for the status of signer...");
-
-      let approvedSignerUuid: string;
-
-      while (true) {
-        const res = await this.lookupSigner(signer_uuid);
-        if (res && res.status === SignerStatusEnum.Approved) {
-          approvedSignerUuid = res.signer_uuid;
-          break;
-        }
-        console.log("Waiting for signer to be approved...");
-        await new Promise((r) => setTimeout(r, 5000));
-      }
-
-      console.log("✅ Transaction confirmed\n");
-      return approvedSignerUuid;
+      let signer_pending = await this.registerSignedKey(signer_uuid, farcasterDeveloper.fid, signed_key_deadline, signature);
+      return signer_pending;
     } catch (err) {
       if (isApiErrorResponse(err)) {
         console.log(err.response.data);
