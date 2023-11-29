@@ -1004,7 +1004,7 @@ export class NeynarAPIClient {
    *   containing information about the specified cast.
    *
    * @example
-   * import { CastParamType } from "@neynar/nodejs-sdk/build/neynar-api/v2";
+   * import { CastParamType } from "@neynar/nodejs-sdk";
    *
    * // Example: Retrieve information for a cast using its hash
    * client.lookUpCastByHashOrWarpcastUrl('0xfe90f9de682273e05b201629ad2338bdcd89b6be', CastParamType.Hash).then(response => {
@@ -1172,7 +1172,7 @@ export class NeynarAPIClient {
    *
    * @example
    *
-   * import { ReactionType } from "@neynar/nodejs-sdk/build/neynar-api/v2";
+   * import { ReactionType } from "@neynar/nodejs-sdk";
    *
    * // Example: Post a 'like' reaction to a cast
    * client.publishReactionToCast('19d0c5fd-9b33-4a48-a0e2-bc7b0555baec', ReactionType.Like, '0x1ea99cbed57e4020314ba3fadd7c692d2de34d5f').then(response => {
@@ -1206,7 +1206,7 @@ export class NeynarAPIClient {
    *
    * @example
    *
-   * import { ReactionType } from "@neynar/nodejs-sdk/build/neynar-api/v2";
+   * import { ReactionType } from "@neynar/nodejs-sdk";
    *
    * // Example: Remove a 'like' reaction from a cast
    * client.deleteReactionFromCast('19d0c5fd-9b33-4a48-a0e2-bc7b0555baec', ReactionType.Like, '0x1ea99cbed57e4020314ba3fadd7c692d2de34d5f').then(response => {
@@ -1244,7 +1244,7 @@ export class NeynarAPIClient {
    *
    * @example
    *
-   * import { ReactionsType } from "@neynar/nodejs-sdk/build/neynar-api/v2";
+   * import { ReactionsType } from "@neynar/nodejs-sdk";
    *
    * // Example: Fetch a user's reactions
    * client.fetchUserReactions(3, ReactionsType.All, {
