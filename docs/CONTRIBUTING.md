@@ -1,0 +1,101 @@
+# Contributing to Neynar Node.js SDK
+
+We welcome contributions to the Neynar Node.js SDK. This document provides guidelines and instructions for contributing.
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- [Node.js](https://nodejs.org/en/download/)
+- [Yarn](https://classic.yarnpkg.com/lang/en/docs/install)
+
+## Setting Up for Development
+
+1. Fork the SDK repository from [@neynar/nodejs-sdk](https://github.com/neynarxyz/nodejs-sdk) to your GitHub account.
+2. Clone your forked repository to your local machine.
+3. Inside your local clone, initialize and update submodules, and install dependencies.
+
+```bash
+git submodule update --init --recursive
+yarn install
+```
+
+## Contributing Guidelines
+
+### Updating Auto-Generated Code
+
+Auto-generated code is located in the following directories:
+
+- `src/neynar-api/v1/openapi`
+- `src/neynar-api/v2/openapi-farcaster`
+- `src/neynar-api/v2/openapi-recommendation`
+
+These are generated using [openapi-generator-cli](https://github.com/OpenAPITools/openapi-generator-cli). To make changes, update the OpenAPI Specification (OAS) in the [OAS Repository](https://github.com/neynarxyz/oas). After updating the OAS, synchronize the OAS in your local clone of the SDK repository.
+
+```bash
+git submodule update --remote src/oas
+```
+
+### Writing Wrapper Code
+
+#### New Tag in OAS
+
+When a new tag is added in the OAS, follow these steps:
+
+1. A new API is generated under `src/neynar-api/v{version}/openapi/apis`.
+2. In the internal wrappers (`src/neynar-api/v{version}/client`), add the new tag to the `public readonly apis` property.
+3. Instantiate the new API in the constructor.
+4. Write wrapper code for the new methods.
+5. Add corresponding wrapper code in the external wrapper (`src/neynar-api/neynar-api-client`).
+
+#### Method Naming Guidelines
+
+- Be descriptive with method names.
+- Prepend `lookup` for GET APIs returning a single entity (e.g., `lookupUserByFid`).
+- Use `fetch` for GET APIs returning multiple entities (e.g., `fetchRecentUsers`).
+- Use `publish` for POST APIs (e.g., `publishCast`).
+- Use `delete` for DELETE APIs (e.g., `deleteReactionFromCast`).
+- Use `update` for PUT/PATCH APIs (e.g., `updateUser`).
+- For bulk operations, use `fetchBulkX`, `updateBulkX`, etc.
+
+#### Parameters Guidelines
+
+- In methods on the wrapper client, all required parameters must be added first, followed by optional parameters, which should be encapsulated within an options object. For example, use `fetchUser(reqParam1, reqParam2, {optionalParam1, optionalParam2})`.
+
+#### Adding a JS Docstring
+
+When writing JS docstrings, adhere to the following guidelines:
+
+1. **Instance Name**: Use **`client`** as the instance name in examples.
+2. **Parameter Inclusion**: Include most parameters in examples, where applicable.
+3. **Parameter Descriptions**:
+   - Consistently describe **`viewerFid`** as "The FID of the user viewing this information, used for providing contextual data specific to the viewer."
+   - For the **`limit`** parameter, include its default and maximum values.
+   - For the **`cursor`** parameter, consistently describe it as "Pagination cursor for the next set of results, Omit this parameter for the initial request." In the example, add the cursor as **`// cursor: "nextPageCursor", // Pagination cursor for the next set of results, Omit this parameter for the initial request.`**
+4. **[options] Description**: Describe **`[options]`** as "Optional parameters to tailor the request."
+5. **Usage Examples**:
+   - Provide only one example that demonstrates a practical application of the method with multiple parameters.
+   - Include explanatory comments within the example code to clarify the purpose and usage of each line or significant code section.
+6. **Neynar Documentation Reference**: Include a link to the Neynar documentation for additional information.
+
+### Coding Standards
+
+- Ensure code readability and maintainability.
+- Comment your code where necessary, especially for complex logic.
+
+
+### Submitting a Pull Request
+
+- After completing your changes, commit them to your forked repository.
+- Push your changes to your GitHub fork.
+- Create a pull request from your fork to the main SDK repository.
+- Make sure your code adheres to the project's coding standards.
+- Provide a clear and detailed description of your changes in the pull request.
+- Link any relevant issues in your pull request description.
+
+### Community Guidelines
+
+- Follow the project's code of conduct.
+- Report any issues or concerns to the maintainers.
+
+Thank you for contributing to the Neynar Node.js SDK!
