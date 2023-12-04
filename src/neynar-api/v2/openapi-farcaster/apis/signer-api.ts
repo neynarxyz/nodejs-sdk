@@ -292,4 +292,3 @@ export class SignerApi extends BaseAPI {
         return SignerApiFp(this.configuration).signer(apiKey, signerUuid, options).then((request) => request(this.axios, this.basePath));
     }
 }
-

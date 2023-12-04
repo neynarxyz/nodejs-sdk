@@ -15,33 +15,43 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Cast } from './cast';
-// May contain unused imports in some cases
-// @ts-ignore
-import { CastNotificationType } from './cast-notification-type';
-// May contain unused imports in some cases
-// @ts-ignore
-import { CastParentAuthor } from './cast-parent-author';
-// May contain unused imports in some cases
-// @ts-ignore
-import { CastWithInteractionsAllOf } from './cast-with-interactions-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import { CastWithInteractionsReactions } from './cast-with-interactions-reactions';
 // May contain unused imports in some cases
 // @ts-ignore
 import { CastWithInteractionsReplies } from './cast-with-interactions-replies';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EmbeddedCast } from './embedded-cast';
-// May contain unused imports in some cases
-// @ts-ignore
 import { User } from './user';
 
 /**
- * @type CastWithInteractions
+ * 
  * @export
+ * @interface CastWithInteractionsAllOf
  */
-export type CastWithInteractions = Cast & CastWithInteractionsAllOf;
-
+export interface CastWithInteractionsAllOf {
+    /**
+     * 
+     * @type {CastWithInteractionsReactions}
+     * @memberof CastWithInteractionsAllOf
+     */
+    'reactions': CastWithInteractionsReactions;
+    /**
+     * 
+     * @type {CastWithInteractionsReplies}
+     * @memberof CastWithInteractionsAllOf
+     */
+    'replies': CastWithInteractionsReplies;
+    /**
+     * 
+     * @type {string}
+     * @memberof CastWithInteractionsAllOf
+     */
+    'thread_hash': string | null;
+    /**
+     * 
+     * @type {Array<User>}
+     * @memberof CastWithInteractionsAllOf
+     */
+    'mentioned_profiles': Array<User>;
+}
 

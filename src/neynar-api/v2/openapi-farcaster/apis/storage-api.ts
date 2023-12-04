@@ -223,4 +223,3 @@ export class StorageApi extends BaseAPI {
         return StorageApiFp(this.configuration).storageUsage(apiKey, fid, options).then((request) => request(this.axios, this.basePath));
     }
 }
-
