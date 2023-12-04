@@ -157,4 +157,3 @@ export class NotificationsApi extends BaseAPI {
         return NotificationsApiFp(this.configuration).notifications(apiKey, fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
-

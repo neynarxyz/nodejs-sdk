@@ -201,4 +201,3 @@ export class FeedApi extends BaseAPI {
         return FeedApiFp(this.configuration).feed(apiKey, feedType, filterType, fid, fids, parentUrl, withRecasts, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
-

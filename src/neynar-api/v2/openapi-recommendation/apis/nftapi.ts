@@ -159,4 +159,3 @@ export class NFTApi extends BaseAPI {
         return NFTApiFp(this.configuration).fetchRelevantMints(apiKey, address, contractAddress, tokenId, options).then((request) => request(this.axios, this.basePath));
     }
 }
-

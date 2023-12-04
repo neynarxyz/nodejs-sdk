@@ -730,4 +730,3 @@ export class UserApi extends BaseAPI {
         return UserApiFp(this.configuration).userSearch(apiKey, q, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 }
-

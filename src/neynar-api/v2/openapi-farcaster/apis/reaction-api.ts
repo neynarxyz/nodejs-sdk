@@ -331,4 +331,3 @@ export class ReactionApi extends BaseAPI {
         return ReactionApiFp(this.configuration).reactionsUser(apiKey, fid, type, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
-

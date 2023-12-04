@@ -401,4 +401,3 @@ export class CastApi extends BaseAPI {
         return CastApiFp(this.configuration).postCast(apiKey, postCastReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 }
-
