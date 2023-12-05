@@ -882,6 +882,49 @@ export class NeynarV2APIClient {
     return response.data;
   }
 
+  /**
+   * Retrieves a list of notifications for a user within specific channels. This method is useful for
+   * obtaining notifications related to user interactions within designated channels, identified by
+   * their parent URLs.
+   *
+   * @param {number} fid - The FID of the user whose channel notifications are being fetched.
+   * @param {Array<string>} parentUrls - An array of channel parent URLs.
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 50).
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
+   *   omit this parameter for the initial request.
+   *
+   * @returns {Promise<NotificationsResponse>} A promise that resolves to a `NotificationsResponse` object,
+   *   containing the channel-specific notifications for the user.
+   *
+   * @example
+   * // Example: Retrieve channel notifications for a user limit to 30 results
+   * client.fetchChannelNotificationsForUser(3, ['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc', 'chain://eip155:7777777/erc721:0x5556efe18d87f132054fbd4ba9afc13ebb1b0594'],
+   * {
+   *  limit: 30,
+   *  // cursor: "nextPageCursor" // Omit this parameter for the initial request.
+   * }).then(response => {
+   *   console.log('Channel Notifications:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/notifications).
+   */
+  public async fetchChannelNotificationsForUser(
+    fid: number,
+    parentUrls: string[],
+    options?: { cursor?: string; limit?: number }
+  ): Promise<NotificationsResponse> {
+    const _parentUrls = parentUrls.join(",");
+    const response = await this.apis.notifications.notificationsChannel(
+      this.apiKey,
+      fid,
+      _parentUrls,
+      options?.limit,
+      options?.cursor
+    );
+    return response.data;
+  }
+
   // ------------ Follows ------------
 
   /**
