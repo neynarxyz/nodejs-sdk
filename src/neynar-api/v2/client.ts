@@ -899,7 +899,7 @@ export class NeynarV2APIClient {
    *
    * @example
    * // Example: Retrieve channel notifications for a user limit to 30 results
-   * client.fetchChannelNotificationForUser(3, ['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc', 'chain://eip155:7777777/erc721:0x5556efe18d87f132054fbd4ba9afc13ebb1b0594'],
+   * client.fetchChannelNotificationsForUser(3, ['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc', 'chain://eip155:7777777/erc721:0x5556efe18d87f132054fbd4ba9afc13ebb1b0594'],
    * {
    *  limit: 30,
    *  // cursor: "nextPageCursor" // Omit this parameter for the initial request.
@@ -909,7 +909,7 @@ export class NeynarV2APIClient {
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/notifications).
    */
-  public async fetchChannelNotificationForUser(
+  public async fetchChannelNotificationsForUser(
     fid: number,
     parentUrls: string[],
     options?: { cursor?: string; limit?: number }
