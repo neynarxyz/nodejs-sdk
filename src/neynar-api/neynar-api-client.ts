@@ -1125,6 +1125,7 @@ export class NeynarAPIClient {
    * @param {number} [options.fid] - FID of the user whose feed is being created. Required unless a 'filterType' is provided.
    * @param {Array<number>} [options.fids] - Used for creating a feed based on a list of FIDs. Requires 'feedType' and 'filterType'.
    * @param {string} [options.parentUrl] - Used for fetching content under a specific parent URL. Requires 'feedType' and 'filterType'.
+   * @param {string} [options.embedUrl] - Used when filter_type=embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
    * @param {boolean} [options.withRecasts] - Whether to include recasts in the response. True by default.
    * @param {number} [options.limit] - The maximum number of users to be returned in the response.
    *   Defaults to 25, with a maximum allowable value of 100.
@@ -1149,6 +1150,7 @@ export class NeynarAPIClient {
       fid?: number;
       fids?: number[];
       parentUrl?: string;
+      embedUrl?: string;
       limit?: number;
       cursor?: string;
       withRecasts?: boolean;
