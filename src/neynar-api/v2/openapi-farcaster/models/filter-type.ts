@@ -23,6 +23,7 @@
 export const FilterType = {
     Fids: 'fids',
     ParentUrl: 'parent_url',
+    EmbedUrl: 'embed_url',
     GlobalTrending: 'global_trending'
 } as const;
 
