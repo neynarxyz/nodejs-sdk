@@ -44,13 +44,14 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {number} [fid] (Optional) fid of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
          * @param {string} [fids] Used when filter_type&#x3D;fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
          * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
+         * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feed: async (apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feed: async (apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, embedUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feed', 'apiKey', apiKey)
             // verify required parameter 'feedType' is not null or undefined
@@ -85,6 +86,10 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (parentUrl !== undefined) {
                 localVarQueryParameter['parent_url'] = parentUrl;
+            }
+
+            if (embedUrl !== undefined) {
+                localVarQueryParameter['embed_url'] = embedUrl;
             }
 
             if (withRecasts !== undefined) {
@@ -133,14 +138,15 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {number} [fid] (Optional) fid of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
          * @param {string} [fids] Used when filter_type&#x3D;fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
          * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
+         * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.feed(apiKey, feedType, filterType, fid, fids, parentUrl, withRecasts, limit, cursor, options);
+        async feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, embedUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feed(apiKey, feedType, filterType, fid, fids, parentUrl, embedUrl, withRecasts, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -162,14 +168,15 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {number} [fid] (Optional) fid of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
          * @param {string} [fids] Used when filter_type&#x3D;fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
          * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
+         * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
-            return localVarFp.feed(apiKey, feedType, filterType, fid, fids, parentUrl, withRecasts, limit, cursor, options).then((request) => request(axios, basePath));
+        feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, embedUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
+            return localVarFp.feed(apiKey, feedType, filterType, fid, fids, parentUrl, embedUrl, withRecasts, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -190,6 +197,7 @@ export class FeedApi extends BaseAPI {
      * @param {number} [fid] (Optional) fid of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
      * @param {string} [fids] Used when filter_type&#x3D;fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
      * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
+     * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
      * @param {boolean} [withRecasts] Include recasts in the response, true by default
      * @param {number} [limit] Number of results to retrieve (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
@@ -197,7 +205,7 @@ export class FeedApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
-        return FeedApiFp(this.configuration).feed(apiKey, feedType, filterType, fid, fids, parentUrl, withRecasts, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, embedUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feed(apiKey, feedType, filterType, fid, fids, parentUrl, embedUrl, withRecasts, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
