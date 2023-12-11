@@ -21,7 +21,7 @@
  */
 export interface CastId {
     /**
-     * 
+     * User identifier (unsigned integer)
      * @type {number}
      * @memberof CastId
      */
