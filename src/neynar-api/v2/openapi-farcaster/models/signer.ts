@@ -45,11 +45,11 @@ export interface Signer {
      */
     'signer_approval_url'?: string;
     /**
-     * 
-     * @type {string}
+     * User identifier (unsigned integer)
+     * @type {number}
      * @memberof Signer
      */
-    'fid'?: string;
+    'fid'?: number;
 }
 
 export const SignerStatusEnum = {
