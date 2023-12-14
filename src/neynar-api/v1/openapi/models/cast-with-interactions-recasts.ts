@@ -17,26 +17,20 @@
 /**
  * 
  * @export
- * @interface CastWithInteractionsReactionsOrRecasts
+ * @interface CastWithInteractionsRecasts
  */
-export interface CastWithInteractionsReactionsOrRecasts {
+export interface CastWithInteractionsRecasts {
     /**
      * 
      * @type {number}
-     * @memberof CastWithInteractionsReactionsOrRecasts
+     * @memberof CastWithInteractionsRecasts
      */
     'count': number;
     /**
      * 
      * @type {Array<number>}
-     * @memberof CastWithInteractionsReactionsOrRecasts
+     * @memberof CastWithInteractionsRecasts
      */
     'fids': Array<number>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof CastWithInteractionsReactionsOrRecasts
-     */
-    'fnames': Array<string>;
 }
 

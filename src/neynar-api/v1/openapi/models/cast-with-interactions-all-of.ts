@@ -15,7 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastWithInteractionsReactionsOrRecasts } from './cast-with-interactions-reactions-or-recasts';
+import { CastWithInteractionsReactions } from './cast-with-interactions-reactions';
+// May contain unused imports in some cases
+// @ts-ignore
+import { CastWithInteractionsRecasts } from './cast-with-interactions-recasts';
 // May contain unused imports in some cases
 // @ts-ignore
 import { CastWithInteractionsReplies } from './cast-with-interactions-replies';
@@ -31,16 +34,16 @@ import { ViewerContext } from './viewer-context';
 export interface CastWithInteractionsAllOf {
     /**
      * 
-     * @type {CastWithInteractionsReactionsOrRecasts}
+     * @type {CastWithInteractionsReactions}
      * @memberof CastWithInteractionsAllOf
      */
-    'reactions': CastWithInteractionsReactionsOrRecasts;
+    'reactions': CastWithInteractionsReactions;
     /**
      * 
-     * @type {CastWithInteractionsReactionsOrRecasts}
+     * @type {CastWithInteractionsRecasts}
      * @memberof CastWithInteractionsAllOf
      */
-    'recasts': CastWithInteractionsReactionsOrRecasts;
+    'recasts': CastWithInteractionsRecasts;
     /**
      * 
      * @type {Array<string>}
