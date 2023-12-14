@@ -30,7 +30,10 @@ import { CastType } from './cast-type';
 import { CastWithInteractionsAllOf } from './cast-with-interactions-all-of';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastWithInteractionsReactionsOrRecasts } from './cast-with-interactions-reactions-or-recasts';
+import { CastWithInteractionsReactions } from './cast-with-interactions-reactions';
+// May contain unused imports in some cases
+// @ts-ignore
+import { CastWithInteractionsRecasts } from './cast-with-interactions-recasts';
 // May contain unused imports in some cases
 // @ts-ignore
 import { CastWithInteractionsReplies } from './cast-with-interactions-replies';
