@@ -1378,10 +1378,31 @@ export class NeynarAPIClient {
    *   console.log('All Channels:', response);
    * });
    *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/all-channels).
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/list-all-channels).
    */
   public async fetchAllChannels(): Promise<ChannelListResponse> {
     return await this.clients.v2.fetchAllChannels();
+  }
+
+  /**
+   * Searches for channels based on their ID or name. This method is useful for locating specific
+   * channels on the platform using search queries.
+   *
+   * @param {string} q - The query string used for searching channels, which can be a channel ID or name.
+   *
+   * @returns {Promise<ChannelListResponse>} A promise that resolves to a `ChannelListResponse` object,
+   *   containing a list of channels that match the search criteria.
+   *
+   * @example
+   * // Example: Search for channels using a query string
+   * client.searchChannels('ux').then(response => {
+   *   console.log('Search Results:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/search-channels).
+   */
+  public async searchChannels(q: string): Promise<ChannelListResponse> {
+    return await this.clients.v2.searchChannels(q);
   }
 
   // ------------ Follows ------------
