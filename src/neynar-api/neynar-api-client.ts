@@ -24,6 +24,7 @@ import {
   StorageAllocationsResponse,
   StorageUsageResponse,
   SignerStatusEnum,
+  ChannelResponse,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -1338,6 +1339,29 @@ export class NeynarAPIClient {
       parentUrls,
       options
     );
+  }
+
+  // ------------ Channel ------------
+
+  /**
+   * Retrieves details of a specific channel based on its ID. This method is essential for
+   * obtaining comprehensive information about a channel, including its attributes and metadata.
+   *
+   * @param {string} id - The ID of the channel being queried.
+   *
+   * @returns {Promise<ChannelResponse>} A promise that resolves to a `ChannelResponse` object,
+   *   containing detailed information about the specified channel.
+   *
+   * @example
+   * // Example: Retrieve details of a channel by its ID
+   * client.lookupChannel('neynar').then(response => {
+   *   console.log('Channel Details:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/channel-details).
+   */
+  public async lookupChannel(id: string): Promise<ChannelResponse> {
+    return await this.clients.v2.lookupChannel(id);
   }
 
   // ------------ Follows ------------

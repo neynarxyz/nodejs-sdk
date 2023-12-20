@@ -33,6 +33,8 @@ import {
   StorageApi,
   StorageAllocationsResponse,
   StorageUsageResponse,
+  ChannelApi,
+  ChannelResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -52,6 +54,7 @@ export class NeynarV2APIClient {
     reaction: ReactionApi;
     feed: FeedApi;
     notifications: NotificationsApi;
+    channel: ChannelApi;
     follows: FollowsApi;
     storage: StorageApi;
     nft: NFTApi;
@@ -111,6 +114,7 @@ export class NeynarV2APIClient {
       reaction: new ReactionApi(config, undefined, axiosInstance),
       feed: new FeedApi(config, undefined, axiosInstance),
       notifications: new NotificationsApi(config, undefined, axiosInstance),
+      channel: new ChannelApi(config, undefined, axiosInstance),
       follows: new FollowsApi(config, undefined, axiosInstance),
       storage: new StorageApi(config, undefined, axiosInstance),
       nft: new NFTApi(config, undefined, axiosInstance),
@@ -927,6 +931,30 @@ export class NeynarV2APIClient {
       options?.limit,
       options?.cursor
     );
+    return response.data;
+  }
+
+  // ------------ Channel ------------
+
+  /**
+   * Retrieves details of a specific channel based on its ID. This method is essential for
+   * obtaining comprehensive information about a channel, including its attributes and metadata.
+   *
+   * @param {string} id - The ID of the channel being queried.
+   *
+   * @returns {Promise<ChannelResponse>} A promise that resolves to a `ChannelResponse` object,
+   *   containing detailed information about the specified channel.
+   *
+   * @example
+   * // Example: Retrieve details of a channel by its ID
+   * client.lookupChannel('neynar').then(response => {
+   *   console.log('Channel Details:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/channel-details).
+   */
+  public async lookupChannel(id: string): Promise<ChannelResponse> {
+    const response = await this.apis.channel.channelDetails(this.apiKey, id);
     return response.data;
   }
 
