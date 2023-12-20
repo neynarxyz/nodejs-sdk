@@ -33,6 +33,9 @@ import {
   StorageApi,
   StorageAllocationsResponse,
   StorageUsageResponse,
+  ChannelApi,
+  ChannelResponse,
+  ChannelListResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -52,6 +55,7 @@ export class NeynarV2APIClient {
     reaction: ReactionApi;
     feed: FeedApi;
     notifications: NotificationsApi;
+    channel: ChannelApi;
     follows: FollowsApi;
     storage: StorageApi;
     nft: NFTApi;
@@ -111,6 +115,7 @@ export class NeynarV2APIClient {
       reaction: new ReactionApi(config, undefined, axiosInstance),
       feed: new FeedApi(config, undefined, axiosInstance),
       notifications: new NotificationsApi(config, undefined, axiosInstance),
+      channel: new ChannelApi(config, undefined, axiosInstance),
       follows: new FollowsApi(config, undefined, axiosInstance),
       storage: new StorageApi(config, undefined, axiosInstance),
       nft: new NFTApi(config, undefined, axiosInstance),
@@ -581,6 +586,7 @@ export class NeynarV2APIClient {
    * @param {Object} [options] - Optional parameters for the cast.
    * @param {Array<EmbeddedCast>} [options.embeds] - An array of embeds to be included in the cast.
    * @param {string} [options.replyTo] - The URL or hash of the parent cast if this is a reply.
+   * @param {string} [options.channelId] - Channel ID of the channel where the cast is to be posted. e.g. neynar, farcaster, warpcast.
    *
    * @returns {Promise<PostCastResponseCast>} A promise that resolves to a `PostCastResponseCast` object,
    *   representing the published cast.
@@ -602,13 +608,14 @@ export class NeynarV2APIClient {
   public async publishCast(
     signerUuid: string,
     text: string,
-    options?: { embeds?: EmbeddedCast[]; replyTo?: string }
+    options?: { embeds?: EmbeddedCast[]; replyTo?: string; channelId?: string }
   ): Promise<PostCastResponseCast> {
     const postCastReqBody = {
       signer_uuid: signerUuid,
       text: text,
       embeds: options?.embeds,
       parent: options?.replyTo,
+      channel_id: options?.channelId,
     };
     const response = await this.apis.cast.postCast(
       this.apiKey,
@@ -925,6 +932,72 @@ export class NeynarV2APIClient {
       options?.limit,
       options?.cursor
     );
+    return response.data;
+  }
+
+  // ------------ Channel ------------
+
+  /**
+   * Retrieves details of a specific channel based on its ID. This method is essential for
+   * obtaining comprehensive information about a channel, including its attributes and metadata.
+   *
+   * @param {string} id - The ID of the channel being queried.
+   *
+   * @returns {Promise<ChannelResponse>} A promise that resolves to a `ChannelResponse` object,
+   *   containing detailed information about the specified channel.
+   *
+   * @example
+   * // Example: Retrieve details of a channel by its ID
+   * client.lookupChannel('neynar').then(response => {
+   *   console.log('Channel Details:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/channel-details).
+   */
+  public async lookupChannel(id: string): Promise<ChannelResponse> {
+    const response = await this.apis.channel.channelDetails(this.apiKey, id);
+    return response.data;
+  }
+
+  /**
+   * Retrieves a list of all channels, including their details. This method is particularly useful for
+   * obtaining a comprehensive overview of all available channels on the platform.
+   *
+   * @returns {Promise<ChannelListResponse>} A promise that resolves to an `ChannelListResponse` object,
+   *   containing a list of all channels along with their respective details.
+   *
+   * @example
+   * // Example: Retrieve a list of all channels
+   * client.fetchAllChannels().then(response => {
+   *   console.log('All Channels:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/list-all-channels).
+   */
+  public async fetchAllChannels(): Promise<ChannelListResponse> {
+    const response = await this.apis.channel.listAllChannels(this.apiKey);
+    return response.data;
+  }
+
+  /**
+   * Searches for channels based on their ID or name. This method is useful for locating specific
+   * channels on the platform using search queries.
+   *
+   * @param {string} q - The query string used for searching channels, which can be a channel ID or name.
+   *
+   * @returns {Promise<ChannelListResponse>} A promise that resolves to a `ChannelListResponse` object,
+   *   containing a list of channels that match the search criteria.
+   *
+   * @example
+   * // Example: Search for channels using a query string
+   * client.searchChannels('ux').then(response => {
+   *   console.log('Search Results:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/search-channels).
+   */
+  public async searchChannels(q: string): Promise<ChannelListResponse> {
+    const response = await this.apis.channel.searchChannels(this.apiKey, q);
     return response.data;
   }
 
