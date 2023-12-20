@@ -25,6 +25,7 @@ import {
   StorageUsageResponse,
   SignerStatusEnum,
   ChannelResponse,
+  ChannelListResponse,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -1362,6 +1363,25 @@ export class NeynarAPIClient {
    */
   public async lookupChannel(id: string): Promise<ChannelResponse> {
     return await this.clients.v2.lookupChannel(id);
+  }
+
+  /**
+   * Retrieves a list of all channels, including their details. This method is particularly useful for
+   * obtaining a comprehensive overview of all available channels on the platform.
+   *
+   * @returns {Promise<ChannelListResponse>} A promise that resolves to an `ChannelListResponse` object,
+   *   containing a list of all channels along with their respective details.
+   *
+   * @example
+   * // Example: Retrieve a list of all channels
+   * client.fetchAllChannels().then(response => {
+   *   console.log('All Channels:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/all-channels).
+   */
+  public async fetchAllChannels(): Promise<ChannelListResponse> {
+    return await this.clients.v2.fetchAllChannels();
   }
 
   // ------------ Follows ------------

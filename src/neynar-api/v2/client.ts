@@ -35,6 +35,7 @@ import {
   StorageUsageResponse,
   ChannelApi,
   ChannelResponse,
+  ChannelListResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -955,6 +956,26 @@ export class NeynarV2APIClient {
    */
   public async lookupChannel(id: string): Promise<ChannelResponse> {
     const response = await this.apis.channel.channelDetails(this.apiKey, id);
+    return response.data;
+  }
+
+  /**
+   * Retrieves a list of all channels, including their details. This method is particularly useful for
+   * obtaining a comprehensive overview of all available channels on the platform.
+   *
+   * @returns {Promise<ChannelListResponse>} A promise that resolves to an `ChannelListResponse` object,
+   *   containing a list of all channels along with their respective details.
+   *
+   * @example
+   * // Example: Retrieve a list of all channels
+   * client.fetchAllChannels().then(response => {
+   *   console.log('All Channels:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/all-channels).
+   */
+  public async fetchAllChannels(): Promise<ChannelListResponse> {
+    const response = await this.apis.channel.listAllChannels(this.apiKey);
     return response.data;
   }
 
