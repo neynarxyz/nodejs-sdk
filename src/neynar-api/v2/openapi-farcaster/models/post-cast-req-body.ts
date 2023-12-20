@@ -47,5 +47,11 @@ export interface PostCastReqBody {
      * @memberof PostCastReqBody
      */
     'parent'?: string;
+    /**
+     * Channel ID of the channel where the cast is to be posted. e.g. neynar, farcaster, warpcast
+     * @type {string}
+     * @memberof PostCastReqBody
+     */
+    'channel_id'?: string;
 }
 

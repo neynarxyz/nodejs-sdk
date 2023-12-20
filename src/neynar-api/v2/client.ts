@@ -581,6 +581,7 @@ export class NeynarV2APIClient {
    * @param {Object} [options] - Optional parameters for the cast.
    * @param {Array<EmbeddedCast>} [options.embeds] - An array of embeds to be included in the cast.
    * @param {string} [options.replyTo] - The URL or hash of the parent cast if this is a reply.
+   * @param {string} [options.channelId] - Channel ID of the channel where the cast is to be posted. e.g. neynar, farcaster, warpcast.
    *
    * @returns {Promise<PostCastResponseCast>} A promise that resolves to a `PostCastResponseCast` object,
    *   representing the published cast.
@@ -602,13 +603,14 @@ export class NeynarV2APIClient {
   public async publishCast(
     signerUuid: string,
     text: string,
-    options?: { embeds?: EmbeddedCast[]; replyTo?: string }
+    options?: { embeds?: EmbeddedCast[]; replyTo?: string; channelId?: string }
   ): Promise<PostCastResponseCast> {
     const postCastReqBody = {
       signer_uuid: signerUuid,
       text: text,
       embeds: options?.embeds,
       parent: options?.replyTo,
+      channel_id: options?.channelId,
     };
     const response = await this.apis.cast.postCast(
       this.apiKey,
