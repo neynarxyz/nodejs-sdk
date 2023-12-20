@@ -3,6 +3,7 @@
 .openapi-generator-ignore
 api.ts
 apis/cast-api.ts
+apis/channel-api.ts
 apis/feed-api.ts
 apis/follows-api.ts
 apis/notifications-api.ts
@@ -32,6 +33,9 @@ models/cast-with-interactions.ts
 models/cast.ts
 models/casts-response-result.ts
 models/casts-response.ts
+models/channel-list-response.ts
+models/channel-response.ts
+models/channel.ts
 models/dehydrated-follower.ts
 models/delete-cast-req-body.ts
 models/embed-cast-id.ts
