@@ -1309,7 +1309,7 @@ export class NeynarAPIClient {
    * their parent URLs.
    *
    * @param {number} fid - The FID of the user whose channel notifications are being fetched.
-   * @param {Array<string>} parentUrls - An array of channel parent URLs.
+   * @param {string} channelIds - channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
    * @param {Object} [options] - Optional parameters for the request.
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 50).
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
@@ -1323,7 +1323,7 @@ export class NeynarAPIClient {
    * client.fetchChannelNotificationsForUser(3, ['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc', 'chain://eip155:7777777/erc721:0x5556efe18d87f132054fbd4ba9afc13ebb1b0594'],
    * {
    *  limit: 30,
-   *  // cursor: "nextPageCursor" // Omit this parameter for the initial request
+   *  // cursor: "nextPageCursor" // Omit this parameter for the initial request.
    * }).then(response => {
    *   console.log('Channel Notifications:', response);
    * });
@@ -1332,12 +1332,12 @@ export class NeynarAPIClient {
    */
   public async fetchChannelNotificationsForUser(
     fid: number,
-    parentUrls: string[],
+    channelIds: string[],
     options?: { cursor?: string; limit?: number }
   ): Promise<NotificationsResponse> {
     return await this.clients.v2.fetchChannelNotificationsForUser(
       fid,
-      parentUrls,
+      channelIds,
       options
     );
   }

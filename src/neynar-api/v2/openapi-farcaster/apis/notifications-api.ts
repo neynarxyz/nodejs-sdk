@@ -90,19 +90,19 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
          * @summary Retrieve notifications for a user for a given channel
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
-         * @param {string} parentUrls Comma separated channel parent_urls (find mappings here - https://github.com/neynarxyz/farcaster-channels/blob/main/warpcast.json)
+         * @param {string} channelIds Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
          * @param {number} [limit] Number of results to retrieve (default 25, max 50)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notificationsChannel: async (apiKey: string, fid: number, parentUrls: string, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        notificationsChannel: async (apiKey: string, fid: number, channelIds: string, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('notificationsChannel', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('notificationsChannel', 'fid', fid)
-            // verify required parameter 'parentUrls' is not null or undefined
-            assertParamExists('notificationsChannel', 'parentUrls', parentUrls)
+            // verify required parameter 'channelIds' is not null or undefined
+            assertParamExists('notificationsChannel', 'channelIds', channelIds)
             const localVarPath = `/farcaster/notifications/channel`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -119,8 +119,8 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (parentUrls !== undefined) {
-                localVarQueryParameter['parent_urls'] = parentUrls;
+            if (channelIds !== undefined) {
+                localVarQueryParameter['channel_ids'] = channelIds;
             }
 
             if (limit !== undefined) {
@@ -175,14 +175,14 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @summary Retrieve notifications for a user for a given channel
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
-         * @param {string} parentUrls Comma separated channel parent_urls (find mappings here - https://github.com/neynarxyz/farcaster-channels/blob/main/warpcast.json)
+         * @param {string} channelIds Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
          * @param {number} [limit] Number of results to retrieve (default 25, max 50)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async notificationsChannel(apiKey: string, fid: number, parentUrls: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.notificationsChannel(apiKey, fid, parentUrls, limit, cursor, options);
+        async notificationsChannel(apiKey: string, fid: number, channelIds: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notificationsChannel(apiKey, fid, channelIds, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -213,14 +213,14 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
          * @summary Retrieve notifications for a user for a given channel
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
-         * @param {string} parentUrls Comma separated channel parent_urls (find mappings here - https://github.com/neynarxyz/farcaster-channels/blob/main/warpcast.json)
+         * @param {string} channelIds Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
          * @param {number} [limit] Number of results to retrieve (default 25, max 50)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notificationsChannel(apiKey: string, fid: number, parentUrls: string, limit?: number, cursor?: string, options?: any): AxiosPromise<NotificationsResponse> {
-            return localVarFp.notificationsChannel(apiKey, fid, parentUrls, limit, cursor, options).then((request) => request(axios, basePath));
+        notificationsChannel(apiKey: string, fid: number, channelIds: string, limit?: number, cursor?: string, options?: any): AxiosPromise<NotificationsResponse> {
+            return localVarFp.notificationsChannel(apiKey, fid, channelIds, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -252,14 +252,14 @@ export class NotificationsApi extends BaseAPI {
      * @summary Retrieve notifications for a user for a given channel
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid 
-     * @param {string} parentUrls Comma separated channel parent_urls (find mappings here - https://github.com/neynarxyz/farcaster-channels/blob/main/warpcast.json)
+     * @param {string} channelIds Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
      * @param {number} [limit] Number of results to retrieve (default 25, max 50)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotificationsApi
      */
-    public notificationsChannel(apiKey: string, fid: number, parentUrls: string, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
-        return NotificationsApiFp(this.configuration).notificationsChannel(apiKey, fid, parentUrls, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public notificationsChannel(apiKey: string, fid: number, channelIds: string, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return NotificationsApiFp(this.configuration).notificationsChannel(apiKey, fid, channelIds, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
