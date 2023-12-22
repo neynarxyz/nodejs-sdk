@@ -673,10 +673,11 @@ export class NeynarV2APIClient {
    *
    * @param {FeedType} feedType - Type of the feed, defaults to 'following' but can be set to 'filter' for specific filtering.
    * @param {Object} [options] - Optional parameters for customizing the feed.
-   * @param {FilterType} [options.filterType] - Used when feedType is 'filter'. Determines the filter criteria (e.g., 'fids' or 'parent_url').
+   * @param {FilterType} [options.filterType] - Used when feed_type=filter. Can be set to fids (requires fids) or parent_url (requires parent_url) or channel_id (requires channel_id)
    * @param {number} [options.fid] - FID of the user whose feed is being created. Required unless a 'filterType' is provided.
    * @param {Array<number>} [options.fids] - Used for creating a feed based on a list of FIDs. Requires 'feedType' and 'filterType'.
    * @param {string} [options.parentUrl] - Used for fetching content under a specific parent URL. Requires 'feedType' and 'filterType'.
+   * @param {string} [options.channelId] Used when filter_type=channel_id can be used to fetch all casts under a channel. Requires feed_type and filter_type
    * @param {string} [options.embedUrl] - Used when filter_type=embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
    * @param {boolean} [options.withRecasts] - Whether to include recasts in the response. True by default.
    * @param {number} [options.limit] - Number of results to retrieve, with a default of 25 and a maximum of 100.
@@ -700,6 +701,7 @@ export class NeynarV2APIClient {
       fid?: number;
       fids?: number[];
       parentUrl?: string;
+      channelId?: string;
       embedUrl?: string;
       limit?: number;
       cursor?: string;
@@ -715,6 +717,7 @@ export class NeynarV2APIClient {
       options?.fid,
       _fids,
       options?.parentUrl,
+      options?.channelId,
       options?.embedUrl,
       options?.withRecasts,
       options?.limit,
