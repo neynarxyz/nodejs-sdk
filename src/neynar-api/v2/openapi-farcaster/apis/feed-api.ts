@@ -40,10 +40,11 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Retrieve casts based on filters
          * @param {string} apiKey API key required for authentication.
          * @param {FeedType} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
-         * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
+         * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url) or channel_id (requires channel_id)
          * @param {number} [fid] (Optional) fid of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
          * @param {string} [fids] Used when filter_type&#x3D;fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
          * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
+         * @param {string} [channelId] Used when filter_type&#x3D;channel_id can be used to fetch all casts under a channel. Requires feed_type and filter_type
          * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
@@ -51,7 +52,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feed: async (apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, embedUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feed: async (apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, embedUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feed', 'apiKey', apiKey)
             // verify required parameter 'feedType' is not null or undefined
@@ -86,6 +87,10 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (parentUrl !== undefined) {
                 localVarQueryParameter['parent_url'] = parentUrl;
+            }
+
+            if (channelId !== undefined) {
+                localVarQueryParameter['channel_id'] = channelId;
             }
 
             if (embedUrl !== undefined) {
@@ -134,10 +139,11 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @summary Retrieve casts based on filters
          * @param {string} apiKey API key required for authentication.
          * @param {FeedType} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
-         * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
+         * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url) or channel_id (requires channel_id)
          * @param {number} [fid] (Optional) fid of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
          * @param {string} [fids] Used when filter_type&#x3D;fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
          * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
+         * @param {string} [channelId] Used when filter_type&#x3D;channel_id can be used to fetch all casts under a channel. Requires feed_type and filter_type
          * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
@@ -145,8 +151,8 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, embedUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.feed(apiKey, feedType, filterType, fid, fids, parentUrl, embedUrl, withRecasts, limit, cursor, options);
+        async feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, embedUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feed(apiKey, feedType, filterType, fid, fids, parentUrl, channelId, embedUrl, withRecasts, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -164,10 +170,11 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @summary Retrieve casts based on filters
          * @param {string} apiKey API key required for authentication.
          * @param {FeedType} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
-         * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
+         * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url) or channel_id (requires channel_id)
          * @param {number} [fid] (Optional) fid of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
          * @param {string} [fids] Used when filter_type&#x3D;fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
          * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
+         * @param {string} [channelId] Used when filter_type&#x3D;channel_id can be used to fetch all casts under a channel. Requires feed_type and filter_type
          * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
@@ -175,8 +182,8 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, embedUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
-            return localVarFp.feed(apiKey, feedType, filterType, fid, fids, parentUrl, embedUrl, withRecasts, limit, cursor, options).then((request) => request(axios, basePath));
+        feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, embedUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
+            return localVarFp.feed(apiKey, feedType, filterType, fid, fids, parentUrl, channelId, embedUrl, withRecasts, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -193,10 +200,11 @@ export class FeedApi extends BaseAPI {
      * @summary Retrieve casts based on filters
      * @param {string} apiKey API key required for authentication.
      * @param {FeedType} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
-     * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url)
+     * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url) or channel_id (requires channel_id)
      * @param {number} [fid] (Optional) fid of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
      * @param {string} [fids] Used when filter_type&#x3D;fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type.
      * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
+     * @param {string} [channelId] Used when filter_type&#x3D;channel_id can be used to fetch all casts under a channel. Requires feed_type and filter_type
      * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
      * @param {boolean} [withRecasts] Include recasts in the response, true by default
      * @param {number} [limit] Number of results to retrieve (default 25, max 100)
@@ -205,7 +213,7 @@ export class FeedApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, embedUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
-        return FeedApiFp(this.configuration).feed(apiKey, feedType, filterType, fid, fids, parentUrl, embedUrl, withRecasts, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, embedUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feed(apiKey, feedType, filterType, fid, fids, parentUrl, channelId, embedUrl, withRecasts, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }

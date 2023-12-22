@@ -673,10 +673,11 @@ export class NeynarV2APIClient {
    *
    * @param {FeedType} feedType - Type of the feed, defaults to 'following' but can be set to 'filter' for specific filtering.
    * @param {Object} [options] - Optional parameters for customizing the feed.
-   * @param {FilterType} [options.filterType] - Used when feedType is 'filter'. Determines the filter criteria (e.g., 'fids' or 'parent_url').
+   * @param {FilterType} [options.filterType] - Used when feed_type=filter. Can be set to fids (requires fids) or parent_url (requires parent_url) or channel_id (requires channel_id)
    * @param {number} [options.fid] - FID of the user whose feed is being created. Required unless a 'filterType' is provided.
    * @param {Array<number>} [options.fids] - Used for creating a feed based on a list of FIDs. Requires 'feedType' and 'filterType'.
    * @param {string} [options.parentUrl] - Used for fetching content under a specific parent URL. Requires 'feedType' and 'filterType'.
+   * @param {string} [options.channelId] Used when filter_type=channel_id can be used to fetch all casts under a channel. Requires feed_type and filter_type
    * @param {string} [options.embedUrl] - Used when filter_type=embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
    * @param {boolean} [options.withRecasts] - Whether to include recasts in the response. True by default.
    * @param {number} [options.limit] - Number of results to retrieve, with a default of 25 and a maximum of 100.
@@ -700,6 +701,7 @@ export class NeynarV2APIClient {
       fid?: number;
       fids?: number[];
       parentUrl?: string;
+      channelId?: string;
       embedUrl?: string;
       limit?: number;
       cursor?: string;
@@ -715,6 +717,7 @@ export class NeynarV2APIClient {
       options?.fid,
       _fids,
       options?.parentUrl,
+      options?.channelId,
       options?.embedUrl,
       options?.withRecasts,
       options?.limit,
@@ -898,7 +901,7 @@ export class NeynarV2APIClient {
    * their parent URLs.
    *
    * @param {number} fid - The FID of the user whose channel notifications are being fetched.
-   * @param {Array<string>} parentUrls - An array of channel parent URLs.
+   * @param {string} channelIds - channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
    * @param {Object} [options] - Optional parameters for the request.
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 50).
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
@@ -909,7 +912,7 @@ export class NeynarV2APIClient {
    *
    * @example
    * // Example: Retrieve channel notifications for a user limit to 30 results
-   * client.fetchChannelNotificationsForUser(3, ['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc', 'chain://eip155:7777777/erc721:0x5556efe18d87f132054fbd4ba9afc13ebb1b0594'],
+   * client.fetchChannelNotificationsForUser(3, ['neynar', 'farcaster'],
    * {
    *  limit: 30,
    *  // cursor: "nextPageCursor" // Omit this parameter for the initial request.
@@ -921,14 +924,14 @@ export class NeynarV2APIClient {
    */
   public async fetchChannelNotificationsForUser(
     fid: number,
-    parentUrls: string[],
+    channelIds: string[],
     options?: { cursor?: string; limit?: number }
   ): Promise<NotificationsResponse> {
-    const _parentUrls = parentUrls.join(",");
+    const _channelIds = channelIds.join(",");
     const response = await this.apis.notifications.notificationsChannel(
       this.apiKey,
       fid,
-      _parentUrls,
+      _channelIds,
       options?.limit,
       options?.cursor
     );
