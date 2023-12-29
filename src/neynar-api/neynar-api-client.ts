@@ -1131,6 +1131,7 @@ export class NeynarAPIClient {
    * @param {string} [options.channelId] Used when filter_type=channel_id can be used to fetch all casts under a channel. Requires feed_type and filter_type
    * @param {string} [options.embedUrl] - Used when filter_type=embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
    * @param {boolean} [options.withRecasts] - Whether to include recasts in the response. True by default.
+   * @param {boolean} [options.withReplies] - Include replies in the response, false by default
    * @param {number} [options.limit] - Number of results to retrieve, with a default of 25 and a maximum of 100.
    * @param {string} [options.cursor] - Pagination cursor for fetching specific subsets of results.
    *
@@ -1157,9 +1158,44 @@ export class NeynarAPIClient {
       limit?: number;
       cursor?: string;
       withRecasts?: boolean;
+      withReplies?: boolean;
     }
   ): Promise<FeedResponse> {
     return await this.clients.v2.fetchFeed(feedType, options);
+  }
+
+  /**
+   * Retrieves a feed based on specific channel IDs. This method allows for fetching casts from
+   * selected channels, optionally including recasts and replies.
+   *
+   * @param {Array<string>} channelIds - An array of channel IDs for which the feed is to be retrieved.
+   * @param {Object} [options] - Optional parameters for customizing the feed.
+   * @param {boolean} [options.withRecasts] - Whether to include recasts in the response. True by default.
+   * @param {boolean} [options.withReplies] - Whether to include replies in the response. False by default.
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results.
+   *
+   * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
+   *   containing the feed for the specified channel IDs.
+   *
+   * @example
+   * // Example: Retrieve feed for specific channels, including recasts and replies
+   * client.fetchFeedByChannelIds(['neynar', 'farcaster'], { withRecasts: true, withReplies: true, limit: 30 }).then(response => {
+   *   console.log('Channel Feed:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-channels).
+   */
+  public async fetchFeedByChannelIds(
+    channelIds: string[],
+    options?: {
+      withRecasts?: boolean;
+      withReplies?: boolean;
+      limit?: number;
+      cursor?: string;
+    }
+  ): Promise<FeedResponse> {
+    return await this.clients.v2.fetchFeedByChannelIds(channelIds, options);
   }
 
   // ------------ Reaction ------------
