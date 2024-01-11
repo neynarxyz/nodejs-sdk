@@ -22,6 +22,8 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 // @ts-ignore
+import { BulkUsersResponse } from '../models';
+// @ts-ignore
 import { ChannelListResponse } from '../models';
 // @ts-ignore
 import { ChannelResponse } from '../models';
@@ -60,6 +62,82 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
 
             if (id !== undefined) {
                 localVarQueryParameter['id'] = id;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of users who are active in a given channel, ordered by ascending FIDs
+         * @summary Retrieve users who are active in a channel
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} id Channel ID for the channel being queried
+         * @param {boolean} hasRootCastAuthors Include users who posted the root cast in the channel
+         * @param {boolean} [hasCastLikers] Include users who liked a cast in the channel
+         * @param {boolean} [hasCastRecasters] Include users who recasted a cast in the channel
+         * @param {boolean} [hasReplyAuthors] Include users who replied to a cast in the channel
+         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelUsers: async (apiKey: string, id: string, hasRootCastAuthors: boolean, hasCastLikers?: boolean, hasCastRecasters?: boolean, hasReplyAuthors?: boolean, cursor?: string, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('channelUsers', 'apiKey', apiKey)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('channelUsers', 'id', id)
+            // verify required parameter 'hasRootCastAuthors' is not null or undefined
+            assertParamExists('channelUsers', 'hasRootCastAuthors', hasRootCastAuthors)
+            const localVarPath = `/farcaster/channel/users`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
+            }
+
+            if (hasRootCastAuthors !== undefined) {
+                localVarQueryParameter['has_root_cast_authors'] = hasRootCastAuthors;
+            }
+
+            if (hasCastLikers !== undefined) {
+                localVarQueryParameter['has_cast_likers'] = hasCastLikers;
+            }
+
+            if (hasCastRecasters !== undefined) {
+                localVarQueryParameter['has_cast_recasters'] = hasCastRecasters;
+            }
+
+            if (hasReplyAuthors !== undefined) {
+                localVarQueryParameter['has_reply_authors'] = hasReplyAuthors;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
             }
 
             if (apiKey != null) {
@@ -181,6 +259,24 @@ export const ChannelApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Returns a list of users who are active in a given channel, ordered by ascending FIDs
+         * @summary Retrieve users who are active in a channel
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} id Channel ID for the channel being queried
+         * @param {boolean} hasRootCastAuthors Include users who posted the root cast in the channel
+         * @param {boolean} [hasCastLikers] Include users who liked a cast in the channel
+         * @param {boolean} [hasCastRecasters] Include users who recasted a cast in the channel
+         * @param {boolean} [hasReplyAuthors] Include users who replied to a cast in the channel
+         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async channelUsers(apiKey: string, id: string, hasRootCastAuthors: boolean, hasCastLikers?: boolean, hasCastRecasters?: boolean, hasReplyAuthors?: boolean, cursor?: string, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkUsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.channelUsers(apiKey, id, hasRootCastAuthors, hasCastLikers, hasCastRecasters, hasReplyAuthors, cursor, limit, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Returns a list of all channels with their details
          * @summary Retrieve all channels with their details
          * @param {string} apiKey API key required for authentication.
@@ -225,6 +321,23 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.channelDetails(apiKey, id, options).then((request) => request(axios, basePath));
         },
         /**
+         * Returns a list of users who are active in a given channel, ordered by ascending FIDs
+         * @summary Retrieve users who are active in a channel
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} id Channel ID for the channel being queried
+         * @param {boolean} hasRootCastAuthors Include users who posted the root cast in the channel
+         * @param {boolean} [hasCastLikers] Include users who liked a cast in the channel
+         * @param {boolean} [hasCastRecasters] Include users who recasted a cast in the channel
+         * @param {boolean} [hasReplyAuthors] Include users who replied to a cast in the channel
+         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelUsers(apiKey: string, id: string, hasRootCastAuthors: boolean, hasCastLikers?: boolean, hasCastRecasters?: boolean, hasReplyAuthors?: boolean, cursor?: string, limit?: number, options?: any): AxiosPromise<BulkUsersResponse> {
+            return localVarFp.channelUsers(apiKey, id, hasRootCastAuthors, hasCastLikers, hasCastRecasters, hasReplyAuthors, cursor, limit, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Returns a list of all channels with their details
          * @summary Retrieve all channels with their details
          * @param {string} apiKey API key required for authentication.
@@ -266,6 +379,25 @@ export class ChannelApi extends BaseAPI {
      */
     public channelDetails(apiKey: string, id: string, options?: AxiosRequestConfig) {
         return ChannelApiFp(this.configuration).channelDetails(apiKey, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of users who are active in a given channel, ordered by ascending FIDs
+     * @summary Retrieve users who are active in a channel
+     * @param {string} apiKey API key required for authentication.
+     * @param {string} id Channel ID for the channel being queried
+     * @param {boolean} hasRootCastAuthors Include users who posted the root cast in the channel
+     * @param {boolean} [hasCastLikers] Include users who liked a cast in the channel
+     * @param {boolean} [hasCastRecasters] Include users who recasted a cast in the channel
+     * @param {boolean} [hasReplyAuthors] Include users who replied to a cast in the channel
+     * @param {string} [cursor] Pagination cursor.
+     * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public channelUsers(apiKey: string, id: string, hasRootCastAuthors: boolean, hasCastLikers?: boolean, hasCastRecasters?: boolean, hasReplyAuthors?: boolean, cursor?: string, limit?: number, options?: AxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).channelUsers(apiKey, id, hasRootCastAuthors, hasCastLikers, hasCastRecasters, hasReplyAuthors, cursor, limit, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
