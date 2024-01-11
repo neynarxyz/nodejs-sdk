@@ -772,6 +772,53 @@ export class NeynarV2APIClient {
     return response.data;
   }
 
+  /**
+   * Retrieve feed based on who a user is following
+   *
+   * @param {number} fid - fid of user whose feed you want to create
+   * @param {Object} [options] - Optional parameters for customizing the feed.
+   * @param {boolean} [options.withRecasts] - Include recasts in the response, true by default
+   * @param {boolean} [options.withReplies] - Include replies in the response, false by default
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
+   *   omit this parameter for the initial request.
+   *
+   * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
+   *  containing the requested feed data.
+   *
+   * @example
+   * // Example: Retrieve a user's feed based on who they are following
+   * client.fetchUserFollowingFeed(3, {
+   *  withRecasts: true,
+   *  withReplies: false,
+   *  limit: 30,
+   *  // cursor: "nextPageCursor" // Omit this parameter for the initial request.
+   * }).then(response => {
+   *  console.log('User Feed:', response); // Outputs the user's feed
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-following).
+   */
+  public async fetchUserFollowingFeed(
+    fid: number,
+    options?: {
+      withRecasts?: boolean;
+      withReplies?: boolean;
+      limit?: number;
+      cursor?: string;
+    }
+  ): Promise<FeedResponse> {
+    const response = await this.apis.feed.feedFollowing(
+      this.apiKey,
+      fid,
+      options?.withRecasts,
+      options?.withReplies,
+      options?.limit,
+      options?.cursor
+    );
+    return response.data;
+  }
+
   // ------------ Reaction ------------
 
   /**
@@ -1005,6 +1052,60 @@ export class NeynarV2APIClient {
    */
   public async lookupChannel(id: string): Promise<ChannelResponse> {
     const response = await this.apis.channel.channelDetails(this.apiKey, id);
+    return response.data;
+  }
+
+  /**
+   * Retrieves a list of users who are active in a given channel, ordered by ascending FIDs
+   *
+   * @param {string} id - Channel ID for the channel being queried
+   * @param {boolean} hasRootCastAuthors - Include users who posted the root cast in the channel
+   * @param {Object} [options] - Optional parameters for the request
+   * @param {boolean} [options.hasCastLikers] - Include users who liked a cast in the channel
+   * @param {boolean} [options.hasCastRecasters] - Include users who recasted a cast in the channel
+   * @param {boolean} [options.hasReplyAuthors] - Include users who replied to a cast in the channel
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
+   *   omit this parameter for the initial request.
+   *
+   * @returns {Promise<BulkUsersResponse>} A promise that resolves to a `BulkUsersResponse` object,
+   *  containing the users active in the specified channel.
+   *
+   * @example
+   * // Example: Retrieve active users in a channel
+   * client.fetchActiveUsersInSingleChannel('neynar', true, {
+   *  hasCastLikers: true,
+   *  hasCastRecasters: true,
+   *  hasReplyAuthors: true,
+   *  limit: 10
+   *  // cursor: "nextPageCursor" // Omit this parameter for the initial request.
+   * }).then(response => {
+   *  console.log('Active Users:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/channel-users).
+   */
+  public async fetchActiveUsersInSingleChannel(
+    id: string,
+    hasRootCastAuthors: boolean,
+    options?: {
+      hasCastLikers?: boolean;
+      hasCastRecasters?: boolean;
+      hasReplyAuthors?: boolean;
+      cursor?: string;
+      limit?: number;
+    }
+  ): Promise<BulkUsersResponse> {
+    const response = await this.apis.channel.channelUsers(
+      this.apiKey,
+      id,
+      hasRootCastAuthors,
+      options?.hasCastLikers,
+      options?.hasCastRecasters,
+      options?.hasReplyAuthors,
+      options?.cursor,
+      options?.limit
+    );
     return response.data;
   }
 
