@@ -79,6 +79,10 @@ export class NeynarV1APIClient {
         if (NeynarV1APIClient.isApiErrorResponse(error)) {
           const apiErrors = error.response.data;
           this.logger.warn(`API errors: ${JSON.stringify(apiErrors)}`);
+        } else {
+          this.logger.warn(
+            `Unexpected error: ${JSON.stringify(error, null, 2)}`
+          );
         }
         throw error;
       }
@@ -109,9 +113,8 @@ export class NeynarV1APIClient {
     error: any
   ): error is SetRequired<AxiosError<ErrorRes>, "response"> {
     if (!(error instanceof AxiosError)) return false;
-    return (
-      error.response?.data !== undefined && "message" in error.response.data
-    );
+    const data = error.response?.data;
+    return typeof data === "object" && data !== null && "message" in data;
   }
 
   // ------------ User ------------
