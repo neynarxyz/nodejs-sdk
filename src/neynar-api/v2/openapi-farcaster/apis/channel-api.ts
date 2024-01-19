@@ -236,6 +236,48 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Returns a list of trending channels based on activity
+         * @summary Retrieve trending channels based on activity
+         * @param {string} apiKey API key required for authentication.
+         * @param {'1d' | '7d' | '30d'} [timeWindow] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        trendingChannels: async (apiKey: string, timeWindow?: '1d' | '7d' | '30d', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('trendingChannels', 'apiKey', apiKey)
+            const localVarPath = `/farcaster/channel/trending`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (timeWindow !== undefined) {
+                localVarQueryParameter['time_window'] = timeWindow;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -299,6 +341,18 @@ export const ChannelApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.searchChannels(apiKey, q, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * Returns a list of trending channels based on activity
+         * @summary Retrieve trending channels based on activity
+         * @param {string} apiKey API key required for authentication.
+         * @param {'1d' | '7d' | '30d'} [timeWindow] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.trendingChannels(apiKey, timeWindow, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -357,6 +411,17 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          */
         searchChannels(apiKey: string, q: string, options?: any): AxiosPromise<ChannelListResponse> {
             return localVarFp.searchChannels(apiKey, q, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of trending channels based on activity
+         * @summary Retrieve trending channels based on activity
+         * @param {string} apiKey API key required for authentication.
+         * @param {'1d' | '7d' | '30d'} [timeWindow] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', options?: any): AxiosPromise<ChannelListResponse> {
+            return localVarFp.trendingChannels(apiKey, timeWindow, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -423,5 +488,18 @@ export class ChannelApi extends BaseAPI {
      */
     public searchChannels(apiKey: string, q: string, options?: AxiosRequestConfig) {
         return ChannelApiFp(this.configuration).searchChannels(apiKey, q, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of trending channels based on activity
+     * @summary Retrieve trending channels based on activity
+     * @param {string} apiKey API key required for authentication.
+     * @param {'1d' | '7d' | '30d'} [timeWindow] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', options?: AxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).trendingChannels(apiKey, timeWindow, options).then((request) => request(this.axios, this.basePath));
     }
 }

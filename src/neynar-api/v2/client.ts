@@ -41,6 +41,7 @@ import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
 import type { SetRequired } from "type-fest";
 import { NFTApi, RelevantMints } from "./openapi-recommendation";
+import { TimeWindow } from "../common/constants";
 
 const BASE_PATH = "https://api.neynar.com/v2";
 
@@ -1148,6 +1149,36 @@ export class NeynarV2APIClient {
    */
   public async searchChannels(q: string): Promise<ChannelListResponse> {
     const response = await this.apis.channel.searchChannels(this.apiKey, q);
+    return response.data;
+  }
+
+  /**
+   * Retrieves a list of trending channels based on activity within a specified time window.
+   * This method is useful for identifying channels that are currently popular or receiving significant engagement.
+   *
+   * @param {'1d' | '7d' | '30d'} [timeWindow] - The time window for trending analysis. Options are '1d' (one day),
+   *   '7d' (seven days), or '30d' (thirty days).
+   *
+   * @returns {Promise<ChannelListResponse>} A promise that resolves to a `ChannelListResponse` object,
+   *   containing a list of trending channels based on the specified time window.
+   *
+   * @example
+   * // Example: Retrieve trending channels over the past week
+   * import { TimeWindow } from '@neynar/nodejs-sdk'
+   *
+   * client.fetchTrendingChannels(TimeWindow.SEVEN_DAYS).then(response => {
+   *   console.log('Trending Channels:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/trending-channels).
+   */
+  public async fetchTrendingChannels(
+    timeWindow?: TimeWindow
+  ): Promise<ChannelListResponse> {
+    const response = await this.apis.channel.trendingChannels(
+      this.apiKey,
+      timeWindow
+    );
     return response.data;
   }
 

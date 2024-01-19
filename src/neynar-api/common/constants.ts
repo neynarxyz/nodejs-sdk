@@ -31,3 +31,9 @@ export const SIGNED_KEY_REQUEST_TYPE_FOR_ADD_FOR = [
   { name: "nonce", type: "uint256" },
   { name: "deadline", type: "uint256" },
 ];
+
+export enum TimeWindow {
+  ONE_DAY = "1d",
+  SEVEN_DAYS = "7d",
+  THIRTY_DAYS = "30d",
+}
