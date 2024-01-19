@@ -1555,6 +1555,41 @@ export class NeynarAPIClient {
     return await this.clients.v2.fetchTrendingChannels(timeWindow);
   }
 
+  /**
+   * Retrieves a list of notifications for a user based on specific parent URLs. This method is
+   * particularly useful for fetching notifications related to user interactions within designated
+   * channels or content categories.
+   *
+   * @param {number} fid - The FID of the user for whom notifications are being fetched.
+   * @param {Array<string>} parentUrls - An array of parent URLs to specify the channels.
+   * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 50).
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
+   *   omit this parameter for the initial request.
+   *
+   * @returns {Promise<NotificationsResponse>} A promise that resolves to a `NotificationsResponse` object,
+   *   containing the notifications for the specified user and parent URLs.
+   *
+   * @example
+   * // Example: Retrieve notifications for a user based on specific parent URLs
+   * client.fetchNotificationsByParentUrlForUser(3, ['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc', 'chain://eip155:1/erc721:0xfd8427165df67df6d7fd689ae67c8ebf56d9ca61'], { limit: 30 }).then(response => {
+   *   console.log('User Notifications:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/notifications-parent-url).
+   */
+  public async fetchNotificationsByParentUrlForUser(
+    fid: number,
+    parentUrls: string[],
+    options?: { cursor?: string; limit?: number }
+  ) {
+    return await this.clients.v2.fetchNotificationsByParentUrlForUser(
+      fid,
+      parentUrls,
+      options
+    );
+  }
+
   // ------------ Follows ------------
 
   /**
