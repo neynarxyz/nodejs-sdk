@@ -1013,7 +1013,7 @@ export class NeynarV2APIClient {
    *   console.log('Channel Notifications:', response);
    * });
    *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/notifications).
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/notifications-channel).
    */
   public async fetchChannelNotificationsForUser(
     fid: number,
