@@ -26,5 +26,12 @@
     "@openapitools/openapi-generator-cli": "^2.7.0",
     "axios": "^1.6.2",
     "viem": "^1.19.9"
-  }
+  },
+  "keywords": [
+    "ethereum",
+    "optimism",
+    "farcaster",
+    "neynar",
+    "nodejs"
+  ]
 }

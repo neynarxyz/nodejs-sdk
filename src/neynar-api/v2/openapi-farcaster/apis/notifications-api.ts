@@ -35,7 +35,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
          * Returns a list of notifications for a specific FID.
          * @summary Retrieve notifications for a given user
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid 
+         * @param {number} fid FID of the user you you want to fetch notifications for
          * @param {number} [limit] Number of results to retrieve (default 25, max 50)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -86,10 +86,10 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
             };
         },
         /**
-         * Returns a list of notifications for a user in a specific channel
-         * @summary Retrieve notifications for a user for a given channel
+         * Returns a list of notifications for a user in specific channels
+         * @summary Retrieve notifications for a user in given channels
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid 
+         * @param {number} fid FID of the user you you want to fetch notifications for
          * @param {string} channelIds Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
          * @param {number} [limit] Number of results to retrieve (default 25, max 50)
          * @param {string} [cursor] Pagination cursor.
@@ -146,6 +146,67 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Returns a list of notifications for a user in specific parent_urls
+         * @summary Retrieve notifications for a user in given parent_urls
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid FID of the user you you want to fetch notifications for
+         * @param {string} parentUrls Comma separated parent_urls
+         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notificationsParentUrl: async (apiKey: string, fid: number, parentUrls: string, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('notificationsParentUrl', 'apiKey', apiKey)
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('notificationsParentUrl', 'fid', fid)
+            // verify required parameter 'parentUrls' is not null or undefined
+            assertParamExists('notificationsParentUrl', 'parentUrls', parentUrls)
+            const localVarPath = `/farcaster/notifications/parent_url`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (parentUrls !== undefined) {
+                localVarQueryParameter['parent_urls'] = parentUrls;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -160,7 +221,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * Returns a list of notifications for a specific FID.
          * @summary Retrieve notifications for a given user
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid 
+         * @param {number} fid FID of the user you you want to fetch notifications for
          * @param {number} [limit] Number of results to retrieve (default 25, max 50)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -171,10 +232,10 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Returns a list of notifications for a user in a specific channel
-         * @summary Retrieve notifications for a user for a given channel
+         * Returns a list of notifications for a user in specific channels
+         * @summary Retrieve notifications for a user in given channels
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid 
+         * @param {number} fid FID of the user you you want to fetch notifications for
          * @param {string} channelIds Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
          * @param {number} [limit] Number of results to retrieve (default 25, max 50)
          * @param {string} [cursor] Pagination cursor.
@@ -183,6 +244,21 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          */
         async notificationsChannel(apiKey: string, fid: number, channelIds: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notificationsChannel(apiKey, fid, channelIds, limit, cursor, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a list of notifications for a user in specific parent_urls
+         * @summary Retrieve notifications for a user in given parent_urls
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid FID of the user you you want to fetch notifications for
+         * @param {string} parentUrls Comma separated parent_urls
+         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notificationsParentUrl(apiKey: string, fid: number, parentUrls: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notificationsParentUrl(apiKey, fid, parentUrls, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -199,7 +275,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
          * Returns a list of notifications for a specific FID.
          * @summary Retrieve notifications for a given user
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid 
+         * @param {number} fid FID of the user you you want to fetch notifications for
          * @param {number} [limit] Number of results to retrieve (default 25, max 50)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -209,10 +285,10 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
             return localVarFp.notifications(apiKey, fid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns a list of notifications for a user in a specific channel
-         * @summary Retrieve notifications for a user for a given channel
+         * Returns a list of notifications for a user in specific channels
+         * @summary Retrieve notifications for a user in given channels
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid 
+         * @param {number} fid FID of the user you you want to fetch notifications for
          * @param {string} channelIds Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
          * @param {number} [limit] Number of results to retrieve (default 25, max 50)
          * @param {string} [cursor] Pagination cursor.
@@ -221,6 +297,20 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
          */
         notificationsChannel(apiKey: string, fid: number, channelIds: string, limit?: number, cursor?: string, options?: any): AxiosPromise<NotificationsResponse> {
             return localVarFp.notificationsChannel(apiKey, fid, channelIds, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of notifications for a user in specific parent_urls
+         * @summary Retrieve notifications for a user in given parent_urls
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid FID of the user you you want to fetch notifications for
+         * @param {string} parentUrls Comma separated parent_urls
+         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notificationsParentUrl(apiKey: string, fid: number, parentUrls: string, limit?: number, cursor?: string, options?: any): AxiosPromise<NotificationsResponse> {
+            return localVarFp.notificationsParentUrl(apiKey, fid, parentUrls, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -236,7 +326,7 @@ export class NotificationsApi extends BaseAPI {
      * Returns a list of notifications for a specific FID.
      * @summary Retrieve notifications for a given user
      * @param {string} apiKey API key required for authentication.
-     * @param {number} fid 
+     * @param {number} fid FID of the user you you want to fetch notifications for
      * @param {number} [limit] Number of results to retrieve (default 25, max 50)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
@@ -248,10 +338,10 @@ export class NotificationsApi extends BaseAPI {
     }
 
     /**
-     * Returns a list of notifications for a user in a specific channel
-     * @summary Retrieve notifications for a user for a given channel
+     * Returns a list of notifications for a user in specific channels
+     * @summary Retrieve notifications for a user in given channels
      * @param {string} apiKey API key required for authentication.
-     * @param {number} fid 
+     * @param {number} fid FID of the user you you want to fetch notifications for
      * @param {string} channelIds Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
      * @param {number} [limit] Number of results to retrieve (default 25, max 50)
      * @param {string} [cursor] Pagination cursor.
@@ -261,5 +351,21 @@ export class NotificationsApi extends BaseAPI {
      */
     public notificationsChannel(apiKey: string, fid: number, channelIds: string, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
         return NotificationsApiFp(this.configuration).notificationsChannel(apiKey, fid, channelIds, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of notifications for a user in specific parent_urls
+     * @summary Retrieve notifications for a user in given parent_urls
+     * @param {string} apiKey API key required for authentication.
+     * @param {number} fid FID of the user you you want to fetch notifications for
+     * @param {string} parentUrls Comma separated parent_urls
+     * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NotificationsApi
+     */
+    public notificationsParentUrl(apiKey: string, fid: number, parentUrls: string, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return NotificationsApiFp(this.configuration).notificationsParentUrl(apiKey, fid, parentUrls, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }

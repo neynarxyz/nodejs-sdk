@@ -61,6 +61,7 @@ import {
   SIGNED_KEY_REQUEST_TYPE_FOR_ADD_FOR,
   SIGNED_KEY_REQUEST_VALIDATOR,
   SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN,
+  TimeWindow,
 } from "./common/constants";
 import { isApiErrorResponse } from "./utils";
 
@@ -1403,7 +1404,7 @@ export class NeynarAPIClient {
    *   console.log('Channel Notifications:', response);
    * });
    *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/notifications).
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/notifications-channel).
    */
   public async fetchChannelNotificationsForUser(
     fid: number,
@@ -1526,6 +1527,67 @@ export class NeynarAPIClient {
    */
   public async searchChannels(q: string): Promise<ChannelListResponse> {
     return await this.clients.v2.searchChannels(q);
+  }
+
+  /**
+   * Retrieves a list of trending channels based on activity within a specified time window.
+   * This method is useful for identifying channels that are currently popular or receiving significant engagement.
+   *
+   * @param {'1d' | '7d' | '30d'} [timeWindow] - The time window for trending analysis. Options are '1d' (one day),
+   *   '7d' (seven days), or '30d' (thirty days).
+   *
+   * @returns {Promise<ChannelListResponse>} A promise that resolves to a `ChannelListResponse` object,
+   *   containing a list of trending channels based on the specified time window.
+   *
+   * @example
+   * // Example: Retrieve trending channels over the past week
+   * import { TimeWindow } from '@neynar/nodejs-sdk'
+   *
+   * client.fetchTrendingChannels(TimeWindow.SEVEN_DAYS).then(response => {
+   *   console.log('Trending Channels:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/trending-channels).
+   */
+  public async fetchTrendingChannels(
+    timeWindow?: TimeWindow
+  ): Promise<ChannelListResponse> {
+    return await this.clients.v2.fetchTrendingChannels(timeWindow);
+  }
+
+  /**
+   * Retrieves a list of notifications for a user based on specific parent URLs. This method is
+   * particularly useful for fetching notifications related to user interactions within designated
+   * channels or content categories.
+   *
+   * @param {number} fid - The FID of the user for whom notifications are being fetched.
+   * @param {Array<string>} parentUrls - An array of parent URLs to specify the channels.
+   * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 50).
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
+   *   omit this parameter for the initial request.
+   *
+   * @returns {Promise<NotificationsResponse>} A promise that resolves to a `NotificationsResponse` object,
+   *   containing the notifications for the specified user and parent URLs.
+   *
+   * @example
+   * // Example: Retrieve notifications for a user based on specific parent URLs
+   * client.fetchNotificationsByParentUrlForUser(3, ['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc', 'chain://eip155:1/erc721:0xfd8427165df67df6d7fd689ae67c8ebf56d9ca61'], { limit: 30 }).then(response => {
+   *   console.log('User Notifications:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/notifications-parent-url).
+   */
+  public async fetchNotificationsByParentUrlForUser(
+    fid: number,
+    parentUrls: string[],
+    options?: { cursor?: string; limit?: number }
+  ) {
+    return await this.clients.v2.fetchNotificationsByParentUrlForUser(
+      fid,
+      parentUrls,
+      options
+    );
   }
 
   // ------------ Follows ------------
