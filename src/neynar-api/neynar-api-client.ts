@@ -924,7 +924,7 @@ export class NeynarAPIClient {
    * details of several users simultaneously, identified by their FIDs, with the option to provide
    * information contextual to a specified viewer.
    *
-   * @param {Array<number>} fids - An array of FIDs representing the users whose information is being retrieved.
+   * @param {Array<number>} fids - An array of FIDs representing the users whose information is being retrieved. Up to 100 at a time.
    * @param {Object} [options] - Optional parameters to tailor the request.
    * @param {number} [options.viewerFid] - The FID of the user viewing this information,
    *   used for providing contextual data specific to the viewer.

@@ -14,15 +14,17 @@
 
 
 
-export * from './apis/cast-api';
-export * from './apis/channel-api';
-export * from './apis/feed-api';
-export * from './apis/fname-api';
-export * from './apis/follows-api';
-export * from './apis/frame-api';
-export * from './apis/notifications-api';
-export * from './apis/reaction-api';
-export * from './apis/signer-api';
-export * from './apis/storage-api';
-export * from './apis/user-api';
+/**
+ * 
+ * @export
+ * @interface FnameAvailabilityResponse
+ */
+export interface FnameAvailabilityResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FnameAvailabilityResponse
+     */
+    'available': boolean;
+}
 

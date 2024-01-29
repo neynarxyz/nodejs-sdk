@@ -5,7 +5,9 @@ api.ts
 apis/cast-api.ts
 apis/channel-api.ts
 apis/feed-api.ts
+apis/fname-api.ts
 apis/follows-api.ts
+apis/frame-api.ts
 apis/notifications-api.ts
 apis/reaction-api.ts
 apis/signer-api.ts
@@ -18,6 +20,7 @@ git_push.sh
 index.ts
 models/active-status.ts
 models/add-verification-req-body.ts
+models/bulk-casts-response.ts
 models/bulk-follow-response.ts
 models/bulk-users-response.ts
 models/cast-id.ts
@@ -45,9 +48,15 @@ models/error-res.ts
 models/feed-response.ts
 models/feed-type.ts
 models/filter-type.ts
+models/fname-availability-response.ts
 models/follow-req-body.ts
 models/follow-response.ts
 models/follow.ts
+models/frame-action-button.ts
+models/frame-action-req-body.ts
+models/frame-action-response.ts
+models/frame-action.ts
+models/frame.ts
 models/get-casts-req-body.ts
 models/hydrated-follower.ts
 models/index.ts

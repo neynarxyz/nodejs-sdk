@@ -80,6 +80,60 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
+         * @summary Retrieve followers for a given channel
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} id Channel ID for the channel being queried
+         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [limit] Number of followers to retrieve (default 25, max 1000)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelFollowers: async (apiKey: string, id: string, cursor?: string, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('channelFollowers', 'apiKey', apiKey)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('channelFollowers', 'id', id)
+            const localVarPath = `/farcaster/channel/followers`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Returns a list of users who are active in a given channel, ordered by ascending FIDs
          * @summary Retrieve users who are active in a channel
          * @param {string} apiKey API key required for authentication.
@@ -301,6 +355,20 @@ export const ChannelApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
+         * @summary Retrieve followers for a given channel
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} id Channel ID for the channel being queried
+         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [limit] Number of followers to retrieve (default 25, max 1000)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async channelFollowers(apiKey: string, id: string, cursor?: string, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkUsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.channelFollowers(apiKey, id, cursor, limit, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Returns a list of users who are active in a given channel, ordered by ascending FIDs
          * @summary Retrieve users who are active in a channel
          * @param {string} apiKey API key required for authentication.
@@ -375,6 +443,19 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.channelDetails(apiKey, id, options).then((request) => request(axios, basePath));
         },
         /**
+         * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
+         * @summary Retrieve followers for a given channel
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} id Channel ID for the channel being queried
+         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [limit] Number of followers to retrieve (default 25, max 1000)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelFollowers(apiKey: string, id: string, cursor?: string, limit?: number, options?: any): AxiosPromise<BulkUsersResponse> {
+            return localVarFp.channelFollowers(apiKey, id, cursor, limit, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Returns a list of users who are active in a given channel, ordered by ascending FIDs
          * @summary Retrieve users who are active in a channel
          * @param {string} apiKey API key required for authentication.
@@ -444,6 +525,21 @@ export class ChannelApi extends BaseAPI {
      */
     public channelDetails(apiKey: string, id: string, options?: AxiosRequestConfig) {
         return ChannelApiFp(this.configuration).channelDetails(apiKey, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
+     * @summary Retrieve followers for a given channel
+     * @param {string} apiKey API key required for authentication.
+     * @param {string} id Channel ID for the channel being queried
+     * @param {string} [cursor] Pagination cursor.
+     * @param {number} [limit] Number of followers to retrieve (default 25, max 1000)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public channelFollowers(apiKey: string, id: string, cursor?: string, limit?: number, options?: AxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).channelFollowers(apiKey, id, cursor, limit, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

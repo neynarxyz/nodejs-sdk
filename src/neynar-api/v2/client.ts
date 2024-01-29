@@ -36,6 +36,7 @@ import {
   ChannelApi,
   ChannelResponse,
   ChannelListResponse,
+  User,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -433,7 +434,7 @@ export class NeynarV2APIClient {
    * details of several users simultaneously, identified by their FIDs, with the option to provide
    * information contextual to a specified viewer.
    *
-   * @param {Array<number>} fids - An array of FIDs representing the users whose information is being retrieved.
+   * @param {Array<number>} fids - An array of FIDs representing the users whose information is being retrieved. Up to 100 at a time.
    * @param {Object} [options] - Optional parameters to tailor the request.
    * @param {number} [options.viewerFid] - The FID of the user viewing this information,
    *   used for providing contextual data specific to the viewer.
@@ -453,6 +454,8 @@ export class NeynarV2APIClient {
     fids: number[],
     options: { viewerFid?: number }
   ): Promise<BulkUsersResponse> {
+    if (fids.length > 100)
+      throw new Error("Maximum number of fids allowed is 100");
     const _fids = fids.join(",");
     const response = await this.apis.user.userBulk(
       this.apiKey,
