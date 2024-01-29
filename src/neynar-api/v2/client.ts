@@ -37,6 +37,7 @@ import {
   ChannelResponse,
   ChannelListResponse,
   User,
+  BulkCastsResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -854,6 +855,31 @@ export class NeynarV2APIClient {
       options?.limit,
       options?.cursor
     );
+    return response.data;
+  }
+
+  /**
+   * Retrieves the 10 most popular casts for a given user based on their FID. Popularity is determined
+   * by the number of replies, likes, and recasts each cast receives, and the results are sorted from
+   * the most popular cast first.
+   *
+   * @param {number} fid - The FID of the user whose popular casts are being fetched.
+   *
+   * @returns {Promise<BulkCastsResponse>} A promise that resolves to a `BulkCastsResponse` object,
+   *   containing the top 10 most popular casts for the specified user.
+   *
+   * @example
+   * // Example: Retrieve the 10 most popular casts for a user
+   * client.fetchMostPopularCastsByUser(3).then(response => {
+   *   console.log('Most Popular Casts:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-user-popular).
+   */
+  public async fetchMostPopularCastsByUser(
+    fid: number
+  ): Promise<BulkCastsResponse> {
+    const response = await this.apis.feed.feedUserPopular(this.apiKey, fid);
     return response.data;
   }
 
