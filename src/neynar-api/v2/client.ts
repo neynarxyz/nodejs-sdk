@@ -880,7 +880,7 @@ export class NeynarV2APIClient {
    * @example
    * // Example: Retrieve the 10 most popular casts for a user
    * client.fetchPopularCastsByUser(3).then(response => {
-   *   console.log('Most Popular Casts:', response);
+   *   console.log('Popular Casts:', response);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-user-popular).
@@ -908,7 +908,7 @@ export class NeynarV2APIClient {
    * @example
    * // Example: Retrieve the recent replies and recasts for a user
    * client.fetchRepliesAndRecastsForUser(3, { limit: 25 }).then(response => {
-   *   console.log('Recent Replies and Recasts:', response);
+   *   console.log('Replies and Recasts:', response);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-user-replies-recasts).
