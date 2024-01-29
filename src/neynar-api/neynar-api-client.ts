@@ -29,6 +29,8 @@ import {
   User as UserV2,
   BulkCastsResponse,
   FnameAvailabilityResponse,
+  FrameAction,
+  FrameActionResponse,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -1317,10 +1319,7 @@ export class NeynarAPIClient {
     fid: number,
     options?: { limit?: number; cursor?: string }
   ): Promise<FeedResponse> {
-    return await this.clients.v2.fetchRepliesAndRecastsForUser(
-      fid,
-      options
-    );
+    return await this.clients.v2.fetchRepliesAndRecastsForUser(fid, options);
   }
 
   // ------------ Reaction ------------
@@ -1797,6 +1796,45 @@ export class NeynarAPIClient {
     fname: string
   ): Promise<FnameAvailabilityResponse> {
     return await this.clients.v2.isFnameAvailable(fname);
+  }
+
+  // ------------ Frame ------------
+
+  /**
+   * Posts a frame action on a specific cast.
+   * Note that the `signer_uuid` must be approved before posting a frame action.
+   *
+   * @param {string} signerUuid - UUID of the signer who is performing the action.
+   * @param {string} castHash - The hash of the cast on which the action is being performed.
+   * @param {FrameAction} action - The specific frame action to be posted.
+   *
+   * @returns {Promise<FrameActionResponse>} A promise that resolves to a `FrameActionResponse` object,
+   *   indicating the success or failure of the frame action post.
+   *
+   * @example
+   * // Example: Post a frame action on a cast
+   * const signerUuid = 'signerUuid';
+   * const castHash = 'castHash';
+   * const action = {
+   *  button: {
+   *    title: 'Button Title',  // Optional
+   *    index: 1
+   *  },
+   *  frames_url: 'frames Url',
+   *  post_url: 'Post Url',
+   * }; // Example action
+   * client.postFrameAction(signerUuid, castHash, action).then(response => {
+   *   console.log('Frame Action Response:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/post-frame-action).
+   */
+  public async postFrameAction(
+    signerUuid: string,
+    castHash: string,
+    action: FrameAction
+  ): Promise<FrameActionResponse> {
+    return await this.clients.v2.postFrameAction(signerUuid, castHash, action);
   }
 
   // ------------ Recommendation ------------
