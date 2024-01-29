@@ -28,6 +28,7 @@ import {
   ChannelListResponse,
   User as UserV2,
   BulkCastsResponse,
+  FnameAvailabilityResponse,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -1772,6 +1773,30 @@ export class NeynarAPIClient {
     fid: number
   ): Promise<StorageUsageResponse> {
     return await this.clients.v2.lookupUserStorageUsage(fid);
+  }
+
+  // ------------ Fname ------------
+
+  /**
+   * Checks if a given fname is available.
+   *
+   * @param {string} fname - The fname to check for availability.
+   *
+   * @returns {Promise<FnameAvailabilityResponse>} A promise that resolves to an `FnameAvailabilityResponse` object,
+   *   indicating whether the specified fname is available or already in use.
+   *
+   * @example
+   * // Example: Check if a specific fname is available
+   * client.isFnameAvailable('farcaster').then(response => {
+   *   console.log('Fname Availability:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/fname-availability).
+   */
+  public async isFnameAvailable(
+    fname: string
+  ): Promise<FnameAvailabilityResponse> {
+    return await this.clients.v2.isFnameAvailable(fname);
   }
 
   // ------------ Recommendation ------------

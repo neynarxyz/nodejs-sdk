@@ -38,6 +38,8 @@ import {
   ChannelListResponse,
   User,
   BulkCastsResponse,
+  FnameApi,
+  FnameAvailabilityResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -62,6 +64,7 @@ export class NeynarV2APIClient {
     follows: FollowsApi;
     storage: StorageApi;
     nft: NFTApi;
+    fname: FnameApi;
   };
 
   /**
@@ -122,6 +125,7 @@ export class NeynarV2APIClient {
       follows: new FollowsApi(config, undefined, axiosInstance),
       storage: new StorageApi(config, undefined, axiosInstance),
       nft: new NFTApi(config, undefined, axiosInstance),
+      fname: new FnameApi(config, undefined, axiosInstance),
     };
   }
 
@@ -1439,6 +1443,35 @@ export class NeynarV2APIClient {
     const response = await this.apis.storage.storageUsage(this.apiKey, fid);
     return response.data;
   }
+
+  // ------------ Fname ------------
+
+  /**
+   * Checks if a given fname is available.
+   *
+   * @param {string} fname - The fname to check for availability.
+   *
+   * @returns {Promise<FnameAvailabilityResponse>} A promise that resolves to an `FnameAvailabilityResponse` object,
+   *   indicating whether the specified fname is available or already in use.
+   *
+   * @example
+   * // Example: Check if a specific fname is available
+   * client.isFnameAvailable('farcaster').then(response => {
+   *   console.log('Fname Availability:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/fname-availability).
+   */
+  public async isFnameAvailable(
+    fname: string
+  ): Promise<FnameAvailabilityResponse> {
+    const response = await this.apis.fname.fnameAvailability(
+      this.apiKey,
+      fname
+    );
+    return response.data;
+  }
+
   // ------------ Recommendation ------------
 
   /**
