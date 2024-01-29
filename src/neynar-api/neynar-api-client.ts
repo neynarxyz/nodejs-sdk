@@ -26,6 +26,7 @@ import {
   SignerStatusEnum,
   ChannelResponse,
   ChannelListResponse,
+  User as UserV2,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -945,6 +946,33 @@ export class NeynarAPIClient {
     options: { viewerFid?: number }
   ): Promise<BulkUsersResponse> {
     return await this.clients.v2.fetchBulkUsers(fids, options);
+  }
+
+  /**
+   * Fetches bulk user information based on multiple Ethereum addresses. This function is particularly
+   * useful for retrieving user details associated with both custody and verified Ethereum addresses.
+   * Note that a custody address can be linked to only one Farcaster user at a time, but a verified
+   * address can be associated with multiple users. The method enforces a limit of up to 350 addresses
+   * per request.
+   *
+   * @param {Array<string>} addresses - An array of Ethereum addresses.
+   * @returns {Promise<{[key: string]: UserV2[]}>} A promise that resolves to an object where each key
+   *   is an Ethereum address and the value is an array of `User` objects associated with that address.
+   *
+   * @throws {Error} If the number of provided addresses exceeds the allowed limit of 350.
+   *
+   * @example
+   * // Example: Fetch users associated with multiple Ethereum addresses
+   * client.fetchBulkUsersByEthereumAddress(['0xa6a8736f18f383f1cc2d938576933e5ea7df01a1','0x7cac817861e5c3384753403fb6c0c556c204b1ce']).then(response => {
+   *   console.log('Users by Ethereum Addresses:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-bulk-by-address).
+   */
+  public async fetchBulkUsersByEthereumAddress(addresses: string[]): Promise<{
+    [key: string]: UserV2[];
+  }> {
+    return await this.clients.v2.fetchBulkUsersByEthereumAddress(addresses);
   }
 
   /**
