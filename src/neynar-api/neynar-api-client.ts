@@ -1291,6 +1291,37 @@ export class NeynarAPIClient {
     return await this.clients.v2.fetchMostPopularCastsByUser(fid);
   }
 
+  /**
+   * Retrieves the most recent replies and recasts for a given user FID. This method is ideal for fetching
+   * the latest user interactions in the form of replies and recasts, sorted by the most recent first.
+   *
+   * @param {number} fid - The FID of the user whose recent replies and recasts are being fetched.
+   * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
+   *  omit this parameter for the initial request.
+   *
+   * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
+   *   containing the recent replies and recasts for the specified user.
+   *
+   * @example
+   * // Example: Retrieve the recent replies and recasts for a user
+   * client.fetchRecentRepliesAndRecastsForUser(3, { limit: 25 }).then(response => {
+   *   console.log('Recent Replies and Recasts:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-user-replies-recasts).
+   */
+  public async fetchRecentRepliesAndRecastsForUser(
+    fid: number,
+    options?: { limit?: number; cursor?: string }
+  ): Promise<FeedResponse> {
+    return await this.clients.v2.fetchRecentRepliesAndRecastsForUser(
+      fid,
+      options
+    );
+  }
+
   // ------------ Reaction ------------
 
   /**
