@@ -13,16 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { CastWithInteractions } from './cast-with-interactions';
 
-export * from './apis/cast-api';
-export * from './apis/channel-api';
-export * from './apis/feed-api';
-export * from './apis/fname-api';
-export * from './apis/follows-api';
-export * from './apis/frame-api';
-export * from './apis/notifications-api';
-export * from './apis/reaction-api';
-export * from './apis/signer-api';
-export * from './apis/storage-api';
-export * from './apis/user-api';
+/**
+ * 
+ * @export
+ * @interface BulkCastsResponse
+ */
+export interface BulkCastsResponse {
+    /**
+     * 
+     * @type {Array<CastWithInteractions>}
+     * @memberof BulkCastsResponse
+     */
+    'casts': Array<CastWithInteractions>;
+}
 

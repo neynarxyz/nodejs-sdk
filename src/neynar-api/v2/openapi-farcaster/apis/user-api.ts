@@ -38,6 +38,8 @@ import { RemoveVerificationReqBody } from '../models';
 // @ts-ignore
 import { UpdateUserReqBody } from '../models';
 // @ts-ignore
+import { User } from '../models';
+// @ts-ignore
 import { UserResponse } from '../models';
 // @ts-ignore
 import { UserSearchResponse } from '../models';
@@ -310,7 +312,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * Fetches information about multiple users based on FIDs
          * @summary Fetches information about multiple users based on FIDs
          * @param {string} apiKey API key required for authentication.
-         * @param {string} fids 
+         * @param {string} fids Comma separated list of FIDs, up to 100 at a time
          * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -338,6 +340,50 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (viewerFid !== undefined) {
                 localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetches all users based on multiple Ethereum addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users.
+         * @summary Fetches all users based on multiple Ethereum addresses
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userBulkByAddress: async (apiKey: string, addresses: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('userBulkByAddress', 'apiKey', apiKey)
+            // verify required parameter 'addresses' is not null or undefined
+            assertParamExists('userBulkByAddress', 'addresses', addresses)
+            const localVarPath = `/farcaster/user/bulk-by-address`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (addresses !== undefined) {
+                localVarQueryParameter['addresses'] = addresses;
             }
 
             if (apiKey != null) {
@@ -492,13 +538,25 @@ export const UserApiFp = function(configuration?: Configuration) {
          * Fetches information about multiple users based on FIDs
          * @summary Fetches information about multiple users based on FIDs
          * @param {string} apiKey API key required for authentication.
-         * @param {string} fids 
+         * @param {string} fids Comma separated list of FIDs, up to 100 at a time
          * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async userBulk(apiKey: string, fids: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkUsersResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.userBulk(apiKey, fids, viewerFid, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Fetches all users based on multiple Ethereum addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users.
+         * @summary Fetches all users based on multiple Ethereum addresses
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async userBulkByAddress(apiKey: string, addresses: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: Array<User>; }>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userBulkByAddress(apiKey, addresses, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -594,13 +652,24 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * Fetches information about multiple users based on FIDs
          * @summary Fetches information about multiple users based on FIDs
          * @param {string} apiKey API key required for authentication.
-         * @param {string} fids 
+         * @param {string} fids Comma separated list of FIDs, up to 100 at a time
          * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         userBulk(apiKey: string, fids: string, viewerFid?: number, options?: any): AxiosPromise<BulkUsersResponse> {
             return localVarFp.userBulk(apiKey, fids, viewerFid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches all users based on multiple Ethereum addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users.
+         * @summary Fetches all users based on multiple Ethereum addresses
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userBulkByAddress(apiKey: string, addresses: string, options?: any): AxiosPromise<{ [key: string]: Array<User>; }> {
+            return localVarFp.userBulkByAddress(apiKey, addresses, options).then((request) => request(axios, basePath));
         },
         /**
          * Search for Usernames
@@ -706,7 +775,7 @@ export class UserApi extends BaseAPI {
      * Fetches information about multiple users based on FIDs
      * @summary Fetches information about multiple users based on FIDs
      * @param {string} apiKey API key required for authentication.
-     * @param {string} fids 
+     * @param {string} fids Comma separated list of FIDs, up to 100 at a time
      * @param {number} [viewerFid] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -714,6 +783,19 @@ export class UserApi extends BaseAPI {
      */
     public userBulk(apiKey: string, fids: string, viewerFid?: number, options?: AxiosRequestConfig) {
         return UserApiFp(this.configuration).userBulk(apiKey, fids, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches all users based on multiple Ethereum addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users.
+     * @summary Fetches all users based on multiple Ethereum addresses
+     * @param {string} apiKey API key required for authentication.
+     * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public userBulkByAddress(apiKey: string, addresses: string, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).userBulkByAddress(apiKey, addresses, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

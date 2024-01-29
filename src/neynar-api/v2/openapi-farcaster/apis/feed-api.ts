@@ -22,6 +22,8 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 // @ts-ignore
+import { BulkCastsResponse } from '../models';
+// @ts-ignore
 import { ErrorRes } from '../models';
 // @ts-ignore
 import { FeedResponse } from '../models';
@@ -257,6 +259,98 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Retrieve 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
+         * @summary Retrieve 10 most popular casts for a user
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid fid of user whose feed you want to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedUserPopular: async (apiKey: string, fid: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('feedUserPopular', 'apiKey', apiKey)
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('feedUserPopular', 'fid', fid)
+            const localVarPath = `/farcaster/feed/user/{fid}/popular`
+                .replace(`{${"fid"}}`, encodeURIComponent(String(fid)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve recent replies and recasts for a given user FID; sorted by most recent first
+         * @summary Retrieve recent replies and recasts for a user
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid fid of user whose replies and recasts you want to fetch
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedUserRepliesRecasts: async (apiKey: string, fid: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('feedUserRepliesRecasts', 'apiKey', apiKey)
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('feedUserRepliesRecasts', 'fid', fid)
+            const localVarPath = `/farcaster/feed/user/{fid}/replies_and_recasts`
+                .replace(`{${"fid"}}`, encodeURIComponent(String(fid)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -321,6 +415,32 @@ export const FeedApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.feedFollowing(apiKey, fid, withRecasts, withReplies, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * Retrieve 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
+         * @summary Retrieve 10 most popular casts for a user
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid fid of user whose feed you want to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async feedUserPopular(apiKey: string, fid: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkCastsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedUserPopular(apiKey, fid, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Retrieve recent replies and recasts for a given user FID; sorted by most recent first
+         * @summary Retrieve recent replies and recasts for a user
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid fid of user whose replies and recasts you want to fetch
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async feedUserRepliesRecasts(apiKey: string, fid: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedUserRepliesRecasts(apiKey, fid, limit, cursor, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -381,6 +501,30 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          */
         feedFollowing(apiKey: string, fid: number, withRecasts?: boolean, withReplies?: boolean, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
             return localVarFp.feedFollowing(apiKey, fid, withRecasts, withReplies, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
+         * @summary Retrieve 10 most popular casts for a user
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid fid of user whose feed you want to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedUserPopular(apiKey: string, fid: number, options?: any): AxiosPromise<BulkCastsResponse> {
+            return localVarFp.feedUserPopular(apiKey, fid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve recent replies and recasts for a given user FID; sorted by most recent first
+         * @summary Retrieve recent replies and recasts for a user
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid fid of user whose replies and recasts you want to fetch
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedUserRepliesRecasts(apiKey: string, fid: number, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
+            return localVarFp.feedUserRepliesRecasts(apiKey, fid, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -447,5 +591,33 @@ export class FeedApi extends BaseAPI {
      */
     public feedFollowing(apiKey: string, fid: number, withRecasts?: boolean, withReplies?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
         return FeedApiFp(this.configuration).feedFollowing(apiKey, fid, withRecasts, withReplies, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieve 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
+     * @summary Retrieve 10 most popular casts for a user
+     * @param {string} apiKey API key required for authentication.
+     * @param {number} fid fid of user whose feed you want to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FeedApi
+     */
+    public feedUserPopular(apiKey: string, fid: number, options?: AxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedUserPopular(apiKey, fid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieve recent replies and recasts for a given user FID; sorted by most recent first
+     * @summary Retrieve recent replies and recasts for a user
+     * @param {string} apiKey API key required for authentication.
+     * @param {number} fid fid of user whose replies and recasts you want to fetch
+     * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FeedApi
+     */
+    public feedUserRepliesRecasts(apiKey: string, fid: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedUserRepliesRecasts(apiKey, fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }

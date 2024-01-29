@@ -26,6 +26,11 @@ import {
   SignerStatusEnum,
   ChannelResponse,
   ChannelListResponse,
+  User as UserV2,
+  BulkCastsResponse,
+  FnameAvailabilityResponse,
+  FrameAction,
+  FrameActionResponse,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -924,7 +929,7 @@ export class NeynarAPIClient {
    * details of several users simultaneously, identified by their FIDs, with the option to provide
    * information contextual to a specified viewer.
    *
-   * @param {Array<number>} fids - An array of FIDs representing the users whose information is being retrieved.
+   * @param {Array<number>} fids - An array of FIDs representing the users whose information is being retrieved. Up to 100 at a time.
    * @param {Object} [options] - Optional parameters to tailor the request.
    * @param {number} [options.viewerFid] - The FID of the user viewing this information,
    *   used for providing contextual data specific to the viewer.
@@ -945,6 +950,33 @@ export class NeynarAPIClient {
     options: { viewerFid?: number }
   ): Promise<BulkUsersResponse> {
     return await this.clients.v2.fetchBulkUsers(fids, options);
+  }
+
+  /**
+   * Fetches bulk user information based on multiple Ethereum addresses. This function is particularly
+   * useful for retrieving user details associated with both custody and verified Ethereum addresses.
+   * Note that a custody address can be linked to only one Farcaster user at a time, but a verified
+   * address can be associated with multiple users. The method enforces a limit of up to 350 addresses
+   * per request.
+   *
+   * @param {Array<string>} addresses - An array of Ethereum addresses.
+   * @returns {Promise<{[key: string]: UserV2[]}>} A promise that resolves to an object where each key
+   *   is an Ethereum address and the value is an array of `User` objects associated with that address.
+   *
+   * @throws {Error} If the number of provided addresses exceeds the allowed limit of 350.
+   *
+   * @example
+   * // Example: Fetch users associated with multiple Ethereum addresses
+   * client.fetchBulkUsersByEthereumAddress(['0xa6a8736f18f383f1cc2d938576933e5ea7df01a1','0x7cac817861e5c3384753403fb6c0c556c204b1ce']).then(response => {
+   *   console.log('Users by Ethereum Addresses:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-bulk-by-address).
+   */
+  public async fetchBulkUsersByEthereumAddress(addresses: string[]): Promise<{
+    [key: string]: UserV2[];
+  }> {
+    return await this.clients.v2.fetchBulkUsersByEthereumAddress(addresses);
   }
 
   /**
@@ -1236,6 +1268,58 @@ export class NeynarAPIClient {
     }
   ): Promise<FeedResponse> {
     return await this.clients.v2.fetchUserFollowingFeed(fid, options);
+  }
+
+  /**
+   * Retrieves the 10 most popular casts for a given user based on their FID. Popularity is determined
+   * by the number of replies, likes, and recasts each cast receives, and the results are sorted from
+   * the most popular cast first.
+   *
+   * @param {number} fid - The FID of the user whose popular casts are being fetched.
+   *
+   * @returns {Promise<BulkCastsResponse>} A promise that resolves to a `BulkCastsResponse` object,
+   *   containing the top 10 most popular casts for the specified user.
+   *
+   * @example
+   * // Example: Retrieve the 10 most popular casts for a user
+   * client.fetchPopularCastsByUser(3).then(response => {
+   *   console.log('Popular Casts:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-user-popular).
+   */
+  public async fetchPopularCastsByUser(
+    fid: number
+  ): Promise<BulkCastsResponse> {
+    return await this.clients.v2.fetchPopularCastsByUser(fid);
+  }
+
+  /**
+   * Retrieves the most recent replies and recasts for a given user FID. This method is ideal for fetching
+   * the latest user interactions in the form of replies and recasts, sorted by the most recent first.
+   *
+   * @param {number} fid - The FID of the user whose recent replies and recasts are being fetched.
+   * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
+   *  omit this parameter for the initial request.
+   *
+   * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
+   *   containing the recent replies and recasts for the specified user.
+   *
+   * @example
+   * // Example: Retrieve the recent replies and recasts for a user
+   * client.fetchRepliesAndRecastsForUser(3, { limit: 25 }).then(response => {
+   *   console.log('Replies and Recasts:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-user-replies-recasts).
+   */
+  public async fetchRepliesAndRecastsForUser(
+    fid: number,
+    options?: { limit?: number; cursor?: string }
+  ): Promise<FeedResponse> {
+    return await this.clients.v2.fetchRepliesAndRecastsForUser(fid, options);
   }
 
   // ------------ Reaction ------------
@@ -1590,6 +1674,34 @@ export class NeynarAPIClient {
     );
   }
 
+  /**
+   * Retrieves a list of followers for a specific channel. This method is useful for understanding
+   * the audience and reach of a channel.
+   *
+   * @param {string} id - The Channel ID for which followers are being queried.
+   * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {number} [options.limit] - Number of followers to retrieve (default 25, max 1000).
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
+   *  omit this parameter for the initial request.
+   *
+   * @returns {Promise<BulkUsersResponse>} A promise that resolves to a `BulkUsersResponse` object,
+   *   containing a list of followers for the specified channel.
+   *
+   * @example
+   * // Example: Retrieve followers for a channel
+   * client.fetchFollowersForAChannel('founders', { limit: 50 }).then(response => {
+   *   console.log('Channel Followers:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/channel-followers).
+   */
+  public async fetchFollowersForAChannel(
+    id: string,
+    options?: { cursor?: string; limit?: number }
+  ): Promise<BulkUsersResponse> {
+    return await this.clients.v2.fetchFollowersForAChannel(id, options);
+  }
+
   // ------------ Follows ------------
 
   /**
@@ -1660,6 +1772,69 @@ export class NeynarAPIClient {
     fid: number
   ): Promise<StorageUsageResponse> {
     return await this.clients.v2.lookupUserStorageUsage(fid);
+  }
+
+  // ------------ Fname ------------
+
+  /**
+   * Checks if a given fname is available.
+   *
+   * @param {string} fname - The fname to check for availability.
+   *
+   * @returns {Promise<FnameAvailabilityResponse>} A promise that resolves to an `FnameAvailabilityResponse` object,
+   *   indicating whether the specified fname is available or already in use.
+   *
+   * @example
+   * // Example: Check if a specific fname is available
+   * client.isFnameAvailable('farcaster').then(response => {
+   *   console.log('Fname Availability:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/fname-availability).
+   */
+  public async isFnameAvailable(
+    fname: string
+  ): Promise<FnameAvailabilityResponse> {
+    return await this.clients.v2.isFnameAvailable(fname);
+  }
+
+  // ------------ Frame ------------
+
+  /**
+   * Posts a frame action on a specific cast.
+   * Note that the `signer_uuid` must be approved before posting a frame action.
+   *
+   * @param {string} signerUuid - UUID of the signer who is performing the action.
+   * @param {string} castHash - The hash of the cast on which the action is being performed.
+   * @param {FrameAction} action - The specific frame action to be posted.
+   *
+   * @returns {Promise<FrameActionResponse>} A promise that resolves to a `FrameActionResponse` object,
+   *   indicating the success or failure of the frame action post.
+   *
+   * @example
+   * // Example: Post a frame action on a cast
+   * const signerUuid = 'signerUuid';
+   * const castHash = 'castHash';
+   * const action = {
+   *  button: {
+   *    title: 'Button Title',  // Optional
+   *    index: 1
+   *  },
+   *  frames_url: 'frames Url',
+   *  post_url: 'Post Url',
+   * }; // Example action
+   * client.postFrameAction(signerUuid, castHash, action).then(response => {
+   *   console.log('Frame Action Response:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/post-frame-action).
+   */
+  public async postFrameAction(
+    signerUuid: string,
+    castHash: string,
+    action: FrameAction
+  ): Promise<FrameActionResponse> {
+    return await this.clients.v2.postFrameAction(signerUuid, castHash, action);
   }
 
   // ------------ Recommendation ------------
