@@ -1674,6 +1674,34 @@ export class NeynarAPIClient {
     );
   }
 
+  /**
+   * Retrieves a list of followers for a specific channel. This method is useful for understanding
+   * the audience and reach of a channel.
+   *
+   * @param {string} id - The Channel ID for which followers are being queried.
+   * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {number} [options.limit] - Number of followers to retrieve (default 25, max 1000).
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
+   *  omit this parameter for the initial request.
+   *
+   * @returns {Promise<BulkUsersResponse>} A promise that resolves to a `BulkUsersResponse` object,
+   *   containing a list of followers for the specified channel.
+   *
+   * @example
+   * // Example: Retrieve followers for a channel
+   * client.fetchFollowersForSingleChannel('founders', { limit: 50 }).then(response => {
+   *   console.log('Channel Followers:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/channel-followers).
+   */
+  public async fetchFollowersForSingleChannel(
+    id: string,
+    options?: { cursor?: string; limit?: number }
+  ): Promise<BulkUsersResponse> {
+    return await this.clients.v2.fetchFollowersForSingleChannel(id, options);
+  }
+
   // ------------ Follows ------------
 
   /**
