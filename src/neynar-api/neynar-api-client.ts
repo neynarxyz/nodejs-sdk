@@ -1280,16 +1280,16 @@ export class NeynarAPIClient {
    *
    * @example
    * // Example: Retrieve the 10 most popular casts for a user
-   * client.fetchMostPopularCastsByUser(3).then(response => {
+   * client.fetchPopularCastsByUser(3).then(response => {
    *   console.log('Most Popular Casts:', response);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-user-popular).
    */
-  public async fetchMostPopularCastsByUser(
+  public async fetchPopularCastsByUser(
     fid: number
   ): Promise<BulkCastsResponse> {
-    return await this.clients.v2.fetchMostPopularCastsByUser(fid);
+    return await this.clients.v2.fetchPopularCastsByUser(fid);
   }
 
   /**
@@ -1307,17 +1307,17 @@ export class NeynarAPIClient {
    *
    * @example
    * // Example: Retrieve the recent replies and recasts for a user
-   * client.fetchRecentRepliesAndRecastsForUser(3, { limit: 25 }).then(response => {
+   * client.fetchRepliesAndRecastsForUser(3, { limit: 25 }).then(response => {
    *   console.log('Recent Replies and Recasts:', response);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-user-replies-recasts).
    */
-  public async fetchRecentRepliesAndRecastsForUser(
+  public async fetchRepliesAndRecastsForUser(
     fid: number,
     options?: { limit?: number; cursor?: string }
   ): Promise<FeedResponse> {
-    return await this.clients.v2.fetchRecentRepliesAndRecastsForUser(
+    return await this.clients.v2.fetchRepliesAndRecastsForUser(
       fid,
       options
     );
@@ -1690,17 +1690,17 @@ export class NeynarAPIClient {
    *
    * @example
    * // Example: Retrieve followers for a channel
-   * client.fetchFollowersForSingleChannel('founders', { limit: 50 }).then(response => {
+   * client.fetchFollowersForAChannel('founders', { limit: 50 }).then(response => {
    *   console.log('Channel Followers:', response);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/channel-followers).
    */
-  public async fetchFollowersForSingleChannel(
+  public async fetchFollowersForAChannel(
     id: string,
     options?: { cursor?: string; limit?: number }
   ): Promise<BulkUsersResponse> {
-    return await this.clients.v2.fetchFollowersForSingleChannel(id, options);
+    return await this.clients.v2.fetchFollowersForAChannel(id, options);
   }
 
   // ------------ Follows ------------
