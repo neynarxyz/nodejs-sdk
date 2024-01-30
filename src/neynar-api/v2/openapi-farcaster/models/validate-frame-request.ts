@@ -25,6 +25,6 @@ export interface ValidateFrameRequest {
      * @type {string}
      * @memberof ValidateFrameRequest
      */
-    'message_bytes_in_hex'?: string;
+    'message_bytes_in_hex': string;
 }
 
