@@ -27,6 +27,10 @@ import { ErrorRes } from '../models';
 import { FrameActionReqBody } from '../models';
 // @ts-ignore
 import { FrameActionResponse } from '../models';
+// @ts-ignore
+import { ValidateFrame200Response } from '../models';
+// @ts-ignore
+import { ValidateFrameRequest } from '../models';
 /**
  * FrameApi - axios parameter creator
  * @export
@@ -76,6 +80,49 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Validates a frame against by an interacting user against a Farcaster Hub \\ (In order to validate a frame, message bytes from Frame Action must be provided in hex) 
+         * @summary Validates a frame action against Farcaster Hub
+         * @param {string} apiKey API key required for authentication.
+         * @param {ValidateFrameRequest} validateFrameRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateFrame: async (apiKey: string, validateFrameRequest: ValidateFrameRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('validateFrame', 'apiKey', apiKey)
+            // verify required parameter 'validateFrameRequest' is not null or undefined
+            assertParamExists('validateFrame', 'validateFrameRequest', validateFrameRequest)
+            const localVarPath = `/farcaster/frame/validate`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(validateFrameRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -96,6 +143,18 @@ export const FrameApiFp = function(configuration?: Configuration) {
          */
         async postFrameAction(apiKey: string, frameActionReqBody: FrameActionReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FrameActionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.postFrameAction(apiKey, frameActionReqBody, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Validates a frame against by an interacting user against a Farcaster Hub \\ (In order to validate a frame, message bytes from Frame Action must be provided in hex) 
+         * @summary Validates a frame action against Farcaster Hub
+         * @param {string} apiKey API key required for authentication.
+         * @param {ValidateFrameRequest} validateFrameRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async validateFrame(apiKey: string, validateFrameRequest: ValidateFrameRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ValidateFrame200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.validateFrame(apiKey, validateFrameRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -119,6 +178,17 @@ export const FrameApiFactory = function (configuration?: Configuration, basePath
         postFrameAction(apiKey: string, frameActionReqBody: FrameActionReqBody, options?: any): AxiosPromise<FrameActionResponse> {
             return localVarFp.postFrameAction(apiKey, frameActionReqBody, options).then((request) => request(axios, basePath));
         },
+        /**
+         * Validates a frame against by an interacting user against a Farcaster Hub \\ (In order to validate a frame, message bytes from Frame Action must be provided in hex) 
+         * @summary Validates a frame action against Farcaster Hub
+         * @param {string} apiKey API key required for authentication.
+         * @param {ValidateFrameRequest} validateFrameRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateFrame(apiKey: string, validateFrameRequest: ValidateFrameRequest, options?: any): AxiosPromise<ValidateFrame200Response> {
+            return localVarFp.validateFrame(apiKey, validateFrameRequest, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -140,5 +210,18 @@ export class FrameApi extends BaseAPI {
      */
     public postFrameAction(apiKey: string, frameActionReqBody: FrameActionReqBody, options?: AxiosRequestConfig) {
         return FrameApiFp(this.configuration).postFrameAction(apiKey, frameActionReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Validates a frame against by an interacting user against a Farcaster Hub \\ (In order to validate a frame, message bytes from Frame Action must be provided in hex) 
+     * @summary Validates a frame action against Farcaster Hub
+     * @param {string} apiKey API key required for authentication.
+     * @param {ValidateFrameRequest} validateFrameRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FrameApi
+     */
+    public validateFrame(apiKey: string, validateFrameRequest: ValidateFrameRequest, options?: AxiosRequestConfig) {
+        return FrameApiFp(this.configuration).validateFrame(apiKey, validateFrameRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
