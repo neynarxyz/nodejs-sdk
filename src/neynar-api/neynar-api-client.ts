@@ -1322,6 +1322,34 @@ export class NeynarAPIClient {
     return await this.clients.v2.fetchRepliesAndRecastsForUser(fid, options);
   }
 
+  /**
+   * Retrieves a feed consisting only of casts with Frames, presented in reverse chronological order.
+   * This method is ideal for users who are interested in viewing a feed of content that exclusively
+   * includes casts with frame actions.
+   *
+   * @param {Object} [options] - Optional parameters to tailor the response.
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
+   *  omit this parameter for the initial request.
+   *
+   * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
+   *   containing a feed of casts with Frames.
+   *
+   * @example
+   * // Example: Retrieve a feed of casts with Frames
+   * client.fetchFramesOnlyFeed({ limit: 30 }).then(response => {
+   *   console.log('Frames Only Feed:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-frames).
+   */
+  public async fetchFramesOnlyFeed(options?: {
+    limit?: number;
+    cursor?: string;
+  }) {
+    return await this.clients.v2.fetchFramesOnlyFeed(options);
+  }
+
   // ------------ Reaction ------------
 
   /**
