@@ -260,6 +260,53 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
+         * 
+         * @summary Retrieve feed of casts with Frames, reverse chronological order
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedFrames: async (apiKey: string, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('feedFrames', 'apiKey', apiKey)
+            const localVarPath = `/farcaster/feed/frames`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
          * @summary Retrieve 10 most popular casts for a user
          * @param {string} apiKey API key required for authentication.
@@ -416,6 +463,19 @@ export const FeedApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * 
+         * @summary Retrieve feed of casts with Frames, reverse chronological order
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async feedFrames(apiKey: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedFrames(apiKey, limit, cursor, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Retrieve 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
          * @summary Retrieve 10 most popular casts for a user
          * @param {string} apiKey API key required for authentication.
@@ -501,6 +561,18 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          */
         feedFollowing(apiKey: string, fid: number, withRecasts?: boolean, withReplies?: boolean, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
             return localVarFp.feedFollowing(apiKey, fid, withRecasts, withReplies, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieve feed of casts with Frames, reverse chronological order
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedFrames(apiKey: string, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
+            return localVarFp.feedFrames(apiKey, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
@@ -591,6 +663,20 @@ export class FeedApi extends BaseAPI {
      */
     public feedFollowing(apiKey: string, fid: number, withRecasts?: boolean, withReplies?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
         return FeedApiFp(this.configuration).feedFollowing(apiKey, fid, withRecasts, withReplies, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieve feed of casts with Frames, reverse chronological order
+     * @param {string} apiKey API key required for authentication.
+     * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FeedApi
+     */
+    public feedFrames(apiKey: string, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedFrames(apiKey, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

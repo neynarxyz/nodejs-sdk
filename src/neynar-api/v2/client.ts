@@ -43,6 +43,8 @@ import {
   FrameApi,
   FrameActionReqBody,
   FrameAction,
+  ValidateFrameRequest,
+  ValidateFrameActionResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -929,6 +931,39 @@ export class NeynarV2APIClient {
     return response.data;
   }
 
+  /**
+   * Retrieves a feed consisting only of casts with Frames, presented in reverse chronological order.
+   * This method is ideal for users who are interested in viewing a feed of content that exclusively
+   * includes casts with frame actions.
+   *
+   * @param {Object} [options] - Optional parameters to tailor the response.
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
+   *  omit this parameter for the initial request.
+   *
+   * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
+   *   containing a feed of casts with Frames.
+   *
+   * @example
+   * // Example: Retrieve a feed of casts with Frames
+   * client.fetchFramesOnlyFeed({ limit: 30 }).then(response => {
+   *   console.log('Frames Only Feed:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-frames).
+   */
+  public async fetchFramesOnlyFeed(options?: {
+    limit?: number;
+    cursor?: string;
+  }) {
+    const response = await this.apis.feed.feedFrames(
+      this.apiKey,
+      options?.limit,
+      options?.cursor
+    );
+    return response.data;
+  }
+
   // ------------ Reaction ------------
 
   /**
@@ -1519,6 +1554,36 @@ export class NeynarV2APIClient {
       action,
     };
     const response = await this.apis.frame.postFrameAction(this.apiKey, body);
+    return response.data;
+  }
+
+  /**
+   * Validates a frame action against the Farcaster Hub. This method is essential for verifying
+   * the authenticity and integrity of a frame action by providing the message bytes from the
+   * frame action in hexadecimal format.
+   *
+   * @param {string} messageBytesInHex - The message bytes from the Frame Action provided in hexadecimal format.
+   *
+   * @returns {Promise<ValidateFrameActionResponse>} A promise that resolves to a `ValidateFrameActionResponse` object,
+   *   indicating the validation result of the frame action.
+   *
+   * @example
+   * // Example: Validate a frame action
+   * const messageBytesInHex = '0a49080d1085940118f6a6a32e20018201390a1a86db69b3ffdf6ab8acb6872b69ccbe7eb6a67af7ab71e95aa69f10021a1908ef011214237025b322fd03a9ddc7ec6c078fb9c56d1a72111214e3d88aeb2d0af356024e0c693f31c11b42c76b721801224043cb2f3fcbfb5dafce110e934b9369267cf3d1aef06f51ce653dc01700fc7b778522eb7873fd60dda4611376200076caf26d40a736d3919ce14e78a684e4d30b280132203a66717c82d728beb3511b05975c6603275c7f6a0600370bf637b9ecd2bd231e';
+   * client.validateFrameAction(messageBytesInHex).then(response => {
+   *   console.log('Frame Action Validation:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/validate-frame).
+   */
+  public async validateFrameAction(
+    messageBytesInHex: string
+  ): Promise<ValidateFrameActionResponse> {
+    const reqBody: ValidateFrameRequest = {
+      message_bytes_in_hex: messageBytesInHex,
+    };
+
+    const response = await this.apis.frame.validateFrame(this.apiKey, reqBody);
     return response.data;
   }
 

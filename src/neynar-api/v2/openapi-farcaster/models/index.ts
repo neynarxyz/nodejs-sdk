@@ -76,3 +76,6 @@ export * from './user-response';
 export * from './user-search-response';
 export * from './user-search-response-result';
 export * from './user-viewer-context';
+export * from './validate-frame-action-response';
+export * from './validate-frame-request';
+export * from './validated-frame-action';
