@@ -29,37 +29,37 @@ import { ValidatedFrameAction } from './validated-frame-action';
 /**
  * 
  * @export
- * @interface ValidateFrame200Response
+ * @interface ValidateFrameActionResponse
  */
-export interface ValidateFrame200Response {
+export interface ValidateFrameActionResponse {
     /**
      * 
      * @type {boolean}
-     * @memberof ValidateFrame200Response
+     * @memberof ValidateFrameActionResponse
      */
     'valid'?: boolean;
     /**
      * 
      * @type {ValidatedFrameAction}
-     * @memberof ValidateFrame200Response
+     * @memberof ValidateFrameActionResponse
      */
     'action'?: ValidatedFrameAction;
     /**
      * 
      * @type {User}
-     * @memberof ValidateFrame200Response
+     * @memberof ValidateFrameActionResponse
      */
     'interactor'?: User;
     /**
      * 
      * @type {FrameActionButton}
-     * @memberof ValidateFrame200Response
+     * @memberof ValidateFrameActionResponse
      */
     'button'?: FrameActionButton;
     /**
      * 
      * @type {CastWithInteractions}
-     * @memberof ValidateFrame200Response
+     * @memberof ValidateFrameActionResponse
      */
     'cast'?: CastWithInteractions;
 }

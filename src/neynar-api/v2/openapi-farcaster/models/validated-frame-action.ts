@@ -31,6 +31,12 @@ import { User } from './user';
 export interface ValidatedFrameAction {
     /**
      * 
+     * @type {string}
+     * @memberof ValidatedFrameAction
+     */
+    'object'?: ValidatedFrameActionObjectEnum;
+    /**
+     * 
      * @type {User}
      * @memberof ValidatedFrameAction
      */
@@ -48,4 +54,11 @@ export interface ValidatedFrameAction {
      */
     'cast': CastWithInteractions;
 }
+
+export const ValidatedFrameActionObjectEnum = {
+    ValidatedFrameAction: 'validated_frame_action'
+} as const;
+
+export type ValidatedFrameActionObjectEnum = typeof ValidatedFrameActionObjectEnum[keyof typeof ValidatedFrameActionObjectEnum];
+
 

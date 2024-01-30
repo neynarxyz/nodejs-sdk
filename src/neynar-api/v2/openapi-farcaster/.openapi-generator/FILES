@@ -97,6 +97,6 @@ models/user-search-response-result.ts
 models/user-search-response.ts
 models/user-viewer-context.ts
 models/user.ts
+models/validate-frame-action-response.ts
 models/validate-frame-request.ts
-models/validate-frame200-response.ts
 models/validated-frame-action.ts
