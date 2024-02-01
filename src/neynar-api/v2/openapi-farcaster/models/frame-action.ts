@@ -25,6 +25,24 @@ import { FrameActionButton } from './frame-action-button';
 export interface FrameAction {
     /**
      * 
+     * @type {string}
+     * @memberof FrameAction
+     */
+    'version'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FrameAction
+     */
+    'title'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FrameAction
+     */
+    'image'?: string;
+    /**
+     * 
      * @type {FrameActionButton}
      * @memberof FrameAction
      */

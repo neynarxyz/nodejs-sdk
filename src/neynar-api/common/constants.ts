@@ -37,3 +37,11 @@ export enum TimeWindow {
   SEVEN_DAYS = "7d",
   THIRTY_DAYS = "30d",
 }
+
+export enum BulkCastsSortType {
+  TRENDING = "trending",
+  LIKES = "likes",
+  RECASTS = "recasts",
+  REPLIES = "replies",
+  RECENT = "recent",
+}

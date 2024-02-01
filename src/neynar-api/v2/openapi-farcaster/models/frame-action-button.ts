@@ -32,5 +32,11 @@ export interface FrameActionButton {
      * @memberof FrameActionButton
      */
     'index': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FrameActionButton
+     */
+    'action_type'?: string;
 }
 
