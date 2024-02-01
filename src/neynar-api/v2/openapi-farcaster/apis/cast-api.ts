@@ -99,11 +99,12 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Gets information about an array of casts
          * @param {string} apiKey API key required for authentication.
          * @param {string} casts Hashes of the cast to be retrived (Comma separated)
+         * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
          * @param {'trending' | 'likes' | 'recasts' | 'replies' | 'recent'} [sortType] Optional parameter to sort the casts based on different criteria
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        casts: async (apiKey: string, casts: string, sortType?: 'trending' | 'likes' | 'recasts' | 'replies' | 'recent', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        casts: async (apiKey: string, casts: string, viewerFid?: number, sortType?: 'trending' | 'likes' | 'recasts' | 'replies' | 'recent', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('casts', 'apiKey', apiKey)
             // verify required parameter 'casts' is not null or undefined
@@ -122,6 +123,10 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (casts !== undefined) {
                 localVarQueryParameter['casts'] = casts;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
             if (sortType !== undefined) {
@@ -257,12 +262,13 @@ export const CastApiFp = function(configuration?: Configuration) {
          * @summary Gets information about an array of casts
          * @param {string} apiKey API key required for authentication.
          * @param {string} casts Hashes of the cast to be retrived (Comma separated)
+         * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
          * @param {'trending' | 'likes' | 'recasts' | 'replies' | 'recent'} [sortType] Optional parameter to sort the casts based on different criteria
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async casts(apiKey: string, casts: string, sortType?: 'trending' | 'likes' | 'recasts' | 'replies' | 'recent', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.casts(apiKey, casts, sortType, options);
+        async casts(apiKey: string, casts: string, viewerFid?: number, sortType?: 'trending' | 'likes' | 'recasts' | 'replies' | 'recent', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.casts(apiKey, casts, viewerFid, sortType, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -316,12 +322,13 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * @summary Gets information about an array of casts
          * @param {string} apiKey API key required for authentication.
          * @param {string} casts Hashes of the cast to be retrived (Comma separated)
+         * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
          * @param {'trending' | 'likes' | 'recasts' | 'replies' | 'recent'} [sortType] Optional parameter to sort the casts based on different criteria
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        casts(apiKey: string, casts: string, sortType?: 'trending' | 'likes' | 'recasts' | 'replies' | 'recent', options?: any): AxiosPromise<CastsResponse> {
-            return localVarFp.casts(apiKey, casts, sortType, options).then((request) => request(axios, basePath));
+        casts(apiKey: string, casts: string, viewerFid?: number, sortType?: 'trending' | 'likes' | 'recasts' | 'replies' | 'recent', options?: any): AxiosPromise<CastsResponse> {
+            return localVarFp.casts(apiKey, casts, viewerFid, sortType, options).then((request) => request(axios, basePath));
         },
         /**
          * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved) 
@@ -374,13 +381,14 @@ export class CastApi extends BaseAPI {
      * @summary Gets information about an array of casts
      * @param {string} apiKey API key required for authentication.
      * @param {string} casts Hashes of the cast to be retrived (Comma separated)
+     * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
      * @param {'trending' | 'likes' | 'recasts' | 'replies' | 'recent'} [sortType] Optional parameter to sort the casts based on different criteria
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CastApi
      */
-    public casts(apiKey: string, casts: string, sortType?: 'trending' | 'likes' | 'recasts' | 'replies' | 'recent', options?: AxiosRequestConfig) {
-        return CastApiFp(this.configuration).casts(apiKey, casts, sortType, options).then((request) => request(this.axios, this.basePath));
+    public casts(apiKey: string, casts: string, viewerFid?: number, sortType?: 'trending' | 'likes' | 'recasts' | 'replies' | 'recent', options?: AxiosRequestConfig) {
+        return CastApiFp(this.configuration).casts(apiKey, casts, viewerFid, sortType, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

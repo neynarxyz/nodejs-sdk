@@ -7,4 +7,4 @@ export {
   CastParamType,
   ReactionType,
 } from "./v2";
-export { TimeWindow } from "./common/constants";
+export { TimeWindow, BulkCastsSortType } from "./common/constants";

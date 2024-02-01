@@ -63,6 +63,7 @@ import { viemPublicClient } from "./common/viemClient";
 import { SignedKeyRequestMetadataABI } from "./abi/signed-key-request-metadata";
 import { keyGatewayAbi } from "./abi/key-gateway";
 import {
+  BulkCastsSortType,
   SIGNED_KEY_REQUEST_TYPE,
   SIGNED_KEY_REQUEST_TYPE_FOR_ADD_FOR,
   SIGNED_KEY_REQUEST_VALIDATOR,
@@ -1066,24 +1067,41 @@ export class NeynarAPIClient {
 
   /**
    * Retrieves information about multiple casts using an array of their hashes. This method is useful
-   * for fetching details of several casts at once, identified by their unique hashes.
+   * for fetching details of several casts at once, identified by their unique hashes. Optional parameters
+   * allow for adding viewer context to the cast objects to show whether the viewer has liked or recasted
+   * the cast and sorting the casts based on different criteria.
    *
    * @param {Array<string>} castsHashes - An array of strings representing the hashes of the casts
    *   to be retrieved.
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {number} [options.viewerFid] - Adds viewer context to cast objects to indicate whether the viewer has liked or recasted the cast.
+   * @param {'trending' | 'likes' | 'recasts' | 'replies' | 'recent'} [options.sortType] - Optional parameter to sort the casts based on different criteria such as trending, likes, recasts, replies, or recent.
    *
    * @returns {Promise<CastsResponse>} A promise that resolves to a `CastsResponse` object,
    *   containing information about the requested casts.
    *
    * @example
-   * // Example: Fetch information about multiple casts using their hashes
-   * client.fetchBulkCasts(['0xa896906a5e397b4fec247c3ee0e9e4d4990b8004','0x27ff810f7f718afd8c40be236411f017982e0994']).then(response => {
+   * // Example: Fetch information about multiple casts using their hashes with viewer context and sorting by likes
+   *
+   * import { BulkCastsSortType } from "@neynar/nodejs-sdk";
+   *
+   * client.fetchBulkCasts(['0xa896906a5e397b4fec247c3ee0e9e4d4990b8004','0x27ff810f7f718afd8c40be236411f017982e0994'], {
+   *   viewerFid: 3,
+   *   sortType: BulkCastsSortType.LIKES
+   * }).then(response => {
    *   console.log('Bulk Casts Information:', response); // Outputs information about the specified casts
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/casts).
    */
-  public async fetchBulkCasts(castsHashes: string[]): Promise<CastsResponse> {
-    return await this.clients.v2.fetchBulkCasts(castsHashes);
+  public async fetchBulkCasts(
+    castsHashes: string[],
+    options?: {
+      viewerFid?: number;
+      sortType?: BulkCastsSortType;
+    }
+  ): Promise<CastsResponse> {
+    return await this.clients.v2.fetchBulkCasts(castsHashes, options);
   }
 
   /**
@@ -1867,28 +1885,38 @@ export class NeynarAPIClient {
   }
 
   /**
-   * Validates a frame action against the Farcaster Hub. This method is essential for verifying
-   * the authenticity and integrity of a frame action by providing the message bytes from the
-   * frame action in hexadecimal format.
+   * Validates a frame action against the Farcaster Hub. This method is crucial for verifying
+   * the authenticity and integrity of a frame action, provided in hexadecimal format. It supports
+   * optional contexts for cast reactions and follow actions to enrich validation responses.
    *
-   * @param {string} messageBytesInHex - The message bytes from the Frame Action provided in hexadecimal format.
+   * @param {string} messageBytesInHex - The message bytes from the Frame Action in hexadecimal format.
+   * @param {Object} [options] - Optional parameters for the validation request.
+   * @param {boolean} [options.castReactionContext] - Include context about cast reactions in the validation response.
+   * @param {boolean} [options.followContext] - Include context about follow actions in the validation response.
    *
    * @returns {Promise<ValidateFrameActionResponse>} A promise that resolves to a `ValidateFrameActionResponse` object,
-   *   indicating the validation result of the frame action.
+   *   indicating the outcome of the frame action validation, potentially enriched with specified contexts.
    *
    * @example
-   * // Example: Validate a frame action
+   * // Example: Validate a frame action with additional context for cast reactions and follow actions
    * const messageBytesInHex = '0a49080d1085940118f6a6a32e20018201390a1a86db69b3ffdf6ab8acb6872b69ccbe7eb6a67af7ab71e95aa69f10021a1908ef011214237025b322fd03a9ddc7ec6c078fb9c56d1a72111214e3d88aeb2d0af356024e0c693f31c11b42c76b721801224043cb2f3fcbfb5dafce110e934b9369267cf3d1aef06f51ce653dc01700fc7b778522eb7873fd60dda4611376200076caf26d40a736d3919ce14e78a684e4d30b280132203a66717c82d728beb3511b05975c6603275c7f6a0600370bf637b9ecd2bd231e';
-   * client.validateFrameAction(messageBytesInHex).then(response => {
+   * client.validateFrameAction(messageBytesInHex, { castReactionContext: false, followContext: true }).then(response => {
    *   console.log('Frame Action Validation:', response);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/validate-frame).
    */
   public async validateFrameAction(
-    messageBytesInHex: string
+    messageBytesInHex: string,
+    options?: {
+      castReactionContext?: boolean;
+      followContext?: boolean;
+    }
   ): Promise<ValidateFrameActionResponse> {
-    return await this.clients.v2.validateFrameAction(messageBytesInHex);
+    return await this.clients.v2.validateFrameAction(
+      messageBytesInHex,
+      options
+    );
   }
 
   // ------------ Recommendation ------------

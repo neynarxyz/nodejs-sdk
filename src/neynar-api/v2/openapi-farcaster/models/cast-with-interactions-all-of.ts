@@ -21,6 +21,9 @@ import { CastWithInteractionsReactions } from './cast-with-interactions-reaction
 import { CastWithInteractionsReplies } from './cast-with-interactions-replies';
 // May contain unused imports in some cases
 // @ts-ignore
+import { FrameAction } from './frame-action';
+// May contain unused imports in some cases
+// @ts-ignore
 import { User } from './user';
 
 /**
@@ -29,6 +32,12 @@ import { User } from './user';
  * @interface CastWithInteractionsAllOf
  */
 export interface CastWithInteractionsAllOf {
+    /**
+     * 
+     * @type {Array<FrameAction>}
+     * @memberof CastWithInteractionsAllOf
+     */
+    'frames'?: Array<FrameAction>;
     /**
      * 
      * @type {CastWithInteractionsReactions}
