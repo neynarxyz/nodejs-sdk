@@ -45,6 +45,7 @@ import {
   FrameAction,
   ValidateFrameRequest,
   ValidateFrameActionResponse,
+  UsersResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -1274,7 +1275,7 @@ export class NeynarV2APIClient {
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
-   * @returns {Promise<BulkUsersResponse>} A promise that resolves to a `BulkUsersResponse` object,
+   * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
    *  containing the users active in the specified channel.
    *
    * @example
@@ -1301,7 +1302,7 @@ export class NeynarV2APIClient {
       cursor?: string;
       limit?: number;
     }
-  ): Promise<BulkUsersResponse> {
+  ): Promise<UsersResponse> {
     const response = await this.apis.channel.channelUsers(
       this.apiKey,
       id,
@@ -1397,7 +1398,7 @@ export class NeynarV2APIClient {
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *  omit this parameter for the initial request.
    *
-   * @returns {Promise<BulkUsersResponse>} A promise that resolves to a `BulkUsersResponse` object,
+   * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
    *   containing a list of followers for the specified channel.
    *
    * @example
@@ -1414,7 +1415,7 @@ export class NeynarV2APIClient {
       limit?: number;
       cursor?: string;
     }
-  ): Promise<BulkUsersResponse> {
+  ): Promise<UsersResponse> {
     const response = await this.apis.channel.channelFollowers(
       this.apiKey,
       id,

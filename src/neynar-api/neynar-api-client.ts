@@ -32,6 +32,7 @@ import {
   FrameAction,
   FrameActionResponse,
   ValidateFrameActionResponse,
+  UsersResponse,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -1585,7 +1586,7 @@ export class NeynarAPIClient {
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
-   * @returns {Promise<BulkUsersResponse>} A promise that resolves to a `BulkUsersResponse` object,
+   * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
    *  containing the users active in the specified channel.
    *
    * @example
@@ -1612,7 +1613,7 @@ export class NeynarAPIClient {
       limit?: number;
       cursor?: string;
     }
-  ): Promise<BulkUsersResponse> {
+  ): Promise<UsersResponse> {
     return await this.clients.v2.fetchActiveUsersInSingleChannel(
       id,
       hasRootCastAuthors,
@@ -1731,7 +1732,7 @@ export class NeynarAPIClient {
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *  omit this parameter for the initial request.
    *
-   * @returns {Promise<BulkUsersResponse>} A promise that resolves to a `BulkUsersResponse` object,
+   * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
    *   containing a list of followers for the specified channel.
    *
    * @example
@@ -1745,7 +1746,7 @@ export class NeynarAPIClient {
   public async fetchFollowersForAChannel(
     id: string,
     options?: { cursor?: string; limit?: number }
-  ): Promise<BulkUsersResponse> {
+  ): Promise<UsersResponse> {
     return await this.clients.v2.fetchFollowersForAChannel(id, options);
   }
 
