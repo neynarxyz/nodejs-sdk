@@ -6,5 +6,6 @@ export {
   ReactionsType,
   CastParamType,
   ReactionType,
+  FrameButtonActionType
 } from "./v2";
 export { TimeWindow, BulkCastsSortType } from "./common/constants";

@@ -56,6 +56,7 @@ models/frame-action-button.ts
 models/frame-action-req-body.ts
 models/frame-action-response.ts
 models/frame-action.ts
+models/frame-button-action-type.ts
 models/frame.ts
 models/get-casts-req-body.ts
 models/hydrated-follower.ts
@@ -97,6 +98,7 @@ models/user-search-response-result.ts
 models/user-search-response.ts
 models/user-viewer-context.ts
 models/user.ts
+models/users-response.ts
 models/validate-frame-action-response.ts
 models/validate-frame-request.ts
 models/validated-frame-action.ts

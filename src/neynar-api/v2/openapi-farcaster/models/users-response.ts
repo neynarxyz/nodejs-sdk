@@ -15,33 +15,28 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameButtonActionType } from './frame-button-action-type';
+import { NextCursor } from './next-cursor';
+// May contain unused imports in some cases
+// @ts-ignore
+import { User } from './user';
 
 /**
  * 
  * @export
- * @interface FrameActionButton
+ * @interface UsersResponse
  */
-export interface FrameActionButton {
-    /**
-     * Title of the button
-     * @type {string}
-     * @memberof FrameActionButton
-     */
-    'title'?: string;
-    /**
-     * Index of the button
-     * @type {number}
-     * @memberof FrameActionButton
-     */
-    'index': number;
+export interface UsersResponse {
     /**
      * 
-     * @type {FrameButtonActionType}
-     * @memberof FrameActionButton
+     * @type {Array<User>}
+     * @memberof UsersResponse
      */
-    'action_type'?: FrameButtonActionType;
+    'users': Array<User>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof UsersResponse
+     */
+    'next': NextCursor;
 }
-
-
 

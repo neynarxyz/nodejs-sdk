@@ -27,13 +27,13 @@ export interface ValidateFrameRequest {
      */
     'message_bytes_in_hex': string;
     /**
-     * Indicates whether the interactor reacted to the cast with the frame.
+     * Adds viewer_context inside the cast object to indicate whether the interactor reacted to the cast housing the frame.
      * @type {boolean}
      * @memberof ValidateFrameRequest
      */
     'cast_reaction_context'?: boolean;
     /**
-     * Indicates whether the interactor follows or is followed by the cast author.
+     * Adds viewer_context inside the user (interactor) object to indicate whether the interactor follows or is followed by the cast author.
      * @type {boolean}
      * @memberof ValidateFrameRequest
      */
