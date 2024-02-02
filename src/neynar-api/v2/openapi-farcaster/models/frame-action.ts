@@ -48,6 +48,12 @@ export interface FrameAction {
      */
     'button': FrameActionButton;
     /**
+     * Text input for the frame
+     * @type {string}
+     * @memberof FrameAction
+     */
+    'text_input'?: string;
+    /**
      * URL of the frames
      * @type {string}
      * @memberof FrameAction
