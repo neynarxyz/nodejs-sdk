@@ -36,7 +36,7 @@ import { CastWithInteractionsReplies } from './cast-with-interactions-replies';
 import { EmbeddedCast } from './embedded-cast';
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameAction } from './frame-action';
+import { Frame } from './frame';
 // May contain unused imports in some cases
 // @ts-ignore
 import { User } from './user';
