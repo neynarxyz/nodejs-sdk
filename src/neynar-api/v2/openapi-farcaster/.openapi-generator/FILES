@@ -23,6 +23,7 @@ models/add-verification-req-body.ts
 models/bulk-casts-response.ts
 models/bulk-follow-response.ts
 models/bulk-users-response.ts
+models/cast-dehydrated.ts
 models/cast-id.ts
 models/cast-notification-type.ts
 models/cast-param-type.ts
@@ -57,6 +58,7 @@ models/frame-action-req-body.ts
 models/frame-action-response.ts
 models/frame-action.ts
 models/frame-button-action-type.ts
+models/frame-input.ts
 models/frame.ts
 models/get-casts-req-body.ts
 models/hydrated-follower.ts
@@ -76,10 +78,10 @@ models/reaction-like.ts
 models/reaction-recast.ts
 models/reaction-req-body.ts
 models/reaction-type.ts
-models/reactions-cast.ts
+models/reaction-with-cast-info.ts
+models/reaction-with-user-info.ts
 models/reactions-response.ts
 models/reactions-type.ts
-models/reactions.ts
 models/register-signer-key-req-body.ts
 models/relevant-followers-response.ts
 models/remove-verification-req-body.ts

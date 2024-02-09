@@ -17,27 +17,27 @@
 /**
  * 
  * @export
- * @interface UserDehydrated
+ * @interface CastDehydrated
  */
-export interface UserDehydrated {
+export interface CastDehydrated {
     /**
      * 
      * @type {string}
-     * @memberof UserDehydrated
+     * @memberof CastDehydrated
      */
-    'object': UserDehydratedObjectEnum;
+    'hash': string;
     /**
-     * User identifier (unsigned integer)
-     * @type {number}
-     * @memberof UserDehydrated
+     * 
+     * @type {string}
+     * @memberof CastDehydrated
      */
-    'fid': number;
+    'object': CastDehydratedObjectEnum;
 }
 
-export const UserDehydratedObjectEnum = {
-    UserDehydrated: 'user_dehydrated'
+export const CastDehydratedObjectEnum = {
+    CastDehydrated: 'cast_dehydrated'
 } as const;
 
-export type UserDehydratedObjectEnum = typeof UserDehydratedObjectEnum[keyof typeof UserDehydratedObjectEnum];
+export type CastDehydratedObjectEnum = typeof CastDehydratedObjectEnum[keyof typeof CastDehydratedObjectEnum];
 
 
