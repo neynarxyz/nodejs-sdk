@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ReactionsCast } from './reactions-cast';
+import { CastDehydrated } from './cast-dehydrated';
 // May contain unused imports in some cases
 // @ts-ignore
 import { User } from './user';
@@ -23,34 +23,34 @@ import { User } from './user';
 /**
  * 
  * @export
- * @interface Reactions
+ * @interface ReactionWithUserInfo
  */
-export interface Reactions {
+export interface ReactionWithUserInfo {
     /**
      * 
      * @type {string}
-     * @memberof Reactions
+     * @memberof ReactionWithUserInfo
      */
-    'object': ReactionsObjectEnum;
+    'object': ReactionWithUserInfoObjectEnum;
     /**
      * 
-     * @type {ReactionsCast}
-     * @memberof Reactions
+     * @type {CastDehydrated}
+     * @memberof ReactionWithUserInfo
      */
-    'cast': ReactionsCast;
+    'cast': CastDehydrated;
     /**
      * 
      * @type {User}
-     * @memberof Reactions
+     * @memberof ReactionWithUserInfo
      */
     'user': User;
 }
 
-export const ReactionsObjectEnum = {
+export const ReactionWithUserInfoObjectEnum = {
     Likes: 'likes',
     Recasts: 'recasts'
 } as const;
 
-export type ReactionsObjectEnum = typeof ReactionsObjectEnum[keyof typeof ReactionsObjectEnum];
+export type ReactionWithUserInfoObjectEnum = typeof ReactionWithUserInfoObjectEnum[keyof typeof ReactionWithUserInfoObjectEnum];
 
 

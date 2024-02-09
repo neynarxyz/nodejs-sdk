@@ -18,7 +18,7 @@
 import { NextCursor } from './next-cursor';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Reactions } from './reactions';
+import { ReactionWithCastInfo } from './reaction-with-cast-info';
 
 /**
  * 
@@ -28,10 +28,10 @@ import { Reactions } from './reactions';
 export interface ReactionsResponse {
     /**
      * 
-     * @type {Array<Reactions>}
+     * @type {Array<ReactionWithCastInfo>}
      * @memberof ReactionsResponse
      */
-    'reactions': Array<Reactions>;
+    'reactions': Array<ReactionWithCastInfo>;
     /**
      * 
      * @type {NextCursor}

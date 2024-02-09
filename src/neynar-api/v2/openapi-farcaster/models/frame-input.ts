@@ -17,27 +17,14 @@
 /**
  * 
  * @export
- * @interface ReactionsCast
+ * @interface FrameInput
  */
-export interface ReactionsCast {
+export interface FrameInput {
     /**
-     * 
+     * Input text for the frame
      * @type {string}
-     * @memberof ReactionsCast
+     * @memberof FrameInput
      */
-    'hash': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReactionsCast
-     */
-    'object': ReactionsCastObjectEnum;
+    'text'?: string;
 }
-
-export const ReactionsCastObjectEnum = {
-    CastDehydrated: 'cast_dehydrated'
-} as const;
-
-export type ReactionsCastObjectEnum = typeof ReactionsCastObjectEnum[keyof typeof ReactionsCastObjectEnum];
-
 

@@ -15,15 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastWithInteractions } from './cast-with-interactions';
-// May contain unused imports in some cases
-// @ts-ignore
-import { FrameActionButton } from './frame-action-button';
-// May contain unused imports in some cases
-// @ts-ignore
-import { User } from './user';
-// May contain unused imports in some cases
-// @ts-ignore
 import { ValidatedFrameAction } from './validated-frame-action';
 
 /**
@@ -37,30 +28,12 @@ export interface ValidateFrameActionResponse {
      * @type {boolean}
      * @memberof ValidateFrameActionResponse
      */
-    'valid'?: boolean;
+    'valid': boolean;
     /**
      * 
      * @type {ValidatedFrameAction}
      * @memberof ValidateFrameActionResponse
      */
     'action'?: ValidatedFrameAction;
-    /**
-     * 
-     * @type {User}
-     * @memberof ValidateFrameActionResponse
-     */
-    'interactor'?: User;
-    /**
-     * 
-     * @type {FrameActionButton}
-     * @memberof ValidateFrameActionResponse
-     */
-    'button'?: FrameActionButton;
-    /**
-     * 
-     * @type {CastWithInteractions}
-     * @memberof ValidateFrameActionResponse
-     */
-    'cast'?: CastWithInteractions;
 }
 
