@@ -62,6 +62,12 @@ export interface ValidatedFrameAction {
      * @memberof ValidatedFrameAction
      */
     'cast': CastWithInteractions;
+    /**
+     * 
+     * @type {string}
+     * @memberof ValidatedFrameAction
+     */
+    'timestamp': string;
 }
 
 export const ValidatedFrameActionObjectEnum = {
