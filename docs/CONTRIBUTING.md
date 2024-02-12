@@ -36,6 +36,21 @@ These are generated using [openapi-generator-cli](https://github.com/OpenAPITool
 git submodule update --remote src/oas
 ```
 
+### Generate code
+
+After updating OAS code needs to be generated. Following command generates the code
+
+```bash
+// For v1 APIs
+yarn generate:neynar-oas-v1-farcaster
+
+// For v2 APIs
+yarn generate:neynar-oas-v2-farcaster
+
+// For recommendation APIs
+yarn generate:neynar-oas-v2-recommendation
+```
+
 ### Writing Wrapper Code
 
 #### New Tag in OAS
@@ -78,11 +93,24 @@ When writing JS docstrings, adhere to the following guidelines:
    - Include explanatory comments within the example code to clarify the purpose and usage of each line or significant code section.
 6. **Neynar Documentation Reference**: Include a link to the Neynar documentation for additional information.
 
+### Semantic Versioning
+
+SemVer comprises three parts, X.Y.Z, where X, Y and Z are non-negative integers. This means that the primary or major version is X, and the minor version is Y. Bug fixes and patches are called version Z. So, it always takes the form of X.Y.Z, or major.minor.patch
+
+Run following script to update the version
+
+```bash
+npx ts-node update-sdk-version.ts
+```
+
+Choose appropriate version. Script will auto commit the changes.
+
+Note: Updating version is important to publish code to npm registry. If not updated deployment will fail and changes won't reflect in sdk
+
 ### Coding Standards
 
 - Ensure code readability and maintainability.
 - Comment your code where necessary, especially for complex logic.
-
 
 ### Submitting a Pull Request
 
@@ -92,6 +120,16 @@ When writing JS docstrings, adhere to the following guidelines:
 - Make sure your code adheres to the project's coding standards.
 - Provide a clear and detailed description of your changes in the pull request.
 - Link any relevant issues in your pull request description.
+
+### Publish a release
+
+After PR gets approved and merged in main, follow following steps
+
+1. Visit [Releases.](https://github.com/neynarxyz/nodejs-sdk/releases)
+2. [Draft a new release.](https://github.com/neynarxyz/nodejs-sdk/releases/new)
+3. Create a new Tag by clicking on `Choose a tag` dropdown, enter a new version. Make sure it is the exact same version as the updated semantic version of the SDK.
+4. Click on `Generate release notes`. This will auto generate notes based on newly generated PR/PRs.
+5. If everything looks good to go, click `Publish release`.
 
 ### Community Guidelines
 
