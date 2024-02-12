@@ -40,14 +40,16 @@ git submodule update --remote src/oas
 
 After updating OAS code needs to be generated. Following command generates the code
 
+- For v1 APIs
 ```bash
-// For v1 APIs
 yarn generate:neynar-oas-v1-farcaster
-
-// For v2 APIs
+```
+-  For v2 APIs
+```bash
 yarn generate:neynar-oas-v2-farcaster
-
-// For recommendation APIs
+```
+- For recommendation APIs
+```bash
 yarn generate:neynar-oas-v2-recommendation
 ```
 
