@@ -247,6 +247,42 @@ export class NeynarV2APIClient {
   // ------------ User ------------
 
   /**
+   * Retrieves a list of active users, where "active" is determined by the Warpcast active algorithm.
+   * The information about active users is updated every 12 hours. This method is ideal for identifying
+   * users who are currently engaging with the platform.
+   *
+   * @param {Object} [options] - Optional parameters to customize the request.
+   * @param {number} [options.limit] - Number of results to retrieve, with a default of 25 and a maximum of 150.
+   * @param {string} [options.cursor] - Pagination cursor for fetching specific subsets of results.
+   *  Omit this parameter for the initial request.
+   *
+   * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
+   *   containing a list of active users and any relevant pagination information.
+   *
+   * @example
+   * // Example: Fetch a list of active users with a limit and pagination cursor
+   * client.fetchActiveUsers({
+   *  limit: 50,
+   *  // cursor: "nextPageCursor" // Omit this parameter for the initial request
+   * }).then(response => {
+   *   console.log('Active Users:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/active-users).
+   */
+  public async fetchActiveUsers(options?: {
+    limit?: number;
+    cursor?: string;
+  }): Promise<UsersResponse> {
+    const response = await this.apis.user.activeUsers(
+      this.apiKey,
+      options?.limit,
+      options?.cursor
+    );
+    return response.data;
+  }
+
+  /**
    * Removes verification for an eth address for the user.
    * (In order to delete verification signerUuid must be approved)
    *
