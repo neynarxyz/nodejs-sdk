@@ -43,12 +43,61 @@ import { User } from '../models';
 import { UserResponse } from '../models';
 // @ts-ignore
 import { UserSearchResponse } from '../models';
+// @ts-ignore
+import { UsersResponse } from '../models';
 /**
  * UserApi - axios parameter creator
  * @export
  */
 export const UserApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * Fetches active users, information is updated every 12 hours
+         * @summary Fetches active users based on Warpcast active algorithm
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} [limit] 
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        activeUsers: async (apiKey: string, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('activeUsers', 'apiKey', apiKey)
+            const localVarPath = `/farcaster/user/active`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
          * @summary Removes verification for an eth address for the user
@@ -463,6 +512,19 @@ export const UserApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = UserApiAxiosParamCreator(configuration)
     return {
         /**
+         * Fetches active users, information is updated every 12 hours
+         * @summary Fetches active users based on Warpcast active algorithm
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} [limit] 
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async activeUsers(apiKey: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.activeUsers(apiKey, limit, cursor, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
          * @summary Removes verification for an eth address for the user
          * @param {string} apiKey API key required for authentication.
@@ -583,6 +645,18 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
     const localVarFp = UserApiFp(configuration)
     return {
         /**
+         * Fetches active users, information is updated every 12 hours
+         * @summary Fetches active users based on Warpcast active algorithm
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} [limit] 
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        activeUsers(apiKey: string, limit?: number, cursor?: string, options?: any): AxiosPromise<UsersResponse> {
+            return localVarFp.activeUsers(apiKey, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
          * @summary Removes verification for an eth address for the user
          * @param {string} apiKey API key required for authentication.
@@ -693,6 +767,20 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
  * @extends {BaseAPI}
  */
 export class UserApi extends BaseAPI {
+    /**
+     * Fetches active users, information is updated every 12 hours
+     * @summary Fetches active users based on Warpcast active algorithm
+     * @param {string} apiKey API key required for authentication.
+     * @param {number} [limit] 
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public activeUsers(apiKey: string, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).activeUsers(apiKey, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
      * @summary Removes verification for an eth address for the user
