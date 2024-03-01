@@ -87,12 +87,13 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Gets information about an individual cast
-         * @summary Retrieve cast for a given hash
+         * Now deprecated, use [v2/cast](https://docs.neynar.com/reference/cast). Gets information about an individual cast
+         * @summary DEPRECATED - Retrieve cast for a given hash
          * @param {string} apiKey API key required for authentication.
          * @param {string} hash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         cast: async (apiKey: string, hash: string, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
@@ -275,12 +276,13 @@ export const CastApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Gets information about an individual cast
-         * @summary Retrieve cast for a given hash
+         * Now deprecated, use [v2/cast](https://docs.neynar.com/reference/cast). Gets information about an individual cast
+         * @summary DEPRECATED - Retrieve cast for a given hash
          * @param {string} apiKey API key required for authentication.
          * @param {string} hash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         async cast(apiKey: string, hash: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastResponse>> {
@@ -340,12 +342,13 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.allCastsInThread(apiKey, threadHash, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
-         * Gets information about an individual cast
-         * @summary Retrieve cast for a given hash
+         * Now deprecated, use [v2/cast](https://docs.neynar.com/reference/cast). Gets information about an individual cast
+         * @summary DEPRECATED - Retrieve cast for a given hash
          * @param {string} apiKey API key required for authentication.
          * @param {string} hash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         cast(apiKey: string, hash: string, viewerFid?: number, options?: any): AxiosPromise<CastResponse> {
@@ -404,12 +407,13 @@ export class CastApi extends BaseAPI {
     }
 
     /**
-     * Gets information about an individual cast
-     * @summary Retrieve cast for a given hash
+     * Now deprecated, use [v2/cast](https://docs.neynar.com/reference/cast). Gets information about an individual cast
+     * @summary DEPRECATED - Retrieve cast for a given hash
      * @param {string} apiKey API key required for authentication.
      * @param {string} hash Cast hash
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      * @memberof CastApi
      */

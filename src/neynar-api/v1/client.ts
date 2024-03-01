@@ -161,6 +161,9 @@ export class NeynarV1APIClient {
   }
 
   /**
+   * @deprecated
+   * Now deprecated, use `fetchUserReactions` instead.
+   *
    * Retrieves all casts liked by a specific user. This method returns a list of casts that
    * the specified user has liked, with support for pagination through optional parameters.
    *
@@ -204,6 +207,9 @@ export class NeynarV1APIClient {
   }
 
   /**
+   * @deprecated
+   * Now deprecated, use `fetchBulkUsers` instead.
+   *
    * Retrieves the specified user via their FID (if found).
    *
    * @param {number} fid - The FID of the user whose information is being retrieved.
@@ -260,6 +266,9 @@ export class NeynarV1APIClient {
   }
 
   /**
+   * @deprecated
+   * Now deprecated, use `fetchBulkUsers` instead.
+   *
    * Retrieves the custody address for the specified user via their fid (if found).
    *
    * @param {number} fid - The FID (unique identifier) of the user whose custody address is being retrieved.
@@ -285,6 +294,9 @@ export class NeynarV1APIClient {
   // ------------ Cast ------------
 
   /**
+   * @deprecated
+   * Now deprecated, use `lookUpCastByHashOrWarpcastUrl` instead.
+   *
    * Retrieves information about a single cast using its unique hash identifier.
    *
    * @param {string} hash - The unique hash identifier of the cast to be retrieved.
@@ -451,6 +463,9 @@ export class NeynarV1APIClient {
   // ------------ Verification ------------
 
   /**
+   * @deprecated
+   * Now deprecated, use `fetchBulkUsers` instead.
+   *
    * Retrieve all known verifications of a user.
    *
    * @param {number} fid - The FID (unique identifier) of the user whose verifications are being retrieved.
@@ -476,6 +491,9 @@ export class NeynarV1APIClient {
   }
 
   /**
+   * @deprecated
+   * Now deprecated, use `fetchBulkUsersByEthereumAddress` instead.
+   *
    * Retrieve user information using a verification address
    *
    * Checks if a given Ethereum address has a Farcaster user associated with it.

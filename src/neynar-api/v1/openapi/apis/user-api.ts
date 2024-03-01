@@ -38,11 +38,12 @@ import { UserResponse } from '../models';
 export const UserApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Returns the custody address for a given FID
-         * @summary Get the custody address for a given FID
+         * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), find custody address in user obj. Returns the custody address for a given FID
+         * @summary DEPRECATED - Get the custody address for a given FID
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         custodyAddress: async (apiKey: string, fid: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
@@ -134,12 +135,13 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Returns metadata about a specific user
-         * @summary Get User Information by FID
+         * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk). Returns metadata about a specific user
+         * @summary DEPRECATED - Get User Information by FID
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         user: async (apiKey: string, fid: number, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
@@ -232,14 +234,15 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Fetch all the liked cast of a User
-         * @summary Get User Cast Likes
+         * Now deprecated. use [/v2/reactions/user](https://docs.neynar.com/reference/reactions-user). Fetch all the liked cast of a User
+         * @summary DEPRECATED -- Get User Cast Likes
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
          * @param {string} [cursor] Pagination cursor
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         userCastLikes: async (apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
@@ -301,11 +304,12 @@ export const UserApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = UserApiAxiosParamCreator(configuration)
     return {
         /**
-         * Returns the custody address for a given FID
-         * @summary Get the custody address for a given FID
+         * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), find custody address in user obj. Returns the custody address for a given FID
+         * @summary DEPRECATED - Get the custody address for a given FID
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         async custodyAddress(apiKey: string, fid: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CustodyAddressResponse>> {
@@ -327,12 +331,13 @@ export const UserApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Returns metadata about a specific user
-         * @summary Get User Information by FID
+         * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk). Returns metadata about a specific user
+         * @summary DEPRECATED - Get User Information by FID
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         async user(apiKey: string, fid: number, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
@@ -353,14 +358,15 @@ export const UserApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Fetch all the liked cast of a User
-         * @summary Get User Cast Likes
+         * Now deprecated. use [/v2/reactions/user](https://docs.neynar.com/reference/reactions-user). Fetch all the liked cast of a User
+         * @summary DEPRECATED -- Get User Cast Likes
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
          * @param {string} [cursor] Pagination cursor
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         async userCastLikes(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserCastLikeResponse>> {
@@ -378,11 +384,12 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
     const localVarFp = UserApiFp(configuration)
     return {
         /**
-         * Returns the custody address for a given FID
-         * @summary Get the custody address for a given FID
+         * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), find custody address in user obj. Returns the custody address for a given FID
+         * @summary DEPRECATED - Get the custody address for a given FID
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         custodyAddress(apiKey: string, fid: number, options?: any): AxiosPromise<CustodyAddressResponse> {
@@ -402,12 +409,13 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.recentUsers(apiKey, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns metadata about a specific user
-         * @summary Get User Information by FID
+         * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk). Returns metadata about a specific user
+         * @summary DEPRECATED - Get User Information by FID
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         user(apiKey: string, fid: number, viewerFid?: number, options?: any): AxiosPromise<UserResponse> {
@@ -426,14 +434,15 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.userByUsername(apiKey, username, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
-         * Fetch all the liked cast of a User
-         * @summary Get User Cast Likes
+         * Now deprecated. use [/v2/reactions/user](https://docs.neynar.com/reference/reactions-user). Fetch all the liked cast of a User
+         * @summary DEPRECATED -- Get User Cast Likes
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
          * @param {string} [cursor] Pagination cursor
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         userCastLikes(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<UserCastLikeResponse> {
@@ -450,11 +459,12 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
  */
 export class UserApi extends BaseAPI {
     /**
-     * Returns the custody address for a given FID
-     * @summary Get the custody address for a given FID
+     * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), find custody address in user obj. Returns the custody address for a given FID
+     * @summary DEPRECATED - Get the custody address for a given FID
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid fid of a user
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      * @memberof UserApi
      */
@@ -478,12 +488,13 @@ export class UserApi extends BaseAPI {
     }
 
     /**
-     * Returns metadata about a specific user
-     * @summary Get User Information by FID
+     * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk). Returns metadata about a specific user
+     * @summary DEPRECATED - Get User Information by FID
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid fid of a user
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      * @memberof UserApi
      */
@@ -506,14 +517,15 @@ export class UserApi extends BaseAPI {
     }
 
     /**
-     * Fetch all the liked cast of a User
-     * @summary Get User Cast Likes
+     * Now deprecated. use [/v2/reactions/user](https://docs.neynar.com/reference/reactions-user). Fetch all the liked cast of a User
+     * @summary DEPRECATED -- Get User Cast Likes
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid FID of the user
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
      * @param {number} [limit] Number of results to retrieve (default 25, max 150)
      * @param {string} [cursor] Pagination cursor
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      * @memberof UserApi
      */
