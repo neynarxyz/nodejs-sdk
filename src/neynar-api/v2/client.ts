@@ -1299,6 +1299,28 @@ export class NeynarV2APIClient {
   }
 
   /**
+   * Retrieves all channels where a specific user has been active, sorted in reverse chronological order.
+   * This method is useful for understanding the various channels a user has interacted with through casting.
+   *
+   * @param {number} fid - The FID (identifier) of the user whose active channels are being fetched.
+   *
+   * @returns {Promise<UsersActiveChannelsResponse>} A promise that resolves to an `UsersActiveChannelsResponse` object,
+   *   containing a list of channels where the user has been active.
+   *
+   * @example
+   * // Example: Fetch all channels where a user has been active
+   * client.fetchUsersActiveChannels(3).then(response => {
+   *   console.log('User\'s Active Channels:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/active-channels).
+   */
+  public async fetchUsersActiveChannels(fid: number) {
+    const response = await this.apis.channel.activeChannels(this.apiKey, fid);
+    return response.data;
+  }
+
+  /**
    * Retrieves a list of users who are active in a given channel, ordered by ascending FIDs
    *
    * @param {string} id - Channel ID for the channel being queried
@@ -1572,7 +1594,6 @@ export class NeynarV2APIClient {
   }
 
   // ------------ Frame ------------
-
   /**
    * Posts a frame action on a specific cast.
    * Note that the `signer_uuid` must be approved before posting a frame action.

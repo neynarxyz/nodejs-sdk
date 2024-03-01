@@ -33,6 +33,7 @@ import {
   FrameActionResponse,
   ValidateFrameActionResponse,
   UsersResponse,
+  UsersActiveChannelsResponse,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -1620,6 +1621,29 @@ export class NeynarAPIClient {
    */
   public async lookupChannel(id: string): Promise<ChannelResponse> {
     return await this.clients.v2.lookupChannel(id);
+  }
+
+  /**
+   * Retrieves all channels where a specific user has been active, sorted in reverse chronological order.
+   * This method is useful for understanding the various channels a user has interacted with through casting.
+   *
+   * @param {number} fid - The FID (identifier) of the user whose active channels are being fetched.
+   *
+   * @returns {Promise<UsersActiveChannelsResponse>} A promise that resolves to an `UsersActiveChannelsResponse` object,
+   *   containing a list of channels where the user has been active.
+   *
+   * @example
+   * // Example: Fetch all channels where a user has been active
+   * client.fetchUsersActiveChannels(3).then(response => {
+   *   console.log('User\'s Active Channels:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/active-channels).
+   */
+  public async fetchUsersActiveChannels(
+    fid: number
+  ): Promise<UsersActiveChannelsResponse> {
+    return await this.clients.v2.fetchUsersActiveChannels(fid);
   }
 
   /**
