@@ -19,6 +19,9 @@ import { FrameActionButton } from './frame-action-button';
 // May contain unused imports in some cases
 // @ts-ignore
 import { FrameInput } from './frame-input';
+// May contain unused imports in some cases
+// @ts-ignore
+import { FrameState } from './frame-state';
 
 /**
  * 
@@ -56,6 +59,12 @@ export interface FrameAction {
      * @memberof FrameAction
      */
     'input'?: FrameInput;
+    /**
+     * 
+     * @type {FrameState}
+     * @memberof FrameAction
+     */
+    'state'?: FrameState;
     /**
      * URL of the frames
      * @type {string}

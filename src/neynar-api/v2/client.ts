@@ -46,6 +46,9 @@ import {
   ValidateFrameRequest,
   ValidateFrameActionResponse,
   UsersResponse,
+  DeleteNeynarFrameRequest,
+  NeynarFrameUpdateRequest,
+  NeynarFrameCreationRequest,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -245,6 +248,71 @@ export class NeynarV2APIClient {
   }
 
   // ------------ User ------------
+
+  /**
+   * This API is for Enterprise customers only. Please contact us if you want to try this out.
+   *
+   * Fetches a fresh FID to be assigned to a new user.
+   *
+   * @returns {Promise<number>} - A promise that resolves to a number representing the fresh FID.
+   *
+   * @example
+   * // Example usage
+   * client.getFreshAccountFID().then(fid => {
+   *   console.log('Fresh FID for New Account:', fid);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/get-fresh-fid).
+   */
+  public async getFreshAccountFID() {
+    const response = await this.apis.user.getFreshFid(this.apiKey);
+    return response.data;
+  }
+
+  /**
+   * This API is for Enterprise customers only. Please contact us if you want to try this out.
+   *
+   * Registers a new user account on Farcaster.
+   *
+   * @param {number} fid - The unique FID assigned to the new user.
+   * @param {string} signature - A cryptographic signature proving ownership of the custody address.
+   * @param {string} requested_user_custody_address - The Ethereum custody address associated with the new user.
+   * @param {number} deadline - A UNIX timestamp indicating the validity period of the registration request.
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {string} [options.fname] - The requested username (fname) for the new user account.
+   *
+   * @returns {Promise<RegisterUserResponse>} A promise that resolves to a `RegisterUserResponse` object,
+   *   indicating the success or failure of the account registration process.
+   *
+   * @example
+   * // Example: Register a new user account with a specific FID and custody address
+   * client.registerAccount(12345, 'signatureString', '0x123...abc', 1672531200, { fname: 'newUsername' })
+   * .then(response => {
+   *   console.log('Account Registration Response:', response);
+   * });
+   *
+   * For more information, refer to the [Farcaster documentation](https://docs.neynar.com/reference/register-user).
+   */
+  public async registerAccount(
+    fid: number,
+    signature: string,
+    requested_user_custody_address: string,
+    deadline: number,
+    options?: { fname?: string }
+  ) {
+    const registerUserReqBody = {
+      signature,
+      fid,
+      requested_user_custody_address,
+      deadline,
+      fname: options?.fname,
+    };
+    const response = await this.apis.user.registerUser(
+      this.apiKey,
+      registerUserReqBody
+    );
+    return response.data;
+  }
 
   /**
    * Retrieves a list of active users, where "active" is determined by the Warpcast active algorithm.
@@ -1594,6 +1662,139 @@ export class NeynarV2APIClient {
   }
 
   // ------------ Frame ------------
+
+  /**
+   * Retrieves a frame by its UUID, provided it was created by the developer identified by the provided API key.
+   * This method is useful for fetching details of a specific frame for review or display purposes.
+   *
+   * @param {string} uuid - The UUID of the frame to be retrieved.
+   *
+   * @returns {Promise<NeynarFrame>} A promise that resolves to a `NeynarFrame` object containing the details of the retrieved frame.
+   *
+   * @example
+   * // Example: Retrieve a frame by its UUID
+   * const uuid = 'your-frame-uuid';
+   * client.lookupNeynarFrame(uuid).then(frame => {
+   *   console.log('Retrieved Frame:', frame);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/lookup-neynar-frame).
+   */
+  public async lookupNeynarFrame(uuid: string) {
+    const response = await this.apis.frame.lookupNeynarFrame(this.apiKey, uuid);
+    return response.data;
+  }
+
+  /**
+   * Creates a new frame with a list of pages. This method enables developers to add new frames
+   * to their content offerings, identified by the provided API key.
+   *
+   * @param {NeynarFrameCreationRequest} neynarFrameCreationRequest - The request object containing the details for the new frame.
+   *
+   * @returns {Promise<NeynarFrame>} A promise that resolves to the newly created frame object.
+   *
+   * @example
+   * // Example: Create a new frame
+   * const creationRequest = {
+   *   name: 'Frame name',
+   *   pages: [...]
+   * };
+   * client.publishNeynarFrame(creationRequest).then(response => {
+   *   console.log('Newly Created Frame:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/publish-neynar-frame).
+   */
+  public async publishNeynarFrame(
+    neynarFrameCreationRequest: NeynarFrameCreationRequest
+  ) {
+    const response = await this.apis.frame.publishNeynarFrame(
+      this.apiKey,
+      neynarFrameCreationRequest
+    );
+    return response.data;
+  }
+
+  /**
+   * Updates an existing frame with new content or properties, assuming the frame was created by the developer,
+   * as identified by the provided API key. This method allows for modifying frames post-creation.
+   *
+   * @param {NeynarFrameUpdateRequest} neynarFrame - The new content or properties for the frame being updated.
+   *
+   * @returns {Promise<NeynarFrame>} A promise that resolves to a `NeynarFrame` object,
+   *   reflecting the updated state of the frame.
+   *
+   * @example
+   * // Example: Update an existing frame with new content
+   * const neynarFrame = {
+   *   uuid: 'your-frame-uuid', // UUID of the frame to update
+   *   pages: [...], // New pages or content for the frame
+   * };
+   * client.updateNeynarFrame(neynarFrameUpdateRequest).then(response => {
+   *   console.log('Frame Update Response:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/update-neynar-frame).
+   */
+  public async updateNeynarFrame(
+    neynarFrameUpdateRequest: NeynarFrameUpdateRequest
+  ) {
+    const response = await this.apis.frame.updateNeynarFrame(
+      this.apiKey,
+      neynarFrameUpdateRequest
+    );
+    return response.data;
+  }
+
+  /**
+   * Deletes an existing frame if it was created by the developer, identified through the provided API key.
+   * This method allows developers to remove frames that they have previously submitted to the platform.
+   *
+   * @param {string} uuid - The unique identifier (UUID) of the frame to be deleted.
+   *
+   * @returns {Promise<DeleteFrameResponse>} A promise that resolves to an `DeleteFrameResponse` object,
+   *   indicating the success or failure of the delete operation.
+   *
+   * @example
+   * // Example: Delete a specific frame by its UUID
+   * const frameUuid = 'your-frame-uuid'; // Replace with the actual UUID of the frame to be deleted
+   * client.deleteNeynarFrame(frameUuid).then(response => {
+   *   console.log('Delete Frame Response:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/delete-neynar-frame).
+   */
+  public async deleteNeynarFrame(uuid: string) {
+    const deleteNeynarFrameRequest: DeleteNeynarFrameRequest = {
+      uuid,
+    };
+    const response = await this.apis.frame.deleteNeynarFrame(
+      this.apiKey,
+      deleteNeynarFrameRequest
+    );
+    return response.data;
+  }
+
+  /**
+   * Retrieves a list of frames created by the developer, identified through the provided API key.
+   * This method is essential for developers to review their frames submitted to the platform.
+   *
+   * @returns {Promise<NeynarFrame[]>} A promise that resolves to a `NeynarFrame[]` object,
+   *   containing a list of frames associated with the developer's API key.
+   *
+   * @example
+   * // Example: Retrieve frames created by the developer
+   * client.fetchNeynarFrames().then(response => {
+   *   console.log('Developer Frames:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/fetch-neynar-frames).
+   */
+  public async fetchNeynarFrames() {
+    const response = await this.apis.frame.fetchNeynarFrames(this.apiKey);
+    return response.data;
+  }
+
   /**
    * Posts a frame action on a specific cast.
    * Note that the `signer_uuid` must be approved before posting a frame action.

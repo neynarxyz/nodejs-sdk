@@ -17,14 +17,20 @@
 /**
  * 
  * @export
- * @interface CastParentAuthorAllOf
+ * @interface DeleteFrameResponse
  */
-export interface CastParentAuthorAllOf {
+export interface DeleteFrameResponse {
     /**
      * 
-     * @type {number}
-     * @memberof CastParentAuthorAllOf
+     * @type {boolean}
+     * @memberof DeleteFrameResponse
      */
-    'fid': number | null;
+    'success'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeleteFrameResponse
+     */
+    'uuid'?: string;
 }
 

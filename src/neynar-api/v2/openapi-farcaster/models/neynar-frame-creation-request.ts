@@ -13,24 +13,27 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { NeynarFramePage } from './neynar-frame-page';
 
 /**
  * 
  * @export
- * @interface OperationResponse
+ * @interface NeynarFrameCreationRequest
  */
-export interface OperationResponse {
+export interface NeynarFrameCreationRequest {
     /**
-     * 
-     * @type {boolean}
-     * @memberof OperationResponse
-     */
-    'success': boolean;
-    /**
-     * 
+     * The name of the frame.
      * @type {string}
-     * @memberof OperationResponse
+     * @memberof NeynarFrameCreationRequest
      */
-    'message'?: string;
+    'name': string;
+    /**
+     * 
+     * @type {Array<NeynarFramePage>}
+     * @memberof NeynarFrameCreationRequest
+     */
+    'pages': Array<NeynarFramePage>;
 }
 

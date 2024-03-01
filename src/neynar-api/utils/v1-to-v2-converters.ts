@@ -104,6 +104,7 @@ export const convertToV2Cast = (
       : {}),
     mentioned_profiles: convertToV2UserList(v1Cast.mentionedProfiles),
   };
+  // @ts-ignore
   return v2Cast;
 };
 

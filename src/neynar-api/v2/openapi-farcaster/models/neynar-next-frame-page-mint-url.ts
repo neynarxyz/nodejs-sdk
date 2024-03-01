@@ -17,14 +17,14 @@
 /**
  * 
  * @export
- * @interface CastParentAuthorAllOf
+ * @interface NeynarNextFramePageMintUrl
  */
-export interface CastParentAuthorAllOf {
+export interface NeynarNextFramePageMintUrl {
     /**
-     * 
-     * @type {number}
-     * @memberof CastParentAuthorAllOf
+     * The URL for minting, specific to the mint action.
+     * @type {string}
+     * @memberof NeynarNextFramePageMintUrl
      */
-    'fid': number | null;
+    'mint_url': string;
 }
 
