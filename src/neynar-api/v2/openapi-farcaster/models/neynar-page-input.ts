@@ -13,18 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { NeynarPageInputText } from './neynar-page-input-text';
 
 /**
  * 
  * @export
- * @interface CastParentAuthorAllOf
+ * @interface NeynarPageInput
  */
-export interface CastParentAuthorAllOf {
+export interface NeynarPageInput {
     /**
      * 
-     * @type {number}
-     * @memberof CastParentAuthorAllOf
+     * @type {NeynarPageInputText}
+     * @memberof NeynarPageInput
      */
-    'fid': number | null;
+    'text'?: NeynarPageInputText;
 }
 

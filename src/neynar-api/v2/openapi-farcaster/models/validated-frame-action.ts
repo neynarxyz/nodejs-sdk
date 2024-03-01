@@ -24,6 +24,9 @@ import { FrameActionButton } from './frame-action-button';
 import { FrameInput } from './frame-input';
 // May contain unused imports in some cases
 // @ts-ignore
+import { FrameState } from './frame-state';
+// May contain unused imports in some cases
+// @ts-ignore
 import { User } from './user';
 
 /**
@@ -56,6 +59,12 @@ export interface ValidatedFrameAction {
      * @memberof ValidatedFrameAction
      */
     'input'?: FrameInput;
+    /**
+     * 
+     * @type {FrameState}
+     * @memberof ValidatedFrameAction
+     */
+    'state'?: FrameState;
     /**
      * 
      * @type {CastWithInteractions}

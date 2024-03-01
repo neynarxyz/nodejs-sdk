@@ -34,11 +34,17 @@ import { FollowReqBody } from '../models';
 // @ts-ignore
 import { OperationResponse } from '../models';
 // @ts-ignore
+import { RegisterUserReqBody } from '../models';
+// @ts-ignore
+import { RegisterUserResponse } from '../models';
+// @ts-ignore
 import { RemoveVerificationReqBody } from '../models';
 // @ts-ignore
 import { UpdateUserReqBody } from '../models';
 // @ts-ignore
 import { User } from '../models';
+// @ts-ignore
+import { UserFIDResponse } from '../models';
 // @ts-ignore
 import { UserResponse } from '../models';
 // @ts-ignore
@@ -228,6 +234,43 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
+         * Fetches fid to assign it new user
+         * @summary Fetches fid to assign it new user
+         * @param {string} apiKey API key required for authentication.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFreshFid: async (apiKey: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('getFreshFid', 'apiKey', apiKey)
+            const localVarPath = `/farcaster/user/fid`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Lookup a user by custody-address
          * @summary Lookup a user by custody-address
          * @param {string} apiKey API key required for authentication.
@@ -265,6 +308,49 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Register account on farcaster. 
+         * @summary Register account on farcaster
+         * @param {string} apiKey API key required for authentication.
+         * @param {RegisterUserReqBody} registerUserReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        registerUser: async (apiKey: string, registerUserReqBody: RegisterUserReqBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('registerUser', 'apiKey', apiKey)
+            // verify required parameter 'registerUserReqBody' is not null or undefined
+            assertParamExists('registerUser', 'registerUserReqBody', registerUserReqBody)
+            const localVarPath = `/farcaster/user`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(registerUserReqBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -407,8 +493,8 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Fetches all users based on multiple Ethereum addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users.
-         * @summary Fetches all users based on multiple Ethereum addresses
+         * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
+         * @summary Fetches users based on Eth or Sol addresses
          * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
          * @param {*} [options] Override http request option.
@@ -561,6 +647,17 @@ export const UserApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Fetches fid to assign it new user
+         * @summary Fetches fid to assign it new user
+         * @param {string} apiKey API key required for authentication.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getFreshFid(apiKey: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserFIDResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getFreshFid(apiKey, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Lookup a user by custody-address
          * @summary Lookup a user by custody-address
          * @param {string} apiKey API key required for authentication.
@@ -570,6 +667,18 @@ export const UserApiFp = function(configuration?: Configuration) {
          */
         async lookupUserByCustodyAddress(apiKey: string, custodyAddress: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.lookupUserByCustodyAddress(apiKey, custodyAddress, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Register account on farcaster. 
+         * @summary Register account on farcaster
+         * @param {string} apiKey API key required for authentication.
+         * @param {RegisterUserReqBody} registerUserReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async registerUser(apiKey: string, registerUserReqBody: RegisterUserReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RegisterUserResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.registerUser(apiKey, registerUserReqBody, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -610,8 +719,8 @@ export const UserApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Fetches all users based on multiple Ethereum addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users.
-         * @summary Fetches all users based on multiple Ethereum addresses
+         * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
+         * @summary Fetches users based on Eth or Sol addresses
          * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
          * @param {*} [options] Override http request option.
@@ -690,6 +799,16 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.followUser(apiKey, followReqBody, options).then((request) => request(axios, basePath));
         },
         /**
+         * Fetches fid to assign it new user
+         * @summary Fetches fid to assign it new user
+         * @param {string} apiKey API key required for authentication.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFreshFid(apiKey: string, options?: any): AxiosPromise<UserFIDResponse> {
+            return localVarFp.getFreshFid(apiKey, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Lookup a user by custody-address
          * @summary Lookup a user by custody-address
          * @param {string} apiKey API key required for authentication.
@@ -699,6 +818,17 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          */
         lookupUserByCustodyAddress(apiKey: string, custodyAddress: string, options?: any): AxiosPromise<UserResponse> {
             return localVarFp.lookupUserByCustodyAddress(apiKey, custodyAddress, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Register account on farcaster. 
+         * @summary Register account on farcaster
+         * @param {string} apiKey API key required for authentication.
+         * @param {RegisterUserReqBody} registerUserReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        registerUser(apiKey: string, registerUserReqBody: RegisterUserReqBody, options?: any): AxiosPromise<RegisterUserResponse> {
+            return localVarFp.registerUser(apiKey, registerUserReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved) 
@@ -735,8 +865,8 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.userBulk(apiKey, fids, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
-         * Fetches all users based on multiple Ethereum addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users.
-         * @summary Fetches all users based on multiple Ethereum addresses
+         * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
+         * @summary Fetches users based on Eth or Sol addresses
          * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
          * @param {*} [options] Override http request option.
@@ -821,6 +951,18 @@ export class UserApi extends BaseAPI {
     }
 
     /**
+     * Fetches fid to assign it new user
+     * @summary Fetches fid to assign it new user
+     * @param {string} apiKey API key required for authentication.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public getFreshFid(apiKey: string, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).getFreshFid(apiKey, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Lookup a user by custody-address
      * @summary Lookup a user by custody-address
      * @param {string} apiKey API key required for authentication.
@@ -831,6 +973,19 @@ export class UserApi extends BaseAPI {
      */
     public lookupUserByCustodyAddress(apiKey: string, custodyAddress: string, options?: AxiosRequestConfig) {
         return UserApiFp(this.configuration).lookupUserByCustodyAddress(apiKey, custodyAddress, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Register account on farcaster. 
+     * @summary Register account on farcaster
+     * @param {string} apiKey API key required for authentication.
+     * @param {RegisterUserReqBody} registerUserReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public registerUser(apiKey: string, registerUserReqBody: RegisterUserReqBody, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).registerUser(apiKey, registerUserReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -874,8 +1029,8 @@ export class UserApi extends BaseAPI {
     }
 
     /**
-     * Fetches all users based on multiple Ethereum addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users.
-     * @summary Fetches all users based on multiple Ethereum addresses
+     * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
+     * @summary Fetches users based on Eth or Sol addresses
      * @param {string} apiKey API key required for authentication.
      * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
      * @param {*} [options] Override http request option.

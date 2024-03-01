@@ -17,14 +17,14 @@
 /**
  * 
  * @export
- * @interface CastParentAuthorAllOf
+ * @interface NeynarNextFramePageRedirect
  */
-export interface CastParentAuthorAllOf {
+export interface NeynarNextFramePageRedirect {
     /**
-     * 
-     * @type {number}
-     * @memberof CastParentAuthorAllOf
+     * The URL to redirect to.
+     * @type {string}
+     * @memberof NeynarNextFramePageRedirect
      */
-    'fid': number | null;
+    'redirect_url': string;
 }
 

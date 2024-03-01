@@ -17,14 +17,14 @@
 /**
  * 
  * @export
- * @interface CastParentAuthorAllOf
+ * @interface FrameState
  */
-export interface CastParentAuthorAllOf {
+export interface FrameState {
     /**
-     * 
-     * @type {number}
-     * @memberof CastParentAuthorAllOf
+     * State for the frame in a serialized format
+     * @type {string}
+     * @memberof FrameState
      */
-    'fid': number | null;
+    'serialized'?: string;
 }
 

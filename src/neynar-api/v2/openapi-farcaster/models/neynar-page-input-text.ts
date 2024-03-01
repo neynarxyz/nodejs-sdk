@@ -17,14 +17,20 @@
 /**
  * 
  * @export
- * @interface CastParentAuthorAllOf
+ * @interface NeynarPageInputText
  */
-export interface CastParentAuthorAllOf {
+export interface NeynarPageInputText {
     /**
-     * 
-     * @type {number}
-     * @memberof CastParentAuthorAllOf
+     * Indicates if text input is enabled.
+     * @type {boolean}
+     * @memberof NeynarPageInputText
      */
-    'fid': number | null;
+    'enabled': boolean;
+    /**
+     * The placeholder text for the input.
+     * @type {string}
+     * @memberof NeynarPageInputText
+     */
+    'placeholder'?: string;
 }
 

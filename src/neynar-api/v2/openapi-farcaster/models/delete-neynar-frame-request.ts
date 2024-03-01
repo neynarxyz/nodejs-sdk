@@ -17,14 +17,14 @@
 /**
  * 
  * @export
- * @interface CastParentAuthorAllOf
+ * @interface DeleteNeynarFrameRequest
  */
-export interface CastParentAuthorAllOf {
+export interface DeleteNeynarFrameRequest {
     /**
      * 
-     * @type {number}
-     * @memberof CastParentAuthorAllOf
+     * @type {string}
+     * @memberof DeleteNeynarFrameRequest
      */
-    'fid': number | null;
+    'uuid'?: string;
 }
 

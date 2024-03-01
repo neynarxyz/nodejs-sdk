@@ -17,14 +17,14 @@
 /**
  * 
  * @export
- * @interface CastParentAuthorAllOf
+ * @interface NeynarNextFramePage
  */
-export interface CastParentAuthorAllOf {
+export interface NeynarNextFramePage {
     /**
-     * 
-     * @type {number}
-     * @memberof CastParentAuthorAllOf
+     * The UUID of the next page.
+     * @type {string}
+     * @memberof NeynarNextFramePage
      */
-    'fid': number | null;
+    'uuid': string;
 }
 

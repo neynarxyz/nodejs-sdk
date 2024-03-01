@@ -13,24 +13,27 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { NeynarFramePage } from './neynar-frame-page';
 
 /**
  * 
  * @export
- * @interface OperationResponse
+ * @interface NeynarFrameUpdateRequest
  */
-export interface OperationResponse {
+export interface NeynarFrameUpdateRequest {
     /**
-     * 
-     * @type {boolean}
-     * @memberof OperationResponse
-     */
-    'success': boolean;
-    /**
-     * 
+     * The UUID of the frame to update.
      * @type {string}
-     * @memberof OperationResponse
+     * @memberof NeynarFrameUpdateRequest
      */
-    'message'?: string;
+    'uuid'?: string;
+    /**
+     * 
+     * @type {Array<NeynarFramePage>}
+     * @memberof NeynarFrameUpdateRequest
+     */
+    'pages': Array<NeynarFramePage>;
 }
 

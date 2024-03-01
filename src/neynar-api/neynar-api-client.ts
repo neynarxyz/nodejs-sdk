@@ -33,6 +33,13 @@ import {
   FrameActionResponse,
   ValidateFrameActionResponse,
   UsersResponse,
+  UsersActiveChannelsResponse,
+  NeynarFrame,
+  DeleteFrameResponse,
+  NeynarFrameUpdateRequest,
+  NeynarFrameCreationRequest,
+  UserFIDResponse,
+  RegisterUserResponse,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -151,6 +158,9 @@ export class NeynarAPIClient {
   }
 
   /**
+   * @deprecated
+   * Now deprecated, use `fetchUserReactions` instead.
+   *
    * Retrieves all casts liked by a specific user. This method returns a list of casts that
    * the specified user has liked, with support for pagination through optional parameters.
    *
@@ -186,6 +196,9 @@ export class NeynarAPIClient {
   }
 
   /**
+   * @deprecated
+   * Now deprecated, use `fetchBulkUsers` instead.
+   *
    * Retrieves the specified user via their FID (if found).
    *
    * @param {number} fid - The FID of the user whose information is being retrieved.
@@ -236,6 +249,9 @@ export class NeynarAPIClient {
   }
 
   /**
+   * @deprecated
+   * Now deprecated, use `fetchBulkUsers` instead.
+   *
    * Retrieves the custody address for the specified user via their fid (if found).
    *
    * @param {number} fid - The FID (unique identifier) of the user whose custody address is being retrieved.
@@ -260,6 +276,9 @@ export class NeynarAPIClient {
   // ------------ Cast ------------
 
   /**
+   * @deprecated
+   * Now deprecated, use `lookUpCastByHashOrWarpcastUrl` instead.
+   *
    * Retrieves information about a single cast using its unique hash identifier.
    *
    * @param {string} hash - The unique hash identifier of the cast to be retrieved.
@@ -392,6 +411,9 @@ export class NeynarAPIClient {
   // ------------ Verification ------------
 
   /**
+   * @deprecated
+   * Now deprecated, use `fetchBulkUsers` instead.
+   *
    * Retrieve all known verifications of a user.
    *
    * @param {number} fid - The FID (unique identifier) of the user whose verifications are being retrieved.
@@ -413,6 +435,9 @@ export class NeynarAPIClient {
   }
 
   /**
+   * @deprecated
+   * Now deprecated, use `fetchBulkUsersByEthereumAddress` instead.
+   *
    * Retrieve user information using a verification address
    *
    * Checks if a given Ethereum address has a Farcaster user associated with it.
@@ -774,6 +799,64 @@ export class NeynarAPIClient {
   }
 
   // ------------ User ------------
+
+  /**
+   * Fetches a fresh FID to be assigned to a new user.
+   * This API is for Enterprise customers only. Please contact us if you want to try this out.
+   *
+   * @returns {Promise<number>} - A promise that resolves to a number representing the fresh FID.
+   *
+   * @example
+   * // Example usage
+   * client.getFreshAccountFID().then(fid => {
+   *   console.log('Fresh FID for New Account:', fid);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/get-fresh-fid).
+   */
+  public async getFreshAccountFID(): Promise<UserFIDResponse> {
+    return await this.clients.v2.getFreshAccountFID();
+  }
+
+  /**
+   * This API is for Enterprise customers only. Please contact us if you want to try this out.
+   *
+   * Registers a new user account on Farcaster.
+   * 
+   * @param {number} fid - The unique FID assigned to the new user.
+   * @param {string} signature - A cryptographic signature proving ownership of the custody address.
+   * @param {string} requested_user_custody_address - The Ethereum custody address associated with the new user.
+   * @param {number} deadline - A UNIX timestamp indicating the validity period of the registration request.
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {string} [options.fname] - The requested username (fname) for the new user account.
+   *
+   * @returns {Promise<RegisterUserResponse>} A promise that resolves to a `RegisterUserResponse` object,
+   *   indicating the success or failure of the account registration process.
+   *
+   * @example
+   * // Example: Register a new user account with a specific FID and custody address
+   * client.registerAccount(12345, 'signatureString', '0x123...abc', 1672531200, { fname: 'newUsername' })
+   * .then(response => {
+   *   console.log('Account Registration Response:', response);
+   * });
+   *
+   * For more information, refer to the [Farcaster documentation](https://docs.neynar.com/reference/register-user).
+   */
+  public async registerAccount(
+    fid: number,
+    signature: string,
+    requested_user_custody_address: string,
+    deadline: number,
+    options?: { fname?: string }
+  ): Promise<RegisterUserResponse> {
+    return await this.clients.v2.registerAccount(
+      fid,
+      signature,
+      requested_user_custody_address,
+      deadline,
+      options
+    );
+  }
 
   /**
    * Retrieves a list of active users, where "active" is determined by the Warpcast active algorithm.
@@ -1605,6 +1688,29 @@ export class NeynarAPIClient {
   }
 
   /**
+   * Retrieves all channels where a specific user has been active, sorted in reverse chronological order.
+   * This method is useful for understanding the various channels a user has interacted with through casting.
+   *
+   * @param {number} fid - The FID (identifier) of the user whose active channels are being fetched.
+   *
+   * @returns {Promise<UsersActiveChannelsResponse>} A promise that resolves to an `UsersActiveChannelsResponse` object,
+   *   containing a list of channels where the user has been active.
+   *
+   * @example
+   * // Example: Fetch all channels where a user has been active
+   * client.fetchUsersActiveChannels(3).then(response => {
+   *   console.log('User\'s Active Channels:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/active-channels).
+   */
+  public async fetchUsersActiveChannels(
+    fid: number
+  ): Promise<UsersActiveChannelsResponse> {
+    return await this.clients.v2.fetchUsersActiveChannels(fid);
+  }
+
+  /**
    * Retrieves a list of users who are active in a given channel, ordered by ascending FIDs
    *
    * @param {string} id - Channel ID for the channel being queried
@@ -1878,6 +1984,121 @@ export class NeynarAPIClient {
   }
 
   // ------------ Frame ------------
+
+  /**
+   * Retrieves a frame by its UUID, provided it was created by the developer identified by the provided API key.
+   * This method is useful for fetching details of a specific frame for review or display purposes.
+   *
+   * @param {string} uuid - The UUID of the frame to be retrieved.
+   *
+   * @returns {Promise<NeynarFrame>} A promise that resolves to a `NeynarFrame` object containing the details of the retrieved frame.
+   *
+   * @example
+   * // Example: Retrieve a frame by its UUID
+   * const uuid = 'your-frame-uuid';
+   * client.lookupNeynarFrame(uuid).then(frame => {
+   *   console.log('Retrieved Frame:', frame);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/lookup-neynar-frame).
+   */
+  public async lookupNeynarFrame(uuid: string): Promise<NeynarFrame> {
+    return await this.clients.v2.lookupNeynarFrame(uuid);
+  }
+
+  /**
+   * Creates a new frame with a list of pages. This method enables developers to add new frames
+   * to their content offerings, identified by the provided API key.
+   *
+   * @param {NeynarFrameCreationRequest} neynarFrameCreationRequest - The request object containing the details for the new frame.
+   *
+   * @returns {Promise<NeynarFrame>} A promise that resolves to the newly created frame object.
+   *
+   * @example
+   * // Example: Create a new frame
+   * const creationRequest = {
+   *   name: 'Frame name',
+   *   pages: [...]
+   * };
+   * client.publishNeynarFrame(creationRequest).then(response => {
+   *   console.log('Newly Created Frame:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/publish-neynar-frame).
+   */
+  public async publishNeynarFrame(
+    neynarFrameCreationRequest: NeynarFrameCreationRequest
+  ): Promise<NeynarFrame> {
+    return await this.clients.v2.publishNeynarFrame(neynarFrameCreationRequest);
+  }
+
+  /**
+   * Updates an existing frame with new content or properties, assuming the frame was created by the developer,
+   * as identified by the provided API key. This method allows for modifying frames post-creation.
+   *
+   * @param {NeynarFrameUpdateRequest} neynarFrame - The new content or properties for the frame being updated.
+   *
+   * @returns {Promise<NeynarFrame>} A promise that resolves to a `NeynarFrame` object,
+   *   reflecting the updated state of the frame.
+   *
+   * @example
+   * // Example: Update an existing frame with new content
+   * const neynarFrame = {
+   *   uuid: 'your-frame-uuid', // UUID of the frame to update
+   *   pages: [...], // New pages or content for the frame
+   * };
+   * client.updateNeynarFrame(neynarFrameUpdateRequest).then(response => {
+   *   console.log('Frame Update Response:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/update-neynar-frame).
+   */
+  public async updateNeynarFrame(
+    neynarFrame: NeynarFrameUpdateRequest
+  ): Promise<NeynarFrame> {
+    return await this.clients.v2.updateNeynarFrame(neynarFrame);
+  }
+
+  /**
+   * Deletes an existing frame if it was created by the developer, identified through the provided API key.
+   * This method allows developers to remove frames that they have previously submitted to the platform.
+   *
+   * @param {string} uuid - The unique identifier (UUID) of the frame to be deleted.
+   *
+   * @returns {Promise<DeleteFrameResponse>} A promise that resolves to an `DeleteFrameResponse` object,
+   *   indicating the success or failure of the delete operation.
+   *
+   * @example
+   * // Example: Delete a specific frame by its UUID
+   * const frameUuid = 'your-frame-uuid'; // Replace with the actual UUID of the frame to be deleted
+   * client.deleteNeynarFrame(frameUuid).then(response => {
+   *   console.log('Delete Frame Response:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/delete-neynar-frame).
+   */
+  public async deleteNeynarFrame(uuid: string): Promise<DeleteFrameResponse> {
+    return await this.clients.v2.deleteNeynarFrame(uuid);
+  }
+
+  /**
+   * Retrieves a list of frames created by the developer, identified through the provided API key.
+   * This method is essential for developers to review their frames submitted to the platform.
+   *
+   * @returns {Promise<NeynarFrame[]>} A promise that resolves to a `NeynarFrame[]` object,
+   *   containing a list of frames associated with the developer's API key.
+   *
+   * @example
+   * // Example: Retrieve frames created by the developer
+   * client.fetchNeynarFrames().then(response => {
+   *   console.log('Developer Frames:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/fetch-neynar-frames).
+   */
+  public async fetchNeynarFrames(): Promise<NeynarFrame[]> {
+    return await this.clients.v2.fetchNeynarFrames();
+  }
 
   /**
    * Posts a frame action on a specific cast.

@@ -17,14 +17,14 @@
 /**
  * 
  * @export
- * @interface CastParentAuthorAllOf
+ * @interface UserFIDResponse
  */
-export interface CastParentAuthorAllOf {
+export interface UserFIDResponse {
     /**
      * 
      * @type {number}
-     * @memberof CastParentAuthorAllOf
+     * @memberof UserFIDResponse
      */
-    'fid': number | null;
+    'fid': number;
 }
 

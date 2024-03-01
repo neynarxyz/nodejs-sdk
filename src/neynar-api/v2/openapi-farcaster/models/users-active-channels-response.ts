@@ -13,24 +13,30 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { Channel } from './channel';
+// May contain unused imports in some cases
+// @ts-ignore
+import { User } from './user';
 
 /**
  * 
  * @export
- * @interface OperationResponse
+ * @interface UsersActiveChannelsResponse
  */
-export interface OperationResponse {
+export interface UsersActiveChannelsResponse {
     /**
      * 
-     * @type {boolean}
-     * @memberof OperationResponse
+     * @type {User}
+     * @memberof UsersActiveChannelsResponse
      */
-    'success': boolean;
+    'user'?: User;
     /**
      * 
-     * @type {string}
-     * @memberof OperationResponse
+     * @type {Array<Channel>}
+     * @memberof UsersActiveChannelsResponse
      */
-    'message'?: string;
+    'channels'?: Array<Channel>;
 }
 
