@@ -22,6 +22,10 @@ export const convertToV2User = (v1User: IUserV1): IUserV2 => {
     follower_count: v1User?.followerCount,
     following_count: v1User?.followingCount,
     verifications: v1User?.verifications,
+    verified_addresses: {
+      eth_addresses: [],
+      sol_addresses: [],
+    },
     active_status:
       v1User?.activeStatus === "active"
         ? ActiveStatus.Active
