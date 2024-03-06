@@ -96,6 +96,7 @@ export * from './user-profile-bio';
 export * from './user-response';
 export * from './user-search-response';
 export * from './user-search-response-result';
+export * from './user-verified-addresses';
 export * from './user-viewer-context';
 export * from './users-active-channels-response';
 export * from './users-response';

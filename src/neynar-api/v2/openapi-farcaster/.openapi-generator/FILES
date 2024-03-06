@@ -116,6 +116,7 @@ models/user-profile.ts
 models/user-response.ts
 models/user-search-response-result.ts
 models/user-search-response.ts
+models/user-verified-addresses.ts
 models/user-viewer-context.ts
 models/user.ts
 models/users-active-channels-response.ts

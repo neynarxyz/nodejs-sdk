@@ -21,6 +21,9 @@ import { ActiveStatus } from './active-status';
 import { UserProfile } from './user-profile';
 // May contain unused imports in some cases
 // @ts-ignore
+import { UserVerifiedAddresses } from './user-verified-addresses';
+// May contain unused imports in some cases
+// @ts-ignore
 import { UserViewerContext } from './user-viewer-context';
 
 /**
@@ -58,7 +61,7 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    'custody_address'?: string;
+    'custody_address': string;
     /**
      * The URL of the user\'s profile picture
      * @type {string}
@@ -89,6 +92,12 @@ export interface User {
      * @memberof User
      */
     'verifications': Array<string>;
+    /**
+     * 
+     * @type {UserVerifiedAddresses}
+     * @memberof User
+     */
+    'verified_addresses': UserVerifiedAddresses;
     /**
      * 
      * @type {ActiveStatus}
