@@ -569,7 +569,7 @@ export class NeynarV2APIClient {
    */
   public async fetchBulkUsers(
     fids: number[],
-    options: { viewerFid?: number }
+    options?: { viewerFid?: number }
   ): Promise<BulkUsersResponse> {
     if (fids.length > 100)
       throw new Error("Maximum number of fids allowed is 100");

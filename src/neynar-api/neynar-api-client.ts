@@ -1064,7 +1064,7 @@ export class NeynarAPIClient {
    */
   public async fetchBulkUsers(
     fids: number[],
-    options: { viewerFid?: number }
+    options?: { viewerFid?: number }
   ): Promise<BulkUsersResponse> {
     return await this.clients.v2.fetchBulkUsers(fids, options);
   }
