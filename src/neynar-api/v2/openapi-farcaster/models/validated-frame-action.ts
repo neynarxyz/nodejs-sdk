@@ -27,7 +27,13 @@ import { FrameInput } from './frame-input';
 import { FrameState } from './frame-state';
 // May contain unused imports in some cases
 // @ts-ignore
+import { FrameTransaction } from './frame-transaction';
+// May contain unused imports in some cases
+// @ts-ignore
 import { User } from './user';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ValidatedFrameActionSigner } from './validated-frame-action-signer';
 
 /**
  * 
@@ -77,6 +83,18 @@ export interface ValidatedFrameAction {
      * @memberof ValidatedFrameAction
      */
     'timestamp': string;
+    /**
+     * 
+     * @type {ValidatedFrameActionSigner}
+     * @memberof ValidatedFrameAction
+     */
+    'signer'?: ValidatedFrameActionSigner;
+    /**
+     * 
+     * @type {FrameTransaction}
+     * @memberof ValidatedFrameAction
+     */
+    'transaction'?: FrameTransaction;
 }
 
 export const ValidatedFrameActionObjectEnum = {

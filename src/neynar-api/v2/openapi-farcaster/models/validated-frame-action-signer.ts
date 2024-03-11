@@ -13,18 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { User } from './user';
 
 /**
  * 
  * @export
- * @interface FrameState
+ * @interface ValidatedFrameActionSigner
  */
-export interface FrameState {
+export interface ValidatedFrameActionSigner {
     /**
-     * State for the frame in a serialized format
-     * @type {string}
-     * @memberof FrameState
+     * 
+     * @type {User}
+     * @memberof ValidatedFrameActionSigner
      */
-    'serialized': string;
+    'client'?: User;
 }
 

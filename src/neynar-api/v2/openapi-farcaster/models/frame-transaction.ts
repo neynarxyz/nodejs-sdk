@@ -17,14 +17,14 @@
 /**
  * 
  * @export
- * @interface FrameState
+ * @interface FrameTransaction
  */
-export interface FrameState {
+export interface FrameTransaction {
     /**
-     * State for the frame in a serialized format
+     * Transaction hash
      * @type {string}
-     * @memberof FrameState
+     * @memberof FrameTransaction
      */
-    'serialized': string;
+    'hash': string;
 }
 

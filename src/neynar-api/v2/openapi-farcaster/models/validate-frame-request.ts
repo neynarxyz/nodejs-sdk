@@ -38,5 +38,11 @@ export interface ValidateFrameRequest {
      * @memberof ValidateFrameRequest
      */
     'follow_context'?: boolean;
+    /**
+     * Adds context about the app used by the user inside `frame.action`.
+     * @type {boolean}
+     * @memberof ValidateFrameRequest
+     */
+    'signer_context'?: boolean;
 }
 

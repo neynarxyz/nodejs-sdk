@@ -13,18 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { Webhook } from './webhook';
 
 /**
  * 
  * @export
- * @interface FrameState
+ * @interface WebhookListResponse
  */
-export interface FrameState {
+export interface WebhookListResponse {
     /**
-     * State for the frame in a serialized format
-     * @type {string}
-     * @memberof FrameState
+     * 
+     * @type {Array<Webhook>}
+     * @memberof WebhookListResponse
      */
-    'serialized': string;
+    'webhooks': Array<Webhook>;
 }
 

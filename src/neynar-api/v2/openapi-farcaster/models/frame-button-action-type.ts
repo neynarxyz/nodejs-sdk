@@ -22,7 +22,8 @@
 
 export const FrameButtonActionType = {
     Post: 'post',
-    PostRedirect: 'post_redirect'
+    PostRedirect: 'post_redirect',
+    Tx: 'tx'
 } as const;
 
 export type FrameButtonActionType = typeof FrameButtonActionType[keyof typeof FrameButtonActionType];

@@ -17,14 +17,14 @@
 /**
  * 
  * @export
- * @interface FrameState
+ * @interface WebhookDeleteReqBody
  */
-export interface FrameState {
+export interface WebhookDeleteReqBody {
     /**
-     * State for the frame in a serialized format
+     * 
      * @type {string}
-     * @memberof FrameState
+     * @memberof WebhookDeleteReqBody
      */
-    'serialized': string;
+    'webhook_id': string;
 }
 

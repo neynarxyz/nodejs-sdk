@@ -15,34 +15,30 @@
 
 
 /**
- * Details for the error response
+ * 
  * @export
- * @interface ErrorRes
+ * @interface WebhookPatchReqBody
  */
-export interface ErrorRes {
+export interface WebhookPatchReqBody {
     /**
      * 
      * @type {string}
-     * @memberof ErrorRes
+     * @memberof WebhookPatchReqBody
      */
-    'code'?: string;
+    'webhook_id': string;
     /**
      * 
      * @type {string}
-     * @memberof ErrorRes
+     * @memberof WebhookPatchReqBody
      */
-    'message': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ErrorRes
-     */
-    'property'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ErrorRes
-     */
-    'status'?: number;
+    'active': WebhookPatchReqBodyActiveEnum;
 }
+
+export const WebhookPatchReqBodyActiveEnum = {
+    True: 'true',
+    False: 'false'
+} as const;
+
+export type WebhookPatchReqBodyActiveEnum = typeof WebhookPatchReqBodyActiveEnum[keyof typeof WebhookPatchReqBodyActiveEnum];
+
 

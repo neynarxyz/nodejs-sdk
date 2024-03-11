@@ -15,25 +15,31 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ValidatedFrameAction } from './validated-frame-action';
+import { WebhookSubscriptionFilters } from './webhook-subscription-filters';
 
 /**
  * 
  * @export
- * @interface ValidateFrameActionResponse
+ * @interface WebhookPostReqBody
  */
-export interface ValidateFrameActionResponse {
+export interface WebhookPostReqBody {
     /**
      * 
-     * @type {boolean}
-     * @memberof ValidateFrameActionResponse
+     * @type {string}
+     * @memberof WebhookPostReqBody
      */
-    'valid': boolean;
+    'name': string;
     /**
      * 
-     * @type {ValidatedFrameAction}
-     * @memberof ValidateFrameActionResponse
+     * @type {string}
+     * @memberof WebhookPostReqBody
      */
-    'action': ValidatedFrameAction;
+    'url': string;
+    /**
+     * 
+     * @type {WebhookSubscriptionFilters}
+     * @memberof WebhookPostReqBody
+     */
+    'subscription'?: WebhookSubscriptionFilters;
 }
 

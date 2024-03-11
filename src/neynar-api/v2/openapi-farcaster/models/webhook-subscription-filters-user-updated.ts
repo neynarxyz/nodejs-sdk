@@ -17,14 +17,14 @@
 /**
  * 
  * @export
- * @interface FrameState
+ * @interface WebhookSubscriptionFiltersUserUpdated
  */
-export interface FrameState {
+export interface WebhookSubscriptionFiltersUserUpdated {
     /**
-     * State for the frame in a serialized format
-     * @type {string}
-     * @memberof FrameState
+     * 
+     * @type {Array<number>}
+     * @memberof WebhookSubscriptionFiltersUserUpdated
      */
-    'serialized': string;
+    'fids'?: Array<number>;
 }
 

@@ -15,34 +15,46 @@
 
 
 /**
- * Details for the error response
+ * 
  * @export
- * @interface ErrorRes
+ * @interface WebhookSecret
  */
-export interface ErrorRes {
+export interface WebhookSecret {
     /**
      * 
      * @type {string}
-     * @memberof ErrorRes
+     * @memberof WebhookSecret
      */
-    'code'?: string;
+    'uid': string;
     /**
      * 
      * @type {string}
-     * @memberof ErrorRes
+     * @memberof WebhookSecret
      */
-    'message': string;
+    'value': string;
     /**
      * 
      * @type {string}
-     * @memberof ErrorRes
+     * @memberof WebhookSecret
      */
-    'property'?: string;
+    'expires_at': string;
     /**
      * 
-     * @type {number}
-     * @memberof ErrorRes
+     * @type {string}
+     * @memberof WebhookSecret
      */
-    'status'?: number;
+    'created_at': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookSecret
+     */
+    'updated_at': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookSecret
+     */
+    'deleted_at': string;
 }
 

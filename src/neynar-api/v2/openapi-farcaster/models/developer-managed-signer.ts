@@ -17,48 +17,41 @@
 /**
  * 
  * @export
- * @interface Signer
+ * @interface DeveloperManagedSigner
  */
-export interface Signer {
-    /**
-     * UUID of the signer
-     * @type {string}
-     * @memberof Signer
-     */
-    'signer_uuid': string;
+export interface DeveloperManagedSigner {
     /**
      * Ed25519 public key
      * @type {string}
-     * @memberof Signer
+     * @memberof DeveloperManagedSigner
      */
     'public_key': string;
     /**
      * 
      * @type {string}
-     * @memberof Signer
+     * @memberof DeveloperManagedSigner
      */
-    'status': SignerStatusEnum;
+    'status': DeveloperManagedSignerStatusEnum;
     /**
      * 
      * @type {string}
-     * @memberof Signer
+     * @memberof DeveloperManagedSigner
      */
     'signer_approval_url'?: string;
     /**
      * User identifier (unsigned integer)
      * @type {number}
-     * @memberof Signer
+     * @memberof DeveloperManagedSigner
      */
     'fid'?: number;
 }
 
-export const SignerStatusEnum = {
-    Generated: 'generated',
+export const DeveloperManagedSignerStatusEnum = {
     PendingApproval: 'pending_approval',
     Approved: 'approved',
     Revoked: 'revoked'
 } as const;
 
-export type SignerStatusEnum = typeof SignerStatusEnum[keyof typeof SignerStatusEnum];
+export type DeveloperManagedSignerStatusEnum = typeof DeveloperManagedSignerStatusEnum[keyof typeof DeveloperManagedSignerStatusEnum];
 
 
