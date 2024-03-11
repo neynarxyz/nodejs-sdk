@@ -10,3 +10,5 @@ build
 src/neynar-api/neynar-v1-api/openapi-tmp
 src/neynar-api/neynar-v2-api/openapi-farcaster-tmp
 src/neynar-api/neynar-v2-api/openapi-neynar-tmp
+
+test-sdk.ts
