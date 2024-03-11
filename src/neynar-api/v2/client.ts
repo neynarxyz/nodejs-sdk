@@ -2043,8 +2043,7 @@ export class NeynarV2APIClient {
   /**
    * Creates a new webhook with the specified parameters. This method enables developers to
    * programmatically register webhooks for receiving real-time notifications of events that occur
-   * within the platform, such as new posts or user actions, based on the specified subscription filters.
-   * It provides a way to automate and integrate platform events with external services or applications.
+   * within Farcaster.
    *
    * @param {string} name - The name of the webhook.
    * @param {string} url - The URL to which the webhook events will be sent.
