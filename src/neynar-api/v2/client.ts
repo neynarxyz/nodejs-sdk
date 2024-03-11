@@ -40,7 +40,7 @@ import {
   BulkCastsResponse,
   FnameApi,
   FnameAvailabilityResponse,
-  FrameApi,
+  FramesApi,
   FrameActionReqBody,
   FrameAction,
   ValidateFrameRequest,
@@ -49,6 +49,7 @@ import {
   DeleteNeynarFrameRequest,
   NeynarFrameUpdateRequest,
   NeynarFrameCreationRequest,
+  NeynarFramesApi,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -74,7 +75,8 @@ export class NeynarV2APIClient {
     storage: StorageApi;
     nft: NFTApi;
     fname: FnameApi;
-    frame: FrameApi;
+    frames: FramesApi;
+    neynarFrames: NeynarFramesApi;
   };
 
   /**
@@ -136,7 +138,8 @@ export class NeynarV2APIClient {
       storage: new StorageApi(config, undefined, axiosInstance),
       nft: new NFTApi(config, undefined, axiosInstance),
       fname: new FnameApi(config, undefined, axiosInstance),
-      frame: new FrameApi(config, undefined, axiosInstance),
+      frames: new FramesApi(config, undefined, axiosInstance),
+      neynarFrames: new NeynarFramesApi(config, undefined, axiosInstance),
     };
   }
 
@@ -1681,7 +1684,10 @@ export class NeynarV2APIClient {
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/lookup-neynar-frame).
    */
   public async lookupNeynarFrame(uuid: string) {
-    const response = await this.apis.frame.lookupNeynarFrame(this.apiKey, uuid);
+    const response = await this.apis.neynarFrames.lookupNeynarFrame(
+      this.apiKey,
+      uuid
+    );
     return response.data;
   }
 
@@ -1708,7 +1714,7 @@ export class NeynarV2APIClient {
   public async publishNeynarFrame(
     neynarFrameCreationRequest: NeynarFrameCreationRequest
   ) {
-    const response = await this.apis.frame.publishNeynarFrame(
+    const response = await this.apis.neynarFrames.publishNeynarFrame(
       this.apiKey,
       neynarFrameCreationRequest
     );
@@ -1739,7 +1745,7 @@ export class NeynarV2APIClient {
   public async updateNeynarFrame(
     neynarFrameUpdateRequest: NeynarFrameUpdateRequest
   ) {
-    const response = await this.apis.frame.updateNeynarFrame(
+    const response = await this.apis.neynarFrames.updateNeynarFrame(
       this.apiKey,
       neynarFrameUpdateRequest
     );
@@ -1768,7 +1774,7 @@ export class NeynarV2APIClient {
     const deleteNeynarFrameRequest: DeleteNeynarFrameRequest = {
       uuid,
     };
-    const response = await this.apis.frame.deleteNeynarFrame(
+    const response = await this.apis.neynarFrames.deleteNeynarFrame(
       this.apiKey,
       deleteNeynarFrameRequest
     );
@@ -1791,7 +1797,9 @@ export class NeynarV2APIClient {
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/fetch-neynar-frames).
    */
   public async fetchNeynarFrames() {
-    const response = await this.apis.frame.fetchNeynarFrames(this.apiKey);
+    const response = await this.apis.neynarFrames.fetchNeynarFrames(
+      this.apiKey
+    );
     return response.data;
   }
 
@@ -1834,7 +1842,7 @@ export class NeynarV2APIClient {
       cast_hash: castHash,
       action,
     };
-    const response = await this.apis.frame.postFrameAction(this.apiKey, body);
+    const response = await this.apis.frames.postFrameAction(this.apiKey, body);
     return response.data;
   }
 
@@ -1845,8 +1853,9 @@ export class NeynarV2APIClient {
    *
    * @param {string} messageBytesInHex - The message bytes from the Frame Action in hexadecimal format.
    * @param {Object} [options] - Optional parameters for the validation request.
-   * @param {boolean} [options.castReactionContext] - Include context about cast reactions in the validation response.
-   * @param {boolean} [options.followContext] - Include context about follow actions in the validation response.
+   * @param {boolean} [options.castReactionContext] - Adds viewer_context inside the cast object to indicate whether the interactor reacted to the cast housing the frame.
+   * @param {boolean} [options.followContext] - Adds viewer_context inside the user (interactor) object to indicate whether the interactor follows or is followed by the cast author.
+   * @param {boolean} [options.signerContext] - Adds context about the app used by the user inside `frame.action`.
    *
    * @returns {Promise<ValidateFrameActionResponse>} A promise that resolves to a `ValidateFrameActionResponse` object,
    *   indicating the outcome of the frame action validation, potentially enriched with specified contexts.
@@ -1854,7 +1863,7 @@ export class NeynarV2APIClient {
    * @example
    * // Example: Validate a frame action with additional context for cast reactions and follow actions
    * const messageBytesInHex = '0a49080d1085940118f6a6a32e20018201390a1a86db69b3ffdf6ab8acb6872b69ccbe7eb6a67af7ab71e95aa69f10021a1908ef011214237025b322fd03a9ddc7ec6c078fb9c56d1a72111214e3d88aeb2d0af356024e0c693f31c11b42c76b721801224043cb2f3fcbfb5dafce110e934b9369267cf3d1aef06f51ce653dc01700fc7b778522eb7873fd60dda4611376200076caf26d40a736d3919ce14e78a684e4d30b280132203a66717c82d728beb3511b05975c6603275c7f6a0600370bf637b9ecd2bd231e';
-   * client.validateFrameAction(messageBytesInHex, { castReactionContext: false, followContext: true }).then(response => {
+   * client.validateFrameAction(messageBytesInHex, { castReactionContext: false, followContext: true, signerContext: true }).then(response => {
    *   console.log('Frame Action Validation:', response);
    * });
    *
@@ -1865,6 +1874,7 @@ export class NeynarV2APIClient {
     options?: {
       castReactionContext?: boolean;
       followContext?: boolean;
+      signerContext?: boolean;
     }
   ): Promise<ValidateFrameActionResponse> {
     const reqBody: ValidateFrameRequest = {
@@ -1875,9 +1885,12 @@ export class NeynarV2APIClient {
       ...(typeof options?.followContext !== "undefined" && {
         follow_context: options?.followContext,
       }),
+      ...(typeof options?.signerContext !== "undefined" && {
+        signer_context: options?.signerContext,
+      }),
     };
 
-    const response = await this.apis.frame.validateFrame(this.apiKey, reqBody);
+    const response = await this.apis.frames.validateFrame(this.apiKey, reqBody);
     return response.data;
   }
 
