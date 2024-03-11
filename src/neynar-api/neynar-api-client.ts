@@ -41,6 +41,9 @@ import {
   UserFIDResponse,
   RegisterUserResponse,
   DeveloperManagedSigner,
+  WebhookResponse,
+  WebhookSubscriptionFilters,
+  WebhookListResponse,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -2259,6 +2262,179 @@ export class NeynarAPIClient {
       messageBytesInHex,
       options
     );
+  }
+
+  // ------------ Webhook ------------
+
+  /**
+   * Retrieves details about a specific webhook by its ID.
+   *
+   * @param {string} webhookId - The unique identifier of the webhook to be retrieved.
+   *
+   * @returns {Promise<WebhookResponse>} A promise that resolves to a `WebhookResponse` object,
+   *   containing detailed information about the requested webhook.
+   *
+   * @example
+   * // Example: Fetch information about a specific webhook by ID
+   * const webhookId = 'yourWebhookId';
+   * client.lookupWebhook(webhookId).then(response => {
+   *   console.log('Webhook Details:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/lookup-webhook).
+   */
+  public async lookupWebhook(webhookId: string): Promise<WebhookResponse> {
+    return await this.clients.v2.lookupWebhook(webhookId);
+  }
+
+  /**
+   * Creates a new webhook with the specified parameters. This method enables developers to
+   * programmatically register webhooks for receiving real-time notifications of events that occur
+   * within the platform, such as new posts or user actions, based on the specified subscription filters.
+   * It provides a way to automate and integrate platform events with external services or applications.
+   *
+   * @param {string} name - The name of the webhook.
+   * @param {string} url - The URL to which the webhook events will be sent.
+   * @param {Object} [options] - Optional parameters for the webhook creation.
+   * @param {WebhookSubscriptionFilters} [options.subscription] - A set of filters defining the events the webhook should subscribe to.
+   *
+   * @returns {Promise<WebhookResponse>} A promise that resolves to a `WebhookResponse` object,
+   *   containing information about the newly created webhook, including its ID, name, and subscription details.
+   *
+   * @example
+   * // Example: Create a new webhook for user sign-up events
+   * const name = 'Cast created Webhook';
+   * const url = 'https://example.com/webhook';
+   * const subscription = {
+            "cast.created": {
+                "author_fids": [
+                    3,
+                    196,
+                    194
+                ],
+                "mentioned_fids": [196],
+            },
+            "user.created": {}
+        }
+   * client.publishWebhook(name, url, { subscription }).then(response => {
+   *   console.log('Newly Created Webhook:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/publish-webhook).
+   */
+  public async publishWebhook(
+    name: string,
+    url: string,
+    options?: { subscription: WebhookSubscriptionFilters }
+  ): Promise<WebhookResponse> {
+    return await this.clients.v2.publishWebhook(name, url, options);
+  }
+
+  /**
+   * Updates the active status of a specified webhook.
+   *
+   * @param {string} webhookId - The unique identifier of the webhook whose active status is being toggled.
+   * @param {boolean} active - The desired active status of the webhook. Set to `true` to activate the webhook or `false` to deactivate it.
+   *
+   * @returns {Promise<WebhookResponse>} A promise that resolves to a `WebhookResponse` object.
+   *
+   * @example
+   * // Example: Deactivate a webhook
+   * const webhookId = 'yourWebhookId';
+   * client.updateWebhookActiveStatus(webhookId, false).then(response => {
+   *   console.log('Webhook Active Status Toggled:', response);
+   * });
+   *
+   * // Example: Reactivate a webhook
+   * client.updateWebhookActiveStatus(webhookId, true).then(response => {
+   *   console.log('Webhook Active Status Toggled:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/toggle-webhook-active-status).
+   */
+  public async updateWebhookActiveStatus(
+    webhookId: string,
+    active: boolean
+  ): Promise<WebhookResponse> {
+    return await this.clients.v2.updateWebhookActiveStatus(webhookId, active);
+  }
+
+  /**
+   * Updates an existing webhook with new parameters, including its name, URL, and event subscriptions.
+   *
+   * @param {string} webhookId - The unique identifier of the webhook to be updated.
+   * @param {string} name - The new name for the webhook. Useful for identification and management purposes.
+   * @param {string} url - The new URL to which the webhook events will be sent.
+   * @param {Object} [options] - Optional parameters for updating the webhook.
+   * @param {WebhookSubscriptionFilters} [options.subscription] - A set of filters defining the events the webhook should subscribe to after the update.
+   *
+   * @returns {Promise<WebhookResponse>} A promise that resolves to a `WebhookResponse` object,
+   *   containing the updated information about the webhook, including its ID, name, subscription details, and more.
+   *
+   * @example
+   * // Example: Update an existing webhook with a new URL and subscription filters
+   * const webhookId = 'existingWebhookId';
+   * const newName = 'UpdatedWebhookName';
+   * const newUrl = 'https://example.com/new-webhook-url';
+   * const subscription = {
+            "cast.created": {
+                "author_fids": [
+                    2, 4, 6
+                ],
+                "mentioned_fids": [194],
+            },
+            "user.created": {}
+        }
+   * client.updateWebhook(webhookId, newName, newUrl, { subscription }).then(response => {
+   *   console.log('Updated Webhook:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/update-webhook).
+   */
+  public async updateWebhook(
+    webhookId: string,
+    name: string,
+    url: string,
+    options?: { subscription: WebhookSubscriptionFilters }
+  ): Promise<WebhookResponse> {
+    return await this.clients.v2.updateWebhook(webhookId, name, url, options);
+  }
+
+  /**
+   * Deletes a specified webhook by its unique identifier.
+   *
+   * @param {string} webhookId - The unique identifier of the webhook to be deleted.
+   *
+   * @returns {Promise<WebhookResponse>} A promise that resolves to a `WebhookResponse` object.
+   *
+   * @example
+   * // Example: Delete a specific webhook by ID
+   * const webhookId = 'yourWebhookId';
+   * client.deleteWebhook(webhookId).then(response => {
+   *   console.log('Webhook Deletion Response:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/delete-webhook).
+   */
+  public async deleteWebhook(webhookId: string): Promise<WebhookResponse> {
+    return await this.clients.v2.deleteWebhook(webhookId);
+  }
+
+  /**
+   * Retrieves a list of all webhooks currently associated with the user's account.
+   *
+   * @returns {Promise<WebhookListResponse>} A promise that resolves to a `WebhookListResponse` object.
+   *
+   * @example
+   * // Example: Fetch a list of all webhooks associated with the user's account
+   * client.fetchWebhooks().then(response => {
+   *   console.log('List of Webhooks:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/fetch-webhooks).
+   */
+  public async fetchWebhooks(): Promise<WebhookListResponse> {
+    return await this.clients.v2.fetchWebhooks();
   }
 
   // ------------ Recommendation ------------
