@@ -33,7 +33,7 @@ export interface RegisterSignerKeyReqBody {
      */
     'signature': string;
     /**
-     * Application FID
+     * User identifier (unsigned integer)
      * @type {number}
      * @memberof RegisterSignerKeyReqBody
      */

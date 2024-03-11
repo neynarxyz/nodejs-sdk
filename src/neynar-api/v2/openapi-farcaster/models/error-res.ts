@@ -15,7 +15,7 @@
 
 
 /**
- * Returns ErrorRes metadata
+ * Details for the error response
  * @export
  * @interface ErrorRes
  */

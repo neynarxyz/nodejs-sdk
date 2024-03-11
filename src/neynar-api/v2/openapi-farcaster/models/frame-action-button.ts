@@ -40,7 +40,19 @@ export interface FrameActionButton {
      * @type {FrameButtonActionType}
      * @memberof FrameActionButton
      */
-    'action_type'?: FrameButtonActionType;
+    'action_type': FrameButtonActionType;
+    /**
+     * Target of the button
+     * @type {string}
+     * @memberof FrameActionButton
+     */
+    'target'?: string;
+    /**
+     * Used specifically for the tx action type to post a successful transaction hash
+     * @type {string}
+     * @memberof FrameActionButton
+     */
+    'post_url'?: string;
 }
 
 

@@ -27,7 +27,7 @@ export interface Signer {
      */
     'signer_uuid': string;
     /**
-     * 
+     * Ed25519 public key
      * @type {string}
      * @memberof Signer
      */
