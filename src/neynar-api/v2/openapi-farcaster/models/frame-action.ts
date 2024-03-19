@@ -75,6 +75,12 @@ export interface FrameAction {
      */
     'transaction'?: FrameTransaction;
     /**
+     * The connected wallet address of the interacting user.
+     * @type {string}
+     * @memberof FrameAction
+     */
+    'address'?: string;
+    /**
      * URL of the frames
      * @type {string}
      * @memberof FrameAction

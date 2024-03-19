@@ -49,13 +49,12 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {string} [channelId] Used when filter_type&#x3D;channel_id can be used to fetch all casts under a channel. Requires feed_type and filter_type
          * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
-         * @param {boolean} [withReplies] Include replies in the response, false by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feed: async (apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, embedUrl?: string, withRecasts?: boolean, withReplies?: boolean, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feed: async (apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, embedUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feed', 'apiKey', apiKey)
             // verify required parameter 'feedType' is not null or undefined
@@ -102,10 +101,6 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (withRecasts !== undefined) {
                 localVarQueryParameter['with_recasts'] = withRecasts;
-            }
-
-            if (withReplies !== undefined) {
-                localVarQueryParameter['with_replies'] = withReplies;
             }
 
             if (limit !== undefined) {
@@ -201,13 +196,12 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
-         * @param {boolean} [withReplies] Include replies in the response, false by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedFollowing: async (apiKey: string, fid: number, withRecasts?: boolean, withReplies?: boolean, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feedFollowing: async (apiKey: string, fid: number, withRecasts?: boolean, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feedFollowing', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -230,10 +224,6 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (withRecasts !== undefined) {
                 localVarQueryParameter['with_recasts'] = withRecasts;
-            }
-
-            if (withReplies !== undefined) {
-                localVarQueryParameter['with_replies'] = withReplies;
             }
 
             if (limit !== undefined) {
@@ -289,6 +279,58 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (cursor !== undefined) {
                 localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieve trending casts
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} [limit] Number of results to retrieve (max 10)
+         * @param {string} [cursor] Pagination cursor
+         * @param {'1h' | '6h' | '12h' | '24h'} [timeWindow] Time window for trending casts
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedTrending: async (apiKey: string, limit?: number, cursor?: string, timeWindow?: '1h' | '6h' | '12h' | '24h', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('feedTrending', 'apiKey', apiKey)
+            const localVarPath = `/farcaster/feed/trending`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (timeWindow !== undefined) {
+                localVarQueryParameter['time_window'] = timeWindow;
             }
 
             if (apiKey != null) {
@@ -420,14 +462,13 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {string} [channelId] Used when filter_type&#x3D;channel_id can be used to fetch all casts under a channel. Requires feed_type and filter_type
          * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
-         * @param {boolean} [withReplies] Include replies in the response, false by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, embedUrl?: string, withRecasts?: boolean, withReplies?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.feed(apiKey, feedType, filterType, fid, fids, parentUrl, channelId, embedUrl, withRecasts, withReplies, limit, cursor, options);
+        async feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, embedUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feed(apiKey, feedType, filterType, fid, fids, parentUrl, channelId, embedUrl, withRecasts, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -452,14 +493,13 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
-         * @param {boolean} [withReplies] Include replies in the response, false by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feedFollowing(apiKey: string, fid: number, withRecasts?: boolean, withReplies?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.feedFollowing(apiKey, fid, withRecasts, withReplies, limit, cursor, options);
+        async feedFollowing(apiKey: string, fid: number, withRecasts?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedFollowing(apiKey, fid, withRecasts, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -473,6 +513,20 @@ export const FeedApiFp = function(configuration?: Configuration) {
          */
         async feedFrames(apiKey: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.feedFrames(apiKey, limit, cursor, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Retrieve trending casts
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} [limit] Number of results to retrieve (max 10)
+         * @param {string} [cursor] Pagination cursor
+         * @param {'1h' | '6h' | '12h' | '24h'} [timeWindow] Time window for trending casts
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async feedTrending(apiKey: string, limit?: number, cursor?: string, timeWindow?: '1h' | '6h' | '12h' | '24h', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedTrending(apiKey, limit, cursor, timeWindow, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -523,14 +577,13 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {string} [channelId] Used when filter_type&#x3D;channel_id can be used to fetch all casts under a channel. Requires feed_type and filter_type
          * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
-         * @param {boolean} [withReplies] Include replies in the response, false by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, embedUrl?: string, withRecasts?: boolean, withReplies?: boolean, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
-            return localVarFp.feed(apiKey, feedType, filterType, fid, fids, parentUrl, channelId, embedUrl, withRecasts, withReplies, limit, cursor, options).then((request) => request(axios, basePath));
+        feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, embedUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
+            return localVarFp.feed(apiKey, feedType, filterType, fid, fids, parentUrl, channelId, embedUrl, withRecasts, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -553,14 +606,13 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
-         * @param {boolean} [withReplies] Include replies in the response, false by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedFollowing(apiKey: string, fid: number, withRecasts?: boolean, withReplies?: boolean, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
-            return localVarFp.feedFollowing(apiKey, fid, withRecasts, withReplies, limit, cursor, options).then((request) => request(axios, basePath));
+        feedFollowing(apiKey: string, fid: number, withRecasts?: boolean, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
+            return localVarFp.feedFollowing(apiKey, fid, withRecasts, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -573,6 +625,19 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          */
         feedFrames(apiKey: string, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
             return localVarFp.feedFrames(apiKey, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieve trending casts
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} [limit] Number of results to retrieve (max 10)
+         * @param {string} [cursor] Pagination cursor
+         * @param {'1h' | '6h' | '12h' | '24h'} [timeWindow] Time window for trending casts
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedTrending(apiKey: string, limit?: number, cursor?: string, timeWindow?: '1h' | '6h' | '12h' | '24h', options?: any): AxiosPromise<FeedResponse> {
+            return localVarFp.feedTrending(apiKey, limit, cursor, timeWindow, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
@@ -620,15 +685,14 @@ export class FeedApi extends BaseAPI {
      * @param {string} [channelId] Used when filter_type&#x3D;channel_id can be used to fetch all casts under a channel. Requires feed_type and filter_type
      * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
      * @param {boolean} [withRecasts] Include recasts in the response, true by default
-     * @param {boolean} [withReplies] Include replies in the response, false by default
      * @param {number} [limit] Number of results to retrieve (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, embedUrl?: string, withRecasts?: boolean, withReplies?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
-        return FeedApiFp(this.configuration).feed(apiKey, feedType, filterType, fid, fids, parentUrl, channelId, embedUrl, withRecasts, withReplies, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, embedUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feed(apiKey, feedType, filterType, fid, fids, parentUrl, channelId, embedUrl, withRecasts, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -654,15 +718,14 @@ export class FeedApi extends BaseAPI {
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid fid of user whose feed you want to create
      * @param {boolean} [withRecasts] Include recasts in the response, true by default
-     * @param {boolean} [withReplies] Include replies in the response, false by default
      * @param {number} [limit] Number of results to retrieve (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feedFollowing(apiKey: string, fid: number, withRecasts?: boolean, withReplies?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
-        return FeedApiFp(this.configuration).feedFollowing(apiKey, fid, withRecasts, withReplies, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public feedFollowing(apiKey: string, fid: number, withRecasts?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedFollowing(apiKey, fid, withRecasts, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -677,6 +740,21 @@ export class FeedApi extends BaseAPI {
      */
     public feedFrames(apiKey: string, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
         return FeedApiFp(this.configuration).feedFrames(apiKey, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieve trending casts
+     * @param {string} apiKey API key required for authentication.
+     * @param {number} [limit] Number of results to retrieve (max 10)
+     * @param {string} [cursor] Pagination cursor
+     * @param {'1h' | '6h' | '12h' | '24h'} [timeWindow] Time window for trending casts
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FeedApi
+     */
+    public feedTrending(apiKey: string, limit?: number, cursor?: string, timeWindow?: '1h' | '6h' | '12h' | '24h', options?: AxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedTrending(apiKey, limit, cursor, timeWindow, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

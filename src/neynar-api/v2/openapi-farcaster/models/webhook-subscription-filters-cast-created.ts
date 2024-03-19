@@ -44,5 +44,11 @@ export interface WebhookSubscriptionFiltersCastCreated {
      * @memberof WebhookSubscriptionFiltersCastCreated
      */
     'root_parent_urls'?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof WebhookSubscriptionFiltersCastCreated
+     */
+    'text'?: Array<string>;
 }
 

@@ -81,6 +81,7 @@ import {
   SIGNED_KEY_REQUEST_VALIDATOR,
   SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN,
   TimeWindow,
+  TrendingFeedTimeWindow,
 } from "./common/constants";
 import { isApiErrorResponse } from "./utils";
 
@@ -1388,7 +1389,6 @@ export class NeynarAPIClient {
    * @param {string} [options.channelId] Used when filter_type=channel_id can be used to fetch all casts under a channel. Requires feed_type and filter_type
    * @param {string} [options.embedUrl] - Used when filter_type=embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
    * @param {boolean} [options.withRecasts] - Whether to include recasts in the response. True by default.
-   * @param {boolean} [options.withReplies] - Include replies in the response, false by default
    * @param {number} [options.limit] - Number of results to retrieve, with a default of 25 and a maximum of 100.
    * @param {string} [options.cursor] - Pagination cursor for fetching specific subsets of results.
    *
@@ -1415,7 +1415,6 @@ export class NeynarAPIClient {
       limit?: number;
       cursor?: string;
       withRecasts?: boolean;
-      withReplies?: boolean;
     }
   ): Promise<FeedResponse> {
     return await this.clients.v2.fetchFeed(feedType, options);
@@ -1461,7 +1460,6 @@ export class NeynarAPIClient {
    * @param {number} fid - fid of user whose feed you want to create
    * @param {Object} [options] - Optional parameters for customizing the feed.
    * @param {boolean} [options.withRecasts] - Include recasts in the response, true by default
-   * @param {boolean} [options.withReplies] - Include replies in the response, false by default
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
@@ -1473,7 +1471,6 @@ export class NeynarAPIClient {
    * // Example: Retrieve a user's feed based on who they are following
    * client.fetchUserFollowingFeed(3, {
    *  withRecasts: true,
-   *  withReplies: false,
    *  limit: 30,
    *  // cursor: "nextPageCursor" // Omit this parameter for the initial request.
    * }).then(response => {
@@ -1486,7 +1483,6 @@ export class NeynarAPIClient {
     fid: number,
     options?: {
       withRecasts?: boolean;
-      withReplies?: boolean;
       limit?: number;
       cursor?: string;
     }
@@ -1572,6 +1568,36 @@ export class NeynarAPIClient {
     cursor?: string;
   }) {
     return await this.clients.v2.fetchFramesOnlyFeed(options);
+  }
+
+  /**
+   * Retrieves a feed of the most popular cast.
+   *
+   * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {number} [options.limit] - Number of results to retrieve (default 10, max 10).
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
+   *  omit this parameter for the initial request.
+   * @param {TrendingFeedTimeWindow} [options.timeWindow] - Time window for the trending feed.
+   *
+   * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
+   *   containing the most popular casts on the platform.
+   *
+   * @example
+   * // Example: Retrieve a feed of the most popular casts
+   * import { TrendingFeedTimeWindow } from "@neynar/nodejs-sdk";
+   *
+   * client.fetchTrendingFeed({ limit: 10, timeWindow: TrendingFeedTimeWindow.SIX_HOUR }).then(response => {
+   *   console.log('Popular Feed:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-trending).
+   */
+  public async fetchTrendingFeed(options?: {
+    limit?: number;
+    cursor?: string;
+    timeWindow?: TrendingFeedTimeWindow;
+  }) {
+    return await this.clients.v2.fetchTrendingFeed(options);
   }
 
   // ------------ Reaction ------------

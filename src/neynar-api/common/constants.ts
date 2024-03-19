@@ -38,6 +38,13 @@ export enum TimeWindow {
   THIRTY_DAYS = "30d",
 }
 
+export enum TrendingFeedTimeWindow {
+  ONE_HOUR = "1h",
+  SIX_HOUR = "6h",
+  TWELVE_HOUR = "12h",
+  TWENTY_FOUR_HOUR = "24h",
+}
+
 export enum BulkCastsSortType {
   TRENDING = "trending",
   LIKES = "likes",
