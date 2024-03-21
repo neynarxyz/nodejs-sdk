@@ -18,9 +18,6 @@
 import { CastWithInteractions } from './cast-with-interactions';
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameActionButton } from './frame-action-button';
-// May contain unused imports in some cases
-// @ts-ignore
 import { FrameInput } from './frame-input';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -34,6 +31,9 @@ import { User } from './user';
 // May contain unused imports in some cases
 // @ts-ignore
 import { ValidatedFrameActionSigner } from './validated-frame-action-signer';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ValidatedFrameActionTappedButton } from './validated-frame-action-tapped-button';
 
 /**
  * 
@@ -46,7 +46,13 @@ export interface ValidatedFrameAction {
      * @type {string}
      * @memberof ValidatedFrameAction
      */
-    'object'?: ValidatedFrameActionObjectEnum;
+    'object': ValidatedFrameActionObjectEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof ValidatedFrameAction
+     */
+    'url': string;
     /**
      * 
      * @type {User}
@@ -55,10 +61,10 @@ export interface ValidatedFrameAction {
     'interactor': User;
     /**
      * 
-     * @type {FrameActionButton}
+     * @type {ValidatedFrameActionTappedButton}
      * @memberof ValidatedFrameAction
      */
-    'button': FrameActionButton;
+    'tapped_button': ValidatedFrameActionTappedButton;
     /**
      * 
      * @type {FrameInput}
@@ -70,7 +76,7 @@ export interface ValidatedFrameAction {
      * @type {FrameState}
      * @memberof ValidatedFrameAction
      */
-    'state'?: FrameState;
+    'state': FrameState;
     /**
      * 
      * @type {CastWithInteractions}
@@ -95,6 +101,12 @@ export interface ValidatedFrameAction {
      * @memberof ValidatedFrameAction
      */
     'transaction'?: FrameTransaction;
+    /**
+     * The connected wallet address of the interacting user.
+     * @type {string}
+     * @memberof ValidatedFrameAction
+     */
+    'address'?: string;
 }
 
 export const ValidatedFrameActionObjectEnum = {
