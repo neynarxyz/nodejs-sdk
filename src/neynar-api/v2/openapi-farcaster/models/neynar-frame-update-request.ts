@@ -28,7 +28,13 @@ export interface NeynarFrameUpdateRequest {
      * @type {string}
      * @memberof NeynarFrameUpdateRequest
      */
-    'uuid'?: string;
+    'uuid': string;
+    /**
+     * The name of the frame.
+     * @type {string}
+     * @memberof NeynarFrameUpdateRequest
+     */
+    'name'?: string;
     /**
      * 
      * @type {Array<NeynarFramePage>}

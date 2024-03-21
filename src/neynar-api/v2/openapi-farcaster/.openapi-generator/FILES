@@ -130,6 +130,7 @@ models/users-response.ts
 models/validate-frame-action-response.ts
 models/validate-frame-request.ts
 models/validated-frame-action-signer.ts
+models/validated-frame-action-tapped-button.ts
 models/validated-frame-action.ts
 models/webhook-delete-req-body.ts
 models/webhook-list-response.ts

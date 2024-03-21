@@ -107,6 +107,7 @@ export * from './validate-frame-action-response';
 export * from './validate-frame-request';
 export * from './validated-frame-action';
 export * from './validated-frame-action-signer';
+export * from './validated-frame-action-tapped-button';
 export * from './webhook';
 export * from './webhook-delete-req-body';
 export * from './webhook-list-response';
