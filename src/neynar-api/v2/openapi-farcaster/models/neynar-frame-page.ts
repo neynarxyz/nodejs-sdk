@@ -58,12 +58,12 @@ export interface NeynarFramePage {
      * @type {Array<NeynarPageButton>}
      * @memberof NeynarFramePage
      */
-    'buttons': Array<NeynarPageButton>;
+    'buttons'?: Array<NeynarPageButton>;
     /**
      * 
      * @type {NeynarPageInput}
      * @memberof NeynarFramePage
      */
-    'input': NeynarPageInput;
+    'input'?: NeynarPageInput;
 }
 

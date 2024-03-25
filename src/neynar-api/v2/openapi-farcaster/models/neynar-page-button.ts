@@ -30,6 +30,12 @@ export interface NeynarPageButton {
      */
     'title': string;
     /**
+     * The index of the button, first button should have index 1 and so on.
+     * @type {number}
+     * @memberof NeynarPageButton
+     */
+    'index': number;
+    /**
      * The type of action that the button performs.
      * @type {string}
      * @memberof NeynarPageButton
@@ -40,7 +46,7 @@ export interface NeynarPageButton {
      * @type {NeynarPageButtonNextPage}
      * @memberof NeynarPageButton
      */
-    'next_page': NeynarPageButtonNextPage;
+    'next_page'?: NeynarPageButtonNextPage;
 }
 
 export const NeynarPageButtonActionTypeEnum = {
