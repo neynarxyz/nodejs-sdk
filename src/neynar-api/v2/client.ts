@@ -1645,6 +1645,10 @@ export class NeynarV2APIClient {
    *
    * @param {'1d' | '7d' | '30d'} [timeWindow] - The time window for trending analysis. Options are '1d' (one day),
    *   '7d' (seven days), or '30d' (thirty days).
+   * @param {Object} [options] - Optional parameters to tailor the request.
+   * @param {number} [options.limit=25] - The number of channel details to fetch per request. Defaults to 25, with a maximum allowable value of 100.
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results.
+   *  Omit this parameter for the initial request to start from the first page.
    *
    * @returns {Promise<ChannelListResponse>} A promise that resolves to a `ChannelListResponse` object,
    *   containing a list of trending channels based on the specified time window.
@@ -1653,18 +1657,24 @@ export class NeynarV2APIClient {
    * // Example: Retrieve trending channels over the past week
    * import { TimeWindow } from '@neynar/nodejs-sdk'
    *
-   * client.fetchTrendingChannels(TimeWindow.SEVEN_DAYS).then(response => {
+   * client.fetchTrendingChannels(TimeWindow.SEVEN_DAYS, { limit: 20 }).then(response => {
    *   console.log('Trending Channels:', response);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/trending-channels).
    */
   public async fetchTrendingChannels(
-    timeWindow?: TimeWindow
+    timeWindow?: TimeWindow,
+    options?: {
+      limit?: number;
+      cursor?: string;
+    }
   ): Promise<ChannelListResponse> {
     const response = await this.apis.channel.trendingChannels(
       this.apiKey,
-      timeWindow
+      timeWindow,
+      options?.limit,
+      options?.cursor
     );
     return response.data;
   }
