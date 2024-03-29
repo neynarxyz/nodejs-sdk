@@ -1210,7 +1210,7 @@ export class NeynarAPIClient {
    *
    * import { BulkUserAddressTypes } from "@neynar/nodejs-sdk";
    *
-   * client.fetchBulkUsersByEthereumAddress(['0xa6a8736f18f383f1cc2d938576933e5ea7df01a1','0x7cac817861e5c3384753403fb6c0c556c204b1ce'], [BulkUserAddressTypes.CUSTODY_ADDRESS]).then(response => {
+   * client.fetchBulkUsersByEthereumAddress(['0xa6a8736f18f383f1cc2d938576933e5ea7df01a1','0x7cac817861e5c3384753403fb6c0c556c204b1ce'], {addressTypes:[BulkUserAddressTypes.CUSTODY_ADDRESS]}).then(response => {
    *   console.log('Users by Ethereum Addresses:', response);
    * });
    *

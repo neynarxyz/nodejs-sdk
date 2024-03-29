@@ -8,4 +8,8 @@ export {
   ReactionType,
   FrameButtonActionType
 } from "./v2";
-export { TimeWindow, BulkCastsSortType } from "./common/constants";
+export {
+  TimeWindow,
+  BulkCastsSortType,
+  BulkUserAddressTypes,
+} from "./common/constants";
