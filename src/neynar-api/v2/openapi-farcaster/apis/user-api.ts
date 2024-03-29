@@ -58,8 +58,8 @@ import { UsersResponse } from '../models';
 export const UserApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Fetches active users, information is updated every 12 hours
-         * @summary Fetches active users based on Warpcast active algorithm
+         * Fetches active users based on Warpcast active algorithm, information is updated every 12 hours
+         * @summary Fetch active users
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] 
          * @param {string} [cursor] Pagination cursor.
@@ -315,6 +315,53 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
+         * Fetches power users based on Warpcast power badges
+         * @summary Fetch power users
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} [limit] Number of power users to fetch, max 100
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        powerUsers: async (apiKey: string, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('powerUsers', 'apiKey', apiKey)
+            const localVarPath = `/farcaster/user/power`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Register account on farcaster. 
          * @summary Register account on farcaster
          * @param {string} apiKey API key required for authentication.
@@ -445,7 +492,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Fetches information about multiple users based on FIDs
-         * @summary Fetches information about multiple users based on FIDs
+         * @summary Fetch users based on FIDs
          * @param {string} apiKey API key required for authentication.
          * @param {string} fids Comma separated list of FIDs, up to 100 at a time
          * @param {number} [viewerFid] 
@@ -497,10 +544,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Fetches users based on Eth or Sol addresses
          * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
+         * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userBulkByAddress: async (apiKey: string, addresses: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        userBulkByAddress: async (apiKey: string, addresses: string, addressTypes?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('userBulkByAddress', 'apiKey', apiKey)
             // verify required parameter 'addresses' is not null or undefined
@@ -519,6 +567,10 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (addresses !== undefined) {
                 localVarQueryParameter['addresses'] = addresses;
+            }
+
+            if (addressTypes !== undefined) {
+                localVarQueryParameter['address_types'] = addressTypes;
             }
 
             if (apiKey != null) {
@@ -598,8 +650,8 @@ export const UserApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = UserApiAxiosParamCreator(configuration)
     return {
         /**
-         * Fetches active users, information is updated every 12 hours
-         * @summary Fetches active users based on Warpcast active algorithm
+         * Fetches active users based on Warpcast active algorithm, information is updated every 12 hours
+         * @summary Fetch active users
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] 
          * @param {string} [cursor] Pagination cursor.
@@ -670,6 +722,19 @@ export const UserApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Fetches power users based on Warpcast power badges
+         * @summary Fetch power users
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} [limit] Number of power users to fetch, max 100
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async powerUsers(apiKey: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.powerUsers(apiKey, limit, cursor, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Register account on farcaster. 
          * @summary Register account on farcaster
          * @param {string} apiKey API key required for authentication.
@@ -707,7 +772,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches information about multiple users based on FIDs
-         * @summary Fetches information about multiple users based on FIDs
+         * @summary Fetch users based on FIDs
          * @param {string} apiKey API key required for authentication.
          * @param {string} fids Comma separated list of FIDs, up to 100 at a time
          * @param {number} [viewerFid] 
@@ -723,11 +788,12 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @summary Fetches users based on Eth or Sol addresses
          * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
+         * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async userBulkByAddress(apiKey: string, addresses: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: Array<User>; }>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userBulkByAddress(apiKey, addresses, options);
+        async userBulkByAddress(apiKey: string, addresses: string, addressTypes?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: Array<User>; }>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userBulkByAddress(apiKey, addresses, addressTypes, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -754,8 +820,8 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
     const localVarFp = UserApiFp(configuration)
     return {
         /**
-         * Fetches active users, information is updated every 12 hours
-         * @summary Fetches active users based on Warpcast active algorithm
+         * Fetches active users based on Warpcast active algorithm, information is updated every 12 hours
+         * @summary Fetch active users
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] 
          * @param {string} [cursor] Pagination cursor.
@@ -820,6 +886,18 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.lookupUserByCustodyAddress(apiKey, custodyAddress, options).then((request) => request(axios, basePath));
         },
         /**
+         * Fetches power users based on Warpcast power badges
+         * @summary Fetch power users
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} [limit] Number of power users to fetch, max 100
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        powerUsers(apiKey: string, limit?: number, cursor?: string, options?: any): AxiosPromise<UsersResponse> {
+            return localVarFp.powerUsers(apiKey, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Register account on farcaster. 
          * @summary Register account on farcaster
          * @param {string} apiKey API key required for authentication.
@@ -854,7 +932,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Fetches information about multiple users based on FIDs
-         * @summary Fetches information about multiple users based on FIDs
+         * @summary Fetch users based on FIDs
          * @param {string} apiKey API key required for authentication.
          * @param {string} fids Comma separated list of FIDs, up to 100 at a time
          * @param {number} [viewerFid] 
@@ -869,11 +947,12 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @summary Fetches users based on Eth or Sol addresses
          * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
+         * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userBulkByAddress(apiKey: string, addresses: string, options?: any): AxiosPromise<{ [key: string]: Array<User>; }> {
-            return localVarFp.userBulkByAddress(apiKey, addresses, options).then((request) => request(axios, basePath));
+        userBulkByAddress(apiKey: string, addresses: string, addressTypes?: string, options?: any): AxiosPromise<{ [key: string]: Array<User>; }> {
+            return localVarFp.userBulkByAddress(apiKey, addresses, addressTypes, options).then((request) => request(axios, basePath));
         },
         /**
          * Search for Usernames
@@ -898,8 +977,8 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
  */
 export class UserApi extends BaseAPI {
     /**
-     * Fetches active users, information is updated every 12 hours
-     * @summary Fetches active users based on Warpcast active algorithm
+     * Fetches active users based on Warpcast active algorithm, information is updated every 12 hours
+     * @summary Fetch active users
      * @param {string} apiKey API key required for authentication.
      * @param {number} [limit] 
      * @param {string} [cursor] Pagination cursor.
@@ -976,6 +1055,20 @@ export class UserApi extends BaseAPI {
     }
 
     /**
+     * Fetches power users based on Warpcast power badges
+     * @summary Fetch power users
+     * @param {string} apiKey API key required for authentication.
+     * @param {number} [limit] Number of power users to fetch, max 100
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public powerUsers(apiKey: string, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).powerUsers(apiKey, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Register account on farcaster. 
      * @summary Register account on farcaster
      * @param {string} apiKey API key required for authentication.
@@ -1016,7 +1109,7 @@ export class UserApi extends BaseAPI {
 
     /**
      * Fetches information about multiple users based on FIDs
-     * @summary Fetches information about multiple users based on FIDs
+     * @summary Fetch users based on FIDs
      * @param {string} apiKey API key required for authentication.
      * @param {string} fids Comma separated list of FIDs, up to 100 at a time
      * @param {number} [viewerFid] 
@@ -1033,12 +1126,13 @@ export class UserApi extends BaseAPI {
      * @summary Fetches users based on Eth or Sol addresses
      * @param {string} apiKey API key required for authentication.
      * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
+     * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userBulkByAddress(apiKey: string, addresses: string, options?: AxiosRequestConfig) {
-        return UserApiFp(this.configuration).userBulkByAddress(apiKey, addresses, options).then((request) => request(this.axios, this.basePath));
+    public userBulkByAddress(apiKey: string, addresses: string, addressTypes?: string, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).userBulkByAddress(apiKey, addresses, addressTypes, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

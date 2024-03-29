@@ -52,3 +52,8 @@ export enum BulkCastsSortType {
   REPLIES = "replies",
   RECENT = "recent",
 }
+
+export enum BulkUserAddressTypes {
+  CUSTODY_ADDRESS = "custody_address",
+  VERIFIED_ADDRESS = "verified_address"
+}
