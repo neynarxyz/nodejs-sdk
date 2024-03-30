@@ -30,7 +30,7 @@ import {
   BulkCastsResponse,
   FnameAvailabilityResponse,
   FrameAction,
-  FrameActionResponse,
+  Frame,
   ValidateFrameActionResponse,
   UsersResponse,
   UsersActiveChannelsResponse,
@@ -76,6 +76,7 @@ import { SignedKeyRequestMetadataABI } from "./abi/signed-key-request-metadata";
 import { keyGatewayAbi } from "./abi/key-gateway";
 import {
   BulkCastsSortType,
+  BulkUserAddressTypes,
   SIGNED_KEY_REQUEST_TYPE,
   SIGNED_KEY_REQUEST_TYPE_FOR_ADD_FOR,
   SIGNED_KEY_REQUEST_VALIDATOR,
@@ -950,6 +951,33 @@ export class NeynarAPIClient {
   }
 
   /**
+   * Fetches a list of "power users" based on Warpcast power badges. This method retrieves users who have been awarded power badges, indicating their significant contribution or influence within the platform.
+   *
+   * @param {Object} [options] - Optional parameters to tailor the request.
+   *   @param {number} [options.limit=25] - The number of power user details to fetch per request. Defaults to a reasonable number with a maximum allowable value of 100. This parameter controls the size of the response, allowing the client to manage data volume and API load.
+   *   @param {string} [options.cursor] - Pagination cursor for the next set of results.
+   *    Omit this parameter for the initial request to start from the beginning of the list.
+   *
+   *  @returns {Promise<UsersResponse>} A promise that resolves to a list of power users, each possibly containing detailed information such as user profiles, contribution metrics, and power badges.
+   *
+   * @example
+   * Usage Example:
+   * ---------------
+   * // Fetch the initial set of power users with a custom limit
+   * client.fetchPowerUsers({ limit: 50 })
+   *   .then(response => console.log(response))
+   *   .catch(error => console.error(error));
+   *
+   *  For more information, refer to the [Farcaster documentation](https://docs.neynar.com/reference/power-users).
+   */
+  public async fetchPowerUsers(options?: {
+    limit?: number;
+    cursor?: string;
+  }): Promise<UsersResponse> {
+    return await this.clients.v2.fetchPowerUsers(options);
+  }
+
+  /**
    * Retrieves a list of active users, where "active" is determined by the Warpcast active algorithm.
    * The information about active users is updated every 12 hours. This method is ideal for identifying
    * users who are currently engaging with the platform.
@@ -1168,23 +1196,38 @@ export class NeynarAPIClient {
    * per request.
    *
    * @param {Array<string>} addresses - An array of Ethereum addresses.
-   * @returns {Promise<{[key: string]: UserV2[]}>} A promise that resolves to an object where each key
+   * @param {Object} [options] - Optional parameters for the function.
+   * @param {BulkUserAddressTypes[]} [options.addressTypes] - An array of address types to filter the users by. Can include 'custody_address', 'verified_address'. If not specified, both address types are considered.
+   *  Possible values: 'custody_address', 'verified_address'.
+   *
+   * @returns {Promise<{[key: string]: User[]}>} A promise that resolves to an object where each key
    *   is an Ethereum address and the value is an array of `User` objects associated with that address.
    *
    * @throws {Error} If the number of provided addresses exceeds the allowed limit of 350.
    *
    * @example
    * // Example: Fetch users associated with multiple Ethereum addresses
-   * client.fetchBulkUsersByEthereumAddress(['0xa6a8736f18f383f1cc2d938576933e5ea7df01a1','0x7cac817861e5c3384753403fb6c0c556c204b1ce']).then(response => {
+   *
+   * import { BulkUserAddressTypes } from "@neynar/nodejs-sdk";
+   *
+   * client.fetchBulkUsersByEthereumAddress(['0xa6a8736f18f383f1cc2d938576933e5ea7df01a1','0x7cac817861e5c3384753403fb6c0c556c204b1ce'], {addressTypes:[BulkUserAddressTypes.CUSTODY_ADDRESS]}).then(response => {
    *   console.log('Users by Ethereum Addresses:', response);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-bulk-by-address).
    */
-  public async fetchBulkUsersByEthereumAddress(addresses: string[]): Promise<{
+  public async fetchBulkUsersByEthereumAddress(
+    addresses: string[],
+    options?: {
+      addressTypes?: BulkUserAddressTypes[];
+    }
+  ): Promise<{
     [key: string]: UserV2[];
   }> {
-    return await this.clients.v2.fetchBulkUsersByEthereumAddress(addresses);
+    return await this.clients.v2.fetchBulkUsersByEthereumAddress(
+      addresses,
+      options
+    );
   }
 
   /**
@@ -1920,6 +1963,10 @@ export class NeynarAPIClient {
    *
    * @param {'1d' | '7d' | '30d'} [timeWindow] - The time window for trending analysis. Options are '1d' (one day),
    *   '7d' (seven days), or '30d' (thirty days).
+   * @param {Object} [options] - Optional parameters to tailor the request.
+   * @param {number} [options.limit=25] - The number of channel details to fetch per request. Defaults to 25, with a maximum allowable value of 100.
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results.
+   *  Omit this parameter for the initial request to start from the first page.
    *
    * @returns {Promise<ChannelListResponse>} A promise that resolves to a `ChannelListResponse` object,
    *   containing a list of trending channels based on the specified time window.
@@ -1928,16 +1975,20 @@ export class NeynarAPIClient {
    * // Example: Retrieve trending channels over the past week
    * import { TimeWindow } from '@neynar/nodejs-sdk'
    *
-   * client.fetchTrendingChannels(TimeWindow.SEVEN_DAYS).then(response => {
+   * client.fetchTrendingChannels(TimeWindow.SEVEN_DAYS, { limit: 20 }).then(response => {
    *   console.log('Trending Channels:', response);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/trending-channels).
    */
   public async fetchTrendingChannels(
-    timeWindow?: TimeWindow
+    timeWindow?: TimeWindow,
+    options?: {
+      limit?: number;
+      cursor?: string;
+    }
   ): Promise<ChannelListResponse> {
-    return await this.clients.v2.fetchTrendingChannels(timeWindow);
+    return await this.clients.v2.fetchTrendingChannels(timeWindow, options);
   }
 
   /**
@@ -2224,7 +2275,7 @@ export class NeynarAPIClient {
    * @param {string} castHash - The hash of the cast on which the action is being performed.
    * @param {FrameAction} action - The specific frame action to be posted.
    *
-   * @returns {Promise<FrameActionResponse>} A promise that resolves to a `FrameActionResponse` object,
+   * @returns {Promise<Frame>} A promise that resolves to a `Frame` object,
    *   indicating the success or failure of the frame action post.
    *
    * @example
@@ -2249,7 +2300,7 @@ export class NeynarAPIClient {
     signerUuid: string,
     castHash: string,
     action: FrameAction
-  ): Promise<FrameActionResponse> {
+  ): Promise<Frame> {
     return await this.clients.v2.postFrameAction(signerUuid, castHash, action);
   }
 

@@ -45,10 +45,16 @@ export interface WebhookSubscriptionFiltersCastCreated {
      */
     'root_parent_urls'?: Array<string>;
     /**
-     * 
-     * @type {Array<string>}
+     * Regex pattern to match the text key of the cast. **Note:**  1) Regex must be parsed by Go\'s RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex) 2) Use backslashes to escape special characters. For example: (?i)\\\\$degen should be written as (?i)\\\\\\\\$degen 
+     * @type {string}
      * @memberof WebhookSubscriptionFiltersCastCreated
      */
-    'text'?: Array<string>;
+    'text'?: string;
+    /**
+     * Regex pattern to match the embeded_url (key embeds) of the cast. **Note:**  1) Regex must be parsed by Go\'s RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex) 2) Use backslashes to escape special characters. For example: \\\\b(farcaster|neynar)\\\\b should be written as \\\\\\\\b(farcaster|neynar)\\\\\\\\b 
+     * @type {string}
+     * @memberof WebhookSubscriptionFiltersCastCreated
+     */
+    'embeds'?: string;
 }
 

@@ -24,9 +24,9 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { ErrorRes } from '../models';
 // @ts-ignore
-import { FrameActionReqBody } from '../models';
+import { Frame } from '../models';
 // @ts-ignore
-import { FrameActionResponse } from '../models';
+import { FrameActionReqBody } from '../models';
 // @ts-ignore
 import { ValidateFrameActionResponse } from '../models';
 // @ts-ignore
@@ -141,7 +141,7 @@ export const FramesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postFrameAction(apiKey: string, frameActionReqBody: FrameActionReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FrameActionResponse>> {
+        async postFrameAction(apiKey: string, frameActionReqBody: FrameActionReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Frame>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.postFrameAction(apiKey, frameActionReqBody, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -175,7 +175,7 @@ export const FramesApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postFrameAction(apiKey: string, frameActionReqBody: FrameActionReqBody, options?: any): AxiosPromise<FrameActionResponse> {
+        postFrameAction(apiKey: string, frameActionReqBody: FrameActionReqBody, options?: any): AxiosPromise<Frame> {
             return localVarFp.postFrameAction(apiKey, frameActionReqBody, options).then((request) => request(axios, basePath));
         },
         /**

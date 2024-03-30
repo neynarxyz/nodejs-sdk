@@ -341,10 +341,12 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Retrieve trending channels based on activity
          * @param {string} apiKey API key required for authentication.
          * @param {'1d' | '7d' | '30d'} [timeWindow] 
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        trendingChannels: async (apiKey: string, timeWindow?: '1d' | '7d' | '30d', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        trendingChannels: async (apiKey: string, timeWindow?: '1d' | '7d' | '30d', limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('trendingChannels', 'apiKey', apiKey)
             const localVarPath = `/farcaster/channel/trending`;
@@ -361,6 +363,14 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
 
             if (timeWindow !== undefined) {
                 localVarQueryParameter['time_window'] = timeWindow;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
             }
 
             if (apiKey != null) {
@@ -472,11 +482,13 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @summary Retrieve trending channels based on activity
          * @param {string} apiKey API key required for authentication.
          * @param {'1d' | '7d' | '30d'} [timeWindow] 
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.trendingChannels(apiKey, timeWindow, options);
+        async trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.trendingChannels(apiKey, timeWindow, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -567,11 +579,13 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @summary Retrieve trending channels based on activity
          * @param {string} apiKey API key required for authentication.
          * @param {'1d' | '7d' | '30d'} [timeWindow] 
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', options?: any): AxiosPromise<ChannelListResponse> {
-            return localVarFp.trendingChannels(apiKey, timeWindow, options).then((request) => request(axios, basePath));
+        trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', limit?: number, cursor?: string, options?: any): AxiosPromise<ChannelListResponse> {
+            return localVarFp.trendingChannels(apiKey, timeWindow, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -673,11 +687,13 @@ export class ChannelApi extends BaseAPI {
      * @summary Retrieve trending channels based on activity
      * @param {string} apiKey API key required for authentication.
      * @param {'1d' | '7d' | '30d'} [timeWindow] 
+     * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+     * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', options?: AxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).trendingChannels(apiKey, timeWindow, options).then((request) => request(this.axios, this.basePath));
+    public trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).trendingChannels(apiKey, timeWindow, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
