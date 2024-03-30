@@ -40,7 +40,6 @@ export * from './frame';
 export * from './frame-action';
 export * from './frame-action-button';
 export * from './frame-action-req-body';
-export * from './frame-action-response';
 export * from './frame-button-action-type';
 export * from './frame-input';
 export * from './frame-state';

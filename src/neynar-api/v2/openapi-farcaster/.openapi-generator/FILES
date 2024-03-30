@@ -61,7 +61,6 @@ models/follow-response.ts
 models/follow.ts
 models/frame-action-button.ts
 models/frame-action-req-body.ts
-models/frame-action-response.ts
 models/frame-action.ts
 models/frame-button-action-type.ts
 models/frame-input.ts

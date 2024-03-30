@@ -30,7 +30,7 @@ import {
   BulkCastsResponse,
   FnameAvailabilityResponse,
   FrameAction,
-  FrameActionResponse,
+  Frame,
   ValidateFrameActionResponse,
   UsersResponse,
   UsersActiveChannelsResponse,
@@ -2275,7 +2275,7 @@ export class NeynarAPIClient {
    * @param {string} castHash - The hash of the cast on which the action is being performed.
    * @param {FrameAction} action - The specific frame action to be posted.
    *
-   * @returns {Promise<FrameActionResponse>} A promise that resolves to a `FrameActionResponse` object,
+   * @returns {Promise<Frame>} A promise that resolves to a `Frame` object,
    *   indicating the success or failure of the frame action post.
    *
    * @example
@@ -2300,7 +2300,7 @@ export class NeynarAPIClient {
     signerUuid: string,
     castHash: string,
     action: FrameAction
-  ): Promise<FrameActionResponse> {
+  ): Promise<Frame> {
     return await this.clients.v2.postFrameAction(signerUuid, castHash, action);
   }
 
