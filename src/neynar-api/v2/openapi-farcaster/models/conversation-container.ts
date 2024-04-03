@@ -15,28 +15,28 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { NextCursor } from './next-cursor';
+import { CastWithInteractions } from './cast-with-interactions';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SearchedUser } from './searched-user';
+import { CastWithInteractionsAndConversations } from './cast-with-interactions-and-conversations';
 
 /**
  * 
  * @export
- * @interface UserSearchResponseResult
+ * @interface ConversationContainer
  */
-export interface UserSearchResponseResult {
+export interface ConversationContainer {
     /**
      * 
-     * @type {Array<SearchedUser>}
-     * @memberof UserSearchResponseResult
+     * @type {CastWithInteractionsAndConversations}
+     * @memberof ConversationContainer
      */
-    'users': Array<SearchedUser>;
+    'cast'?: CastWithInteractionsAndConversations;
     /**
      * 
-     * @type {NextCursor}
-     * @memberof UserSearchResponseResult
+     * @type {Array<CastWithInteractions>}
+     * @memberof ConversationContainer
      */
-    'next'?: NextCursor;
+    'chronological_parent_casts'?: Array<CastWithInteractions>;
 }
 

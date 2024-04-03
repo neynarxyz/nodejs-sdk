@@ -593,17 +593,17 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Search for Usernames
          * @param {string} apiKey API key required for authentication.
          * @param {string} q 
-         * @param {number} viewerFid 
+         * @param {number} [viewerFid] 
+         * @param {number} [limit] 
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userSearch: async (apiKey: string, q: string, viewerFid: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        userSearch: async (apiKey: string, q: string, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('userSearch', 'apiKey', apiKey)
             // verify required parameter 'q' is not null or undefined
             assertParamExists('userSearch', 'q', q)
-            // verify required parameter 'viewerFid' is not null or undefined
-            assertParamExists('userSearch', 'viewerFid', viewerFid)
             const localVarPath = `/farcaster/user/search`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -622,6 +622,14 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (viewerFid !== undefined) {
                 localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
             }
 
             if (apiKey != null) {
@@ -801,12 +809,14 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @summary Search for Usernames
          * @param {string} apiKey API key required for authentication.
          * @param {string} q 
-         * @param {number} viewerFid 
+         * @param {number} [viewerFid] 
+         * @param {number} [limit] 
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async userSearch(apiKey: string, q: string, viewerFid: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userSearch(apiKey, q, viewerFid, options);
+        async userSearch(apiKey: string, q: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userSearch(apiKey, q, viewerFid, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -959,12 +969,14 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @summary Search for Usernames
          * @param {string} apiKey API key required for authentication.
          * @param {string} q 
-         * @param {number} viewerFid 
+         * @param {number} [viewerFid] 
+         * @param {number} [limit] 
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userSearch(apiKey: string, q: string, viewerFid: number, options?: any): AxiosPromise<UserSearchResponse> {
-            return localVarFp.userSearch(apiKey, q, viewerFid, options).then((request) => request(axios, basePath));
+        userSearch(apiKey: string, q: string, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<UserSearchResponse> {
+            return localVarFp.userSearch(apiKey, q, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1140,12 +1152,14 @@ export class UserApi extends BaseAPI {
      * @summary Search for Usernames
      * @param {string} apiKey API key required for authentication.
      * @param {string} q 
-     * @param {number} viewerFid 
+     * @param {number} [viewerFid] 
+     * @param {number} [limit] 
+     * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userSearch(apiKey: string, q: string, viewerFid: number, options?: AxiosRequestConfig) {
-        return UserApiFp(this.configuration).userSearch(apiKey, q, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    public userSearch(apiKey: string, q: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).userSearch(apiKey, q, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
