@@ -1244,7 +1244,7 @@ export class NeynarAPIClient {
    *
    * @example
    * // Example: Search for users with a specific query
-   * client.searchUser('ris', 19960).then(response => {
+   * client.searchUser('ris', 19960, { limit: 10 }).then(response => {
    *   console.log('User Search Results:', response); // Outputs the results of the user search
    * });
    *
@@ -1270,6 +1270,8 @@ export class NeynarAPIClient {
  *
  * @example
  * // Example usage: Retrieve detailed information about a cast conversation via URL, including replies up to two levels deep
+ * import { CastParamType } from "@neynar/nodejs-sdk";
+ * 
  * client.lookupCastConversation(
  *   'https://warpcast.com/rish/0x9288c1',
  *   CastParamType.Url,
