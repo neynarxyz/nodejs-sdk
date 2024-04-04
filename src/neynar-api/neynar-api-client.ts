@@ -1252,7 +1252,7 @@ export class NeynarAPIClient {
    */
   public async searchUser(
     q: string,
-    viewerFid: number,
+    viewerFid?: number,
     options?: { limit?: number, cursor?: string}
   ): Promise<UserSearchResponse> {
     return await this.clients.v2.searchUser(q, viewerFid, options);

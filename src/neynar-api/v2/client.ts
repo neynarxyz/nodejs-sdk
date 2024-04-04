@@ -812,7 +812,7 @@ export class NeynarV2APIClient {
    */
   public async searchUser(
     q: string,
-    viewerFid: number,
+    viewerFid?: number,
     options?: {
       limit?: number;
       cursor?: string;
