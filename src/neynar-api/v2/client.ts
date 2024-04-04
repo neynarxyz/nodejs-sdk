@@ -812,9 +812,13 @@ export class NeynarV2APIClient {
    */
   public async searchUser(
     q: string,
-    viewerFid: number
+    viewerFid: number,
+    options?: {
+      limit?: number;
+      cursor?: string;
+    }
   ): Promise<UserSearchResponse> {
-    const response = await this.apis.user.userSearch(this.apiKey, q, viewerFid);
+    const response = await this.apis.user.userSearch(this.apiKey, q, viewerFid, options?.limit, options?.cursor);
     return response.data;
   }
 
@@ -928,47 +932,46 @@ export class NeynarV2APIClient {
     return response.data;
   }
 
-    /**
-   * Retrieves information about multiple casts using an array of their hashes. This method is useful
-   * for fetching details of several casts at once, identified by their unique hashes. Optional parameters
-   * allow for adding viewer context to the cast objects to show whether the viewer has liked or recasted
-   * the cast and sorting the casts based on different criteria.
-   *
-   * @param {Array<string>} castsHashes - An array of strings representing the hashes of the casts
-   *   to be retrieved.
-   * @param {Object} [options] - Optional parameters for the request.
-   * @param {number} [options.viewerFid] - Adds viewer context to cast objects to indicate whether the viewer has liked or recasted the cast.
-   * @param {'trending' | 'likes' | 'recasts' | 'replies' | 'recent'} [options.sortType] - Optional parameter to sort the casts based on different criteria such as trending, likes, recasts, replies, or recent.
-   *
-   * @returns {Promise<CastsResponse>} A promise that resolves to a `CastsResponse` object,
-   *   containing information about the requested casts.
-   *
-   * @example
-   * // Example: Fetch information about a casts conversation using a given hash and type
-   *
-   *
-   * client.lookupCastConversation(https://warpcast.com/rish/0x9288c1,
-   *  type: 'url',
-   *  replyDepth: 2
-   * ).then(response => {
-   *   console.log('Bulk Casts Information:', response); // Outputs information about the specified casts
-   * });
-   *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/cast-conversation).
-   */
-    public async lookupCastConversation(
-      castHashOrUrl: string,
-      type: CastParamType,
-      replyDepth?: number,
-    ): Promise<ConversationContainer> {
-      const response = await this.apis.cast.castConversation(
-        this.apiKey,
-        castHashOrUrl,
-        type,
-        replyDepth
-      );
-      return response.data;
-    }
+/**
+ * Retrieves detailed information about a cast conversation based on a specified hash or URL. Useful
+ * for fetching in-depth details of a single cast conversation, including replies up to a specified depth. The method
+ * allows for specifying the type of the provided identifier (e.g., a hash or URL) and how deep the reply chain should
+ * be fetched.
+ *
+ * @param {string} castHashOrUrl - The hash or URL of the cast conversation to be retrieved.
+ * @param {CastParamType} type - Specifies the type of the provided identifier, indicating whether it's a hash or URL.
+ * @param {number} [replyDepth] - Optional parameter to specify how deep the reply chain should be fetched.
+ *
+ * @returns {Promise<ConversationContainer>} A promise that resolves to a `ConversationContainer` object,
+ *   containing detailed information about the requested cast conversation, including replies up to the specified depth.
+ *
+ * @example
+ * // Fetch detailed information about a cast conversation using a given hash or URL, with a reply depth of 2
+ * client.lookupCastConversation(
+ *   'https://warpcast.com/rish/0x9288c1',
+ *   CastParamType.Url,
+ *   2
+ * ).then(response => {
+ *   console.log('Cast Conversation Information:', response); // Outputs detailed information about the specified cast conversation
+ * });
+ *
+ * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/cast-conversation).
+ */
+public async lookupCastConversation(
+  castHashOrUrl: string,
+  type: CastParamType,
+  options?: {
+    replyDepth?: number;
+  }
+): Promise<ConversationContainer> {
+  const response = await this.apis.cast.castConversation(
+    this.apiKey,
+    castHashOrUrl,
+    type,
+    options?.replyDepth
+  );
+  return response.data;
+}
 
   /**
    * Publishes a cast for the currently authenticated user. This method allows users to post

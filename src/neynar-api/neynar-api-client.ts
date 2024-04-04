@@ -44,6 +44,7 @@ import {
   WebhookResponse,
   WebhookSubscriptionFilters,
   WebhookListResponse,
+  ConversationContainer,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -1251,10 +1252,49 @@ export class NeynarAPIClient {
    */
   public async searchUser(
     q: string,
-    viewerFid: number
+    viewerFid: number,
+    options?: { limit?: number, cursor?: string}
   ): Promise<UserSearchResponse> {
-    return await this.clients.v2.searchUser(q, viewerFid);
+    return await this.clients.v2.searchUser(q, viewerFid, options);
   }
+  
+/**
+ * Retrieves comprehensive details about a specific cast conversation, identified by either a hash or a URL. This method is instrumental in accessing the full depth of a conversation, including initial casts and subsequent replies, up to a user-defined depth. By allowing the specification of the identifier type and the depth of replies to fetch, it offers flexibility in how conversation data is retrieved, making it suitable for applications requiring detailed conversation analysis or display.
+ *
+ * @param {string} castHashOrUrl - The unique hash or URL identifying the cast conversation to retrieve. This identifier enables precise targeting of the conversation of interest.
+ * @param {CastParamType} type - Enumerates the identifier type, specifying whether the provided value is a hash or a URL, thus guiding the retrieval process appropriately.
+ * @param {Object} [options] - An optional parameter object to refine the query.
+ * @param {number} [options.replyDepth] - An optional parameter within the options object, specifying the desired depth of replies to fetch within the conversation. This allows for tailored retrieval of conversation data, ranging from top-level casts only to deeper, more comprehensive conversation threads.
+ *
+ * @returns {Promise<ConversationContainer>} A promise resolving to a `ConversationContainer` object. This object encapsulates detailed information about the cast conversation, including the content of the conversation itself and any replies, structured up to the specified depth.
+ *
+ * @example
+ * // Example usage: Retrieve detailed information about a cast conversation via URL, including replies up to two levels deep
+ * client.lookupCastConversation(
+ *   'https://warpcast.com/rish/0x9288c1',
+ *   CastParamType.Url,
+ *   { replyDepth: 2 }
+ * ).then(response => {
+ *   console.log('Cast Conversation Information:', response); // Displays the detailed structure of the specified cast conversation
+ * });
+ *
+ * // Refer to the Neynar API documentation for more details and advanced options:
+ * // https://docs.neynar.com/reference/cast-conversation
+ */
+public async lookupCastConversation(
+  castHashOrUrl: string,
+  type: CastParamType,
+  options?: {
+    replyDepth?: number;
+  }
+): Promise<ConversationContainer> {
+  return await this.clients.v2.lookupCastConversation(
+    castHashOrUrl,
+    type,
+    options
+  );
+}
+
 
   /**
    * Looks up a user by their custody address.
