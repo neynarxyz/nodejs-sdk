@@ -28,6 +28,8 @@ import { CastResponse } from '../models';
 // @ts-ignore
 import { CastsResponse } from '../models';
 // @ts-ignore
+import { Conversation } from '../models';
+// @ts-ignore
 import { DeleteCastReqBody } from '../models';
 // @ts-ignore
 import { ErrorRes } from '../models';
@@ -77,6 +79,67 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (type !== undefined) {
                 localVarQueryParameter['type'] = type;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
+         * @summary Retrieve the conversation for a given cast
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} identifier Cast identifier (Its either a url or a hash)
+         * @param {CastParamType} type 
+         * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
+         * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        castConversation: async (apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('castConversation', 'apiKey', apiKey)
+            // verify required parameter 'identifier' is not null or undefined
+            assertParamExists('castConversation', 'identifier', identifier)
+            // verify required parameter 'type' is not null or undefined
+            assertParamExists('castConversation', 'type', type)
+            const localVarPath = `/farcaster/cast/conversation`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (identifier !== undefined) {
+                localVarQueryParameter['identifier'] = identifier;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (replyDepth !== undefined) {
+                localVarQueryParameter['reply_depth'] = replyDepth;
+            }
+
+            if (includeChronologicalParentCasts !== undefined) {
+                localVarQueryParameter['include_chronological_parent_casts'] = includeChronologicalParentCasts;
             }
 
             if (apiKey != null) {
@@ -258,6 +321,21 @@ export const CastApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
+         * @summary Retrieve the conversation for a given cast
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} identifier Cast identifier (Its either a url or a hash)
+         * @param {CastParamType} type 
+         * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
+         * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Conversation>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Retrieve multiple casts using their respective hashes.
          * @summary Gets information about an array of casts
          * @param {string} apiKey API key required for authentication.
@@ -318,6 +396,20 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.cast(apiKey, identifier, type, options).then((request) => request(axios, basePath));
         },
         /**
+         * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
+         * @summary Retrieve the conversation for a given cast
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} identifier Cast identifier (Its either a url or a hash)
+         * @param {CastParamType} type 
+         * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
+         * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, options?: any): AxiosPromise<Conversation> {
+            return localVarFp.castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Retrieve multiple casts using their respective hashes.
          * @summary Gets information about an array of casts
          * @param {string} apiKey API key required for authentication.
@@ -374,6 +466,22 @@ export class CastApi extends BaseAPI {
      */
     public cast(apiKey: string, identifier: string, type: CastParamType, options?: AxiosRequestConfig) {
         return CastApiFp(this.configuration).cast(apiKey, identifier, type, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
+     * @summary Retrieve the conversation for a given cast
+     * @param {string} apiKey API key required for authentication.
+     * @param {string} identifier Cast identifier (Its either a url or a hash)
+     * @param {CastParamType} type 
+     * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
+     * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CastApi
+     */
+    public castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, options?: AxiosRequestConfig) {
+        return CastApiFp(this.configuration).castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

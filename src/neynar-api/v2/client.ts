@@ -60,6 +60,7 @@ import {
   WebhookListResponse,
   WebhookPatchReqBody,
   WebhookPatchReqBodyActiveEnum,
+  Conversation,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -811,9 +812,13 @@ export class NeynarV2APIClient {
    */
   public async searchUser(
     q: string,
-    viewerFid: number
+    viewerFid?: number,
+    options?: {
+      limit?: number;
+      cursor?: string;
+    }
   ): Promise<UserSearchResponse> {
-    const response = await this.apis.user.userSearch(this.apiKey, q, viewerFid);
+    const response = await this.apis.user.userSearch(this.apiKey, q, viewerFid, options?.limit, options?.cursor);
     return response.data;
   }
 
@@ -926,6 +931,49 @@ export class NeynarV2APIClient {
     );
     return response.data;
   }
+
+/**
+ * Retrieves detailed information about a cast conversation based on a specified hash or URL. Useful
+ * for fetching in-depth details of a single cast conversation, including replies up to a specified depth. The method
+ * allows for specifying the type of the provided identifier (e.g., a hash or URL) and how deep the reply chain should
+ * be fetched.
+ *
+ * @param {string} castHashOrUrl - The hash or URL of the cast conversation to be retrieved.
+ * @param {CastParamType} type - Specifies the type of the provided identifier, indicating whether it's a hash or URL.
+ * @param {number} [replyDepth] - Optional parameter to specify how deep the reply chain should be fetched.
+ * @param {boolean} [includeChronologicalParentCasts] - Optional parameter to include chronological parent casts in the response.
+ * @returns {Promise<Conversation>} A promise that resolves to a `Conversation` object,
+ *   containing detailed information about the requested cast conversation, including replies up to the specified depth.
+ *
+ * @example
+ * // Fetch detailed information about a cast conversation using a given hash or URL, with a reply depth of 2
+ * client.lookupCastConversation(
+ *   'https://warpcast.com/rish/0x9288c1',
+ *   CastParamType.Url,
+ *  { replyDepth: 2, includeChronologicalParentCasts: true }
+ * ).then(response => {
+ *   console.log('Cast Conversation Information:', response); // Outputs detailed information about the specified cast conversation
+ * });
+ *
+ * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/cast-conversation).
+ */
+public async lookupCastConversation(
+  castHashOrUrl: string,
+  type: CastParamType,
+  options?: {
+    replyDepth?: number;
+    includeChronologicalParentCasts?: boolean;
+  }
+): Promise<Conversation> {
+  const response = await this.apis.cast.castConversation(
+    this.apiKey,
+    castHashOrUrl,
+    type,
+    options?.replyDepth,
+    options?.includeChronologicalParentCasts
+  );
+  return response.data;
+}
 
   /**
    * Publishes a cast for the currently authenticated user. This method allows users to post
