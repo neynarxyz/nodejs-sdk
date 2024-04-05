@@ -312,6 +312,9 @@ export class NeynarAPIClient {
   }
 
   /**
+   * @deprecated
+   * Now deprecated, use `lookupCastConversation` instead.
+   * 
    * Retrieves all casts, including root cast and all replies for a given thread hash. No limit to the depth of replies.
    * **Note :** The parent provided by the caller is included in the response.
    *
