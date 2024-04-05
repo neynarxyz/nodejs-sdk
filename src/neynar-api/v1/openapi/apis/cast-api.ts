@@ -38,8 +38,8 @@ import { RecentCastsResponse } from '../models';
 export const CastApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
-         * @summary Retrieve all casts in a given thread hash
+         * Now deprecated, use [v2/cast/conversation](https://docs.neynar.com/reference/cast-conversation). Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
+         * @summary DEPRECATED - Retrieve all casts in a given thread hash
          * @param {string} apiKey API key required for authentication.
          * @param {string} threadHash The hash of the thread to retrieve casts from.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
@@ -263,8 +263,8 @@ export const CastApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = CastApiAxiosParamCreator(configuration)
     return {
         /**
-         * Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
-         * @summary Retrieve all casts in a given thread hash
+         * Now deprecated, use [v2/cast/conversation](https://docs.neynar.com/reference/cast-conversation). Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
+         * @summary DEPRECATED - Retrieve all casts in a given thread hash
          * @param {string} apiKey API key required for authentication.
          * @param {string} threadHash The hash of the thread to retrieve casts from.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
@@ -330,8 +330,8 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
     const localVarFp = CastApiFp(configuration)
     return {
         /**
-         * Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
-         * @summary Retrieve all casts in a given thread hash
+         * Now deprecated, use [v2/cast/conversation](https://docs.neynar.com/reference/cast-conversation). Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
+         * @summary DEPRECATED - Retrieve all casts in a given thread hash
          * @param {string} apiKey API key required for authentication.
          * @param {string} threadHash The hash of the thread to retrieve casts from.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
@@ -393,8 +393,8 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
  */
 export class CastApi extends BaseAPI {
     /**
-     * Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
-     * @summary Retrieve all casts in a given thread hash
+     * Now deprecated, use [v2/cast/conversation](https://docs.neynar.com/reference/cast-conversation). Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
+     * @summary DEPRECATED - Retrieve all casts in a given thread hash
      * @param {string} apiKey API key required for authentication.
      * @param {string} threadHash The hash of the thread to retrieve casts from.
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
