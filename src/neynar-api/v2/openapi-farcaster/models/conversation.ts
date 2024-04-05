@@ -23,19 +23,19 @@ import { CastWithInteractionsAndConversations } from './cast-with-interactions-a
 /**
  * 
  * @export
- * @interface ConversationContainer
+ * @interface Conversation
  */
-export interface ConversationContainer {
+export interface Conversation {
     /**
      * 
      * @type {CastWithInteractionsAndConversations}
-     * @memberof ConversationContainer
+     * @memberof Conversation
      */
-    'cast'?: CastWithInteractionsAndConversations;
+    'cast': CastWithInteractionsAndConversations;
     /**
      * 
      * @type {Array<CastWithInteractions>}
-     * @memberof ConversationContainer
+     * @memberof Conversation
      */
     'chronological_parent_casts'?: Array<CastWithInteractions>;
 }

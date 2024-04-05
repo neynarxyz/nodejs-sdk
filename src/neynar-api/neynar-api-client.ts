@@ -44,7 +44,7 @@ import {
   WebhookResponse,
   WebhookSubscriptionFilters,
   WebhookListResponse,
-  ConversationContainer,
+  Conversation,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -1265,8 +1265,8 @@ export class NeynarAPIClient {
  * @param {CastParamType} type - Enumerates the identifier type, specifying whether the provided value is a hash or a URL, thus guiding the retrieval process appropriately.
  * @param {Object} [options] - An optional parameter object to refine the query.
  * @param {number} [options.replyDepth] - An optional parameter within the options object, specifying the desired depth of replies to fetch within the conversation. This allows for tailored retrieval of conversation data, ranging from top-level casts only to deeper, more comprehensive conversation threads.
- *
- * @returns {Promise<ConversationContainer>} A promise resolving to a `ConversationContainer` object. This object encapsulates detailed information about the cast conversation, including the content of the conversation itself and any replies, structured up to the specified depth.
+ * @param {boolean} [options.includeChronologicalParentCasts] - An optional parameter within the options object, indicating whether to include chronological parent casts in the response. This parameter is useful for applications requiring a structured view of the conversation, including parent casts that provide context for the replies.
+ * @returns {Promise<Conversation>} A promise resolving to a `Conversation` object. This object encapsulates detailed information about the cast conversation, including the content of the conversation itself and any replies, structured up to the specified depth.
  *
  * @example
  * // Example usage: Retrieve detailed information about a cast conversation via URL, including replies up to two levels deep
@@ -1275,7 +1275,7 @@ export class NeynarAPIClient {
  * client.lookupCastConversation(
  *   'https://warpcast.com/rish/0x9288c1',
  *   CastParamType.Url,
- *   { replyDepth: 2 }
+ *   { replyDepth: 2, includeChronologicalParentCasts: true}
  * ).then(response => {
  *   console.log('Cast Conversation Information:', response); // Displays the detailed structure of the specified cast conversation
  * });
@@ -1288,8 +1288,9 @@ public async lookupCastConversation(
   type: CastParamType,
   options?: {
     replyDepth?: number;
+    includeChronologicalParentCasts?: boolean;
   }
-): Promise<ConversationContainer> {
+): Promise<Conversation> {
   return await this.clients.v2.lookupCastConversation(
     castHashOrUrl,
     type,

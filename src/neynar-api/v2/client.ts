@@ -60,7 +60,7 @@ import {
   WebhookListResponse,
   WebhookPatchReqBody,
   WebhookPatchReqBodyActiveEnum,
-  ConversationContainer,
+  Conversation,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -941,8 +941,8 @@ export class NeynarV2APIClient {
  * @param {string} castHashOrUrl - The hash or URL of the cast conversation to be retrieved.
  * @param {CastParamType} type - Specifies the type of the provided identifier, indicating whether it's a hash or URL.
  * @param {number} [replyDepth] - Optional parameter to specify how deep the reply chain should be fetched.
- *
- * @returns {Promise<ConversationContainer>} A promise that resolves to a `ConversationContainer` object,
+ * @param {boolean} [includeChronologicalParentCasts] - Optional parameter to include chronological parent casts in the response.
+ * @returns {Promise<Conversation>} A promise that resolves to a `Conversation` object,
  *   containing detailed information about the requested cast conversation, including replies up to the specified depth.
  *
  * @example
@@ -950,7 +950,8 @@ export class NeynarV2APIClient {
  * client.lookupCastConversation(
  *   'https://warpcast.com/rish/0x9288c1',
  *   CastParamType.Url,
- *   2
+ *   2,
+ *   true
  * ).then(response => {
  *   console.log('Cast Conversation Information:', response); // Outputs detailed information about the specified cast conversation
  * });
@@ -962,13 +963,15 @@ public async lookupCastConversation(
   type: CastParamType,
   options?: {
     replyDepth?: number;
+    includeChronologicalParentCasts?: boolean;
   }
-): Promise<ConversationContainer> {
+): Promise<Conversation> {
   const response = await this.apis.cast.castConversation(
     this.apiKey,
     castHashOrUrl,
     type,
-    options?.replyDepth
+    options?.replyDepth,
+    options?.includeChronologicalParentCasts
   );
   return response.data;
 }

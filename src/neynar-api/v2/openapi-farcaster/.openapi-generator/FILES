@@ -44,8 +44,8 @@ models/casts-response.ts
 models/channel-list-response.ts
 models/channel-response.ts
 models/channel.ts
-models/conversation-container.ts
 models/conversation-response.ts
+models/conversation.ts
 models/dehydrated-follower.ts
 models/delete-cast-req-body.ts
 models/delete-frame-response.ts

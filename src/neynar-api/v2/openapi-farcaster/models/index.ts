@@ -21,7 +21,7 @@ export * from './casts-response-result';
 export * from './channel';
 export * from './channel-list-response';
 export * from './channel-response';
-export * from './conversation-container';
+export * from './conversation';
 export * from './conversation-response';
 export * from './dehydrated-follower';
 export * from './delete-cast-req-body';

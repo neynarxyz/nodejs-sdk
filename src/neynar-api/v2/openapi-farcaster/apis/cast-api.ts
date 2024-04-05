@@ -28,7 +28,7 @@ import { CastResponse } from '../models';
 // @ts-ignore
 import { CastsResponse } from '../models';
 // @ts-ignore
-import { ConversationContainer } from '../models';
+import { Conversation } from '../models';
 // @ts-ignore
 import { DeleteCastReqBody } from '../models';
 // @ts-ignore
@@ -103,10 +103,11 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
          * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
+         * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        castConversation: async (apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        castConversation: async (apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('castConversation', 'apiKey', apiKey)
             // verify required parameter 'identifier' is not null or undefined
@@ -135,6 +136,10 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (replyDepth !== undefined) {
                 localVarQueryParameter['reply_depth'] = replyDepth;
+            }
+
+            if (includeChronologicalParentCasts !== undefined) {
+                localVarQueryParameter['include_chronological_parent_casts'] = includeChronologicalParentCasts;
             }
 
             if (apiKey != null) {
@@ -322,11 +327,12 @@ export const CastApiFp = function(configuration?: Configuration) {
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
          * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
+         * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ConversationContainer>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.castConversation(apiKey, identifier, type, replyDepth, options);
+        async castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Conversation>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -396,11 +402,12 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
          * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
+         * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, options?: any): AxiosPromise<ConversationContainer> {
-            return localVarFp.castConversation(apiKey, identifier, type, replyDepth, options).then((request) => request(axios, basePath));
+        castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, options?: any): AxiosPromise<Conversation> {
+            return localVarFp.castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve multiple casts using their respective hashes.
@@ -468,12 +475,13 @@ export class CastApi extends BaseAPI {
      * @param {string} identifier Cast identifier (Its either a url or a hash)
      * @param {CastParamType} type 
      * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
+     * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CastApi
      */
-    public castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, options?: AxiosRequestConfig) {
-        return CastApiFp(this.configuration).castConversation(apiKey, identifier, type, replyDepth, options).then((request) => request(this.axios, this.basePath));
+    public castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, options?: AxiosRequestConfig) {
+        return CastApiFp(this.configuration).castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
