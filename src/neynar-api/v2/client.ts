@@ -950,8 +950,7 @@ export class NeynarV2APIClient {
  * client.lookupCastConversation(
  *   'https://warpcast.com/rish/0x9288c1',
  *   CastParamType.Url,
- *   2,
- *   true
+ *  { replyDepth: 2, includeChronologicalParentCasts: true }
  * ).then(response => {
  *   console.log('Cast Conversation Information:', response); // Outputs detailed information about the specified cast conversation
  * });
