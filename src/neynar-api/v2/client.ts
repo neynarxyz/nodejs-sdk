@@ -61,6 +61,7 @@ import {
   WebhookPatchReqBody,
   WebhookPatchReqBodyActiveEnum,
   Conversation,
+  ReactionsCastResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -1472,6 +1473,49 @@ public async lookupCastConversation(
     return response.data;
   }
 
+   /**
+   * Fetches reactions (likes, recasts, or all) for a given cast. This method allows retrieving
+   * the reactions associated with a cast, specified by the cast hash.
+   *
+   * @param {string} hash - The hash of the cast whose reactions are being fetched.
+   * @param {ReactionsType} types - The type of reaction to fetch (likes, recasts, or all).
+   * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {number} [options.limit] - Limits the number of results. Default is 25, with a maximum of 100.
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
+   *   omit this parameter for the initial request.
+   *
+   * @returns {Promise<ReactionsCastResponse>} A promise that resolves to a `ReactionsResponse` object,
+   *   containing the reactions associated with the user's casts.
+   *
+   * @example
+   *
+   * import { ReactionsType } from "@neynar/nodejs-sdk/build/neynar-api/v2";
+   *
+   * // Example: Fetch a casts reactions
+   * client.fetchCastReactions("0xfe90f9de682273e05b201629ad2338bdcd89b6be", ReactionsType.All, {
+   * limit: 50,
+   * // cursor: "nextPageCursor" // Omit this parameter for the initial request
+   *  }).then(response => {
+   *   console.log('Cast Reactions:', response); // Outputs the casts reactions
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/reactions-cast).
+   */
+   public async fetchCastReactions(
+    hash: string,
+    types: ReactionsType,
+    options?: { limit?: number; cursor?: string }
+  ): Promise<ReactionsCastResponse> {
+    const response = await this.apis.reaction.reactionsCast(
+      this.apiKey,
+      hash,
+      types,
+      options?.limit,
+      options?.cursor
+    );
+    return response.data;
+  }
+
   // ------------ Notifications ------------
 
   /**
@@ -1702,14 +1746,14 @@ public async lookupCastConversation(
    *
    * @example
    * // Example: Retrieve a list of all channels
-   * client.fetchAllChannels().then(response => {
+   * client.fetchAllChannels({limit: 5}).then(response => {
    *   console.log('All Channels:', response);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/list-all-channels).
    */
-  public async fetchAllChannels(): Promise<ChannelListResponse> {
-    const response = await this.apis.channel.listAllChannels(this.apiKey);
+  public async fetchAllChannels(options?: {limit: number, cursor: string}): Promise<ChannelListResponse> {
+    const response = await this.apis.channel.listAllChannels(this.apiKey, options?.limit, options?.cursor);
     return response.data;
   }
 

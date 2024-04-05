@@ -28,6 +28,8 @@ import { OperationResponse } from '../models';
 // @ts-ignore
 import { ReactionReqBody } from '../models';
 // @ts-ignore
+import { ReactionsCastResponse } from '../models';
+// @ts-ignore
 import { ReactionsResponse } from '../models';
 // @ts-ignore
 import { ReactionsType } from '../models';
@@ -117,6 +119,67 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(reactionReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetches reactions for a given cast
+         * @summary Fetches reactions for a given cast
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} hash 
+         * @param {ReactionsType} types comma seperated list of reactions to fetch (likes or recasts or all)
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        reactionsCast: async (apiKey: string, hash: string, types: ReactionsType, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('reactionsCast', 'apiKey', apiKey)
+            // verify required parameter 'hash' is not null or undefined
+            assertParamExists('reactionsCast', 'hash', hash)
+            // verify required parameter 'types' is not null or undefined
+            assertParamExists('reactionsCast', 'types', types)
+            const localVarPath = `/farcaster/reactions/cast`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (hash !== undefined) {
+                localVarQueryParameter['hash'] = hash;
+            }
+
+            if (types !== undefined) {
+                localVarQueryParameter['types'] = types;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -219,6 +282,21 @@ export const ReactionApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Fetches reactions for a given cast
+         * @summary Fetches reactions for a given cast
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} hash 
+         * @param {ReactionsType} types comma seperated list of reactions to fetch (likes or recasts or all)
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async reactionsCast(apiKey: string, hash: string, types: ReactionsType, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsCastResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.reactionsCast(apiKey, hash, types, limit, cursor, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Fetches reactions for a given user
          * @summary Fetches reactions for a given user
          * @param {string} apiKey API key required for authentication.
@@ -264,6 +342,20 @@ export const ReactionApiFactory = function (configuration?: Configuration, baseP
          */
         postReaction(apiKey: string, reactionReqBody: ReactionReqBody, options?: any): AxiosPromise<OperationResponse> {
             return localVarFp.postReaction(apiKey, reactionReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches reactions for a given cast
+         * @summary Fetches reactions for a given cast
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} hash 
+         * @param {ReactionsType} types comma seperated list of reactions to fetch (likes or recasts or all)
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        reactionsCast(apiKey: string, hash: string, types: ReactionsType, limit?: number, cursor?: string, options?: any): AxiosPromise<ReactionsCastResponse> {
+            return localVarFp.reactionsCast(apiKey, hash, types, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches reactions for a given user
@@ -313,6 +405,22 @@ export class ReactionApi extends BaseAPI {
      */
     public postReaction(apiKey: string, reactionReqBody: ReactionReqBody, options?: AxiosRequestConfig) {
         return ReactionApiFp(this.configuration).postReaction(apiKey, reactionReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches reactions for a given cast
+     * @summary Fetches reactions for a given cast
+     * @param {string} apiKey API key required for authentication.
+     * @param {string} hash 
+     * @param {ReactionsType} types comma seperated list of reactions to fetch (likes or recasts or all)
+     * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReactionApi
+     */
+    public reactionsCast(apiKey: string, hash: string, types: ReactionsType, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return ReactionApiFp(this.configuration).reactionsCast(apiKey, hash, types, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

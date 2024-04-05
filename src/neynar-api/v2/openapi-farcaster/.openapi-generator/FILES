@@ -96,12 +96,14 @@ models/post-cast-response-cast.ts
 models/post-cast-response.ts
 models/profile-url-pfp.ts
 models/profile-url.ts
+models/reaction-for-cast.ts
 models/reaction-like.ts
 models/reaction-recast.ts
 models/reaction-req-body.ts
 models/reaction-type.ts
 models/reaction-with-cast-info.ts
 models/reaction-with-user-info.ts
+models/reactions-cast-response.ts
 models/reactions-response.ts
 models/reactions-type.ts
 models/register-developer-managed-signed-key-req-body.ts
