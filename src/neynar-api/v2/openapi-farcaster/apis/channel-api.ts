@@ -259,10 +259,12 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * Returns a list of all channels with their details
          * @summary Retrieve all channels with their details
          * @param {string} apiKey API key required for authentication.
+         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listAllChannels: async (apiKey: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        listAllChannels: async (apiKey: string, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('listAllChannels', 'apiKey', apiKey)
             const localVarPath = `/farcaster/channel/list`;
@@ -276,6 +278,14 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -458,11 +468,13 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * Returns a list of all channels with their details
          * @summary Retrieve all channels with their details
          * @param {string} apiKey API key required for authentication.
+         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listAllChannels(apiKey: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.listAllChannels(apiKey, options);
+        async listAllChannels(apiKey: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listAllChannels(apiKey, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -557,11 +569,13 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * Returns a list of all channels with their details
          * @summary Retrieve all channels with their details
          * @param {string} apiKey API key required for authentication.
+         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listAllChannels(apiKey: string, options?: any): AxiosPromise<ChannelListResponse> {
-            return localVarFp.listAllChannels(apiKey, options).then((request) => request(axios, basePath));
+        listAllChannels(apiKey: string, limit?: number, cursor?: string, options?: any): AxiosPromise<ChannelListResponse> {
+            return localVarFp.listAllChannels(apiKey, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of channels based on id or name
@@ -661,12 +675,14 @@ export class ChannelApi extends BaseAPI {
      * Returns a list of all channels with their details
      * @summary Retrieve all channels with their details
      * @param {string} apiKey API key required for authentication.
+     * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+     * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public listAllChannels(apiKey: string, options?: AxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).listAllChannels(apiKey, options).then((request) => request(this.axios, this.basePath));
+    public listAllChannels(apiKey: string, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).listAllChannels(apiKey, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

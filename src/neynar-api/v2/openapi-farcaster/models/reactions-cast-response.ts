@@ -15,28 +15,28 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Channel } from './channel';
+import { NextCursor } from './next-cursor';
 // May contain unused imports in some cases
 // @ts-ignore
-import { NextCursor } from './next-cursor';
+import { ReactionForCast } from './reaction-for-cast';
 
 /**
  * 
  * @export
- * @interface ChannelListResponse
+ * @interface ReactionsCastResponse
  */
-export interface ChannelListResponse {
+export interface ReactionsCastResponse {
     /**
      * 
-     * @type {Array<Channel>}
-     * @memberof ChannelListResponse
+     * @type {Array<ReactionForCast>}
+     * @memberof ReactionsCastResponse
      */
-    'channels': Array<Channel>;
+    'reactions': Array<ReactionForCast>;
     /**
      * 
      * @type {NextCursor}
-     * @memberof ChannelListResponse
+     * @memberof ReactionsCastResponse
      */
-    'next'?: NextCursor;
+    'next': NextCursor;
 }
 
