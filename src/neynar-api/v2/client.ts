@@ -62,6 +62,9 @@ import {
   WebhookPatchReqBodyActiveEnum,
   Conversation,
   ReactionsCastResponse,
+  FrameValidateListResponse,
+  ValidateFrameAnalyticsType,
+  FrameValidateAnalyticsResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -72,6 +75,7 @@ import {
   BulkUserAddressTypes,
   TimeWindow,
   TrendingFeedTimeWindow,
+  ValidateFrameAggregateWindow,
 } from "../common/constants";
 
 const BASE_PATH = "https://api.neynar.com/v2";
@@ -819,7 +823,13 @@ export class NeynarV2APIClient {
       cursor?: string;
     }
   ): Promise<UserSearchResponse> {
-    const response = await this.apis.user.userSearch(this.apiKey, q, viewerFid, options?.limit, options?.cursor);
+    const response = await this.apis.user.userSearch(
+      this.apiKey,
+      q,
+      viewerFid,
+      options?.limit,
+      options?.cursor
+    );
     return response.data;
   }
 
@@ -933,48 +943,48 @@ export class NeynarV2APIClient {
     return response.data;
   }
 
-/**
- * Retrieves detailed information about a cast conversation based on a specified hash or URL. Useful
- * for fetching in-depth details of a single cast conversation, including replies up to a specified depth. The method
- * allows for specifying the type of the provided identifier (e.g., a hash or URL) and how deep the reply chain should
- * be fetched.
- *
- * @param {string} castHashOrUrl - The hash or URL of the cast conversation to be retrieved.
- * @param {CastParamType} type - Specifies the type of the provided identifier, indicating whether it's a hash or URL.
- * @param {number} [replyDepth] - Optional parameter to specify how deep the reply chain should be fetched.
- * @param {boolean} [includeChronologicalParentCasts] - Optional parameter to include chronological parent casts in the response.
- * @returns {Promise<Conversation>} A promise that resolves to a `Conversation` object,
- *   containing detailed information about the requested cast conversation, including replies up to the specified depth.
- *
- * @example
- * // Fetch detailed information about a cast conversation using a given hash or URL, with a reply depth of 2
- * client.lookupCastConversation(
- *   'https://warpcast.com/rish/0x9288c1',
- *   CastParamType.Url,
- *  { replyDepth: 2, includeChronologicalParentCasts: true }
- * ).then(response => {
- *   console.log('Cast Conversation Information:', response); // Outputs detailed information about the specified cast conversation
- * });
- *
- * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/cast-conversation).
- */
-public async lookupCastConversation(
-  castHashOrUrl: string,
-  type: CastParamType,
-  options?: {
-    replyDepth?: number;
-    includeChronologicalParentCasts?: boolean;
+  /**
+   * Retrieves detailed information about a cast conversation based on a specified hash or URL. Useful
+   * for fetching in-depth details of a single cast conversation, including replies up to a specified depth. The method
+   * allows for specifying the type of the provided identifier (e.g., a hash or URL) and how deep the reply chain should
+   * be fetched.
+   *
+   * @param {string} castHashOrUrl - The hash or URL of the cast conversation to be retrieved.
+   * @param {CastParamType} type - Specifies the type of the provided identifier, indicating whether it's a hash or URL.
+   * @param {number} [replyDepth] - Optional parameter to specify how deep the reply chain should be fetched.
+   * @param {boolean} [includeChronologicalParentCasts] - Optional parameter to include chronological parent casts in the response.
+   * @returns {Promise<Conversation>} A promise that resolves to a `Conversation` object,
+   *   containing detailed information about the requested cast conversation, including replies up to the specified depth.
+   *
+   * @example
+   * // Fetch detailed information about a cast conversation using a given hash or URL, with a reply depth of 2
+   * client.lookupCastConversation(
+   *   'https://warpcast.com/rish/0x9288c1',
+   *   CastParamType.Url,
+   *  { replyDepth: 2, includeChronologicalParentCasts: true }
+   * ).then(response => {
+   *   console.log('Cast Conversation Information:', response); // Outputs detailed information about the specified cast conversation
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/cast-conversation).
+   */
+  public async lookupCastConversation(
+    castHashOrUrl: string,
+    type: CastParamType,
+    options?: {
+      replyDepth?: number;
+      includeChronologicalParentCasts?: boolean;
+    }
+  ): Promise<Conversation> {
+    const response = await this.apis.cast.castConversation(
+      this.apiKey,
+      castHashOrUrl,
+      type,
+      options?.replyDepth,
+      options?.includeChronologicalParentCasts
+    );
+    return response.data;
   }
-): Promise<Conversation> {
-  const response = await this.apis.cast.castConversation(
-    this.apiKey,
-    castHashOrUrl,
-    type,
-    options?.replyDepth,
-    options?.includeChronologicalParentCasts
-  );
-  return response.data;
-}
 
   /**
    * Publishes a cast for the currently authenticated user. This method allows users to post
@@ -1473,7 +1483,7 @@ public async lookupCastConversation(
     return response.data;
   }
 
-   /**
+  /**
    * Fetches reactions (likes, recasts, or all) for a given cast. This method allows retrieving
    * the reactions associated with a cast, specified by the cast hash.
    *
@@ -1489,7 +1499,7 @@ public async lookupCastConversation(
    *
    * @example
    *
-   * import { ReactionsType } from "@neynar/nodejs-sdk/build/neynar-api/v2";
+   * import { ReactionsType } from "@neynar/nodejs-sdk";
    *
    * // Example: Fetch a casts reactions
    * client.fetchCastReactions("0xfe90f9de682273e05b201629ad2338bdcd89b6be", ReactionsType.All, {
@@ -1501,7 +1511,7 @@ public async lookupCastConversation(
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/reactions-cast).
    */
-   public async fetchCastReactions(
+  public async fetchCastReactions(
     hash: string,
     types: ReactionsType,
     options?: { limit?: number; cursor?: string }
@@ -1752,8 +1762,15 @@ public async lookupCastConversation(
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/list-all-channels).
    */
-  public async fetchAllChannels(options?: {limit: number, cursor: string}): Promise<ChannelListResponse> {
-    const response = await this.apis.channel.listAllChannels(this.apiKey, options?.limit, options?.cursor);
+  public async fetchAllChannels(options?: {
+    limit?: number;
+    cursor?: string;
+  }): Promise<ChannelListResponse> {
+    const response = await this.apis.channel.listAllChannels(
+      this.apiKey,
+      options?.limit,
+      options?.cursor
+    );
     return response.data;
   }
 
@@ -2193,6 +2210,73 @@ public async lookupCastConversation(
     };
 
     const response = await this.apis.frames.validateFrame(this.apiKey, reqBody);
+    return response.data;
+  }
+
+  /**
+   * Retrieve a list of all the frames validated by a user
+   *
+   * @returns {Promise<FrameValidateListResponse>} A promise that resolves to an array of frame urls
+   *
+   * Usage Example:
+   * ---------------
+   * const client = new YourClassName();
+   * // Retrieve the list of validated frames
+   * client.fetchValidateFrameList()
+   *   .then(response => console.log(response))
+   *   .catch(error => console.error(error));
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/validate-frame-list).
+   */
+  public async fetchValidateFrameList(): Promise<FrameValidateListResponse> {
+    const response = await this.apis.frames.validateFrameList(this.apiKey);
+    return response.data;
+  }
+
+  /**
+   * Retrieves analytics for a specific frame over a given time period.
+   * This method allows for detailed analysis of frame interactions, providing insights into user engagement metrics such as total interactors, interactions per cast, and input text analysis.
+   *
+   * @param {string} frameUrl - The URL of the frame for which analytics are being retrieved.
+   * @param {ValidateFrameAnalyticsType} analyticsType - Specifies the type of analytics to retrieve. Can include metrics like total-interactors, interactors, interactions-per-cast, and input-text, each offering a different perspective on user engagement.
+   * @param {string} start - The start date/time for the analytics period. This parameter sets the beginning of the timeframe for the data being requested.
+   * @param {string} stop - The stop date/time for the analytics period. Similarly, this defines the end of the timeframe for analytics retrieval, allowing for precise period analysis.
+   * @param {Object} [options]
+   *   @param {ValidateFrameAggregateWindow} [options.aggregateWindow] - Defines the aggregation window for the analytics, particularly required for 'interactions-per-cast' type analytics to determine the granularity of data aggregation.
+   *
+   * @returns {Promise<FrameValidateAnalyticsResponse>} A promise that resolves to FrameValidateAnalyticsResponse containing the requested frame analytics data, structured according to the specified analytics type and period.
+   *
+   * Usage Example:
+   * ---------------
+   * import {ValidateFrameAnalyticsType, ValidateFrameAggregateWindow } from '@neynar/nodejs-sdk'
+   *
+   * client.fetchValidateFrameAnalytics(
+   *   'https://shorturl.at/bDRY9',
+   *   ValidateFrameAnalyticsType.InteractionsPerCast,
+   *   '2024-04-06T06:44:56.811Z',
+   *   '2024-04-08T06:44:56.811Z',
+   *   { aggregateWindow: ValidateFrameAggregateWindow.TWELVE_HOURS }
+   * )
+   * .then(response => console.log(response))
+   * .catch(error => console.error(error));
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/validate-frame-analytics).
+   */
+  public async fetchValidateFrameAnalytics(
+    frameUrl: string,
+    analyticsType: ValidateFrameAnalyticsType,
+    start: string,
+    stop: string,
+    options?: { aggregateWindow?: ValidateFrameAggregateWindow }
+  ): Promise<FrameValidateAnalyticsResponse> {
+    const response = await this.apis.frames.validateFrameAnalytics(
+      this.apiKey,
+      frameUrl,
+      analyticsType,
+      start,
+      stop,
+      options?.aggregateWindow
+    );
     return response.data;
   }
 

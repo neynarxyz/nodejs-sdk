@@ -36,14 +36,15 @@ import { ErrorRes } from '../models';
 export const ReactionsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Get all like reactions for a specific cast in reverse chronological order.
-         * @summary Get all like reactions for a specific cast
+         * Now deprecated, use [/v2/farcaster/reactions/cast](https://docs.neynar.com/reference/reactions-cast) - Get all like reactions for a specific cast in reverse chronological order.
+         * @summary DEPRECATED - Get all like reactions for a specific cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} castHash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         castLikes: async (apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
@@ -95,14 +96,15 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * Get all reactions (likes and recasts) for a specific cast.
-         * @summary Get all reactions for a specific cast
+         * Now deprecated, use [/v2/farcaster/reactions/cast](https://docs.neynar.com/reference/reactions-cast) - Get all reactions (likes and recasts) for a specific cast.
+         * @summary DEPRECATED - Get all reactions for a specific cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} castHash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         castReactions: async (apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
@@ -154,14 +156,15 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * Get all recasters for a specific cast.
-         * @summary Get all recasters for a specific cast
+         * Now deprecated, use [/v2/farcaster/reactions/cast](https://docs.neynar.com/reference/reactions-cast) - Get all recasters for a specific cast.
+         * @summary DEPRECATED - Get all recasters for a specific cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} castHash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         castRecasters: async (apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
@@ -223,14 +226,15 @@ export const ReactionsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ReactionsApiAxiosParamCreator(configuration)
     return {
         /**
-         * Get all like reactions for a specific cast in reverse chronological order.
-         * @summary Get all like reactions for a specific cast
+         * Now deprecated, use [/v2/farcaster/reactions/cast](https://docs.neynar.com/reference/reactions-cast) - Get all like reactions for a specific cast in reverse chronological order.
+         * @summary DEPRECATED - Get all like reactions for a specific cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} castHash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         async castLikes(apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastLikesResponse>> {
@@ -238,14 +242,15 @@ export const ReactionsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Get all reactions (likes and recasts) for a specific cast.
-         * @summary Get all reactions for a specific cast
+         * Now deprecated, use [/v2/farcaster/reactions/cast](https://docs.neynar.com/reference/reactions-cast) - Get all reactions (likes and recasts) for a specific cast.
+         * @summary DEPRECATED - Get all reactions for a specific cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} castHash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         async castReactions(apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastReactionsResponse>> {
@@ -253,14 +258,15 @@ export const ReactionsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Get all recasters for a specific cast.
-         * @summary Get all recasters for a specific cast
+         * Now deprecated, use [/v2/farcaster/reactions/cast](https://docs.neynar.com/reference/reactions-cast) - Get all recasters for a specific cast.
+         * @summary DEPRECATED - Get all recasters for a specific cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} castHash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         async castRecasters(apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastRecasterResponse>> {
@@ -278,42 +284,45 @@ export const ReactionsApiFactory = function (configuration?: Configuration, base
     const localVarFp = ReactionsApiFp(configuration)
     return {
         /**
-         * Get all like reactions for a specific cast in reverse chronological order.
-         * @summary Get all like reactions for a specific cast
+         * Now deprecated, use [/v2/farcaster/reactions/cast](https://docs.neynar.com/reference/reactions-cast) - Get all like reactions for a specific cast in reverse chronological order.
+         * @summary DEPRECATED - Get all like reactions for a specific cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} castHash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         castLikes(apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<CastLikesResponse> {
             return localVarFp.castLikes(apiKey, castHash, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * Get all reactions (likes and recasts) for a specific cast.
-         * @summary Get all reactions for a specific cast
+         * Now deprecated, use [/v2/farcaster/reactions/cast](https://docs.neynar.com/reference/reactions-cast) - Get all reactions (likes and recasts) for a specific cast.
+         * @summary DEPRECATED - Get all reactions for a specific cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} castHash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         castReactions(apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<CastReactionsResponse> {
             return localVarFp.castReactions(apiKey, castHash, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * Get all recasters for a specific cast.
-         * @summary Get all recasters for a specific cast
+         * Now deprecated, use [/v2/farcaster/reactions/cast](https://docs.neynar.com/reference/reactions-cast) - Get all recasters for a specific cast.
+         * @summary DEPRECATED - Get all recasters for a specific cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} castHash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         castRecasters(apiKey: string, castHash: string, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<CastRecasterResponse> {
@@ -330,14 +339,15 @@ export const ReactionsApiFactory = function (configuration?: Configuration, base
  */
 export class ReactionsApi extends BaseAPI {
     /**
-     * Get all like reactions for a specific cast in reverse chronological order.
-     * @summary Get all like reactions for a specific cast
+     * Now deprecated, use [/v2/farcaster/reactions/cast](https://docs.neynar.com/reference/reactions-cast) - Get all like reactions for a specific cast in reverse chronological order.
+     * @summary DEPRECATED - Get all like reactions for a specific cast
      * @param {string} apiKey API key required for authentication.
      * @param {string} castHash Cast hash
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
      * @param {number} [limit] Number of results to retrieve (default 25, max 150)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      * @memberof ReactionsApi
      */
@@ -346,14 +356,15 @@ export class ReactionsApi extends BaseAPI {
     }
 
     /**
-     * Get all reactions (likes and recasts) for a specific cast.
-     * @summary Get all reactions for a specific cast
+     * Now deprecated, use [/v2/farcaster/reactions/cast](https://docs.neynar.com/reference/reactions-cast) - Get all reactions (likes and recasts) for a specific cast.
+     * @summary DEPRECATED - Get all reactions for a specific cast
      * @param {string} apiKey API key required for authentication.
      * @param {string} castHash Cast hash
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
      * @param {number} [limit] Number of results to retrieve (default 25, max 150)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      * @memberof ReactionsApi
      */
@@ -362,14 +373,15 @@ export class ReactionsApi extends BaseAPI {
     }
 
     /**
-     * Get all recasters for a specific cast.
-     * @summary Get all recasters for a specific cast
+     * Now deprecated, use [/v2/farcaster/reactions/cast](https://docs.neynar.com/reference/reactions-cast) - Get all recasters for a specific cast.
+     * @summary DEPRECATED - Get all recasters for a specific cast
      * @param {string} apiKey API key required for authentication.
      * @param {string} castHash Cast hash
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
      * @param {number} [limit] Number of results to retrieve (default 25, max 150)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      * @memberof ReactionsApi
      */

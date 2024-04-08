@@ -330,7 +330,7 @@ export class NeynarV1APIClient {
   /**
    * @deprecated
    * Now deprecated, use `lookupCastConversation` instead.
-   * 
+   *
    * Retrieves all casts, including root cast and all replies for a given thread hash. No limit to the depth of replies.
    * **Note :** The parent provided by the caller is included in the response.
    *
@@ -616,6 +616,9 @@ export class NeynarV1APIClient {
   // ------------ Reactions ------------
 
   /**
+   * @deprecated
+   * Now deprecated, use `fetchReactionsForCast` instead.
+   *
    * Retrieves all like reactions for a specific cast in reverse chronological order.
    *
    * @param {Cast | string} castOrCastHash - The Cast object or its hash for which likes are being retrieved.
@@ -665,6 +668,9 @@ export class NeynarV1APIClient {
   }
 
   /**
+   * @deprecated
+   * Now deprecated, use `fetchReactionsForCast` instead.
+   *
    * Retrieves all reactions (likes and recasts) for a specific cast.
    *
    * @param {Cast | string} castOrCastHash - The Cast object or its hash for which reactions are being retrieved.
@@ -714,6 +720,9 @@ export class NeynarV1APIClient {
   }
 
   /**
+   * @deprecated
+   * Now deprecated, use `fetchReactionsForCast` instead.
+   *
    * Retrieves the list of users who have recasted a specific cast.
    *
    * @param {Cast | string} castOrCastHash - The Cast object or its hash for which recasters are being retrieved.
