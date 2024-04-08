@@ -45,6 +45,7 @@ import {
   WebhookSubscriptionFilters,
   WebhookListResponse,
   Conversation,
+  ReactionsCastResponse,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -314,7 +315,7 @@ export class NeynarAPIClient {
   /**
    * @deprecated
    * Now deprecated, use `lookupCastConversation` instead.
-   * 
+   *
    * Retrieves all casts, including root cast and all replies for a given thread hash. No limit to the depth of replies.
    * **Note :** The parent provided by the caller is included in the response.
    *
@@ -584,6 +585,9 @@ export class NeynarAPIClient {
   }
 
   /**
+   * @deprecated
+   * Now deprecated, use `fetchReactionsForCast` instead.
+   *
    * Retrieves all reactions (likes and recasts) for a specific cast.
    *
    * @param {CastV1 | string} castOrCastHash - The Cast object or its hash for which reactions are being retrieved.
@@ -1256,51 +1260,50 @@ export class NeynarAPIClient {
   public async searchUser(
     q: string,
     viewerFid?: number,
-    options?: { limit?: number, cursor?: string}
+    options?: { limit?: number; cursor?: string }
   ): Promise<UserSearchResponse> {
     return await this.clients.v2.searchUser(q, viewerFid, options);
   }
-  
-/**
- * Retrieves comprehensive details about a specific cast conversation, identified by either a hash or a URL. This method is instrumental in accessing the full depth of a conversation, including initial casts and subsequent replies, up to a user-defined depth. By allowing the specification of the identifier type and the depth of replies to fetch, it offers flexibility in how conversation data is retrieved, making it suitable for applications requiring detailed conversation analysis or display.
- *
- * @param {string} castHashOrUrl - The unique hash or URL identifying the cast conversation to retrieve. This identifier enables precise targeting of the conversation of interest.
- * @param {CastParamType} type - Enumerates the identifier type, specifying whether the provided value is a hash or a URL, thus guiding the retrieval process appropriately.
- * @param {Object} [options] - An optional parameter object to refine the query.
- * @param {number} [options.replyDepth] - An optional parameter within the options object, specifying the desired depth of replies to fetch within the conversation. This allows for tailored retrieval of conversation data, ranging from top-level casts only to deeper, more comprehensive conversation threads.
- * @param {boolean} [options.includeChronologicalParentCasts] - An optional parameter within the options object, indicating whether to include chronological parent casts in the response. This parameter is useful for applications requiring a structured view of the conversation, including parent casts that provide context for the replies.
- * @returns {Promise<Conversation>} A promise resolving to a `Conversation` object. This object encapsulates detailed information about the cast conversation, including the content of the conversation itself and any replies, structured up to the specified depth.
- *
- * @example
- * // Example usage: Retrieve detailed information about a cast conversation via URL, including replies up to two levels deep
- * import { CastParamType } from "@neynar/nodejs-sdk";
- * 
- * client.lookupCastConversation(
- *   'https://warpcast.com/rish/0x9288c1',
- *   CastParamType.Url,
- *   { replyDepth: 2, includeChronologicalParentCasts: true}
- * ).then(response => {
- *   console.log('Cast Conversation Information:', response); // Displays the detailed structure of the specified cast conversation
- * });
- *
- * // Refer to the Neynar API documentation for more details and advanced options:
- * // https://docs.neynar.com/reference/cast-conversation
- */
-public async lookupCastConversation(
-  castHashOrUrl: string,
-  type: CastParamType,
-  options?: {
-    replyDepth?: number;
-    includeChronologicalParentCasts?: boolean;
-  }
-): Promise<Conversation> {
-  return await this.clients.v2.lookupCastConversation(
-    castHashOrUrl,
-    type,
-    options
-  );
-}
 
+  /**
+   * Retrieves comprehensive details about a specific cast conversation, identified by either a hash or a URL. This method is instrumental in accessing the full depth of a conversation, including initial casts and subsequent replies, up to a user-defined depth. By allowing the specification of the identifier type and the depth of replies to fetch, it offers flexibility in how conversation data is retrieved, making it suitable for applications requiring detailed conversation analysis or display.
+   *
+   * @param {string} castHashOrUrl - The unique hash or URL identifying the cast conversation to retrieve. This identifier enables precise targeting of the conversation of interest.
+   * @param {CastParamType} type - Enumerates the identifier type, specifying whether the provided value is a hash or a URL, thus guiding the retrieval process appropriately.
+   * @param {Object} [options] - An optional parameter object to refine the query.
+   * @param {number} [options.replyDepth] - An optional parameter within the options object, specifying the desired depth of replies to fetch within the conversation. This allows for tailored retrieval of conversation data, ranging from top-level casts only to deeper, more comprehensive conversation threads.
+   * @param {boolean} [options.includeChronologicalParentCasts] - An optional parameter within the options object, indicating whether to include chronological parent casts in the response. This parameter is useful for applications requiring a structured view of the conversation, including parent casts that provide context for the replies.
+   * @returns {Promise<Conversation>} A promise resolving to a `Conversation` object. This object encapsulates detailed information about the cast conversation, including the content of the conversation itself and any replies, structured up to the specified depth.
+   *
+   * @example
+   * // Example usage: Retrieve detailed information about a cast conversation via URL, including replies up to two levels deep
+   * import { CastParamType } from "@neynar/nodejs-sdk";
+   *
+   * client.lookupCastConversation(
+   *   'https://warpcast.com/rish/0x9288c1',
+   *   CastParamType.Url,
+   *   { replyDepth: 2, includeChronologicalParentCasts: true}
+   * ).then(response => {
+   *   console.log('Cast Conversation Information:', response); // Displays the detailed structure of the specified cast conversation
+   * });
+   *
+   * // Refer to the Neynar API documentation for more details and advanced options:
+   * // https://docs.neynar.com/reference/cast-conversation
+   */
+  public async lookupCastConversation(
+    castHashOrUrl: string,
+    type: CastParamType,
+    options?: {
+      replyDepth?: number;
+      includeChronologicalParentCasts?: boolean;
+    }
+  ): Promise<Conversation> {
+    return await this.clients.v2.lookupCastConversation(
+      castHashOrUrl,
+      type,
+      options
+    );
+  }
 
   /**
    * Looks up a user by their custody address.
@@ -1796,6 +1799,42 @@ public async lookupCastConversation(
     return await this.clients.v2.fetchUserReactions(fid, type, options);
   }
 
+  /**
+   * Fetches reactions (likes, recasts, or all) for a given cast. This method allows retrieving
+   * the reactions associated with a cast, specified by the cast hash.
+   *
+   * @param {string} hash - The hash of the cast whose reactions are being fetched.
+   * @param {ReactionsType} types - The type of reaction to fetch (likes, recasts, or all).
+   * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {number} [options.limit] - Limits the number of results. Default is 25, with a maximum of 100.
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
+   *   omit this parameter for the initial request.
+   *
+   * @returns {Promise<ReactionsCastResponse>} A promise that resolves to a `ReactionsResponse` object,
+   *   containing the reactions associated with the user's casts.
+   *
+   * @example
+   *
+   * import { ReactionsType } from "@neynar/nodejs-sdk";
+   *
+   * // Example: Fetch a casts reactions
+   * client.fetchReactionsForCast("0xfe90f9de682273e05b201629ad2338bdcd89b6be", ReactionsType.All, {
+   * limit: 50,
+   * // cursor: "nextPageCursor" // Omit this parameter for the initial request
+   *  }).then(response => {
+   *   console.log('Cast Reactions:', response); // Outputs the casts reactions
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/reactions-cast).
+   */
+  public async fetchReactionsForCast(
+    hash: string,
+    types: ReactionsType,
+    options?: { limit?: number; cursor?: string }
+  ): Promise<ReactionsCastResponse> {
+    return await this.clients.v2.fetchCastReactions(hash, types, options);
+  }
+
   // ------------ Notifications ------------
 
   /**
@@ -1972,14 +2011,17 @@ public async lookupCastConversation(
    *
    * @example
    * // Example: Retrieve a list of all channels
-   * client.fetchAllChannels().then(response => {
+   * client.fetchAllChannels({limit: 5}).then(response => {
    *   console.log('All Channels:', response);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/list-all-channels).
    */
-  public async fetchAllChannels(): Promise<ChannelListResponse> {
-    return await this.clients.v2.fetchAllChannels();
+  public async fetchAllChannels(options?: {
+    limit?: number;
+    cursor?: string;
+  }): Promise<ChannelListResponse> {
+    return await this.clients.v2.fetchAllChannels(options);
   }
 
   /**
