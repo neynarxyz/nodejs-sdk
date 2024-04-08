@@ -44,6 +44,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {string} threadHash The hash of the thread to retrieve casts from.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         allCastsInThread: async (apiKey: string, threadHash: string, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
@@ -269,6 +270,7 @@ export const CastApiFp = function(configuration?: Configuration) {
          * @param {string} threadHash The hash of the thread to retrieve casts from.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         async allCastsInThread(apiKey: string, threadHash: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AllCastsInThreadResponse>> {
@@ -336,6 +338,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * @param {string} threadHash The hash of the thread to retrieve casts from.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         allCastsInThread(apiKey: string, threadHash: string, viewerFid?: number, options?: any): AxiosPromise<AllCastsInThreadResponse> {
@@ -399,6 +402,7 @@ export class CastApi extends BaseAPI {
      * @param {string} threadHash The hash of the thread to retrieve casts from.
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      * @memberof CastApi
      */

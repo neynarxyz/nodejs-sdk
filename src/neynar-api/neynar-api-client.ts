@@ -555,6 +555,9 @@ export class NeynarAPIClient {
   // ------------ Reactions ------------
 
   /**
+   * @deprecated
+   * Now deprecated, use `fetchReactionsForCast` instead.
+   *
    * Retrieves all like reactions for a specific cast in reverse chronological order.
    *
    * @param {CastV1 | string} castOrCastHash - The Cast object or its hash for which likes are being retrieved.
@@ -626,6 +629,9 @@ export class NeynarAPIClient {
   }
 
   /**
+   * @deprecated
+   * Now deprecated, use `fetchReactionsForCast` instead.
+   *
    * Retrieves the list of users who have recasted a specific cast.
    *
    * @param {CastV1 | string} castOrCastHash - The Cast object or its hash for which recasters are being retrieved.
