@@ -69,6 +69,15 @@ models/frame-button-action-type.ts
 models/frame-input.ts
 models/frame-state.ts
 models/frame-transaction.ts
+models/frame-validate-analytics-input-text-input-texts-inner.ts
+models/frame-validate-analytics-input-text.ts
+models/frame-validate-analytics-interactions-per-cast-interactions-per-cast-inner.ts
+models/frame-validate-analytics-interactions-per-cast.ts
+models/frame-validate-analytics-interactors-interactors-inner.ts
+models/frame-validate-analytics-interactors.ts
+models/frame-validate-analytics-response.ts
+models/frame-validate-analytics-total-interactors.ts
+models/frame-validate-list-response.ts
 models/frame.ts
 models/get-casts-req-body.ts
 models/hydrated-follower.ts

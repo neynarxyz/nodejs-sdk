@@ -665,6 +665,9 @@ export class NeynarV1APIClient {
   }
 
   /**
+   * @deprecated
+   * Now deprecated, use `fetchReactionsForCast` instead.
+   *
    * Retrieves all reactions (likes and recasts) for a specific cast.
    *
    * @param {Cast | string} castOrCastHash - The Cast object or its hash for which reactions are being retrieved.
