@@ -6,10 +6,12 @@ export {
   ReactionsType,
   CastParamType,
   ReactionType,
-  FrameButtonActionType
+  FrameButtonActionType,
+  ValidateFrameAnalyticsType,
 } from "./v2";
 export {
   TimeWindow,
   BulkCastsSortType,
   BulkUserAddressTypes,
+  ValidateFrameAggregateWindow,
 } from "./common/constants";

@@ -46,6 +46,9 @@ import {
   WebhookListResponse,
   Conversation,
   ReactionsCastResponse,
+  FrameValidateAnalyticsResponse,
+  ValidateFrameAnalyticsType,
+  FrameValidateListResponse,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -85,6 +88,7 @@ import {
   SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN,
   TimeWindow,
   TrendingFeedTimeWindow,
+  ValidateFrameAggregateWindow,
 } from "./common/constants";
 import { isApiErrorResponse } from "./utils";
 
@@ -2425,6 +2429,70 @@ export class NeynarAPIClient {
   ): Promise<ValidateFrameActionResponse> {
     return await this.clients.v2.validateFrameAction(
       messageBytesInHex,
+      options
+    );
+  }
+
+  /**
+   * Retrieve a list of all the frames validated by a user
+   *
+   * @returns {Promise<FrameValidateListResponse>} A promise that resolves to an array of frame urls
+   *
+   * @example
+   *
+   * // Retrieve the list of validated frames
+   * client.fetchValidateFrameList()
+   *   .then(response => console.log(response))
+   *   .catch(error => console.error(error));
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/validate-frame-list).
+   */
+  public async fetchValidateFrameList(): Promise<FrameValidateListResponse> {
+    return await this.clients.v2.fetchValidateFrameList();
+  }
+
+  /**
+   * Retrieves analytics for a specific frame over a given time period.
+   * This method allows for detailed analysis of frame interactions, providing insights into user engagement metrics such as total interactors, interactions per cast, and input text analysis.
+   *
+   * @param {string} frameUrl - The URL of the frame for which analytics are being retrieved.
+   * @param {ValidateFrameAnalyticsType} analyticsType - Specifies the type of analytics to retrieve. Can include metrics like total-interactors, interactors, interactions-per-cast, and input-text, each offering a different perspective on user engagement.
+   * @param {string} start - The start date/time for the analytics period. This parameter sets the beginning of the timeframe for the data being requested.
+   * @param {string} stop - The stop date/time for the analytics period. Similarly, this defines the end of the timeframe for analytics retrieval, allowing for precise period analysis.
+   * @param {Object} [options]
+   *   @param {ValidateFrameAggregateWindow} [options.aggregateWindow] - Defines the aggregation window for the analytics, particularly required for 'interactions-per-cast' type analytics to determine the granularity of data aggregation.
+   *
+   * @returns {Promise<FrameValidateAnalyticsResponse>} A promise that resolves to FrameValidateAnalyticsResponse containing the requested frame analytics data, structured according to the specified analytics type and period.
+   *
+   *
+   * @example
+   *
+   * import {ValidateFrameAnalyticsType, ValidateFrameAggregateWindow } from '@neynar/nodejs-sdk'
+   *
+   * client.fetchValidateFrameAnalytics(
+   *   'https://shorturl.at/bDRY9',
+   *   ValidateFrameAnalyticsType.InteractionsPerCast,
+   *   '2024-04-06T06:44:56.811Z',
+   *   '2024-04-08T06:44:56.811Z',
+   *   { aggregateWindow: ValidateFrameAggregateWindow.TWELVE_HOURS }
+   * )
+   * .then(response => console.log(response))
+   * .catch(error => console.error(error));
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/validate-frame-analytics).
+   */
+  public async fetchValidateFrameAnalytics(
+    frameUrl: string,
+    analyticsType: ValidateFrameAnalyticsType,
+    start: string,
+    stop: string,
+    options?: { aggregateWindow?: ValidateFrameAggregateWindow }
+  ): Promise<FrameValidateAnalyticsResponse> {
+    return await this.clients.v2.fetchValidateFrameAnalytics(
+      frameUrl,
+      analyticsType,
+      start,
+      stop,
       options
     );
   }

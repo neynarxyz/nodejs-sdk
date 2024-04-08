@@ -57,3 +57,15 @@ export enum BulkUserAddressTypes {
   CUSTODY_ADDRESS = "custody_address",
   VERIFIED_ADDRESS = "verified_address"
 }
+
+export enum ValidateFrameAggregateWindow {
+  TEN_SECONDS = "10s",
+  ONE_MINUTE = "1m",
+  TWO_MINUTES = "2m",
+  TWENTY_MINUTES = "20m",
+  THIRTY_MINUTES = "30m",
+  TWO_HOURS = "2h",
+  TWELVE_HOURS = "12h",
+  ONE_DAY = "1d",
+  SEVEN_DAYS = "7d",
+}

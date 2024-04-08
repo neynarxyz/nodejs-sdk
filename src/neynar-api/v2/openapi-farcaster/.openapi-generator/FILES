@@ -141,6 +141,7 @@ models/user.ts
 models/users-active-channels-response.ts
 models/users-response.ts
 models/validate-frame-action-response.ts
+models/validate-frame-analytics-type.ts
 models/validate-frame-request.ts
 models/validated-frame-action-signer.ts
 models/validated-frame-action-tapped-button.ts

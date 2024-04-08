@@ -117,6 +117,7 @@ export * from './user-viewer-context';
 export * from './users-active-channels-response';
 export * from './users-response';
 export * from './validate-frame-action-response';
+export * from './validate-frame-analytics-type';
 export * from './validate-frame-request';
 export * from './validated-frame-action';
 export * from './validated-frame-action-signer';
