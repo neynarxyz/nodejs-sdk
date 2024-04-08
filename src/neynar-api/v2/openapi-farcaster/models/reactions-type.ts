@@ -21,9 +21,9 @@
  */
 
 export const ReactionsType = {
+    All: 'all',
     Likes: 'likes',
-    Recasts: 'recasts',
-    All: 'all'
+    Recasts: 'recasts'
 } as const;
 
 export type ReactionsType = typeof ReactionsType[keyof typeof ReactionsType];
