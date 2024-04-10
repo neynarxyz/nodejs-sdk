@@ -1538,7 +1538,7 @@ export class NeynarV2APIClient {
    * import { ReactionsType } from "@neynar/nodejs-sdk";
    *
    * // Example: Fetch a casts reactions
-   * client.fetchCastReactions("0xfe90f9de682273e05b201629ad2338bdcd89b6be", ReactionsType.All, {
+   * client.fetchCastReactions("0xfe90f9de682273e05b201629ad2338bdcd89b6be",[ReactionsType.Likes, ReactionType.Recasts], {
    * limit: 50,
    * // cursor: "nextPageCursor" // Omit this parameter for the initial request
    *  }).then(response => {
