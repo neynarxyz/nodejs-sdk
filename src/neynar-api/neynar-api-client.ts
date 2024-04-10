@@ -1844,7 +1844,7 @@ export class NeynarAPIClient {
    * the reactions associated with a cast, specified by the cast hash.
    *
    * @param {string} hash - The hash of the cast whose reactions are being fetched.
-   * @param {ReactionsType} types - The type of reaction to fetch (likes, recasts, or all).
+   * @param {ReactionsType[]} types - Commas separated string of types of reactions to fetch (likes, recasts, or all).
    * @param {Object} [options] - Optional parameters for customizing the response.
    * @param {number} [options.limit] - Limits the number of results. Default is 25, with a maximum of 100.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
@@ -1855,10 +1855,9 @@ export class NeynarAPIClient {
    *
    * @example
    *
-   * import { ReactionsType } from "@neynar/nodejs-sdk";
    *
    * // Example: Fetch a casts reactions
-   * client.fetchReactionsForCast("0xfe90f9de682273e05b201629ad2338bdcd89b6be", ReactionsType.All, {
+   * client.fetchReactionsForCast("0xfe90f9de682273e05b201629ad2338bdcd89b6be",[ReactionsType.Likes, ReactionType.Recasts], {
    * limit: 50,
    * // cursor: "nextPageCursor" // Omit this parameter for the initial request
    *  }).then(response => {
@@ -1869,7 +1868,7 @@ export class NeynarAPIClient {
    */
   public async fetchReactionsForCast(
     hash: string,
-    types: ReactionsType,
+    types: ReactionsType[],
     options?: { limit?: number; cursor?: string }
   ): Promise<ReactionsCastResponse> {
     return await this.clients.v2.fetchCastReactions(hash, types, options);

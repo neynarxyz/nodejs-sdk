@@ -1549,13 +1549,14 @@ export class NeynarV2APIClient {
    */
   public async fetchCastReactions(
     hash: string,
-    types: ReactionsType,
+    types: ReactionsType[],
     options?: { limit?: number; cursor?: string }
   ): Promise<ReactionsCastResponse> {
+    const finished_types = types && types.length > 0 ? types.join(",") : "all";
     const response = await this.apis.reaction.reactionsCast(
       this.apiKey,
       hash,
-      types,
+      finished_types,
       options?.limit,
       options?.cursor
     );
