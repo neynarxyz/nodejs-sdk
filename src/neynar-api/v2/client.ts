@@ -1708,8 +1708,6 @@ export class NeynarV2APIClient {
     return response.data;
   }
 
-  
-
   /**
    * Retrieves all channels where a specific user has been active, sorted in reverse chronological order.
    * This method is useful for understanding the various channels a user has interacted with through casting.
