@@ -1857,7 +1857,7 @@ export class NeynarAPIClient {
    *
    *
    * // Example: Fetch a casts reactions
-   * client.fetchReactionsForCast("0xfe90f9de682273e05b201629ad2338bdcd89b6be",[ReactionsType.Likes, ReactionType.Recasts], {
+   * client.fetchReactionsForCast("0xfe90f9de682273e05b201629ad2338bdcd89b6be",ReactionsType.All, {
    * limit: 50,
    * // cursor: "nextPageCursor" // Omit this parameter for the initial request
    *  }).then(response => {
@@ -1868,7 +1868,7 @@ export class NeynarAPIClient {
    */
   public async fetchReactionsForCast(
     hash: string,
-    types: ReactionsType[],
+    types: ReactionsType,
     options?: { limit?: number; cursor?: string }
   ): Promise<ReactionsCastResponse> {
     return await this.clients.v2.fetchCastReactions(hash, types, options);
