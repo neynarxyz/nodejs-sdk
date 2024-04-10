@@ -747,7 +747,7 @@ export class NeynarV2APIClient {
     return response.data;
   }
 
-    /**
+  /**
    * Fetches channels that a user follows. This method retrieves a list of channels that a user follows,
    *
    * @param {number} fid - The FID of the user whose followed channels are being fetched.
