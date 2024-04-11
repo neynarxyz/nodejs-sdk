@@ -1844,7 +1844,7 @@ export class NeynarAPIClient {
    * the reactions associated with a cast, specified by the cast hash.
    *
    * @param {string} hash - The hash of the cast whose reactions are being fetched.
-   * @param {ReactionsType[]} types - The type of reaction to fetch (likes, recasts, or all).
+   * @param {ReactionsType} types - The type of reaction to fetch (likes, recasts, or all).
    * @param {Object} [options] - Optional parameters for customizing the response.
    * @param {number} [options.limit] - Limits the number of results. Default is 25, with a maximum of 100.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
@@ -2091,7 +2091,7 @@ export class NeynarAPIClient {
    * @param {'1d' | '7d' | '30d'} [timeWindow] - The time window for trending analysis. Options are '1d' (one day),
    *   '7d' (seven days), or '30d' (thirty days).
    * @param {Object} [options] - Optional parameters to tailor the request.
-   * @param {number} [options.limit=10] - The number of channel details to fetch per request. Defaults to 10, with a maximum allowable value of 25.
+   * @param {number} [options.limit=25] - The number of channel details to fetch per request. Defaults to 25, with a maximum allowable value of 100.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results.
    *  Omit this parameter for the initial request to start from the first page.
    *
