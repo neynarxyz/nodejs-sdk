@@ -494,7 +494,7 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @summary Retrieve trending channels based on activity
          * @param {string} apiKey API key required for authentication.
          * @param {'1d' | '7d' | '30d'} [timeWindow] 
-         * @param {number} [limit] Number of results to retrieve (default 10, max 25)
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}

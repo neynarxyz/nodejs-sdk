@@ -1844,7 +1844,7 @@ export class NeynarAPIClient {
    * the reactions associated with a cast, specified by the cast hash.
    *
    * @param {string} hash - The hash of the cast whose reactions are being fetched.
-   * @param {ReactionsType[]} types - Commas separated string of types of reactions to fetch (likes, recasts, or all).
+   * @param {ReactionsType[]} types - The type of reaction to fetch (likes, recasts, or all).
    * @param {Object} [options] - Optional parameters for customizing the response.
    * @param {number} [options.limit] - Limits the number of results. Default is 25, with a maximum of 100.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
