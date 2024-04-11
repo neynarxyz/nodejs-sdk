@@ -1,5 +1,6 @@
 export * from './active-status';
 export * from './add-verification-req-body';
+export * from './authorization-url-response';
 export * from './bulk-casts-response';
 export * from './bulk-follow-response';
 export * from './bulk-users-response';
