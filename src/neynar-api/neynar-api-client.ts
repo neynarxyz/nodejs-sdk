@@ -1854,7 +1854,7 @@ export class NeynarAPIClient {
    *   containing the reactions associated with the user's casts.
    *
    * @example
-   *
+   * import { ReactionsType } from "@neynar/nodejs-sdk";
    *
    * // Example: Fetch a casts reactions
    * client.fetchReactionsForCast("0xfe90f9de682273e05b201629ad2338bdcd89b6be",ReactionsType.All, {
