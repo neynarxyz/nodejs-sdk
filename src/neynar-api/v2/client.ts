@@ -65,6 +65,8 @@ import {
   FrameValidateListResponse,
   ValidateFrameAnalyticsType,
   FrameValidateAnalyticsResponse,
+  AuthorizationUrlResponse,
+  AuthorizationUrlResponseType,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -767,21 +769,21 @@ export class NeynarV2APIClient {
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-channels).
    */
-    public async fetchUserChannels(
-      fid: number,
-      options?: {
-        limit?: number;
-        cursor?: string;
-      }
-    ): Promise<ChannelListResponse> {
-      const response = await this.apis.user.userChannels(
-        this.apiKey,
-        fid,
-        options?.limit,
-        options?.cursor
-      );
-      return response.data;
+  public async fetchUserChannels(
+    fid: number,
+    options?: {
+      limit?: number;
+      cursor?: string;
     }
+  ): Promise<ChannelListResponse> {
+    const response = await this.apis.user.userChannels(
+      this.apiKey,
+      fid,
+      options?.limit,
+      options?.cursor
+    );
+    return response.data;
+  }
 
   /**
    * Fetches bulk user information based on multiple Ethereum addresses. This function is particularly
@@ -891,6 +893,36 @@ export class NeynarV2APIClient {
     const response = await this.apis.user.lookupUserByCustodyAddress(
       this.apiKey,
       custodyAddress
+    );
+    return response.data;
+  }
+
+  /**
+   * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
+   *
+   * @param {string} client_id - The client identifier registered with the API.
+   * @param {AuthorizationUrlResponseType} code - The type of response to be received, typically including tokens.
+   *
+   * @returns {Promise<AuthorizationUrlResponse>} A promise that resolves to an object containing the authorization URL.
+   *
+   * @example
+   * // Example: Fetch the authorization URL
+   * import { AuthorizationUrlResponseType } from "@neynar/nodejs-sdk";
+   *
+   * client.fetchAuthorizationUrl('your-client-id', AuthorizationUrlResponseType.Code).then(response => {
+   *   console.log('Authorization URL:', response); // Outputs the fetched URL
+   * });
+   *
+   * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-authorization-url).
+   */
+  public async fetchAuthorizationUrl(
+    client_id: string,
+    code: AuthorizationUrlResponseType
+  ): Promise<AuthorizationUrlResponse> {
+    const response = await this.apis.user.fetchAuthorizationUrl(
+      this.apiKey,
+      client_id,
+      code
     );
     return response.data;
   }

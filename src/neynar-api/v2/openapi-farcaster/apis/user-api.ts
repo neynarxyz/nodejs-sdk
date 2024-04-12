@@ -24,6 +24,10 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { AddVerificationReqBody } from '../models';
 // @ts-ignore
+import { AuthorizationUrlResponse } from '../models';
+// @ts-ignore
+import { AuthorizationUrlResponseType } from '../models';
+// @ts-ignore
 import { BulkFollowResponse } from '../models';
 // @ts-ignore
 import { BulkUsersResponse } from '../models';
@@ -186,6 +190,57 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(addVerificationReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
+         * @summary Fetch authorization url
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} clientId 
+         * @param {AuthorizationUrlResponseType} responseType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        fetchAuthorizationUrl: async (apiKey: string, clientId: string, responseType: AuthorizationUrlResponseType, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('fetchAuthorizationUrl', 'apiKey', apiKey)
+            // verify required parameter 'clientId' is not null or undefined
+            assertParamExists('fetchAuthorizationUrl', 'clientId', clientId)
+            // verify required parameter 'responseType' is not null or undefined
+            assertParamExists('fetchAuthorizationUrl', 'responseType', responseType)
+            const localVarPath = `/farcaster/login/authorize`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (clientId !== undefined) {
+                localVarQueryParameter['client_id'] = clientId;
+            }
+
+            if (responseType !== undefined) {
+                localVarQueryParameter['response_type'] = responseType;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -751,6 +806,19 @@ export const UserApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
+         * @summary Fetch authorization url
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} clientId 
+         * @param {AuthorizationUrlResponseType} responseType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async fetchAuthorizationUrl(apiKey: string, clientId: string, responseType: AuthorizationUrlResponseType, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthorizationUrlResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchAuthorizationUrl(apiKey, clientId, responseType, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
          * @summary Follow a user
          * @param {string} apiKey API key required for authentication.
@@ -934,6 +1002,18 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.farcasterUserVerificationPost(apiKey, addVerificationReqBody, options).then((request) => request(axios, basePath));
         },
         /**
+         * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
+         * @summary Fetch authorization url
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} clientId 
+         * @param {AuthorizationUrlResponseType} responseType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        fetchAuthorizationUrl(apiKey: string, clientId: string, responseType: AuthorizationUrlResponseType, options?: any): AxiosPromise<AuthorizationUrlResponse> {
+            return localVarFp.fetchAuthorizationUrl(apiKey, clientId, responseType, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
          * @summary Follow a user
          * @param {string} apiKey API key required for authentication.
@@ -1109,6 +1189,20 @@ export class UserApi extends BaseAPI {
      */
     public farcasterUserVerificationPost(apiKey: string, addVerificationReqBody: AddVerificationReqBody, options?: AxiosRequestConfig) {
         return UserApiFp(this.configuration).farcasterUserVerificationPost(apiKey, addVerificationReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
+     * @summary Fetch authorization url
+     * @param {string} apiKey API key required for authentication.
+     * @param {string} clientId 
+     * @param {AuthorizationUrlResponseType} responseType 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public fetchAuthorizationUrl(apiKey: string, clientId: string, responseType: AuthorizationUrlResponseType, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).fetchAuthorizationUrl(apiKey, clientId, responseType, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

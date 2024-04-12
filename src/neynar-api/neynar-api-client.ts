@@ -49,6 +49,8 @@ import {
   FrameValidateAnalyticsResponse,
   ValidateFrameAnalyticsType,
   FrameValidateListResponse,
+  AuthorizationUrlResponse,
+  AuthorizationUrlResponseType,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -1277,7 +1279,7 @@ export class NeynarAPIClient {
   ): Promise<ChannelListResponse> {
     return await this.clients.v2.fetchUserChannels(fid, options);
   }
-  
+
   /**
    * Searches for users based on a query. This method is used to find users by usernames or other
    * identifiable information. The search can be contextualized to the viewer specified by `viewerFid`.
@@ -1365,6 +1367,34 @@ export class NeynarAPIClient {
     custodyAddress: string
   ): Promise<UserResponse> {
     return await this.clients.v2.lookupUserByCustodyAddress(custodyAddress);
+  }
+
+  /**
+   * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
+   *
+   * @param {string} client_id - The client identifier registered with the API.
+   * @param {AuthorizationUrlResponseType} code - The type of response to be received, typically including tokens.
+   *
+   * @returns {Promise<AuthorizationUrlResponse>} A promise that resolves to an object containing the authorization URL.
+   *
+   * @example
+   * // Example: Fetch the authorization URL
+   * import { AuthorizationUrlResponseType } from "@neynar/nodejs-sdk";
+   *
+   * client.fetchAuthorizationUrl('your-client-id', AuthorizationUrlResponseType.Code).then(response => {
+   *   console.log('Authorization URL:', response); // Outputs the fetched URL
+   * });
+   *
+   * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-authorization-url).
+   */
+  public async fetchAuthorizationUrl(
+    client_id: string,
+    response_type: AuthorizationUrlResponseType
+  ): Promise<AuthorizationUrlResponse> {
+    return await this.clients.v2.fetchAuthorizationUrl(
+      client_id,
+      response_type
+    );
   }
 
   // ------------ Cast ------------
