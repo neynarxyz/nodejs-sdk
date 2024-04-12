@@ -481,7 +481,7 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * Fetches all channels that a user has casted in, in reverse chronological order. Once follows are on the protocol, we will allow choosing for different types of user activity (e.g. casted, followed, etc.).
          * @summary Get channels that a user is active in
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid The user's fid (identifier)
+         * @param {number} fid The user\&#39;s fid (identifier)
          * @param {number} [limit] Number of results to retrieve (default 20, max 100).
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -717,7 +717,7 @@ export class ChannelApi extends BaseAPI {
      * Fetches all channels that a user has casted in, in reverse chronological order. Once follows are on the protocol, we will allow choosing for different types of user activity (e.g. casted, followed, etc.).
      * @summary Get channels that a user is active in
      * @param {string} apiKey API key required for authentication.
-     * @param {number} fid The user's fid (identifier)
+     * @param {number} fid The user\&#39;s fid (identifier)
      * @param {number} [limit] Number of results to retrieve (default 20, max 100).
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
