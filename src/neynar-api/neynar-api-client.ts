@@ -1249,6 +1249,36 @@ export class NeynarAPIClient {
   }
 
   /**
+   * Fetches channels that a user follows. This method retrieves a list of channels that a user follows,
+   *
+   * @param {number} fid - The FID of the user whose followed channels are being fetched.
+   * @param {Object} [options] - Optional parameters for the function.
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100)
+   * @param {string} [options.cursor] - The cursor for pagination.
+   *
+   * @returns {Promise<ChannelListResponse>} A promise that resolves to an ChannelListResponse object,
+   *
+   *
+   * @example
+   * // Example: Fetch the channels that DWR follows
+   *
+   * client.fetchUserChannels(3,{limit: 5}).then(response => {
+   *   console.log('DWR channel follows:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-channels).
+   */
+  public async fetchUserChannels(
+    fid: number,
+    options?: {
+      limit?: number;
+      cursor?: string;
+    }
+  ): Promise<ChannelListResponse> {
+    return await this.clients.v2.fetchUserChannels(fid, options);
+  }
+  
+  /**
    * Searches for users based on a query. This method is used to find users by usernames or other
    * identifiable information. The search can be contextualized to the viewer specified by `viewerFid`.
    *
@@ -1824,11 +1854,10 @@ export class NeynarAPIClient {
    *   containing the reactions associated with the user's casts.
    *
    * @example
-   *
    * import { ReactionsType } from "@neynar/nodejs-sdk";
    *
    * // Example: Fetch a casts reactions
-   * client.fetchReactionsForCast("0xfe90f9de682273e05b201629ad2338bdcd89b6be", ReactionsType.All, {
+   * client.fetchReactionsForCast("0xfe90f9de682273e05b201629ad2338bdcd89b6be",ReactionsType.All, {
    * limit: 50,
    * // cursor: "nextPageCursor" // Omit this parameter for the initial request
    *  }).then(response => {

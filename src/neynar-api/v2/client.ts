@@ -748,6 +748,42 @@ export class NeynarV2APIClient {
   }
 
   /**
+   * Fetches channels that a user follows. This method retrieves a list of channels that a user follows,
+   *
+   * @param {number} fid - The FID of the user whose followed channels are being fetched.
+   * @param {Object} [options] - Optional parameters for the function.
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100)
+   * @param {string} [options.cursor] - The cursor for pagination.
+   *
+   * @returns {Promise<ChannelListResponse>} A promise that resolves to an ChannelListResponse object,
+   *
+   *
+   * @example
+   * // Example: Fetch the channels that DWR follows
+   *
+   * client.fetchUserChannels(3,{limit: 5}).then(response => {
+   *   console.log('DWR channel follows:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-channels).
+   */
+    public async fetchUserChannels(
+      fid: number,
+      options?: {
+        limit?: number;
+        cursor?: string;
+      }
+    ): Promise<ChannelListResponse> {
+      const response = await this.apis.user.userChannels(
+        this.apiKey,
+        fid,
+        options?.limit,
+        options?.cursor
+      );
+      return response.data;
+    }
+
+  /**
    * Fetches bulk user information based on multiple Ethereum addresses. This function is particularly
    * useful for retrieving user details associated with both custody and verified Ethereum addresses.
    * Note that a custody address can be linked to only one Farcaster user at a time, but a verified
@@ -1502,7 +1538,7 @@ export class NeynarV2APIClient {
    * import { ReactionsType } from "@neynar/nodejs-sdk";
    *
    * // Example: Fetch a casts reactions
-   * client.fetchCastReactions("0xfe90f9de682273e05b201629ad2338bdcd89b6be", ReactionsType.All, {
+   * client.fetchCastReactions("0xfe90f9de682273e05b201629ad2338bdcd89b6be",ReactionsType.All, {
    * limit: 50,
    * // cursor: "nextPageCursor" // Omit this parameter for the initial request
    *  }).then(response => {
@@ -1803,7 +1839,7 @@ export class NeynarV2APIClient {
    * @param {'1d' | '7d' | '30d'} [timeWindow] - The time window for trending analysis. Options are '1d' (one day),
    *   '7d' (seven days), or '30d' (thirty days).
    * @param {Object} [options] - Optional parameters to tailor the request.
-   * @param {number} [options.limit=25] - The number of channel details to fetch per request. Defaults to 25, with a maximum allowable value of 100.
+   * @param {number} [options.limit=10] - The number of channel details to fetch per request. Defaults to 10, with a maximum allowable value of 25.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results.
    *  Omit this parameter for the initial request to start from the first page.
    *
