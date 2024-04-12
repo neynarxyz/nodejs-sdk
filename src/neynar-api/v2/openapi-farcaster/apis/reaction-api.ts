@@ -130,19 +130,17 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
          * @summary Fetches reactions for a given cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} hash 
-         * @param {ReactionsType} types comma seperated list of reactions to fetch (likes or recasts or all)
+         * @param {string} [types] Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        reactionsCast: async (apiKey: string, hash: string, types: ReactionsType, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        reactionsCast: async (apiKey: string, hash: string, types?: string, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('reactionsCast', 'apiKey', apiKey)
             // verify required parameter 'hash' is not null or undefined
             assertParamExists('reactionsCast', 'hash', hash)
-            // verify required parameter 'types' is not null or undefined
-            assertParamExists('reactionsCast', 'types', types)
             const localVarPath = `/farcaster/reactions/cast`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -286,13 +284,13 @@ export const ReactionApiFp = function(configuration?: Configuration) {
          * @summary Fetches reactions for a given cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} hash 
-         * @param {ReactionsType} types comma seperated list of reactions to fetch (likes or recasts or all)
+         * @param {string} [types] Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async reactionsCast(apiKey: string, hash: string, types: ReactionsType, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsCastResponse>> {
+        async reactionsCast(apiKey: string, hash: string, types?: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsCastResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.reactionsCast(apiKey, hash, types, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -348,13 +346,13 @@ export const ReactionApiFactory = function (configuration?: Configuration, baseP
          * @summary Fetches reactions for a given cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} hash 
-         * @param {ReactionsType} types comma seperated list of reactions to fetch (likes or recasts or all)
+         * @param {string} [types] Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        reactionsCast(apiKey: string, hash: string, types: ReactionsType, limit?: number, cursor?: string, options?: any): AxiosPromise<ReactionsCastResponse> {
+        reactionsCast(apiKey: string, hash: string, types?: string, limit?: number, cursor?: string, options?: any): AxiosPromise<ReactionsCastResponse> {
             return localVarFp.reactionsCast(apiKey, hash, types, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
@@ -412,14 +410,14 @@ export class ReactionApi extends BaseAPI {
      * @summary Fetches reactions for a given cast
      * @param {string} apiKey API key required for authentication.
      * @param {string} hash 
-     * @param {ReactionsType} types comma seperated list of reactions to fetch (likes or recasts or all)
+     * @param {string} [types] Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
      * @param {number} [limit] Number of results to retrieve (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReactionApi
      */
-    public reactionsCast(apiKey: string, hash: string, types: ReactionsType, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+    public reactionsCast(apiKey: string, hash: string, types?: string, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
         return ReactionApiFp(this.configuration).reactionsCast(apiKey, hash, types, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 

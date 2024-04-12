@@ -60,6 +60,12 @@ export interface Channel {
      */
     'created_at'?: number;
     /**
+     * Number of followers the channel has.
+     * @type {number}
+     * @memberof Channel
+     */
+    'follower_count'?: number;
+    /**
      * 
      * @type {string}
      * @memberof Channel
@@ -71,6 +77,12 @@ export interface Channel {
      * @memberof Channel
      */
     'lead'?: User;
+    /**
+     * 
+     * @type {Array<User>}
+     * @memberof Channel
+     */
+    'hosts'?: Array<User>;
 }
 
 export const ChannelObjectEnum = {
