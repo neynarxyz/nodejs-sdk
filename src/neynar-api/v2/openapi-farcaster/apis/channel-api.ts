@@ -42,10 +42,12 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Get channels that a user is active in
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid The user\&#39;s fid (identifier)
+         * @param {number} [limit] Number of results to retrieve (default 20, max 100).
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        activeChannels: async (apiKey: string, fid: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        activeChannels: async (apiKey: string, fid: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('activeChannels', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -64,6 +66,14 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
             }
 
             if (apiKey != null) {
@@ -86,10 +96,11 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Retrieve channel details by id
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel ID for the channel being queried
+         * @param {number} [viewerFid] FID of the user viewing the channel.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        channelDetails: async (apiKey: string, id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        channelDetails: async (apiKey: string, id: string, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('channelDetails', 'apiKey', apiKey)
             // verify required parameter 'id' is not null or undefined
@@ -108,6 +119,10 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
 
             if (id !== undefined) {
                 localVarQueryParameter['id'] = id;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
             if (apiKey != null) {
@@ -351,7 +366,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Retrieve trending channels based on activity
          * @param {string} apiKey API key required for authentication.
          * @param {'1d' | '7d' | '30d'} [timeWindow] 
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to retrieve (default 10, max 25)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -398,6 +413,60 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Returns a list of all channels with their details that a fid follows.
+         * @summary Retrieve all channels that a given fid follows
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid The fid of the user.
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userChannels: async (apiKey: string, fid: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('userChannels', 'apiKey', apiKey)
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('userChannels', 'fid', fid)
+            const localVarPath = `/farcaster/user/channels`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -412,12 +481,14 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * Fetches all channels that a user has casted in, in reverse chronological order. Once follows are on the protocol, we will allow choosing for different types of user activity (e.g. casted, followed, etc.).
          * @summary Get channels that a user is active in
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid The user\&#39;s fid (identifier)
+         * @param {number} fid The user's fid (identifier)
+         * @param {number} [limit] Number of results to retrieve (default 20, max 100).
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async activeChannels(apiKey: string, fid: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersActiveChannelsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.activeChannels(apiKey, fid, options);
+        async activeChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersActiveChannelsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.activeChannels(apiKey, fid, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -425,11 +496,12 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @summary Retrieve channel details by id
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel ID for the channel being queried
+         * @param {number} [viewerFid] FID of the user viewing the channel.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async channelDetails(apiKey: string, id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.channelDetails(apiKey, id, options);
+        async channelDetails(apiKey: string, id: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.channelDetails(apiKey, id, viewerFid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -494,13 +566,27 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @summary Retrieve trending channels based on activity
          * @param {string} apiKey API key required for authentication.
          * @param {'1d' | '7d' | '30d'} [timeWindow] 
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to retrieve (default 10, max 25)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.trendingChannels(apiKey, timeWindow, limit, cursor, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a list of all channels with their details that a fid follows.
+         * @summary Retrieve all channels that a given fid follows
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid The fid of the user.
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async userChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userChannels(apiKey, fid, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -518,22 +604,25 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @summary Get channels that a user is active in
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid The user\&#39;s fid (identifier)
+         * @param {number} [limit] Number of results to retrieve (default 20, max 100).
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        activeChannels(apiKey: string, fid: number, options?: any): AxiosPromise<UsersActiveChannelsResponse> {
-            return localVarFp.activeChannels(apiKey, fid, options).then((request) => request(axios, basePath));
+        activeChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: any): AxiosPromise<UsersActiveChannelsResponse> {
+            return localVarFp.activeChannels(apiKey, fid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns details of a channel
          * @summary Retrieve channel details by id
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel ID for the channel being queried
+         * @param {number} [viewerFid] FID of the user viewing the channel.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        channelDetails(apiKey: string, id: string, options?: any): AxiosPromise<ChannelResponse> {
-            return localVarFp.channelDetails(apiKey, id, options).then((request) => request(axios, basePath));
+        channelDetails(apiKey: string, id: string, viewerFid?: number, options?: any): AxiosPromise<ChannelResponse> {
+            return localVarFp.channelDetails(apiKey, id, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
@@ -593,13 +682,26 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @summary Retrieve trending channels based on activity
          * @param {string} apiKey API key required for authentication.
          * @param {'1d' | '7d' | '30d'} [timeWindow] 
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to retrieve (default 10, max 25)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', limit?: number, cursor?: string, options?: any): AxiosPromise<ChannelListResponse> {
             return localVarFp.trendingChannels(apiKey, timeWindow, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of all channels with their details that a fid follows.
+         * @summary Retrieve all channels that a given fid follows
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid The fid of the user.
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: any): AxiosPromise<ChannelListResponse> {
+            return localVarFp.userChannels(apiKey, fid, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -615,13 +717,15 @@ export class ChannelApi extends BaseAPI {
      * Fetches all channels that a user has casted in, in reverse chronological order. Once follows are on the protocol, we will allow choosing for different types of user activity (e.g. casted, followed, etc.).
      * @summary Get channels that a user is active in
      * @param {string} apiKey API key required for authentication.
-     * @param {number} fid The user\&#39;s fid (identifier)
+     * @param {number} fid The user's fid (identifier)
+     * @param {number} [limit] Number of results to retrieve (default 20, max 100).
+     * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public activeChannels(apiKey: string, fid: number, options?: AxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).activeChannels(apiKey, fid, options).then((request) => request(this.axios, this.basePath));
+    public activeChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).activeChannels(apiKey, fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -629,12 +733,13 @@ export class ChannelApi extends BaseAPI {
      * @summary Retrieve channel details by id
      * @param {string} apiKey API key required for authentication.
      * @param {string} id Channel ID for the channel being queried
+     * @param {number} [viewerFid] FID of the user viewing the channel.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public channelDetails(apiKey: string, id: string, options?: AxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).channelDetails(apiKey, id, options).then((request) => request(this.axios, this.basePath));
+    public channelDetails(apiKey: string, id: string, viewerFid?: number, options?: AxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).channelDetails(apiKey, id, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -703,7 +808,7 @@ export class ChannelApi extends BaseAPI {
      * @summary Retrieve trending channels based on activity
      * @param {string} apiKey API key required for authentication.
      * @param {'1d' | '7d' | '30d'} [timeWindow] 
-     * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+     * @param {number} [limit] Number of results to retrieve (default 10, max 25)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -711,5 +816,20 @@ export class ChannelApi extends BaseAPI {
      */
     public trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', limit?: number, cursor?: string, options?: AxiosRequestConfig) {
         return ChannelApiFp(this.configuration).trendingChannels(apiKey, timeWindow, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of all channels with their details that a fid follows.
+     * @summary Retrieve all channels that a given fid follows
+     * @param {string} apiKey API key required for authentication.
+     * @param {number} fid The fid of the user.
+     * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public userChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).userChannels(apiKey, fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }

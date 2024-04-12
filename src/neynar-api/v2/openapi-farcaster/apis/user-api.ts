@@ -24,11 +24,11 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { AddVerificationReqBody } from '../models';
 // @ts-ignore
+import { AuthorizationUrlResponse } from '../models';
+// @ts-ignore
 import { BulkFollowResponse } from '../models';
 // @ts-ignore
 import { BulkUsersResponse } from '../models';
-// @ts-ignore
-import { ChannelListResponse } from '../models';
 // @ts-ignore
 import { ErrorRes } from '../models';
 // @ts-ignore
@@ -186,6 +186,57 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(addVerificationReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
+         * @summary Fetch authorization url
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} clientId 
+         * @param {'code'} responseType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        fetchAuthorizationUrl: async (apiKey: string, clientId: string, responseType: 'code', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('fetchAuthorizationUrl', 'apiKey', apiKey)
+            // verify required parameter 'clientId' is not null or undefined
+            assertParamExists('fetchAuthorizationUrl', 'clientId', clientId)
+            // verify required parameter 'responseType' is not null or undefined
+            assertParamExists('fetchAuthorizationUrl', 'responseType', responseType)
+            const localVarPath = `/farcaster/login/authorize`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (clientId !== undefined) {
+                localVarQueryParameter['client_id'] = clientId;
+            }
+
+            if (responseType !== undefined) {
+                localVarQueryParameter['response_type'] = responseType;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -591,60 +642,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Returns a list of all channels with their details that a fid follows.
-         * @summary Retrieve all channels that a given fid follows.
-         * @param {string} apiKey API key required for authentication.
-         * @param {number} fid The fid of the user.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
-         * @param {string} [cursor] Pagination cursor.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        userChannels: async (apiKey: string, fid: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('userChannels', 'apiKey', apiKey)
-            // verify required parameter 'fid' is not null or undefined
-            assertParamExists('userChannels', 'fid', fid)
-            const localVarPath = `/farcaster/user/channels`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (fid !== undefined) {
-                localVarQueryParameter['fid'] = fid;
-            }
-
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-            if (cursor !== undefined) {
-                localVarQueryParameter['cursor'] = cursor;
-            }
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Search for Usernames
          * @summary Search for Usernames
          * @param {string} apiKey API key required for authentication.
@@ -748,6 +745,19 @@ export const UserApiFp = function(configuration?: Configuration) {
          */
         async farcasterUserVerificationPost(apiKey: string, addVerificationReqBody: AddVerificationReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.farcasterUserVerificationPost(apiKey, addVerificationReqBody, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
+         * @summary Fetch authorization url
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} clientId 
+         * @param {'code'} responseType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async fetchAuthorizationUrl(apiKey: string, clientId: string, responseType: 'code', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthorizationUrlResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchAuthorizationUrl(apiKey, clientId, responseType, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -861,20 +871,6 @@ export const UserApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Returns a list of all channels with their details that a fid follows.
-         * @summary Retrieve all channels that a given fid follows.
-         * @param {string} apiKey API key required for authentication.
-         * @param {number} fid The fid of the user.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
-         * @param {string} [cursor] Pagination cursor.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async userChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userChannels(apiKey, fid, limit, cursor, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
          * Search for Usernames
          * @summary Search for Usernames
          * @param {string} apiKey API key required for authentication.
@@ -932,6 +928,18 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          */
         farcasterUserVerificationPost(apiKey: string, addVerificationReqBody: AddVerificationReqBody, options?: any): AxiosPromise<OperationResponse> {
             return localVarFp.farcasterUserVerificationPost(apiKey, addVerificationReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
+         * @summary Fetch authorization url
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} clientId 
+         * @param {'code'} responseType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        fetchAuthorizationUrl(apiKey: string, clientId: string, responseType: 'code', options?: any): AxiosPromise<AuthorizationUrlResponse> {
+            return localVarFp.fetchAuthorizationUrl(apiKey, clientId, responseType, options).then((request) => request(axios, basePath));
         },
         /**
          * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
@@ -1035,19 +1043,6 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.userBulkByAddress(apiKey, addresses, addressTypes, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns a list of all channels with their details that a fid follows.
-         * @summary Retrieve all channels that a given fid follows.
-         * @param {string} apiKey API key required for authentication.
-         * @param {number} fid The fid of the user.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
-         * @param {string} [cursor] Pagination cursor.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        userChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: any): AxiosPromise<ChannelListResponse> {
-            return localVarFp.userChannels(apiKey, fid, limit, cursor, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Search for Usernames
          * @summary Search for Usernames
          * @param {string} apiKey API key required for authentication.
@@ -1109,6 +1104,20 @@ export class UserApi extends BaseAPI {
      */
     public farcasterUserVerificationPost(apiKey: string, addVerificationReqBody: AddVerificationReqBody, options?: AxiosRequestConfig) {
         return UserApiFp(this.configuration).farcasterUserVerificationPost(apiKey, addVerificationReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
+     * @summary Fetch authorization url
+     * @param {string} apiKey API key required for authentication.
+     * @param {string} clientId 
+     * @param {'code'} responseType 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public fetchAuthorizationUrl(apiKey: string, clientId: string, responseType: 'code', options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).fetchAuthorizationUrl(apiKey, clientId, responseType, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1228,21 +1237,6 @@ export class UserApi extends BaseAPI {
      */
     public userBulkByAddress(apiKey: string, addresses: string, addressTypes?: string, options?: AxiosRequestConfig) {
         return UserApiFp(this.configuration).userBulkByAddress(apiKey, addresses, addressTypes, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Returns a list of all channels with their details that a fid follows.
-     * @summary Retrieve all channels that a given fid follows.
-     * @param {string} apiKey API key required for authentication.
-     * @param {number} fid The fid of the user.
-     * @param {number} [limit] Number of results to retrieve (default 25, max 100)
-     * @param {string} [cursor] Pagination cursor.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UserApi
-     */
-    public userChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
-        return UserApiFp(this.configuration).userChannels(apiKey, fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

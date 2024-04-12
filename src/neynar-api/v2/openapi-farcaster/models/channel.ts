@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { ChannelViewerContext } from './channel-viewer-context';
+// May contain unused imports in some cases
+// @ts-ignore
 import { User } from './user';
 
 /**
@@ -83,6 +86,12 @@ export interface Channel {
      * @memberof Channel
      */
     'hosts'?: Array<User>;
+    /**
+     * 
+     * @type {ChannelViewerContext}
+     * @memberof Channel
+     */
+    'viewer_context'?: ChannelViewerContext;
 }
 
 export const ChannelObjectEnum = {
