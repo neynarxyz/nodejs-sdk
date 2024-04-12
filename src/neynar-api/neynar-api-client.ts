@@ -2010,7 +2010,7 @@ export class NeynarAPIClient {
    *
    * @param {number} fid - The FID (identifier) of the user whose active channels are being fetched.
    * @param {Object} [options] - Optional parameters for the request.
-   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
+   * @param {number} [options.limit] - Number of results to retrieve (default 20, max 100).
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    * @returns {Promise<UsersActiveChannelsResponse>} A promise that resolves to an `UsersActiveChannelsResponse` object,
    *   containing a list of channels where the user has been active.
