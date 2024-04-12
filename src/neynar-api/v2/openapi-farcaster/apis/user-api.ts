@@ -26,6 +26,8 @@ import { AddVerificationReqBody } from '../models';
 // @ts-ignore
 import { AuthorizationUrlResponse } from '../models';
 // @ts-ignore
+import { AuthorizationUrlResponseType } from '../models';
+// @ts-ignore
 import { BulkFollowResponse } from '../models';
 // @ts-ignore
 import { BulkUsersResponse } from '../models';
@@ -199,11 +201,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Fetch authorization url
          * @param {string} apiKey API key required for authentication.
          * @param {string} clientId 
-         * @param {'code'} responseType 
+         * @param {AuthorizationUrlResponseType} responseType 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchAuthorizationUrl: async (apiKey: string, clientId: string, responseType: 'code', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchAuthorizationUrl: async (apiKey: string, clientId: string, responseType: AuthorizationUrlResponseType, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('fetchAuthorizationUrl', 'apiKey', apiKey)
             // verify required parameter 'clientId' is not null or undefined
@@ -808,11 +810,11 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @summary Fetch authorization url
          * @param {string} apiKey API key required for authentication.
          * @param {string} clientId 
-         * @param {'code'} responseType 
+         * @param {AuthorizationUrlResponseType} responseType 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async fetchAuthorizationUrl(apiKey: string, clientId: string, responseType: 'code', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthorizationUrlResponse>> {
+        async fetchAuthorizationUrl(apiKey: string, clientId: string, responseType: AuthorizationUrlResponseType, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthorizationUrlResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.fetchAuthorizationUrl(apiKey, clientId, responseType, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1004,11 +1006,11 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @summary Fetch authorization url
          * @param {string} apiKey API key required for authentication.
          * @param {string} clientId 
-         * @param {'code'} responseType 
+         * @param {AuthorizationUrlResponseType} responseType 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchAuthorizationUrl(apiKey: string, clientId: string, responseType: 'code', options?: any): AxiosPromise<AuthorizationUrlResponse> {
+        fetchAuthorizationUrl(apiKey: string, clientId: string, responseType: AuthorizationUrlResponseType, options?: any): AxiosPromise<AuthorizationUrlResponse> {
             return localVarFp.fetchAuthorizationUrl(apiKey, clientId, responseType, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1194,12 +1196,12 @@ export class UserApi extends BaseAPI {
      * @summary Fetch authorization url
      * @param {string} apiKey API key required for authentication.
      * @param {string} clientId 
-     * @param {'code'} responseType 
+     * @param {AuthorizationUrlResponseType} responseType 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public fetchAuthorizationUrl(apiKey: string, clientId: string, responseType: 'code', options?: AxiosRequestConfig) {
+    public fetchAuthorizationUrl(apiKey: string, clientId: string, responseType: AuthorizationUrlResponseType, options?: AxiosRequestConfig) {
         return UserApiFp(this.configuration).fetchAuthorizationUrl(apiKey, clientId, responseType, options).then((request) => request(this.axios, this.basePath));
     }
 

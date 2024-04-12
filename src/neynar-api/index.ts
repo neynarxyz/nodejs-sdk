@@ -8,6 +8,7 @@ export {
   ReactionType,
   FrameButtonActionType,
   ValidateFrameAnalyticsType,
+  AuthorizationUrlResponseType,
 } from "./v2";
 export {
   TimeWindow,
