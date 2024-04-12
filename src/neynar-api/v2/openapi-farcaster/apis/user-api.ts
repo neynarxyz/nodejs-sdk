@@ -1113,12 +1113,12 @@ export class UserApi extends BaseAPI {
      * @summary Fetch authorization url
      * @param {string} apiKey API key required for authentication.
      * @param {string} clientId 
-     * @param {'code'} responseType 
+     * @param {AuthorizationUrlResponseType} responseType 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public fetchAuthorizationUrl(apiKey: string, clientId: string, responseType: 'code', options?: AxiosRequestConfig) {
+    public fetchAuthorizationUrl(apiKey: string, clientId: string, responseType: AuthorizationUrlResponseType, options?: AxiosRequestConfig) {
         return UserApiFp(this.configuration).fetchAuthorizationUrl(apiKey, clientId, responseType, options).then((request) => request(this.axios, this.basePath));
     }
 
