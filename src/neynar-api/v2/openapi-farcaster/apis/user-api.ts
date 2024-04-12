@@ -22,9 +22,11 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 // @ts-ignore
-import { AddVerificationReqBody, AuthorizationUrlResponseType } from '../models';
+import { AddVerificationReqBody } from '../models';	
 // @ts-ignore
 import { AuthorizationUrlResponse } from '../models';
+// @ts-ignore
+import { AuthorizationUrlResponseType } from '../models';
 // @ts-ignore
 import { BulkFollowResponse } from '../models';
 // @ts-ignore
