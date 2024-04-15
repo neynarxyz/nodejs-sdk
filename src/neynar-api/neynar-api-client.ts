@@ -51,6 +51,7 @@ import {
   FrameValidateListResponse,
   AuthorizationUrlResponse,
   AuthorizationUrlResponseType,
+  TrendingChannelResponse,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -2151,7 +2152,7 @@ export class NeynarAPIClient {
       limit?: number;
       cursor?: string;
     }
-  ): Promise<ChannelListResponse> {
+  ): Promise<TrendingChannelResponse> {
     return await this.clients.v2.fetchTrendingChannels(timeWindow, options);
   }
 
@@ -2497,6 +2498,7 @@ export class NeynarAPIClient {
       castReactionContext?: boolean;
       followContext?: boolean;
       signerContext?: boolean;
+      channelFollowContext?: boolean;
     }
   ): Promise<ValidateFrameActionResponse> {
     return await this.clients.v2.validateFrameAction(

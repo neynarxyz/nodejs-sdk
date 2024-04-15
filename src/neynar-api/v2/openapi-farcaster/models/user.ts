@@ -55,7 +55,7 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    'display_name': string;
+    'display_name'?: string;
     /**
      * Ethereum address
      * @type {string}
@@ -67,7 +67,7 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    'pfp_url': string;
+    'pfp_url'?: string;
     /**
      * 
      * @type {UserProfile}

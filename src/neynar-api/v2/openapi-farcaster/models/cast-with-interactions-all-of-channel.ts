@@ -13,24 +13,20 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { Channel } from './channel';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ChannelViewerContext } from './channel-viewer-context';
+// May contain unused imports in some cases
+// @ts-ignore
+import { User } from './user';
 
 /**
- * Adds context on the viewer\'s follow relationship with the user.
+ * @type CastWithInteractionsAllOfChannel
  * @export
- * @interface UserViewerContext
  */
-export interface UserViewerContext {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UserViewerContext
-     */
-    'following': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UserViewerContext
-     */
-    'followed_by': boolean;
-}
+export type CastWithInteractionsAllOfChannel = Channel;
+
 

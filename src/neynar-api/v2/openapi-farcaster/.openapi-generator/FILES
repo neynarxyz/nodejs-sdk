@@ -33,6 +33,7 @@ models/cast-param-type.ts
 models/cast-parent-author-all-of.ts
 models/cast-parent-author.ts
 models/cast-response.ts
+models/cast-with-interactions-all-of-channel.ts
 models/cast-with-interactions-all-of.ts
 models/cast-with-interactions-and-conversations.ts
 models/cast-with-interactions-reactions.ts
@@ -41,6 +42,7 @@ models/cast-with-interactions.ts
 models/cast.ts
 models/casts-response-result.ts
 models/casts-response.ts
+models/channel-activity.ts
 models/channel-list-response.ts
 models/channel-response.ts
 models/channel-viewer-context.ts
@@ -128,6 +130,7 @@ models/storage-allocation.ts
 models/storage-allocations-response.ts
 models/storage-object.ts
 models/storage-usage-response.ts
+models/trending-channel-response.ts
 models/update-user-req-body.ts
 models/user-dehydrated.ts
 models/user-fidresponse.ts

@@ -22,7 +22,7 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 // @ts-ignore
-import { AddVerificationReqBody } from '../models';	
+import { AddVerificationReqBody } from '../models';
 // @ts-ignore
 import { AuthorizationUrlResponse } from '../models';
 // @ts-ignore
@@ -199,11 +199,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Fetch authorization url
          * @param {string} apiKey API key required for authentication.
          * @param {string} clientId 
-         * @param {AuthorizationUrlResponseType} responseType
+         * @param {AuthorizationUrlResponseType} responseType 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchAuthorizationUrl: async (apiKey: string, clientId: string, responseType: AuthorizationUrlResponseType , options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchAuthorizationUrl: async (apiKey: string, clientId: string, responseType: AuthorizationUrlResponseType, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('fetchAuthorizationUrl', 'apiKey', apiKey)
             // verify required parameter 'clientId' is not null or undefined
@@ -754,7 +754,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @summary Fetch authorization url
          * @param {string} apiKey API key required for authentication.
          * @param {string} clientId 
-         * @param {AuthorizationUrlResponseType} responseType
+         * @param {AuthorizationUrlResponseType} responseType 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -936,7 +936,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @summary Fetch authorization url
          * @param {string} apiKey API key required for authentication.
          * @param {string} clientId 
-         * @param {AuthorizationUrlResponseType} responseType
+         * @param {AuthorizationUrlResponseType} responseType 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */

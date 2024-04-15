@@ -24,6 +24,9 @@ import { CastParentAuthor } from './cast-parent-author';
 import { CastWithInteractions } from './cast-with-interactions';
 // May contain unused imports in some cases
 // @ts-ignore
+import { CastWithInteractionsAllOfChannel } from './cast-with-interactions-all-of-channel';
+// May contain unused imports in some cases
+// @ts-ignore
 import { CastWithInteractionsReactions } from './cast-with-interactions-reactions';
 // May contain unused imports in some cases
 // @ts-ignore

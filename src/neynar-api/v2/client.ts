@@ -65,6 +65,7 @@ import {
   FrameValidateAnalyticsResponse,
   AuthorizationUrlResponse,
   AuthorizationUrlResponseType,
+  TrendingChannelResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -1896,7 +1897,7 @@ export class NeynarV2APIClient {
       limit?: number;
       cursor?: string;
     }
-  ): Promise<ChannelListResponse> {
+  ): Promise<TrendingChannelResponse> {
     const response = await this.apis.channel.trendingChannels(
       this.apiKey,
       timeWindow,
@@ -2264,6 +2265,7 @@ export class NeynarV2APIClient {
       castReactionContext?: boolean;
       followContext?: boolean;
       signerContext?: boolean;
+      channelFollowContext?: boolean;
     }
   ): Promise<ValidateFrameActionResponse> {
     const reqBody: ValidateFrameRequest = {
@@ -2276,6 +2278,9 @@ export class NeynarV2APIClient {
       }),
       ...(typeof options?.signerContext !== "undefined" && {
         signer_context: options?.signerContext,
+      }),
+      ...(typeof options?.channelFollowContext !== "undefined" && {
+        channel_follow_context: options?.channelFollowContext,
       }),
     };
 
