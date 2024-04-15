@@ -739,41 +739,7 @@ export class NeynarV2APIClient {
     return response.data;
   }
 
-  /**
-   * Fetches channels that a user follows. This method retrieves a list of channels that a user follows,
-   *
-   * @param {number} fid - The FID of the user whose followed channels are being fetched.
-   * @param {Object} [options] - Optional parameters for the function.
-   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100)
-   * @param {string} [options.cursor] - The cursor for pagination.
-   *
-   * @returns {Promise<ChannelListResponse>} A promise that resolves to an ChannelListResponse object,
-   *
-   *
-   * @example
-   * // Example: Fetch the channels that DWR follows
-   *
-   * client.fetchUserChannels(3,{limit: 5}).then(response => {
-   *   console.log('DWR channel follows:', response);
-   * });
-   *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-channels).
-   */
-    public async fetchUserChannels(
-      fid: number,
-      options?: {
-        limit?: number;
-        cursor?: string;
-      }
-    ): Promise<ChannelListResponse> {
-      const response = await this.apis.channel.userChannels(
-        this.apiKey,
-        fid,
-        options?.limit,
-        options?.cursor
-      );
-      return response.data;
-    }
+
 
   /**
    * Fetches bulk user information based on multiple Ethereum addresses. This function is particularly
@@ -1706,6 +1672,42 @@ export class NeynarV2APIClient {
   }
 
   // ------------ Channel ------------
+
+    /**
+   * Fetches channels that a user follows. This method retrieves a list of channels that a user follows,
+   *
+   * @param {number} fid - The FID of the user whose followed channels are being fetched.
+   * @param {Object} [options] - Optional parameters for the function.
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100)
+   * @param {string} [options.cursor] - The cursor for pagination.
+   *
+   * @returns {Promise<ChannelListResponse>} A promise that resolves to an ChannelListResponse object,
+   *
+   *
+   * @example
+   * // Example: Fetch the channels that DWR follows
+   *
+   * client.fetchUserChannels(3,{limit: 5}).then(response => {
+   *   console.log('DWR channel follows:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-channels).
+   */
+    public async fetchUserChannels(
+      fid: number,
+      options?: {
+        limit?: number;
+        cursor?: string;
+      }
+    ): Promise<ChannelListResponse> {
+      const response = await this.apis.channel.userChannels(
+        this.apiKey,
+        fid,
+        options?.limit,
+        options?.cursor
+      );
+      return response.data;
+    }
 
   /**
    * Retrieves details of a specific channel based on its ID. This method is essential for
