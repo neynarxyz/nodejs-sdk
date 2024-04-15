@@ -1984,20 +1984,24 @@ export class NeynarAPIClient {
    * obtaining comprehensive information about a channel, including its attributes and metadata.
    *
    * @param {string} id - The ID of the channel being queried.
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {number} [options.viewerFid] - The FID of the viewer requesting the channel details.
    *
    * @returns {Promise<ChannelResponse>} A promise that resolves to a `ChannelResponse` object,
    *   containing detailed information about the specified channel.
    *
    * @example
    * // Example: Retrieve details of a channel by its ID
-   * client.lookupChannel('neynar').then(response => {
+   * client.lookupChannel('neynar', {viewerFid: 3}).then(response => {
    *   console.log('Channel Details:', response);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/channel-details).
    */
-  public async lookupChannel(id: string): Promise<ChannelResponse> {
-    return await this.clients.v2.lookupChannel(id);
+  public async lookupChannel(id: string,options?:{
+    viewerFid?: number;
+  }): Promise<ChannelResponse> {
+    return await this.clients.v2.lookupChannel(id,options);
   }
 
   /**
@@ -2005,22 +2009,25 @@ export class NeynarAPIClient {
    * This method is useful for understanding the various channels a user has interacted with through casting.
    *
    * @param {number} fid - The FID (identifier) of the user whose active channels are being fetched.
-   *
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {number} [options.limit] - Number of results to retrieve (default 20, max 100).
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    * @returns {Promise<UsersActiveChannelsResponse>} A promise that resolves to an `UsersActiveChannelsResponse` object,
    *   containing a list of channels where the user has been active.
    *
    * @example
    * // Example: Fetch all channels where a user has been active
-   * client.fetchUsersActiveChannels(3).then(response => {
+   * client.fetchUsersActiveChannels(3,{limit: 5}).then(response => {
    *   console.log('User\'s Active Channels:', response);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/active-channels).
    */
   public async fetchUsersActiveChannels(
-    fid: number
+    fid: number,
+    options?: { limit?: number, cursor?: string}
   ): Promise<UsersActiveChannelsResponse> {
-    return await this.clients.v2.fetchUsersActiveChannels(fid);
+    return await this.clients.v2.fetchUsersActiveChannels(fid, options);
   }
 
   /**

@@ -23,6 +23,7 @@ export * from './casts-response-result';
 export * from './channel';
 export * from './channel-list-response';
 export * from './channel-response';
+export * from './channel-viewer-context';
 export * from './conversation';
 export * from './conversation-response';
 export * from './dehydrated-follower';

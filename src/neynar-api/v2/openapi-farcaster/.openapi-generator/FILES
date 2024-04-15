@@ -7,12 +7,10 @@ apis/channel-api.ts
 apis/feed-api.ts
 apis/fname-api.ts
 apis/follows-api.ts
-apis/frames-api.ts
-apis/neynar-frames-api.ts
+apis/frame-api.ts
 apis/notifications-api.ts
 apis/reaction-api.ts
 apis/signer-api.ts
-apis/signer-developer-managed-api.ts
 apis/storage-api.ts
 apis/user-api.ts
 apis/webhook-api.ts
@@ -45,6 +43,7 @@ models/casts-response-result.ts
 models/casts-response.ts
 models/channel-list-response.ts
 models/channel-response.ts
+models/channel-viewer-context.ts
 models/channel.ts
 models/conversation-response.ts
 models/conversation.ts

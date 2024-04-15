@@ -1,7 +1,6 @@
 import {
   CastApi,
   SignerApi,
-  SignerDeveloperManagedApi,
   Signer,
   Cast,
   CastParamType,
@@ -41,7 +40,7 @@ import {
   BulkCastsResponse,
   FnameApi,
   FnameAvailabilityResponse,
-  FramesApi,
+  FrameApi,
   FrameActionReqBody,
   FrameAction,
   ValidateFrameRequest,
@@ -50,7 +49,6 @@ import {
   DeleteNeynarFrameRequest,
   NeynarFrameUpdateRequest,
   NeynarFrameCreationRequest,
-  NeynarFramesApi,
   DeveloperManagedSigner,
   WebhookApi,
   WebhookResponse,
@@ -88,7 +86,6 @@ export class NeynarV2APIClient {
 
   public readonly apis: {
     signer: SignerApi;
-    developerManagedSigner: SignerDeveloperManagedApi;
     user: UserApi;
     cast: CastApi;
     reaction: ReactionApi;
@@ -99,8 +96,7 @@ export class NeynarV2APIClient {
     storage: StorageApi;
     nft: NFTApi;
     fname: FnameApi;
-    frames: FramesApi;
-    neynarFrames: NeynarFramesApi;
+    frame: FrameApi;
     webhook: WebhookApi;
   };
 
@@ -153,11 +149,6 @@ export class NeynarV2APIClient {
 
     this.apis = {
       signer: new SignerApi(config, undefined, axiosInstance),
-      developerManagedSigner: new SignerDeveloperManagedApi(
-        config,
-        undefined,
-        axiosInstance
-      ),
       user: new UserApi(config, undefined, axiosInstance),
       cast: new CastApi(config, undefined, axiosInstance),
       reaction: new ReactionApi(config, undefined, axiosInstance),
@@ -168,8 +159,7 @@ export class NeynarV2APIClient {
       storage: new StorageApi(config, undefined, axiosInstance),
       nft: new NFTApi(config, undefined, axiosInstance),
       fname: new FnameApi(config, undefined, axiosInstance),
-      frames: new FramesApi(config, undefined, axiosInstance),
-      neynarFrames: new NeynarFramesApi(config, undefined, axiosInstance),
+      frame: new FrameApi(config, undefined, axiosInstance),
       webhook: new WebhookApi(config, undefined, axiosInstance),
     };
   }
@@ -304,7 +294,7 @@ export class NeynarV2APIClient {
     publicKey: string
   ): Promise<DeveloperManagedSigner> {
     const response =
-      await this.apis.developerManagedSigner.developerManagedSigner(
+      await this.apis.signer.developerManagedSigner(
         this.apiKey,
         publicKey
       );
@@ -347,7 +337,7 @@ export class NeynarV2APIClient {
       signature: signature,
     };
     const response =
-      await this.apis.developerManagedSigner.registerSignedKeyForDeveloperManagedSigner(
+      await this.apis.signer.registerSignedKeyForDeveloperManagedSigner(
         this.apiKey,
         registerSignerKeyReqBody
       );
@@ -375,7 +365,7 @@ export class NeynarV2APIClient {
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/publish-message).
    */
   public async publishMessageToFarcaster(message: object) {
-    const response = await this.apis.developerManagedSigner.publishMessage(
+    const response = await this.apis.signer.publishMessage(
       this.apiKey,
       message
     );
@@ -749,41 +739,7 @@ export class NeynarV2APIClient {
     return response.data;
   }
 
-  /**
-   * Fetches channels that a user follows. This method retrieves a list of channels that a user follows,
-   *
-   * @param {number} fid - The FID of the user whose followed channels are being fetched.
-   * @param {Object} [options] - Optional parameters for the function.
-   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100)
-   * @param {string} [options.cursor] - The cursor for pagination.
-   *
-   * @returns {Promise<ChannelListResponse>} A promise that resolves to an ChannelListResponse object,
-   *
-   *
-   * @example
-   * // Example: Fetch the channels that DWR follows
-   *
-   * client.fetchUserChannels(3,{limit: 5}).then(response => {
-   *   console.log('DWR channel follows:', response);
-   * });
-   *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-channels).
-   */
-  public async fetchUserChannels(
-    fid: number,
-    options?: {
-      limit?: number;
-      cursor?: string;
-    }
-  ): Promise<ChannelListResponse> {
-    const response = await this.apis.user.userChannels(
-      this.apiKey,
-      fid,
-      options?.limit,
-      options?.cursor
-    );
-    return response.data;
-  }
+
 
   /**
    * Fetches bulk user information based on multiple Ethereum addresses. This function is particularly
@@ -1717,25 +1673,65 @@ export class NeynarV2APIClient {
 
   // ------------ Channel ------------
 
+    /**
+   * Fetches channels that a user follows. This method retrieves a list of channels that a user follows,
+   *
+   * @param {number} fid - The FID of the user whose followed channels are being fetched.
+   * @param {Object} [options] - Optional parameters for the function.
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100)
+   * @param {string} [options.cursor] - The cursor for pagination.
+   *
+   * @returns {Promise<ChannelListResponse>} A promise that resolves to an ChannelListResponse object,
+   *
+   *
+   * @example
+   * // Example: Fetch the channels that DWR follows
+   *
+   * client.fetchUserChannels(3,{limit: 5}).then(response => {
+   *   console.log('DWR channel follows:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-channels).
+   */
+    public async fetchUserChannels(
+      fid: number,
+      options?: {
+        limit?: number;
+        cursor?: string;
+      }
+    ): Promise<ChannelListResponse> {
+      const response = await this.apis.channel.userChannels(
+        this.apiKey,
+        fid,
+        options?.limit,
+        options?.cursor
+      );
+      return response.data;
+    }
+
   /**
    * Retrieves details of a specific channel based on its ID. This method is essential for
    * obtaining comprehensive information about a channel, including its attributes and metadata.
    *
    * @param {string} id - The ID of the channel being queried.
+   * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {number} [options.viewerFid] - The FID of the user viewing the channel.
    *
    * @returns {Promise<ChannelResponse>} A promise that resolves to a `ChannelResponse` object,
    *   containing detailed information about the specified channel.
    *
    * @example
    * // Example: Retrieve details of a channel by its ID
-   * client.lookupChannel('neynar').then(response => {
+   * client.lookupChannel('neynar',{viewerFid: 3}).then(response => {
    *   console.log('Channel Details:', response);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/channel-details).
    */
-  public async lookupChannel(id: string): Promise<ChannelResponse> {
-    const response = await this.apis.channel.channelDetails(this.apiKey, id);
+  public async lookupChannel(id: string,options?: {
+    viewerFid?: number;
+  }): Promise<ChannelResponse> {
+    const response = await this.apis.channel.channelDetails(this.apiKey, id,options?.viewerFid);
     return response.data;
   }
 
@@ -1744,20 +1740,26 @@ export class NeynarV2APIClient {
    * This method is useful for understanding the various channels a user has interacted with through casting.
    *
    * @param {number} fid - The FID (identifier) of the user whose active channels are being fetched.
-   *
+   * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {number} [options.limit] - Number of results to retrieve (default 20, max 100).
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    * @returns {Promise<UsersActiveChannelsResponse>} A promise that resolves to an `UsersActiveChannelsResponse` object,
    *   containing a list of channels where the user has been active.
    *
    * @example
    * // Example: Fetch all channels where a user has been active
-   * client.fetchUsersActiveChannels(3).then(response => {
+   * client.fetchUsersActiveChannels(3,{limit: 5}).then(response => {
    *   console.log('User\'s Active Channels:', response);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/active-channels).
    */
-  public async fetchUsersActiveChannels(fid: number) {
-    const response = await this.apis.channel.activeChannels(this.apiKey, fid);
+  public async fetchUsersActiveChannels(fid: number, options?: {
+    limit?: number;
+    cursor?: string;
+  }
+  ) {
+    const response = await this.apis.channel.activeChannels(this.apiKey, fid, options?.limit, options?.cursor);
     return response.data;
   }
 
@@ -2071,7 +2073,7 @@ export class NeynarV2APIClient {
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/lookup-neynar-frame).
    */
   public async lookupNeynarFrame(uuid: string) {
-    const response = await this.apis.neynarFrames.lookupNeynarFrame(
+    const response = await this.apis.frame.lookupNeynarFrame(
       this.apiKey,
       uuid
     );
@@ -2101,7 +2103,7 @@ export class NeynarV2APIClient {
   public async publishNeynarFrame(
     neynarFrameCreationRequest: NeynarFrameCreationRequest
   ) {
-    const response = await this.apis.neynarFrames.publishNeynarFrame(
+    const response = await this.apis.frame.publishNeynarFrame(
       this.apiKey,
       neynarFrameCreationRequest
     );
@@ -2132,7 +2134,7 @@ export class NeynarV2APIClient {
   public async updateNeynarFrame(
     neynarFrameUpdateRequest: NeynarFrameUpdateRequest
   ) {
-    const response = await this.apis.neynarFrames.updateNeynarFrame(
+    const response = await this.apis.frame.updateNeynarFrame(
       this.apiKey,
       neynarFrameUpdateRequest
     );
@@ -2161,7 +2163,7 @@ export class NeynarV2APIClient {
     const deleteNeynarFrameRequest: DeleteNeynarFrameRequest = {
       uuid,
     };
-    const response = await this.apis.neynarFrames.deleteNeynarFrame(
+    const response = await this.apis.frame.deleteNeynarFrame(
       this.apiKey,
       deleteNeynarFrameRequest
     );
@@ -2184,7 +2186,7 @@ export class NeynarV2APIClient {
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/fetch-neynar-frames).
    */
   public async fetchNeynarFrames() {
-    const response = await this.apis.neynarFrames.fetchNeynarFrames(
+    const response = await this.apis.frame.fetchNeynarFrames(
       this.apiKey
     );
     return response.data;
@@ -2229,7 +2231,7 @@ export class NeynarV2APIClient {
       cast_hash: castHash,
       action,
     };
-    const response = await this.apis.frames.postFrameAction(this.apiKey, body);
+    const response = await this.apis.frame.postFrameAction(this.apiKey, body);
     return response.data;
   }
 
@@ -2277,7 +2279,7 @@ export class NeynarV2APIClient {
       }),
     };
 
-    const response = await this.apis.frames.validateFrame(this.apiKey, reqBody);
+    const response = await this.apis.frame.validateFrame(this.apiKey, reqBody);
     return response.data;
   }
 
@@ -2297,7 +2299,7 @@ export class NeynarV2APIClient {
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/validate-frame-list).
    */
   public async fetchValidateFrameList(): Promise<FrameValidateListResponse> {
-    const response = await this.apis.frames.validateFrameList(this.apiKey);
+    const response = await this.apis.frame.validateFrameList(this.apiKey);
     return response.data;
   }
 
@@ -2337,7 +2339,7 @@ export class NeynarV2APIClient {
     stop: string,
     options?: { aggregateWindow?: ValidateFrameAggregateWindow }
   ): Promise<FrameValidateAnalyticsResponse> {
-    const response = await this.apis.frames.validateFrameAnalytics(
+    const response = await this.apis.frame.validateFrameAnalytics(
       this.apiKey,
       frameUrl,
       analyticsType,

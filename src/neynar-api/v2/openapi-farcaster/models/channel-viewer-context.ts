@@ -17,11 +17,14 @@
 /**
  * 
  * @export
- * @enum {string}
+ * @interface ChannelViewerContext
  */
+export interface ChannelViewerContext {
+    /**
+     * Indicates if the viewer is following the channel.
+     * @type {boolean}
+     * @memberof ChannelViewerContext
+     */
+    'following': boolean;
+}
 
-export const AuthorizationUrlResponseType = {
-    Code: 'code'
-} as const;
-
-export type AuthorizationUrlResponseType = typeof AuthorizationUrlResponseType[keyof typeof AuthorizationUrlResponseType];

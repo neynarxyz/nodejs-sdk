@@ -18,7 +18,7 @@
 import { Channel } from './channel';
 // May contain unused imports in some cases
 // @ts-ignore
-import { User } from './user';
+import { NextCursor } from './next-cursor';
 
 /**
  * 
@@ -28,15 +28,15 @@ import { User } from './user';
 export interface UsersActiveChannelsResponse {
     /**
      * 
-     * @type {User}
-     * @memberof UsersActiveChannelsResponse
-     */
-    'user'?: User;
-    /**
-     * 
      * @type {Array<Channel>}
      * @memberof UsersActiveChannelsResponse
      */
     'channels'?: Array<Channel>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof UsersActiveChannelsResponse
+     */
+    'next'?: NextCursor;
 }
 
