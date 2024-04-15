@@ -1878,7 +1878,7 @@ export class NeynarV2APIClient {
    * @param {string} [options.cursor] - Pagination cursor for the next set of results.
    *  Omit this parameter for the initial request to start from the first page.
    *
-   * @returns {Promise<ChannelListResponse>} A promise that resolves to a `ChannelListResponse` object,
+   * @returns {Promise<TrendingChannelResponse>} A promise that resolves to a `ChannelListResponse` object,
    *   containing a list of trending channels based on the specified time window.
    *
    * @example
