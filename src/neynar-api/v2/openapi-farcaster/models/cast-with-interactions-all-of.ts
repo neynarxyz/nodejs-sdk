@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastWithInteractionsAllOfChannel } from './cast-with-interactions-all-of-channel';
-// May contain unused imports in some cases
-// @ts-ignore
 import { CastWithInteractionsReactions } from './cast-with-interactions-reactions';
 // May contain unused imports in some cases
 // @ts-ignore
 import { CastWithInteractionsReplies } from './cast-with-interactions-replies';
+// May contain unused imports in some cases
+// @ts-ignore
+import { Channel } from './channel';
 // May contain unused imports in some cases
 // @ts-ignore
 import { Frame } from './frame';
@@ -67,9 +67,9 @@ export interface CastWithInteractionsAllOf {
     'mentioned_profiles': Array<User>;
     /**
      * 
-     * @type {CastWithInteractionsAllOfChannel}
+     * @type {Channel}
      * @memberof CastWithInteractionsAllOf
      */
-    'channel'?: CastWithInteractionsAllOfChannel;
+    'channel'?: Channel;
 }
 
