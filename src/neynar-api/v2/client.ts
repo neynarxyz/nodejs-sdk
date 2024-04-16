@@ -1559,7 +1559,7 @@ export class NeynarV2APIClient {
    *
    * @param {number} fid - The FID of the user whose notifications are being fetched.
    * @param {Object} [options] - Optional parameters to tailor the request.
-   * @param {number} [options.limit=25] - Number of results to retrieve (default 15, max 25).
+   * @param {number} [options.limit=15] - Number of results to retrieve (default 15, max 25).
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
