@@ -16,6 +16,12 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import { FrameActionButton } from './frame-action-button';
+// May contain unused imports in some cases
+// @ts-ignore
+import { FrameInput } from './frame-input';
+// May contain unused imports in some cases
+// @ts-ignore
+import { FrameState } from './frame-state';
 
 /**
  * 
@@ -53,5 +59,29 @@ export interface Frame {
      * @memberof Frame
      */
     'frames_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Frame
+     */
+    'title'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Frame
+     */
+    'image_aspect_ratio'?: string;
+    /**
+     * 
+     * @type {FrameInput}
+     * @memberof Frame
+     */
+    'input'?: FrameInput;
+    /**
+     * 
+     * @type {FrameState}
+     * @memberof Frame
+     */
+    'state'?: FrameState;
 }
 

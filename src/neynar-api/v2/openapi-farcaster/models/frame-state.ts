@@ -25,6 +25,6 @@ export interface FrameState {
      * @type {string}
      * @memberof FrameState
      */
-    'serialized': string;
+    'serialized'?: string;
 }
 
