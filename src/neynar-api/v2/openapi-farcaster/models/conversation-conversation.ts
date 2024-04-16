@@ -16,18 +16,27 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import { CastWithInteractions } from './cast-with-interactions';
+// May contain unused imports in some cases
+// @ts-ignore
+import { CastWithInteractionsAndConversations } from './cast-with-interactions-and-conversations';
 
 /**
  * 
  * @export
- * @interface ConversationResponse
+ * @interface ConversationConversation
  */
-export interface ConversationResponse {
+export interface ConversationConversation {
     /**
      * 
-     * @type {CastWithInteractions}
-     * @memberof ConversationResponse
+     * @type {CastWithInteractionsAndConversations}
+     * @memberof ConversationConversation
      */
-    'cast': CastWithInteractions;
+    'cast': CastWithInteractionsAndConversations;
+    /**
+     * 
+     * @type {Array<CastWithInteractions>}
+     * @memberof ConversationConversation
+     */
+    'chronological_parent_casts'?: Array<CastWithInteractions>;
 }
 

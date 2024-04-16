@@ -26,7 +26,7 @@ export * from './channel-list-response';
 export * from './channel-response';
 export * from './channel-viewer-context';
 export * from './conversation';
-export * from './conversation-response';
+export * from './conversation-conversation';
 export * from './dehydrated-follower';
 export * from './delete-cast-req-body';
 export * from './delete-frame-response';
