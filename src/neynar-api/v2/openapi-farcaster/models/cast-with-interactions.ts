@@ -33,6 +33,9 @@ import { CastWithInteractionsReactions } from './cast-with-interactions-reaction
 import { CastWithInteractionsReplies } from './cast-with-interactions-replies';
 // May contain unused imports in some cases
 // @ts-ignore
+import { Channel } from './channel';
+// May contain unused imports in some cases
+// @ts-ignore
 import { EmbeddedCast } from './embedded-cast';
 // May contain unused imports in some cases
 // @ts-ignore

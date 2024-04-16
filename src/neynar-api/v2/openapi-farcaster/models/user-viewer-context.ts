@@ -15,7 +15,7 @@
 
 
 /**
- * 
+ * Adds context on the viewer\'s follow relationship with the user.
  * @export
  * @interface UserViewerContext
  */

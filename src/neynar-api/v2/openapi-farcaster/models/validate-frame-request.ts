@@ -44,5 +44,11 @@ export interface ValidateFrameRequest {
      * @memberof ValidateFrameRequest
      */
     'signer_context'?: boolean;
+    /**
+     * Adds viewer_context inside the cast object to indicate whether the interactor reacted to the cast housing the frame.
+     * @type {boolean}
+     * @memberof ValidateFrameRequest
+     */
+    'channel_follow_context'?: boolean;
 }
 

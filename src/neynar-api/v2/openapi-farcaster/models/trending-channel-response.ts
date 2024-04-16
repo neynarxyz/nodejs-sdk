@@ -15,19 +15,28 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ConversationConversation } from './conversation-conversation';
+import { ChannelActivity } from './channel-activity';
+// May contain unused imports in some cases
+// @ts-ignore
+import { NextCursor } from './next-cursor';
 
 /**
  * 
  * @export
- * @interface Conversation
+ * @interface TrendingChannelResponse
  */
-export interface Conversation {
+export interface TrendingChannelResponse {
     /**
      * 
-     * @type {ConversationConversation}
-     * @memberof Conversation
+     * @type {Array<ChannelActivity>}
+     * @memberof TrendingChannelResponse
      */
-    'conversation': ConversationConversation;
+    'channels': Array<ChannelActivity>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof TrendingChannelResponse
+     */
+    'next': NextCursor;
 }
 

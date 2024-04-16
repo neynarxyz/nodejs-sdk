@@ -76,6 +76,12 @@ export interface Channel {
     'image_url'?: string;
     /**
      * 
+     * @type {string}
+     * @memberof Channel
+     */
+    'parent_url'?: string;
+    /**
+     * 
      * @type {User}
      * @memberof Channel
      */

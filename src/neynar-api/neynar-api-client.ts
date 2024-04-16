@@ -51,6 +51,7 @@ import {
   FrameValidateListResponse,
   AuthorizationUrlResponse,
   AuthorizationUrlResponseType,
+  TrendingChannelResponse,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -1912,8 +1913,8 @@ export class NeynarAPIClient {
    *
    * @param {number} fid - The FID of the user whose notifications are being fetched.
    * @param {Object} [options] - Optional parameters to tailor the request.
-   * @param {number} [options.limit] - The maximum number of users to be returned in the response.
-   *   Defaults to 25, with a maximum allowable value of 50.
+   * @param {number} [options.limit=15] - The maximum number of users to be returned in the response.
+   *   Defaults to 15, with a maximum allowable value of 25.
    * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
    *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
    *
@@ -1921,9 +1922,9 @@ export class NeynarAPIClient {
    *   containing the user's notifications.
    *
    * @example
-   * // Example: Fetch the first 30 notifications for a user
+   * // Example: Fetch the first 25 notifications for a user
    * client.fetchAllNotifications(3, {
-   * limit: 30,
+   * limit: 25,
    * // cursor: "nextPageCursor" // Omit this parameter for the initial request
    *  }).then(response => {
    *   console.log('User Notifications:', response);
@@ -1946,7 +1947,7 @@ export class NeynarAPIClient {
    * @param {number} fid - The FID of the user whose channel notifications are being fetched.
    * @param {string} channelIds - channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
    * @param {Object} [options] - Optional parameters for the request.
-   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 50).
+   * @param {number} [options.limit=15] - Number of results to retrieve (default 15, max 25).
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -1954,10 +1955,10 @@ export class NeynarAPIClient {
    *   containing the channel-specific notifications for the user.
    *
    * @example
-   * // Example: Retrieve channel notifications for a user limit to 30 results
+   * // Example: Retrieve channel notifications for a user limit to 25 results
    * client.fetchChannelNotificationsForUser(3, ['neynar', 'farcaster'],
    * {
-   *  limit: 30,
+   *  limit: 25,
    *  // cursor: "nextPageCursor" // Omit this parameter for the initial request.
    * }).then(response => {
    *   console.log('Channel Notifications:', response);
@@ -2132,7 +2133,7 @@ export class NeynarAPIClient {
    * @param {string} [options.cursor] - Pagination cursor for the next set of results.
    *  Omit this parameter for the initial request to start from the first page.
    *
-   * @returns {Promise<ChannelListResponse>} A promise that resolves to a `ChannelListResponse` object,
+   * @returns {Promise<TrendingChannelResponse>} A promise that resolves to a `ChannelListResponse` object,
    *   containing a list of trending channels based on the specified time window.
    *
    * @example
@@ -2151,7 +2152,7 @@ export class NeynarAPIClient {
       limit?: number;
       cursor?: string;
     }
-  ): Promise<ChannelListResponse> {
+  ): Promise<TrendingChannelResponse> {
     return await this.clients.v2.fetchTrendingChannels(timeWindow, options);
   }
 
@@ -2163,7 +2164,7 @@ export class NeynarAPIClient {
    * @param {number} fid - The FID of the user for whom notifications are being fetched.
    * @param {Array<string>} parentUrls - An array of parent URLs to specify the channels.
    * @param {Object} [options] - Optional parameters for customizing the response.
-   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 50).
+   * @param {number} [options.limit=15] - Number of results to retrieve (default 15, max 25).
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -2172,7 +2173,7 @@ export class NeynarAPIClient {
    *
    * @example
    * // Example: Retrieve notifications for a user based on specific parent URLs
-   * client.fetchNotificationsByParentUrlForUser(3, ['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc', 'chain://eip155:1/erc721:0xfd8427165df67df6d7fd689ae67c8ebf56d9ca61'], { limit: 30 }).then(response => {
+   * client.fetchNotificationsByParentUrlForUser(3, ['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc', 'chain://eip155:1/erc721:0xfd8427165df67df6d7fd689ae67c8ebf56d9ca61'], { limit: 25 }).then(response => {
    *   console.log('User Notifications:', response);
    * });
    *
@@ -2478,14 +2479,14 @@ export class NeynarAPIClient {
    * @param {boolean} [options.castReactionContext] - Adds viewer_context inside the cast object to indicate whether the interactor reacted to the cast housing the frame.
    * @param {boolean} [options.followContext] - Adds viewer_context inside the user (interactor) object to indicate whether the interactor follows or is followed by the cast author.
    * @param {boolean} [options.signerContext] - Adds context about the app used by the user inside `frame.action`.
-   *
+   * @param {boolean} [options.channelFollowContext] - Adds context about the channel the cast was in the cast object, as well as following information inside `frame.action`.
    * @returns {Promise<ValidateFrameActionResponse>} A promise that resolves to a `ValidateFrameActionResponse` object,
    *   indicating the outcome of the frame action validation, potentially enriched with specified contexts.
    *
    * @example
    * // Example: Validate a frame action with additional context for cast reactions and follow actions
    * const messageBytesInHex = '0a49080d1085940118f6a6a32e20018201390a1a86db69b3ffdf6ab8acb6872b69ccbe7eb6a67af7ab71e95aa69f10021a1908ef011214237025b322fd03a9ddc7ec6c078fb9c56d1a72111214e3d88aeb2d0af356024e0c693f31c11b42c76b721801224043cb2f3fcbfb5dafce110e934b9369267cf3d1aef06f51ce653dc01700fc7b778522eb7873fd60dda4611376200076caf26d40a736d3919ce14e78a684e4d30b280132203a66717c82d728beb3511b05975c6603275c7f6a0600370bf637b9ecd2bd231e';
-   * client.validateFrameAction(messageBytesInHex, { castReactionContext: false, followContext: true, signerContext: true }).then(response => {
+   * client.validateFrameAction(messageBytesInHex, { castReactionContext: false, followContext: true, signerContext: true, channelFollowContext: true }).then(response => {
    *   console.log('Frame Action Validation:', response);
    * });
    *
@@ -2497,6 +2498,7 @@ export class NeynarAPIClient {
       castReactionContext?: boolean;
       followContext?: boolean;
       signerContext?: boolean;
+      channelFollowContext?: boolean;
     }
   ): Promise<ValidateFrameActionResponse> {
     return await this.clients.v2.validateFrameAction(

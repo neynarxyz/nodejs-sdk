@@ -28,6 +28,8 @@ import { ChannelResponse } from '../models';
 // @ts-ignore
 import { ErrorRes } from '../models';
 // @ts-ignore
+import { TrendingChannelResponse } from '../models';
+// @ts-ignore
 import { UsersActiveChannelsResponse } from '../models';
 // @ts-ignore
 import { UsersResponse } from '../models';
@@ -571,7 +573,7 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
+        async trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TrendingChannelResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.trendingChannels(apiKey, timeWindow, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -687,7 +689,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', limit?: number, cursor?: string, options?: any): AxiosPromise<ChannelListResponse> {
+        trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', limit?: number, cursor?: string, options?: any): AxiosPromise<TrendingChannelResponse> {
             return localVarFp.trendingChannels(apiKey, timeWindow, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**

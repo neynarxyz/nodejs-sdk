@@ -41,11 +41,12 @@ models/cast-with-interactions.ts
 models/cast.ts
 models/casts-response-result.ts
 models/casts-response.ts
+models/channel-activity.ts
 models/channel-list-response.ts
 models/channel-response.ts
 models/channel-viewer-context.ts
 models/channel.ts
-models/conversation-response.ts
+models/conversation-conversation.ts
 models/conversation.ts
 models/dehydrated-follower.ts
 models/delete-cast-req-body.ts
@@ -128,6 +129,7 @@ models/storage-allocation.ts
 models/storage-allocations-response.ts
 models/storage-object.ts
 models/storage-usage-response.ts
+models/trending-channel-response.ts
 models/update-user-req-body.ts
 models/user-dehydrated.ts
 models/user-fidresponse.ts

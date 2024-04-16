@@ -25,3 +25,6 @@ export const AuthorizationUrlResponseType = {
 } as const;
 
 export type AuthorizationUrlResponseType = typeof AuthorizationUrlResponseType[keyof typeof AuthorizationUrlResponseType];
+
+
+
