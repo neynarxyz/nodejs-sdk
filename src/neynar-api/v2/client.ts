@@ -1567,9 +1567,9 @@ export class NeynarV2APIClient {
    *   containing the user's notifications.
    *
    * @example
-   * // Example: Fetch the first 30 notifications for a user
+   * // Example: Fetch the first 25 notifications for a user
    * client.fetchAllNotifications(3, {
-   * limit: 30,
+   * limit: 25,
    * // cursor: "nextPageCursor" // Omit this parameter for the initial request
    *  }).then(response => {
    *   console.log('User Notifications:', response);
@@ -1606,10 +1606,10 @@ export class NeynarV2APIClient {
    *   containing the channel-specific notifications for the user.
    *
    * @example
-   * // Example: Retrieve channel notifications for a user limit to 30 results
+   * // Example: Retrieve channel notifications for a user limit to 25 results
    * client.fetchChannelNotificationsForUser(3, ['neynar', 'farcaster'],
    * {
-   *  limit: 30,
+   *  limit: 25,
    *  // cursor: "nextPageCursor" // Omit this parameter for the initial request.
    * }).then(response => {
    *   console.log('Channel Notifications:', response);
@@ -1650,7 +1650,7 @@ export class NeynarV2APIClient {
    *
    * @example
    * // Example: Retrieve notifications for a user based on specific parent URLs
-   * client.fetchNotificationsByParentUrlForUser(3, ['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc', 'chain://eip155:1/erc721:0xfd8427165df67df6d7fd689ae67c8ebf56d9ca61'], { limit: 30 }).then(response => {
+   * client.fetchNotificationsByParentUrlForUser(3, ['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc', 'chain://eip155:1/erc721:0xfd8427165df67df6d7fd689ae67c8ebf56d9ca61'], { limit: 25 }).then(response => {
    *   console.log('User Notifications:', response);
    * });
    *
