@@ -1913,7 +1913,7 @@ export class NeynarAPIClient {
    *
    * @param {number} fid - The FID of the user whose notifications are being fetched.
    * @param {Object} [options] - Optional parameters to tailor the request.
-   * @param {number} [options.limit] - The maximum number of users to be returned in the response.
+   * @param {number} [options.limit=25] - The maximum number of users to be returned in the response.
    *   Defaults to 25, with a maximum allowable value of 50.
    * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
    *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
@@ -1947,7 +1947,7 @@ export class NeynarAPIClient {
    * @param {number} fid - The FID of the user whose channel notifications are being fetched.
    * @param {string} channelIds - channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
    * @param {Object} [options] - Optional parameters for the request.
-   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 50).
+   * @param {number} [options.limit=25] - Number of results to retrieve (default 25, max 50).
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -2164,7 +2164,7 @@ export class NeynarAPIClient {
    * @param {number} fid - The FID of the user for whom notifications are being fetched.
    * @param {Array<string>} parentUrls - An array of parent URLs to specify the channels.
    * @param {Object} [options] - Optional parameters for customizing the response.
-   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 50).
+   * @param {number} [options.limit=25] - Number of results to retrieve (default 25, max 50).
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
