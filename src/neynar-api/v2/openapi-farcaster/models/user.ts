@@ -106,6 +106,12 @@ export interface User {
     'active_status': ActiveStatus;
     /**
      * 
+     * @type {boolean}
+     * @memberof User
+     */
+    'power_badge': boolean;
+    /**
+     * 
      * @type {UserViewerContext}
      * @memberof User
      */
