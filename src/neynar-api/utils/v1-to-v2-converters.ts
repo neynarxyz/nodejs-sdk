@@ -6,6 +6,7 @@ import {
 import { User as IUserV2, ActiveStatus, Cast as ICastV2 } from "../v2";
 
 export const convertToV2User = (v1User: IUserV1): IUserV2 => {
+  // @ts-ignore
   const v2User: IUserV2 = {
     object: "user",
     fid: v1User.fid,
@@ -37,7 +38,6 @@ export const convertToV2User = (v1User: IUserV1): IUserV2 => {
         }
       : {}),
   };
-
   return v2User;
 };
 
