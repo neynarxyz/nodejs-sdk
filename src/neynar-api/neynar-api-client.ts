@@ -54,6 +54,9 @@ import {
   TrendingChannelResponse,
 } from "./v2/openapi-farcaster";
 
+import * as fs from 'fs';
+import * as path from 'path';
+
 import {
   RecentUsersResponse,
   UserCastLikeResponse,
@@ -127,6 +130,22 @@ export class NeynarAPIClient {
         "Attempt to use an authenticated API method without first providing an api key"
       );
     }
+    
+   
+  let sdkName ="unknown"
+  let sdkVersion = "0.0.0"
+
+try {
+    const packageJsonPath = path.join(__dirname, 'package.json');  // Adjust path as necessary
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+    sdkName = packageJson.name
+    sdkVersion = packageJson.version
+} catch (error) {
+    console.error('Error reading SDK package.json:', error);
+  
+}
+    
+
 
     this.clients = {
       v1: new NeynarV1APIClient(apiKey, { basePath, logger, axiosInstance }),
