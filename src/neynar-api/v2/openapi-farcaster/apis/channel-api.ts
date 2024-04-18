@@ -559,7 +559,7 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async searchChannels(apiKey: string, q: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
+        async searchChannels(apiKey: string, q: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.searchChannels(apiKey, q, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -676,7 +676,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchChannels(apiKey: string, q: string, options?: any): AxiosPromise<ChannelListResponse> {
+        searchChannels(apiKey: string, q: string, options?: any): AxiosPromise<ChannelResponse> {
             return localVarFp.searchChannels(apiKey, q, options).then((request) => request(axios, basePath));
         },
         /**
