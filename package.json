@@ -1,6 +1,6 @@
 {
   "name": "@neynar/nodejs-sdk",
-  "version": "1.19.4",
+  "version": "1.19.3",
   "description": "SDK to interact with Neynar APIs (https://docs.neynar.com/)",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -25,8 +25,6 @@
   "dependencies": {
     "@openapitools/openapi-generator-cli": "^2.7.0",
     "axios": "^1.6.2",
-    "fs": "^0.0.1-security",
-    "path": "^0.12.7",
     "viem": "^1.19.9"
   },
   "keywords": [
