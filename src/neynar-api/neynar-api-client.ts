@@ -2107,7 +2107,7 @@ export class NeynarAPIClient {
    *
    * @param {string} q - The query string used for searching channels, which can be a channel ID or name.
    *
-   * @returns {Promise<ChannelListResponse>} A promise that resolves to a `ChannelListResponse` object,
+   * @returns {Promise<ChannelResponse>} A promise that resolves to a `ChannelListResponse` object,
    *   containing a list of channels that match the search criteria.
    *
    * @example
@@ -2118,7 +2118,7 @@ export class NeynarAPIClient {
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/search-channels).
    */
-  public async searchChannels(q: string): Promise<ChannelListResponse> {
+  public async searchChannels(q: string): Promise<ChannelResponse> {
     return await this.clients.v2.searchChannels(q);
   }
 
