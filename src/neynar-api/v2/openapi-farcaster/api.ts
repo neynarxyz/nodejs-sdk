@@ -20,6 +20,7 @@ export * from './apis/feed-api';
 export * from './apis/fname-api';
 export * from './apis/follows-api';
 export * from './apis/frame-api';
+export * from './apis/mute-api';
 export * from './apis/notifications-api';
 export * from './apis/reaction-api';
 export * from './apis/signer-api';

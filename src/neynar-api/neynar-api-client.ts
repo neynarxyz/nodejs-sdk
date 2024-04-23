@@ -52,6 +52,8 @@ import {
   AuthorizationUrlResponse,
   AuthorizationUrlResponseType,
   TrendingChannelResponse,
+  MuteListResponse,
+  MuteResponse,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -2842,4 +2844,85 @@ export class NeynarAPIClient {
       } else console.log(err);
     }
   }
+
+   // ------------ Mute ------------
+
+  /**
+        * Fetches all fids that a user has muted.
+         * @summary Get fids that a user has muted.
+         * @param {number} fid The user's fid (identifier)
+         * @param {Object} [options] - Optional parameters for the request.
+         * @param {number} [options.limit=20] - Number of followers to retrieve (default 20, max 100).
+         * @param {string} [options.cursor] Pagination cursor.
+         * 
+         * @returns {Promise<MuteListResponse>} A promise that resolves to a `MuteListResponse` object.
+         * 
+         * @example
+         * // Example: Retrieve muted fids for a user
+         * client.fetchMuteList(3, { limit: 50 }).then(response => {
+         *  console.log('Muted Fids:', response);
+         * });
+         * 
+         * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/mute-list).
+     */
+ public async fetchMuteList(
+  fid: number,
+  options?: { limit?: number,cursor: string }
+): Promise<MuteListResponse> {
+  return await this.clients.v2.fetchMuteList(
+    fid,
+    options
+  );
+}
+
+  /**
+         * Adds a mute for a given fid.
+         * @summary Adds a mute for a fid.
+         * @param {number} fid The user's fid (identifier)
+         * @param {number} [mutedFid] - The fid of the user being muted.
+         * 
+         * @returns {Promise<MuteResponse>} A promise that resolves to a `MuteResponse` object.
+         * 
+         * @example
+         * // Example: Mute a user
+         * client.publishMute(3, 19960).then(response => {
+         * console.log('Mute Response:', response);
+         * });
+         * 
+         * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/add-mute).
+         * 
+     */
+public async publishMute(
+  fid: number,
+  mutedFid: number
+): Promise<MuteResponse> {
+  return await this.clients.v2.publishMute(
+    fid,
+    mutedFid
+  );
+}
+
+  /**
+         * Deletes a mute for a given fid.
+         * @summary Deletes a mute for a fid.
+         * @param {number} fid The user's fid (identifier)
+         * @param {number} mutedFid - The fid of the user being muted.
+         * 
+         * @returns {Promise<MuteResponse>} A promise that resolves to a `MuteResponse` object.
+         * 
+         * @example
+         * // Example: Unmute a user
+         * client.deleteMute(3, 19960).then(response => {
+         * console.log('Mute Response:', response);
+         * });
+         * 
+         * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/delete-mute).
+  */
+public async deleteMute(fid: number,mutedFid: number): Promise<MuteResponse> {
+  return await this.clients.v2.deleteMute(
+    fid,
+    mutedFid
+  );
+}
+
 }
