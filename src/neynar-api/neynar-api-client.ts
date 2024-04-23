@@ -744,6 +744,34 @@ export class NeynarAPIClient {
 
   // ------------ Signer ------------
 
+    /**
+   * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
+   *
+   * @param {string} client_id - The client identifier registered with the API.
+   * @param {AuthorizationUrlResponseType} code - The type of response to be received, typically including tokens.
+   *
+   * @returns {Promise<AuthorizationUrlResponse>} A promise that resolves to an object containing the authorization URL.
+   *
+   * @example
+   * // Example: Fetch the authorization URL
+   * import { AuthorizationUrlResponseType } from "@neynar/nodejs-sdk";
+   *
+   * client.fetchAuthorizationUrl('your-client-id', AuthorizationUrlResponseType.Code).then(response => {
+   *   console.log('Authorization URL:', response); // Outputs the fetched URL
+   * });
+   *
+   * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-authorization-url).
+   */
+    public async fetchAuthorizationUrl(
+      client_id: string,
+      response_type: AuthorizationUrlResponseType
+    ): Promise<AuthorizationUrlResponse> {
+      return await this.clients.v2.fetchAuthorizationUrl(
+        client_id,
+        response_type
+      );
+    }
+
   /**
    * Creates a Signer and returns the signer status.
    * **Note**: While testing, please reuse the signer, as it costs money to approve a new signer.
@@ -1372,33 +1400,7 @@ export class NeynarAPIClient {
     return await this.clients.v2.lookupUserByCustodyAddress(custodyAddress);
   }
 
-  /**
-   * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
-   *
-   * @param {string} client_id - The client identifier registered with the API.
-   * @param {AuthorizationUrlResponseType} code - The type of response to be received, typically including tokens.
-   *
-   * @returns {Promise<AuthorizationUrlResponse>} A promise that resolves to an object containing the authorization URL.
-   *
-   * @example
-   * // Example: Fetch the authorization URL
-   * import { AuthorizationUrlResponseType } from "@neynar/nodejs-sdk";
-   *
-   * client.fetchAuthorizationUrl('your-client-id', AuthorizationUrlResponseType.Code).then(response => {
-   *   console.log('Authorization URL:', response); // Outputs the fetched URL
-   * });
-   *
-   * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-authorization-url).
-   */
-  public async fetchAuthorizationUrl(
-    client_id: string,
-    response_type: AuthorizationUrlResponseType
-  ): Promise<AuthorizationUrlResponse> {
-    return await this.clients.v2.fetchAuthorizationUrl(
-      client_id,
-      response_type
-    );
-  }
+
 
   // ------------ Cast ------------
 
