@@ -21,7 +21,6 @@ configuration.ts
 git_push.sh
 index.ts
 models/active-status.ts
-models/add-mute-request.ts
 models/add-verification-req-body.ts
 models/authorization-url-response-type.ts
 models/authorization-url-response.ts
@@ -89,6 +88,7 @@ models/index.ts
 models/individual-hash-obj.ts
 models/mute-list-response.ts
 models/mute-list.ts
+models/mute-req-body.ts
 models/mute-response.ts
 models/next-cursor.ts
 models/neynar-frame-creation-request.ts

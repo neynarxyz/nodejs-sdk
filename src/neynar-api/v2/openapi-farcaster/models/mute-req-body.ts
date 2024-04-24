@@ -17,20 +17,20 @@
 /**
  * 
  * @export
- * @interface AddMuteRequest
+ * @interface MuteReqBody
  */
-export interface AddMuteRequest {
+export interface MuteReqBody {
     /**
      * User identifier (unsigned integer)
      * @type {number}
-     * @memberof AddMuteRequest
+     * @memberof MuteReqBody
      */
-    'fid': number;
+    'fid'?: number;
     /**
      * User identifier (unsigned integer)
      * @type {number}
-     * @memberof AddMuteRequest
+     * @memberof MuteReqBody
      */
-    'muted_fid': number;
+    'muted_fid'?: number;
 }
 

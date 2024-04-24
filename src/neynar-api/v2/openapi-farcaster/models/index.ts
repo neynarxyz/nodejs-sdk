@@ -1,5 +1,4 @@
 export * from './active-status';
-export * from './add-mute-request';
 export * from './add-verification-req-body';
 export * from './authorization-url-response';
 export * from './authorization-url-response-type';
@@ -66,6 +65,7 @@ export * from './hydrated-follower';
 export * from './individual-hash-obj';
 export * from './mute-list';
 export * from './mute-list-response';
+export * from './mute-req-body';
 export * from './mute-response';
 export * from './next-cursor';
 export * from './neynar-frame';
