@@ -22,6 +22,8 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 // @ts-ignore
+import { AddMuteRequest } from '../models';
+// @ts-ignore
 import { ErrorRes } from '../models';
 // @ts-ignore
 import { MuteListResponse } from '../models';
@@ -34,21 +36,18 @@ import { MuteResponse } from '../models';
 export const MuteApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Adds a mute for a given fid.
+         * Adds a mute for a given fid. This is a whitelisted API, reach out if you want access.
          * @summary Adds a mute for a fid.
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid The user\&#39;s fid that you want to add a mute for.
-         * @param {number} mutedFid The fid who is going to be muted.
+         * @param {AddMuteRequest} addMuteRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addMute: async (apiKey: string, fid: number, mutedFid: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        addMute: async (apiKey: string, addMuteRequest: AddMuteRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('addMute', 'apiKey', apiKey)
-            // verify required parameter 'fid' is not null or undefined
-            assertParamExists('addMute', 'fid', fid)
-            // verify required parameter 'mutedFid' is not null or undefined
-            assertParamExists('addMute', 'mutedFid', mutedFid)
+            // verify required parameter 'addMuteRequest' is not null or undefined
+            assertParamExists('addMute', 'addMuteRequest', addMuteRequest)
             const localVarPath = `/farcaster/mute`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -61,23 +60,18 @@ export const MuteApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            if (fid !== undefined) {
-                localVarQueryParameter['fid'] = fid;
-            }
-
-            if (mutedFid !== undefined) {
-                localVarQueryParameter['muted_fid'] = mutedFid;
-            }
-
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
             }
 
 
     
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(addMuteRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -85,21 +79,18 @@ export const MuteApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Deletes a mute for a given fid.
+         * Deletes a mute for a given fid. This is a whitelisted API, reach out if you want access.
          * @summary Deletes a mute for a fid.
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid The user\&#39;s fid that you want to delete the mute for.
-         * @param {number} mutedFid The fid who is going to be unmuted.
+         * @param {AddMuteRequest} addMuteRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteMute: async (apiKey: string, fid: number, mutedFid: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteMute: async (apiKey: string, addMuteRequest: AddMuteRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('deleteMute', 'apiKey', apiKey)
-            // verify required parameter 'fid' is not null or undefined
-            assertParamExists('deleteMute', 'fid', fid)
-            // verify required parameter 'mutedFid' is not null or undefined
-            assertParamExists('deleteMute', 'mutedFid', mutedFid)
+            // verify required parameter 'addMuteRequest' is not null or undefined
+            assertParamExists('deleteMute', 'addMuteRequest', addMuteRequest)
             const localVarPath = `/farcaster/mute`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -112,23 +103,18 @@ export const MuteApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            if (fid !== undefined) {
-                localVarQueryParameter['fid'] = fid;
-            }
-
-            if (mutedFid !== undefined) {
-                localVarQueryParameter['muted_fid'] = mutedFid;
-            }
-
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
             }
 
 
     
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(addMuteRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -200,29 +186,27 @@ export const MuteApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = MuteApiAxiosParamCreator(configuration)
     return {
         /**
-         * Adds a mute for a given fid.
+         * Adds a mute for a given fid. This is a whitelisted API, reach out if you want access.
          * @summary Adds a mute for a fid.
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid The user\&#39;s fid that you want to add a mute for.
-         * @param {number} mutedFid The fid who is going to be muted.
+         * @param {AddMuteRequest} addMuteRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async addMute(apiKey: string, fid: number, mutedFid: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MuteResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.addMute(apiKey, fid, mutedFid, options);
+        async addMute(apiKey: string, addMuteRequest: AddMuteRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MuteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.addMute(apiKey, addMuteRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Deletes a mute for a given fid.
+         * Deletes a mute for a given fid. This is a whitelisted API, reach out if you want access.
          * @summary Deletes a mute for a fid.
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid The user\&#39;s fid that you want to delete the mute for.
-         * @param {number} mutedFid The fid who is going to be unmuted.
+         * @param {AddMuteRequest} addMuteRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteMute(apiKey: string, fid: number, mutedFid: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MuteResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteMute(apiKey, fid, mutedFid, options);
+        async deleteMute(apiKey: string, addMuteRequest: AddMuteRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MuteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteMute(apiKey, addMuteRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -250,28 +234,26 @@ export const MuteApiFactory = function (configuration?: Configuration, basePath?
     const localVarFp = MuteApiFp(configuration)
     return {
         /**
-         * Adds a mute for a given fid.
+         * Adds a mute for a given fid. This is a whitelisted API, reach out if you want access.
          * @summary Adds a mute for a fid.
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid The user\&#39;s fid that you want to add a mute for.
-         * @param {number} mutedFid The fid who is going to be muted.
+         * @param {AddMuteRequest} addMuteRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addMute(apiKey: string, fid: number, mutedFid: number, options?: any): AxiosPromise<MuteResponse> {
-            return localVarFp.addMute(apiKey, fid, mutedFid, options).then((request) => request(axios, basePath));
+        addMute(apiKey: string, addMuteRequest: AddMuteRequest, options?: any): AxiosPromise<MuteResponse> {
+            return localVarFp.addMute(apiKey, addMuteRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Deletes a mute for a given fid.
+         * Deletes a mute for a given fid. This is a whitelisted API, reach out if you want access.
          * @summary Deletes a mute for a fid.
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid The user\&#39;s fid that you want to delete the mute for.
-         * @param {number} mutedFid The fid who is going to be unmuted.
+         * @param {AddMuteRequest} addMuteRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteMute(apiKey: string, fid: number, mutedFid: number, options?: any): AxiosPromise<MuteResponse> {
-            return localVarFp.deleteMute(apiKey, fid, mutedFid, options).then((request) => request(axios, basePath));
+        deleteMute(apiKey: string, addMuteRequest: AddMuteRequest, options?: any): AxiosPromise<MuteResponse> {
+            return localVarFp.deleteMute(apiKey, addMuteRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches all fids that a user has muted.
@@ -297,31 +279,29 @@ export const MuteApiFactory = function (configuration?: Configuration, basePath?
  */
 export class MuteApi extends BaseAPI {
     /**
-     * Adds a mute for a given fid.
+     * Adds a mute for a given fid. This is a whitelisted API, reach out if you want access.
      * @summary Adds a mute for a fid.
      * @param {string} apiKey API key required for authentication.
-     * @param {number} fid The user\&#39;s fid that you want to add a mute for.
-     * @param {number} mutedFid The fid who is going to be muted.
+     * @param {AddMuteRequest} addMuteRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MuteApi
      */
-    public addMute(apiKey: string, fid: number, mutedFid: number, options?: AxiosRequestConfig) {
-        return MuteApiFp(this.configuration).addMute(apiKey, fid, mutedFid, options).then((request) => request(this.axios, this.basePath));
+    public addMute(apiKey: string, addMuteRequest: AddMuteRequest, options?: AxiosRequestConfig) {
+        return MuteApiFp(this.configuration).addMute(apiKey, addMuteRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Deletes a mute for a given fid.
+     * Deletes a mute for a given fid. This is a whitelisted API, reach out if you want access.
      * @summary Deletes a mute for a fid.
      * @param {string} apiKey API key required for authentication.
-     * @param {number} fid The user\&#39;s fid that you want to delete the mute for.
-     * @param {number} mutedFid The fid who is going to be unmuted.
+     * @param {AddMuteRequest} addMuteRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MuteApi
      */
-    public deleteMute(apiKey: string, fid: number, mutedFid: number, options?: AxiosRequestConfig) {
-        return MuteApiFp(this.configuration).deleteMute(apiKey, fid, mutedFid, options).then((request) => request(this.axios, this.basePath));
+    public deleteMute(apiKey: string, addMuteRequest: AddMuteRequest, options?: AxiosRequestConfig) {
+        return MuteApiFp(this.configuration).deleteMute(apiKey, addMuteRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

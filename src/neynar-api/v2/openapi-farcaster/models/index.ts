@@ -1,4 +1,5 @@
 export * from './active-status';
+export * from './add-mute-request';
 export * from './add-verification-req-body';
 export * from './authorization-url-response';
 export * from './authorization-url-response-type';

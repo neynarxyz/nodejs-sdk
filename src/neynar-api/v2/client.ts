@@ -2672,10 +2672,13 @@ public async publishMute(
   fid: number,
   mutedFid: number
 ): Promise<MuteResponse> {
+  const addMuteBody = {
+    fid,
+    muted_fid: mutedFid,
+  };
   const response = await this.apis.mute.addMute(
     this.apiKey,
-    fid,
-    mutedFid
+    addMuteBody
   );
   return response.data;
 }
@@ -2697,14 +2700,16 @@ public async publishMute(
          * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/delete-mute).
   */
 public async deleteMute(fid: number,mutedFid: number): Promise<MuteResponse> {
+  const deleteMuteBody = {
+    fid,
+    muted_fid: mutedFid,
+  };
   const response = await this.apis.mute.deleteMute(
     this.apiKey,
-    fid,
-    mutedFid
+    deleteMuteBody,
   );
   return response.data; 
 }
-
 }
 
 
