@@ -139,4 +139,6 @@ export * from './webhook-secret';
 export * from './webhook-subscription';
 export * from './webhook-subscription-filters';
 export * from './webhook-subscription-filters-cast-created';
+export * from './webhook-subscription-filters-follow';
+export * from './webhook-subscription-filters-reaction';
 export * from './webhook-subscription-filters-user-updated';
