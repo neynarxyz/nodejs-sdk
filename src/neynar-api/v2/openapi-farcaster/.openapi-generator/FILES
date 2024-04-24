@@ -163,6 +163,8 @@ models/webhook-put-req-body.ts
 models/webhook-response.ts
 models/webhook-secret.ts
 models/webhook-subscription-filters-cast-created.ts
+models/webhook-subscription-filters-follow.ts
+models/webhook-subscription-filters-reaction.ts
 models/webhook-subscription-filters-user-updated.ts
 models/webhook-subscription-filters.ts
 models/webhook-subscription.ts

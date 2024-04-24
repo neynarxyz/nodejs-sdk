@@ -18,6 +18,12 @@
 import { WebhookSubscriptionFiltersCastCreated } from './webhook-subscription-filters-cast-created';
 // May contain unused imports in some cases
 // @ts-ignore
+import { WebhookSubscriptionFiltersFollow } from './webhook-subscription-filters-follow';
+// May contain unused imports in some cases
+// @ts-ignore
+import { WebhookSubscriptionFiltersReaction } from './webhook-subscription-filters-reaction';
+// May contain unused imports in some cases
+// @ts-ignore
 import { WebhookSubscriptionFiltersUserUpdated } from './webhook-subscription-filters-user-updated';
 
 /**
@@ -44,5 +50,29 @@ export interface WebhookSubscriptionFilters {
      * @memberof WebhookSubscriptionFilters
      */
     'user.updated'?: WebhookSubscriptionFiltersUserUpdated;
+    /**
+     * 
+     * @type {WebhookSubscriptionFiltersFollow}
+     * @memberof WebhookSubscriptionFilters
+     */
+    'follow.created'?: WebhookSubscriptionFiltersFollow;
+    /**
+     * 
+     * @type {WebhookSubscriptionFiltersFollow}
+     * @memberof WebhookSubscriptionFilters
+     */
+    'follow.deleted'?: WebhookSubscriptionFiltersFollow;
+    /**
+     * 
+     * @type {WebhookSubscriptionFiltersReaction}
+     * @memberof WebhookSubscriptionFilters
+     */
+    'reaction.created'?: WebhookSubscriptionFiltersReaction;
+    /**
+     * 
+     * @type {WebhookSubscriptionFiltersReaction}
+     * @memberof WebhookSubscriptionFilters
+     */
+    'reaction.deleted'?: WebhookSubscriptionFiltersReaction;
 }
 
