@@ -15,22 +15,22 @@
 
 
 /**
- * Adds context on the viewer\'s follow relationship with the user.
+ * 
  * @export
- * @interface UserViewerContext
+ * @interface MuteResponse
  */
-export interface UserViewerContext {
+export interface MuteResponse {
     /**
-     * Indicates if the viewer is following the user.
+     * 
      * @type {boolean}
-     * @memberof UserViewerContext
+     * @memberof MuteResponse
      */
-    'following': boolean;
+    'success': boolean;
     /**
-     * Indicates if the viewer is followed by the user.
-     * @type {boolean}
-     * @memberof UserViewerContext
+     * 
+     * @type {string}
+     * @memberof MuteResponse
      */
-    'followed_by': boolean;
+    'message'?: string;
 }
 

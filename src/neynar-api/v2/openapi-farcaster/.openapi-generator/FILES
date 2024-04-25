@@ -8,6 +8,7 @@ apis/feed-api.ts
 apis/fname-api.ts
 apis/follows-api.ts
 apis/frame-api.ts
+apis/mute-api.ts
 apis/notifications-api.ts
 apis/reaction-api.ts
 apis/signer-api.ts
@@ -85,6 +86,10 @@ models/get-casts-req-body.ts
 models/hydrated-follower.ts
 models/index.ts
 models/individual-hash-obj.ts
+models/mute-list-response.ts
+models/mute-list.ts
+models/mute-req-body.ts
+models/mute-response.ts
 models/next-cursor.ts
 models/neynar-frame-creation-request.ts
 models/neynar-frame-page.ts
