@@ -515,7 +515,7 @@ export class NeynarAPIClient {
    */
   public async fetchMentionAndReplyNotifications(
     fid: number,
-    options?: { viewerFid?: number; limit?: number; cursor?: string }
+    options?: { viewerFid?: number; cursor?: string }
   ): Promise<MentionsAndRepliesResponse> {
     return await this.clients.v1.fetchMentionAndReplyNotifications(
       fid,
@@ -1973,7 +1973,7 @@ export class NeynarAPIClient {
   public async fetchChannelNotificationsForUser(
     fid: number,
     channelIds: string[],
-    options?: { cursor?: string; limit?: number }
+    options?: { cursor?: string; }
   ): Promise<NotificationsResponse> {
     return await this.clients.v2.fetchChannelNotificationsForUser(
       fid,
@@ -2186,7 +2186,7 @@ export class NeynarAPIClient {
   public async fetchNotificationsByParentUrlForUser(
     fid: number,
     parentUrls: string[],
-    options?: { cursor?: string; limit?: number }
+    options?: { cursor?: string; }
   ) {
     return await this.clients.v2.fetchNotificationsByParentUrlForUser(
       fid,

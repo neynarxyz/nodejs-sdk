@@ -1586,12 +1586,11 @@ export class NeynarV2APIClient {
    */
   public async fetchAllNotifications(
     fid: number,
-    options?: { cursor?: string; limit?: number }
+    options?: { cursor?: string;}
   ): Promise<NotificationsResponse> {
     const response = await this.apis.notifications.notifications(
       this.apiKey,
       fid,
-      options?.limit,
       options?.cursor
     );
     return response.data;
@@ -1627,14 +1626,13 @@ export class NeynarV2APIClient {
   public async fetchChannelNotificationsForUser(
     fid: number,
     channelIds: string[],
-    options?: { cursor?: string; limit?: number }
+    options?: { cursor?: string; }
   ): Promise<NotificationsResponse> {
     const _channelIds = channelIds.join(",");
     const response = await this.apis.notifications.notificationsChannel(
       this.apiKey,
       fid,
       _channelIds,
-      options?.limit,
       options?.cursor
     );
     return response.data;
@@ -1666,14 +1664,13 @@ export class NeynarV2APIClient {
   public async fetchNotificationsByParentUrlForUser(
     fid: number,
     parentUrls: string[],
-    options?: { cursor?: string; limit?: number }
+    options?: { cursor?: string; }
   ) {
     const _parentUrls = parentUrls.join(",");
     const response = await this.apis.notifications.notificationsParentUrl(
       this.apiKey,
       fid,
       _parentUrls,
-      options?.limit,
       options?.cursor
     );
     return response.data;
