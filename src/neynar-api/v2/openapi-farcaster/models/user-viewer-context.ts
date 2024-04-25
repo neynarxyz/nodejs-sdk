@@ -21,13 +21,13 @@
  */
 export interface UserViewerContext {
     /**
-     * 
+     * Indicates if the viewer is following the user.
      * @type {boolean}
      * @memberof UserViewerContext
      */
     'following': boolean;
     /**
-     * 
+     * Indicates if the viewer is followed by the user.
      * @type {boolean}
      * @memberof UserViewerContext
      */

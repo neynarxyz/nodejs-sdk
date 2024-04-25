@@ -38,5 +38,17 @@ export interface CastWithInteractionsReactions {
      * @memberof CastWithInteractionsReactions
      */
     'recasts': Array<ReactionRecast>;
+    /**
+     * 
+     * @type {number}
+     * @memberof CastWithInteractionsReactions
+     */
+    'likes_count': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CastWithInteractionsReactions
+     */
+    'recasts_count': number;
 }
 

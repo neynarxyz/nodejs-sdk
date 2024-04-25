@@ -25,12 +25,12 @@ export interface MuteReqBody {
      * @type {number}
      * @memberof MuteReqBody
      */
-    'fid'?: number;
+    'fid': number;
     /**
      * User identifier (unsigned integer)
      * @type {number}
      * @memberof MuteReqBody
      */
-    'muted_fid'?: number;
+    'muted_fid': number;
 }
 

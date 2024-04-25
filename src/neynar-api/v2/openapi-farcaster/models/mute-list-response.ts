@@ -31,12 +31,12 @@ export interface MuteListResponse {
      * @type {Array<MuteList>}
      * @memberof MuteListResponse
      */
-    'mutes'?: Array<MuteList>;
+    'mutes': Array<MuteList>;
     /**
      * 
      * @type {NextCursor}
      * @memberof MuteListResponse
      */
-    'next'?: NextCursor;
+    'next': NextCursor;
 }
 

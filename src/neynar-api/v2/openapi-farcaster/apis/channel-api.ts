@@ -40,7 +40,7 @@ import { UsersResponse } from '../models';
 export const ChannelApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Fetches all channels that a user has casted in, in reverse chronological order. Once follows are on the protocol, we will allow choosing for different types of user activity (e.g. casted, followed, etc.).
+         * Fetches all channels that a user has casted in, in reverse chronological order.
          * @summary Get channels that a user is active in
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid The user\&#39;s fid (identifier)
@@ -480,7 +480,7 @@ export const ChannelApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ChannelApiAxiosParamCreator(configuration)
     return {
         /**
-         * Fetches all channels that a user has casted in, in reverse chronological order. Once follows are on the protocol, we will allow choosing for different types of user activity (e.g. casted, followed, etc.).
+         * Fetches all channels that a user has casted in, in reverse chronological order.
          * @summary Get channels that a user is active in
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid The user\&#39;s fid (identifier)
@@ -602,7 +602,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
     const localVarFp = ChannelApiFp(configuration)
     return {
         /**
-         * Fetches all channels that a user has casted in, in reverse chronological order. Once follows are on the protocol, we will allow choosing for different types of user activity (e.g. casted, followed, etc.).
+         * Fetches all channels that a user has casted in, in reverse chronological order.
          * @summary Get channels that a user is active in
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid The user\&#39;s fid (identifier)
@@ -716,7 +716,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
  */
 export class ChannelApi extends BaseAPI {
     /**
-     * Fetches all channels that a user has casted in, in reverse chronological order. Once follows are on the protocol, we will allow choosing for different types of user activity (e.g. casted, followed, etc.).
+     * Fetches all channels that a user has casted in, in reverse chronological order.
      * @summary Get channels that a user is active in
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid The user\&#39;s fid (identifier)

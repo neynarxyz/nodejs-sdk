@@ -40,7 +40,7 @@ export interface MuteList {
      * @type {string}
      * @memberof MuteList
      */
-    'muted_at'?: string;
+    'muted_at': string;
 }
 
 export const MuteListObjectEnum = {
