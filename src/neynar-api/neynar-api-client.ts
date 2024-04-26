@@ -1776,7 +1776,7 @@ export class NeynarAPIClient {
     limit?: number;
     cursor?: string;
     timeWindow?: TrendingFeedTimeWindow;
-    channelId: string;
+    channelId?: string;
     viewerFid?: number;
   }) {
     return await this.clients.v2.fetchTrendingFeed(options);
