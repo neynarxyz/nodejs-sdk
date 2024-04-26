@@ -15,22 +15,22 @@
 
 
 /**
- * Adds context on the viewer\'s follow relationship with the user.
+ * 
  * @export
- * @interface UserViewerContext
+ * @interface MuteReqBody
  */
-export interface UserViewerContext {
+export interface MuteReqBody {
     /**
-     * Indicates if the viewer is following the user.
-     * @type {boolean}
-     * @memberof UserViewerContext
+     * User identifier (unsigned integer)
+     * @type {number}
+     * @memberof MuteReqBody
      */
-    'following': boolean;
+    'fid': number;
     /**
-     * Indicates if the viewer is followed by the user.
-     * @type {boolean}
-     * @memberof UserViewerContext
+     * User identifier (unsigned integer)
+     * @type {number}
+     * @memberof MuteReqBody
      */
-    'followed_by': boolean;
+    'muted_fid': number;
 }
 

@@ -15,22 +15,22 @@
 
 
 /**
- * Adds context on the viewer\'s follow relationship with the user.
+ * 
  * @export
- * @interface UserViewerContext
+ * @interface WebhookSubscriptionFiltersFollow
  */
-export interface UserViewerContext {
+export interface WebhookSubscriptionFiltersFollow {
     /**
-     * Indicates if the viewer is following the user.
-     * @type {boolean}
-     * @memberof UserViewerContext
+     * 
+     * @type {Array<number>}
+     * @memberof WebhookSubscriptionFiltersFollow
      */
-    'following': boolean;
+    'fids'?: Array<number>;
     /**
-     * Indicates if the viewer is followed by the user.
-     * @type {boolean}
-     * @memberof UserViewerContext
+     * 
+     * @type {Array<number>}
+     * @memberof WebhookSubscriptionFiltersFollow
      */
-    'followed_by': boolean;
+    'target_fids'?: Array<number>;
 }
 

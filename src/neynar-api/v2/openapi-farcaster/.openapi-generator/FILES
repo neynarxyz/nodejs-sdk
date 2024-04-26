@@ -8,6 +8,7 @@ apis/feed-api.ts
 apis/fname-api.ts
 apis/follows-api.ts
 apis/frame-api.ts
+apis/mute-api.ts
 apis/notifications-api.ts
 apis/reaction-api.ts
 apis/signer-api.ts
@@ -34,6 +35,7 @@ models/cast-parent-author-all-of.ts
 models/cast-parent-author.ts
 models/cast-response.ts
 models/cast-with-interactions-all-of.ts
+models/cast-with-interactions-and-conversations-all-of.ts
 models/cast-with-interactions-and-conversations.ts
 models/cast-with-interactions-reactions.ts
 models/cast-with-interactions-replies.ts
@@ -85,6 +87,10 @@ models/get-casts-req-body.ts
 models/hydrated-follower.ts
 models/index.ts
 models/individual-hash-obj.ts
+models/mute-list-response.ts
+models/mute-list.ts
+models/mute-req-body.ts
+models/mute-response.ts
 models/next-cursor.ts
 models/neynar-frame-creation-request.ts
 models/neynar-frame-page.ts
@@ -158,6 +164,8 @@ models/webhook-put-req-body.ts
 models/webhook-response.ts
 models/webhook-secret.ts
 models/webhook-subscription-filters-cast-created.ts
+models/webhook-subscription-filters-follow.ts
+models/webhook-subscription-filters-reaction.ts
 models/webhook-subscription-filters-user-updated.ts
 models/webhook-subscription-filters.ts
 models/webhook-subscription.ts
