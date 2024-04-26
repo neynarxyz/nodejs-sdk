@@ -24,6 +24,9 @@ import { CastParentAuthor } from './cast-parent-author';
 import { CastWithInteractions } from './cast-with-interactions';
 // May contain unused imports in some cases
 // @ts-ignore
+import { CastWithInteractionsAndConversationsAllOf } from './cast-with-interactions-and-conversations-all-of';
+// May contain unused imports in some cases
+// @ts-ignore
 import { CastWithInteractionsReactions } from './cast-with-interactions-reactions';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -45,6 +48,6 @@ import { User } from './user';
  * @type CastWithInteractionsAndConversations
  * @export
  */
-export type CastWithInteractionsAndConversations = CastWithInteractions;
+export type CastWithInteractionsAndConversations = CastWithInteractions & CastWithInteractionsAndConversationsAllOf;
 
 
