@@ -65,6 +65,7 @@ models/filter-type.ts
 models/fname-availability-response.ts
 models/follow-req-body.ts
 models/follow-response.ts
+models/follow-sort-type.ts
 models/follow.ts
 models/frame-action-button.ts
 models/frame-action-req-body.ts

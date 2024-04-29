@@ -42,7 +42,7 @@ export interface PostCastReqBody {
      */
     'embeds'?: Array<EmbeddedCast>;
     /**
-     * Parent URL or Cast Hash
+     * parent_url of the channel the cast is in, or hash of the cast
      * @type {string}
      * @memberof PostCastReqBody
      */

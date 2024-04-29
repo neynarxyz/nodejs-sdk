@@ -54,6 +54,7 @@ import {
   TrendingChannelResponse,
   MuteListResponse,
   MuteResponse,
+  FollowSortType,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -2247,6 +2248,66 @@ export class NeynarAPIClient {
     viewerFid: number
   ): Promise<RelevantFollowersResponse> {
     return await this.clients.v2.fetchRelevantFollowers(targetFid, viewerFid);
+  }
+
+  /** 
+  * Returns a list of followers for a specific FID.
+  * @summary Retrieve followers for a given user
+  * @param {number} fid User who's profile you are looking at
+  * @param {Object} [options] - Optional parameters for customizing the response.
+  * @param {number} [options.viewerFid] Viewer who's looking at the profile.
+  * @param {FollowSortType} [options.sortType] Sort type for retrieving followers. Default is FollowSortType.DescChron
+  * @param {number} [options.limit] Number of results to retrieve (default 20, max 100)
+  * @param {string} [options.cursor] Pagination cursor.
+  *  omit this parameter for the initial request.
+  * 
+  * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
+  * 
+  * @example
+  * // Example: Retrieve followers for a user
+  * import { FollowSortType } from "@neynar/nodejs-sdk";
+  * 
+  * client.fetchFollowers(3,{limit: 5,viewerFid: 3}).then(response => {
+  *  console.log('User Followers:', response);
+  * });
+  * 
+  * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/followers-v2).
+*/
+  public async fetchFollowers(
+    fid: number,
+    options?: { viewerFid?: number; sortType: FollowSortType; cursor?: string; limit?: number }
+  ): Promise<UsersResponse> {
+    return await this.clients.v2.fetchFollowers(fid, options);
+  }
+
+  /** 
+  * Returns a list of follows for a specific FID.
+  * @summary Retrieve follows for a given user
+  * @param {number} fid User who's profile you are looking at
+  * @param {Object} [options] - Optional parameters for customizing the response.
+  * @param {number} [options.viewerFid] Viewer who's looking at the profile.
+  * @param {FollowSortType} [options.sortType] Sort type for retrieving follows. Default is FollowSortType.DescChron
+  * @param {number} [options.limit] Number of results to retrieve (default 25, max 100)
+  * @param {string} [options.cursor] Pagination cursor.
+  *  omit this parameter for the initial request.
+  * 
+  * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
+  * 
+  * @example
+  * // Example: Retrieve follows for a user
+  * import { FollowSortType } from "@neynar/nodejs-sdk";
+  * 
+  * client.fetchFollowing(3,{limit: 5,viewerFid: 3}).then(response => {
+  * console.log('User Follows:', response);
+  * });
+  * 
+  * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/following-v2).
+*/
+  public async fetchFollowing(
+    fid: number,
+    options?: { viewerFid?: number; sortType: FollowSortType; cursor?: string; limit?: number }
+  ): Promise<UsersResponse> {
+    return await this.clients.v2.fetchFollowing(fid, options);
   }
 
   // ------------ Storage ------------
