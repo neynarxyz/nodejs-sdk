@@ -87,6 +87,7 @@ export class NeynarV1APIClient {
         throw error;
       }
     );
+
     const config: Configuration = new Configuration({
       basePath: basePath ? `${basePath}/v1` : BASE_PATH,
       apiKey: apiKey,
