@@ -68,7 +68,6 @@ export class NeynarV1APIClient {
     }
 
     this.apiKey = apiKey;
-
     if (axiosInstance === undefined) {
       axiosInstance = axios.create();
     }

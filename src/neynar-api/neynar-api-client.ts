@@ -2267,17 +2267,17 @@ export class NeynarAPIClient {
   * // Example: Retrieve followers for a user
   * import { FollowSortType } from "@neynar/nodejs-sdk";
   * 
-  * client.fetchFollowers(3,{limit: 5,viewerFid: 3}).then(response => {
+  * client.fetchUserFollowersV2(3,{limit: 5,viewerFid: 3}).then(response => {
   *  console.log('User Followers:', response);
   * });
   * 
   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/followers-v2).
 */
-  public async fetchFollowers(
+  public async fetchUserFollowersV2(
     fid: number,
     options?: { viewerFid?: number; sortType: FollowSortType; cursor?: string; limit?: number }
   ): Promise<UsersResponse> {
-    return await this.clients.v2.fetchFollowers(fid, options);
+    return await this.clients.v2.fetchUserFollowersV2(fid, options);
   }
 
   /** 
@@ -2297,17 +2297,17 @@ export class NeynarAPIClient {
   * // Example: Retrieve follows for a user
   * import { FollowSortType } from "@neynar/nodejs-sdk";
   * 
-  * client.fetchFollowing(3,{limit: 5,viewerFid: 3}).then(response => {
+  * client.fetchUserFollowingV2(3,{limit: 5,viewerFid: 3}).then(response => {
   * console.log('User Follows:', response);
   * });
   * 
   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/following-v2).
 */
-  public async fetchFollowing(
+  public async fetchUserFollowingV2(
     fid: number,
     options?: { viewerFid?: number; sortType: FollowSortType; cursor?: string; limit?: number }
   ): Promise<UsersResponse> {
-    return await this.clients.v2.fetchFollowing(fid, options);
+    return await this.clients.v2.fetchUserFollowingV2(fid, options);
   }
 
   // ------------ Storage ------------
