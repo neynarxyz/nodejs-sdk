@@ -9,6 +9,7 @@ export {
   FrameButtonActionType,
   ValidateFrameAnalyticsType,
   AuthorizationUrlResponseType,
+  FollowSortType
 } from "./v2";
 export {
   TimeWindow,
