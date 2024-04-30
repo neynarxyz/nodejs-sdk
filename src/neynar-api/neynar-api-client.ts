@@ -1558,14 +1558,15 @@ export class NeynarAPIClient {
    * @param {string} [options.embedUrl] - Used when filter_type=embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
    * @param {boolean} [options.withRecasts] - Whether to include recasts in the response. True by default.
    * @param {number} [options.limit] - Number of results to retrieve, with a default of 25 and a maximum of 100.
-   * @param {string} [options.cursor] - Pagination cursor for fetching specific subsets of results.
+   * @param {string} [options.cursor] - Pagination cursor for fetching specific subsets of results. Omit this parameter for the initial request.
+   * @param {number} [options.viewerFid] - The FID of the user viewing this information.
    *
    * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
    *   containing the requested feed data.
    *
    * @example
    * // Example: Retrieve a user's feed based on their following graph with specific limits
-   * client.fetchFeed('following', { fid: 3, limit: 50, withRecasts: true }).then(response => {
+   * client.fetchFeed('following', { fid: 3, limit: 50, withRecasts: true, viewerFid: 100 }).then(response => {
    *   console.log('User Feed:', response); // Outputs the user's feed
    * });
    *
@@ -1583,6 +1584,7 @@ export class NeynarAPIClient {
       limit?: number;
       cursor?: string;
       withRecasts?: boolean;
+      viewerFid?: number;
     }
   ): Promise<FeedResponse> {
     return await this.clients.v2.fetchFeed(feedType, options);
@@ -1597,14 +1599,15 @@ export class NeynarAPIClient {
    * @param {boolean} [options.withRecasts] - Whether to include recasts in the response. True by default.
    * @param {boolean} [options.withReplies] - Whether to include replies in the response. False by default.
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
-   * @param {string} [options.cursor] - Pagination cursor for the next set of results.
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results. Omit this parameter for the initial request.
+   * @param {number} [options.viewerFid] - The FID of the user viewing this information.
    *
    * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
    *   containing the feed for the specified channel IDs.
    *
    * @example
    * // Example: Retrieve feed for specific channels, including recasts and replies
-   * client.fetchFeedByChannelIds(['neynar', 'farcaster'], { withRecasts: true, withReplies: true, limit: 30 }).then(response => {
+   * client.fetchFeedByChannelIds(['neynar', 'farcaster'], { withRecasts: true, withReplies: true, limit: 30, viewerFid: 100 }).then(response => {
    *   console.log('Channel Feed:', response);
    * });
    *
@@ -1617,6 +1620,7 @@ export class NeynarAPIClient {
       withReplies?: boolean;
       limit?: number;
       cursor?: string;
+      viewerFid?: number;
     }
   ): Promise<FeedResponse> {
     return await this.clients.v2.fetchFeedByChannelIds(channelIds, options);
@@ -1629,8 +1633,9 @@ export class NeynarAPIClient {
    * @param {Object} [options] - Optional parameters for customizing the feed.
    * @param {boolean} [options.withRecasts] - Include recasts in the response, true by default
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
-   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
-   *   omit this parameter for the initial request.
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results. Omit this parameter for the initial request.
+   * @param {number} [options.viewerFid] - The FID of the user viewing this information.
+   
    *
    * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
    *  containing the requested feed data.
@@ -1640,6 +1645,7 @@ export class NeynarAPIClient {
    * client.fetchUserFollowingFeed(3, {
    *  withRecasts: true,
    *  limit: 30,
+   *  viewerFid: 100
    *  // cursor: "nextPageCursor" // Omit this parameter for the initial request.
    * }).then(response => {
    *  console.log('User Feed:', response); // Outputs the user's feed
@@ -1653,6 +1659,7 @@ export class NeynarAPIClient {
       withRecasts?: boolean;
       limit?: number;
       cursor?: string;
+      viewerFid?: number;
     }
   ): Promise<FeedResponse> {
     return await this.clients.v2.fetchUserFollowingFeed(fid, options);
@@ -1664,22 +1671,25 @@ export class NeynarAPIClient {
    * the most popular cast first.
    *
    * @param {number} fid - The FID of the user whose popular casts are being fetched.
-   *
+   * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {number} [options.viewerFid] - The FID of the user viewing this information.
+   * 
    * @returns {Promise<BulkCastsResponse>} A promise that resolves to a `BulkCastsResponse` object,
    *   containing the top 10 most popular casts for the specified user.
    *
    * @example
    * // Example: Retrieve the 10 most popular casts for a user
-   * client.fetchPopularCastsByUser(3).then(response => {
+   * client.fetchPopularCastsByUser(3,{viewerFid: 3}).then(response => {
    *   console.log('Popular Casts:', response);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-user-popular).
    */
   public async fetchPopularCastsByUser(
-    fid: number
+    fid: number,
+    options?: { viewerFid?: number }
   ): Promise<BulkCastsResponse> {
-    return await this.clients.v2.fetchPopularCastsByUser(fid);
+    return await this.clients.v2.fetchPopularCastsByUser(fid,options);
   }
 
   /**
@@ -1689,15 +1699,16 @@ export class NeynarAPIClient {
    * @param {number} fid - The FID of the user whose recent replies and recasts are being fetched.
    * @param {Object} [options] - Optional parameters for customizing the response.
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
-   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
-   *  omit this parameter for the initial request.
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results. Omit this parameter for the initial request.
+   * @param {number} [options.viewerFid] - The FID of the user viewing this information.
+
    *
    * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
    *   containing the recent replies and recasts for the specified user.
    *
    * @example
    * // Example: Retrieve the recent replies and recasts for a user
-   * client.fetchRepliesAndRecastsForUser(3, { limit: 25 }).then(response => {
+   * client.fetchRepliesAndRecastsForUser(3, { limit: 25,viewerFid: 3 }).then(response => {
    *   console.log('Replies and Recasts:', response);
    * });
    *
@@ -1705,7 +1716,7 @@ export class NeynarAPIClient {
    */
   public async fetchRepliesAndRecastsForUser(
     fid: number,
-    options?: { limit?: number; cursor?: string }
+    options?: { limit?: number; cursor?: string, viewerFid?: number}
   ): Promise<FeedResponse> {
     return await this.clients.v2.fetchRepliesAndRecastsForUser(fid, options);
   }
@@ -1717,15 +1728,15 @@ export class NeynarAPIClient {
    *
    * @param {Object} [options] - Optional parameters to tailor the response.
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
-   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
-   *  omit this parameter for the initial request.
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results. Omit this parameter for the initial request.
+   * @param {number} [options.viewerFid] - The FID of the user viewing this information. 
    *
    * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
    *   containing a feed of casts with Frames.
    *
    * @example
    * // Example: Retrieve a feed of casts with Frames
-   * client.fetchFramesOnlyFeed({ limit: 30 }).then(response => {
+   * client.fetchFramesOnlyFeed({ limit: 30, viewerFid: 3 }).then(response => {
    *   console.log('Frames Only Feed:', response);
    * });
    *
@@ -1734,6 +1745,7 @@ export class NeynarAPIClient {
   public async fetchFramesOnlyFeed(options?: {
     limit?: number;
     cursor?: string;
+    viewerFid?: number;
   }) {
     return await this.clients.v2.fetchFramesOnlyFeed(options);
   }
@@ -1743,8 +1755,9 @@ export class NeynarAPIClient {
    *
    * @param {Object} [options] - Optional parameters for customizing the response.
    * @param {number} [options.limit] - Number of results to retrieve (default 10, max 10).
-   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
-   *  omit this parameter for the initial request.
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results. Omit this parameter for the initial request.
+   * @param {string} [options.channelId] - Channel ID of the channel where the cast is to be posted. e.g. neynar, farcaster, warpcast.
+   * @param {number} [options.viewerFid] - The FID of the user viewing this information.
    * @param {TrendingFeedTimeWindow} [options.timeWindow] - Time window for the trending feed.
    *
    * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
@@ -1754,7 +1767,7 @@ export class NeynarAPIClient {
    * // Example: Retrieve a feed of the most popular casts
    * import { TrendingFeedTimeWindow } from "@neynar/nodejs-sdk";
    *
-   * client.fetchTrendingFeed({ limit: 10, timeWindow: TrendingFeedTimeWindow.SIX_HOUR }).then(response => {
+   * client.fetchTrendingFeed({ limit: 10, timeWindow: TrendingFeedTimeWindow.SIX_HOUR, fid: 3, channel_id: "farcaster" }).then(response => {
    *   console.log('Popular Feed:', response);
    * });
    *
@@ -1764,6 +1777,8 @@ export class NeynarAPIClient {
     limit?: number;
     cursor?: string;
     timeWindow?: TrendingFeedTimeWindow;
+    channelId?: string;
+    viewerFid?: number;
   }) {
     return await this.clients.v2.fetchTrendingFeed(options);
   }
@@ -1918,8 +1933,6 @@ export class NeynarAPIClient {
    *
    * @param {number} fid - The FID of the user whose notifications are being fetched.
    * @param {Object} [options] - Optional parameters to tailor the request.
-   * @param {number} [options.limit=15] - The maximum number of users to be returned in the response.
-   *   Defaults to 15, with a maximum allowable value of 25.
    * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
    *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
    *
@@ -1927,9 +1940,8 @@ export class NeynarAPIClient {
    *   containing the user's notifications.
    *
    * @example
-   * // Example: Fetch the first 25 notifications for a user
+   * // Example: Fetch notifications for a user
    * client.fetchAllNotifications(3, {
-   * limit: 25,
    * // cursor: "nextPageCursor" // Omit this parameter for the initial request
    *  }).then(response => {
    *   console.log('User Notifications:', response);
@@ -1939,7 +1951,7 @@ export class NeynarAPIClient {
    */
   public async fetchAllNotifications(
     fid: number,
-    options?: { cursor?: string; limit?: number }
+    options?: { cursor?: string; }
   ): Promise<NotificationsResponse> {
     return await this.clients.v2.fetchAllNotifications(fid, options);
   }
@@ -1952,7 +1964,6 @@ export class NeynarAPIClient {
    * @param {number} fid - The FID of the user whose channel notifications are being fetched.
    * @param {string} channelIds - channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
    * @param {Object} [options] - Optional parameters for the request.
-   * @param {number} [options.limit=15] - Number of results to retrieve (default 15, max 25).
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -1960,10 +1971,9 @@ export class NeynarAPIClient {
    *   containing the channel-specific notifications for the user.
    *
    * @example
-   * // Example: Retrieve channel notifications for a user limit to 25 results
+   * // Example: Retrieve channel notifications for a user.
    * client.fetchChannelNotificationsForUser(3, ['neynar', 'farcaster'],
    * {
-   *  limit: 25,
    *  // cursor: "nextPageCursor" // Omit this parameter for the initial request.
    * }).then(response => {
    *   console.log('Channel Notifications:', response);
@@ -1974,7 +1984,7 @@ export class NeynarAPIClient {
   public async fetchChannelNotificationsForUser(
     fid: number,
     channelIds: string[],
-    options?: { cursor?: string; limit?: number }
+    options?: { cursor?: string; }
   ): Promise<NotificationsResponse> {
     return await this.clients.v2.fetchChannelNotificationsForUser(
       fid,
@@ -2169,7 +2179,6 @@ export class NeynarAPIClient {
    * @param {number} fid - The FID of the user for whom notifications are being fetched.
    * @param {Array<string>} parentUrls - An array of parent URLs to specify the channels.
    * @param {Object} [options] - Optional parameters for customizing the response.
-   * @param {number} [options.limit=15] - Number of results to retrieve (default 15, max 25).
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -2178,7 +2187,7 @@ export class NeynarAPIClient {
    *
    * @example
    * // Example: Retrieve notifications for a user based on specific parent URLs
-   * client.fetchNotificationsByParentUrlForUser(3, ['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc', 'chain://eip155:1/erc721:0xfd8427165df67df6d7fd689ae67c8ebf56d9ca61'], { limit: 25 }).then(response => {
+   * client.fetchNotificationsByParentUrlForUser(3, ['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc', 'chain://eip155:1/erc721:0xfd8427165df67df6d7fd689ae67c8ebf56d9ca61']).then(response => {
    *   console.log('User Notifications:', response);
    * });
    *
@@ -2187,7 +2196,7 @@ export class NeynarAPIClient {
   public async fetchNotificationsByParentUrlForUser(
     fid: number,
     parentUrls: string[],
-    options?: { cursor?: string; limit?: number }
+    options?: { cursor?: string; }
   ) {
     return await this.clients.v2.fetchNotificationsByParentUrlForUser(
       fid,
