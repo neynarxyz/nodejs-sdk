@@ -46,6 +46,7 @@ models/casts-response.ts
 models/channel-activity.ts
 models/channel-list-response.ts
 models/channel-response.ts
+models/channel-search-response.ts
 models/channel-viewer-context.ts
 models/channel.ts
 models/conversation-conversation.ts

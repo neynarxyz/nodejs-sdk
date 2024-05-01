@@ -25,6 +25,7 @@ export * from './channel';
 export * from './channel-activity';
 export * from './channel-list-response';
 export * from './channel-response';
+export * from './channel-search-response';
 export * from './channel-viewer-context';
 export * from './conversation';
 export * from './conversation-conversation';
