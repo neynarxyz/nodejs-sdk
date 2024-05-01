@@ -45,7 +45,7 @@ function main(): void {
 
       // Update package.json with new version
       packageJson.version = newVersion;
-      fs.writeFile('src/neynar-api/common/version.ts', `const version = "${newVersion}";`, 'utf8', (err) => {
+      fs.writeFile('src/neynar-api/common/version.ts', `export const version = "${newVersion}";`, 'utf8', (err) => {
         if (err) {
           console.error('Failed to write version.ts', err);
           process.exit(1);
