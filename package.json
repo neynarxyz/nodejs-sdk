@@ -1,6 +1,6 @@
 {
   "name": "@neynar/nodejs-sdk",
-  "version": "1.21.2",
+  "version": "1.21.1",
   "description": "SDK to interact with Neynar APIs (https://docs.neynar.com/)",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -25,11 +25,7 @@
   "dependencies": {
     "@openapitools/openapi-generator-cli": "^2.7.0",
     "axios": "^1.6.2",
-    "semver": "^7.6.0",
     "viem": "^1.19.9"
-  },
-  "engines": {
-    "node": ">=19.9.0"
   },
   "keywords": [
     "ethereum",
