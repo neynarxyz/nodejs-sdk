@@ -55,6 +55,7 @@ import {
   MuteListResponse,
   MuteResponse,
   ChannelSearchResponse,
+  ChannelType,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -2001,14 +2002,17 @@ export class NeynarAPIClient {
    *
    * @param {string} id - The ID of the channel being queried.
    * @param {Object} [options] - Optional parameters for the request.
+   * @param {ChannelType} [type] - Type of identifier being used to query the channel. Defaults to id.
    * @param {number} [options.viewerFid] - The FID of the viewer requesting the channel details.
    *
    * @returns {Promise<ChannelResponse>} A promise that resolves to a `ChannelResponse` object,
    *   containing detailed information about the specified channel.
    *
    * @example
+   * import {ChannelType} from '@neynar/nodejs-sdk'
+   * 
    * // Example: Retrieve details of a channel by its ID
-   * client.lookupChannel('neynar', {viewerFid: 3}).then(response => {
+   * client.lookupChannel('neynar', {viewerFid: 3,type: ChannelType.Id }).then(response => {
    *   console.log('Channel Details:', response);
    * });
    *
@@ -2016,6 +2020,7 @@ export class NeynarAPIClient {
    */
   public async lookupChannel(id: string,options?:{
     viewerFid?: number;
+    type?: ChannelType
   }): Promise<ChannelResponse> {
     return await this.clients.v2.lookupChannel(id,options);
   }
