@@ -69,8 +69,8 @@ import {
   MuteApi,
   MuteListResponse,
   MuteResponse,
-  FollowResponse,
   FollowSortType,
+  ChannelSearchResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -1876,7 +1876,7 @@ export class NeynarV2APIClient {
    *
    * @param {string} q - The query string used for searching channels, which can be a channel ID or name.
    *
-   * @returns {Promise<ChannelResponse>} A promise that resolves to a `ChannelListResponse` object,
+   * @returns {Promise<ChannelSearchResponse>} A promise that resolves to a `ChannelSearchResponse` object,
    *   containing a list of channels that match the search criteria.
    *
    * @example
@@ -1887,7 +1887,7 @@ export class NeynarV2APIClient {
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/search-channels).
    */
-  public async searchChannels(q: string): Promise<ChannelResponse> {
+  public async searchChannels(q: string): Promise<ChannelSearchResponse> {
     const response = await this.apis.channel.searchChannels(this.apiKey, q);
     return response.data;
   }

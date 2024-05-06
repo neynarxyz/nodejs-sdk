@@ -1,4 +1,4 @@
-name: "Publish to NPM"
+name: "Publish to npm 🚀"
 
 on:
   push:
@@ -8,9 +8,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
-      - run: npm install
-      - run: npm run build
-      - run: npm publish --access public
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Set npm Config
+        run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
+
+      - name: Publish to npm
+        run: npm publish --access public
