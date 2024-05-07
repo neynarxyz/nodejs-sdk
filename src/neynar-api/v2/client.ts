@@ -165,7 +165,7 @@ export class NeynarV2APIClient {
       basePath: basePath ? `${basePath}/v2` : BASE_PATH,
       apiKey: apiKey,
     });
-    const frame_config: Configuration = new Configuration({...config,baseOptions: {...config.baseOptions, maxRedirects: 0}})
+    const frameConfig: Configuration = new Configuration({...config,baseOptions: {...config.baseOptions, maxRedirects: 0}})
     
 
     this.apis = {
@@ -180,7 +180,7 @@ export class NeynarV2APIClient {
       storage: new StorageApi(config, undefined, axiosInstance),
       nft: new NFTApi(config, undefined, axiosInstance),
       fname: new FnameApi(config, undefined, axiosInstance),
-      frame: new FrameApi(frame_config, undefined, axiosInstance),
+      frame: new FrameApi(frameConfig, undefined, axiosInstance),
       webhook: new WebhookApi(config, undefined, axiosInstance),
       mute: new MuteApi(config, undefined, axiosInstance),
     };
