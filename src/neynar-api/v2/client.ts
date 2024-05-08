@@ -138,11 +138,17 @@ export class NeynarV2APIClient {
     if (axiosInstance === undefined) {
       axiosInstance = axios.create();
     }
-    
     axiosInstance.defaults.decompress = true;
     axiosInstance.interceptors.response.use(
       (response) => response,
       (error) => {
+        if (error.response && [302].includes(error.response.status)) {
+          return {
+            data: {
+              location: error.response.headers.location,
+            }
+          };
+        }
         if (NeynarV2APIClient.isApiErrorResponse(error)) {
           const apiErrors = error.response.data;
           this.logger.warn(`API errors: ${JSON.stringify(apiErrors)}`);
@@ -154,6 +160,8 @@ export class NeynarV2APIClient {
       basePath: basePath ? `${basePath}/v2` : BASE_PATH,
       apiKey: apiKey,
     });
+    const frameConfig: Configuration = new Configuration({...config,baseOptions: {...config.baseOptions, maxRedirects: 0}})
+    
 
     this.apis = {
       signer: new SignerApi(config, undefined, axiosInstance),
@@ -167,7 +175,7 @@ export class NeynarV2APIClient {
       storage: new StorageApi(config, undefined, axiosInstance),
       nft: new NFTApi(config, undefined, axiosInstance),
       fname: new FnameApi(config, undefined, axiosInstance),
-      frame: new FrameApi(config, undefined, axiosInstance),
+      frame: new FrameApi(frameConfig, undefined, axiosInstance),
       webhook: new WebhookApi(config, undefined, axiosInstance),
       mute: new MuteApi(config, undefined, axiosInstance),
     };
