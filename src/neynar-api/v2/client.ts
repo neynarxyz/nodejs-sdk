@@ -71,6 +71,7 @@ import {
   MuteResponse,
   FollowSortType,
   ChannelSearchResponse,
+  ChannelType,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -1749,6 +1750,7 @@ export class NeynarV2APIClient {
    *
    * @param {string} id - The ID of the channel being queried.
    * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {ChannelType} [type] - Type of identifier being used to query the channel. Defaults to id.
    * @param {number} [options.viewerFid] - The FID of the user viewing the channel.
    *
    * @returns {Promise<ChannelResponse>} A promise that resolves to a `ChannelResponse` object,
@@ -1756,7 +1758,9 @@ export class NeynarV2APIClient {
    *
    * @example
    * // Example: Retrieve details of a channel by its ID
-   * client.lookupChannel('neynar',{viewerFid: 3}).then(response => {
+   * import {ChannelType} from '@neynar/nodejs-sdk'
+   * 
+   * client.lookupChannel('neynar',{viewerFid: 3,type: ChannelType.Id }).then(response => {
    *   console.log('Channel Details:', response);
    * });
    *
@@ -1764,8 +1768,9 @@ export class NeynarV2APIClient {
    */
   public async lookupChannel(id: string,options?: {
     viewerFid?: number;
+    type?: ChannelType;
   }): Promise<ChannelResponse> {
-    const response = await this.apis.channel.channelDetails(this.apiKey, id,options?.viewerFid);
+    const response = await this.apis.channel.channelDetails(this.apiKey, id,options?.type,options?.viewerFid);
     return response.data;
   }
 
