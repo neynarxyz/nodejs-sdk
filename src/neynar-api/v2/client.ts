@@ -84,6 +84,7 @@ import {
   TrendingFeedTimeWindow,
   ValidateFrameAggregateWindow,
 } from "../common/constants";
+import { version } from "../common/version";
 
 const BASE_PATH = "https://api.neynar.com/v2";
 
@@ -137,7 +138,11 @@ export class NeynarV2APIClient {
 
 
     if (axiosInstance === undefined) {
-      axiosInstance = axios.create();
+      axiosInstance = axios.create({
+        headers: {
+          'x-sdk-version': version,
+        }
+      });
     }
     axiosInstance.defaults.decompress = true;
     axiosInstance.interceptors.response.use(
@@ -157,6 +162,8 @@ export class NeynarV2APIClient {
         throw error;
       }
     );
+
+    axiosInstance.defaults.headers["x-sdk-version"] = version;
     const config: Configuration = new Configuration({
       basePath: basePath ? `${basePath}/v2` : BASE_PATH,
       apiKey: apiKey,

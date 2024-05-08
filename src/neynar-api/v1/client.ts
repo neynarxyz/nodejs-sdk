@@ -27,6 +27,7 @@ import {
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
 import type { SetRequired } from "type-fest";
+import { version } from "../common/version";
 
 const BASE_PATH = "https://api.neynar.com/v1";
 
@@ -69,7 +70,11 @@ export class NeynarV1APIClient {
 
     this.apiKey = apiKey;
     if (axiosInstance === undefined) {
-      axiosInstance = axios.create();
+      axiosInstance = axios.create({
+        headers: {
+          'x-sdk-version': version
+        }
+      });
     }
     axiosInstance.defaults.decompress = true;
     axiosInstance.interceptors.response.use(
@@ -86,7 +91,7 @@ export class NeynarV1APIClient {
         throw error;
       }
     );
-
+    axiosInstance.defaults.headers["x-sdk-version"] = version;
     const config: Configuration = new Configuration({
       basePath: basePath ? `${basePath}/v1` : BASE_PATH,
       apiKey: apiKey,
