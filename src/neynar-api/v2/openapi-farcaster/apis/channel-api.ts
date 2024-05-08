@@ -28,6 +28,8 @@ import { ChannelResponse } from '../models';
 // @ts-ignore
 import { ChannelSearchResponse } from '../models';
 // @ts-ignore
+import { ChannelType } from '../models';
+// @ts-ignore
 import { ErrorRes } from '../models';
 // @ts-ignore
 import { TrendingChannelResponse } from '../models';
@@ -97,14 +99,15 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Returns details of a channel
-         * @summary Retrieve channel details by id
+         * @summary Retrieve channel details by id or parent_url
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel ID for the channel being queried
+         * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to id.
          * @param {number} [viewerFid] FID of the user viewing the channel.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        channelDetails: async (apiKey: string, id: string, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        channelDetails: async (apiKey: string, id: string, type?: ChannelType, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('channelDetails', 'apiKey', apiKey)
             // verify required parameter 'id' is not null or undefined
@@ -123,6 +126,10 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
 
             if (id !== undefined) {
                 localVarQueryParameter['id'] = id;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
             }
 
             if (viewerFid !== undefined) {
@@ -497,15 +504,16 @@ export const ChannelApiFp = function(configuration?: Configuration) {
         },
         /**
          * Returns details of a channel
-         * @summary Retrieve channel details by id
+         * @summary Retrieve channel details by id or parent_url
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel ID for the channel being queried
+         * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to id.
          * @param {number} [viewerFid] FID of the user viewing the channel.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async channelDetails(apiKey: string, id: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.channelDetails(apiKey, id, viewerFid, options);
+        async channelDetails(apiKey: string, id: string, type?: ChannelType, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.channelDetails(apiKey, id, type, viewerFid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -618,15 +626,16 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Returns details of a channel
-         * @summary Retrieve channel details by id
+         * @summary Retrieve channel details by id or parent_url
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel ID for the channel being queried
+         * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to id.
          * @param {number} [viewerFid] FID of the user viewing the channel.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        channelDetails(apiKey: string, id: string, viewerFid?: number, options?: any): AxiosPromise<ChannelResponse> {
-            return localVarFp.channelDetails(apiKey, id, viewerFid, options).then((request) => request(axios, basePath));
+        channelDetails(apiKey: string, id: string, type?: ChannelType, viewerFid?: number, options?: any): AxiosPromise<ChannelResponse> {
+            return localVarFp.channelDetails(apiKey, id, type, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
@@ -734,16 +743,17 @@ export class ChannelApi extends BaseAPI {
 
     /**
      * Returns details of a channel
-     * @summary Retrieve channel details by id
+     * @summary Retrieve channel details by id or parent_url
      * @param {string} apiKey API key required for authentication.
      * @param {string} id Channel ID for the channel being queried
+     * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to id.
      * @param {number} [viewerFid] FID of the user viewing the channel.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public channelDetails(apiKey: string, id: string, viewerFid?: number, options?: AxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).channelDetails(apiKey, id, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    public channelDetails(apiKey: string, id: string, type?: ChannelType, viewerFid?: number, options?: AxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).channelDetails(apiKey, id, type, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -69,7 +69,9 @@ import {
   MuteApi,
   MuteListResponse,
   MuteResponse,
+  FollowSortType,
   ChannelSearchResponse,
+  ChannelType,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -160,6 +162,7 @@ export class NeynarV2APIClient {
         throw error;
       }
     );
+
     axiosInstance.defaults.headers["x-sdk-version"] = version;
     const config: Configuration = new Configuration({
       basePath: basePath ? `${basePath}/v2` : BASE_PATH,
@@ -1754,6 +1757,7 @@ export class NeynarV2APIClient {
    *
    * @param {string} id - The ID of the channel being queried.
    * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {ChannelType} [type] - Type of identifier being used to query the channel. Defaults to id.
    * @param {number} [options.viewerFid] - The FID of the user viewing the channel.
    *
    * @returns {Promise<ChannelResponse>} A promise that resolves to a `ChannelResponse` object,
@@ -1761,7 +1765,9 @@ export class NeynarV2APIClient {
    *
    * @example
    * // Example: Retrieve details of a channel by its ID
-   * client.lookupChannel('neynar',{viewerFid: 3}).then(response => {
+   * import {ChannelType} from '@neynar/nodejs-sdk'
+   * 
+   * client.lookupChannel('neynar',{viewerFid: 3,type: ChannelType.Id }).then(response => {
    *   console.log('Channel Details:', response);
    * });
    *
@@ -1769,8 +1775,9 @@ export class NeynarV2APIClient {
    */
   public async lookupChannel(id: string,options?: {
     viewerFid?: number;
+    type?: ChannelType;
   }): Promise<ChannelResponse> {
-    const response = await this.apis.channel.channelDetails(this.apiKey, id,options?.viewerFid);
+    const response = await this.apis.channel.channelDetails(this.apiKey, id,options?.type,options?.viewerFid);
     return response.data;
   }
 
@@ -2012,6 +2019,62 @@ export class NeynarV2APIClient {
     );
     return response.data;
   }
+/** 
+  * Returns a list of followers for a specific FID.
+  * @summary Retrieve followers for a given user
+  * @param {number} fid User who's profile you are looking at
+  * @param {Object} [options] - Optional parameters for customizing the response.
+  * @param {number} [options.viewerFid] Viewer who's looking at the profile.
+  * @param {FollowSortType} [options.sortType] Sort type for retrieving followers. Default is FollowSortType.DescChron
+  * @param {number} [options.limit] Number of results to retrieve (default 20, max 100)
+  * @param {string} [options.cursor] Pagination cursor.
+  *  omit this parameter for the initial request.
+  * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
+  * 
+  * @example
+  * // Example: Retrieve followers for a user
+  * import { FollowSortType } from "@neynar/nodejs-sdk";
+  * 
+  * client.fetchUserFollowersV2(3,{limit: 5,viewerFid: 3}).then(response => {
+  *  console.log('User Followers:', response);
+  * });
+  * 
+  * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/followers-v2).
+*/
+  public async fetchUserFollowersV2(fid: number,options?: { viewerFid?: number, limit?: number,cursor?: string, sortType?: FollowSortType}):Promise<UsersResponse> {
+    const response = await this.apis.follows.followersV2(this.apiKey,fid,options?.viewerFid, options?.sortType, options?.limit, options?.cursor);  
+    return response.data;
+  }
+
+/** 
+  * Returns a list of follows for a specific FID.
+  * @summary Retrieve follows for a given user
+  * @param {number} fid User who's profile you are looking at
+  * @param {Object} [options] - Optional parameters for customizing the response.
+  * @param {number} [options.viewerFid] Viewer who's looking at the profile.
+  * @param {FollowSortType} [options.sortType] Sort type for retrieving follows. Default is FollowSortType.DescChron
+  * @param {number} [options.limit] Number of results to retrieve (default 25, max 100)
+  * @param {string} [options.cursor] Pagination cursor.
+  *  omit this parameter for the initial request.
+  * 
+  * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
+  * 
+  * @example
+  * // Example: Retrieve follows for a user
+  * import { FollowSortType } from "@neynar/nodejs-sdk";
+  * 
+  * client.fetchUserFollowingV2(3,{limit: 5,viewerFid: 3}).then(response => {
+  * console.log('User Follows:', response);
+  * });
+  * 
+  * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/following-v2).
+*/
+  public async fetchUserFollowingV2(fid: number,options?: { viewerFid?: number, limit?: number,cursor?: string, sortType?: FollowSortType}):Promise<UsersResponse> {
+const response = await this.apis.follows.followingV2(this.apiKey,fid,options?.viewerFid, options?.sortType, options?.limit, options?.cursor);
+return response.data;
+  }
+
+
 
   // ------------ Storage ------------
 

@@ -47,6 +47,7 @@ models/channel-activity.ts
 models/channel-list-response.ts
 models/channel-response.ts
 models/channel-search-response.ts
+models/channel-type.ts
 models/channel-viewer-context.ts
 models/channel.ts
 models/conversation-conversation.ts
@@ -66,6 +67,7 @@ models/filter-type.ts
 models/fname-availability-response.ts
 models/follow-req-body.ts
 models/follow-response.ts
+models/follow-sort-type.ts
 models/follow.ts
 models/frame-action-button.ts
 models/frame-action-req-body.ts
