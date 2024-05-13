@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { CastWithInteractionsAllOfViewerContext } from './cast-with-interactions-all-of-viewer-context';
+// May contain unused imports in some cases
+// @ts-ignore
 import { CastWithInteractionsReactions } from './cast-with-interactions-reactions';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -71,5 +74,11 @@ export interface CastWithInteractionsAllOf {
      * @memberof CastWithInteractionsAllOf
      */
     'channel'?: Channel;
+    /**
+     * 
+     * @type {CastWithInteractionsAllOfViewerContext}
+     * @memberof CastWithInteractionsAllOf
+     */
+    'viewer_context'?: CastWithInteractionsAllOfViewerContext;
 }
 
