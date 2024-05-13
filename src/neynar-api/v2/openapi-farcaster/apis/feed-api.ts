@@ -38,7 +38,7 @@ import { FilterType } from '../models';
 export const FeedApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 
+         * Retrieve casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type.
          * @summary Retrieve casts based on filters
          * @param {string} apiKey API key required for authentication.
          * @param {FeedType} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
@@ -132,7 +132,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * 
+         * Retrieve feed based on channel ids
          * @summary Retrieve feed based on channel ids
          * @param {string} apiKey API key required for authentication.
          * @param {string} channelIds comma separated list of channel ids e.g. neynar,farcaster
@@ -201,7 +201,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * 
+         * Retrieve feed based on who a user is following
          * @summary Retrieve feed based on who a user is following
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
@@ -265,7 +265,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * 
+         * Retrieve feed of casts with Frames, reverse chronological order
          * @summary Retrieve feed of casts with Frames, reverse chronological order
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
@@ -317,18 +317,18 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * 
+         * Retrieve trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
          * @summary Retrieve trending casts
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] Number of results to retrieve (max 10)
          * @param {string} [cursor] Pagination cursor
          * @param {number} [viewerFid] 
-         * @param {'1h' | '6h' | '12h' | '24h'} [timeWindow] Time window for trending casts
-         * @param {string} [channelId] Channel ID to filter trending casts.
+         * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
+         * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedTrending: async (apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h', channelId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feedTrending: async (apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feedTrending', 'apiKey', apiKey)
             const localVarPath = `/farcaster/feed/trending`;
@@ -491,7 +491,7 @@ export const FeedApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = FeedApiAxiosParamCreator(configuration)
     return {
         /**
-         * 
+         * Retrieve casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type.
          * @summary Retrieve casts based on filters
          * @param {string} apiKey API key required for authentication.
          * @param {FeedType} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
@@ -513,7 +513,7 @@ export const FeedApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
+         * Retrieve feed based on channel ids
          * @summary Retrieve feed based on channel ids
          * @param {string} apiKey API key required for authentication.
          * @param {string} channelIds comma separated list of channel ids e.g. neynar,farcaster
@@ -530,7 +530,7 @@ export const FeedApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
+         * Retrieve feed based on who a user is following
          * @summary Retrieve feed based on who a user is following
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
@@ -546,7 +546,7 @@ export const FeedApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
+         * Retrieve feed of casts with Frames, reverse chronological order
          * @summary Retrieve feed of casts with Frames, reverse chronological order
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
@@ -560,18 +560,18 @@ export const FeedApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
+         * Retrieve trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
          * @summary Retrieve trending casts
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] Number of results to retrieve (max 10)
          * @param {string} [cursor] Pagination cursor
          * @param {number} [viewerFid] 
-         * @param {'1h' | '6h' | '12h' | '24h'} [timeWindow] Time window for trending casts
-         * @param {string} [channelId] Channel ID to filter trending casts.
+         * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
+         * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h', channelId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+        async feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -614,7 +614,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
     const localVarFp = FeedApiFp(configuration)
     return {
         /**
-         * 
+         * Retrieve casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type.
          * @summary Retrieve casts based on filters
          * @param {string} apiKey API key required for authentication.
          * @param {FeedType} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
@@ -635,7 +635,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.feed(apiKey, feedType, filterType, fid, fids, parentUrl, channelId, embedUrl, withRecasts, limit, cursor, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
+         * Retrieve feed based on channel ids
          * @summary Retrieve feed based on channel ids
          * @param {string} apiKey API key required for authentication.
          * @param {string} channelIds comma separated list of channel ids e.g. neynar,farcaster
@@ -651,7 +651,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.feedChannels(apiKey, channelIds, withRecasts, viewerFid, withReplies, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
+         * Retrieve feed based on who a user is following
          * @summary Retrieve feed based on who a user is following
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
@@ -666,7 +666,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.feedFollowing(apiKey, fid, viewerFid, withRecasts, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
+         * Retrieve feed of casts with Frames, reverse chronological order
          * @summary Retrieve feed of casts with Frames, reverse chronological order
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
@@ -679,18 +679,18 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.feedFrames(apiKey, limit, viewerFid, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
+         * Retrieve trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
          * @summary Retrieve trending casts
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] Number of results to retrieve (max 10)
          * @param {string} [cursor] Pagination cursor
          * @param {number} [viewerFid] 
-         * @param {'1h' | '6h' | '12h' | '24h'} [timeWindow] Time window for trending casts
-         * @param {string} [channelId] Channel ID to filter trending casts.
+         * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
+         * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h', channelId?: string, options?: any): AxiosPromise<FeedResponse> {
+        feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, options?: any): AxiosPromise<FeedResponse> {
             return localVarFp.feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -730,7 +730,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
  */
 export class FeedApi extends BaseAPI {
     /**
-     * 
+     * Retrieve casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type.
      * @summary Retrieve casts based on filters
      * @param {string} apiKey API key required for authentication.
      * @param {FeedType} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
@@ -753,7 +753,7 @@ export class FeedApi extends BaseAPI {
     }
 
     /**
-     * 
+     * Retrieve feed based on channel ids
      * @summary Retrieve feed based on channel ids
      * @param {string} apiKey API key required for authentication.
      * @param {string} channelIds comma separated list of channel ids e.g. neynar,farcaster
@@ -771,7 +771,7 @@ export class FeedApi extends BaseAPI {
     }
 
     /**
-     * 
+     * Retrieve feed based on who a user is following
      * @summary Retrieve feed based on who a user is following
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid fid of user whose feed you want to create
@@ -788,7 +788,7 @@ export class FeedApi extends BaseAPI {
     }
 
     /**
-     * 
+     * Retrieve feed of casts with Frames, reverse chronological order
      * @summary Retrieve feed of casts with Frames, reverse chronological order
      * @param {string} apiKey API key required for authentication.
      * @param {number} [limit] Number of results to retrieve (default 25, max 100)
@@ -803,19 +803,19 @@ export class FeedApi extends BaseAPI {
     }
 
     /**
-     * 
+     * Retrieve trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
      * @summary Retrieve trending casts
      * @param {string} apiKey API key required for authentication.
      * @param {number} [limit] Number of results to retrieve (max 10)
      * @param {string} [cursor] Pagination cursor
      * @param {number} [viewerFid] 
-     * @param {'1h' | '6h' | '12h' | '24h'} [timeWindow] Time window for trending casts
-     * @param {string} [channelId] Channel ID to filter trending casts.
+     * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
+     * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h', channelId?: string, options?: AxiosRequestConfig) {
+    public feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, options?: AxiosRequestConfig) {
         return FeedApiFp(this.configuration).feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, options).then((request) => request(this.axios, this.basePath));
     }
 

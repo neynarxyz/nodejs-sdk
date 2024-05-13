@@ -34,6 +34,7 @@ models/cast-param-type.ts
 models/cast-parent-author-all-of.ts
 models/cast-parent-author.ts
 models/cast-response.ts
+models/cast-with-interactions-all-of-viewer-context.ts
 models/cast-with-interactions-all-of.ts
 models/cast-with-interactions-and-conversations-all-of.ts
 models/cast-with-interactions-and-conversations.ts
