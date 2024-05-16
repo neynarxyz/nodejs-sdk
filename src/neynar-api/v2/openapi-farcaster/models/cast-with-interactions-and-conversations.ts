@@ -21,10 +21,10 @@ import { CastNotificationType } from './cast-notification-type';
 import { CastParentAuthor } from './cast-parent-author';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastWithInteractions } from './cast-with-interactions';
+import { CastViewerContext } from './cast-viewer-context';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastWithInteractionsAllOfViewerContext } from './cast-with-interactions-all-of-viewer-context';
+import { CastWithInteractions } from './cast-with-interactions';
 // May contain unused imports in some cases
 // @ts-ignore
 import { CastWithInteractionsAndConversationsAllOf } from './cast-with-interactions-and-conversations-all-of';

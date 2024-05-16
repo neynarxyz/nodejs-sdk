@@ -24,10 +24,10 @@ import { CastNotificationType } from './cast-notification-type';
 import { CastParentAuthor } from './cast-parent-author';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastWithInteractionsAllOf } from './cast-with-interactions-all-of';
+import { CastViewerContext } from './cast-viewer-context';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastWithInteractionsAllOfViewerContext } from './cast-with-interactions-all-of-viewer-context';
+import { CastWithInteractionsAllOf } from './cast-with-interactions-all-of';
 // May contain unused imports in some cases
 // @ts-ignore
 import { CastWithInteractionsReactions } from './cast-with-interactions-reactions';
