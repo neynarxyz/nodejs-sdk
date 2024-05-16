@@ -49,25 +49,25 @@ export interface CastWithInteractionsAllOf {
      * @type {CastWithInteractionsReactions}
      * @memberof CastWithInteractionsAllOf
      */
-    'reactions'?: CastWithInteractionsReactions;
+    'reactions': CastWithInteractionsReactions;
     /**
      * 
      * @type {CastWithInteractionsReplies}
      * @memberof CastWithInteractionsAllOf
      */
-    'replies'?: CastWithInteractionsReplies;
+    'replies': CastWithInteractionsReplies;
     /**
      * 
      * @type {string}
      * @memberof CastWithInteractionsAllOf
      */
-    'thread_hash'?: string | null;
+    'thread_hash': string | null;
     /**
      * 
      * @type {Array<User>}
      * @memberof CastWithInteractionsAllOf
      */
-    'mentioned_profiles'?: Array<User>;
+    'mentioned_profiles': Array<User>;
     /**
      * 
      * @type {Channel}
