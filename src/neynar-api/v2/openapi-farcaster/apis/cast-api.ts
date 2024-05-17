@@ -51,10 +51,11 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
+         * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cast: async (apiKey: string, identifier: string, type: CastParamType, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        cast: async (apiKey: string, identifier: string, type: CastParamType, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('cast', 'apiKey', apiKey)
             // verify required parameter 'identifier' is not null or undefined
@@ -81,6 +82,10 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['type'] = type;
             }
 
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
             }
@@ -104,10 +109,11 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {CastParamType} type 
          * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
          * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
+         * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        castConversation: async (apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        castConversation: async (apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('castConversation', 'apiKey', apiKey)
             // verify required parameter 'identifier' is not null or undefined
@@ -140,6 +146,10 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (includeChronologicalParentCasts !== undefined) {
                 localVarQueryParameter['include_chronological_parent_casts'] = includeChronologicalParentCasts;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
             if (apiKey != null) {
@@ -313,11 +323,12 @@ export const CastApiFp = function(configuration?: Configuration) {
          * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
+         * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async cast(apiKey: string, identifier: string, type: CastParamType, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.cast(apiKey, identifier, type, options);
+        async cast(apiKey: string, identifier: string, type: CastParamType, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cast(apiKey, identifier, type, viewerFid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -328,11 +339,12 @@ export const CastApiFp = function(configuration?: Configuration) {
          * @param {CastParamType} type 
          * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
          * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
+         * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Conversation>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, options);
+        async castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Conversation>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -389,11 +401,12 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
+         * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cast(apiKey: string, identifier: string, type: CastParamType, options?: any): AxiosPromise<CastResponse> {
-            return localVarFp.cast(apiKey, identifier, type, options).then((request) => request(axios, basePath));
+        cast(apiKey: string, identifier: string, type: CastParamType, viewerFid?: number, options?: any): AxiosPromise<CastResponse> {
+            return localVarFp.cast(apiKey, identifier, type, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
@@ -403,11 +416,12 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * @param {CastParamType} type 
          * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
          * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
+         * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, options?: any): AxiosPromise<Conversation> {
-            return localVarFp.castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, options).then((request) => request(axios, basePath));
+        castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, options?: any): AxiosPromise<Conversation> {
+            return localVarFp.castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve multiple casts using their respective hashes.
@@ -460,12 +474,13 @@ export class CastApi extends BaseAPI {
      * @param {string} apiKey API key required for authentication.
      * @param {string} identifier Cast identifier (Its either a url or a hash)
      * @param {CastParamType} type 
+     * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CastApi
      */
-    public cast(apiKey: string, identifier: string, type: CastParamType, options?: AxiosRequestConfig) {
-        return CastApiFp(this.configuration).cast(apiKey, identifier, type, options).then((request) => request(this.axios, this.basePath));
+    public cast(apiKey: string, identifier: string, type: CastParamType, viewerFid?: number, options?: AxiosRequestConfig) {
+        return CastApiFp(this.configuration).cast(apiKey, identifier, type, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -476,12 +491,13 @@ export class CastApi extends BaseAPI {
      * @param {CastParamType} type 
      * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
      * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
+     * @param {number} [viewerFid] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CastApi
      */
-    public castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, options?: AxiosRequestConfig) {
-        return CastApiFp(this.configuration).castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, options).then((request) => request(this.axios, this.basePath));
+    public castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, options?: AxiosRequestConfig) {
+        return CastApiFp(this.configuration).castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

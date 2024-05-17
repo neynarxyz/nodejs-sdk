@@ -917,6 +917,8 @@ export class NeynarV2APIClient {
    *
    * @param {string} castHashOrUrl - The identifier for the cast, which can be either a cast hash or a Warpcast web URL.
    * @param {CastParamType} type - The parameter type indicating whether the identifier is a hash or a URL.
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {number} [options.viewerFid] - Adds viewer context to the cast object to indicate whether the viewer has liked or recasted the cast, as well as follows or is followed by the cast creator.
    *
    * @returns {Promise<CastResponse>} A promise that resolves to a `CastResponse` object,
    *   containing information about the specified cast.
@@ -925,12 +927,12 @@ export class NeynarV2APIClient {
    * import { CastParamType } from "@neynar/nodejs-sdk/build/neynar-api/v2";
    *
    * // Example: Retrieve information for a cast using its hash
-   * client.lookUpCastByHashOrWarpcastUrl('0xfe90f9de682273e05b201629ad2338bdcd89b6be', CastParamType.Hash).then(response => {
+   * client.lookUpCastByHashOrWarpcastUrl('0xfe90f9de682273e05b201629ad2338bdcd89b6be', CastParamType.Hash,{viewerFid: 3}).then(response => {
    *   console.log('Cast Information:', response); // Outputs information about the cast
    * });
    *
    * // Example: Retrieve information for a cast using its Warpcast URL
-   * client.lookUpCastByHashOrWarpcastUrl('https://warpcast.com/rish/0x9288c1', CastParamType.Url).then(response => {
+   * client.lookUpCastByHashOrWarpcastUrl('https://warpcast.com/rish/0x9288c1', CastParamType.Url, {viewerFid: 3}).then(response => {
    *   console.log('Cast Information:', response); // Outputs information about the cast
    * });
    *
@@ -938,12 +940,16 @@ export class NeynarV2APIClient {
    */
   public async lookUpCastByHashOrWarpcastUrl(
     castHashOrUrl: string,
-    type: CastParamType
+    type: CastParamType,
+    options?: {
+      viewerFid?: number;
+    }
   ): Promise<CastResponse> {
     const response = await this.apis.cast.cast(
       this.apiKey,
       castHashOrUrl,
-      type
+      type,
+      options?.viewerFid
     );
     return response.data;
   }
@@ -1002,8 +1008,10 @@ export class NeynarV2APIClient {
    *
    * @param {string} castHashOrUrl - The hash or URL of the cast conversation to be retrieved.
    * @param {CastParamType} type - Specifies the type of the provided identifier, indicating whether it's a hash or URL.
-   * @param {number} [replyDepth] - Optional parameter to specify how deep the reply chain should be fetched.
-   * @param {boolean} [includeChronologicalParentCasts] - Optional parameter to include chronological parent casts in the response.
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {number} [options.replyDepth] - Optional parameter to specify how deep the reply chain should be fetched.
+   * @param {boolean} [options.includeChronologicalParentCasts] - Optional parameter to include chronological parent casts in the response.
+   * @param {number} [options.viewerFid] - Optional parameter to add viewer context to the cast objects to indicate whether the viewer has liked or recasted the cast, as well as follows or is followed by the cast creator.
    * @returns {Promise<Conversation>} A promise that resolves to a `Conversation` object,
    *   containing detailed information about the requested cast conversation, including replies up to the specified depth.
    *
@@ -1012,7 +1020,7 @@ export class NeynarV2APIClient {
    * client.lookupCastConversation(
    *   'https://warpcast.com/rish/0x9288c1',
    *   CastParamType.Url,
-   *  { replyDepth: 2, includeChronologicalParentCasts: true }
+   *  { replyDepth: 2, includeChronologicalParentCasts: true,viewerFid: 3}
    * ).then(response => {
    *   console.log('Cast Conversation Information:', response); // Outputs detailed information about the specified cast conversation
    * });
@@ -1025,6 +1033,7 @@ export class NeynarV2APIClient {
     options?: {
       replyDepth?: number;
       includeChronologicalParentCasts?: boolean;
+      viewerFid?: number;
     }
   ): Promise<Conversation> {
     const response = await this.apis.cast.castConversation(
@@ -1032,7 +1041,8 @@ export class NeynarV2APIClient {
       castHashOrUrl,
       type,
       options?.replyDepth,
-      options?.includeChronologicalParentCasts
+      options?.includeChronologicalParentCasts,
+      options?.viewerFid
     );
     return response.data;
   }

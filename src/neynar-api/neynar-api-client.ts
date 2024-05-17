@@ -1349,6 +1349,7 @@ export class NeynarAPIClient {
    * @param {Object} [options] - An optional parameter object to refine the query.
    * @param {number} [options.replyDepth] - An optional parameter within the options object, specifying the desired depth of replies to fetch within the conversation. This allows for tailored retrieval of conversation data, ranging from top-level casts only to deeper, more comprehensive conversation threads.
    * @param {boolean} [options.includeChronologicalParentCasts] - An optional parameter within the options object, indicating whether to include chronological parent casts in the response. This parameter is useful for applications requiring a structured view of the conversation, including parent casts that provide context for the replies.
+   * @param {number} [options.viewerFid] - Optional parameter to add viewer context to the cast objects to indicate whether the viewer has liked or recasted the cast, as well as follows or is followed by the cast creator.
    * @returns {Promise<Conversation>} A promise resolving to a `Conversation` object. This object encapsulates detailed information about the cast conversation, including the content of the conversation itself and any replies, structured up to the specified depth.
    *
    * @example
@@ -1358,7 +1359,7 @@ export class NeynarAPIClient {
    * client.lookupCastConversation(
    *   'https://warpcast.com/rish/0x9288c1',
    *   CastParamType.Url,
-   *   { replyDepth: 2, includeChronologicalParentCasts: true}
+   *   { replyDepth: 2, includeChronologicalParentCasts: true, viewerFid: 3}
    * ).then(response => {
    *   console.log('Cast Conversation Information:', response); // Displays the detailed structure of the specified cast conversation
    * });
@@ -1372,6 +1373,7 @@ export class NeynarAPIClient {
     options?: {
       replyDepth?: number;
       includeChronologicalParentCasts?: boolean;
+      viewerFid?: number;
     }
   ): Promise<Conversation> {
     return await this.clients.v2.lookupCastConversation(
@@ -1412,6 +1414,8 @@ export class NeynarAPIClient {
    *
    * @param {string} castHashOrUrl - The identifier for the cast, which can be either a cast hash or a Warpcast web URL.
    * @param {CastParamType} type - The parameter type indicating whether the identifier is a hash or a URL.
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {number} [options.viewerFid] - Optional parameter to add viewer context to the cast objects to indicate whether the viewer has liked or recasted the cast, as well as follows or is followed by the cast creator.
    *
    * @returns {Promise<CastResponse>} A promise that resolves to a `CastResponse` object,
    *   containing information about the specified cast.
@@ -1420,12 +1424,12 @@ export class NeynarAPIClient {
    * import { CastParamType } from "@neynar/nodejs-sdk";
    *
    * // Example: Retrieve information for a cast using its hash
-   * client.lookUpCastByHashOrWarpcastUrl('0xfe90f9de682273e05b201629ad2338bdcd89b6be', CastParamType.Hash).then(response => {
+   * client.lookUpCastByHashOrWarpcastUrl('0xfe90f9de682273e05b201629ad2338bdcd89b6be', CastParamType.Hash,{viewerFid: 3}).then(response => {
    *   console.log('Cast Information:', response); // Outputs information about the cast
    * });
    *
    * // Example: Retrieve information for a cast using its Warpcast URL
-   * client.lookUpCastByHashOrWarpcastUrl('https://warpcast.com/rish/0x9288c1', CastParamType.Url).then(response => {
+   * client.lookUpCastByHashOrWarpcastUrl('https://warpcast.com/rish/0x9288c1', CastParamType.Url,{viewerFid: 3}).then(response => {
    *   console.log('Cast Information:', response); // Outputs information about the cast
    * });
    *
@@ -1433,11 +1437,15 @@ export class NeynarAPIClient {
    */
   public async lookUpCastByHashOrWarpcastUrl(
     castHashOrUrl: string,
-    type: CastParamType
+    type: CastParamType,
+    options?: {
+      viewerFid?: number;
+    }
   ): Promise<CastResponse> {
     return await this.clients.v2.lookUpCastByHashOrWarpcastUrl(
       castHashOrUrl,
-      type
+      type,
+      options
     );
   }
 
