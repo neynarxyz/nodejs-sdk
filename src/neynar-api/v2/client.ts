@@ -806,6 +806,7 @@ export class NeynarV2APIClient {
    * @param {Array<string>} addresses - An array of Ethereum addresses.
    * @param {Object} [options] - Optional parameters for the function.
    * @param {BulkUserAddressTypes[]} [options.addressTypes] - An array of address types to filter the users by. Can include 'custody_address', 'verified_address'. If not specified, both address types are considered.
+   * @param {number} [options.viewerFid] - The FID of the user viewing this information, used for providing contextual data specific to the viewer.
    *  Possible values: 'custody_address', 'verified_address'.
    *
    * @returns {Promise<{[key: string]: User[]}>} A promise that resolves to an object where each key
@@ -818,7 +819,7 @@ export class NeynarV2APIClient {
    *
    * import { BulkUserAddressTypes } from "@neynar/nodejs-sdk";
    *
-   * client.fetchBulkUsersByEthereumAddress(['0xa6a8736f18f383f1cc2d938576933e5ea7df01a1','0x7cac817861e5c3384753403fb6c0c556c204b1ce'], {addressTypes:[BulkUserAddressTypes.CUSTODY_ADDRESS]}).then(response => {
+   * client.fetchBulkUsersByEthereumAddress(['0xa6a8736f18f383f1cc2d938576933e5ea7df01a1','0x7cac817861e5c3384753403fb6c0c556c204b1ce'], {addressTypes:[BulkUserAddressTypes.CUSTODY_ADDRESS],viewerFid: 3}).then(response => {
    *   console.log('Users by Ethereum Addresses:', response);
    * });
    *
@@ -828,6 +829,7 @@ export class NeynarV2APIClient {
     addresses: string[],
     options?: {
       addressTypes?: BulkUserAddressTypes[];
+      viewerFid?: number;
     }
   ): Promise<{
     [key: string]: User[];
@@ -840,7 +842,8 @@ export class NeynarV2APIClient {
     const response = await this.apis.user.userBulkByAddress(
       this.apiKey,
       _addresses,
-      _addressTypes
+      _addressTypes,
+      options?.viewerFid
     );
     return response.data;
   }
