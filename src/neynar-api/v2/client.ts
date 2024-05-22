@@ -72,6 +72,7 @@ import {
   FollowSortType,
   ChannelSearchResponse,
   ChannelType,
+  ChannelResponseBulk,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -1770,6 +1771,34 @@ export class NeynarV2APIClient {
         options?.cursor
       );
       return response.data;
+    }
+
+    /**
+    * Returns details of multiple channels
+    * @summary Retrieve channels by id or parent_url
+    * @param {string[]} ids Channel IDs for the channels being queried
+    * @param {Object} [options] - Optional parameters for customizing the response.
+    * @param {ChannelType} [options.type] Type of identifier being used to query the channels. Defaults to id.
+    * @param {number} [options.viewerFid] FID of the user viewing the channels.
+    *   
+    * @returns {Promise<ChannelResponseBulk>} A promise that resolves to a `ChannelResponseBulk` object,
+    *
+    * 
+    *  @example
+    // Example: Retrieve details of multiple channels by their IDs
+    import { ChannelType } from '@neynar/nodejs-sdk'
+    client.fetchBulkChannels(['neynar', 'farcaster'],{ viewerFid: 3, type: ChannelType.Id, }).then(response => {
+      console.log('Channel Details:', response);
+    });
+    * 
+    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/channel-details-bulk).
+    */
+   public async fetchBulkChannels(ids: string[], options?: {
+    type?: ChannelType,
+    viewerFid?: number;}): Promise<ChannelResponseBulk>{
+    const _ids = ids.join(",");
+    const response = await this.apis.channel.channelDetailsBulk(this.apiKey, _ids, options?.type, options?.viewerFid);
+    return response.data;
     }
 
   /**

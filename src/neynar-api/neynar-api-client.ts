@@ -57,6 +57,7 @@ import {
   FollowSortType,
   ChannelSearchResponse,
   ChannelType,
+  ChannelResponseBulk,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -2039,6 +2040,30 @@ export class NeynarAPIClient {
     type?: ChannelType
   }): Promise<ChannelResponse> {
     return await this.clients.v2.lookupChannel(id,options);
+  }
+
+  /**
+    * Returns details of multiple channels
+    * @summary Retrieve channels by id or parent_url
+    * @param {string[]} ids Channel IDs for the channels being queried
+    * @param {Object} [options] - Optional parameters for customizing the response.
+    * @param {ChannelType} [options.type] Type of identifier being used to query the channels. Defaults to id.
+    * @param {number} [options.viewerFid] FID of the user viewing the channels.
+    *   
+    * @returns {Promise<ChannelResponseBulk>} A promise that resolves to a `ChannelResponseBulk` object,
+    *
+    * 
+    *  @example
+    // Example: Retrieve details of multiple channels by their IDs
+    import { ChannelType } from '@neynar/nodejs-sdk'
+    client.fetchBulkChannels(['neynar', 'farcaster'], { viewerFid: 3,type: ChannelType.Id, }).then(response => {
+      console.log('Channel Details:', response);
+    });
+    * 
+    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/channel-details-bulk).
+    */
+  public async  fetchBulkChannels(ids: string[], options?: { viewerFid?: number,type?: ChannelType }): Promise<ChannelResponseBulk> {
+    return await this.clients.v2.fetchBulkChannels(ids,options);
   }
 
   /**
