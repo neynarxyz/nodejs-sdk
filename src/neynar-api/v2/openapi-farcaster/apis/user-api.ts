@@ -362,7 +362,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Register account on farcaster. 
+         * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch fid API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this fid to another available user. 
          * @summary Register account on farcaster
          * @param {string} apiKey API key required for authentication.
          * @param {RegisterUserReqBody} registerUserReqBody 
@@ -545,10 +545,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
          * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
+         * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userBulkByAddress: async (apiKey: string, addresses: string, addressTypes?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        userBulkByAddress: async (apiKey: string, addresses: string, addressTypes?: string, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('userBulkByAddress', 'apiKey', apiKey)
             // verify required parameter 'addresses' is not null or undefined
@@ -571,6 +572,10 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (addressTypes !== undefined) {
                 localVarQueryParameter['address_types'] = addressTypes;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
             if (apiKey != null) {
@@ -743,7 +748,7 @@ export const UserApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Register account on farcaster. 
+         * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch fid API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this fid to another available user. 
          * @summary Register account on farcaster
          * @param {string} apiKey API key required for authentication.
          * @param {RegisterUserReqBody} registerUserReqBody 
@@ -797,11 +802,12 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
          * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
+         * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async userBulkByAddress(apiKey: string, addresses: string, addressTypes?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: Array<User>; }>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userBulkByAddress(apiKey, addresses, addressTypes, options);
+        async userBulkByAddress(apiKey: string, addresses: string, addressTypes?: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: Array<User>; }>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userBulkByAddress(apiKey, addresses, addressTypes, viewerFid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -908,7 +914,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.powerUsers(apiKey, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * Register account on farcaster. 
+         * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch fid API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this fid to another available user. 
          * @summary Register account on farcaster
          * @param {string} apiKey API key required for authentication.
          * @param {RegisterUserReqBody} registerUserReqBody 
@@ -958,11 +964,12 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
          * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
+         * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userBulkByAddress(apiKey: string, addresses: string, addressTypes?: string, options?: any): AxiosPromise<{ [key: string]: Array<User>; }> {
-            return localVarFp.userBulkByAddress(apiKey, addresses, addressTypes, options).then((request) => request(axios, basePath));
+        userBulkByAddress(apiKey: string, addresses: string, addressTypes?: string, viewerFid?: number, options?: any): AxiosPromise<{ [key: string]: Array<User>; }> {
+            return localVarFp.userBulkByAddress(apiKey, addresses, addressTypes, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Search for Usernames
@@ -1081,7 +1088,7 @@ export class UserApi extends BaseAPI {
     }
 
     /**
-     * Register account on farcaster. 
+     * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch fid API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this fid to another available user. 
      * @summary Register account on farcaster
      * @param {string} apiKey API key required for authentication.
      * @param {RegisterUserReqBody} registerUserReqBody 
@@ -1139,12 +1146,13 @@ export class UserApi extends BaseAPI {
      * @param {string} apiKey API key required for authentication.
      * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
      * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
+     * @param {number} [viewerFid] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userBulkByAddress(apiKey: string, addresses: string, addressTypes?: string, options?: AxiosRequestConfig) {
-        return UserApiFp(this.configuration).userBulkByAddress(apiKey, addresses, addressTypes, options).then((request) => request(this.axios, this.basePath));
+    public userBulkByAddress(apiKey: string, addresses: string, addressTypes?: string, viewerFid?: number, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).userBulkByAddress(apiKey, addresses, addressTypes, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
