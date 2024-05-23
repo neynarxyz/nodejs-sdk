@@ -45,6 +45,12 @@ export interface WebhookSubscriptionFiltersCastCreated {
      */
     'root_parent_urls'?: Array<string>;
     /**
+     * 
+     * @type {Array<number>}
+     * @memberof WebhookSubscriptionFiltersCastCreated
+     */
+    'parent_author_fids'?: Array<number>;
+    /**
      * Regex pattern to match the text key of the cast. **Note:**  1) Regex must be parsed by Go\'s RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex) 2) Use backslashes to escape special characters. For example: (?i)\\\\$degen should be written as (?i)\\\\\\\\$degen 
      * @type {string}
      * @memberof WebhookSubscriptionFiltersCastCreated
