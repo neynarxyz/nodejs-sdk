@@ -141,10 +141,11 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {boolean} [withReplies] Include replies in the response, false by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
+         * @param {boolean} [shouldModerate] If true, only casts that have been liked by the moderator (if one exists) will be returned.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedChannels: async (apiKey: string, channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feedChannels: async (apiKey: string, channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, shouldModerate?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feedChannels', 'apiKey', apiKey)
             // verify required parameter 'channelIds' is not null or undefined
@@ -183,6 +184,10 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (cursor !== undefined) {
                 localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (shouldModerate !== undefined) {
+                localVarQueryParameter['should_moderate'] = shouldModerate;
             }
 
             if (apiKey != null) {
@@ -522,11 +527,12 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {boolean} [withReplies] Include replies in the response, false by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
+         * @param {boolean} [shouldModerate] If true, only casts that have been liked by the moderator (if one exists) will be returned.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feedChannels(apiKey: string, channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.feedChannels(apiKey, channelIds, withRecasts, viewerFid, withReplies, limit, cursor, options);
+        async feedChannels(apiKey: string, channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, shouldModerate?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedChannels(apiKey, channelIds, withRecasts, viewerFid, withReplies, limit, cursor, shouldModerate, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -644,11 +650,12 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {boolean} [withReplies] Include replies in the response, false by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
+         * @param {boolean} [shouldModerate] If true, only casts that have been liked by the moderator (if one exists) will be returned.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedChannels(apiKey: string, channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
-            return localVarFp.feedChannels(apiKey, channelIds, withRecasts, viewerFid, withReplies, limit, cursor, options).then((request) => request(axios, basePath));
+        feedChannels(apiKey: string, channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, shouldModerate?: boolean, options?: any): AxiosPromise<FeedResponse> {
+            return localVarFp.feedChannels(apiKey, channelIds, withRecasts, viewerFid, withReplies, limit, cursor, shouldModerate, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve feed based on who a user is following
@@ -762,12 +769,13 @@ export class FeedApi extends BaseAPI {
      * @param {boolean} [withReplies] Include replies in the response, false by default
      * @param {number} [limit] Number of results to retrieve (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
+     * @param {boolean} [shouldModerate] If true, only casts that have been liked by the moderator (if one exists) will be returned.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feedChannels(apiKey: string, channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
-        return FeedApiFp(this.configuration).feedChannels(apiKey, channelIds, withRecasts, viewerFid, withReplies, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public feedChannels(apiKey: string, channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, shouldModerate?: boolean, options?: AxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedChannels(apiKey, channelIds, withRecasts, viewerFid, withReplies, limit, cursor, shouldModerate, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

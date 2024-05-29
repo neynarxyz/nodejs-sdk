@@ -155,7 +155,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Returns details of multiple channels
-         * @summary Retrieve channels by id or parent_url
+         * @summary (Bulk) Retrieve channels by id or parent_url
          * @param {string} apiKey API key required for authentication.
          * @param {string} ids Comma separated list of channel IDs or parent_urls, up to 100 at a time
          * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to id.
@@ -574,7 +574,7 @@ export const ChannelApiFp = function(configuration?: Configuration) {
         },
         /**
          * Returns details of multiple channels
-         * @summary Retrieve channels by id or parent_url
+         * @summary (Bulk) Retrieve channels by id or parent_url
          * @param {string} apiKey API key required for authentication.
          * @param {string} ids Comma separated list of channel IDs or parent_urls, up to 100 at a time
          * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to id.
@@ -709,7 +709,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Returns details of multiple channels
-         * @summary Retrieve channels by id or parent_url
+         * @summary (Bulk) Retrieve channels by id or parent_url
          * @param {string} apiKey API key required for authentication.
          * @param {string} ids Comma separated list of channel IDs or parent_urls, up to 100 at a time
          * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to id.
@@ -841,7 +841,7 @@ export class ChannelApi extends BaseAPI {
 
     /**
      * Returns details of multiple channels
-     * @summary Retrieve channels by id or parent_url
+     * @summary (Bulk) Retrieve channels by id or parent_url
      * @param {string} apiKey API key required for authentication.
      * @param {string} ids Comma separated list of channel IDs or parent_urls, up to 100 at a time
      * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to id.
