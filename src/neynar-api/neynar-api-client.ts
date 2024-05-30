@@ -1616,13 +1616,14 @@ export class NeynarAPIClient {
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
    * @param {string} [options.cursor] - Pagination cursor for the next set of results. Omit this parameter for the initial request.
    * @param {number} [options.viewerFid] - The FID of the user viewing this information.
+   * @param {boolean} [options.shouldModerate] - Whether to include only casts liked by the moderator in the response. True by default.
    *
    * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
    *   containing the feed for the specified channel IDs.
    *
    * @example
    * // Example: Retrieve feed for specific channels, including recasts and replies
-   * client.fetchFeedByChannelIds(['neynar', 'farcaster'], { withRecasts: true, withReplies: true, limit: 30, viewerFid: 100 }).then(response => {
+   * client.fetchFeedByChannelIds(['neynar', 'farcaster'], { withRecasts: true, withReplies: true, limit: 30, viewerFid: 100,shouldModerate: false }).then(response => {
    *   console.log('Channel Feed:', response);
    * });
    *
@@ -1636,6 +1637,7 @@ export class NeynarAPIClient {
       limit?: number;
       cursor?: string;
       viewerFid?: number;
+      shouldModerate?: boolean;
     }
   ): Promise<FeedResponse> {
     return await this.clients.v2.fetchFeedByChannelIds(channelIds, options);
