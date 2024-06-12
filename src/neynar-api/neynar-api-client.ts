@@ -3064,6 +3064,10 @@ public async deleteMute(fid: number,mutedFid: number): Promise<MuteResponse> {
          * @example
          * // Example: Retrieve fabric subscribers for a user
          * client.fetchSubscribersForFid(3, SubscriptionProvider.FabricStp, { viewerFid: 3 }).then(response => {
+         * console.log('Subscribers:', response);
+         * });
+         * 
+         * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscribers-1).
          */
   public async fetchSubscribersForFid(fid: number, subscriptionProvider: SubscriptionProvider,options?: {
     viewerFid?: number;
@@ -3086,6 +3090,8 @@ public async deleteMute(fid: number,mutedFid: number): Promise<MuteResponse> {
          * client.fetchSubscribedToForFid(3, SubscriptionProvider.FabricStp, { viewerFid: 3 }).then(response => {
          * console.log('Subscribed To:', response);
          * });
+         * 
+         * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscribed-to).
          */
   public async fetchSubscribedToForFid(fid: number, subscriptionProvider: SubscriptionProvider,options?: {
     viewerFid?: number;
@@ -3108,6 +3114,8 @@ public async deleteMute(fid: number,mutedFid: number): Promise<MuteResponse> {
          * client.fetchSubscriptionsForFid(3, SubscriptionProvider.FabricStp, { viewerFid: 3 }).then(response => {
          * console.log('Subscriptions:', response);
          * });
+         * 
+         * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscriptions-created).
          */
   public async fetchSubscriptionsForFid(fid: number, subscriptionProvider: SubscriptionProvider): Promise<SubscriptionsResponse> {
     return await this.clients.v2.fetchSubscriptionsForFid(fid, subscriptionProvider);
