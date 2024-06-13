@@ -57,6 +57,7 @@ export * from './frame-button-action-type';
 export * from './frame-input';
 export * from './frame-state';
 export * from './frame-transaction';
+export * from './frame-type';
 export * from './frame-validate-analytics-input-text';
 export * from './frame-validate-analytics-input-text-input-texts-inner';
 export * from './frame-validate-analytics-interactions-per-cast';

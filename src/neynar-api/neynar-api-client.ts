@@ -58,6 +58,7 @@ import {
   ChannelSearchResponse,
   ChannelType,
   ChannelResponseBulk,
+  FrameType,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -1882,6 +1883,7 @@ export class NeynarAPIClient {
    * @param {Object} [options] - Optional parameters for customizing the response.
    * @param {number} [options.limit] - The maximum number of users to be returned in the response.
    *   Defaults to 25, with a maximum allowable value of 100.
+   * @param {number} [options.viewerFid] - The FID of the viewer requesting the cast reactions.
    * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
    *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
    *
@@ -1895,6 +1897,7 @@ export class NeynarAPIClient {
    * // Example: Fetch a user's reactions
    * client.fetchUserReactions(3, ReactionsType.All, {
    * limit: 50,
+   * viewerFid: 3,
    * // cursor: "nextPageCursor" // Omit this parameter for the initial request
    *  }).then(response => {
    *   console.log('User Reactions:', response); // Outputs the user's reactions
@@ -1905,7 +1908,7 @@ export class NeynarAPIClient {
   public async fetchUserReactions(
     fid: number,
     type: ReactionsType,
-    options?: { limit?: number; cursor?: string }
+    options?: { limit?: number; cursor?: string,viewerFid?: number}
   ): Promise<ReactionsResponse> {
     return await this.clients.v2.fetchUserReactions(fid, type, options);
   }
@@ -1918,6 +1921,7 @@ export class NeynarAPIClient {
    * @param {ReactionsType} types - The type of reaction to fetch (likes, recasts, or all).
    * @param {Object} [options] - Optional parameters for customizing the response.
    * @param {number} [options.limit] - Limits the number of results. Default is 25, with a maximum of 100.
+   * @param {number} [options.viewerFid] - The FID of the viewer requesting the cast reactions.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -1930,6 +1934,7 @@ export class NeynarAPIClient {
    * // Example: Fetch a casts reactions
    * client.fetchReactionsForCast("0xfe90f9de682273e05b201629ad2338bdcd89b6be",ReactionsType.All, {
    * limit: 50,
+   * viewerFid: 3,
    * // cursor: "nextPageCursor" // Omit this parameter for the initial request
    *  }).then(response => {
    *   console.log('Cast Reactions:', response); // Outputs the casts reactions
@@ -1940,7 +1945,7 @@ export class NeynarAPIClient {
   public async fetchReactionsForCast(
     hash: string,
     types: ReactionsType,
-    options?: { limit?: number; cursor?: string }
+    options?: { limit?: number; cursor?: string,viewerFid?: number}
   ): Promise<ReactionsCastResponse> {
     return await this.clients.v2.fetchCastReactions(hash, types, options);
   }
@@ -2440,24 +2445,25 @@ export class NeynarAPIClient {
   // ------------ Frame ------------
 
   /**
-   * Retrieves a frame by its UUID, provided it was created by the developer identified by the provided API key.
+   * Retrieves a frame by its UUID or URL, provided it was created by the developer identified by the provided API key.
    * This method is useful for fetching details of a specific frame for review or display purposes.
    *
-   * @param {string} uuid - The UUID of the frame to be retrieved.
+   * @param {string} identifier - The UUID of the frame to be retrieved.
+   * @param {FrameType} type - The type of identifier being used to query the frame.
    *
    * @returns {Promise<NeynarFrame>} A promise that resolves to a `NeynarFrame` object containing the details of the retrieved frame.
    *
    * @example
    * // Example: Retrieve a frame by its UUID
    * const uuid = 'your-frame-uuid';
-   * client.lookupNeynarFrame(uuid).then(frame => {
+   * client.lookupNeynarFrame(uuid,FrameType.Uuid).then(frame => {
    *   console.log('Retrieved Frame:', frame);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/lookup-neynar-frame).
    */
-  public async lookupNeynarFrame(uuid: string): Promise<NeynarFrame> {
-    return await this.clients.v2.lookupNeynarFrame(uuid);
+  public async lookupNeynarFrame(identifier: string,type: FrameType): Promise<NeynarFrame> {
+    return await this.clients.v2.lookupNeynarFrame(identifier,type);
   }
 
   /**
