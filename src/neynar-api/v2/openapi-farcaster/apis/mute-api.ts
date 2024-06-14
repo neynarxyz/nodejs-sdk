@@ -37,7 +37,7 @@ export const MuteApiAxiosParamCreator = function (configuration?: Configuration)
     return {
         /**
          * Adds a mute for a given fid. This is a whitelisted API, reach out if you want access.
-         * @summary Adds a mute for a fid.
+         * @summary Adds a mute for a fid
          * @param {string} apiKey API key required for authentication.
          * @param {MuteReqBody} muteReqBody 
          * @param {*} [options] Override http request option.
@@ -80,7 +80,7 @@ export const MuteApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Deletes a mute for a given fid. This is a whitelisted API, reach out if you want access.
-         * @summary Deletes a mute for a fid.
+         * @summary Deletes a mute for a fid
          * @param {string} apiKey API key required for authentication.
          * @param {MuteReqBody} muteReqBody 
          * @param {*} [options] Override http request option.
@@ -123,7 +123,7 @@ export const MuteApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Fetches all fids that a user has muted.
-         * @summary Get fids that a user has muted.
+         * @summary Get fids that a user has muted
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid The user\&#39;s fid (identifier)
          * @param {number} [limit] Number of results to retrieve (default 20, max 100).
@@ -187,7 +187,7 @@ export const MuteApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Adds a mute for a given fid. This is a whitelisted API, reach out if you want access.
-         * @summary Adds a mute for a fid.
+         * @summary Adds a mute for a fid
          * @param {string} apiKey API key required for authentication.
          * @param {MuteReqBody} muteReqBody 
          * @param {*} [options] Override http request option.
@@ -199,7 +199,7 @@ export const MuteApiFp = function(configuration?: Configuration) {
         },
         /**
          * Deletes a mute for a given fid. This is a whitelisted API, reach out if you want access.
-         * @summary Deletes a mute for a fid.
+         * @summary Deletes a mute for a fid
          * @param {string} apiKey API key required for authentication.
          * @param {MuteReqBody} muteReqBody 
          * @param {*} [options] Override http request option.
@@ -211,7 +211,7 @@ export const MuteApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches all fids that a user has muted.
-         * @summary Get fids that a user has muted.
+         * @summary Get fids that a user has muted
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid The user\&#39;s fid (identifier)
          * @param {number} [limit] Number of results to retrieve (default 20, max 100).
@@ -235,7 +235,7 @@ export const MuteApiFactory = function (configuration?: Configuration, basePath?
     return {
         /**
          * Adds a mute for a given fid. This is a whitelisted API, reach out if you want access.
-         * @summary Adds a mute for a fid.
+         * @summary Adds a mute for a fid
          * @param {string} apiKey API key required for authentication.
          * @param {MuteReqBody} muteReqBody 
          * @param {*} [options] Override http request option.
@@ -246,7 +246,7 @@ export const MuteApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Deletes a mute for a given fid. This is a whitelisted API, reach out if you want access.
-         * @summary Deletes a mute for a fid.
+         * @summary Deletes a mute for a fid
          * @param {string} apiKey API key required for authentication.
          * @param {MuteReqBody} muteReqBody 
          * @param {*} [options] Override http request option.
@@ -257,7 +257,7 @@ export const MuteApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Fetches all fids that a user has muted.
-         * @summary Get fids that a user has muted.
+         * @summary Get fids that a user has muted
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid The user\&#39;s fid (identifier)
          * @param {number} [limit] Number of results to retrieve (default 20, max 100).
@@ -280,7 +280,7 @@ export const MuteApiFactory = function (configuration?: Configuration, basePath?
 export class MuteApi extends BaseAPI {
     /**
      * Adds a mute for a given fid. This is a whitelisted API, reach out if you want access.
-     * @summary Adds a mute for a fid.
+     * @summary Adds a mute for a fid
      * @param {string} apiKey API key required for authentication.
      * @param {MuteReqBody} muteReqBody 
      * @param {*} [options] Override http request option.
@@ -293,7 +293,7 @@ export class MuteApi extends BaseAPI {
 
     /**
      * Deletes a mute for a given fid. This is a whitelisted API, reach out if you want access.
-     * @summary Deletes a mute for a fid.
+     * @summary Deletes a mute for a fid
      * @param {string} apiKey API key required for authentication.
      * @param {MuteReqBody} muteReqBody 
      * @param {*} [options] Override http request option.
@@ -306,7 +306,7 @@ export class MuteApi extends BaseAPI {
 
     /**
      * Fetches all fids that a user has muted.
-     * @summary Get fids that a user has muted.
+     * @summary Get fids that a user has muted
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid The user\&#39;s fid (identifier)
      * @param {number} [limit] Number of results to retrieve (default 20, max 100).

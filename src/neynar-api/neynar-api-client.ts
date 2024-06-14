@@ -58,6 +58,10 @@ import {
   ChannelSearchResponse,
   ChannelType,
   ChannelResponseBulk,
+  SubscriptionProvider,
+  SubscribersResponse,
+  SubscribedToResponse,
+  SubscriptionsResponse,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -3044,5 +3048,78 @@ public async deleteMute(fid: number,mutedFid: number): Promise<MuteResponse> {
     mutedFid
   );
 }
+
+  // ------------ Subscribers ------------
+
+    /**
+         * Fetch subscribers for a given fid's contracts. Doesn't return addresses that don't have an fid.
+         * @summary Fetch subscribers for a given fid
+         * @param {number} fid 
+         * @param {SubscriptionProvider} subscriptionProvider 
+         * @param {Object} [options] - Optional parameters for the request.
+         * @param {string} [options.viewerFid] - The fid of the viewer viewing this information.
+         * 
+         * @returns {Promise<SubscribersResponse>} A promise that resolves to a `SubscribersResponse` object.
+         * 
+         * @example
+         * // Example: Retrieve fabric subscribers for a user
+         * client.fetchSubscribersForFid(3, SubscriptionProvider.FabricStp, { viewerFid: 3 }).then(response => {
+         * console.log('Subscribers:', response);
+         * });
+         * 
+         * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscribers-1).
+         */
+  public async fetchSubscribersForFid(fid: number, subscriptionProvider: SubscriptionProvider,options?: {
+    viewerFid?: number;
+  }): Promise<SubscribersResponse> {
+    return await this.clients.v2.fetchSubscribersForFid(fid, subscriptionProvider,options);
+  }
+
+   /**
+         * Fetch what fids and contracts a fid is subscribed to.
+         * @summary Fetch what a given fid is subscribed to
+         * @param {number} fid 
+         * @param {SubscriptionProvider} subscriptionProvider 
+         * @param {Object} [options] - Optional parameters for the request.
+         * @param {number} [options.viewerFid] - the fid of the viewer viewing this information.
+         * 
+         * @returns {Promise<SubscribedToResponse>} A promise that resolves to a `SubscribedToResponse` object.
+         * 
+         * @example
+         * // Example: Retrieve fabric subscriptions for a user
+         * client.fetchSubscribedToForFid(3, SubscriptionProvider.FabricStp, { viewerFid: 3 }).then(response => {
+         * console.log('Subscribed To:', response);
+         * });
+         * 
+         * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscribed-to).
+         */
+  public async fetchSubscribedToForFid(fid: number, subscriptionProvider: SubscriptionProvider,options?: {
+    viewerFid?: number;
+  }): Promise<SubscribedToResponse> {
+    return await this.clients.v2.fetchSubscribedToForFid(fid, subscriptionProvider,options);
+  }
+
+  /**
+         * Fetch created subscriptions for a given fid.
+         * @summary Fetch created subscriptions for a given fid
+         * @param {number} fid 
+         * @param {SubscriptionProvider} subscriptionProvider 
+         * @param {Object} [options] - Optional parameters for the request.
+         * @param {number} [options.viewerFid] - the fid of the viewer viewing this information.
+         * 
+         * @returns {Promise<SubscriptionsResponse>} A promise that resolves to a `SubscriptionsResponse` object.
+         * 
+         * @example
+         * // Example: Retrieve fabric subscriptions for a user
+         * client.fetchSubscriptionsForFid(3, SubscriptionProvider.FabricStp, { viewerFid: 3 }).then(response => {
+         * console.log('Subscriptions:', response);
+         * });
+         * 
+         * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscriptions-created).
+         */
+  public async fetchSubscriptionsForFid(fid: number, subscriptionProvider: SubscriptionProvider): Promise<SubscriptionsResponse> {
+    return await this.clients.v2.fetchSubscriptionsForFid(fid, subscriptionProvider);
+  }
+  
 
 }

@@ -10,7 +10,8 @@ export {
   ValidateFrameAnalyticsType,
   AuthorizationUrlResponseType,
   FollowSortType,
-  ChannelType
+  ChannelType,
+  SubscriptionProvider
 } from "./v2";
 export {
   TimeWindow,

@@ -13,6 +13,7 @@ apis/notifications-api.ts
 apis/reaction-api.ts
 apis/signer-api.ts
 apis/storage-api.ts
+apis/subscribers-api.ts
 apis/user-api.ts
 apis/webhook-api.ts
 base.ts
@@ -140,6 +141,18 @@ models/storage-allocation.ts
 models/storage-allocations-response.ts
 models/storage-object.ts
 models/storage-usage-response.ts
+models/subscribed-to-object.ts
+models/subscribed-to-response.ts
+models/subscribed-to.ts
+models/subscriber.ts
+models/subscribers-response.ts
+models/subscription-metadata.ts
+models/subscription-price.ts
+models/subscription-provider.ts
+models/subscription-token.ts
+models/subscription.ts
+models/subscriptions-response.ts
+models/subscriptions.ts
 models/trending-channel-response.ts
 models/update-user-req-body.ts
 models/user-dehydrated.ts
