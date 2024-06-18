@@ -20,11 +20,12 @@
  * @enum {string}
  */
 
-export const SubscriptionProvider = {
-    FabricStp: 'fabric_stp'
+export const SubscriptionProviders = {
+    FabricStp: 'fabric_stp',
+    Paragraph: 'paragraph'
 } as const;
 
-export type SubscriptionProvider = typeof SubscriptionProvider[keyof typeof SubscriptionProvider];
+export type SubscriptionProviders = typeof SubscriptionProviders[keyof typeof SubscriptionProviders];
 
 
 

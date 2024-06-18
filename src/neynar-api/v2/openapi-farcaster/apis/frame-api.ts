@@ -32,6 +32,8 @@ import { Frame } from '../models';
 // @ts-ignore
 import { FrameActionReqBody } from '../models';
 // @ts-ignore
+import { FrameType } from '../models';
+// @ts-ignore
 import { FrameValidateAnalyticsResponse } from '../models';
 // @ts-ignore
 import { FrameValidateListResponse } from '../models';
@@ -134,18 +136,20 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
-         * Retrieve a frame by UUID, if it was made by the developer (identified by API key)
-         * @summary Retrieve a frame by UUID
+         * Retrieve a frame either by UUID or Neynar URL
+         * @summary Retrieve a frame by UUID or URL
          * @param {string} apiKey API key required for authentication.
-         * @param {string} uuid UUID of the frame to retrieve
+         * @param {FrameType} type 
+         * @param {string} [uuid] UUID of the frame to retrieve
+         * @param {string} [url] URL of the Neynar frame to retrieve
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lookupNeynarFrame: async (apiKey: string, uuid: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        lookupNeynarFrame: async (apiKey: string, type: FrameType, uuid?: string, url?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('lookupNeynarFrame', 'apiKey', apiKey)
-            // verify required parameter 'uuid' is not null or undefined
-            assertParamExists('lookupNeynarFrame', 'uuid', uuid)
+            // verify required parameter 'type' is not null or undefined
+            assertParamExists('lookupNeynarFrame', 'type', type)
             const localVarPath = `/farcaster/frame`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -158,8 +162,16 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
             if (uuid !== undefined) {
                 localVarQueryParameter['uuid'] = uuid;
+            }
+
+            if (url !== undefined) {
+                localVarQueryParameter['url'] = url;
             }
 
             if (apiKey != null) {
@@ -494,15 +506,17 @@ export const FrameApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Retrieve a frame by UUID, if it was made by the developer (identified by API key)
-         * @summary Retrieve a frame by UUID
+         * Retrieve a frame either by UUID or Neynar URL
+         * @summary Retrieve a frame by UUID or URL
          * @param {string} apiKey API key required for authentication.
-         * @param {string} uuid UUID of the frame to retrieve
+         * @param {FrameType} type 
+         * @param {string} [uuid] UUID of the frame to retrieve
+         * @param {string} [url] URL of the Neynar frame to retrieve
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async lookupNeynarFrame(apiKey: string, uuid: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NeynarFrame>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupNeynarFrame(apiKey, uuid, options);
+        async lookupNeynarFrame(apiKey: string, type: FrameType, uuid?: string, url?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NeynarFrame>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupNeynarFrame(apiKey, type, uuid, url, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -612,15 +626,17 @@ export const FrameApiFactory = function (configuration?: Configuration, basePath
             return localVarFp.fetchNeynarFrames(apiKey, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieve a frame by UUID, if it was made by the developer (identified by API key)
-         * @summary Retrieve a frame by UUID
+         * Retrieve a frame either by UUID or Neynar URL
+         * @summary Retrieve a frame by UUID or URL
          * @param {string} apiKey API key required for authentication.
-         * @param {string} uuid UUID of the frame to retrieve
+         * @param {FrameType} type 
+         * @param {string} [uuid] UUID of the frame to retrieve
+         * @param {string} [url] URL of the Neynar frame to retrieve
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lookupNeynarFrame(apiKey: string, uuid: string, options?: any): AxiosPromise<NeynarFrame> {
-            return localVarFp.lookupNeynarFrame(apiKey, uuid, options).then((request) => request(axios, basePath));
+        lookupNeynarFrame(apiKey: string, type: FrameType, uuid?: string, url?: string, options?: any): AxiosPromise<NeynarFrame> {
+            return localVarFp.lookupNeynarFrame(apiKey, type, uuid, url, options).then((request) => request(axios, basePath));
         },
         /**
          * Post a frame action \\ (In order to post a frame action, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds. 
@@ -727,16 +743,18 @@ export class FrameApi extends BaseAPI {
     }
 
     /**
-     * Retrieve a frame by UUID, if it was made by the developer (identified by API key)
-     * @summary Retrieve a frame by UUID
+     * Retrieve a frame either by UUID or Neynar URL
+     * @summary Retrieve a frame by UUID or URL
      * @param {string} apiKey API key required for authentication.
-     * @param {string} uuid UUID of the frame to retrieve
+     * @param {FrameType} type 
+     * @param {string} [uuid] UUID of the frame to retrieve
+     * @param {string} [url] URL of the Neynar frame to retrieve
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FrameApi
      */
-    public lookupNeynarFrame(apiKey: string, uuid: string, options?: AxiosRequestConfig) {
-        return FrameApiFp(this.configuration).lookupNeynarFrame(apiKey, uuid, options).then((request) => request(this.axios, this.basePath));
+    public lookupNeynarFrame(apiKey: string, type: FrameType, uuid?: string, url?: string, options?: AxiosRequestConfig) {
+        return FrameApiFp(this.configuration).lookupNeynarFrame(apiKey, type, uuid, url, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

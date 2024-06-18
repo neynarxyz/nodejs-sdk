@@ -131,12 +131,13 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
          * @param {string} apiKey API key required for authentication.
          * @param {string} hash 
          * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
+         * @param {number} [viewerFid] 
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        reactionsCast: async (apiKey: string, hash: string, types: string, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        reactionsCast: async (apiKey: string, hash: string, types: string, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('reactionsCast', 'apiKey', apiKey)
             // verify required parameter 'hash' is not null or undefined
@@ -161,6 +162,10 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
 
             if (types !== undefined) {
                 localVarQueryParameter['types'] = types;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
             if (limit !== undefined) {
@@ -192,12 +197,13 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
+         * @param {number} [viewerFid] 
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        reactionsUser: async (apiKey: string, fid: number, type: ReactionsType, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        reactionsUser: async (apiKey: string, fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('reactionsUser', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -218,6 +224,10 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
             if (type !== undefined) {
@@ -287,13 +297,14 @@ export const ReactionApiFp = function(configuration?: Configuration) {
          * @param {string} apiKey API key required for authentication.
          * @param {string} hash 
          * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
+         * @param {number} [viewerFid] 
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async reactionsCast(apiKey: string, hash: string, types: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsCastResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.reactionsCast(apiKey, hash, types, limit, cursor, options);
+        async reactionsCast(apiKey: string, hash: string, types: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsCastResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.reactionsCast(apiKey, hash, types, viewerFid, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -302,13 +313,14 @@ export const ReactionApiFp = function(configuration?: Configuration) {
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
+         * @param {number} [viewerFid] 
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async reactionsUser(apiKey: string, fid: number, type: ReactionsType, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.reactionsUser(apiKey, fid, type, limit, cursor, options);
+        async reactionsUser(apiKey: string, fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.reactionsUser(apiKey, fid, type, viewerFid, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -349,13 +361,14 @@ export const ReactionApiFactory = function (configuration?: Configuration, baseP
          * @param {string} apiKey API key required for authentication.
          * @param {string} hash 
          * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
+         * @param {number} [viewerFid] 
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        reactionsCast(apiKey: string, hash: string, types: string, limit?: number, cursor?: string, options?: any): AxiosPromise<ReactionsCastResponse> {
-            return localVarFp.reactionsCast(apiKey, hash, types, limit, cursor, options).then((request) => request(axios, basePath));
+        reactionsCast(apiKey: string, hash: string, types: string, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<ReactionsCastResponse> {
+            return localVarFp.reactionsCast(apiKey, hash, types, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches reactions for a given user
@@ -363,13 +376,14 @@ export const ReactionApiFactory = function (configuration?: Configuration, baseP
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
+         * @param {number} [viewerFid] 
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        reactionsUser(apiKey: string, fid: number, type: ReactionsType, limit?: number, cursor?: string, options?: any): AxiosPromise<ReactionsResponse> {
-            return localVarFp.reactionsUser(apiKey, fid, type, limit, cursor, options).then((request) => request(axios, basePath));
+        reactionsUser(apiKey: string, fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<ReactionsResponse> {
+            return localVarFp.reactionsUser(apiKey, fid, type, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -413,14 +427,15 @@ export class ReactionApi extends BaseAPI {
      * @param {string} apiKey API key required for authentication.
      * @param {string} hash 
      * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
+     * @param {number} [viewerFid] 
      * @param {number} [limit] Number of results to retrieve (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReactionApi
      */
-    public reactionsCast(apiKey: string, hash: string, types: string, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
-        return ReactionApiFp(this.configuration).reactionsCast(apiKey, hash, types, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public reactionsCast(apiKey: string, hash: string, types: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return ReactionApiFp(this.configuration).reactionsCast(apiKey, hash, types, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -429,13 +444,14 @@ export class ReactionApi extends BaseAPI {
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid 
      * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
+     * @param {number} [viewerFid] 
      * @param {number} [limit] Number of results to retrieve (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReactionApi
      */
-    public reactionsUser(apiKey: string, fid: number, type: ReactionsType, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
-        return ReactionApiFp(this.configuration).reactionsUser(apiKey, fid, type, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public reactionsUser(apiKey: string, fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return ReactionApiFp(this.configuration).reactionsUser(apiKey, fid, type, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }

@@ -37,7 +37,7 @@ export interface Subscriber {
      * @type {User}
      * @memberof Subscriber
      */
-    'creator'?: User;
+    'user': User;
     /**
      * 
      * @type {SubscribedToObject}

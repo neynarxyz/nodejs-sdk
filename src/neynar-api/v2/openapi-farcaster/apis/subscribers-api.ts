@@ -30,6 +30,8 @@ import { SubscribersResponse } from '../models';
 // @ts-ignore
 import { SubscriptionProvider } from '../models';
 // @ts-ignore
+import { SubscriptionProviders } from '../models';
+// @ts-ignore
 import { SubscriptionsResponse } from '../models';
 /**
  * SubscribersApi - axios parameter creator
@@ -98,12 +100,12 @@ export const SubscribersApiAxiosParamCreator = function (configuration?: Configu
          * @summary Fetch subscribers for a given fid
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
-         * @param {SubscriptionProvider} subscriptionProvider 
+         * @param {SubscriptionProviders} subscriptionProvider 
          * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscribers: async (apiKey: string, fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        subscribers: async (apiKey: string, fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('subscribers', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -229,12 +231,12 @@ export const SubscribersApiFp = function(configuration?: Configuration) {
          * @summary Fetch subscribers for a given fid
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
-         * @param {SubscriptionProvider} subscriptionProvider 
+         * @param {SubscriptionProviders} subscriptionProvider 
          * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async subscribers(apiKey: string, fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscribersResponse>> {
+        async subscribers(apiKey: string, fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscribersResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.subscribers(apiKey, fid, subscriptionProvider, viewerFid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -279,12 +281,12 @@ export const SubscribersApiFactory = function (configuration?: Configuration, ba
          * @summary Fetch subscribers for a given fid
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
-         * @param {SubscriptionProvider} subscriptionProvider 
+         * @param {SubscriptionProviders} subscriptionProvider 
          * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscribers(apiKey: string, fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: any): AxiosPromise<SubscribersResponse> {
+        subscribers(apiKey: string, fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: any): AxiosPromise<SubscribersResponse> {
             return localVarFp.subscribers(apiKey, fid, subscriptionProvider, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
@@ -329,13 +331,13 @@ export class SubscribersApi extends BaseAPI {
      * @summary Fetch subscribers for a given fid
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid 
-     * @param {SubscriptionProvider} subscriptionProvider 
+     * @param {SubscriptionProviders} subscriptionProvider 
      * @param {number} [viewerFid] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SubscribersApi
      */
-    public subscribers(apiKey: string, fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: AxiosRequestConfig) {
+    public subscribers(apiKey: string, fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: AxiosRequestConfig) {
         return SubscribersApiFp(this.configuration).subscribers(apiKey, fid, subscriptionProvider, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 

@@ -15,16 +15,17 @@
 
 
 /**
- * The provider of the subscription. 
+ * Type of identifier (either \'uuid\' or \'url\')
  * @export
  * @enum {string}
  */
 
-export const SubscriptionProvider = {
-    FabricStp: 'fabric_stp'
+export const FrameType = {
+    Uuid: 'uuid',
+    Url: 'url'
 } as const;
 
-export type SubscriptionProvider = typeof SubscriptionProvider[keyof typeof SubscriptionProvider];
+export type FrameType = typeof FrameType[keyof typeof FrameType];
 
 
 

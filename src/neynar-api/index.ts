@@ -11,7 +11,9 @@ export {
   AuthorizationUrlResponseType,
   FollowSortType,
   ChannelType,
-  SubscriptionProvider
+  FrameType,
+  SubscriptionProvider,
+  SubscriptionProviders
 } from "./v2";
 export {
   TimeWindow,
