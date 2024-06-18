@@ -73,11 +73,13 @@ import {
   ChannelSearchResponse,
   ChannelType,
   ChannelResponseBulk,
+  FrameType,
   SubscribersApi,
   SubscriptionProvider,
   SubscribersResponse,
   SubscribedToResponse,
   SubscriptionsResponse,
+  SubscriptionProviders,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -1554,6 +1556,7 @@ export class NeynarV2APIClient {
    * @param {Object} [options] - Optional parameters for customizing the response.
    * @param {number} [options.limit] - Limits the number of results. Default is 25, with a maximum of 100.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
+   * @param {number} [options.viewerFid] - The FID of the user viewing this information.
    *   omit this parameter for the initial request.
    *
    * @returns {Promise<ReactionsResponse>} A promise that resolves to a `ReactionsResponse` object,
@@ -1566,6 +1569,7 @@ export class NeynarV2APIClient {
    * // Example: Fetch a user's reactions
    * client.fetchUserReactions(3, ReactionsType.All, {
    * limit: 50,
+   * viewerFid: 3,
    * // cursor: "nextPageCursor" // Omit this parameter for the initial request
    *  }).then(response => {
    *   console.log('User Reactions:', response); // Outputs the user's reactions
@@ -1576,12 +1580,13 @@ export class NeynarV2APIClient {
   public async fetchUserReactions(
     fid: number,
     type: ReactionsType,
-    options?: { limit?: number; cursor?: string }
+    options?: { limit?: number; cursor?: string,viewerFid?: number}
   ): Promise<ReactionsResponse> {
     const response = await this.apis.reaction.reactionsUser(
       this.apiKey,
       fid,
       type,
+      options?.viewerFid,
       options?.limit,
       options?.cursor
     );
@@ -1597,6 +1602,7 @@ export class NeynarV2APIClient {
    * @param {Object} [options] - Optional parameters for customizing the response.
    * @param {number} [options.limit] - Limits the number of results. Default is 25, with a maximum of 100.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
+   * @param {number} [options.viewerFid] - The FID of the user viewing this information.
    *   omit this parameter for the initial request.
    *
    * @returns {Promise<ReactionsCastResponse>} A promise that resolves to a `ReactionsResponse` object,
@@ -1609,6 +1615,7 @@ export class NeynarV2APIClient {
    * // Example: Fetch a casts reactions
    * client.fetchCastReactions("0xfe90f9de682273e05b201629ad2338bdcd89b6be",ReactionsType.All, {
    * limit: 50,
+   * viewerFid: 3,
    * // cursor: "nextPageCursor" // Omit this parameter for the initial request
    *  }).then(response => {
    *   console.log('Cast Reactions:', response); // Outputs the casts reactions
@@ -1619,12 +1626,13 @@ export class NeynarV2APIClient {
   public async fetchCastReactions(
     hash: string,
     types: ReactionsType,
-    options?: { limit?: number; cursor?: string }
+    options?: { limit?: number; cursor?: string,viewerFid?: number}
   ): Promise<ReactionsCastResponse> {
     const response = await this.apis.reaction.reactionsCast(
       this.apiKey,
       hash,
       types,
+      options?.viewerFid,
       options?.limit,
       options?.cursor
     );
@@ -2218,26 +2226,31 @@ return response.data;
   // ------------ Frame ------------
 
   /**
-   * Retrieves a frame by its UUID, provided it was created by the developer identified by the provided API key.
+   * Retrieves a frame by its UUID or URL, provided it was created by the developer identified by the provided API key.
    * This method is useful for fetching details of a specific frame for review or display purposes.
    *
-   * @param {string} uuid - The UUID of the frame to be retrieved.
-   *
+   * @param {string} identifier - The UUID or URL of the frame to be retrieved.
+   * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {FrameType} [options.type] - The type of identifier being used to query the frame. For a URL identifier use FrameType.Url, otherwise use FrameType.Uuid.
+   * 
    * @returns {Promise<NeynarFrame>} A promise that resolves to a `NeynarFrame` object containing the details of the retrieved frame.
    *
    * @example
    * // Example: Retrieve a frame by its UUID
    * const uuid = 'your-frame-uuid';
-   * client.lookupNeynarFrame(uuid).then(frame => {
+   * client.lookupNeynarFrame(uuid, {type: FrameType.Uuid}).then(frame => {
    *   console.log('Retrieved Frame:', frame);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/lookup-neynar-frame).
    */
-  public async lookupNeynarFrame(uuid: string) {
+  public async lookupNeynarFrame(identifier: string,options?:{type?:FrameType}) {
+    const type = options?.type || FrameType.Uuid;
     const response = await this.apis.frame.lookupNeynarFrame(
       this.apiKey,
-      uuid
+      type,
+      type === FrameType.Uuid ? identifier : undefined,
+      type === FrameType.Url ? identifier : undefined
     );
     return response.data;
   }
@@ -2872,7 +2885,7 @@ public async deleteMute(fid: number,mutedFid: number): Promise<MuteResponse> {
          * Fetch subscribers for a given fid's contracts. Doesn't return addresses that don't have an fid.
          * @summary Fetch subscribers for a given fid
          * @param {number} fid 
-         * @param {SubscriptionProvider} subscriptionProvider 
+         * @param {SubscriptionProviders} subscriptionProvider 
          * @param {Object} [options] - Optional parameters for the request.
          * @param {string} [options.viewerFid] - The fid of the viewer viewing this information.
          * 
@@ -2880,13 +2893,13 @@ public async deleteMute(fid: number,mutedFid: number): Promise<MuteResponse> {
          * 
          * @example
          * // Example: Retrieve fabric subscribers for a user
-         * client.fetchSubscribersForFid(3, SubscriptionProvider.FabricStp, { viewerFid: 3 }).then(response => {
+         * client.fetchSubscribersForFid(3, SubscriptionProviders.FabricStp, { viewerFid: 3 }).then(response => {
          * console.log('Subscribers:', response);
          * });
          * 
          * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscribers-1).
          */
-  public async fetchSubscribersForFid(fid: number,subscriptionProvider: SubscriptionProvider,options?: {
+  public async fetchSubscribersForFid(fid: number,subscriptionProvider: SubscriptionProviders,options?: {
 viewerFid?: number;
   }) : Promise<SubscribersResponse> {
     const response = await this.apis.subscribers.subscribers(this.apiKey, fid, subscriptionProvider,options?.viewerFid);
