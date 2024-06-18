@@ -2231,7 +2231,7 @@ return response.data;
    *
    * @param {string} identifier - The UUID or URL of the frame to be retrieved.
    * @param {Object} [options] - Optional parameters for customizing the response.
-   * @param {FrameType} [options.type] - The type of identifier being used to query the frame (UUID or URL).
+   * @param {FrameType} [options.type] - The type of identifier being used to query the frame. For a URL identifier use FrameType.Url, otherwise use FrameType.Uuid.
    * 
    * @returns {Promise<NeynarFrame>} A promise that resolves to a `NeynarFrame` object containing the details of the retrieved frame.
    *

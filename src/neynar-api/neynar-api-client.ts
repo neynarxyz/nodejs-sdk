@@ -2455,7 +2455,7 @@ export class NeynarAPIClient {
    *
    * @param {string} identifier - The UUID of the frame to be retrieved.
    * @param {Object} [options] - Optional parameters for customizing the response.
-   * @param {FrameType} [options.type] - The type of identifier being used to query the frame.
+   * @param {FrameType} [options.type] - The type of identifier being used to query the frame. For a URL identifier use FrameType.Url, otherwise use FrameType.Uuid.
    *
    * @returns {Promise<NeynarFrame>} A promise that resolves to a `NeynarFrame` object containing the details of the retrieved frame.
    *
