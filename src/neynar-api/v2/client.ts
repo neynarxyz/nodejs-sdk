@@ -79,6 +79,7 @@ import {
   SubscribersResponse,
   SubscribedToResponse,
   SubscriptionsResponse,
+  SubscriptionProviders,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -2882,7 +2883,7 @@ public async deleteMute(fid: number,mutedFid: number): Promise<MuteResponse> {
          * Fetch subscribers for a given fid's contracts. Doesn't return addresses that don't have an fid.
          * @summary Fetch subscribers for a given fid
          * @param {number} fid 
-         * @param {SubscriptionProvider} subscriptionProvider 
+         * @param {SubscriptionProviders} subscriptionProvider 
          * @param {Object} [options] - Optional parameters for the request.
          * @param {string} [options.viewerFid] - The fid of the viewer viewing this information.
          * 
@@ -2890,13 +2891,13 @@ public async deleteMute(fid: number,mutedFid: number): Promise<MuteResponse> {
          * 
          * @example
          * // Example: Retrieve fabric subscribers for a user
-         * client.fetchSubscribersForFid(3, SubscriptionProvider.FabricStp, { viewerFid: 3 }).then(response => {
+         * client.fetchSubscribersForFid(3, SubscriptionProviders.FabricStp, { viewerFid: 3 }).then(response => {
          * console.log('Subscribers:', response);
          * });
          * 
          * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscribers-1).
          */
-  public async fetchSubscribersForFid(fid: number,subscriptionProvider: SubscriptionProvider,options?: {
+  public async fetchSubscribersForFid(fid: number,subscriptionProvider: SubscriptionProviders,options?: {
 viewerFid?: number;
   }) : Promise<SubscribersResponse> {
     const response = await this.apis.subscribers.subscribers(this.apiKey, fid, subscriptionProvider,options?.viewerFid);

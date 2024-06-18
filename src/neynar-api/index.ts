@@ -12,7 +12,8 @@ export {
   FollowSortType,
   ChannelType,
   FrameType,
-  SubscriptionProvider
+  SubscriptionProvider,
+  SubscriptionProviders
 } from "./v2";
 export {
   TimeWindow,
