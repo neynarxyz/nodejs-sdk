@@ -1357,6 +1357,9 @@ export class NeynarAPIClient {
    * @param {number} [options.replyDepth] - An optional parameter within the options object, specifying the desired depth of replies to fetch within the conversation. This allows for tailored retrieval of conversation data, ranging from top-level casts only to deeper, more comprehensive conversation threads.
    * @param {boolean} [options.includeChronologicalParentCasts] - An optional parameter within the options object, indicating whether to include chronological parent casts in the response. This parameter is useful for applications requiring a structured view of the conversation, including parent casts that provide context for the replies.
    * @param {number} [options.viewerFid] - Optional parameter to add viewer context to the cast objects to indicate whether the viewer has liked or recasted the cast, as well as follows or is followed by the cast creator.
+   * @param {number} [options.limit] - Number of results to retrieve (default 20, max 50).
+   * @param {string} [options.cursor] - Pagination cursor for fetching specific subsets of results.
+   *  Omit this parameter for the initial request.
    * @returns {Promise<Conversation>} A promise resolving to a `Conversation` object. This object encapsulates detailed information about the cast conversation, including the content of the conversation itself and any replies, structured up to the specified depth.
    *
    * @example
@@ -1366,7 +1369,7 @@ export class NeynarAPIClient {
    * client.lookupCastConversation(
    *   'https://warpcast.com/rish/0x9288c1',
    *   CastParamType.Url,
-   *   { replyDepth: 2, includeChronologicalParentCasts: true, viewerFid: 3}
+   *   { replyDepth: 2, includeChronologicalParentCasts: true, viewerFid: 3, limit: 10, // cursor: "nextPageCursor" // Omit this parameter for the initial request}
    * ).then(response => {
    *   console.log('Cast Conversation Information:', response); // Displays the detailed structure of the specified cast conversation
    * });
@@ -1381,6 +1384,8 @@ export class NeynarAPIClient {
       replyDepth?: number;
       includeChronologicalParentCasts?: boolean;
       viewerFid?: number;
+      limit?: number;
+      cursor?: string;
     }
   ): Promise<Conversation> {
     return await this.clients.v2.lookupCastConversation(
