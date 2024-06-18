@@ -25,6 +25,7 @@ export * from './apis/notifications-api';
 export * from './apis/reaction-api';
 export * from './apis/signer-api';
 export * from './apis/storage-api';
+export * from './apis/subscribers-api';
 export * from './apis/user-api';
 export * from './apis/webhook-api';
 

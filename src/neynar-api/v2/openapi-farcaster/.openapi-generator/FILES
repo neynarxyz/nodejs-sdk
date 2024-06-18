@@ -150,6 +150,7 @@ models/subscribers-response.ts
 models/subscription-metadata.ts
 models/subscription-price.ts
 models/subscription-provider.ts
+models/subscription-providers.ts
 models/subscription-token.ts
 models/subscription.ts
 models/subscriptions-response.ts
