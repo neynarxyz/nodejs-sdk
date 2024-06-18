@@ -16,6 +16,9 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import { ConversationConversation } from './conversation-conversation';
+// May contain unused imports in some cases
+// @ts-ignore
+import { NextCursor } from './next-cursor';
 
 /**
  * 
@@ -29,5 +32,11 @@ export interface Conversation {
      * @memberof Conversation
      */
     'conversation': ConversationConversation;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof Conversation
+     */
+    'next'?: NextCursor;
 }
 

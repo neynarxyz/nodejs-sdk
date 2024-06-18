@@ -1025,6 +1025,8 @@ export class NeynarV2APIClient {
    * @param {number} [options.replyDepth] - Optional parameter to specify how deep the reply chain should be fetched.
    * @param {boolean} [options.includeChronologicalParentCasts] - Optional parameter to include chronological parent casts in the response.
    * @param {number} [options.viewerFid] - Optional parameter to add viewer context to the cast objects to indicate whether the viewer has liked or recasted the cast, as well as follows or is followed by the cast creator.
+   * @param {number} [options.limit] - Number of results to retrieve (default 20, max 50)
+   * @param {string} [options.cursor] - Optional parameter to specify the pagination cursor for fetching specific subsets of results.
    * @returns {Promise<Conversation>} A promise that resolves to a `Conversation` object,
    *   containing detailed information about the requested cast conversation, including replies up to the specified depth.
    *
@@ -1033,7 +1035,7 @@ export class NeynarV2APIClient {
    * client.lookupCastConversation(
    *   'https://warpcast.com/rish/0x9288c1',
    *   CastParamType.Url,
-   *  { replyDepth: 2, includeChronologicalParentCasts: true,viewerFid: 3}
+   *  { replyDepth: 2, includeChronologicalParentCasts: true,viewerFid: 3, limit: 10, // cursor: "nextPageCursor" // Omit this parameter for the initial request}
    * ).then(response => {
    *   console.log('Cast Conversation Information:', response); // Outputs detailed information about the specified cast conversation
    * });
@@ -1047,6 +1049,8 @@ export class NeynarV2APIClient {
       replyDepth?: number;
       includeChronologicalParentCasts?: boolean;
       viewerFid?: number;
+      limit?: number;
+      cursor?: string;
     }
   ): Promise<Conversation> {
     const response = await this.apis.cast.castConversation(
@@ -1055,7 +1059,9 @@ export class NeynarV2APIClient {
       type,
       options?.replyDepth,
       options?.includeChronologicalParentCasts,
-      options?.viewerFid
+      options?.viewerFid,
+      options?.limit,
+      options?.cursor
     );
     return response.data;
   }
