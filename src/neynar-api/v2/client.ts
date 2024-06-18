@@ -2230,25 +2230,27 @@ return response.data;
    * This method is useful for fetching details of a specific frame for review or display purposes.
    *
    * @param {string} identifier - The UUID or URL of the frame to be retrieved.
-   * @param {FrameType} type - The type of identifier being used to query the frame (UUID or URL).
+   * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {FrameType} [options.type] - The type of identifier being used to query the frame (UUID or URL).
    * 
    * @returns {Promise<NeynarFrame>} A promise that resolves to a `NeynarFrame` object containing the details of the retrieved frame.
    *
    * @example
    * // Example: Retrieve a frame by its UUID
    * const uuid = 'your-frame-uuid';
-   * client.lookupNeynarFrame(uuid, FrameType.Uuid).then(frame => {
+   * client.lookupNeynarFrame(uuid, {type: FrameType.Uuid}).then(frame => {
    *   console.log('Retrieved Frame:', frame);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/lookup-neynar-frame).
    */
-  public async lookupNeynarFrame(identifier: string,type:FrameType) {
+  public async lookupNeynarFrame(identifier: string,options?:{type?:FrameType}) {
+    const type = options?.type || FrameType.Uuid;
     const response = await this.apis.frame.lookupNeynarFrame(
       this.apiKey,
       type,
-      identifier === 'uuid' ? identifier : undefined,
-      identifier === 'url' ? identifier : undefined
+      type === FrameType.Uuid ? identifier : undefined,
+      type === FrameType.Url ? identifier : undefined
     );
     return response.data;
   }

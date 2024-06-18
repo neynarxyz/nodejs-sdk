@@ -2454,21 +2454,24 @@ export class NeynarAPIClient {
    * This method is useful for fetching details of a specific frame for review or display purposes.
    *
    * @param {string} identifier - The UUID of the frame to be retrieved.
-   * @param {FrameType} type - The type of identifier being used to query the frame.
+   * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {FrameType} [options.type] - The type of identifier being used to query the frame.
    *
    * @returns {Promise<NeynarFrame>} A promise that resolves to a `NeynarFrame` object containing the details of the retrieved frame.
    *
    * @example
    * // Example: Retrieve a frame by its UUID
    * const uuid = 'your-frame-uuid';
-   * client.lookupNeynarFrame(uuid,FrameType.Uuid).then(frame => {
+   * client.lookupNeynarFrame(uuid,{type: FrameType.Uuid}).then(frame => {
    *   console.log('Retrieved Frame:', frame);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/lookup-neynar-frame).
    */
-  public async lookupNeynarFrame(identifier: string,type: FrameType): Promise<NeynarFrame> {
-    return await this.clients.v2.lookupNeynarFrame(identifier,type);
+  public async lookupNeynarFrame(identifier: string,options?: {
+    type?: FrameType
+  } ): Promise<NeynarFrame> {
+    return await this.clients.v2.lookupNeynarFrame(identifier,options);
   }
 
   /**
