@@ -8,6 +8,7 @@ Before you begin, ensure you have the following installed:
 
 - [Node.js](https://nodejs.org/en/download/)
 - [Yarn](https://classic.yarnpkg.com/lang/en/docs/install)
+- [Java](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) (for OpenAPI Generator)
 
 ## Setting Up for Development
 

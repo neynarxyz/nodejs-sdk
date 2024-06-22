@@ -503,8 +503,6 @@ export class NeynarAPIClient {
    * @param {Object} [options] - Optional parameters to tailor the request.
    * @param {number} [options.viewerFid] - The FID of the user viewing this information,
    *   used for providing contextual data specific to the viewer.
-   * @param {number} [options.limit] - The maximum number of results to be returned in a single response.
-   *   Defaults to 25, with a maximum allowable value of 150.
    * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
    *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
    *
@@ -515,7 +513,6 @@ export class NeynarAPIClient {
    * // Example: Retrieve the first set of mentions and replies for a user with FID 12345, limited to 50
    * client.fetchMentionAndReplyNotifications(3, {
    *   viewerFid: 2, // The FID of the user viewing this information
-   *   limit: 50, // Fetching up to 50 mentions and replies
    *   // cursor: 'nextPageCursor' // Pagination cursor for the next set of results, Omit this parameter for the initial request.
    * }).then(response => {
    *   console.log('Mentions and Replies:', response); // Outputs the mentions and replies
@@ -525,7 +522,7 @@ export class NeynarAPIClient {
    */
   public async fetchMentionAndReplyNotifications(
     fid: number,
-    options?: { viewerFid?: number; limit?: number; cursor?: string }
+    options?: { viewerFid?: number; cursor?: string }
   ): Promise<MentionsAndRepliesResponse> {
     return await this.clients.v1.fetchMentionAndReplyNotifications(
       fid,
