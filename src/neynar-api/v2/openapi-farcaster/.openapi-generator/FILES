@@ -74,6 +74,7 @@ models/follow-req-body.ts
 models/follow-response.ts
 models/follow-sort-type.ts
 models/follow.ts
+models/for-you-provider.ts
 models/frame-action-button.ts
 models/frame-action-req-body.ts
 models/frame-action.ts
