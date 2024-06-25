@@ -341,7 +341,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * Returns a list of all channels with their details
          * @summary Retrieve all channels with their details
          * @param {string} apiKey API key required for authentication.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {number} [limit] Number of results to retrieve (default 25, max 200)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -622,7 +622,7 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * Returns a list of all channels with their details
          * @summary Retrieve all channels with their details
          * @param {string} apiKey API key required for authentication.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {number} [limit] Number of results to retrieve (default 25, max 200)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -754,7 +754,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * Returns a list of all channels with their details
          * @summary Retrieve all channels with their details
          * @param {string} apiKey API key required for authentication.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {number} [limit] Number of results to retrieve (default 25, max 200)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -892,7 +892,7 @@ export class ChannelApi extends BaseAPI {
      * Returns a list of all channels with their details
      * @summary Retrieve all channels with their details
      * @param {string} apiKey API key required for authentication.
-     * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+     * @param {number} [limit] Number of results to retrieve (default 25, max 200)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
