@@ -88,6 +88,12 @@ export interface Channel {
     'lead'?: User;
     /**
      * 
+     * @type {User}
+     * @memberof Channel
+     */
+    'moderator'?: User;
+    /**
+     * 
      * @type {Array<User>}
      * @memberof Channel
      */
