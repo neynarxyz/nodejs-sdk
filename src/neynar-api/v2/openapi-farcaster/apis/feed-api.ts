@@ -31,6 +31,8 @@ import { FeedResponse } from '../models';
 import { FeedType } from '../models';
 // @ts-ignore
 import { FilterType } from '../models';
+// @ts-ignore
+import { ForYouProvider } from '../models';
 /**
  * FeedApi - axios parameter creator
  * @export
@@ -244,6 +246,70 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (withRecasts !== undefined) {
                 localVarQueryParameter['with_recasts'] = withRecasts;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a personalized For You feed for a user
+         * @summary Retrieve a personalized For You feed for a user
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid fid of user whose feed you want to create
+         * @param {number} [viewerFid] 
+         * @param {ForYouProvider} [provider] 
+         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedForYou: async (apiKey: string, fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('feedForYou', 'apiKey', apiKey)
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('feedForYou', 'fid', fid)
+            const localVarPath = `/farcaster/feed/for_you`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (provider !== undefined) {
+                localVarQueryParameter['provider'] = provider;
             }
 
             if (limit !== undefined) {
@@ -552,6 +618,22 @@ export const FeedApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Retrieve a personalized For You feed for a user
+         * @summary Retrieve a personalized For You feed for a user
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid fid of user whose feed you want to create
+         * @param {number} [viewerFid] 
+         * @param {ForYouProvider} [provider] 
+         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async feedForYou(apiKey: string, fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedForYou(apiKey, fid, viewerFid, provider, limit, cursor, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Retrieve feed of casts with Frames, reverse chronological order
          * @summary Retrieve feed of casts with Frames, reverse chronological order
          * @param {string} apiKey API key required for authentication.
@@ -671,6 +753,21 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          */
         feedFollowing(apiKey: string, fid: number, viewerFid?: number, withRecasts?: boolean, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
             return localVarFp.feedFollowing(apiKey, fid, viewerFid, withRecasts, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve a personalized For You feed for a user
+         * @summary Retrieve a personalized For You feed for a user
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid fid of user whose feed you want to create
+         * @param {number} [viewerFid] 
+         * @param {ForYouProvider} [provider] 
+         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedForYou(apiKey: string, fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
+            return localVarFp.feedForYou(apiKey, fid, viewerFid, provider, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve feed of casts with Frames, reverse chronological order
@@ -793,6 +890,23 @@ export class FeedApi extends BaseAPI {
      */
     public feedFollowing(apiKey: string, fid: number, viewerFid?: number, withRecasts?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
         return FeedApiFp(this.configuration).feedFollowing(apiKey, fid, viewerFid, withRecasts, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieve a personalized For You feed for a user
+     * @summary Retrieve a personalized For You feed for a user
+     * @param {string} apiKey API key required for authentication.
+     * @param {number} fid fid of user whose feed you want to create
+     * @param {number} [viewerFid] 
+     * @param {ForYouProvider} [provider] 
+     * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FeedApi
+     */
+    public feedForYou(apiKey: string, fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedForYou(apiKey, fid, viewerFid, provider, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

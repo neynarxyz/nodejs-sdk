@@ -64,6 +64,7 @@ import {
   SubscribedToResponse,
   SubscriptionsResponse,
   SubscriptionProviders,
+  ForYouProvider,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -1660,7 +1661,6 @@ export class NeynarAPIClient {
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
    * @param {string} [options.cursor] - Pagination cursor for the next set of results. Omit this parameter for the initial request.
    * @param {number} [options.viewerFid] - The FID of the user viewing this information.
-   
    *
    * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
    *  containing the requested feed data.
@@ -1688,6 +1688,44 @@ export class NeynarAPIClient {
     }
   ): Promise<FeedResponse> {
     return await this.clients.v2.fetchUserFollowingFeed(fid, options);
+  }
+
+  /**
+   * Retrieve feed based on who a user is following
+   *
+   * @param {number} fid - fid of user whose feed you want to create
+   * @param {Object} [options] - Optional parameters for customizing the feed.
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 50).
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results. Omit this parameter for the initial request.
+   * @param {number} [options.viewerFid] - The FID of the user viewing this information.
+   * @param {ForYouProvider} [options.provider] - The provider of the For You feed. Possible values: 'karma3' (default).
+   *
+   * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
+   *  containing the requested feed data.
+   *
+   * @example
+   * // Example: Retrieve a user's feed based on who they are following
+   * client.fetchFeedForYou(3, {
+   *  limit: 30,
+   *  viewerFid: 10,
+   *  provider: 'karma3'
+   *  // cursor: "eyJvZmZzZXQiOjI1fQ==" // Omit this parameter for the initial request.
+   * }).then(response => {
+   *  console.log('For You Feed:', response); // Outputs the user's For You feed
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-following).
+   */
+  public async fetchFeedForYou(
+    fid: number,
+    options?: {
+      limit?: number;
+      cursor?: string;
+      viewerFid?: number;
+      provider?: ForYouProvider,
+    }
+  ): Promise<FeedResponse> {
+    return await this.clients.v2.fetchFeedForYou(fid, options);
   }
 
   /**

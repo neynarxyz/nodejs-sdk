@@ -51,6 +51,7 @@ export * from './follow';
 export * from './follow-req-body';
 export * from './follow-response';
 export * from './follow-sort-type';
+export * from './for-you-provider';
 export * from './frame';
 export * from './frame-action';
 export * from './frame-action-button';

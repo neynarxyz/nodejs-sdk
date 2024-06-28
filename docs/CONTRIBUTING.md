@@ -56,12 +56,12 @@ yarn generate:neynar-oas-v2-recommendation
 
 ### Writing Wrapper Code
 
-#### New Tag in OAS
+#### New API defined in OAS
 
-When a new tag is added in the OAS, follow these steps:
+When a new API is added in the OAS, follow these steps:
 
 1. A new API is generated under `src/neynar-api/v{version}/openapi/apis`.
-2. In the internal wrappers (`src/neynar-api/v{version}/client`), add the new tag to the `public readonly apis` property.
+2. If you created a new tag, add it to the `public readonly apis` property in the internal wrappers (`src/neynar-api/v{version}/client`).
 3. Instantiate the new API in the constructor.
 4. Write wrapper code for the new methods.
 5. Add corresponding wrapper code in the external wrapper (`src/neynar-api/neynar-api-client`).
