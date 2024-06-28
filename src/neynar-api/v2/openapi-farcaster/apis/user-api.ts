@@ -58,7 +58,7 @@ import { UsersResponse } from '../models';
 export const UserApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Fetches active users based on Warpcast active algorithm, information is updated every 12 hours
+         * Warpcast has deprecated the active badge. Use user/power endpoint instead.
          * @summary Fetch active users
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] 
@@ -315,15 +315,16 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Fetches power users based on Warpcast power badges
+         * Fetches power users based on Warpcast power badges. Information is updated once a day.
          * @summary Fetch power users
          * @param {string} apiKey API key required for authentication.
+         * @param {number} [viewerFid] 
          * @param {number} [limit] Number of power users to fetch, max 100
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        powerUsers: async (apiKey: string, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        powerUsers: async (apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('powerUsers', 'apiKey', apiKey)
             const localVarPath = `/farcaster/user/power`;
@@ -337,6 +338,10 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
@@ -663,7 +668,7 @@ export const UserApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = UserApiAxiosParamCreator(configuration)
     return {
         /**
-         * Fetches active users based on Warpcast active algorithm, information is updated every 12 hours
+         * Warpcast has deprecated the active badge. Use user/power endpoint instead.
          * @summary Fetch active users
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] 
@@ -735,16 +740,17 @@ export const UserApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Fetches power users based on Warpcast power badges
+         * Fetches power users based on Warpcast power badges. Information is updated once a day.
          * @summary Fetch power users
          * @param {string} apiKey API key required for authentication.
+         * @param {number} [viewerFid] 
          * @param {number} [limit] Number of power users to fetch, max 100
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async powerUsers(apiKey: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.powerUsers(apiKey, limit, cursor, options);
+        async powerUsers(apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.powerUsers(apiKey, viewerFid, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -836,7 +842,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
     const localVarFp = UserApiFp(configuration)
     return {
         /**
-         * Fetches active users based on Warpcast active algorithm, information is updated every 12 hours
+         * Warpcast has deprecated the active badge. Use user/power endpoint instead.
          * @summary Fetch active users
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] 
@@ -902,16 +908,17 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.lookupUserByCustodyAddress(apiKey, custodyAddress, options).then((request) => request(axios, basePath));
         },
         /**
-         * Fetches power users based on Warpcast power badges
+         * Fetches power users based on Warpcast power badges. Information is updated once a day.
          * @summary Fetch power users
          * @param {string} apiKey API key required for authentication.
+         * @param {number} [viewerFid] 
          * @param {number} [limit] Number of power users to fetch, max 100
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        powerUsers(apiKey: string, limit?: number, cursor?: string, options?: any): AxiosPromise<UsersResponse> {
-            return localVarFp.powerUsers(apiKey, limit, cursor, options).then((request) => request(axios, basePath));
+        powerUsers(apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<UsersResponse> {
+            return localVarFp.powerUsers(apiKey, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch fid API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this fid to another available user. 
@@ -996,7 +1003,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
  */
 export class UserApi extends BaseAPI {
     /**
-     * Fetches active users based on Warpcast active algorithm, information is updated every 12 hours
+     * Warpcast has deprecated the active badge. Use user/power endpoint instead.
      * @summary Fetch active users
      * @param {string} apiKey API key required for authentication.
      * @param {number} [limit] 
@@ -1074,17 +1081,18 @@ export class UserApi extends BaseAPI {
     }
 
     /**
-     * Fetches power users based on Warpcast power badges
+     * Fetches power users based on Warpcast power badges. Information is updated once a day.
      * @summary Fetch power users
      * @param {string} apiKey API key required for authentication.
+     * @param {number} [viewerFid] 
      * @param {number} [limit] Number of power users to fetch, max 100
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public powerUsers(apiKey: string, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
-        return UserApiFp(this.configuration).powerUsers(apiKey, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public powerUsers(apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).powerUsers(apiKey, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

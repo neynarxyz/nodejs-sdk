@@ -1016,14 +1016,15 @@ export class NeynarAPIClient {
    *   @param {number} [options.limit=25] - The number of power user details to fetch per request. Defaults to a reasonable number with a maximum allowable value of 100. This parameter controls the size of the response, allowing the client to manage data volume and API load.
    *   @param {string} [options.cursor] - Pagination cursor for the next set of results.
    *    Omit this parameter for the initial request to start from the beginning of the list.
-   *
+   *  @param {number} [options.viewerFid] - The FID of the user viewing this information, used for providing contextual data specific to the viewer.
+   * 
    *  @returns {Promise<UsersResponse>} A promise that resolves to a list of power users, each possibly containing detailed information such as user profiles, contribution metrics, and power badges.
    *
    * @example
    * Usage Example:
    * ---------------
    * // Fetch the initial set of power users with a custom limit
-   * client.fetchPowerUsers({ limit: 50 })
+   * client.fetchPowerUsers({ limit: 50,viewerFid:3 })
    *   .then(response => console.log(response))
    *   .catch(error => console.error(error));
    *
@@ -1032,6 +1033,7 @@ export class NeynarAPIClient {
   public async fetchPowerUsers(options?: {
     limit?: number;
     cursor?: string;
+    viewerFid?: number;
   }): Promise<UsersResponse> {
     return await this.clients.v2.fetchPowerUsers(options);
   }
