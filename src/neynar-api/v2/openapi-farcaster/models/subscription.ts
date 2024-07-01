@@ -22,6 +22,9 @@ import { SubscriptionPrice } from './subscription-price';
 // May contain unused imports in some cases
 // @ts-ignore
 import { SubscriptionToken } from './subscription-token';
+// May contain unused imports in some cases
+// @ts-ignore
+import { Tier } from './tier';
 
 /**
  * 
@@ -71,6 +74,12 @@ export interface Subscription {
      * @memberof Subscription
      */
     'price': SubscriptionPrice;
+    /**
+     * 
+     * @type {Array<Tier>}
+     * @memberof Subscription
+     */
+    'tiers'?: Array<Tier>;
     /**
      * 
      * @type {number}

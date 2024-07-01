@@ -134,6 +134,8 @@ export * from './subscription-providers';
 export * from './subscription-token';
 export * from './subscriptions';
 export * from './subscriptions-response';
+export * from './tier';
+export * from './tier-price';
 export * from './trending-channel-response';
 export * from './update-user-req-body';
 export * from './user';

@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { Tier } from './tier';
 
 /**
  * 
@@ -50,5 +53,17 @@ export interface SubscribedToObject {
      * @memberof SubscribedToObject
      */
     'expires_at'?: string;
+    /**
+     * 
+     * @type {Tier}
+     * @memberof SubscribedToObject
+     */
+    'tier'?: Tier;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscribedToObject
+     */
+    'tier_id'?: string;
 }
 

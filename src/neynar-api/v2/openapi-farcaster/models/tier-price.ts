@@ -17,26 +17,26 @@
 /**
  * 
  * @export
- * @interface SubscriptionPrice
+ * @interface TierPrice
  */
-export interface SubscriptionPrice {
+export interface TierPrice {
     /**
      * 
      * @type {number}
-     * @memberof SubscriptionPrice
+     * @memberof TierPrice
      */
-    'period_duration_seconds': number;
+    'period_duration_seconds'?: number;
     /**
      * 
      * @type {string}
-     * @memberof SubscriptionPrice
+     * @memberof TierPrice
      */
-    'tokens_per_period': string;
+    'tokens_per_period'?: string;
     /**
      * 
      * @type {string}
-     * @memberof SubscriptionPrice
+     * @memberof TierPrice
      */
-    'initial_mint_price': string;
+    'initial_mint_price'?: string;
 }
 
