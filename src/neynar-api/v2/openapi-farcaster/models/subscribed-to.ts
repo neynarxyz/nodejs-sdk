@@ -27,6 +27,9 @@ import { SubscriptionPrice } from './subscription-price';
 import { SubscriptionToken } from './subscription-token';
 // May contain unused imports in some cases
 // @ts-ignore
+import { Tier } from './tier';
+// May contain unused imports in some cases
+// @ts-ignore
 import { User } from './user';
 
 /**
