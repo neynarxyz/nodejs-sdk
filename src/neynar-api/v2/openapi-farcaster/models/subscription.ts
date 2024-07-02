@@ -21,10 +21,10 @@ import { SubscriptionMetadata } from './subscription-metadata';
 import { SubscriptionPrice } from './subscription-price';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SubscriptionToken } from './subscription-token';
+import { SubscriptionTier } from './subscription-tier';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Tier } from './tier';
+import { SubscriptionToken } from './subscription-token';
 
 /**
  * 
@@ -76,10 +76,10 @@ export interface Subscription {
     'price': SubscriptionPrice;
     /**
      * 
-     * @type {Array<Tier>}
+     * @type {Array<SubscriptionTier>}
      * @memberof Subscription
      */
-    'tiers'?: Array<Tier>;
+    'tiers'?: Array<SubscriptionTier>;
     /**
      * 
      * @type {number}

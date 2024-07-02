@@ -15,25 +15,25 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { TierPrice } from './tier-price';
+import { SubscriptionTierPrice } from './subscription-tier-price';
 
 /**
  * 
  * @export
- * @interface Tier
+ * @interface SubscriptionTier
  */
-export interface Tier {
+export interface SubscriptionTier {
     /**
      * 
      * @type {number}
-     * @memberof Tier
+     * @memberof SubscriptionTier
      */
     'id'?: number;
     /**
      * 
-     * @type {TierPrice}
-     * @memberof Tier
+     * @type {SubscriptionTierPrice}
+     * @memberof SubscriptionTier
      */
-    'price'?: TierPrice;
+    'price'?: SubscriptionTierPrice;
 }
 
