@@ -24,10 +24,10 @@ import { SubscriptionMetadata } from './subscription-metadata';
 import { SubscriptionPrice } from './subscription-price';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SubscriptionToken } from './subscription-token';
+import { SubscriptionTier } from './subscription-tier';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Tier } from './tier';
+import { SubscriptionToken } from './subscription-token';
 // May contain unused imports in some cases
 // @ts-ignore
 import { User } from './user';

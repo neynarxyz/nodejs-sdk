@@ -154,12 +154,12 @@ models/subscription-metadata.ts
 models/subscription-price.ts
 models/subscription-provider.ts
 models/subscription-providers.ts
+models/subscription-tier-price.ts
+models/subscription-tier.ts
 models/subscription-token.ts
 models/subscription.ts
 models/subscriptions-response.ts
 models/subscriptions.ts
-models/tier-price.ts
-models/tier.ts
 models/trending-channel-response.ts
 models/update-user-req-body.ts
 models/user-dehydrated.ts
