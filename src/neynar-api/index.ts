@@ -13,7 +13,14 @@ export {
   ChannelType,
   FrameType,
   SubscriptionProvider,
-  SubscriptionProviders
+  SubscriptionProviders,
+  WebhookFollowCreated,
+  WebhookFollowDeleted,
+  WebhookReactionCreated,
+  WebhookReactionDeleted,
+  WebhookCastCreated,
+  WebhookUserCreated,
+  WebhookUserUpdated,
 } from "./v2";
 export {
   TimeWindow,
