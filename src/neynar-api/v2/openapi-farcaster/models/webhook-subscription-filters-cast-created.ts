@@ -21,6 +21,12 @@
  */
 export interface WebhookSubscriptionFiltersCastCreated {
     /**
+     * Exclude casts that matches these authors. **Note:** This is applied as an AND operation against rest of the filters. Rest of the filters are bundled as an OR operation. 
+     * @type {Array<number>}
+     * @memberof WebhookSubscriptionFiltersCastCreated
+     */
+    'exclude_author_fids'?: Array<number>;
+    /**
      * 
      * @type {Array<number>}
      * @memberof WebhookSubscriptionFiltersCastCreated

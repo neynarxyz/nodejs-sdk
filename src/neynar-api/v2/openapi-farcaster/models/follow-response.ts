@@ -32,5 +32,11 @@ export interface FollowResponse {
      * @memberof FollowResponse
      */
     'target_fid': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FollowResponse
+     */
+    'hash': string;
 }
 
