@@ -28,6 +28,8 @@ models/authorization-url-response.ts
 models/bulk-casts-response.ts
 models/bulk-follow-response.ts
 models/bulk-users-response.ts
+models/buy-storage-req-body.ts
+models/buy-storage-response.ts
 models/cast-dehydrated.ts
 models/cast-id.ts
 models/cast-notification-type.ts
@@ -195,3 +197,5 @@ models/webhook-subscription-filters-user-updated.ts
 models/webhook-subscription-filters.ts
 models/webhook-subscription.ts
 models/webhook.ts
+models/zod-error-errors-inner.ts
+models/zod-error.ts
