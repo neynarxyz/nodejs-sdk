@@ -14,6 +14,7 @@ interface CastDehydrated {
 
 export interface WebhookFollowCreated {
   data: {
+    event_timestamp: string;
     user: UserDehydrated;
     object: "follow";
     timestamp: string;
@@ -25,6 +26,7 @@ export interface WebhookFollowCreated {
 
 export interface WebhookFollowDeleted {
   data: {
+    event_timestamp: string;
     user: UserDehydrated;
     object: "unfollow";
     timestamp: string;
@@ -37,6 +39,7 @@ export interface WebhookFollowDeleted {
 export interface WebhookReactionCreated {
   data: {
     cast: CastDehydrated;
+    event_timestamp: string;
     user: UserDehydrated;
     object: "reaction";
     timestamp: string;
@@ -49,6 +52,7 @@ export interface WebhookReactionCreated {
 export interface WebhookReactionDeleted {
   data: {
     cast: CastDehydrated;
+    event_timestamp: string;
     user: UserDehydrated;
     object: "reaction";
     timestamp: string;
@@ -62,16 +66,19 @@ export interface WebhookCastCreated {
   data: Cast;
   type: "cast.created";
   created_at: number;
+  event_timestamp: string;
 }
 
 export interface WebhookUserCreated {
   data: User;
   type: "user.created";
   created_at: number;
+  event_timestamp: string;
 }
 
 export interface WebhookUserUpdated {
   data: User;
   type: "user.updated";
   created_at: number;
+  event_timestamp: string;
 }
