@@ -24,7 +24,7 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { BuyStorageReqBody } from '../models';
 // @ts-ignore
-import { BuyStorageResponse } from '../models';
+import { ConflictErrorRes } from '../models';
 // @ts-ignore
 import { ErrorRes } from '../models';
 // @ts-ignore
@@ -188,7 +188,7 @@ export const StorageApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async buyStorage(apiKey: string, buyStorageReqBody: BuyStorageReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BuyStorageResponse>> {
+        async buyStorage(apiKey: string, buyStorageReqBody: BuyStorageReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageAllocationsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.buyStorage(apiKey, buyStorageReqBody, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -234,7 +234,7 @@ export const StorageApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        buyStorage(apiKey: string, buyStorageReqBody: BuyStorageReqBody, options?: any): AxiosPromise<BuyStorageResponse> {
+        buyStorage(apiKey: string, buyStorageReqBody: BuyStorageReqBody, options?: any): AxiosPromise<StorageAllocationsResponse> {
             return localVarFp.buyStorage(apiKey, buyStorageReqBody, options).then((request) => request(axios, basePath));
         },
         /**

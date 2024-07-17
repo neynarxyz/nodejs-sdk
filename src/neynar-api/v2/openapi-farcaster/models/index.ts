@@ -33,6 +33,7 @@ export * from './channel-response-bulk';
 export * from './channel-search-response';
 export * from './channel-type';
 export * from './channel-viewer-context';
+export * from './conflict-error-res';
 export * from './conversation';
 export * from './conversation-conversation';
 export * from './dehydrated-channel';

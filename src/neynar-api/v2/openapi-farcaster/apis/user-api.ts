@@ -28,6 +28,8 @@ import { BulkFollowResponse } from '../models';
 // @ts-ignore
 import { BulkUsersResponse } from '../models';
 // @ts-ignore
+import { ConflictErrorRes } from '../models';
+// @ts-ignore
 import { ErrorRes } from '../models';
 // @ts-ignore
 import { FollowReqBody } from '../models';

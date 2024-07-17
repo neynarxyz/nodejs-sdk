@@ -56,6 +56,7 @@ models/channel-search-response.ts
 models/channel-type.ts
 models/channel-viewer-context.ts
 models/channel.ts
+models/conflict-error-res.ts
 models/conversation-conversation.ts
 models/conversation.ts
 models/dehydrated-channel.ts
