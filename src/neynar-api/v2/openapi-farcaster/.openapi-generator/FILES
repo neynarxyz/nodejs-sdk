@@ -29,7 +29,6 @@ models/bulk-casts-response.ts
 models/bulk-follow-response.ts
 models/bulk-users-response.ts
 models/buy-storage-req-body.ts
-models/buy-storage-response.ts
 models/cast-dehydrated.ts
 models/cast-id.ts
 models/cast-notification-type.ts

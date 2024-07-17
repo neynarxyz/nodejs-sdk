@@ -6,7 +6,6 @@ export * from './bulk-casts-response';
 export * from './bulk-follow-response';
 export * from './bulk-users-response';
 export * from './buy-storage-req-body';
-export * from './buy-storage-response';
 export * from './cast';
 export * from './cast-dehydrated';
 export * from './cast-id';
