@@ -22,17 +22,66 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 // @ts-ignore
+import { BuyStorageReqBody } from '../models';
+// @ts-ignore
+import { ConflictErrorRes } from '../models';
+// @ts-ignore
 import { ErrorRes } from '../models';
 // @ts-ignore
 import { StorageAllocationsResponse } from '../models';
 // @ts-ignore
 import { StorageUsageResponse } from '../models';
+// @ts-ignore
+import { ZodError } from '../models';
 /**
  * StorageApi - axios parameter creator
  * @export
  */
 export const StorageApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * This api will help you rent units of storage for an year for a specific fid. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
+         * @summary Buy storage for an fid
+         * @param {string} apiKey API key required for authentication.
+         * @param {BuyStorageReqBody} buyStorageReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        buyStorage: async (apiKey: string, buyStorageReqBody: BuyStorageReqBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('buyStorage', 'apiKey', apiKey)
+            // verify required parameter 'buyStorageReqBody' is not null or undefined
+            assertParamExists('buyStorage', 'buyStorageReqBody', buyStorageReqBody)
+            const localVarPath = `/farcaster/storage/buy`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(buyStorageReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * Fetches storage allocations for a given user
          * @summary Fetches storage allocations for a given user
@@ -132,6 +181,18 @@ export const StorageApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = StorageApiAxiosParamCreator(configuration)
     return {
         /**
+         * This api will help you rent units of storage for an year for a specific fid. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
+         * @summary Buy storage for an fid
+         * @param {string} apiKey API key required for authentication.
+         * @param {BuyStorageReqBody} buyStorageReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async buyStorage(apiKey: string, buyStorageReqBody: BuyStorageReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageAllocationsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.buyStorage(apiKey, buyStorageReqBody, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Fetches storage allocations for a given user
          * @summary Fetches storage allocations for a given user
          * @param {string} apiKey API key required for authentication.
@@ -166,6 +227,17 @@ export const StorageApiFactory = function (configuration?: Configuration, basePa
     const localVarFp = StorageApiFp(configuration)
     return {
         /**
+         * This api will help you rent units of storage for an year for a specific fid. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
+         * @summary Buy storage for an fid
+         * @param {string} apiKey API key required for authentication.
+         * @param {BuyStorageReqBody} buyStorageReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        buyStorage(apiKey: string, buyStorageReqBody: BuyStorageReqBody, options?: any): AxiosPromise<StorageAllocationsResponse> {
+            return localVarFp.buyStorage(apiKey, buyStorageReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Fetches storage allocations for a given user
          * @summary Fetches storage allocations for a given user
          * @param {string} apiKey API key required for authentication.
@@ -197,6 +269,19 @@ export const StorageApiFactory = function (configuration?: Configuration, basePa
  * @extends {BaseAPI}
  */
 export class StorageApi extends BaseAPI {
+    /**
+     * This api will help you rent units of storage for an year for a specific fid. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
+     * @summary Buy storage for an fid
+     * @param {string} apiKey API key required for authentication.
+     * @param {BuyStorageReqBody} buyStorageReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorageApi
+     */
+    public buyStorage(apiKey: string, buyStorageReqBody: BuyStorageReqBody, options?: AxiosRequestConfig) {
+        return StorageApiFp(this.configuration).buyStorage(apiKey, buyStorageReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Fetches storage allocations for a given user
      * @summary Fetches storage allocations for a given user

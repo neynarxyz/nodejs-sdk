@@ -146,12 +146,11 @@ export class NeynarV2APIClient {
 
     this.apiKey = apiKey;
 
-
     if (axiosInstance === undefined) {
       axiosInstance = axios.create({
         headers: {
-          'x-sdk-version': version,
-        }
+          "x-sdk-version": version,
+        },
       });
     }
     axiosInstance.defaults.decompress = true;
@@ -162,7 +161,7 @@ export class NeynarV2APIClient {
           return {
             data: {
               location: error.response.headers.location,
-            }
+            },
           };
         }
         if (NeynarV2APIClient.isApiErrorResponse(error)) {
@@ -178,8 +177,10 @@ export class NeynarV2APIClient {
       basePath: basePath ? `${basePath}/v2` : BASE_PATH,
       apiKey: apiKey,
     });
-    const frameConfig: Configuration = new Configuration({...config,baseOptions: {...config.baseOptions, maxRedirects: 0}})
-    
+    const frameConfig: Configuration = new Configuration({
+      ...config,
+      baseOptions: { ...config.baseOptions, maxRedirects: 0 },
+    });
 
     this.apis = {
       signer: new SignerApi(config, undefined, axiosInstance),
@@ -217,7 +218,7 @@ export class NeynarV2APIClient {
 
   // ------------ Signer ------------
 
-   /**
+  /**
    * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
    *
    * @param {string} client_id - The client identifier registered with the API.
@@ -235,7 +236,7 @@ export class NeynarV2APIClient {
    *
    * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-authorization-url).
    */
-   public async fetchAuthorizationUrl(
+  public async fetchAuthorizationUrl(
     client_id: string,
     code: AuthorizationUrlResponseType
   ): Promise<AuthorizationUrlResponse> {
@@ -359,11 +360,10 @@ export class NeynarV2APIClient {
   public async lookupDeveloperManagedSigner(
     publicKey: string
   ): Promise<DeveloperManagedSigner> {
-    const response =
-      await this.apis.signer.developerManagedSigner(
-        this.apiKey,
-        publicKey
-      );
+    const response = await this.apis.signer.developerManagedSigner(
+      this.apiKey,
+      publicKey
+    );
     return response.data;
   }
 
@@ -808,8 +808,6 @@ export class NeynarV2APIClient {
     return response.data;
   }
 
-
-
   /**
    * Fetches bulk user information based on multiple Ethereum addresses. This function is particularly
    * useful for retrieving user details associated with both custody and verified Ethereum addresses.
@@ -924,8 +922,6 @@ export class NeynarV2APIClient {
     );
     return response.data;
   }
-
- 
 
   // ------------ Cast ------------
 
@@ -1104,7 +1100,13 @@ export class NeynarV2APIClient {
   public async publishCast(
     signerUuid: string,
     text: string,
-    options?: { embeds?: EmbeddedCast[]; replyTo?: string; channelId?: string, idem?: string, parent_author_fid?: number }
+    options?: {
+      embeds?: EmbeddedCast[];
+      replyTo?: string;
+      channelId?: string;
+      idem?: string;
+      parent_author_fid?: number;
+    }
   ): Promise<PostCastResponseCast> {
     const postCastReqBody = {
       signer_uuid: signerUuid,
@@ -1113,7 +1115,7 @@ export class NeynarV2APIClient {
       parent: options?.replyTo,
       channel_id: options?.channelId,
       idem: options?.idem,
-      parent_author_fid: options?.parent_author_fid
+      parent_author_fid: options?.parent_author_fid,
     };
     const response = await this.apis.cast.postCast(
       this.apiKey,
@@ -1236,7 +1238,7 @@ export class NeynarV2APIClient {
    * @param {string} [options.cursor] - Pagination cursor for the next set of results. Omit this parameter for the initial request.
    * @param {number} [options.viewerFid] - The FID of the user viewing this information.
    * @param {boolean} [options.shouldModerate] - Whether to include only casts liked by the moderator in the response. True by default.
-   * 
+   *
    * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
    *   containing the feed for the specified channel IDs.
    *
@@ -1318,7 +1320,7 @@ export class NeynarV2APIClient {
     );
     return response.data;
   }
-  
+
   /**
    * Retrieve feed based on who a user is following
    *
@@ -1351,7 +1353,7 @@ export class NeynarV2APIClient {
       limit?: number;
       cursor?: string;
       viewerFid?: number;
-      provider?: ForYouProvider,
+      provider?: ForYouProvider;
     }
   ): Promise<FeedResponse> {
     const response = await this.apis.feed.feedForYou(
@@ -1391,7 +1393,11 @@ export class NeynarV2APIClient {
       viewerFid?: number;
     }
   ): Promise<BulkCastsResponse> {
-    const response = await this.apis.feed.feedUserPopular(this.apiKey, fid, options?.viewerFid);
+    const response = await this.apis.feed.feedUserPopular(
+      this.apiKey,
+      fid,
+      options?.viewerFid
+    );
     return response.data;
   }
 
@@ -1523,7 +1529,7 @@ export class NeynarV2APIClient {
    * @param {Cast | string} castOrCastHash - The Cast object or its hash to which the reaction is targeted.
    * @param {Object} [options] - Optional parameters for customizing the response.
    * @param {string} [options.idem] - An Idempotency key to prevent duplicate publishing of events. Recommended format is a 16-character string generated by the developer at the time of publishing. Use the same idem key on retry attempts.
-   * 
+   *
    * @returns {Promise<OperationResponse>} A promise that resolves to an `OperationResponse` object,
    *   indicating the success or failure of the reaction post.
    *
@@ -1554,7 +1560,7 @@ export class NeynarV2APIClient {
       signer_uuid: signerUuid,
       reaction_type: reaction,
       target: castHash,
-      idem: options?.idem
+      idem: options?.idem,
     };
     const response = await this.apis.reaction.postReaction(this.apiKey, body);
     return response.data;
@@ -1636,7 +1642,7 @@ export class NeynarV2APIClient {
   public async fetchUserReactions(
     fid: number,
     type: ReactionsType,
-    options?: { limit?: number; cursor?: string,viewerFid?: number}
+    options?: { limit?: number; cursor?: string; viewerFid?: number }
   ): Promise<ReactionsResponse> {
     const response = await this.apis.reaction.reactionsUser(
       this.apiKey,
@@ -1682,7 +1688,7 @@ export class NeynarV2APIClient {
   public async fetchCastReactions(
     hash: string,
     types: ReactionsType,
-    options?: { limit?: number; cursor?: string,viewerFid?: number}
+    options?: { limit?: number; cursor?: string; viewerFid?: number }
   ): Promise<ReactionsCastResponse> {
     const response = await this.apis.reaction.reactionsCast(
       this.apiKey,
@@ -1723,7 +1729,7 @@ export class NeynarV2APIClient {
    */
   public async fetchAllNotifications(
     fid: number,
-    options?: { cursor?: string; isPriority?: boolean}
+    options?: { cursor?: string; isPriority?: boolean }
   ): Promise<NotificationsResponse> {
     const response = await this.apis.notifications.notifications(
       this.apiKey,
@@ -1765,7 +1771,7 @@ export class NeynarV2APIClient {
   public async fetchChannelNotificationsForUser(
     fid: number,
     channelIds: string[],
-    options?: { cursor?: string; isPriority?: boolean}
+    options?: { cursor?: string; isPriority?: boolean }
   ): Promise<NotificationsResponse> {
     const _channelIds = channelIds.join(",");
     const response = await this.apis.notifications.notificationsChannel(
@@ -1804,7 +1810,7 @@ export class NeynarV2APIClient {
   public async fetchNotificationsByParentUrlForUser(
     fid: number,
     parentUrls: string[],
-    options?: { cursor?: string, isPriority?: boolean }
+    options?: { cursor?: string; isPriority?: boolean }
   ) {
     const _parentUrls = parentUrls.join(",");
     const response = await this.apis.notifications.notificationsParentUrl(
@@ -1819,7 +1825,7 @@ export class NeynarV2APIClient {
 
   // ------------ Channel ------------
 
-    /**
+  /**
    * Fetches channels that a user follows. This method retrieves a list of channels that a user follows,
    *
    * @param {number} fid - The FID of the user whose followed channels are being fetched.
@@ -1839,23 +1845,23 @@ export class NeynarV2APIClient {
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-channels).
    */
-    public async fetchUserChannels(
-      fid: number,
-      options?: {
-        limit?: number;
-        cursor?: string;
-      }
-    ): Promise<ChannelListResponse> {
-      const response = await this.apis.channel.userChannels(
-        this.apiKey,
-        fid,
-        options?.limit,
-        options?.cursor
-      );
-      return response.data;
+  public async fetchUserChannels(
+    fid: number,
+    options?: {
+      limit?: number;
+      cursor?: string;
     }
+  ): Promise<ChannelListResponse> {
+    const response = await this.apis.channel.userChannels(
+      this.apiKey,
+      fid,
+      options?.limit,
+      options?.cursor
+    );
+    return response.data;
+  }
 
-    /**
+  /**
     * Returns details of multiple channels
     * @summary Retrieve channels by id or parent_url
     * @param {string[]} ids Channel IDs for the channels being queried
@@ -1875,13 +1881,22 @@ export class NeynarV2APIClient {
     * 
     * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/channel-details-bulk).
     */
-   public async fetchBulkChannels(ids: string[], options?: {
-    type?: ChannelType,
-    viewerFid?: number;}): Promise<ChannelResponseBulk>{
-    const _ids = ids.join(",");
-    const response = await this.apis.channel.channelDetailsBulk(this.apiKey, _ids, options?.type, options?.viewerFid);
-    return response.data;
+  public async fetchBulkChannels(
+    ids: string[],
+    options?: {
+      type?: ChannelType;
+      viewerFid?: number;
     }
+  ): Promise<ChannelResponseBulk> {
+    const _ids = ids.join(",");
+    const response = await this.apis.channel.channelDetailsBulk(
+      this.apiKey,
+      _ids,
+      options?.type,
+      options?.viewerFid
+    );
+    return response.data;
+  }
 
   /**
    * Retrieves details of a specific channel based on its ID. This method is essential for
@@ -1898,18 +1913,26 @@ export class NeynarV2APIClient {
    * @example
    * // Example: Retrieve details of a channel by its ID
    * import {ChannelType} from '@neynar/nodejs-sdk'
-   * 
+   *
    * client.lookupChannel('neynar',{viewerFid: 3,type: ChannelType.Id }).then(response => {
    *   console.log('Channel Details:', response);
    * });
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/channel-details).
    */
-  public async lookupChannel(id: string,options?: {
-    viewerFid?: number;
-    type?: ChannelType;
-  }): Promise<ChannelResponse> {
-    const response = await this.apis.channel.channelDetails(this.apiKey, id,options?.type,options?.viewerFid);
+  public async lookupChannel(
+    id: string,
+    options?: {
+      viewerFid?: number;
+      type?: ChannelType;
+    }
+  ): Promise<ChannelResponse> {
+    const response = await this.apis.channel.channelDetails(
+      this.apiKey,
+      id,
+      options?.type,
+      options?.viewerFid
+    );
     return response.data;
   }
 
@@ -1932,12 +1955,19 @@ export class NeynarV2APIClient {
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/active-channels).
    */
-  public async fetchUsersActiveChannels(fid: number, options?: {
-    limit?: number;
-    cursor?: string;
-  }
+  public async fetchUsersActiveChannels(
+    fid: number,
+    options?: {
+      limit?: number;
+      cursor?: string;
+    }
   ) {
-    const response = await this.apis.channel.activeChannels(this.apiKey, fid, options?.limit, options?.cursor);
+    const response = await this.apis.channel.activeChannels(
+      this.apiKey,
+      fid,
+      options?.limit,
+      options?.cursor
+    );
     return response.data;
   }
 
@@ -2151,62 +2181,90 @@ export class NeynarV2APIClient {
     );
     return response.data;
   }
-/** 
-  * Returns a list of followers for a specific FID.
-  * @summary Retrieve followers for a given user
-  * @param {number} fid User who's profile you are looking at
-  * @param {Object} [options] - Optional parameters for customizing the response.
-  * @param {number} [options.viewerFid] Viewer who's looking at the profile.
-  * @param {FollowSortType} [options.sortType] Sort type for retrieving followers. Default is FollowSortType.DescChron
-  * @param {number} [options.limit] Number of results to retrieve (default 20, max 100)
-  * @param {string} [options.cursor] Pagination cursor.
-  *  omit this parameter for the initial request.
-  * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
-  * 
-  * @example
-  * // Example: Retrieve followers for a user
-  * import { FollowSortType } from "@neynar/nodejs-sdk";
-  * 
-  * client.fetchUserFollowersV2(3,{limit: 5,viewerFid: 3}).then(response => {
-  *  console.log('User Followers:', response);
-  * });
-  * 
-  * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/followers-v2).
-*/
-  public async fetchUserFollowersV2(fid: number,options?: { viewerFid?: number, limit?: number,cursor?: string, sortType?: FollowSortType}):Promise<UsersResponse> {
-    const response = await this.apis.follows.followersV2(this.apiKey,fid,options?.viewerFid, options?.sortType, options?.limit, options?.cursor);  
+  /**
+   * Returns a list of followers for a specific FID.
+   * @summary Retrieve followers for a given user
+   * @param {number} fid User who's profile you are looking at
+   * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {number} [options.viewerFid] Viewer who's looking at the profile.
+   * @param {FollowSortType} [options.sortType] Sort type for retrieving followers. Default is FollowSortType.DescChron
+   * @param {number} [options.limit] Number of results to retrieve (default 20, max 100)
+   * @param {string} [options.cursor] Pagination cursor.
+   *  omit this parameter for the initial request.
+   * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
+   *
+   * @example
+   * // Example: Retrieve followers for a user
+   * import { FollowSortType } from "@neynar/nodejs-sdk";
+   *
+   * client.fetchUserFollowersV2(3,{limit: 5,viewerFid: 3}).then(response => {
+   *  console.log('User Followers:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/followers-v2).
+   */
+  public async fetchUserFollowersV2(
+    fid: number,
+    options?: {
+      viewerFid?: number;
+      limit?: number;
+      cursor?: string;
+      sortType?: FollowSortType;
+    }
+  ): Promise<UsersResponse> {
+    const response = await this.apis.follows.followersV2(
+      this.apiKey,
+      fid,
+      options?.viewerFid,
+      options?.sortType,
+      options?.limit,
+      options?.cursor
+    );
     return response.data;
   }
 
-/** 
-  * Returns a list of follows for a specific FID.
-  * @summary Retrieve follows for a given user
-  * @param {number} fid User who's profile you are looking at
-  * @param {Object} [options] - Optional parameters for customizing the response.
-  * @param {number} [options.viewerFid] Viewer who's looking at the profile.
-  * @param {FollowSortType} [options.sortType] Sort type for retrieving follows. Default is FollowSortType.DescChron
-  * @param {number} [options.limit] Number of results to retrieve (default 25, max 100)
-  * @param {string} [options.cursor] Pagination cursor.
-  *  omit this parameter for the initial request.
-  * 
-  * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
-  * 
-  * @example
-  * // Example: Retrieve follows for a user
-  * import { FollowSortType } from "@neynar/nodejs-sdk";
-  * 
-  * client.fetchUserFollowingV2(3,{limit: 5,viewerFid: 3}).then(response => {
-  * console.log('User Follows:', response);
-  * });
-  * 
-  * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/following-v2).
-*/
-  public async fetchUserFollowingV2(fid: number,options?: { viewerFid?: number, limit?: number,cursor?: string, sortType?: FollowSortType}):Promise<UsersResponse> {
-const response = await this.apis.follows.followingV2(this.apiKey,fid,options?.viewerFid, options?.sortType, options?.limit, options?.cursor);
-return response.data;
+  /**
+   * Returns a list of follows for a specific FID.
+   * @summary Retrieve follows for a given user
+   * @param {number} fid User who's profile you are looking at
+   * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {number} [options.viewerFid] Viewer who's looking at the profile.
+   * @param {FollowSortType} [options.sortType] Sort type for retrieving follows. Default is FollowSortType.DescChron
+   * @param {number} [options.limit] Number of results to retrieve (default 25, max 100)
+   * @param {string} [options.cursor] Pagination cursor.
+   *  omit this parameter for the initial request.
+   *
+   * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
+   *
+   * @example
+   * // Example: Retrieve follows for a user
+   * import { FollowSortType } from "@neynar/nodejs-sdk";
+   *
+   * client.fetchUserFollowingV2(3,{limit: 5,viewerFid: 3}).then(response => {
+   * console.log('User Follows:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/following-v2).
+   */
+  public async fetchUserFollowingV2(
+    fid: number,
+    options?: {
+      viewerFid?: number;
+      limit?: number;
+      cursor?: string;
+      sortType?: FollowSortType;
+    }
+  ): Promise<UsersResponse> {
+    const response = await this.apis.follows.followingV2(
+      this.apiKey,
+      fid,
+      options?.viewerFid,
+      options?.sortType,
+      options?.limit,
+      options?.cursor
+    );
+    return response.data;
   }
-
-
 
   // ------------ Storage ------------
 
@@ -2259,6 +2317,47 @@ return response.data;
     return response.data;
   }
 
+  /**
+   * Buy storage for a given user.
+   *
+   * @param {number} fid - The FID of the user for whom storage is needed
+   * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {number} [options.units] -  Number of storage units to buy. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links.
+   * @param {string} [options.idem] - An Idempotency key for the request. This is used to prevent duplicate requests. Use the same idem key on retry attempts.
+   *  This should be a unique identifier for each request. Recommended format is a 16-character string generated by the developer at the time of making this request.
+   *
+   *
+   * @returns {Promise<StorageAllocationsResponse>} A promise that resolves to a `StorageAllocationsResponse` object
+   *
+   * @example
+   * // Example: Retrieve storage details for a user
+   * // const fid = 3; // add your fid here
+   * // const units = 1; // add the number of units you want to buy
+   * // const idem = 'some_random_unique_key'; // add your idem here
+   *
+   * client.buyStorage(fid, {units, idem}).then(response => {
+   *   console.log('Storage Allocations:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/storage-details).
+   *
+   */
+  public async buyStorage(
+    fid: number,
+    options?: { units?: number; idem?: string }
+  ): Promise<StorageAllocationsResponse> {
+    const buyStorageReqBody = {
+      fid,
+      ...(typeof options?.units !== "undefined" && { units: options.units }),
+      ...(typeof options?.idem !== "undefined" && { idem: options.idem }),
+    };
+    const response = await this.apis.storage.buyStorage(
+      this.apiKey,
+      buyStorageReqBody
+    );
+    return response.data;
+  }
+
   // ------------ Fname ------------
 
   /**
@@ -2296,7 +2395,7 @@ return response.data;
    * @param {string} identifier - The UUID or URL of the frame to be retrieved.
    * @param {Object} [options] - Optional parameters for customizing the response.
    * @param {FrameType} [options.type] - The type of identifier being used to query the frame. For a URL identifier use FrameType.Url, otherwise use FrameType.Uuid.
-   * 
+   *
    * @returns {Promise<NeynarFrame>} A promise that resolves to a `NeynarFrame` object containing the details of the retrieved frame.
    *
    * @example
@@ -2308,7 +2407,10 @@ return response.data;
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/lookup-neynar-frame).
    */
-  public async lookupNeynarFrame(identifier: string,options?:{type?:FrameType}) {
+  public async lookupNeynarFrame(
+    identifier: string,
+    options?: { type?: FrameType }
+  ) {
     const type = options?.type || FrameType.Uuid;
     const response = await this.apis.frame.lookupNeynarFrame(
       this.apiKey,
@@ -2425,9 +2527,7 @@ return response.data;
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/fetch-neynar-frames).
    */
   public async fetchNeynarFrames() {
-    const response = await this.apis.frame.fetchNeynarFrames(
-      this.apiKey
-    );
+    const response = await this.apis.frame.fetchNeynarFrames(this.apiKey);
     return response.data;
   }
 
@@ -2848,176 +2948,195 @@ return response.data;
     return response.data;
   }
 
-
- // ------------ Mute ------------
-
-  /**
-        * Fetches all fids that a user has muted.
-         * @summary Get fids that a user has muted.
-         * @param {number} fid The user's fid (identifier)
-         * @param {Object} [options] - Optional parameters for the request.
-         * @param {number} [options.limit=20] - Number of followers to retrieve (default 20, max 100).
-         * @param {string} [options.cursor] Pagination cursor.
-         * 
-         * @returns {Promise<MuteListResponse>} A promise that resolves to a `MuteListResponse` object.
-         * 
-         * @example
-         * // Example: Retrieve muted fids for a user
-         * client.fetchMuteList(3, { limit: 50 }).then(response => {
-         *  console.log('Muted Fids:', response);
-         * });
-         * 
-         * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/mute-list).
-     */
- public async fetchMuteList(
-  fid: number,
-  options?: { limit?: number,cursor: string }
-): Promise<MuteListResponse> {
-  const response = await this.apis.mute.muteList(
-    this.apiKey,
-    fid,
-    options?.limit,
-    options?.cursor
-  );
-  return response.data;
-}
+  // ------------ Mute ------------
 
   /**
-         * Adds a mute for a given fid.
-         * @summary Adds a mute for a fid.
-         * @param {number} fid The user's fid (identifier)
-         * @param {number} mutedFid - The fid of the user being muted.
-         * 
-         * @returns {Promise<MuteResponse>} A promise that resolves to a `MuteResponse` object.
-         * 
-         * @example
-         * // Example: Mute a user
-         * client.publishMute(3, 19960).then(response => {
-         * console.log('Mute Response:', response);
-         * });
-         * 
-         * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/add-mute).
-         * 
-     */
-public async publishMute(
-  fid: number,
-  mutedFid: number
-): Promise<MuteResponse> {
-  const addMuteBody = {
-    fid,
-    muted_fid: mutedFid,
-  };
-  const response = await this.apis.mute.addMute(
-    this.apiKey,
-    addMuteBody
-  );
-  return response.data;
-}
+   * Fetches all fids that a user has muted.
+   * @summary Get fids that a user has muted.
+   * @param {number} fid The user's fid (identifier)
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {number} [options.limit=20] - Number of followers to retrieve (default 20, max 100).
+   * @param {string} [options.cursor] Pagination cursor.
+   *
+   * @returns {Promise<MuteListResponse>} A promise that resolves to a `MuteListResponse` object.
+   *
+   * @example
+   * // Example: Retrieve muted fids for a user
+   * client.fetchMuteList(3, { limit: 50 }).then(response => {
+   *  console.log('Muted Fids:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/mute-list).
+   */
+  public async fetchMuteList(
+    fid: number,
+    options?: { limit?: number; cursor: string }
+  ): Promise<MuteListResponse> {
+    const response = await this.apis.mute.muteList(
+      this.apiKey,
+      fid,
+      options?.limit,
+      options?.cursor
+    );
+    return response.data;
+  }
 
   /**
-         * Deletes a mute for a given fid.
-         * @summary Deletes a mute for a fid
-         * @param {number} fid The user's fid (identifier)
-         * @param {number} mutedFid - The fid of the user being muted.
-         * 
-         * @returns {Promise<MuteResponse>} A promise that resolves to a `MuteResponse` object.
-         * 
-         * @example
-         * // Example: Unmute a user
-         * client.deleteMute(3, 19960).then(response => {
-         * console.log('Mute Response:', response);
-         * });
-         * 
-         * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/delete-mute).
-  */
-public async deleteMute(fid: number,mutedFid: number): Promise<MuteResponse> {
-  const deleteMuteBody = {
-    fid,
-    muted_fid: mutedFid,
-  };
-  const response = await this.apis.mute.deleteMute(
-    this.apiKey,
-    deleteMuteBody,
-  );
-  return response.data; 
-}
+   * Adds a mute for a given fid.
+   * @summary Adds a mute for a fid.
+   * @param {number} fid The user's fid (identifier)
+   * @param {number} mutedFid - The fid of the user being muted.
+   *
+   * @returns {Promise<MuteResponse>} A promise that resolves to a `MuteResponse` object.
+   *
+   * @example
+   * // Example: Mute a user
+   * client.publishMute(3, 19960).then(response => {
+   * console.log('Mute Response:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/add-mute).
+   *
+   */
+  public async publishMute(
+    fid: number,
+    mutedFid: number
+  ): Promise<MuteResponse> {
+    const addMuteBody = {
+      fid,
+      muted_fid: mutedFid,
+    };
+    const response = await this.apis.mute.addMute(this.apiKey, addMuteBody);
+    return response.data;
+  }
 
+  /**
+   * Deletes a mute for a given fid.
+   * @summary Deletes a mute for a fid
+   * @param {number} fid The user's fid (identifier)
+   * @param {number} mutedFid - The fid of the user being muted.
+   *
+   * @returns {Promise<MuteResponse>} A promise that resolves to a `MuteResponse` object.
+   *
+   * @example
+   * // Example: Unmute a user
+   * client.deleteMute(3, 19960).then(response => {
+   * console.log('Mute Response:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/delete-mute).
+   */
+  public async deleteMute(
+    fid: number,
+    mutedFid: number
+  ): Promise<MuteResponse> {
+    const deleteMuteBody = {
+      fid,
+      muted_fid: mutedFid,
+    };
+    const response = await this.apis.mute.deleteMute(
+      this.apiKey,
+      deleteMuteBody
+    );
+    return response.data;
+  }
 
   // ------------ Subscribers ------------
 
-   /**
-         * Fetch subscribers for a given fid's contracts. Doesn't return addresses that don't have an fid.
-         * @summary Fetch subscribers for a given fid
-         * @param {number} fid 
-         * @param {SubscriptionProviders} subscriptionProvider 
-         * @param {Object} [options] - Optional parameters for the request.
-         * @param {string} [options.viewerFid] - The fid of the viewer viewing this information.
-         * 
-         * @returns {Promise<SubscribersResponse>} A promise that resolves to a `SubscribersResponse` object.
-         * 
-         * @example
-         * // Example: Retrieve fabric subscribers for a user
-         * client.fetchSubscribersForFid(3, SubscriptionProviders.FabricStp, { viewerFid: 3 }).then(response => {
-         * console.log('Subscribers:', response);
-         * });
-         * 
-         * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscribers-1).
-         */
-  public async fetchSubscribersForFid(fid: number,subscriptionProvider: SubscriptionProviders,options?: {
-viewerFid?: number;
-  }) : Promise<SubscribersResponse> {
-    const response = await this.apis.subscribers.subscribers(this.apiKey, fid, subscriptionProvider,options?.viewerFid);
+  /**
+   * Fetch subscribers for a given fid's contracts. Doesn't return addresses that don't have an fid.
+   * @summary Fetch subscribers for a given fid
+   * @param {number} fid
+   * @param {SubscriptionProviders} subscriptionProvider
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {string} [options.viewerFid] - The fid of the viewer viewing this information.
+   *
+   * @returns {Promise<SubscribersResponse>} A promise that resolves to a `SubscribersResponse` object.
+   *
+   * @example
+   * // Example: Retrieve fabric subscribers for a user
+   * client.fetchSubscribersForFid(3, SubscriptionProviders.FabricStp, { viewerFid: 3 }).then(response => {
+   * console.log('Subscribers:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscribers-1).
+   */
+  public async fetchSubscribersForFid(
+    fid: number,
+    subscriptionProvider: SubscriptionProviders,
+    options?: {
+      viewerFid?: number;
+    }
+  ): Promise<SubscribersResponse> {
+    const response = await this.apis.subscribers.subscribers(
+      this.apiKey,
+      fid,
+      subscriptionProvider,
+      options?.viewerFid
+    );
     return response.data;
-      }
+  }
 
-  
-       /**
-         * Fetch what contracts a fid is subscribed to.
-         * @summary Fetch what a given fid is subscribed to
-         * @param {number} fid 
-         * @param {SubscriptionProvider} subscriptionProvider 
-         * @param {Object} [options] - Optional parameters for the request.
-         * @param {number} [options.viewerFid] - the fid of the viewer viewing this information.
-         * 
-         * @returns {Promise<SubscribedToResponse>} A promise that resolves to a `SubscribedToResponse` object.
-         * 
-         * @example
-         * // Example: Retrieve fabric subscriptions for a user
-         * client.fetchSubscribedToForFid(3, SubscriptionProvider.FabricStp, { viewerFid: 3 }).then(response => {
-         * console.log('Subscribed To:', response);
-         * });
-         * 
-         * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscribed-to).
-         */
-  public async fetchSubscribedToForFid(fid: number,subscriptionProvider: SubscriptionProvider,options?: {
-viewerFid?: number;
-  }) : Promise<SubscribedToResponse> {
-    const response = await this.apis.subscribers.subscribedTo(this.apiKey, fid, subscriptionProvider,options?.viewerFid);
+  /**
+   * Fetch what contracts a fid is subscribed to.
+   * @summary Fetch what a given fid is subscribed to
+   * @param {number} fid
+   * @param {SubscriptionProvider} subscriptionProvider
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {number} [options.viewerFid] - the fid of the viewer viewing this information.
+   *
+   * @returns {Promise<SubscribedToResponse>} A promise that resolves to a `SubscribedToResponse` object.
+   *
+   * @example
+   * // Example: Retrieve fabric subscriptions for a user
+   * client.fetchSubscribedToForFid(3, SubscriptionProvider.FabricStp, { viewerFid: 3 }).then(response => {
+   * console.log('Subscribed To:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscribed-to).
+   */
+  public async fetchSubscribedToForFid(
+    fid: number,
+    subscriptionProvider: SubscriptionProvider,
+    options?: {
+      viewerFid?: number;
+    }
+  ): Promise<SubscribedToResponse> {
+    const response = await this.apis.subscribers.subscribedTo(
+      this.apiKey,
+      fid,
+      subscriptionProvider,
+      options?.viewerFid
+    );
     return response.data;
-      }
+  }
 
- /**
-         * Fetch created subscriptions for a given fid.
-         * @summary Fetch created subscriptions for a given fid
-         * @param {number} fid 
-         * @param {SubscriptionProvider} subscriptionProvider 
-         * 
-         * 
-         * @returns {Promise<SubscriptionsResponse>} A promise that resolves to a `SubscriptionsResponse` object.
-         * 
-         * @example
-         * // Example: Retrieve fabric subscriptions for a user
-         * client.fetchSubscriptionsForFid(3, SubscriptionProvider.FabricStp).then(response => {
-         * console.log('Subscriptions:', response);
-         * });
-         * 
-         * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscriptions-created).
-         */
-  public async fetchSubscriptionsForFid(fid: number,subscriptionProvider: SubscriptionProvider) : Promise<SubscriptionsResponse> {
-    const response = await this.apis.subscribers.subscriptionsCreated(this.apiKey, fid, subscriptionProvider);
+  /**
+   * Fetch created subscriptions for a given fid.
+   * @summary Fetch created subscriptions for a given fid
+   * @param {number} fid
+   * @param {SubscriptionProvider} subscriptionProvider
+   *
+   *
+   * @returns {Promise<SubscriptionsResponse>} A promise that resolves to a `SubscriptionsResponse` object.
+   *
+   * @example
+   * // Example: Retrieve fabric subscriptions for a user
+   * client.fetchSubscriptionsForFid(3, SubscriptionProvider.FabricStp).then(response => {
+   * console.log('Subscriptions:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscriptions-created).
+   */
+  public async fetchSubscriptionsForFid(
+    fid: number,
+    subscriptionProvider: SubscriptionProvider
+  ): Promise<SubscriptionsResponse> {
+    const response = await this.apis.subscribers.subscriptionsCreated(
+      this.apiKey,
+      fid,
+      subscriptionProvider
+    );
     return response.data;
-      }
+  }
 }
-
-
-

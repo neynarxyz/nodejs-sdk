@@ -28,6 +28,7 @@ models/authorization-url-response.ts
 models/bulk-casts-response.ts
 models/bulk-follow-response.ts
 models/bulk-users-response.ts
+models/buy-storage-req-body.ts
 models/cast-dehydrated.ts
 models/cast-id.ts
 models/cast-notification-type.ts
@@ -54,6 +55,7 @@ models/channel-search-response.ts
 models/channel-type.ts
 models/channel-viewer-context.ts
 models/channel.ts
+models/conflict-error-res.ts
 models/conversation-conversation.ts
 models/conversation.ts
 models/dehydrated-channel.ts
@@ -195,3 +197,5 @@ models/webhook-subscription-filters-user-updated.ts
 models/webhook-subscription-filters.ts
 models/webhook-subscription.ts
 models/webhook.ts
+models/zod-error-errors-inner.ts
+models/zod-error.ts
