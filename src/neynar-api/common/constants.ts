@@ -62,6 +62,8 @@ export enum ValidateFrameAggregateWindow {
   TEN_SECONDS = "10s",
   ONE_MINUTE = "1m",
   TWO_MINUTES = "2m",
+  FIVE_MINUTES = "5m",
+  TEN_MINUTES = "10m",
   TWENTY_MINUTES = "20m",
   THIRTY_MINUTES = "30m",
   TWO_HOURS = "2h",
