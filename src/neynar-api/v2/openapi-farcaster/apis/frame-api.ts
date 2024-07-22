@@ -369,11 +369,11 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
          * @param {ValidateFrameAnalyticsType} analyticsType 
          * @param {string} start 
          * @param {string} stop 
-         * @param {'10s' | '1m' | '2m' | '20m' | '30m' | '2h' | '12h' | '1d' | '7d'} [aggregateWindow] Required for &#x60;analytics_type&#x3D;interactions-per-cast&#x60;
+         * @param {'10s' | '1m' | '2m' | '5m' | '10m' | '20m' | '30m' | '2h' | '12h' | '1d' | '7d'} [aggregateWindow] Required for &#x60;analytics_type&#x3D;interactions-per-cast&#x60;
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        validateFrameAnalytics: async (apiKey: string, frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: '10s' | '1m' | '2m' | '20m' | '30m' | '2h' | '12h' | '1d' | '7d', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        validateFrameAnalytics: async (apiKey: string, frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: '10s' | '1m' | '2m' | '5m' | '10m' | '20m' | '30m' | '2h' | '12h' | '1d' | '7d', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('validateFrameAnalytics', 'apiKey', apiKey)
             // verify required parameter 'frameUrl' is not null or undefined
@@ -575,11 +575,11 @@ export const FrameApiFp = function(configuration?: Configuration) {
          * @param {ValidateFrameAnalyticsType} analyticsType 
          * @param {string} start 
          * @param {string} stop 
-         * @param {'10s' | '1m' | '2m' | '20m' | '30m' | '2h' | '12h' | '1d' | '7d'} [aggregateWindow] Required for &#x60;analytics_type&#x3D;interactions-per-cast&#x60;
+         * @param {'10s' | '1m' | '2m' | '5m' | '10m' | '20m' | '30m' | '2h' | '12h' | '1d' | '7d'} [aggregateWindow] Required for &#x60;analytics_type&#x3D;interactions-per-cast&#x60;
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async validateFrameAnalytics(apiKey: string, frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: '10s' | '1m' | '2m' | '20m' | '30m' | '2h' | '12h' | '1d' | '7d', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FrameValidateAnalyticsResponse>> {
+        async validateFrameAnalytics(apiKey: string, frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: '10s' | '1m' | '2m' | '5m' | '10m' | '20m' | '30m' | '2h' | '12h' | '1d' | '7d', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FrameValidateAnalyticsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.validateFrameAnalytics(apiKey, frameUrl, analyticsType, start, stop, aggregateWindow, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -690,11 +690,11 @@ export const FrameApiFactory = function (configuration?: Configuration, basePath
          * @param {ValidateFrameAnalyticsType} analyticsType 
          * @param {string} start 
          * @param {string} stop 
-         * @param {'10s' | '1m' | '2m' | '20m' | '30m' | '2h' | '12h' | '1d' | '7d'} [aggregateWindow] Required for &#x60;analytics_type&#x3D;interactions-per-cast&#x60;
+         * @param {'10s' | '1m' | '2m' | '5m' | '10m' | '20m' | '30m' | '2h' | '12h' | '1d' | '7d'} [aggregateWindow] Required for &#x60;analytics_type&#x3D;interactions-per-cast&#x60;
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        validateFrameAnalytics(apiKey: string, frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: '10s' | '1m' | '2m' | '20m' | '30m' | '2h' | '12h' | '1d' | '7d', options?: any): AxiosPromise<FrameValidateAnalyticsResponse> {
+        validateFrameAnalytics(apiKey: string, frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: '10s' | '1m' | '2m' | '5m' | '10m' | '20m' | '30m' | '2h' | '12h' | '1d' | '7d', options?: any): AxiosPromise<FrameValidateAnalyticsResponse> {
             return localVarFp.validateFrameAnalytics(apiKey, frameUrl, analyticsType, start, stop, aggregateWindow, options).then((request) => request(axios, basePath));
         },
         /**
@@ -817,12 +817,12 @@ export class FrameApi extends BaseAPI {
      * @param {ValidateFrameAnalyticsType} analyticsType 
      * @param {string} start 
      * @param {string} stop 
-     * @param {'10s' | '1m' | '2m' | '20m' | '30m' | '2h' | '12h' | '1d' | '7d'} [aggregateWindow] Required for &#x60;analytics_type&#x3D;interactions-per-cast&#x60;
+     * @param {'10s' | '1m' | '2m' | '5m' | '10m' | '20m' | '30m' | '2h' | '12h' | '1d' | '7d'} [aggregateWindow] Required for &#x60;analytics_type&#x3D;interactions-per-cast&#x60;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FrameApi
      */
-    public validateFrameAnalytics(apiKey: string, frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: '10s' | '1m' | '2m' | '20m' | '30m' | '2h' | '12h' | '1d' | '7d', options?: AxiosRequestConfig) {
+    public validateFrameAnalytics(apiKey: string, frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: '10s' | '1m' | '2m' | '5m' | '10m' | '20m' | '30m' | '2h' | '12h' | '1d' | '7d', options?: AxiosRequestConfig) {
         return FrameApiFp(this.configuration).validateFrameAnalytics(apiKey, frameUrl, analyticsType, start, stop, aggregateWindow, options).then((request) => request(this.axios, this.basePath));
     }
 
