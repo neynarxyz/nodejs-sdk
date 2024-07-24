@@ -55,6 +55,12 @@ export interface SubscribedToObject {
      * @type {string}
      * @memberof SubscribedToObject
      */
+    'subscribed_at'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscribedToObject
+     */
     'tier_id'?: string;
 }
 
