@@ -124,6 +124,7 @@ export * from './storage-allocations-response';
 export * from './storage-object';
 export * from './storage-usage-response';
 export * from './subscribed-to';
+export * from './subscribed-to-all-of';
 export * from './subscribed-to-object';
 export * from './subscribed-to-response';
 export * from './subscriber';

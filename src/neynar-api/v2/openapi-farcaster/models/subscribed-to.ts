@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { SubscribedToAllOf } from './subscribed-to-all-of';
+// May contain unused imports in some cases
+// @ts-ignore
 import { Subscription } from './subscription';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -36,6 +39,6 @@ import { User } from './user';
  * @type SubscribedTo
  * @export
  */
-export type SubscribedTo = Subscription;
+export type SubscribedTo = SubscribedToAllOf & Subscription;
 
 

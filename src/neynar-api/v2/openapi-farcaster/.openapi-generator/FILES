@@ -147,6 +147,7 @@ models/storage-allocation.ts
 models/storage-allocations-response.ts
 models/storage-object.ts
 models/storage-usage-response.ts
+models/subscribed-to-all-of.ts
 models/subscribed-to-object.ts
 models/subscribed-to-response.ts
 models/subscribed-to.ts

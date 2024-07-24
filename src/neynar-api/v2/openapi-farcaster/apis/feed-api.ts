@@ -463,8 +463,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             assertParamExists('feedUserPopular', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('feedUserPopular', 'fid', fid)
-            const localVarPath = `/farcaster/feed/user/{fid}/popular`
-                .replace(`{${"fid"}}`, encodeURIComponent(String(fid)));
+            const localVarPath = `/farcaster/feed/user/popular`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -475,6 +474,10 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
 
             if (viewerFid !== undefined) {
                 localVarQueryParameter['viewer_fid'] = viewerFid;
@@ -511,8 +514,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             assertParamExists('feedUserRepliesRecasts', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('feedUserRepliesRecasts', 'fid', fid)
-            const localVarPath = `/farcaster/feed/user/{fid}/replies_and_recasts`
-                .replace(`{${"fid"}}`, encodeURIComponent(String(fid)));
+            const localVarPath = `/farcaster/feed/user/replies_and_recasts`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -523,6 +525,10 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
