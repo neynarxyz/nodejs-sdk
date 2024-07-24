@@ -1,6 +1,6 @@
 {
   "name": "@neynar/nodejs-sdk",
-  "version": "1.38.1",
+  "version": "1.38.2",
   "description": "SDK to interact with Neynar APIs (https://docs.neynar.com/)",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
