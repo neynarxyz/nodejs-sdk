@@ -43,6 +43,7 @@ export * from './delete-neynar-frame-request';
 export * from './developer-managed-signer';
 export * from './embed-cast-id';
 export * from './embed-url';
+export * from './embed-url-metadata';
 export * from './embedded-cast';
 export * from './error-res';
 export * from './feed-response';
