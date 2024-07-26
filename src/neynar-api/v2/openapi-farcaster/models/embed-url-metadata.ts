@@ -13,27 +13,24 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { EmbedUrlMetadata } from './embed-url-metadata';
 
 /**
  * 
  * @export
- * @interface EmbedUrl
+ * @interface EmbedUrlMetadata
  */
-export interface EmbedUrl {
+export interface EmbedUrlMetadata {
     /**
      * 
      * @type {string}
-     * @memberof EmbedUrl
+     * @memberof EmbedUrlMetadata
      */
-    'url': string;
+    'content_type': string;
     /**
      * 
-     * @type {EmbedUrlMetadata}
-     * @memberof EmbedUrl
+     * @type {number}
+     * @memberof EmbedUrlMetadata
      */
-    'metadata'?: EmbedUrlMetadata;
+    'content_length': number;
 }
 

@@ -503,13 +503,14 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Retrieve recent replies and recasts for a user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose replies and recasts you want to fetch
+         * @param {'replies' | 'recasts' | 'all'} [filter] filter to fetch only replies or recasts
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedUserRepliesRecasts: async (apiKey: string, fid: number, limit?: number, cursor?: string, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feedUserRepliesRecasts: async (apiKey: string, fid: number, filter?: 'replies' | 'recasts' | 'all', limit?: number, cursor?: string, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feedUserRepliesRecasts', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -528,6 +529,10 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
+            }
+
+            if (filter !== undefined) {
+                localVarQueryParameter['filter'] = filter;
             }
 
             if (limit !== undefined) {
@@ -687,14 +692,15 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @summary Retrieve recent replies and recasts for a user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose replies and recasts you want to fetch
+         * @param {'replies' | 'recasts' | 'all'} [filter] filter to fetch only replies or recasts
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feedUserRepliesRecasts(apiKey: string, fid: number, limit?: number, cursor?: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.feedUserRepliesRecasts(apiKey, fid, limit, cursor, viewerFid, options);
+        async feedUserRepliesRecasts(apiKey: string, fid: number, filter?: 'replies' | 'recasts' | 'all', limit?: number, cursor?: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedUserRepliesRecasts(apiKey, fid, filter, limit, cursor, viewerFid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -820,14 +826,15 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @summary Retrieve recent replies and recasts for a user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose replies and recasts you want to fetch
+         * @param {'replies' | 'recasts' | 'all'} [filter] filter to fetch only replies or recasts
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedUserRepliesRecasts(apiKey: string, fid: number, limit?: number, cursor?: string, viewerFid?: number, options?: any): AxiosPromise<FeedResponse> {
-            return localVarFp.feedUserRepliesRecasts(apiKey, fid, limit, cursor, viewerFid, options).then((request) => request(axios, basePath));
+        feedUserRepliesRecasts(apiKey: string, fid: number, filter?: 'replies' | 'recasts' | 'all', limit?: number, cursor?: string, viewerFid?: number, options?: any): AxiosPromise<FeedResponse> {
+            return localVarFp.feedUserRepliesRecasts(apiKey, fid, filter, limit, cursor, viewerFid, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -966,6 +973,7 @@ export class FeedApi extends BaseAPI {
      * @summary Retrieve recent replies and recasts for a user
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid fid of user whose replies and recasts you want to fetch
+     * @param {'replies' | 'recasts' | 'all'} [filter] filter to fetch only replies or recasts
      * @param {number} [limit] Number of results to retrieve (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
      * @param {number} [viewerFid] 
@@ -973,7 +981,7 @@ export class FeedApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feedUserRepliesRecasts(apiKey: string, fid: number, limit?: number, cursor?: string, viewerFid?: number, options?: AxiosRequestConfig) {
-        return FeedApiFp(this.configuration).feedUserRepliesRecasts(apiKey, fid, limit, cursor, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    public feedUserRepliesRecasts(apiKey: string, fid: number, filter?: 'replies' | 'recasts' | 'all', limit?: number, cursor?: string, viewerFid?: number, options?: AxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedUserRepliesRecasts(apiKey, fid, filter, limit, cursor, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 }

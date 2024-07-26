@@ -22,6 +22,9 @@ import { EmbedCastId } from './embed-cast-id';
 // May contain unused imports in some cases
 // @ts-ignore
 import { EmbedUrl } from './embed-url';
+// May contain unused imports in some cases
+// @ts-ignore
+import { EmbedUrlMetadata } from './embed-url-metadata';
 
 /**
  * @type EmbeddedCast
