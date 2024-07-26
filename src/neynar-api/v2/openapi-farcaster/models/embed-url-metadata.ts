@@ -25,12 +25,12 @@ export interface EmbedUrlMetadata {
      * @type {string}
      * @memberof EmbedUrlMetadata
      */
-    'content_type': string;
+    'content_type': string | null;
     /**
      * 
      * @type {number}
      * @memberof EmbedUrlMetadata
      */
-    'content_length': number;
+    'content_length': number | null;
 }
 
