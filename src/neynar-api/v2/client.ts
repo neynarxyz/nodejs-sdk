@@ -1407,6 +1407,7 @@ export class NeynarV2APIClient {
    *
    * @param {number} fid - The FID of the user whose recent replies and recasts are being fetched.
    * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {'replies' | 'recasts' | 'all'} [options.filter] - Filter to fetch only replies or recasts.
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
    * @param {string} [options.cursor] - Pagination cursor for the next set of results. Omit this parameter for the initial request.
    * @param {number} [options.viewerFid] - The FID of the user viewing this information.
@@ -1425,6 +1426,7 @@ export class NeynarV2APIClient {
   public async fetchRepliesAndRecastsForUser(
     fid: number,
     options?: {
+      filter?: 'replies' | 'recasts' | 'all';
       limit?: number;
       cursor?: string;
       viewerFid?: number;
@@ -1433,6 +1435,7 @@ export class NeynarV2APIClient {
     const response = await this.apis.feed.feedUserRepliesRecasts(
       this.apiKey,
       fid,
+      options?.filter,
       options?.limit,
       options?.cursor,
       options?.viewerFid
