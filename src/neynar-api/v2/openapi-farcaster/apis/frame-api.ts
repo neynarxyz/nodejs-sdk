@@ -32,6 +32,8 @@ import { Frame } from '../models';
 // @ts-ignore
 import { FrameActionReqBody } from '../models';
 // @ts-ignore
+import { FrameDeveloperManagedActionReqBody } from '../models';
+// @ts-ignore
 import { FrameType } from '../models';
 // @ts-ignore
 import { FrameValidateAnalyticsResponse } from '../models';
@@ -226,6 +228,49 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(frameActionReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Post a frame action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds. 
+         * @summary Posts a frame signature packet
+         * @param {string} apiKey API key required for authentication.
+         * @param {FrameDeveloperManagedActionReqBody} frameDeveloperManagedActionReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postFrameDeveloperManagedAction: async (apiKey: string, frameDeveloperManagedActionReqBody: FrameDeveloperManagedActionReqBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('postFrameDeveloperManagedAction', 'apiKey', apiKey)
+            // verify required parameter 'frameDeveloperManagedActionReqBody' is not null or undefined
+            assertParamExists('postFrameDeveloperManagedAction', 'frameDeveloperManagedActionReqBody', frameDeveloperManagedActionReqBody)
+            const localVarPath = `/farcaster/frame/developer_managed/action`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(frameDeveloperManagedActionReqBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -532,6 +577,18 @@ export const FrameApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Post a frame action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds. 
+         * @summary Posts a frame signature packet
+         * @param {string} apiKey API key required for authentication.
+         * @param {FrameDeveloperManagedActionReqBody} frameDeveloperManagedActionReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async postFrameDeveloperManagedAction(apiKey: string, frameDeveloperManagedActionReqBody: FrameDeveloperManagedActionReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Frame>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postFrameDeveloperManagedAction(apiKey, frameDeveloperManagedActionReqBody, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Create a new frame with a list of pages.
          * @summary Create a new frame
          * @param {string} apiKey API key required for authentication.
@@ -648,6 +705,17 @@ export const FrameApiFactory = function (configuration?: Configuration, basePath
          */
         postFrameAction(apiKey: string, frameActionReqBody: FrameActionReqBody, options?: any): AxiosPromise<Frame> {
             return localVarFp.postFrameAction(apiKey, frameActionReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Post a frame action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds. 
+         * @summary Posts a frame signature packet
+         * @param {string} apiKey API key required for authentication.
+         * @param {FrameDeveloperManagedActionReqBody} frameDeveloperManagedActionReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postFrameDeveloperManagedAction(apiKey: string, frameDeveloperManagedActionReqBody: FrameDeveloperManagedActionReqBody, options?: any): AxiosPromise<Frame> {
+            return localVarFp.postFrameDeveloperManagedAction(apiKey, frameDeveloperManagedActionReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Create a new frame with a list of pages.
@@ -768,6 +836,19 @@ export class FrameApi extends BaseAPI {
      */
     public postFrameAction(apiKey: string, frameActionReqBody: FrameActionReqBody, options?: AxiosRequestConfig) {
         return FrameApiFp(this.configuration).postFrameAction(apiKey, frameActionReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Post a frame action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds. 
+     * @summary Posts a frame signature packet
+     * @param {string} apiKey API key required for authentication.
+     * @param {FrameDeveloperManagedActionReqBody} frameDeveloperManagedActionReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FrameApi
+     */
+    public postFrameDeveloperManagedAction(apiKey: string, frameDeveloperManagedActionReqBody: FrameDeveloperManagedActionReqBody, options?: AxiosRequestConfig) {
+        return FrameApiFp(this.configuration).postFrameDeveloperManagedAction(apiKey, frameDeveloperManagedActionReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

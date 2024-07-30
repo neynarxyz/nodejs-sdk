@@ -66,6 +66,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {number} [limit] 
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         activeUsers: async (apiKey: string, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
@@ -676,6 +677,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {number} [limit] 
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         async activeUsers(apiKey: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
@@ -850,6 +852,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {number} [limit] 
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         activeUsers(apiKey: string, limit?: number, cursor?: string, options?: any): AxiosPromise<UsersResponse> {
@@ -1011,6 +1014,7 @@ export class UserApi extends BaseAPI {
      * @param {number} [limit] 
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      * @memberof UserApi
      */
