@@ -1095,7 +1095,7 @@ export class NeynarAPIClient {
   }
 
   /**
-   * Adds verification for an eth address for the user
+   * Adds verification for an eth address or contract for the user
    * (In order to add verification signerUuid must be approved)
    *
    * @param {string} signerUuid - UUID of the signer.
@@ -2674,7 +2674,8 @@ export class NeynarAPIClient {
   }
 
   /**
-   * Posts a frame action on a specific cast.
+   * Post frame actions, cast actions or cast composer actions to the server.
+   * The POST request to the post_url has a timeout of 5 seconds for frames.
    * Note that the `signer_uuid` must be approved before posting a frame action.
    *
    * @param {string} signerUuid - UUID of the signer who is performing the action.
@@ -2704,7 +2705,7 @@ export class NeynarAPIClient {
    */
   public async postFrameAction(
     signerUuid: string,
-    castHash: string,
+    castHash: string | undefined,
     action: FrameAction
   ): Promise<Frame> {
     return await this.clients.v2.postFrameAction(signerUuid, castHash, action);

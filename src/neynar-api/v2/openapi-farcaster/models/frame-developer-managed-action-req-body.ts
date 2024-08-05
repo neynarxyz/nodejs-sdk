@@ -31,7 +31,7 @@ export interface FrameDeveloperManagedActionReqBody {
      * @type {string}
      * @memberof FrameDeveloperManagedActionReqBody
      */
-    'cast_hash': string;
+    'cast_hash'?: string;
     /**
      * 
      * @type {FrameAction}

@@ -52,6 +52,12 @@ export interface WebhookSubscriptionFiltersCastCreated {
     'root_parent_urls'?: Array<string>;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof WebhookSubscriptionFiltersCastCreated
+     */
+    'parent_hashes'?: Array<string>;
+    /**
+     * 
      * @type {Array<number>}
      * @memberof WebhookSubscriptionFiltersCastCreated
      */

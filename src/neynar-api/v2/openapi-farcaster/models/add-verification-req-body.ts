@@ -13,6 +13,12 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { VerificationChainId } from './verification-chain-id';
+// May contain unused imports in some cases
+// @ts-ignore
+import { VerificationType } from './verification-type';
 
 /**
  * 
@@ -44,5 +50,19 @@ export interface AddVerificationReqBody {
      * @memberof AddVerificationReqBody
      */
     'eth_signature': string;
+    /**
+     * 
+     * @type {VerificationType}
+     * @memberof AddVerificationReqBody
+     */
+    'verification_type'?: VerificationType;
+    /**
+     * 
+     * @type {VerificationChainId}
+     * @memberof AddVerificationReqBody
+     */
+    'chain_id'?: VerificationChainId;
 }
+
+
 

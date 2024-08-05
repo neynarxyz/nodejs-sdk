@@ -192,8 +192,8 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
-         * Post a frame action \\ (In order to post a frame action, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds. 
-         * @summary Posts a frame action
+         * Post frame actions, cast actions or cast composer actions to the server  \\ (In order to post any of these actions, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds for frames. 
+         * @summary Posts a frame action, cast action or a cast composer action
          * @param {string} apiKey API key required for authentication.
          * @param {FrameActionReqBody} frameActionReqBody 
          * @param {*} [options] Override http request option.
@@ -565,8 +565,8 @@ export const FrameApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Post a frame action \\ (In order to post a frame action, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds. 
-         * @summary Posts a frame action
+         * Post frame actions, cast actions or cast composer actions to the server  \\ (In order to post any of these actions, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds for frames. 
+         * @summary Posts a frame action, cast action or a cast composer action
          * @param {string} apiKey API key required for authentication.
          * @param {FrameActionReqBody} frameActionReqBody 
          * @param {*} [options] Override http request option.
@@ -696,8 +696,8 @@ export const FrameApiFactory = function (configuration?: Configuration, basePath
             return localVarFp.lookupNeynarFrame(apiKey, type, uuid, url, options).then((request) => request(axios, basePath));
         },
         /**
-         * Post a frame action \\ (In order to post a frame action, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds. 
-         * @summary Posts a frame action
+         * Post frame actions, cast actions or cast composer actions to the server  \\ (In order to post any of these actions, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds for frames. 
+         * @summary Posts a frame action, cast action or a cast composer action
          * @param {string} apiKey API key required for authentication.
          * @param {FrameActionReqBody} frameActionReqBody 
          * @param {*} [options] Override http request option.
@@ -826,8 +826,8 @@ export class FrameApi extends BaseAPI {
     }
 
     /**
-     * Post a frame action \\ (In order to post a frame action, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds. 
-     * @summary Posts a frame action
+     * Post frame actions, cast actions or cast composer actions to the server  \\ (In order to post any of these actions, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds for frames. 
+     * @summary Posts a frame action, cast action or a cast composer action
      * @param {string} apiKey API key required for authentication.
      * @param {FrameActionReqBody} frameActionReqBody 
      * @param {*} [options] Override http request option.

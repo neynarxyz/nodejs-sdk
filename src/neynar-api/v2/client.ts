@@ -611,7 +611,7 @@ export class NeynarV2APIClient {
   }
 
   /**
-   * Adds verification for an eth address for the user
+   * Adds verification for an eth address or contract for the user
    * (In order to add verification signerUuid must be approved)
    *
    * @param {string} signerUuid - UUID of the signer.
@@ -1426,7 +1426,7 @@ export class NeynarV2APIClient {
   public async fetchRepliesAndRecastsForUser(
     fid: number,
     options?: {
-      filter?: 'replies' | 'recasts' | 'all';
+      filter?: "replies" | "recasts" | "all";
       limit?: number;
       cursor?: string;
       viewerFid?: number;
@@ -2535,7 +2535,8 @@ export class NeynarV2APIClient {
   }
 
   /**
-   * Posts a frame action on a specific cast.
+   * Post frame actions, cast actions or cast composer actions to the server.
+   * The POST request to the post_url has a timeout of 5 seconds for frames.
    * Note that the `signer_uuid` must be approved before posting a frame action.
    *
    * @param {string} signerUuid - UUID of the signer who is performing the action.
@@ -2565,13 +2566,13 @@ export class NeynarV2APIClient {
    */
   public async postFrameAction(
     signerUuid: string,
-    castHash: string,
+    castHash: string | undefined,
     action: FrameAction
   ) {
     const body: FrameActionReqBody = {
       signer_uuid: signerUuid,
-      cast_hash: castHash,
       action,
+      ...(typeof castHash !== "undefined" && { cast_hash: castHash }),
     };
     const response = await this.apis.frame.postFrameAction(this.apiKey, body);
     return response.data;
