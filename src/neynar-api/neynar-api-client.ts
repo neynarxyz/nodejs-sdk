@@ -65,6 +65,7 @@ import {
   SubscriptionsResponse,
   SubscriptionProviders,
   ForYouProvider,
+  FrameSignaturePacket,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -2709,6 +2710,43 @@ export class NeynarAPIClient {
     action: FrameAction
   ): Promise<Frame> {
     return await this.clients.v2.postFrameAction(signerUuid, castHash, action);
+  }
+
+  /**
+   * Post a frame action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds.
+   *
+   * @param {FrameAction} action - The specific frame action to be posted.
+   * @param {FrameSignaturePacket} signature_packet - The signature packet for the frame action.
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {string} [options.castHash] - The hash of the cast on which the action is being performed.
+   *
+   * @returns {Promise<Frame>} A promise that resolves to a `Frame` object,
+   *   indicating the success or failure of the frame action post.
+   *
+   * @example
+   *
+   * // Example: Post a frame action with a developer managed signer
+   *  const action// Example action
+   *  const signature_packet // Example signature packet
+   *  const castHash = 'castHash';
+   * client.postFrameDeveloperManagedAction(action, signature_packet, {
+   *    castHash: castHash
+   * }).then(response => {
+   * console.log('Frame Action developer managed Response:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/post-frame-developer-managed-action).
+   */
+  public async postFrameActionDeveloperManaged(
+    action: FrameAction,
+    signature_packet: FrameSignaturePacket,
+    options?: { castHash?: string }
+  ): Promise<Frame> {
+    return await this.clients.v2.postFrameActionDeveloperManaged(
+      action,
+      signature_packet,
+      options
+    );
   }
 
   /**

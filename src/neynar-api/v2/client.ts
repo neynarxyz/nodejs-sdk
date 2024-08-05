@@ -81,6 +81,8 @@ import {
   SubscriptionsResponse,
   SubscriptionProviders,
   ForYouProvider,
+  FrameSignaturePacket,
+  FrameDeveloperManagedActionReqBody,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -2575,6 +2577,52 @@ export class NeynarV2APIClient {
       ...(typeof castHash !== "undefined" && { cast_hash: castHash }),
     };
     const response = await this.apis.frame.postFrameAction(this.apiKey, body);
+    return response.data;
+  }
+
+  /**
+   * Post a frame action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds.
+   *
+   * @param {FrameAction} action - The specific frame action to be posted.
+   * @param {FrameSignaturePacket} signature_packet - The signature packet for the frame action.
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {string} [options.castHash] - The hash of the cast on which the action is being performed.
+   *
+   * @returns {Promise<Frame>} A promise that resolves to a `Frame` object,
+   *   indicating the success or failure of the frame action post.
+   *
+   * @example
+   *
+   *  const action// Example action
+   *  const signature_packet // Example signature packet
+   *  const castHash = 'castHash';
+   * client.postFrameDeveloperManagedAction(action, signature_packet, {
+   *    castHash: castHash
+   * }).then(response => {
+   * console.log('Frame Action developer managed Response:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/post-frame-developer-managed-action).
+   */
+  public async postFrameActionDeveloperManaged(
+    action: FrameAction,
+    signature_packet: FrameSignaturePacket,
+    options?: {
+      castHash?: string;
+    }
+  ) {
+    const body: FrameDeveloperManagedActionReqBody = {
+      action,
+      signature_packet,
+      ...(typeof options?.castHash !== "undefined" && {
+        cast_hash: options?.castHash,
+      }),
+    };
+
+    const response = await this.apis.frame.postFrameDeveloperManagedAction(
+      this.apiKey,
+      body
+    );
     return response.data;
   }
 
