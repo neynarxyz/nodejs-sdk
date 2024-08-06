@@ -188,6 +188,8 @@ models/validate-frame-request.ts
 models/validated-frame-action-signer.ts
 models/validated-frame-action-tapped-button.ts
 models/validated-frame-action.ts
+models/verification-chain-id.ts
+models/verification-type.ts
 models/webhook-delete-req-body.ts
 models/webhook-list-response.ts
 models/webhook-patch-req-body.ts

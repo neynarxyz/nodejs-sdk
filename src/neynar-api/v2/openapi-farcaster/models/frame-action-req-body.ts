@@ -34,7 +34,7 @@ export interface FrameActionReqBody {
      * @type {string}
      * @memberof FrameActionReqBody
      */
-    'cast_hash': string;
+    'cast_hash'?: string;
     /**
      * 
      * @type {FrameAction}

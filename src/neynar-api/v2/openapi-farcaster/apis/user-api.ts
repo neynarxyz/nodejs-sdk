@@ -151,8 +151,8 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Adds verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved) 
-         * @summary Adds verification for an eth address for the user
+         * Adds verification for an eth address or contract for the user \\ (In order to add verification `signer_uuid` must be approved) 
+         * @summary Adds verification for an ethereum address or contract for the user
          * @param {string} apiKey API key required for authentication.
          * @param {AddVerificationReqBody} addVerificationReqBody 
          * @param {*} [options] Override http request option.
@@ -697,8 +697,8 @@ export const UserApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Adds verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved) 
-         * @summary Adds verification for an eth address for the user
+         * Adds verification for an eth address or contract for the user \\ (In order to add verification `signer_uuid` must be approved) 
+         * @summary Adds verification for an ethereum address or contract for the user
          * @param {string} apiKey API key required for authentication.
          * @param {AddVerificationReqBody} addVerificationReqBody 
          * @param {*} [options] Override http request option.
@@ -870,8 +870,8 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.farcasterUserVerificationDelete(apiKey, removeVerificationReqBody, options).then((request) => request(axios, basePath));
         },
         /**
-         * Adds verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved) 
-         * @summary Adds verification for an eth address for the user
+         * Adds verification for an eth address or contract for the user \\ (In order to add verification `signer_uuid` must be approved) 
+         * @summary Adds verification for an ethereum address or contract for the user
          * @param {string} apiKey API key required for authentication.
          * @param {AddVerificationReqBody} addVerificationReqBody 
          * @param {*} [options] Override http request option.
@@ -1036,8 +1036,8 @@ export class UserApi extends BaseAPI {
     }
 
     /**
-     * Adds verification for an eth address for the user \\ (In order to add verification `signer_uuid` must be approved) 
-     * @summary Adds verification for an eth address for the user
+     * Adds verification for an eth address or contract for the user \\ (In order to add verification `signer_uuid` must be approved) 
+     * @summary Adds verification for an ethereum address or contract for the user
      * @param {string} apiKey API key required for authentication.
      * @param {AddVerificationReqBody} addVerificationReqBody 
      * @param {*} [options] Override http request option.
