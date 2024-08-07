@@ -137,7 +137,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * Retrieve feed based on channel ids
          * @summary Retrieve feed based on channel ids
          * @param {string} apiKey API key required for authentication.
-         * @param {string} channelIds comma separated list of channel ids e.g. neynar,farcaster
+         * @param {string} channelIds Comma separated list of channel ids e.g. neynar,farcaster
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [viewerFid] 
          * @param {boolean} [withReplies] Include replies in the response, false by default
@@ -388,6 +388,75 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
+         * Retrieve feed based on parent urls
+         * @summary Retrieve feed based on parent urls
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} parentUrls Comma separated list of parent_urls
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default
+         * @param {number} [viewerFid] 
+         * @param {boolean} [withReplies] Include replies in the response, false by default
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedParentUrls: async (apiKey: string, parentUrls: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('feedParentUrls', 'apiKey', apiKey)
+            // verify required parameter 'parentUrls' is not null or undefined
+            assertParamExists('feedParentUrls', 'parentUrls', parentUrls)
+            const localVarPath = `/farcaster/feed/parent_urls`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (parentUrls !== undefined) {
+                localVarQueryParameter['parent_urls'] = parentUrls;
+            }
+
+            if (withRecasts !== undefined) {
+                localVarQueryParameter['with_recasts'] = withRecasts;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (withReplies !== undefined) {
+                localVarQueryParameter['with_replies'] = withReplies;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
          * @summary Retrieve trending casts
          * @param {string} apiKey API key required for authentication.
@@ -598,7 +667,7 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * Retrieve feed based on channel ids
          * @summary Retrieve feed based on channel ids
          * @param {string} apiKey API key required for authentication.
-         * @param {string} channelIds comma separated list of channel ids e.g. neynar,farcaster
+         * @param {string} channelIds Comma separated list of channel ids e.g. neynar,farcaster
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [viewerFid] 
          * @param {boolean} [withReplies] Include replies in the response, false by default
@@ -656,6 +725,23 @@ export const FeedApiFp = function(configuration?: Configuration) {
          */
         async feedFrames(apiKey: string, limit?: number, viewerFid?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.feedFrames(apiKey, limit, viewerFid, cursor, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Retrieve feed based on parent urls
+         * @summary Retrieve feed based on parent urls
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} parentUrls Comma separated list of parent_urls
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default
+         * @param {number} [viewerFid] 
+         * @param {boolean} [withReplies] Include replies in the response, false by default
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async feedParentUrls(apiKey: string, parentUrls: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedParentUrls(apiKey, parentUrls, withRecasts, viewerFid, withReplies, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -738,7 +824,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * Retrieve feed based on channel ids
          * @summary Retrieve feed based on channel ids
          * @param {string} apiKey API key required for authentication.
-         * @param {string} channelIds comma separated list of channel ids e.g. neynar,farcaster
+         * @param {string} channelIds Comma separated list of channel ids e.g. neynar,farcaster
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [viewerFid] 
          * @param {boolean} [withReplies] Include replies in the response, false by default
@@ -793,6 +879,22 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          */
         feedFrames(apiKey: string, limit?: number, viewerFid?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
             return localVarFp.feedFrames(apiKey, limit, viewerFid, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve feed based on parent urls
+         * @summary Retrieve feed based on parent urls
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} parentUrls Comma separated list of parent_urls
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default
+         * @param {number} [viewerFid] 
+         * @param {boolean} [withReplies] Include replies in the response, false by default
+         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedParentUrls(apiKey: string, parentUrls: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
+            return localVarFp.feedParentUrls(apiKey, parentUrls, withRecasts, viewerFid, withReplies, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
@@ -873,7 +975,7 @@ export class FeedApi extends BaseAPI {
      * Retrieve feed based on channel ids
      * @summary Retrieve feed based on channel ids
      * @param {string} apiKey API key required for authentication.
-     * @param {string} channelIds comma separated list of channel ids e.g. neynar,farcaster
+     * @param {string} channelIds Comma separated list of channel ids e.g. neynar,farcaster
      * @param {boolean} [withRecasts] Include recasts in the response, true by default
      * @param {number} [viewerFid] 
      * @param {boolean} [withReplies] Include replies in the response, false by default
@@ -935,6 +1037,24 @@ export class FeedApi extends BaseAPI {
      */
     public feedFrames(apiKey: string, limit?: number, viewerFid?: number, cursor?: string, options?: AxiosRequestConfig) {
         return FeedApiFp(this.configuration).feedFrames(apiKey, limit, viewerFid, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieve feed based on parent urls
+     * @summary Retrieve feed based on parent urls
+     * @param {string} apiKey API key required for authentication.
+     * @param {string} parentUrls Comma separated list of parent_urls
+     * @param {boolean} [withRecasts] Include recasts in the response, true by default
+     * @param {number} [viewerFid] 
+     * @param {boolean} [withReplies] Include replies in the response, false by default
+     * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FeedApi
+     */
+    public feedParentUrls(apiKey: string, parentUrls: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedParentUrls(apiKey, parentUrls, withRecasts, viewerFid, withReplies, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
