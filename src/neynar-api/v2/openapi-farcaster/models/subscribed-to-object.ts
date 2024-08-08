@@ -43,6 +43,12 @@ export interface SubscribedToObject {
      * @type {number}
      * @memberof SubscribedToObject
      */
+    'protocol_version'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscribedToObject
+     */
     'chain'?: number;
     /**
      * 
