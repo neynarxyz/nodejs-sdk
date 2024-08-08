@@ -1295,13 +1295,13 @@ export class NeynarV2APIClient {
    * 
    * @example
    * // Example: Retrieve feed for specific parent URLs, including recasts and replies
-   * client.fetchFeedByParentUrls(['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc'], { withRecasts: true, withReplies: true, limit: 30, viewerFid: 3 }).then(response => {
+   * client.fetchFeedByParentURLs(['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc'], { withRecasts: true, withReplies: true, limit: 30, viewerFid: 3 }).then(response => {
    *  console.log('Parent URL Feed:', response);
    * });
    *  
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-parent-urls).
    * */
-  public async fetchFeedByParentUrls(
+  public async fetchFeedByParentURLs(
     parentUrls: string[],
     options?: {
       withRecasts?: boolean;
