@@ -1660,6 +1660,42 @@ export class NeynarAPIClient {
   }
 
   /**
+   * Retrieves a feed based on specific parent URLs. This method allows for fetching casts from
+   * selected channels, optionally including recasts and replies.
+   * 
+   * @param {Array<string>} parentUrls - An array of parent URLs for which the feed is to be retrieved.
+   * @param {Object} [options] - Optional parameters for customizing the feed.
+   * @param {boolean} [options.withRecasts] - Whether to include recasts in the response. True by default.
+   * @param {boolean} [options.withReplies] - Whether to include replies in the response. False by default.
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results. Omit this parameter for the initial request.
+   * @param {number} [options.viewerFid] - The FID of the user viewing this information.
+   *
+   * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
+   *   containing the feed for the specified parentUrls.
+   *
+   * @example
+   * // Example: Retrieve feed for specific parent URLs, including recasts and replies
+   * client.fetchFeedByParentURLs(['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc'], { withRecasts: true, withReplies: true, limit: 30, viewerFid: 100 }).then(response => {
+   *   console.log('Parent URL Feed:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-parent-urls).
+   */
+  public async fetchFeedByParentURLs(
+    parentURLs: string[],
+    options?: {
+      withRecasts?: boolean;
+      withReplies?: boolean;
+      limit?: number;
+      cursor?: string;
+      viewerFid?: number;
+    }
+  ): Promise<FeedResponse> {
+    return await this.clients.v2.fetchFeedByParentURLs(parentURLs, options);
+  }
+
+  /**
    * Retrieve feed based on who a user is following
    *
    * @param {number} fid - fid of user whose feed you want to create
