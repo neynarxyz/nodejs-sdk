@@ -1208,6 +1208,7 @@ export class NeynarV2APIClient {
       limit?: number;
       cursor?: string;
       withRecasts?: boolean;
+      viewerFid?: number;
     }
   ): Promise<FeedResponse> {
     const _fids = options?.fids?.join(",");
@@ -1223,7 +1224,8 @@ export class NeynarV2APIClient {
       options?.embedUrl,
       options?.withRecasts,
       options?.limit,
-      options?.cursor
+      options?.cursor,
+      options?.viewerFid
     );
     return response.data;
   }
