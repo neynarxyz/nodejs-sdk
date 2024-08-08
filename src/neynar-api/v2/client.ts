@@ -1761,7 +1761,6 @@ export class NeynarV2APIClient {
    *
    * @param {number} fid - The FID of the user whose notifications are being fetched.
    * @param {Object} [options] - Optional parameters to tailor the request.
-   * @param {boolean} [options.isPriority] - Whether to include only priority notifications in the response.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -1771,7 +1770,6 @@ export class NeynarV2APIClient {
    * @example
    * // Example: Fetch notifications for a user
    * client.fetchAllNotifications(3, {
-   * isPriority: true,
    * // cursor: "nextPageCursor" // Omit this parameter for the initial request
    *  }).then(response => {
    *   console.log('User Notifications:', response);
@@ -1781,13 +1779,12 @@ export class NeynarV2APIClient {
    */
   public async fetchAllNotifications(
     fid: number,
-    options?: { cursor?: string; isPriority?: boolean }
+    options?: { cursor?: string }
   ): Promise<NotificationsResponse> {
     const response = await this.apis.notifications.notifications(
       this.apiKey,
       fid,
-      options?.cursor,
-      options?.isPriority
+      options?.cursor
     );
     return response.data;
   }
@@ -1800,7 +1797,6 @@ export class NeynarV2APIClient {
    * @param {number} fid - The FID of the user whose channel notifications are being fetched.
    * @param {string} channelIds - channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
    * @param {Object} [options] - Optional parameters for the request.
-   * @param {boolean} [options.isPriority] - Whether to include only priority notifications in the response.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -1812,7 +1808,6 @@ export class NeynarV2APIClient {
    * client.fetchChannelNotificationsForUser(3, ['neynar', 'farcaster'],
    * {
    *  limit: 25,
-   * isPriority: true,
    *  // cursor: "nextPageCursor" // Omit this parameter for the initial request.
    * }).then(response => {
    *   console.log('Channel Notifications:', response);
@@ -1823,15 +1818,14 @@ export class NeynarV2APIClient {
   public async fetchChannelNotificationsForUser(
     fid: number,
     channelIds: string[],
-    options?: { cursor?: string; isPriority?: boolean }
+    options?: { cursor?: string }
   ): Promise<NotificationsResponse> {
     const _channelIds = channelIds.join(",");
     const response = await this.apis.notifications.notificationsChannel(
       this.apiKey,
       fid,
       _channelIds,
-      options?.cursor,
-      options?.isPriority
+      options?.cursor
     );
     return response.data;
   }
@@ -1844,7 +1838,6 @@ export class NeynarV2APIClient {
    * @param {number} fid - The FID of the user for whom notifications are being fetched.
    * @param {Array<string>} parentUrls - An array of parent URLs to specify the channels.
    * @param {Object} [options] - Optional parameters for customizing the response.
-   * @param {boolean} [options.isPriority] - Whether to include only priority notifications in the response.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -1853,7 +1846,7 @@ export class NeynarV2APIClient {
    *
    * @example
    * // Example: Retrieve notifications for a user based on specific parent URLs
-   * client.fetchNotificationsByParentUrlForUser(3, ['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc', 'chain://eip155:1/erc721:0xfd8427165df67df6d7fd689ae67c8ebf56d9ca61'],{isPriority: true}).then(response => {
+   * client.fetchNotificationsByParentUrlForUser(3, ['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc', 'chain://eip155:1/erc721:0xfd8427165df67df6d7fd689ae67c8ebf56d9ca61'],{ }).then(response => {
    *   console.log('User Notifications:', response);
    * });
    *
@@ -1862,7 +1855,7 @@ export class NeynarV2APIClient {
   public async fetchNotificationsByParentUrlForUser(
     fid: number,
     parentUrls: string[],
-    options?: { cursor?: string; isPriority?: boolean }
+    options?: { cursor?: string }
   ) {
     const _parentUrls = parentUrls.join(",");
     const response = await this.apis.notifications.notificationsParentUrl(
@@ -1870,7 +1863,6 @@ export class NeynarV2APIClient {
       fid,
       _parentUrls,
       options?.cursor,
-      options?.isPriority
     );
     return response.data;
   }
