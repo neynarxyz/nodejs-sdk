@@ -1660,6 +1660,42 @@ export class NeynarAPIClient {
   }
 
   /**
+   * Retrieves a feed based on specific parent URLs. This method allows for fetching casts from
+   * selected channels, optionally including recasts and replies.
+   * 
+   * @param {Array<string>} parentUrls - An array of parent URLs for which the feed is to be retrieved.
+   * @param {Object} [options] - Optional parameters for customizing the feed.
+   * @param {boolean} [options.withRecasts] - Whether to include recasts in the response. True by default.
+   * @param {boolean} [options.withReplies] - Whether to include replies in the response. False by default.
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
+   * @param {string} [options.cursor] - Pagination cursor for the next set of results. Omit this parameter for the initial request.
+   * @param {number} [options.viewerFid] - The FID of the user viewing this information.
+   *
+   * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
+   *   containing the feed for the specified parentUrls.
+   *
+   * @example
+   * // Example: Retrieve feed for specific parent URLs, including recasts and replies
+   * client.fetchFeedByParentUrls(['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc'], { withRecasts: true, withReplies: true, limit: 30, viewerFid: 100 }).then(response => {
+   *   console.log('Parent URL Feed:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-parent-urls).
+   */
+  public async fetchFeedByParentUrls(
+    parentUrls: string[],
+    options?: {
+      withRecasts?: boolean;
+      withReplies?: boolean;
+      limit?: number;
+      cursor?: string;
+      viewerFid?: number;
+    }
+  ): Promise<FeedResponse> {
+    return await this.clients.v2.fetchFeedByParentUrls(parentUrls, options);
+  }
+
+  /**
    * Retrieve feed based on who a user is following
    *
    * @param {number} fid - fid of user whose feed you want to create
@@ -2011,6 +2047,7 @@ export class NeynarAPIClient {
    * @param {number} fid - The FID of the user whose notifications are being fetched.
    * @param {Object} [options] - Optional parameters to tailor the request.
    * @param {boolean} [options.isPriority] - Whether to include only priority notifications in the response.
+   *   This parameter is deprecated and will be removed in the next major release.
    * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
    *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
    *
@@ -2020,7 +2057,6 @@ export class NeynarAPIClient {
    * @example
    * // Example: Fetch notifications for a user
    * client.fetchAllNotifications(3, {
-   * isPriority: true,
    * // cursor: "nextPageCursor" // Omit this parameter for the initial request
    *  }).then(response => {
    *   console.log('User Notifications:', response);
@@ -2044,6 +2080,7 @@ export class NeynarAPIClient {
    * @param {string} channelIds - channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
    * @param {Object} [options] - Optional parameters for the request.
    * @param {boolean} [options.isPriority] - Whether to include only priority notifications in the response.
+   *   This parameter is deprecated and will be removed in the next major release.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -2054,7 +2091,6 @@ export class NeynarAPIClient {
    * // Example: Retrieve channel notifications for a user.
    * client.fetchChannelNotificationsForUser(3, ['neynar', 'farcaster'],
    * {
-   * isPriority: true,
    *  // cursor: "nextPageCursor" // Omit this parameter for the initial request.
    * }).then(response => {
    *   console.log('Channel Notifications:', response);
@@ -2295,6 +2331,7 @@ export class NeynarAPIClient {
    * @param {Array<string>} parentUrls - An array of parent URLs to specify the channels.
    * @param {Object} [options] - Optional parameters for customizing the response.
    * @param {boolean} [options.isPriority] - Whether to include only priority notifications in the response.
+   *   This parameter is deprecated and will be removed in the next major release.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -2303,7 +2340,7 @@ export class NeynarAPIClient {
    *
    * @example
    * // Example: Retrieve notifications for a user based on specific parent URLs
-   * client.fetchNotificationsByParentUrlForUser(3, ['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc', 'chain://eip155:1/erc721:0xfd8427165df67df6d7fd689ae67c8ebf56d9ca61'],{isPriority: true}).then(response => {
+   * client.fetchNotificationsByParentUrlForUser(3, ['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc', 'chain://eip155:1/erc721:0xfd8427165df67df6d7fd689ae67c8ebf56d9ca61'],{ }).then(response => {
    *   console.log('User Notifications:', response);
    * });
    *
