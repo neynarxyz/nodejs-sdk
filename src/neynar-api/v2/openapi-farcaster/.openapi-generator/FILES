@@ -70,6 +70,8 @@ models/embed-url.ts
 models/embedded-cast.ts
 models/error-res.ts
 models/feed-response.ts
+models/feed-trending-provider.ts
+models/feed-trending400-response.ts
 models/feed-type.ts
 models/filter-type.ts
 models/fname-availability-response.ts
@@ -121,6 +123,7 @@ models/neynar-page-button.ts
 models/neynar-page-image.ts
 models/neynar-page-input-text.ts
 models/neynar-page-input.ts
+models/notification-type.ts
 models/notification.ts
 models/notifications-response.ts
 models/operation-response.ts

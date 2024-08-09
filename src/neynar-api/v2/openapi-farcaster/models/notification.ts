@@ -21,6 +21,9 @@ import { CastWithInteractions } from './cast-with-interactions';
 import { Follow } from './follow';
 // May contain unused imports in some cases
 // @ts-ignore
+import { NotificationType } from './notification-type';
+// May contain unused imports in some cases
+// @ts-ignore
 import { ReactionWithUserInfo } from './reaction-with-user-info';
 
 /**
@@ -43,10 +46,10 @@ export interface Notification {
     'most_recent_timestamp': string;
     /**
      * 
-     * @type {string}
+     * @type {NotificationType}
      * @memberof Notification
      */
-    'type': NotificationTypeEnum;
+    'type': NotificationType;
     /**
      * 
      * @type {Array<Follow>}
@@ -67,14 +70,5 @@ export interface Notification {
     'reactions'?: Array<ReactionWithUserInfo>;
 }
 
-export const NotificationTypeEnum = {
-    Follows: 'follows',
-    Recasts: 'recasts',
-    Likes: 'likes',
-    Mention: 'mention',
-    Reply: 'reply'
-} as const;
-
-export type NotificationTypeEnum = typeof NotificationTypeEnum[keyof typeof NotificationTypeEnum];
 
 

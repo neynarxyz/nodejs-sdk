@@ -21,7 +21,7 @@
  */
 
 export const ForYouProvider = {
-    Karma3: 'karma3'
+    Openrank: 'openrank'
 } as const;
 
 export type ForYouProvider = typeof ForYouProvider[keyof typeof ForYouProvider];
