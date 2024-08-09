@@ -33,8 +33,10 @@ export const convertToV2User = (v1User: IUserV1): IUserV2 => {
         : ActiveStatus.Inactive,
     ...(v1User.viewerContext
       ? {
-          following: v1User.viewerContext.following,
-          followed_by: v1User.viewerContext.followedBy,
+         viewer_context: {
+           following: v1User.viewerContext.following,
+           followed_by: v1User.viewerContext.followedBy,
+         }
         }
       : {}),
   };
