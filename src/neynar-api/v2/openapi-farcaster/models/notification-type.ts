@@ -21,7 +21,6 @@
  */
 
 export const NotificationType = {
-    Follows: 'follows',
     Recasts: 'recasts',
     Likes: 'likes',
     Mentions: 'mentions',

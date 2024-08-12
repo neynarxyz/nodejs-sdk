@@ -121,6 +121,7 @@ export * from './reactions-response';
 export * from './reactions-type';
 export * from './register-developer-managed-signed-key-req-body';
 export * from './register-signer-key-req-body';
+export * from './register-signer-key-req-body-sponsor';
 export * from './register-user-req-body';
 export * from './register-user-response';
 export * from './relevant-followers-response';

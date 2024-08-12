@@ -66,6 +66,8 @@ import {
   SubscriptionProviders,
   ForYouProvider,
   FrameSignaturePacket,
+  FeedTrendingProvider,
+  NotificationType,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -1662,7 +1664,7 @@ export class NeynarAPIClient {
   /**
    * Retrieves a feed based on specific parent URLs. This method allows for fetching casts from
    * selected channels, optionally including recasts and replies.
-   * 
+   *
    * @param {Array<string>} parentUrls - An array of parent URLs for which the feed is to be retrieved.
    * @param {Object} [options] - Optional parameters for customizing the feed.
    * @param {boolean} [options.withRecasts] - Whether to include recasts in the response. True by default.
@@ -1741,8 +1743,8 @@ export class NeynarAPIClient {
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 50).
    * @param {string} [options.cursor] - Pagination cursor for the next set of results. Omit this parameter for the initial request.
    * @param {number} [options.viewerFid] - The FID of the user viewing this information.
-   * @param {ForYouProvider} [options.provider] - The provider of the For You feed. Possible values: 'karma3' (default).
-   *
+   * @param {ForYouProvider} [options.provider] - The provider of the For You feed. Default is 'openrank'.
+   *      (karma3 is renamed to openrank, karma 3 will be deprecated in the future release)
    * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
    *  containing the requested feed data.
    *
@@ -1865,6 +1867,7 @@ export class NeynarAPIClient {
    * @param {string} [options.channelId] - Channel ID of the channel where the cast is to be posted. e.g. neynar, farcaster, warpcast.
    * @param {number} [options.viewerFid] - The FID of the user viewing this information.
    * @param {TrendingFeedTimeWindow} [options.timeWindow] - Time window for the trending feed.
+   * @param {FeedTrendingProvider} [options.provider] - The provider of the Trending feed. Default is 'neynar'.
    *
    * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
    *   containing the most popular casts on the platform.
@@ -1885,6 +1888,7 @@ export class NeynarAPIClient {
     timeWindow?: TrendingFeedTimeWindow;
     channelId?: string;
     viewerFid?: number;
+    provider?: FeedTrendingProvider;
   }) {
     return await this.clients.v2.fetchTrendingFeed(options);
   }
@@ -2048,7 +2052,7 @@ export class NeynarAPIClient {
    * @param {Object} [options] - Optional parameters to tailor the request.
    * @param {boolean} [options.isPriority] - Whether to include only priority notifications in the response.
    *   This parameter is deprecated and will be removed in the next major release.
-   * @param {string} [options.type] - The type of notification to fetch.
+   * @param {NotificationType} [options.type] - The type of notification to fetch.
    * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
    *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
    *
@@ -2067,7 +2071,7 @@ export class NeynarAPIClient {
    */
   public async fetchAllNotifications(
     fid: number,
-    options?: { cursor?: string; type?: string; isPriority?: boolean }
+    options?: { cursor?: string; type?: NotificationType; isPriority?: boolean }
   ): Promise<NotificationsResponse> {
     return await this.clients.v2.fetchAllNotifications(fid, options);
   }
