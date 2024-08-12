@@ -2048,6 +2048,7 @@ export class NeynarAPIClient {
    * @param {Object} [options] - Optional parameters to tailor the request.
    * @param {boolean} [options.isPriority] - Whether to include only priority notifications in the response.
    *   This parameter is deprecated and will be removed in the next major release.
+   * @param {string} [options.type] - The type of notification to fetch.
    * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
    *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
    *
@@ -2066,7 +2067,7 @@ export class NeynarAPIClient {
    */
   public async fetchAllNotifications(
     fid: number,
-    options?: { cursor?: string; isPriority?: boolean }
+    options?: { cursor?: string; type?: string; isPriority?: boolean }
   ): Promise<NotificationsResponse> {
     return await this.clients.v2.fetchAllNotifications(fid, options);
   }

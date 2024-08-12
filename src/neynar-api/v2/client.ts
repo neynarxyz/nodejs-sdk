@@ -1761,6 +1761,7 @@ export class NeynarV2APIClient {
    *
    * @param {number} fid - The FID of the user whose notifications are being fetched.
    * @param {Object} [options] - Optional parameters to tailor the request.
+   * @param {string} [type] - Type of notifications to fetch.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -1779,11 +1780,12 @@ export class NeynarV2APIClient {
    */
   public async fetchAllNotifications(
     fid: number,
-    options?: { cursor?: string }
+    options?: { type?: string, cursor?: string }
   ): Promise<NotificationsResponse> {
     const response = await this.apis.notifications.notifications(
       this.apiKey,
       fid,
+      options?.type,
       options?.cursor
     );
     return response.data;

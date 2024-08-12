@@ -28,6 +28,10 @@ import { ErrorRes } from '../models';
 // @ts-ignore
 import { FeedResponse } from '../models';
 // @ts-ignore
+import { FeedTrending400Response } from '../models';
+// @ts-ignore
+import { FeedTrendingProvider } from '../models';
+// @ts-ignore
 import { FeedType } from '../models';
 // @ts-ignore
 import { FilterType } from '../models';
@@ -465,10 +469,11 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {number} [viewerFid] 
          * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
          * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
+         * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedTrending: async (apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feedTrending: async (apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, provider?: FeedTrendingProvider, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feedTrending', 'apiKey', apiKey)
             const localVarPath = `/farcaster/feed/trending`;
@@ -501,6 +506,10 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (channelId !== undefined) {
                 localVarQueryParameter['channel_id'] = channelId;
+            }
+
+            if (provider !== undefined) {
+                localVarQueryParameter['provider'] = provider;
             }
 
             if (apiKey != null) {
@@ -753,11 +762,12 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {number} [viewerFid] 
          * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
          * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
+         * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, options);
+        async feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, provider?: FeedTrendingProvider, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, provider, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -905,11 +915,12 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {number} [viewerFid] 
          * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
          * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
+         * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, options?: any): AxiosPromise<FeedResponse> {
-            return localVarFp.feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, options).then((request) => request(axios, basePath));
+        feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, provider?: FeedTrendingProvider, options?: any): AxiosPromise<FeedResponse> {
+            return localVarFp.feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, provider, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
@@ -1066,12 +1077,13 @@ export class FeedApi extends BaseAPI {
      * @param {number} [viewerFid] 
      * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
      * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
+     * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, options?: AxiosRequestConfig) {
-        return FeedApiFp(this.configuration).feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, options).then((request) => request(this.axios, this.basePath));
+    public feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, provider?: FeedTrendingProvider, options?: AxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, provider, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

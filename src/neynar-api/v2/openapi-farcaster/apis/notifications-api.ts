@@ -36,11 +36,12 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
          * @summary Retrieve notifications for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for
+         * @param {string} [type] Notification type to fetch. Options include likes, recasts, follows, mentions, replies
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notifications: async (apiKey: string, fid: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        notifications: async (apiKey: string, fid: number, type?: string, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('notifications', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -59,6 +60,10 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
             }
 
             if (cursor !== undefined) {
@@ -207,12 +212,13 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @summary Retrieve notifications for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for
+         * @param {string} [type] Notification type to fetch. Options include likes, recasts, follows, mentions, replies
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async notifications(apiKey: string, fid: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.notifications(apiKey, fid, cursor, options);
+        async notifications(apiKey: string, fid: number, type?: string, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notifications(apiKey, fid, type, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -258,12 +264,13 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
          * @summary Retrieve notifications for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for
+         * @param {string} [type] Notification type to fetch. Options include likes, recasts, follows, mentions, replies
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notifications(apiKey: string, fid: number, cursor?: string, options?: any): AxiosPromise<NotificationsResponse> {
-            return localVarFp.notifications(apiKey, fid, cursor, options).then((request) => request(axios, basePath));
+        notifications(apiKey: string, fid: number, type?: string, cursor?: string, options?: any): AxiosPromise<NotificationsResponse> {
+            return localVarFp.notifications(apiKey, fid, type, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of notifications for a user in specific channels
@@ -306,13 +313,14 @@ export class NotificationsApi extends BaseAPI {
      * @summary Retrieve notifications for a given user
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid FID of the user you you want to fetch notifications for
+     * @param {string} [type] Notification type to fetch. Options include likes, recasts, follows, mentions, replies
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotificationsApi
      */
-    public notifications(apiKey: string, fid: number, cursor?: string, options?: AxiosRequestConfig) {
-        return NotificationsApiFp(this.configuration).notifications(apiKey, fid, cursor, options).then((request) => request(this.axios, this.basePath));
+    public notifications(apiKey: string, fid: number, type?: string, cursor?: string, options?: AxiosRequestConfig) {
+        return NotificationsApiFp(this.configuration).notifications(apiKey, fid, type, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

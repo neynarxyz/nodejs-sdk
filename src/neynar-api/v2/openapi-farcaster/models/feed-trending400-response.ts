@@ -13,18 +13,20 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { ErrorRes } from './error-res';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ZodError } from './zod-error';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ZodErrorErrorsInner } from './zod-error-errors-inner';
 
 /**
- * The provider of the For You feed. 
+ * @type FeedTrending400Response
  * @export
- * @enum {string}
  */
-
-export const ForYouProvider = {
-    Openrank: 'openrank'
-} as const;
-
-export type ForYouProvider = typeof ForYouProvider[keyof typeof ForYouProvider];
-
+export type FeedTrending400Response = ErrorRes | ZodError;
 
 

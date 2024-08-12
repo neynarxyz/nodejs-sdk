@@ -15,16 +15,17 @@
 
 
 /**
- * The provider of the For You feed. 
+ * The provider of the trending casts feed. 
  * @export
  * @enum {string}
  */
 
-export const ForYouProvider = {
+export const FeedTrendingProvider = {
+    Neynar: 'neynar',
     Openrank: 'openrank'
 } as const;
 
-export type ForYouProvider = typeof ForYouProvider[keyof typeof ForYouProvider];
+export type FeedTrendingProvider = typeof FeedTrendingProvider[keyof typeof FeedTrendingProvider];
 
 
 

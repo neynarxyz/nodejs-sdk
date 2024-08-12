@@ -15,16 +15,20 @@
 
 
 /**
- * The provider of the For You feed. 
+ * 
  * @export
  * @enum {string}
  */
 
-export const ForYouProvider = {
-    Openrank: 'openrank'
+export const NotificationType = {
+    Follows: 'follows',
+    Recasts: 'recasts',
+    Likes: 'likes',
+    Mentions: 'mentions',
+    Replies: 'replies'
 } as const;
 
-export type ForYouProvider = typeof ForYouProvider[keyof typeof ForYouProvider];
+export type NotificationType = typeof NotificationType[keyof typeof NotificationType];
 
 
 
