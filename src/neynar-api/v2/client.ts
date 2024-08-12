@@ -83,6 +83,8 @@ import {
   ForYouProvider,
   FrameSignaturePacket,
   FrameDeveloperManagedActionReqBody,
+  FeedTrendingProvider,
+  NotificationType,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -1281,7 +1283,7 @@ export class NeynarV2APIClient {
 
   /** Retrieves a feed based on specific parent URLs. This method allows for fetching casts from
    * selected parent URLs, optionally including recasts and replies.
-   * 
+   *
    * @param {Array<string>} parentUrls - An array of parent URLs for which the feed is to be retrieved.
    * @param {Object} [options] - Optional parameters for customizing the feed.
    * @param {boolean} [options.withRecasts] - Whether to include recasts in the response. True by default.
@@ -1289,16 +1291,16 @@ export class NeynarV2APIClient {
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
    * @param {string} [options.cursor] - Pagination cursor for the next set of results. Omit this parameter for the initial request.
    * @param {number} [options.viewerFid] - The FID of the user viewing this information.
-   * 
+   *
    * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
    * containing the feed for the specified parent URLs.
-   * 
+   *
    * @example
    * // Example: Retrieve feed for specific parent URLs, including recasts and replies
    * client.fetchFeedByParentUrls(['chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc'], { withRecasts: true, withReplies: true, limit: 30, viewerFid: 3 }).then(response => {
    *  console.log('Parent URL Feed:', response);
    * });
-   *  
+   *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-parent-urls).
    * */
   public async fetchFeedByParentUrls(
@@ -1378,7 +1380,8 @@ export class NeynarV2APIClient {
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 50).
    * @param {string} [options.cursor] - Pagination cursor for the next set of results. Omit this parameter for the initial request.
    * @param {number} [options.viewerFid] - The FID of the user viewing this information.
-   * @param {ForYouProvider} [options.provider] - The provider of the For You feed. Possible values: 'karma3' (default).
+   * @param {ForYouProvider} [options.provider] - The provider of the For You feed. Defaut is karma3.
+   *     (karma3 is renamed to openrank, karma 3 will be deprecated in the future release)
    *
    * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
    *  containing the requested feed data.
@@ -1538,6 +1541,7 @@ export class NeynarV2APIClient {
    * @param {string} [options.channelId] - The channel ID for which the feed is to be retrieved.
    *  omit this parameter for the initial request.
    * @param {TrendingFeedTimeWindow} [options.timeWindow] - Time window for the trending feed.
+   * @param {FeedTrendingProvider} [options.provider] - The provider of the Trending feed. Default is 'neynar'.
    *
    * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
    *   containing the most popular casts on the platform.
@@ -1558,6 +1562,7 @@ export class NeynarV2APIClient {
     viewerFid?: number;
     timeWindow?: TrendingFeedTimeWindow;
     channelId?: string;
+    provider?: FeedTrendingProvider;
   }) {
     const response = await this.apis.feed.feedTrending(
       this.apiKey,
@@ -1565,7 +1570,8 @@ export class NeynarV2APIClient {
       options?.cursor,
       options?.viewerFid,
       options?.timeWindow,
-      options?.channelId
+      options?.channelId,
+      options?.provider
     );
     return response.data;
   }
@@ -1780,7 +1786,7 @@ export class NeynarV2APIClient {
    */
   public async fetchAllNotifications(
     fid: number,
-    options?: { type?: string, cursor?: string }
+    options?: { type?: NotificationType; cursor?: string }
   ): Promise<NotificationsResponse> {
     const response = await this.apis.notifications.notifications(
       this.apiKey,
@@ -1864,7 +1870,7 @@ export class NeynarV2APIClient {
       this.apiKey,
       fid,
       _parentUrls,
-      options?.cursor,
+      options?.cursor
     );
     return response.data;
   }
