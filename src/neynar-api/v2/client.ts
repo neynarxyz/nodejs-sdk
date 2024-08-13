@@ -323,7 +323,7 @@ export class NeynarV2APIClient {
    *
    * const sponsor = {
    *  fid: 0,
-   *  signature: `0x${string}`
+   *  signature: `0xsig}`
    * }
    *
    * client.registerSignedKey('19d0c5fd-9b33-4a48-a0e2-bc7b0555baec', 18949, 1625097600, '0xe5d95c391e165dac8efea373efe301d3ea823e1f41713f8943713cbe2850566672e33ff3e17e19abb89703f650a2597f62b4fda0ce28ca15d59eb6d4e971ee531b', {sponsor}).then(response => {
@@ -340,7 +340,7 @@ export class NeynarV2APIClient {
     options?: {
       sponsor?: {
         fid: number;
-        signature: `0x${string}`;
+        signature: string;
       };
     }
   ): Promise<Signer> {
@@ -411,12 +411,12 @@ export class NeynarV2APIClient {
    * const signature = '0xe5d95c391e165dac8efea373efe301d3ea823e1f41713f8943713cbe2850566672e33ff3e17e19abb89703f650a2597f62b4fda0ce28ca15d59eb6d4e971ee531b';
    * const appFid = 12345;
    * const deadline = Math.floor(Date.now() / 1000) + 86400; // 24 hours from now
-   * 
+   *
    * const sponsor = {
    *  fid: 0,
-   *  signature: `0x${string}`
+   *  signature: `0xsig`
    * }
-   * 
+   *
    * client.registerSignedKeyForDeveloperManagedSigner(publicKey, signature, appFid, deadline, {sponsor})
    * .then(response => {
    *   console.log('Signed Key Registration Response:', response);
@@ -432,7 +432,7 @@ export class NeynarV2APIClient {
     options?: {
       sponsor?: {
         fid: number;
-        signature: `0x${string}`;
+        signature: string;
       };
     }
   ): Promise<DeveloperManagedSigner> {
