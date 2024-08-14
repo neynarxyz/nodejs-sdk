@@ -3371,7 +3371,7 @@ export class NeynarAPIClient {
    
     // ------------ Composer Actions ------------
 
-      /**
+  /**
    * Fetches all composer actions on Warpcast. You can filter by top or featured.
    * @summary Fetches all composer actions on Warpcast
    * @param {WarpcastComposerType} list
