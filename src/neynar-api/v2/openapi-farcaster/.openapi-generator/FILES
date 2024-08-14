@@ -4,6 +4,7 @@
 api.ts
 apis/cast-api.ts
 apis/channel-api.ts
+apis/composer-actions-api.ts
 apis/feed-api.ts
 apis/fname-api.ts
 apis/follows-api.ts
@@ -194,6 +195,10 @@ models/validated-frame-action-tapped-button.ts
 models/validated-frame-action.ts
 models/verification-chain-id.ts
 models/verification-type.ts
+models/warpcast-composer-action-list-response-actions-inner-action.ts
+models/warpcast-composer-action-list-response-actions-inner.ts
+models/warpcast-composer-action-list-response.ts
+models/warpcast-composer-type.ts
 models/webhook-delete-req-body.ts
 models/webhook-list-response.ts
 models/webhook-patch-req-body.ts

@@ -68,6 +68,8 @@ import {
   FrameSignaturePacket,
   FeedTrendingProvider,
   NotificationType,
+  WarpcastComposerType,
+  WarpcastComposerActionListResponse,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -3364,5 +3366,32 @@ export class NeynarAPIClient {
       fid,
       subscriptionProvider
     );
+  }
+
+   
+    // ------------ Composer Actions ------------
+
+      /**
+   * Fetches all composer actions on Warpcast. You can filter by top or featured.
+   * @summary Fetches all composer actions on Warpcast
+   * @param {WarpcastComposerType} list
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {number} [options.limit=25] - Number of composer actions to retrieve (default 25, max 25).
+   * @param {string} [options.cursor] Pagination cursor.
+   *
+   *
+   * @returns {<WarpcastComposerActionListResponse>} A promise that resolves to a `WarpcastComposerActionListResponse` object.
+   *
+   * @example
+   * // Example: Retrieve composer actions on Warpcast
+   * client.fetchComposerActionList(WarpcastComposerType.Top, { limit: 25 }).then(response => {
+   * console.log('Composer Actions:', response);
+   * });
+   * 
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/composer-actions-list).
+   */
+  public async fetchComposerActionList(list: WarpcastComposerType, options?: { limit?: number; cursor?: string }): Promise<WarpcastComposerActionListResponse> {
+    return await this.clients.v2.fetchComposerActionList(list, options);
   }
 }

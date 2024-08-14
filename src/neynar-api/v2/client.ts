@@ -85,6 +85,9 @@ import {
   FrameDeveloperManagedActionReqBody,
   FeedTrendingProvider,
   NotificationType,
+  ComposerActionsApi,
+  WarpcastComposerType,
+  WarpcastComposerActionListResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -121,6 +124,7 @@ export class NeynarV2APIClient {
     webhook: WebhookApi;
     mute: MuteApi;
     subscribers: SubscribersApi;
+    composerActions: ComposerActionsApi;
   };
 
   /**
@@ -202,6 +206,7 @@ export class NeynarV2APIClient {
       webhook: new WebhookApi(config, undefined, axiosInstance),
       mute: new MuteApi(config, undefined, axiosInstance),
       subscribers: new SubscribersApi(config, undefined, axiosInstance),
+      composerActions: new ComposerActionsApi(config, undefined, axiosInstance),
     };
   }
 
@@ -3277,6 +3282,39 @@ export class NeynarV2APIClient {
       fid,
       subscriptionProvider
     );
+    return response.data;
+  }
+
+    // ------------ Composer Actions ------------
+
+      /**
+   * Fetches all composer actions on Warpcast. You can filter by top or featured.
+   * @summary Fetches all composer actions on Warpcast
+   * @param {WarpcastComposerType} list
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {number} [options.limit=25] - Number of composer actions to retrieve (default 25, max 25).
+   * @param {string} [options.cursor] Pagination cursor.
+   *
+   *
+   * @returns {<WarpcastComposerActionListResponse>} A promise that resolves to a `WarpcastComposerActionListResponse` object.
+   *
+   * @example
+   *   * // Example: Retrieve composer actions on Warpcast
+   * client.fetchComposerActionList(WarpcastComposerType.Top, { limit: 25 }).then(response => {
+   * console.log('Composer Actions:', response);
+   * });
+   * 
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/composer-actions-list).
+   */
+  public async fetchComposerActionList(
+    list: WarpcastComposerType,
+    options?: {
+      limit?: number;
+      cursor?: string;
+    }
+  ): Promise<WarpcastComposerActionListResponse> {
+    const response = await this.apis.composerActions.composerActionsList(this.apiKey,list,options?.limit,options?.cursor);
     return response.data;
   }
 }

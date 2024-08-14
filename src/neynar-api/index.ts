@@ -21,6 +21,7 @@ export {
   WebhookCastCreated,
   WebhookUserCreated,
   WebhookUserUpdated,
+  WarpcastComposerType
 } from "./v2";
 export {
   TimeWindow,

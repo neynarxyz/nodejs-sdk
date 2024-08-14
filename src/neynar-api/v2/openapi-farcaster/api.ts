@@ -16,6 +16,7 @@
 
 export * from './apis/cast-api';
 export * from './apis/channel-api';
+export * from './apis/composer-actions-api';
 export * from './apis/feed-api';
 export * from './apis/fname-api';
 export * from './apis/follows-api';
@@ -28,4 +29,5 @@ export * from './apis/storage-api';
 export * from './apis/subscribers-api';
 export * from './apis/user-api';
 export * from './apis/webhook-api';
+export * from './apis/composer-actions-api'
 
