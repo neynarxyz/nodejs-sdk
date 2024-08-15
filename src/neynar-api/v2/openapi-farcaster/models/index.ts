@@ -146,6 +146,7 @@ export * from './subscription-metadata';
 export * from './subscription-price';
 export * from './subscription-provider';
 export * from './subscription-providers';
+export * from './subscription-status';
 export * from './subscription-tier';
 export * from './subscription-tier-price';
 export * from './subscription-token';
