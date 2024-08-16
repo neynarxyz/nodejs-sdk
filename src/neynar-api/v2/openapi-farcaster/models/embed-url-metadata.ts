@@ -13,6 +13,12 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { EmbedUrlMetadataImage } from './embed-url-metadata-image';
+// May contain unused imports in some cases
+// @ts-ignore
+import { EmbedUrlMetadataVideo } from './embed-url-metadata-video';
 
 /**
  * 
@@ -25,12 +31,30 @@ export interface EmbedUrlMetadata {
      * @type {string}
      * @memberof EmbedUrlMetadata
      */
-    'content_type': string | null;
+    '_status': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadata
+     */
+    'content_type'?: string | null;
     /**
      * 
      * @type {number}
      * @memberof EmbedUrlMetadata
      */
-    'content_length': number | null;
+    'content_length'?: number | null;
+    /**
+     * 
+     * @type {EmbedUrlMetadataImage}
+     * @memberof EmbedUrlMetadata
+     */
+    'image'?: EmbedUrlMetadataImage;
+    /**
+     * 
+     * @type {EmbedUrlMetadataVideo}
+     * @memberof EmbedUrlMetadata
+     */
+    'video'?: EmbedUrlMetadataVideo;
 }
 

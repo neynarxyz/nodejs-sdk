@@ -17,18 +17,20 @@
 /**
  * 
  * @export
- * @enum {string}
+ * @interface EmbedUrlMetadataImage
  */
-
-export const NotificationType = {
-    Follows: 'follows',
-    Recasts: 'recasts',
-    Likes: 'likes',
-    Mentions: 'mentions',
-    Replies: 'replies'
-} as const;
-
-export type NotificationType = typeof NotificationType[keyof typeof NotificationType];
-
-
+export interface EmbedUrlMetadataImage {
+    /**
+     * 
+     * @type {number}
+     * @memberof EmbedUrlMetadataImage
+     */
+    'height_px'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EmbedUrlMetadataImage
+     */
+    'width_px'?: number;
+}
 
