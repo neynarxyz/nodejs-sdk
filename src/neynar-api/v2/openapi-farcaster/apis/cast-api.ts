@@ -22,6 +22,10 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 // @ts-ignore
+import { CastComposerActionsListResponse } from '../models';
+// @ts-ignore
+import { CastComposerType } from '../models';
+// @ts-ignore
 import { CastParamType } from '../models';
 // @ts-ignore
 import { CastResponse } from '../models';
@@ -232,6 +236,60 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
+         * Fetches all composer actions on Warpcast. You can filter by top or featured.
+         * @summary Fetches all composer actions on Warpcast
+         * @param {string} apiKey API key required for authentication.
+         * @param {CastComposerType} list Type of list to fetch.
+         * @param {number} [limit] Number of results to retrieve (default 25, max 25).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        composerList: async (apiKey: string, list: CastComposerType, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('composerList', 'apiKey', apiKey)
+            // verify required parameter 'list' is not null or undefined
+            assertParamExists('composerList', 'list', list)
+            const localVarPath = `/farcaster/cast/composer_actions/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (list !== undefined) {
+                localVarQueryParameter['list'] = list;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved) 
          * @summary Delete a cast
          * @param {string} apiKey API key required for authentication.
@@ -374,6 +432,20 @@ export const CastApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Fetches all composer actions on Warpcast. You can filter by top or featured.
+         * @summary Fetches all composer actions on Warpcast
+         * @param {string} apiKey API key required for authentication.
+         * @param {CastComposerType} list Type of list to fetch.
+         * @param {number} [limit] Number of results to retrieve (default 25, max 25).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async composerList(apiKey: string, list: CastComposerType, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastComposerActionsListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.composerList(apiKey, list, limit, cursor, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved) 
          * @summary Delete a cast
          * @param {string} apiKey API key required for authentication.
@@ -449,6 +521,19 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          */
         casts(apiKey: string, casts: string, viewerFid?: number, sortType?: 'trending' | 'likes' | 'recasts' | 'replies' | 'recent', options?: any): AxiosPromise<CastsResponse> {
             return localVarFp.casts(apiKey, casts, viewerFid, sortType, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches all composer actions on Warpcast. You can filter by top or featured.
+         * @summary Fetches all composer actions on Warpcast
+         * @param {string} apiKey API key required for authentication.
+         * @param {CastComposerType} list Type of list to fetch.
+         * @param {number} [limit] Number of results to retrieve (default 25, max 25).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        composerList(apiKey: string, list: CastComposerType, limit?: number, cursor?: string, options?: any): AxiosPromise<CastComposerActionsListResponse> {
+            return localVarFp.composerList(apiKey, list, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved) 
@@ -529,6 +614,21 @@ export class CastApi extends BaseAPI {
      */
     public casts(apiKey: string, casts: string, viewerFid?: number, sortType?: 'trending' | 'likes' | 'recasts' | 'replies' | 'recent', options?: AxiosRequestConfig) {
         return CastApiFp(this.configuration).casts(apiKey, casts, viewerFid, sortType, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches all composer actions on Warpcast. You can filter by top or featured.
+     * @summary Fetches all composer actions on Warpcast
+     * @param {string} apiKey API key required for authentication.
+     * @param {CastComposerType} list Type of list to fetch.
+     * @param {number} [limit] Number of results to retrieve (default 25, max 25).
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CastApi
+     */
+    public composerList(apiKey: string, list: CastComposerType, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return CastApiFp(this.configuration).composerList(apiKey, list, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

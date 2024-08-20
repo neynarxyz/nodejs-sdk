@@ -85,6 +85,8 @@ import {
   FrameDeveloperManagedActionReqBody,
   FeedTrendingProvider,
   NotificationType,
+  CastComposerType,
+  CastComposerActionsListResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -98,6 +100,7 @@ import {
   ValidateFrameAggregateWindow,
 } from "../common/constants";
 import { version } from "../common/version";
+import { STPApi, SubscriptionStatus } from "./openapi-stp";
 
 const BASE_PATH = "https://api.neynar.com/v2";
 
@@ -121,6 +124,7 @@ export class NeynarV2APIClient {
     webhook: WebhookApi;
     mute: MuteApi;
     subscribers: SubscribersApi;
+    stp: STPApi;
   };
 
   /**
@@ -202,6 +206,7 @@ export class NeynarV2APIClient {
       webhook: new WebhookApi(config, undefined, axiosInstance),
       mute: new MuteApi(config, undefined, axiosInstance),
       subscribers: new SubscribersApi(config, undefined, axiosInstance),
+      stp: new STPApi(config, undefined, axiosInstance),
     };
   }
 
@@ -1206,6 +1211,31 @@ export class NeynarV2APIClient {
       this.apiKey,
       deleteCastReqBody
     );
+    return response.data;
+  }
+
+  /**
+   * Fetches all composer actions on Warpcast. You can filter by top or featured.
+   * @param {CastComposerType} list - The list to fetch, can be 'top' or 'featured'
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 25)
+   * @param {string} [options.cursor] - Optional parameter to specify the pagination cursor for fetching specific subsets of results.
+   * 
+   * 
+   * @returns {Promise<CastComposerActionsListResponse>} A promise that resolves to a `CastComposerActionsListResponse` object,
+   * 
+   * @example
+   * // Example: Fetch all composer actions on Warpcast
+   * client.fetchComposerActions('top', { limit: 25, cursor: "nextPageCursor" }).then(response => {
+   *  console.log('Composer Actions:', response); // Outputs the composer actions
+   * });
+   * 
+   */
+  public async fetchComposerActions(list: CastComposerType,options?: {
+limit?: number
+cursor?: string
+  }): Promise<CastComposerActionsListResponse> {
+    const response = await this.apis.cast.composerList(this.apiKey,list,options?.limit,options?.cursor);
     return response.data;
   }
 
@@ -3279,4 +3309,39 @@ export class NeynarV2APIClient {
     );
     return response.data;
   }
+
+    // ------------ STP ------------
+
+  /**
+   * 
+   *
+   * @param {string[]} addresses - The Ethereum address of the user.
+   * @param {string} contractAddress - The contract address associated with the NFT.
+   * @param {string} chainId - The chain id of the contract.
+   *
+   * @returns {Promise<{[key: string]: SubscriptionStatus}>} A promise that resolves to a `SubscriptionStatus` object, which returns
+   * the subscription status for a list of addresses.
+   *
+   * @example
+   * // Example: Fetch Subscription Check for tabletop on Base.
+   * client.fetchSubscriptionCheck(['0xedd3783e8c7c52b80cfbd026a63c207edc9cbee7','0x5a927ac639636e534b678e81768ca19e2c6280b7'], '0x76ad4cb9ac51c09f4d9c2cadcea75c9fa9074e5b', '8453').then(response => {
+   * 
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscription-check).
+   */
+  public async fetchSubscriptionCheck(
+    addresses: string[],
+    contractAddress: string,
+    chainId: string): Promise<{[key: string]: SubscriptionStatus}> {
+      const finishedAddresses = addresses.join(',')
+
+    const response = await this.apis.stp.subscriptionCheck(
+      this.apiKey,
+      finishedAddresses,
+      contractAddress,
+      chainId
+    );
+    return response.data 
+  }
+
 }

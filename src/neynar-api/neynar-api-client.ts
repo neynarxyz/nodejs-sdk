@@ -68,6 +68,9 @@ import {
   FrameSignaturePacket,
   FeedTrendingProvider,
   NotificationType,
+  CastComposerType,
+  CastComposerActionsListResponse,
+  SubscriptionStatus,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -1606,6 +1609,30 @@ export class NeynarAPIClient {
   ): Promise<OperationResponse> {
     return await this.clients.v2.deleteCast(signerUuid, castOrCastHash);
   }
+
+  /**
+   * Fetches all composer actions on Warpcast. You can filter by top or featured.
+   * @param {CastComposerType} list - The list to fetch, can be 'top' or 'featured'
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 25)
+   * @param {string} [options.cursor] - Optional parameter to specify the pagination cursor for fetching specific subsets of results.
+   * 
+   * 
+   * @returns {Promise<CastComposerActionsListResponse>} A promise that resolves to a `CastComposerActionsListResponse` object,
+   * 
+   * @example
+   * // Example: Fetch all composer actions on Warpcast
+   * client.fetchComposerActions('top', { limit: 25, cursor: "nextPageCursor" }).then(response => {
+   *  console.log('Composer Actions:', response); // Outputs the composer actions
+   * });
+   * 
+   */
+  public async fetchComposerActions(list: CastComposerType,options?: {
+    limit?: number
+    cursor?: string
+      }): Promise<CastComposerActionsListResponse> {
+        return await this.clients.v2.fetchComposerActions(list,options);
+      }
 
   // ------------ Feed ------------
 
@@ -3363,6 +3390,34 @@ export class NeynarAPIClient {
     return await this.clients.v2.fetchSubscriptionsForFid(
       fid,
       subscriptionProvider
+    );
+  }
+
+      // ------------ STP ------------
+
+  /**
+   * @param {string[]} addresses - The Ethereum address of the user.
+   * @param {string} contractAddress - The contract address associated with the NFT.
+   * @param {string} chainId - The chain id of the contract.
+   *
+   * @returns {Promise<{[key: string]: SubscriptionStatus}>} A promise that resolves to a `SubscriptionStatus` object, which returns
+   * the subscription status for a list of addresses.
+   *
+   * @example
+   * // Example: Fetch Subscription Check for tabletop on Base.
+   * client.fetchSubscriptionCheck(['0xedd3783e8c7c52b80cfbd026a63c207edc9cbee7','0x5a927ac639636e534b678e81768ca19e2c6280b7'], '0x76ad4cb9ac51c09f4d9c2cadcea75c9fa9074e5b', '8453').then(response => {
+   * 
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscription-check).
+   */
+  public async fetchSubscriptionCheck(
+    addresses: string[],
+    contractAddress: string,
+    chainId: string): Promise<{[key: string]: SubscriptionStatus}> {
+    return await this.clients.v2.fetchSubscriptionCheck(
+      addresses,
+      contractAddress,
+      chainId
     );
   }
 }

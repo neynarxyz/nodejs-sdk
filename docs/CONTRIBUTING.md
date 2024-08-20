@@ -30,6 +30,7 @@ Auto-generated code is located in the following directories:
 - `src/neynar-api/v1/openapi`
 - `src/neynar-api/v2/openapi-farcaster`
 - `src/neynar-api/v2/openapi-recommendation`
+- `src/neynar-api/v2/openapi-stp`
 
 These are generated using [openapi-generator-cli](https://github.com/OpenAPITools/openapi-generator-cli). To make changes, update the OpenAPI Specification (OAS) in the [OAS Repository](https://github.com/neynarxyz/oas). After updating the OAS, synchronize the OAS in your local clone of the SDK repository.
 
@@ -52,6 +53,10 @@ yarn generate:neynar-oas-v2-farcaster
 - For recommendation APIs
 ```bash
 yarn generate:neynar-oas-v2-recommendation
+```
+- For STP APIs
+```bash
+yarn generate:neynar-oas-v2-stp
 ```
 
 ### Writing Wrapper Code
