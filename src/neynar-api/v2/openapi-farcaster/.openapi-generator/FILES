@@ -111,8 +111,10 @@ models/frame-validate-list-response.ts
 models/frame.ts
 models/get-casts-req-body.ts
 models/hydrated-follower.ts
+models/image-object.ts
 models/index.ts
 models/individual-hash-obj.ts
+models/music-song-object.ts
 models/mute-list-response.ts
 models/mute-list.ts
 models/mute-req-body.ts
@@ -133,6 +135,7 @@ models/neynar-page-input.ts
 models/notification-type.ts
 models/notification.ts
 models/notifications-response.ts
+models/og-object.ts
 models/operation-response.ts
 models/post-cast-req-body.ts
 models/post-cast-response-cast-author.ts
@@ -181,6 +184,8 @@ models/subscription.ts
 models/subscriptions-response.ts
 models/subscriptions.ts
 models/trending-channel-response.ts
+models/twitter-image-object.ts
+models/twitter-player-object.ts
 models/update-user-req-body.ts
 models/user-dehydrated.ts
 models/user-fidresponse.ts
@@ -202,6 +207,7 @@ models/validated-frame-action-tapped-button.ts
 models/validated-frame-action.ts
 models/verification-chain-id.ts
 models/verification-type.ts
+models/video-object.ts
 models/webhook-delete-req-body.ts
 models/webhook-list-response.ts
 models/webhook-patch-req-body.ts

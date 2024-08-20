@@ -528,6 +528,80 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
+         * Retrieve casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel
+         * @summary Retrieve casts for a user
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid FID of user whose recent casts you want to fetch
+         * @param {number} [viewerFid] FID of the user viewing the feed
+         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {string} [cursor] Pagination cursor
+         * @param {boolean} [includeReplies] Include reply casts by the author in the response, true by default
+         * @param {string} [parentUrl] Parent URL to filter the feed; mutually exclusive with channel_id
+         * @param {string} [channelId] Channel ID to filter the feed; mutually exclusive with parent_url
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedUserCasts: async (apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('feedUserCasts', 'apiKey', apiKey)
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('feedUserCasts', 'fid', fid)
+            const localVarPath = `/farcaster/feed/user/casts`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (includeReplies !== undefined) {
+                localVarQueryParameter['include_replies'] = includeReplies;
+            }
+
+            if (parentUrl !== undefined) {
+                localVarQueryParameter['parent_url'] = parentUrl;
+            }
+
+            if (channelId !== undefined) {
+                localVarQueryParameter['channel_id'] = channelId;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
          * @summary Retrieve 10 most popular casts for a user
          * @param {string} apiKey API key required for authentication.
@@ -771,6 +845,24 @@ export const FeedApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Retrieve casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel
+         * @summary Retrieve casts for a user
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid FID of user whose recent casts you want to fetch
+         * @param {number} [viewerFid] FID of the user viewing the feed
+         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {string} [cursor] Pagination cursor
+         * @param {boolean} [includeReplies] Include reply casts by the author in the response, true by default
+         * @param {string} [parentUrl] Parent URL to filter the feed; mutually exclusive with channel_id
+         * @param {string} [channelId] Channel ID to filter the feed; mutually exclusive with parent_url
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async feedUserCasts(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedUserCasts(apiKey, fid, viewerFid, limit, cursor, includeReplies, parentUrl, channelId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Retrieve 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
          * @summary Retrieve 10 most popular casts for a user
          * @param {string} apiKey API key required for authentication.
@@ -921,6 +1013,23 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          */
         feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, provider?: FeedTrendingProvider, options?: any): AxiosPromise<FeedResponse> {
             return localVarFp.feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, provider, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel
+         * @summary Retrieve casts for a user
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid FID of user whose recent casts you want to fetch
+         * @param {number} [viewerFid] FID of the user viewing the feed
+         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {string} [cursor] Pagination cursor
+         * @param {boolean} [includeReplies] Include reply casts by the author in the response, true by default
+         * @param {string} [parentUrl] Parent URL to filter the feed; mutually exclusive with channel_id
+         * @param {string} [channelId] Channel ID to filter the feed; mutually exclusive with parent_url
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedUserCasts(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string, options?: any): AxiosPromise<FeedResponse> {
+            return localVarFp.feedUserCasts(apiKey, fid, viewerFid, limit, cursor, includeReplies, parentUrl, channelId, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
@@ -1084,6 +1193,25 @@ export class FeedApi extends BaseAPI {
      */
     public feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, provider?: FeedTrendingProvider, options?: AxiosRequestConfig) {
         return FeedApiFp(this.configuration).feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, provider, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieve casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel
+     * @summary Retrieve casts for a user
+     * @param {string} apiKey API key required for authentication.
+     * @param {number} fid FID of user whose recent casts you want to fetch
+     * @param {number} [viewerFid] FID of the user viewing the feed
+     * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+     * @param {string} [cursor] Pagination cursor
+     * @param {boolean} [includeReplies] Include reply casts by the author in the response, true by default
+     * @param {string} [parentUrl] Parent URL to filter the feed; mutually exclusive with channel_id
+     * @param {string} [channelId] Channel ID to filter the feed; mutually exclusive with parent_url
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FeedApi
+     */
+    public feedUserCasts(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string, options?: AxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedUserCasts(apiKey, fid, viewerFid, limit, cursor, includeReplies, parentUrl, channelId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
