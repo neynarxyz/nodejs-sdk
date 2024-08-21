@@ -84,7 +84,6 @@ import {
   FrameSignaturePacket,
   FrameDeveloperManagedActionReqBody,
   FeedTrendingProvider,
-  NotificationType,
   CastComposerType,
   CastComposerActionsListResponse,
 } from "./openapi-farcaster";
@@ -1838,7 +1837,7 @@ cursor?: string
    *
    * @param {number} fid - The FID of the user whose notifications are being fetched.
    * @param {Object} [options] - Optional parameters to tailor the request.
-   * @param {string} [type] - Type of notifications to fetch.
+   * @param {string} [options.type] - Type of notifications to fetch.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -1857,7 +1856,7 @@ cursor?: string
    */
   public async fetchAllNotifications(
     fid: number,
-    options?: { type?: NotificationType; cursor?: string }
+    options?: { type?: 'follows' | 'recasts' | 'likes' | 'mentions' | 'replies'; cursor?: string }
   ): Promise<NotificationsResponse> {
     const response = await this.apis.notifications.notifications(
       this.apiKey,

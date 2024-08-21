@@ -67,7 +67,6 @@ import {
   ForYouProvider,
   FrameSignaturePacket,
   FeedTrendingProvider,
-  NotificationType,
   CastComposerType,
   CastComposerActionsListResponse,
   SubscriptionStatus,
@@ -2112,7 +2111,7 @@ export class NeynarAPIClient {
    * @param {Object} [options] - Optional parameters to tailor the request.
    * @param {boolean} [options.isPriority] - Whether to include only priority notifications in the response.
    *   This parameter is deprecated and will be removed in the next major release.
-   * @param {NotificationType} [options.type] - The type of notification to fetch.
+   * @param @param {'follows' | 'recasts' | 'likes' | 'mentions' | 'replies'} [options.type] Notification type to fetch.
    * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
    *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
    *
@@ -2131,7 +2130,7 @@ export class NeynarAPIClient {
    */
   public async fetchAllNotifications(
     fid: number,
-    options?: { cursor?: string; type?: NotificationType; isPriority?: boolean }
+    options?: { cursor?: string; type?: 'follows' | 'recasts' | 'likes' | 'mentions' | 'replies'; isPriority?: boolean }
   ): Promise<NotificationsResponse> {
     return await this.clients.v2.fetchAllNotifications(fid, options);
   }
