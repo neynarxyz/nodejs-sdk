@@ -109,7 +109,6 @@ export * from './neynar-page-image';
 export * from './neynar-page-input';
 export * from './neynar-page-input-text';
 export * from './notification';
-export * from './notification-type';
 export * from './notifications-response';
 export * from './og-object';
 export * from './operation-response';
