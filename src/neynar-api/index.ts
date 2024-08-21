@@ -27,4 +27,5 @@ export {
   BulkCastsSortType,
   BulkUserAddressTypes,
   ValidateFrameAggregateWindow,
+  NotificationType,
 } from "./common/constants";
