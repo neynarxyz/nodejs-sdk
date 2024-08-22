@@ -1544,7 +1544,7 @@ export class NeynarAPIClient {
    *
    * @param {string} q - The query string used for searching users.
    * @param {Object} [options] - Optional parameters for the cast.
-   * @param {number} [options.fid] - Optional fid of the user to search casts for.
+   * @param {number} [options.authorFid] - Optional fid of the user to search casts for.
    * @param {string} [options.channelId] - Optional channel to search casts for.
    * @param {string} [options.parentUrl] - Optional parent url to search casts for.
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100)
@@ -1564,7 +1564,7 @@ export class NeynarAPIClient {
   public async searchCasts(
     q: string,
     options?: { 
-      fid?: number;
+      authorFid?: number;
       channelId?: string;
       parentUrl?: string;
       limit?: number;
