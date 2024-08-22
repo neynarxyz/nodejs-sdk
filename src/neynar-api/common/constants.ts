@@ -71,3 +71,11 @@ export enum ValidateFrameAggregateWindow {
   ONE_DAY = "1d",
   SEVEN_DAYS = "7d",
 }
+
+export enum NotificationType {
+  LIKES = "likes",
+  RECASTS = "recasts",
+  REPLIES = "replies",
+  FOLLOWS = "follows",
+  MENTIONS = "mentions",
+}

@@ -132,7 +132,6 @@ models/neynar-page-button.ts
 models/neynar-page-image.ts
 models/neynar-page-input-text.ts
 models/neynar-page-input.ts
-models/notification-type.ts
 models/notification.ts
 models/notifications-response.ts
 models/og-object.ts
