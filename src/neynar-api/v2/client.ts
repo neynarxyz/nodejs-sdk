@@ -1142,8 +1142,8 @@ export class NeynarV2APIClient {
     q: string,
     options?: {
       authorFid?: number;
-      channelId?: string;
       parentUrl?: string;
+      channelId?: string;
       limit?: number;
       cursor?: string;
     }
@@ -1152,8 +1152,8 @@ export class NeynarV2APIClient {
       this.apiKey,
       q,
       options?.authorFid,
-      options?.channelId,
       options?.parentUrl,
+      options?.channelId,
       options?.limit,
       options?.cursor,
     );
