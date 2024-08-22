@@ -369,6 +369,9 @@ export class NeynarAPIClient {
   }
 
   /**
+   * @deprecated
+   * Now deprecated, use v2's `fetchCastsForUser` instead.
+   *
    * Retrieves all casts (including replies and recasts) created by the specified user.
    *
    * @param {number} fid - The FID (unique identifier) of the user whose casts are being retrieved.
