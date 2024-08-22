@@ -1864,6 +1864,52 @@ export class NeynarAPIClient {
   }
 
   /**
+   * Retrieves casts for a user for a given user FID. This method is ideal for fetching a user's latest casts.
+   * Results are sorted in reverse chronological order. By default, both casts and replies are included in the
+   * response.
+   *
+   * @param {number} fid FID of user whose recent casts you want to fetch
+   * @param {number} [viewerFid] The FID of the user viewing this information, used for providing contextual data specific to the viewer
+   * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+   * @param {string} [cursor] Pagination cursor for the next set of results, Omit this parameter for the initial request
+   * @param {boolean} [includeReplies] Include reply casts by the author in the response, true by default
+   * @param {string} [parentUrl] Parent URL to filter the feed; mutually exclusive with channelId
+   * @param {string} [channelId] Channel ID to filter the feed; mutually exclusive with parentUrl
+   *
+   * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
+   *   containing the recent casts for the specified user.
+   *
+   * @example
+   * // Example: Retrieve a user's recent top-level casts (no replies)
+   * client.fetchCastsForUser(
+   *   3,
+   *   {
+   *     limit: 25,
+   *     // cursor: "nextPageCursor", // Omit this parameter for the initial request
+   *     viewerFid: 3,
+   *     includeReplies: false
+   *   }
+   * ).then(response => {
+   *   console.log('User Casts:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-user-casts).
+   */
+   public async fetchCastsForUser(
+    fid: number,
+    options?: {
+      viewerFid?: number;
+      limit?: number;
+      cursor?: string;
+      includeReplies?: boolean;
+      parentUrl?: string;
+      channelId?: string;
+    }
+  ): Promise<FeedResponse> {
+    return await this.clients.v2.fetchCastsForUser(fid, options);
+  }
+
+  /**
    * Retrieves the most recent replies and recasts for a given user FID. This method is ideal for fetching
    * the latest user interactions in the form of replies and recasts, sorted by the most recent first.
    *
