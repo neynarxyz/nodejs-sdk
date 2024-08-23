@@ -1136,7 +1136,7 @@ export class NeynarV2APIClient {
    *   console.log('Casts Search Results:', response); // Outputs the results of the casts search
    * });
    *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/casts-search).
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/cast-search).
    */
   public async searchCasts(
     q: string,
