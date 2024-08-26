@@ -34,6 +34,8 @@ import { FrameActionReqBody } from '../models';
 // @ts-ignore
 import { FrameDeveloperManagedActionReqBody } from '../models';
 // @ts-ignore
+import { FrameFromUrl200Response } from '../models';
+// @ts-ignore
 import { FrameType } from '../models';
 // @ts-ignore
 import { FrameValidateAnalyticsResponse } from '../models';
@@ -121,6 +123,50 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetches the frame meta tags from the URL
+         * @summary Fetches the frame meta tags from the URL
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} url The frame URL to crawl
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        frameFromUrl: async (apiKey: string, url: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('frameFromUrl', 'apiKey', apiKey)
+            // verify required parameter 'url' is not null or undefined
+            assertParamExists('frameFromUrl', 'url', url)
+            const localVarPath = `/farcaster/frame/crawl`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (url !== undefined) {
+                localVarQueryParameter['url'] = url;
+            }
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -551,6 +597,18 @@ export const FrameApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Fetches the frame meta tags from the URL
+         * @summary Fetches the frame meta tags from the URL
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} url The frame URL to crawl
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async frameFromUrl(apiKey: string, url: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FrameFromUrl200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.frameFromUrl(apiKey, url, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Retrieve a frame either by UUID or Neynar URL
          * @summary Retrieve a frame by UUID or URL
          * @param {string} apiKey API key required for authentication.
@@ -683,6 +741,17 @@ export const FrameApiFactory = function (configuration?: Configuration, basePath
             return localVarFp.fetchNeynarFrames(apiKey, options).then((request) => request(axios, basePath));
         },
         /**
+         * Fetches the frame meta tags from the URL
+         * @summary Fetches the frame meta tags from the URL
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} url The frame URL to crawl
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        frameFromUrl(apiKey: string, url: string, options?: any): AxiosPromise<FrameFromUrl200Response> {
+            return localVarFp.frameFromUrl(apiKey, url, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Retrieve a frame either by UUID or Neynar URL
          * @summary Retrieve a frame by UUID or URL
          * @param {string} apiKey API key required for authentication.
@@ -808,6 +877,19 @@ export class FrameApi extends BaseAPI {
      */
     public fetchNeynarFrames(apiKey: string, options?: AxiosRequestConfig) {
         return FrameApiFp(this.configuration).fetchNeynarFrames(apiKey, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches the frame meta tags from the URL
+     * @summary Fetches the frame meta tags from the URL
+     * @param {string} apiKey API key required for authentication.
+     * @param {string} url The frame URL to crawl
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FrameApi
+     */
+    public frameFromUrl(apiKey: string, url: string, options?: AxiosRequestConfig) {
+        return FrameApiFp(this.configuration).frameFromUrl(apiKey, url, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

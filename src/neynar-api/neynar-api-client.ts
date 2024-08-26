@@ -1542,6 +1542,42 @@ export class NeynarAPIClient {
   }
 
   /**
+   * Searches for casts based on a query. This method is used to find casts that contain the specified query string
+   * in their text or embeds. The search can be constrained to a specific channel, parent url, or user.
+   *
+   * @param {string} q - The query string used for searching users.
+   * @param {Object} [options] - Optional parameters for the cast.
+   * @param {number} [options.authorFid] - Optional fid of the user to search casts for.
+   * @param {string} [options.parentUrl] - Optional parent url to search casts for.
+   * @param {string} [options.channelId] - Optional channel to search casts for.
+   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100)
+   * @param {string} [options.cursor] - Optional parameter to specify the pagination cursor for fetching specific subsets of results.
+   *
+   * @returns {Promise<CastsResponse>} A promise that resolves to a `CastsResponse` object,
+   *   containing the results of the casts search.
+   *
+   * @example
+   * // Example: Search for casts with a specific query
+   * client.searchCasts('star wars').then(response => {
+   *   console.log('Casts Search Results:', response); // Outputs the results of the casts search
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/cast-search).
+   */
+  public async searchCasts(
+    q: string,
+    options?: { 
+      authorFid?: number;
+      parentUrl?: string;
+      channelId?: string;
+      limit?: number;
+      cursor?: string;
+    }
+  ): Promise<CastsResponse> {
+    return await this.clients.v2.searchCasts(q, options);
+  }
+
+  /**
    * Publishes a cast for the currently authenticated user. This method allows users to post
    * content, including text and embeds, and can also be used to reply to existing casts.
    * (In order to publish a cast signerUuid must be approved)

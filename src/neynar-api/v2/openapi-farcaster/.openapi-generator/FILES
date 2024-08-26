@@ -92,6 +92,7 @@ models/frame-action-req-body.ts
 models/frame-action.ts
 models/frame-button-action-type.ts
 models/frame-developer-managed-action-req-body.ts
+models/frame-from-url200-response.ts
 models/frame-input.ts
 models/frame-signature-packet-trusted-data.ts
 models/frame-signature-packet-untrusted-data.ts
@@ -188,6 +189,8 @@ models/twitter-player-object.ts
 models/update-user-req-body.ts
 models/user-dehydrated.ts
 models/user-fidresponse.ts
+models/user-power-lite-response-result.ts
+models/user-power-lite-response.ts
 models/user-profile-bio.ts
 models/user-profile.ts
 models/user-response.ts

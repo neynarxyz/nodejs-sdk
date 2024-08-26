@@ -48,6 +48,8 @@ import { User } from '../models';
 // @ts-ignore
 import { UserFIDResponse } from '../models';
 // @ts-ignore
+import { UserPowerLiteResponse } from '../models';
+// @ts-ignore
 import { UserResponse } from '../models';
 // @ts-ignore
 import { UserSearchResponse } from '../models';
@@ -319,7 +321,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Fetches power users based on Warpcast power badges. Information is updated once a day.
-         * @summary Fetch power users
+         * @summary Fetch power user objects
          * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] 
          * @param {number} [limit] Number of power users to fetch, max 100
@@ -602,6 +604,43 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
+         * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
+         * @summary Fetch power user FIDs
+         * @param {string} apiKey API key required for authentication.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userPowerLite: async (apiKey: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('userPowerLite', 'apiKey', apiKey)
+            const localVarPath = `/farcaster/user/power_lite`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Search for Usernames
          * @summary Search for Usernames
          * @param {string} apiKey API key required for authentication.
@@ -745,7 +784,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches power users based on Warpcast power badges. Information is updated once a day.
-         * @summary Fetch power users
+         * @summary Fetch power user objects
          * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] 
          * @param {number} [limit] Number of power users to fetch, max 100
@@ -818,6 +857,17 @@ export const UserApiFp = function(configuration?: Configuration) {
          */
         async userBulkByAddress(apiKey: string, addresses: string, addressTypes?: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: Array<User>; }>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.userBulkByAddress(apiKey, addresses, addressTypes, viewerFid, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
+         * @summary Fetch power user FIDs
+         * @param {string} apiKey API key required for authentication.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async userPowerLite(apiKey: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserPowerLiteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userPowerLite(apiKey, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -914,7 +964,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Fetches power users based on Warpcast power badges. Information is updated once a day.
-         * @summary Fetch power users
+         * @summary Fetch power user objects
          * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] 
          * @param {number} [limit] Number of power users to fetch, max 100
@@ -982,6 +1032,16 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          */
         userBulkByAddress(apiKey: string, addresses: string, addressTypes?: string, viewerFid?: number, options?: any): AxiosPromise<{ [key: string]: Array<User>; }> {
             return localVarFp.userBulkByAddress(apiKey, addresses, addressTypes, viewerFid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
+         * @summary Fetch power user FIDs
+         * @param {string} apiKey API key required for authentication.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userPowerLite(apiKey: string, options?: any): AxiosPromise<UserPowerLiteResponse> {
+            return localVarFp.userPowerLite(apiKey, options).then((request) => request(axios, basePath));
         },
         /**
          * Search for Usernames
@@ -1088,7 +1148,7 @@ export class UserApi extends BaseAPI {
 
     /**
      * Fetches power users based on Warpcast power badges. Information is updated once a day.
-     * @summary Fetch power users
+     * @summary Fetch power user objects
      * @param {string} apiKey API key required for authentication.
      * @param {number} [viewerFid] 
      * @param {number} [limit] Number of power users to fetch, max 100
@@ -1167,6 +1227,18 @@ export class UserApi extends BaseAPI {
      */
     public userBulkByAddress(apiKey: string, addresses: string, addressTypes?: string, viewerFid?: number, options?: AxiosRequestConfig) {
         return UserApiFp(this.configuration).userBulkByAddress(apiKey, addresses, addressTypes, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
+     * @summary Fetch power user FIDs
+     * @param {string} apiKey API key required for authentication.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public userPowerLite(apiKey: string, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).userPowerLite(apiKey, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
