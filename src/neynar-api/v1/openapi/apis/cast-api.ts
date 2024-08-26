@@ -138,8 +138,8 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Gets the most recent casts for a user
-         * @summary Retrieve casts for a given user
+         * Now deprecated, use [/v2/farcaster/feed/user/casts](https://docs.neynar.com/reference/feed-user-casts) instead
+         * @summary DEPRECATED - Retrieve casts for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {string} [parentUrl] A cast can be part of a certain channel. The channel is identified by &#x60;parent_url&#x60;. All casts in the channel ladder up to the same parent_url.
@@ -147,6 +147,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         casts: async (apiKey: string, fid: number, parentUrl?: string, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
@@ -292,8 +293,8 @@ export const CastApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Gets the most recent casts for a user
-         * @summary Retrieve casts for a given user
+         * Now deprecated, use [/v2/farcaster/feed/user/casts](https://docs.neynar.com/reference/feed-user-casts) instead
+         * @summary DEPRECATED - Retrieve casts for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {string} [parentUrl] A cast can be part of a certain channel. The channel is identified by &#x60;parent_url&#x60;. All casts in the channel ladder up to the same parent_url.
@@ -301,6 +302,7 @@ export const CastApiFp = function(configuration?: Configuration) {
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         async casts(apiKey: string, fid: number, parentUrl?: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsResponse>> {
@@ -358,8 +360,8 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.cast(apiKey, hash, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
-         * Gets the most recent casts for a user
-         * @summary Retrieve casts for a given user
+         * Now deprecated, use [/v2/farcaster/feed/user/casts](https://docs.neynar.com/reference/feed-user-casts) instead
+         * @summary DEPRECATED - Retrieve casts for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {string} [parentUrl] A cast can be part of a certain channel. The channel is identified by &#x60;parent_url&#x60;. All casts in the channel ladder up to the same parent_url.
@@ -367,6 +369,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         casts(apiKey: string, fid: number, parentUrl?: string, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<CastsResponse> {
@@ -426,8 +429,8 @@ export class CastApi extends BaseAPI {
     }
 
     /**
-     * Gets the most recent casts for a user
-     * @summary Retrieve casts for a given user
+     * Now deprecated, use [/v2/farcaster/feed/user/casts](https://docs.neynar.com/reference/feed-user-casts) instead
+     * @summary DEPRECATED - Retrieve casts for a given user
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid fid of a user
      * @param {string} [parentUrl] A cast can be part of a certain channel. The channel is identified by &#x60;parent_url&#x60;. All casts in the channel ladder up to the same parent_url.
@@ -435,6 +438,7 @@ export class CastApi extends BaseAPI {
      * @param {number} [limit] Number of results to retrieve (default 25, max 150)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      * @memberof CastApi
      */
