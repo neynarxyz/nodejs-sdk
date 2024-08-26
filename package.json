@@ -27,7 +27,7 @@
     "@openapitools/openapi-generator-cli": "^2.7.0",
     "axios": "^1.6.2",
     "semver": "^7.6.0",
-    "viem": "^1.19.9"
+    "viem": "^2.20.0"
   },
   "engines": {
     "node": ">=19.9.0"
