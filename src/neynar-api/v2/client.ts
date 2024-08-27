@@ -86,6 +86,7 @@ import {
   FeedTrendingProvider,
   CastComposerType,
   CastComposerActionsListResponse,
+  UserPowerLiteResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -585,6 +586,29 @@ export class NeynarV2APIClient {
       options?.viewerFid,
       options?.limit,
       options?.cursor
+    );
+    return response.data;
+  }
+
+  /**
+   * Fetches a list of all "power user" FIDs on Warpcast power badges. This method retrieves users who have been awarded power badges, indicating their significant contribution or influence within the platform.
+   * Unlike `fetchPowerUsers()`, this endpoint simply returns a list of FIDs rather than hydrated user data.
+   *
+   *  @returns {Promise<UserPowerLiteResponse>} A promise that resolves to a list of power users, each possibly containing detailed information such as user profiles, contribution metrics, and power badges.
+   *
+   * @example
+   * Usage Example:
+   * ---------------
+   * // Fetch the initial set of power user fids
+   * client.fetchPowerUsersLite()
+   *   .then(response => console.log(response))
+   *   .catch(error => console.error(error));
+   *
+   *  For more information, refer to the [Farcaster documentation](https://docs.neynar.com/reference/user-power-lite).
+   */
+  public async fetchPowerUsersLite(): Promise<UserPowerLiteResponse> {
+    const response = await this.apis.user.userPowerLite(
+      this.apiKey
     );
     return response.data;
   }
