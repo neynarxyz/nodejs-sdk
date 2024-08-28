@@ -15,6 +15,7 @@ import {
   UserSearchResponse,
   CastResponse,
   CastsResponse,
+  CastsSearchResponse,
   UserResponse,
   BulkUsersResponse,
   FeedType,
@@ -1574,7 +1575,7 @@ export class NeynarAPIClient {
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100)
    * @param {string} [options.cursor] - Optional parameter to specify the pagination cursor for fetching specific subsets of results.
    *
-   * @returns {Promise<CastsResponse>} A promise that resolves to a `CastsResponse` object,
+   * @returns {Promise<CastsSearchResponse>} A promise that resolves to a `CastsResponse` object,
    *   containing the results of the casts search.
    *
    * @example
@@ -1594,7 +1595,7 @@ export class NeynarAPIClient {
       limit?: number;
       cursor?: string;
     }
-  ): Promise<CastsResponse> {
+  ): Promise<CastsSearchResponse> {
     return await this.clients.v2.searchCasts(q, options);
   }
 
