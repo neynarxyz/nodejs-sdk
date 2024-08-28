@@ -90,6 +90,7 @@ import {
   UserPowerLiteResponse,
   MarkNotificationsAsSeenReqBody,
   NotificationType,
+  EmbedType,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -1331,6 +1332,7 @@ export class NeynarV2APIClient {
    * @param {string} [options.parentUrl] - Used for fetching content under a specific parent URL. Requires 'feedType' and 'filterType'.
    * @param {string} [options.channelId] Used when filter_type=channel_id can be used to fetch all casts under a channel. Requires feed_type and filter_type
    * @param {string} [options.embedUrl] - Used when filter_type=embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
+   * @param {Array<EmbedType>} [options.embedTypes] Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type
    * @param {boolean} [options.withRecasts] - Whether to include recasts in the response. True by default.
    * @param {number} [options.limit] - Number of results to retrieve, with a default of 25 and a maximum of 100.
    * @param {string} [options.cursor] - Pagination cursor for fetching specific subsets of results.
@@ -1355,6 +1357,7 @@ export class NeynarV2APIClient {
       parentUrl?: string;
       channelId?: string;
       embedUrl?: string;
+      embedTypes?: EmbedType[];
       limit?: number;
       cursor?: string;
       withRecasts?: boolean;
@@ -1372,6 +1375,7 @@ export class NeynarV2APIClient {
       options?.parentUrl,
       options?.channelId,
       options?.embedUrl,
+      options?.embedTypes,
       options?.withRecasts,
       options?.limit,
       options?.cursor,

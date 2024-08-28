@@ -73,6 +73,7 @@ import {
   SubscriptionStatus,
   UserPowerLiteResponse,
   NotificationType,
+  EmbedType,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -1713,6 +1714,7 @@ export class NeynarAPIClient {
    * @param {string} [options.parentUrl] - Used for fetching content under a specific parent URL. Requires 'feedType' and 'filterType'.
    * @param {string} [options.channelId] Used when filter_type=channel_id can be used to fetch all casts under a channel. Requires feed_type and filter_type
    * @param {string} [options.embedUrl] - Used when filter_type=embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
+   * @param {Array<EmbedType>} [options.embedTypes] Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type
    * @param {boolean} [options.withRecasts] - Whether to include recasts in the response. True by default.
    * @param {number} [options.limit] - Number of results to retrieve, with a default of 25 and a maximum of 100.
    * @param {string} [options.cursor] - Pagination cursor for fetching specific subsets of results. Omit this parameter for the initial request.
@@ -1738,6 +1740,7 @@ export class NeynarAPIClient {
       parentUrl?: string;
       channelId?: string;
       embedUrl?: string;
+      embedType?: EmbedType[];
       limit?: number;
       cursor?: string;
       withRecasts?: boolean;
