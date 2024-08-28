@@ -16,6 +16,9 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import { Channel } from './channel';
+// May contain unused imports in some cases
+// @ts-ignore
+import { NextCursor } from './next-cursor';
 
 /**
  * 
@@ -29,5 +32,11 @@ export interface ChannelSearchResponse {
      * @memberof ChannelSearchResponse
      */
     'channels': Array<Channel>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof ChannelSearchResponse
+     */
+    'next': NextCursor;
 }
 
