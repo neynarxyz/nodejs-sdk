@@ -24,6 +24,8 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { BulkCastsResponse } from '../models';
 // @ts-ignore
+import { EmbedType } from '../models';
+// @ts-ignore
 import { ErrorRes } from '../models';
 // @ts-ignore
 import { FeedResponse } from '../models';
@@ -54,6 +56,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
          * @param {string} [channelId] Used when filter_type&#x3D;channel_id can be used to fetch all casts under a channel. Requires feed_type and filter_type
          * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
+         * @param {Array<EmbedType>} [embedTypes] Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
@@ -61,7 +64,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feed: async (apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, embedUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feed: async (apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, embedUrl?: string, embedTypes?: Array<EmbedType>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feed', 'apiKey', apiKey)
             // verify required parameter 'feedType' is not null or undefined
@@ -104,6 +107,10 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (embedUrl !== undefined) {
                 localVarQueryParameter['embed_url'] = embedUrl;
+            }
+
+            if (embedTypes) {
+                localVarQueryParameter['embed_types'] = embedTypes;
             }
 
             if (withRecasts !== undefined) {
@@ -735,6 +742,7 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
          * @param {string} [channelId] Used when filter_type&#x3D;channel_id can be used to fetch all casts under a channel. Requires feed_type and filter_type
          * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
+         * @param {Array<EmbedType>} [embedTypes] Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
@@ -742,8 +750,8 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, embedUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.feed(apiKey, feedType, filterType, fid, fids, parentUrl, channelId, embedUrl, withRecasts, limit, cursor, viewerFid, options);
+        async feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, embedUrl?: string, embedTypes?: Array<EmbedType>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feed(apiKey, feedType, filterType, fid, fids, parentUrl, channelId, embedUrl, embedTypes, withRecasts, limit, cursor, viewerFid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -912,6 +920,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
          * @param {string} [channelId] Used when filter_type&#x3D;channel_id can be used to fetch all casts under a channel. Requires feed_type and filter_type
          * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
+         * @param {Array<EmbedType>} [embedTypes] Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
@@ -919,8 +928,8 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, embedUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options?: any): AxiosPromise<FeedResponse> {
-            return localVarFp.feed(apiKey, feedType, filterType, fid, fids, parentUrl, channelId, embedUrl, withRecasts, limit, cursor, viewerFid, options).then((request) => request(axios, basePath));
+        feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, embedUrl?: string, embedTypes?: Array<EmbedType>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options?: any): AxiosPromise<FeedResponse> {
+            return localVarFp.feed(apiKey, feedType, filterType, fid, fids, parentUrl, channelId, embedUrl, embedTypes, withRecasts, limit, cursor, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve feed based on channel ids
@@ -1079,6 +1088,7 @@ export class FeedApi extends BaseAPI {
      * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
      * @param {string} [channelId] Used when filter_type&#x3D;channel_id can be used to fetch all casts under a channel. Requires feed_type and filter_type
      * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
+     * @param {Array<EmbedType>} [embedTypes] Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type
      * @param {boolean} [withRecasts] Include recasts in the response, true by default
      * @param {number} [limit] Number of results to retrieve (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
@@ -1087,8 +1097,8 @@ export class FeedApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, embedUrl?: string, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options?: AxiosRequestConfig) {
-        return FeedApiFp(this.configuration).feed(apiKey, feedType, filterType, fid, fids, parentUrl, channelId, embedUrl, withRecasts, limit, cursor, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    public feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, embedUrl?: string, embedTypes?: Array<EmbedType>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options?: AxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feed(apiKey, feedType, filterType, fid, fids, parentUrl, channelId, embedUrl, embedTypes, withRecasts, limit, cursor, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

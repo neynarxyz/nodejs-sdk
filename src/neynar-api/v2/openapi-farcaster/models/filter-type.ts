@@ -15,7 +15,7 @@
 
 
 /**
- * 
+ * The type of filter to apply to the feed.
  * @export
  * @enum {string}
  */
@@ -25,6 +25,7 @@ export const FilterType = {
     ParentUrl: 'parent_url',
     ChannelId: 'channel_id',
     EmbedUrl: 'embed_url',
+    EmbedTypes: 'embed_types',
     GlobalTrending: 'global_trending'
 } as const;
 
