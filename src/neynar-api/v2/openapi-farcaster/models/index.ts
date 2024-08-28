@@ -27,6 +27,8 @@ export * from './cast-with-interactions-reactions';
 export * from './cast-with-interactions-replies';
 export * from './casts-response';
 export * from './casts-response-result';
+export * from './casts-search-response';
+export * from './casts-search-response-result';
 export * from './channel';
 export * from './channel-activity';
 export * from './channel-list-response';
