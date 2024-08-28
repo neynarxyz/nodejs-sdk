@@ -2308,7 +2308,7 @@ cursor?: string
    * @param {string} q - The query string used for searching channels, which can be a channel ID or name.
    * @param {Object} [options] - Optional parameters to tailor the request.
    * @param {number} [options.limit] Number of results to retrieve
-   * @param {string} [options.cursor] Pagination cursor.
+   * @param {string} [options.cursor] Pagination cursor
    *
    * @returns {Promise<ChannelSearchResponse>} A promise that resolves to a `ChannelSearchResponse` object,
    *   containing a list of channels that match the search criteria.

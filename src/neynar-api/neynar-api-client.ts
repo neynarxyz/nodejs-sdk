@@ -2459,7 +2459,7 @@ export class NeynarAPIClient {
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/search-channels).
    */
   public async searchChannels(q: string, options?: {limit?: number; cursor?: string;}): Promise<ChannelSearchResponse> {
-    return await this.clients.v2.searchChannels(q, options?.limit, options?.cursor);
+    return await this.clients.v2.searchChannels(q, options);
   }
 
   /**
