@@ -50,6 +50,8 @@ models/cast-with-interactions.ts
 models/cast.ts
 models/casts-response-result.ts
 models/casts-response.ts
+models/casts-search-response-result.ts
+models/casts-search-response.ts
 models/channel-activity.ts
 models/channel-list-response.ts
 models/channel-or-dehydrated-channel.ts

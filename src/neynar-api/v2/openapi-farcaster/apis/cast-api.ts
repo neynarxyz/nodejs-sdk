@@ -32,6 +32,8 @@ import { CastResponse } from '../models';
 // @ts-ignore
 import { CastsResponse } from '../models';
 // @ts-ignore
+import { CastsSearchResponse } from '../models';
+// @ts-ignore
 import { Conversation } from '../models';
 // @ts-ignore
 import { DeleteCastReqBody } from '../models';
@@ -182,7 +184,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Search for casts based on a query string
+         * Search for casts based on a query string, with optional AND filters
          * @summary Search for casts
          * @param {string} apiKey API key required for authentication.
          * @param {string} q Query string to search for casts
@@ -190,7 +192,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {string} [parentUrl] Parent URL of the casts you want to search
          * @param {string} [channelId] Channel ID of the casts you want to search
          * @param {number} [limit] 
-         * @param {string} [cursor] Pagination cursor.
+         * @param {string} [cursor] Pagination cursor
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -487,7 +489,7 @@ export const CastApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Search for casts based on a query string
+         * Search for casts based on a query string, with optional AND filters
          * @summary Search for casts
          * @param {string} apiKey API key required for authentication.
          * @param {string} q Query string to search for casts
@@ -495,11 +497,11 @@ export const CastApiFp = function(configuration?: Configuration) {
          * @param {string} [parentUrl] Parent URL of the casts you want to search
          * @param {string} [channelId] Channel ID of the casts you want to search
          * @param {number} [limit] 
-         * @param {string} [cursor] Pagination cursor.
+         * @param {string} [cursor] Pagination cursor
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async castSearch(apiKey: string, q: string, authorFid?: number, parentUrl?: string, channelId?: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsResponse>> {
+        async castSearch(apiKey: string, q: string, authorFid?: number, parentUrl?: string, channelId?: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsSearchResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.castSearch(apiKey, q, authorFid, parentUrl, channelId, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -596,7 +598,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * Search for casts based on a query string
+         * Search for casts based on a query string, with optional AND filters
          * @summary Search for casts
          * @param {string} apiKey API key required for authentication.
          * @param {string} q Query string to search for casts
@@ -604,11 +606,11 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * @param {string} [parentUrl] Parent URL of the casts you want to search
          * @param {string} [channelId] Channel ID of the casts you want to search
          * @param {number} [limit] 
-         * @param {string} [cursor] Pagination cursor.
+         * @param {string} [cursor] Pagination cursor
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        castSearch(apiKey: string, q: string, authorFid?: number, parentUrl?: string, channelId?: string, limit?: number, cursor?: string, options?: any): AxiosPromise<CastsResponse> {
+        castSearch(apiKey: string, q: string, authorFid?: number, parentUrl?: string, channelId?: string, limit?: number, cursor?: string, options?: any): AxiosPromise<CastsSearchResponse> {
             return localVarFp.castSearch(apiKey, q, authorFid, parentUrl, channelId, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
@@ -704,7 +706,7 @@ export class CastApi extends BaseAPI {
     }
 
     /**
-     * Search for casts based on a query string
+     * Search for casts based on a query string, with optional AND filters
      * @summary Search for casts
      * @param {string} apiKey API key required for authentication.
      * @param {string} q Query string to search for casts
@@ -712,7 +714,7 @@ export class CastApi extends BaseAPI {
      * @param {string} [parentUrl] Parent URL of the casts you want to search
      * @param {string} [channelId] Channel ID of the casts you want to search
      * @param {number} [limit] 
-     * @param {string} [cursor] Pagination cursor.
+     * @param {string} [cursor] Pagination cursor
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CastApi

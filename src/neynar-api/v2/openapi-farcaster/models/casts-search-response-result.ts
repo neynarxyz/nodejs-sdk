@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Channel } from './channel';
+import { CastWithInteractions } from './cast-with-interactions';
 // May contain unused imports in some cases
 // @ts-ignore
 import { NextCursor } from './next-cursor';
@@ -23,19 +23,19 @@ import { NextCursor } from './next-cursor';
 /**
  * 
  * @export
- * @interface ChannelSearchResponse
+ * @interface CastsSearchResponseResult
  */
-export interface ChannelSearchResponse {
+export interface CastsSearchResponseResult {
     /**
      * 
-     * @type {Array<Channel>}
-     * @memberof ChannelSearchResponse
+     * @type {Array<CastWithInteractions>}
+     * @memberof CastsSearchResponseResult
      */
-    'channels': Array<Channel>;
+    'casts': Array<CastWithInteractions>;
     /**
      * 
      * @type {NextCursor}
-     * @memberof ChannelSearchResponse
+     * @memberof CastsSearchResponseResult
      */
     'next': NextCursor;
 }

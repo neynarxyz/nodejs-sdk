@@ -24,6 +24,7 @@ import {
   UserSearchResponse,
   CastResponse,
   CastsResponse,
+  CastsSearchResponse,
   UserResponse,
   BulkUsersResponse,
   FeedType,
@@ -1151,7 +1152,7 @@ export class NeynarV2APIClient {
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100)
    * @param {string} [options.cursor] - Optional parameter to specify the pagination cursor for fetching specific subsets of results.
    *
-   * @returns {Promise<CastsResponse>} A promise that resolves to a `CastsResponse` object,
+   * @returns {Promise<CastsSearchResponse>} A promise that resolves to a `CastsResponse` object,
    *   containing the results of the casts search.
    *
    * @example
@@ -1171,7 +1172,7 @@ export class NeynarV2APIClient {
       limit?: number;
       cursor?: string;
     }
-  ): Promise<CastsResponse> {
+  ): Promise<CastsSearchResponse> {
     const response = await this.apis.cast.castSearch(
       this.apiKey,
       q,
@@ -2305,6 +2306,9 @@ cursor?: string
    * channels on the platform using search queries.
    *
    * @param {string} q - The query string used for searching channels, which can be a channel ID or name.
+   * @param {Object} [options] - Optional parameters to tailor the request.
+   * @param {number} [options.limit] Number of results to retrieve
+   * @param {string} [options.cursor] Pagination cursor
    *
    * @returns {Promise<ChannelSearchResponse>} A promise that resolves to a `ChannelSearchResponse` object,
    *   containing a list of channels that match the search criteria.
@@ -2317,8 +2321,8 @@ cursor?: string
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/search-channels).
    */
-  public async searchChannels(q: string): Promise<ChannelSearchResponse> {
-    const response = await this.apis.channel.searchChannels(this.apiKey, q);
+  public async searchChannels(q: string, options?: {limit?: number; cursor?: string;}): Promise<ChannelSearchResponse> {
+    const response = await this.apis.channel.searchChannels(this.apiKey, q, options?.limit, options?.cursor);
     return response.data;
   }
 

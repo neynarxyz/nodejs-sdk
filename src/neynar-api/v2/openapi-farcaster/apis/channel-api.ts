@@ -341,7 +341,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * Returns a list of all channels with their details
          * @summary Retrieve all channels with their details
          * @param {string} apiKey API key required for authentication.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 200)
+         * @param {number} [limit] Number of results to retrieve
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -389,10 +389,12 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Search for channels based on id or name
          * @param {string} apiKey API key required for authentication.
          * @param {string} q Channel ID or name for the channel being queried
+         * @param {number} [limit] Number of results to retrieve
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchChannels: async (apiKey: string, q: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        searchChannels: async (apiKey: string, q: string, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('searchChannels', 'apiKey', apiKey)
             // verify required parameter 'q' is not null or undefined
@@ -411,6 +413,14 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
 
             if (q !== undefined) {
                 localVarQueryParameter['q'] = q;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
             }
 
             if (apiKey != null) {
@@ -622,7 +632,7 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * Returns a list of all channels with their details
          * @summary Retrieve all channels with their details
          * @param {string} apiKey API key required for authentication.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 200)
+         * @param {number} [limit] Number of results to retrieve
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -636,11 +646,13 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @summary Search for channels based on id or name
          * @param {string} apiKey API key required for authentication.
          * @param {string} q Channel ID or name for the channel being queried
+         * @param {number} [limit] Number of results to retrieve
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async searchChannels(apiKey: string, q: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.searchChannels(apiKey, q, options);
+        async searchChannels(apiKey: string, q: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.searchChannels(apiKey, q, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -754,7 +766,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * Returns a list of all channels with their details
          * @summary Retrieve all channels with their details
          * @param {string} apiKey API key required for authentication.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 200)
+         * @param {number} [limit] Number of results to retrieve
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -767,11 +779,13 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @summary Search for channels based on id or name
          * @param {string} apiKey API key required for authentication.
          * @param {string} q Channel ID or name for the channel being queried
+         * @param {number} [limit] Number of results to retrieve
+         * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchChannels(apiKey: string, q: string, options?: any): AxiosPromise<ChannelSearchResponse> {
-            return localVarFp.searchChannels(apiKey, q, options).then((request) => request(axios, basePath));
+        searchChannels(apiKey: string, q: string, limit?: number, cursor?: string, options?: any): AxiosPromise<ChannelSearchResponse> {
+            return localVarFp.searchChannels(apiKey, q, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of trending channels based on activity
@@ -892,7 +906,7 @@ export class ChannelApi extends BaseAPI {
      * Returns a list of all channels with their details
      * @summary Retrieve all channels with their details
      * @param {string} apiKey API key required for authentication.
-     * @param {number} [limit] Number of results to retrieve (default 25, max 200)
+     * @param {number} [limit] Number of results to retrieve
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -907,12 +921,14 @@ export class ChannelApi extends BaseAPI {
      * @summary Search for channels based on id or name
      * @param {string} apiKey API key required for authentication.
      * @param {string} q Channel ID or name for the channel being queried
+     * @param {number} [limit] Number of results to retrieve
+     * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public searchChannels(apiKey: string, q: string, options?: AxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).searchChannels(apiKey, q, options).then((request) => request(this.axios, this.basePath));
+    public searchChannels(apiKey: string, q: string, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).searchChannels(apiKey, q, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
