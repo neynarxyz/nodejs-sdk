@@ -88,6 +88,8 @@ import {
   CastComposerType,
   CastComposerActionsListResponse,
   UserPowerLiteResponse,
+  MarkNotificationsAsSeenReqBody,
+  NotificationType,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -608,9 +610,7 @@ export class NeynarV2APIClient {
    *  For more information, refer to the [Farcaster documentation](https://docs.neynar.com/reference/user-power-lite).
    */
   public async fetchPowerUsersLite(): Promise<UserPowerLiteResponse> {
-    const response = await this.apis.user.userPowerLite(
-      this.apiKey
-    );
+    const response = await this.apis.user.userPowerLite(this.apiKey);
     return response.data;
   }
 
@@ -1180,7 +1180,7 @@ export class NeynarV2APIClient {
       options?.parentUrl,
       options?.channelId,
       options?.limit,
-      options?.cursor,
+      options?.cursor
     );
     return response.data;
   }
@@ -1289,22 +1289,30 @@ export class NeynarV2APIClient {
    * @param {Object} [options] - Optional parameters for the request.
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 25)
    * @param {string} [options.cursor] - Optional parameter to specify the pagination cursor for fetching specific subsets of results.
-   * 
-   * 
+   *
+   *
    * @returns {Promise<CastComposerActionsListResponse>} A promise that resolves to a `CastComposerActionsListResponse` object,
-   * 
+   *
    * @example
    * // Example: Fetch all composer actions on Warpcast
    * client.fetchComposerActions('top', { limit: 25, cursor: "nextPageCursor" }).then(response => {
    *  console.log('Composer Actions:', response); // Outputs the composer actions
    * });
-   * 
+   *
    */
-  public async fetchComposerActions(list: CastComposerType,options?: {
-limit?: number
-cursor?: string
-  }): Promise<CastComposerActionsListResponse> {
-    const response = await this.apis.cast.composerList(this.apiKey,list,options?.limit,options?.cursor);
+  public async fetchComposerActions(
+    list: CastComposerType,
+    options?: {
+      limit?: number;
+      cursor?: string;
+    }
+  ): Promise<CastComposerActionsListResponse> {
+    const response = await this.apis.cast.composerList(
+      this.apiKey,
+      list,
+      options?.limit,
+      options?.cursor
+    );
     return response.data;
   }
 
@@ -1649,7 +1657,6 @@ cursor?: string
     return response.data;
   }
 
-
   /**
    * Retrieves the most recent replies and recasts for a given user FID. This method is ideal for fetching
    * the latest user interactions in the form of replies and recasts, sorted by the most recent first.
@@ -1983,7 +1990,10 @@ cursor?: string
    */
   public async fetchAllNotifications(
     fid: number,
-    options?: { type?: 'follows' | 'recasts' | 'likes' | 'mentions' | 'replies'; cursor?: string }
+    options?: {
+      type?: "follows" | "recasts" | "likes" | "mentions" | "replies";
+      cursor?: string;
+    }
   ): Promise<NotificationsResponse> {
     const response = await this.apis.notifications.notifications(
       this.apiKey,
@@ -2068,6 +2078,40 @@ cursor?: string
       fid,
       _parentUrls,
       options?.cursor
+    );
+    return response.data;
+  }
+
+  /**
+   * Allow user to mark notifications as seen.
+   *
+   * @param {string} signerUuid - signerUuid of the user who is marking the notifications as seen.
+   * @param {Object} [options] - Optional parameters for customizing the request.
+   * @param {NotificationType} [options.type] - Type of notifications to mark as seen.
+   *
+   * @returns {Promise<OperationResponse>} A promise that resolves to an `OperationResponse` object
+   *
+   * @example
+   * // Example: Mark notifications as seen for a user
+   * import { NotificationType } from "@neynar/nodejs-sdk";
+   * 
+   * client.markNotificationsAsSeen('19d0c5fd-9b33-4a48-a0e2-bc7b0555baec', { type:  NotificationType.FOLLOWS }).then(response => {
+   *   console.log('response: ', response); // Outputs the status of the operation
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/mark-notifications-seen).
+   */
+  public async markNotificationsAsSeen(
+    signerUuid: string,
+    options?: { type?: NotificationType }
+  ) {
+    const reqBody: MarkNotificationsAsSeenReqBody = {
+      signer_uuid: signerUuid,
+      ...(options?.type && { type: options.type }),
+    };
+    const response = await this.apis.notifications.markNotificationsAsSeen(
+      this.apiKey,
+      reqBody
     );
     return response.data;
   }
@@ -2321,8 +2365,16 @@ cursor?: string
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/search-channels).
    */
-  public async searchChannels(q: string, options?: {limit?: number; cursor?: string;}): Promise<ChannelSearchResponse> {
-    const response = await this.apis.channel.searchChannels(this.apiKey, q, options?.limit, options?.cursor);
+  public async searchChannels(
+    q: string,
+    options?: { limit?: number; cursor?: string }
+  ): Promise<ChannelSearchResponse> {
+    const response = await this.apis.channel.searchChannels(
+      this.apiKey,
+      q,
+      options?.limit,
+      options?.cursor
+    );
     return response.data;
   }
 
@@ -3439,10 +3491,10 @@ cursor?: string
     return response.data;
   }
 
-    // ------------ STP ------------
+  // ------------ STP ------------
 
   /**
-   * 
+   *
    *
    * @param {string[]} addresses - The Ethereum address of the user.
    * @param {string} contractAddress - The contract address associated with the NFT.
@@ -3454,15 +3506,16 @@ cursor?: string
    * @example
    * // Example: Fetch Subscription Check for tabletop on Base.
    * client.fetchSubscriptionCheck(['0xedd3783e8c7c52b80cfbd026a63c207edc9cbee7','0x5a927ac639636e534b678e81768ca19e2c6280b7'], '0x76ad4cb9ac51c09f4d9c2cadcea75c9fa9074e5b', '8453').then(response => {
-   * 
+   *
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscription-check).
    */
   public async fetchSubscriptionCheck(
     addresses: string[],
     contractAddress: string,
-    chainId: string): Promise<{[key: string]: SubscriptionStatus}> {
-      const finishedAddresses = addresses.join(',')
+    chainId: string
+  ): Promise<{ [key: string]: SubscriptionStatus }> {
+    const finishedAddresses = addresses.join(",");
 
     const response = await this.apis.stp.subscriptionCheck(
       this.apiKey,
@@ -3470,7 +3523,6 @@ cursor?: string
       contractAddress,
       chainId
     );
-    return response.data 
+    return response.data;
   }
-
 }

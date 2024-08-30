@@ -117,6 +117,7 @@ models/hydrated-follower.ts
 models/image-object.ts
 models/index.ts
 models/individual-hash-obj.ts
+models/mark-notifications-as-seen-req-body.ts
 models/music-song-object.ts
 models/mute-list-response.ts
 models/mute-list.ts
@@ -135,6 +136,7 @@ models/neynar-page-button.ts
 models/neynar-page-image.ts
 models/neynar-page-input-text.ts
 models/neynar-page-input.ts
+models/notification-type.ts
 models/notification.ts
 models/notifications-response.ts
 models/og-object.ts
