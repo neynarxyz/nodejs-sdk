@@ -28,6 +28,12 @@ import { Notification } from './notification';
 export interface NotificationsResponse {
     /**
      * 
+     * @type {number}
+     * @memberof NotificationsResponse
+     */
+    'unseen_notifications_count': number;
+    /**
+     * 
      * @type {Array<Notification>}
      * @memberof NotificationsResponse
      */

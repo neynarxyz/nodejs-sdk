@@ -49,6 +49,12 @@ export interface Notification {
     'type': NotificationTypeEnum;
     /**
      * 
+     * @type {boolean}
+     * @memberof Notification
+     */
+    'seen': boolean;
+    /**
+     * 
      * @type {Array<Follow>}
      * @memberof Notification
      */
