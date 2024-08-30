@@ -72,6 +72,7 @@ import {
   CastComposerActionsListResponse,
   SubscriptionStatus,
   UserPowerLiteResponse,
+  NotificationType,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -1588,7 +1589,7 @@ export class NeynarAPIClient {
    */
   public async searchCasts(
     q: string,
-    options?: { 
+    options?: {
       authorFid?: number;
       parentUrl?: string;
       channelId?: string;
@@ -1676,23 +1677,26 @@ export class NeynarAPIClient {
    * @param {Object} [options] - Optional parameters for the request.
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 25)
    * @param {string} [options.cursor] - Optional parameter to specify the pagination cursor for fetching specific subsets of results.
-   * 
-   * 
+   *
+   *
    * @returns {Promise<CastComposerActionsListResponse>} A promise that resolves to a `CastComposerActionsListResponse` object,
-   * 
+   *
    * @example
    * // Example: Fetch all composer actions on Warpcast
    * client.fetchComposerActions('top', { limit: 25, cursor: "nextPageCursor" }).then(response => {
    *  console.log('Composer Actions:', response); // Outputs the composer actions
    * });
-   * 
+   *
    */
-  public async fetchComposerActions(list: CastComposerType,options?: {
-    limit?: number
-    cursor?: string
-      }): Promise<CastComposerActionsListResponse> {
-        return await this.clients.v2.fetchComposerActions(list,options);
-      }
+  public async fetchComposerActions(
+    list: CastComposerType,
+    options?: {
+      limit?: number;
+      cursor?: string;
+    }
+  ): Promise<CastComposerActionsListResponse> {
+    return await this.clients.v2.fetchComposerActions(list, options);
+  }
 
   // ------------ Feed ------------
 
@@ -1952,7 +1956,7 @@ export class NeynarAPIClient {
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-user-casts).
    */
-   public async fetchCastsForUser(
+  public async fetchCastsForUser(
     fid: number,
     options?: {
       viewerFid?: number;
@@ -2237,7 +2241,11 @@ export class NeynarAPIClient {
    */
   public async fetchAllNotifications(
     fid: number,
-    options?: { cursor?: string; type?: 'follows' | 'recasts' | 'likes' | 'mentions' | 'replies'; isPriority?: boolean }
+    options?: {
+      cursor?: string;
+      type?: "follows" | "recasts" | "likes" | "mentions" | "replies";
+      isPriority?: boolean;
+    }
   ): Promise<NotificationsResponse> {
     return await this.clients.v2.fetchAllNotifications(fid, options);
   }
@@ -2458,7 +2466,10 @@ export class NeynarAPIClient {
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/search-channels).
    */
-  public async searchChannels(q: string, options?: {limit?: number; cursor?: string;}): Promise<ChannelSearchResponse> {
+  public async searchChannels(
+    q: string,
+    options?: { limit?: number; cursor?: string }
+  ): Promise<ChannelSearchResponse> {
     return await this.clients.v2.searchChannels(q, options);
   }
 
@@ -2558,6 +2569,32 @@ export class NeynarAPIClient {
     options?: { cursor?: string; limit?: number }
   ): Promise<UsersResponse> {
     return await this.clients.v2.fetchFollowersForAChannel(id, options);
+  }
+
+  /**
+   * Allow user to mark notifications as seen.
+   *
+   * @param {string} signerUuid - signerUuid of the user who is marking the notifications as seen.
+   * @param {Object} [options] - Optional parameters for customizing the request.
+   * @param {NotificationType} [options.type] - Type of notifications to mark as seen.
+   *
+   * @returns {Promise<OperationResponse>} A promise that resolves to an `OperationResponse` object
+   *
+   * @example
+   * // Example: Mark notifications as seen for a user
+   * import { NotificationType } from "@neynar/nodejs-sdk";
+   *
+   * client.markNotificationsAsSeen('19d0c5fd-9b33-4a48-a0e2-bc7b0555baec', { type: NotificationType.FOLLOWS }).then(response => {
+   *   console.log('response: ', response); // Outputs the status of the operation
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/mark-notifications-seen).
+   */
+  public async markNotificationsAsSeen(
+    signerUuid: string,
+    options?: { type?: NotificationType }
+  ): Promise<OperationResponse> {
+    return await this.clients.v2.markNotificationsAsSeen(signerUuid, options);
   }
 
   // ------------ Follows ------------
@@ -3502,7 +3539,7 @@ export class NeynarAPIClient {
     );
   }
 
-      // ------------ STP ------------
+  // ------------ STP ------------
 
   /**
    * @param {string[]} addresses - The Ethereum address of the user.
@@ -3515,14 +3552,15 @@ export class NeynarAPIClient {
    * @example
    * // Example: Fetch Subscription Check for tabletop on Base.
    * client.fetchSubscriptionCheck(['0xedd3783e8c7c52b80cfbd026a63c207edc9cbee7','0x5a927ac639636e534b678e81768ca19e2c6280b7'], '0x76ad4cb9ac51c09f4d9c2cadcea75c9fa9074e5b', '8453').then(response => {
-   * 
+   *
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscription-check).
    */
   public async fetchSubscriptionCheck(
     addresses: string[],
     contractAddress: string,
-    chainId: string): Promise<{[key: string]: SubscriptionStatus}> {
+    chainId: string
+  ): Promise<{ [key: string]: SubscriptionStatus }> {
     return await this.clients.v2.fetchSubscriptionCheck(
       addresses,
       contractAddress,

@@ -17,20 +17,18 @@
 /**
  * 
  * @export
- * @interface OperationResponse
+ * @enum {string}
  */
-export interface OperationResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OperationResponse
-     */
-    'success'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof OperationResponse
-     */
-    'message'?: string;
-}
+
+export const NotificationType = {
+    Follows: 'follows',
+    Recasts: 'recasts',
+    Likes: 'likes',
+    Mentions: 'mentions',
+    Replies: 'replies'
+} as const;
+
+export type NotificationType = typeof NotificationType[keyof typeof NotificationType];
+
+
 
