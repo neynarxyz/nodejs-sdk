@@ -48,6 +48,7 @@ export * from './delete-frame-response';
 export * from './delete-neynar-frame-request';
 export * from './developer-managed-signer';
 export * from './embed-cast-id';
+export * from './embed-type';
 export * from './embed-url';
 export * from './embed-url-metadata';
 export * from './embed-url-metadata-image';
