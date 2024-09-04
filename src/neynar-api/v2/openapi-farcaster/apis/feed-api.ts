@@ -110,7 +110,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             }
 
             if (embedTypes) {
-                localVarQueryParameter['embed_types'] = embedTypes;
+                localVarQueryParameter['embed_types'] = embedTypes.join(COLLECTION_FORMATS.csv);
             }
 
             if (withRecasts !== undefined) {
