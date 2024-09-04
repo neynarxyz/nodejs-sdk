@@ -1740,7 +1740,7 @@ export class NeynarAPIClient {
       parentUrl?: string;
       channelId?: string;
       embedUrl?: string;
-      embedType?: EmbedType[];
+      embedTypes?: EmbedType[];
       limit?: number;
       cursor?: string;
       withRecasts?: boolean;
