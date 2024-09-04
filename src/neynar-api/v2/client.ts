@@ -1147,6 +1147,7 @@ export class NeynarV2APIClient {
    * @param {string} q - The query string used for searching users.
    * @param {Object} [options] - Optional parameters for the cast.
    * @param {number} [options.authorFid] - Optional fid of the user to search casts for.
+   * @param {number} [options.viewerFid] Fid of the viewer of the casts, used to show viewer_context
    * @param {string} [options.channelId] - Optional channel to search casts for.
    * @param {string} [options.parentUrl] - Optional parent url to search casts for.
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100)
@@ -1167,6 +1168,7 @@ export class NeynarV2APIClient {
     q: string,
     options?: {
       authorFid?: number;
+      viewerFid?: number;
       parentUrl?: string;
       channelId?: string;
       limit?: number;
@@ -1177,6 +1179,7 @@ export class NeynarV2APIClient {
       this.apiKey,
       q,
       options?.authorFid,
+      options?.viewerFid,
       options?.parentUrl,
       options?.channelId,
       options?.limit,
