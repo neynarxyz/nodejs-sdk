@@ -49,3 +49,8 @@ export interface BlockList {
     'blocked_at': string;
 }
 
+export const BlockListObjectEnum = {
+    Block: 'block'
+} as const;
+
+export type BlockListObjectEnum = typeof BlockListObjectEnum[keyof typeof BlockListObjectEnum];
