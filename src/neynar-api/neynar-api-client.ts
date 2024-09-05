@@ -55,6 +55,7 @@ import {
   TrendingChannelResponse,
   MuteListResponse,
   MuteResponse,
+  BlockListResponse,
   FollowSortType,
   ChannelSearchResponse,
   ChannelType,
@@ -3448,6 +3449,33 @@ export class NeynarAPIClient {
     mutedFid: number
   ): Promise<MuteResponse> {
     return await this.clients.v2.deleteMute(fid, mutedFid);
+  }
+
+  // ------------ Block ------------
+
+  /**
+   * Fetches all fids that a user has blocked or has been blocked by.
+   * @summary Get fids that a user has blocked or has been blocked by.
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {number} [options.blockerFid] - Providing this will return the users that this user has blocked.
+   * @param {number} [options.blockedFid] - Providing this will return the users that have blocked this user.
+   * @param {number} [options.limit=20] - Number of followers to retrieve (default 20, max 100).
+   * @param {string} [options.cursor] Pagination cursor.
+   *
+   * @returns {Promise<BlockListResponse>} A promise that resolves to a `BlockListResponse` object.
+   *
+   * @example
+   * // Example: Retrieve blocked fids for a user
+   * client.fetchBlockList({ blockerFid: 3, limit: 50 }).then(response => {
+   *  console.log('Blocked Fids:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/block-list).
+   */
+  public async fetchBlockList(
+    options?: { blockerFid: number; blockedFid: number; limit?: number; cursor: string }
+  ): Promise<BlockListResponse> {
+    return await this.clients.v2.fetchBlockList(options);
   }
 
   // ------------ Subscribers ------------

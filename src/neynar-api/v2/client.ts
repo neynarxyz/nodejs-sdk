@@ -70,6 +70,8 @@ import {
   MuteApi,
   MuteListResponse,
   MuteResponse,
+  BlockApi,
+  BlockListResponse,
   FollowSortType,
   ChannelSearchResponse,
   ChannelType,
@@ -127,6 +129,7 @@ export class NeynarV2APIClient {
     frame: FrameApi;
     webhook: WebhookApi;
     mute: MuteApi;
+    block: BlockApi;
     subscribers: SubscribersApi;
     stp: STPApi;
   };
@@ -209,6 +212,7 @@ export class NeynarV2APIClient {
       frame: new FrameApi(frameConfig, undefined, axiosInstance),
       webhook: new WebhookApi(config, undefined, axiosInstance),
       mute: new MuteApi(config, undefined, axiosInstance),
+      block: new BlockApi(config, undefined, axiosInstance),
       subscribers: new SubscribersApi(config, undefined, axiosInstance),
       stp: new STPApi(config, undefined, axiosInstance),
     };
@@ -3395,6 +3399,40 @@ export class NeynarV2APIClient {
     const response = await this.apis.mute.deleteMute(
       this.apiKey,
       deleteMuteBody
+    );
+    return response.data;
+  }
+
+  // ------------ Block ------------
+
+  /**
+   * Fetches all fids that a user has blocked or has been blocked by.
+   * @summary Get fids that a user has blocked or has been blocked by.
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {number} [options.blockerFid] - Providing this will return the users that this user has blocked.
+   * @param {number} [options.blockedFid] - Providing this will return the users that have blocked this user.
+   * @param {number} [options.limit=20] - Number of followers to retrieve (default 20, max 100).
+   * @param {string} [options.cursor] Pagination cursor.
+   *
+   * @returns {Promise<BlockListResponse>} A promise that resolves to a `BlockListResponse` object.
+   *
+   * @example
+   * // Example: Retrieve blocked fids for a user
+   * client.fetchBlockList({ blockerFid: 3, limit: 50 }).then(response => {
+   *  console.log('Blocked Fids:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/block-list).
+   */
+  public async fetchBlockList(
+    options?: { blockerFid: number, blockedFid: number, limit?: number; cursor: string }
+  ): Promise<BlockListResponse> {
+    const response = await this.apis.block.blockList(
+      this.apiKey,
+      options?.blockerFid,
+      options?.blockedFid,
+      options?.limit,
+      options?.cursor
     );
     return response.data;
   }
