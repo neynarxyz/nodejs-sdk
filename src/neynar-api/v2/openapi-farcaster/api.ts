@@ -14,6 +14,7 @@
 
 
 
+export * from './apis/block-api';
 export * from './apis/cast-api';
 export * from './apis/channel-api';
 export * from './apis/feed-api';
