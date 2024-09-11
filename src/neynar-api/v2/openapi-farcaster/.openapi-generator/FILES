@@ -162,13 +162,13 @@ models/reactions-cast-response.ts
 models/reactions-response.ts
 models/reactions-type.ts
 models/register-developer-managed-signed-key-req-body.ts
-models/register-signer-key-req-body-sponsor.ts
 models/register-signer-key-req-body.ts
 models/register-user-req-body.ts
 models/register-user-response.ts
 models/relevant-followers-response.ts
 models/remove-verification-req-body.ts
 models/searched-user.ts
+models/signed-key-request-sponsor.ts
 models/signer.ts
 models/storage-allocation.ts
 models/storage-allocations-response.ts

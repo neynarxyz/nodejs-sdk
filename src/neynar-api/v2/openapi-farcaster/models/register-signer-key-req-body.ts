@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { RegisterSignerKeyReqBodySponsor } from './register-signer-key-req-body-sponsor';
+import { SignedKeyRequestSponsor } from './signed-key-request-sponsor';
 
 /**
  * 
@@ -49,9 +49,9 @@ export interface RegisterSignerKeyReqBody {
     'deadline': number;
     /**
      * 
-     * @type {RegisterSignerKeyReqBodySponsor}
+     * @type {SignedKeyRequestSponsor}
      * @memberof RegisterSignerKeyReqBody
      */
-    'sponsor'?: RegisterSignerKeyReqBodySponsor;
+    'sponsor'?: SignedKeyRequestSponsor;
 }
 
