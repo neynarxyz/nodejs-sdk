@@ -71,6 +71,12 @@ export interface Notification {
      * @memberof Notification
      */
     'reactions'?: Array<ReactionWithUserInfo>;
+    /**
+     * The number of notifications of this(follows, likes, recast) type bundled in a single notification.
+     * @type {number}
+     * @memberof Notification
+     */
+    'count'?: number;
 }
 
 export const NotificationTypeEnum = {

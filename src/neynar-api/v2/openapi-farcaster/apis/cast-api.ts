@@ -261,7 +261,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * Retrieve multiple casts using their respective hashes.
          * @summary Gets information about an array of casts
          * @param {string} apiKey API key required for authentication.
-         * @param {string} casts Hashes of the cast to be retrived (Comma separated)
+         * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces)
          * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
          * @param {'trending' | 'likes' | 'recasts' | 'replies' | 'recent'} [sortType] Optional parameter to sort the casts based on different criteria
          * @param {*} [options] Override http request option.
@@ -515,7 +515,7 @@ export const CastApiFp = function(configuration?: Configuration) {
          * Retrieve multiple casts using their respective hashes.
          * @summary Gets information about an array of casts
          * @param {string} apiKey API key required for authentication.
-         * @param {string} casts Hashes of the cast to be retrived (Comma separated)
+         * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces)
          * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
          * @param {'trending' | 'likes' | 'recasts' | 'replies' | 'recent'} [sortType] Optional parameter to sort the casts based on different criteria
          * @param {*} [options] Override http request option.
@@ -624,7 +624,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * Retrieve multiple casts using their respective hashes.
          * @summary Gets information about an array of casts
          * @param {string} apiKey API key required for authentication.
-         * @param {string} casts Hashes of the cast to be retrived (Comma separated)
+         * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces)
          * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
          * @param {'trending' | 'likes' | 'recasts' | 'replies' | 'recent'} [sortType] Optional parameter to sort the casts based on different criteria
          * @param {*} [options] Override http request option.
@@ -735,7 +735,7 @@ export class CastApi extends BaseAPI {
      * Retrieve multiple casts using their respective hashes.
      * @summary Gets information about an array of casts
      * @param {string} apiKey API key required for authentication.
-     * @param {string} casts Hashes of the cast to be retrived (Comma separated)
+     * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces)
      * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
      * @param {'trending' | 'likes' | 'recasts' | 'replies' | 'recent'} [sortType] Optional parameter to sort the casts based on different criteria
      * @param {*} [options] Override http request option.
