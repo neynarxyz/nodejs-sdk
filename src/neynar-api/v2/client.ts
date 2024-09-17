@@ -1983,6 +1983,7 @@ export class NeynarV2APIClient {
    * @param {number} fid - The FID of the user whose notifications are being fetched.
    * @param {Object} [options] - Optional parameters to tailor the request.
    * @param {string} [options.type] - Type of notifications to fetch.
+   * @param {boolean} [options.priorityMode] When true, only returns notifications from power badge users and users that the viewer follows.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -2003,6 +2004,7 @@ export class NeynarV2APIClient {
     fid: number,
     options?: {
       type?: "follows" | "recasts" | "likes" | "mentions" | "replies";
+      priorityMode?: boolean;
       cursor?: string;
     }
   ): Promise<NotificationsResponse> {
@@ -2010,6 +2012,7 @@ export class NeynarV2APIClient {
       this.apiKey,
       fid,
       options?.type,
+      options?.priorityMode,
       options?.cursor
     );
     return response.data;
@@ -2023,6 +2026,7 @@ export class NeynarV2APIClient {
    * @param {number} fid - The FID of the user whose channel notifications are being fetched.
    * @param {string} channelIds - channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
    * @param {Object} [options] - Optional parameters for the request.
+   * @param {boolean} [options.priorityMode] When true, only returns notifications from power badge users and users that the viewer follows.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -2044,13 +2048,14 @@ export class NeynarV2APIClient {
   public async fetchChannelNotificationsForUser(
     fid: number,
     channelIds: string[],
-    options?: { cursor?: string }
+    options?: { priorityMode?: boolean; cursor?: string }
   ): Promise<NotificationsResponse> {
     const _channelIds = channelIds.join(",");
     const response = await this.apis.notifications.notificationsChannel(
       this.apiKey,
       fid,
       _channelIds,
+      options?.priorityMode,
       options?.cursor
     );
     return response.data;
@@ -2064,6 +2069,7 @@ export class NeynarV2APIClient {
    * @param {number} fid - The FID of the user for whom notifications are being fetched.
    * @param {Array<string>} parentUrls - An array of parent URLs to specify the channels.
    * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {boolean} [options.priorityMode] When true, only returns notifications from power badge users and users that the viewer follows.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -2081,13 +2087,14 @@ export class NeynarV2APIClient {
   public async fetchNotificationsByParentUrlForUser(
     fid: number,
     parentUrls: string[],
-    options?: { cursor?: string }
+    options?: { priorityMode?: boolean; cursor?: string }
   ) {
     const _parentUrls = parentUrls.join(",");
     const response = await this.apis.notifications.notificationsParentUrl(
       this.apiKey,
       fid,
       _parentUrls,
+      options?.priorityMode,
       options?.cursor
     );
     return response.data;

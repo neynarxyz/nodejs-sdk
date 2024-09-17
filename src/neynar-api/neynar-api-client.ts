@@ -2228,6 +2228,7 @@ export class NeynarAPIClient {
    * @param {Object} [options] - Optional parameters to tailor the request.
    * @param {boolean} [options.isPriority] - Whether to include only priority notifications in the response.
    *   This parameter is deprecated and will be removed in the next major release.
+   * @param {boolean} [options.priorityMode] When true, only returns notifications from power badge users and users that the viewer follows.
    * @param @param {'follows' | 'recasts' | 'likes' | 'mentions' | 'replies'} [options.type] Notification type to fetch.
    * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
    *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
@@ -2251,6 +2252,7 @@ export class NeynarAPIClient {
       cursor?: string;
       type?: "follows" | "recasts" | "likes" | "mentions" | "replies";
       isPriority?: boolean;
+      priorityMode?: boolean;
     }
   ): Promise<NotificationsResponse> {
     return await this.clients.v2.fetchAllNotifications(fid, options);
@@ -2266,6 +2268,7 @@ export class NeynarAPIClient {
    * @param {Object} [options] - Optional parameters for the request.
    * @param {boolean} [options.isPriority] - Whether to include only priority notifications in the response.
    *   This parameter is deprecated and will be removed in the next major release.
+   * @param {boolean} [options.priorityMode] When true, only returns notifications from power badge users and users that the viewer follows.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -2286,7 +2289,7 @@ export class NeynarAPIClient {
   public async fetchChannelNotificationsForUser(
     fid: number,
     channelIds: string[],
-    options?: { cursor?: string; isPriority?: boolean }
+    options?: { cursor?: string; isPriority?: boolean; priorityMode?: boolean }
   ): Promise<NotificationsResponse> {
     return await this.clients.v2.fetchChannelNotificationsForUser(
       fid,
@@ -2523,6 +2526,7 @@ export class NeynarAPIClient {
    * @param {Object} [options] - Optional parameters for customizing the response.
    * @param {boolean} [options.isPriority] - Whether to include only priority notifications in the response.
    *   This parameter is deprecated and will be removed in the next major release.
+   * @param {boolean} [options.priorityMode] When true, only returns notifications from power badge users and users that the viewer follows.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -2540,7 +2544,7 @@ export class NeynarAPIClient {
   public async fetchNotificationsByParentUrlForUser(
     fid: number,
     parentUrls: string[],
-    options?: { cursor?: string; isPriority?: boolean }
+    options?: { cursor?: string; isPriority?: boolean, priorityMode?: boolean }
   ) {
     return await this.clients.v2.fetchNotificationsByParentUrlForUser(
       fid,
