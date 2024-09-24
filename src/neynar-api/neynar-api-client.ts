@@ -2586,7 +2586,7 @@ export class NeynarAPIClient {
    * This is useful for use-cases like displaying "X, Y, and X more follow this channel".
    *
    * @param {string} id - The Channel ID for which followers are being queried.
-   * @param {string} viewerFid - The FID of the user viewing the channel.
+   * @param {string} viewerFid - The FID of the user viewing this information, used for providing contextual data specific to the viewer.
    *
    * @returns {Promise<RelevantFollowersResponse>} A promise that resolves to a `RelevantFollowersResponse` object,
    *   containing two lists. One list of the top N followers of the channel, hydrated. The second list with all of the channel's follower FIDs.
