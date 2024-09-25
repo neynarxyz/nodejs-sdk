@@ -32,6 +32,8 @@ import { CastResponse } from '../models';
 // @ts-ignore
 import { CastsResponse } from '../models';
 // @ts-ignore
+import { CastsSearchResponse } from '../models';
+// @ts-ignore
 import { Conversation } from '../models';
 // @ts-ignore
 import { DeleteCastReqBody } from '../models';
@@ -182,19 +184,20 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Search for casts based on a query string
+         * Search for casts based on a query string, with optional AND filters
          * @summary Search for casts
          * @param {string} apiKey API key required for authentication.
          * @param {string} q Query string to search for casts
          * @param {number} [authorFid] Fid of the user whose casts you want to search
+         * @param {number} [viewerFid] Fid of the viewer of the casts, used to show viewer_context
          * @param {string} [parentUrl] Parent URL of the casts you want to search
          * @param {string} [channelId] Channel ID of the casts you want to search
          * @param {number} [limit] 
-         * @param {string} [cursor] Pagination cursor.
+         * @param {string} [cursor] Pagination cursor
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        castSearch: async (apiKey: string, q: string, authorFid?: number, parentUrl?: string, channelId?: string, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        castSearch: async (apiKey: string, q: string, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('castSearch', 'apiKey', apiKey)
             // verify required parameter 'q' is not null or undefined
@@ -217,6 +220,10 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (authorFid !== undefined) {
                 localVarQueryParameter['author_fid'] = authorFid;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
             if (parentUrl !== undefined) {
@@ -254,7 +261,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * Retrieve multiple casts using their respective hashes.
          * @summary Gets information about an array of casts
          * @param {string} apiKey API key required for authentication.
-         * @param {string} casts Hashes of the cast to be retrived (Comma separated)
+         * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces)
          * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
          * @param {'trending' | 'likes' | 'recasts' | 'replies' | 'recent'} [sortType] Optional parameter to sort the casts based on different criteria
          * @param {*} [options] Override http request option.
@@ -487,27 +494,28 @@ export const CastApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Search for casts based on a query string
+         * Search for casts based on a query string, with optional AND filters
          * @summary Search for casts
          * @param {string} apiKey API key required for authentication.
          * @param {string} q Query string to search for casts
          * @param {number} [authorFid] Fid of the user whose casts you want to search
+         * @param {number} [viewerFid] Fid of the viewer of the casts, used to show viewer_context
          * @param {string} [parentUrl] Parent URL of the casts you want to search
          * @param {string} [channelId] Channel ID of the casts you want to search
          * @param {number} [limit] 
-         * @param {string} [cursor] Pagination cursor.
+         * @param {string} [cursor] Pagination cursor
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async castSearch(apiKey: string, q: string, authorFid?: number, parentUrl?: string, channelId?: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.castSearch(apiKey, q, authorFid, parentUrl, channelId, limit, cursor, options);
+        async castSearch(apiKey: string, q: string, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.castSearch(apiKey, q, authorFid, viewerFid, parentUrl, channelId, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Retrieve multiple casts using their respective hashes.
          * @summary Gets information about an array of casts
          * @param {string} apiKey API key required for authentication.
-         * @param {string} casts Hashes of the cast to be retrived (Comma separated)
+         * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces)
          * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
          * @param {'trending' | 'likes' | 'recasts' | 'replies' | 'recent'} [sortType] Optional parameter to sort the casts based on different criteria
          * @param {*} [options] Override http request option.
@@ -596,26 +604,27 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * Search for casts based on a query string
+         * Search for casts based on a query string, with optional AND filters
          * @summary Search for casts
          * @param {string} apiKey API key required for authentication.
          * @param {string} q Query string to search for casts
          * @param {number} [authorFid] Fid of the user whose casts you want to search
+         * @param {number} [viewerFid] Fid of the viewer of the casts, used to show viewer_context
          * @param {string} [parentUrl] Parent URL of the casts you want to search
          * @param {string} [channelId] Channel ID of the casts you want to search
          * @param {number} [limit] 
-         * @param {string} [cursor] Pagination cursor.
+         * @param {string} [cursor] Pagination cursor
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        castSearch(apiKey: string, q: string, authorFid?: number, parentUrl?: string, channelId?: string, limit?: number, cursor?: string, options?: any): AxiosPromise<CastsResponse> {
-            return localVarFp.castSearch(apiKey, q, authorFid, parentUrl, channelId, limit, cursor, options).then((request) => request(axios, basePath));
+        castSearch(apiKey: string, q: string, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, limit?: number, cursor?: string, options?: any): AxiosPromise<CastsSearchResponse> {
+            return localVarFp.castSearch(apiKey, q, authorFid, viewerFid, parentUrl, channelId, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve multiple casts using their respective hashes.
          * @summary Gets information about an array of casts
          * @param {string} apiKey API key required for authentication.
-         * @param {string} casts Hashes of the cast to be retrived (Comma separated)
+         * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces)
          * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
          * @param {'trending' | 'likes' | 'recasts' | 'replies' | 'recent'} [sortType] Optional parameter to sort the casts based on different criteria
          * @param {*} [options] Override http request option.
@@ -704,28 +713,29 @@ export class CastApi extends BaseAPI {
     }
 
     /**
-     * Search for casts based on a query string
+     * Search for casts based on a query string, with optional AND filters
      * @summary Search for casts
      * @param {string} apiKey API key required for authentication.
      * @param {string} q Query string to search for casts
      * @param {number} [authorFid] Fid of the user whose casts you want to search
+     * @param {number} [viewerFid] Fid of the viewer of the casts, used to show viewer_context
      * @param {string} [parentUrl] Parent URL of the casts you want to search
      * @param {string} [channelId] Channel ID of the casts you want to search
      * @param {number} [limit] 
-     * @param {string} [cursor] Pagination cursor.
+     * @param {string} [cursor] Pagination cursor
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CastApi
      */
-    public castSearch(apiKey: string, q: string, authorFid?: number, parentUrl?: string, channelId?: string, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
-        return CastApiFp(this.configuration).castSearch(apiKey, q, authorFid, parentUrl, channelId, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public castSearch(apiKey: string, q: string, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return CastApiFp(this.configuration).castSearch(apiKey, q, authorFid, viewerFid, parentUrl, channelId, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Retrieve multiple casts using their respective hashes.
      * @summary Gets information about an array of casts
      * @param {string} apiKey API key required for authentication.
-     * @param {string} casts Hashes of the cast to be retrived (Comma separated)
+     * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces)
      * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
      * @param {'trending' | 'likes' | 'recasts' | 'replies' | 'recent'} [sortType] Optional parameter to sort the casts based on different criteria
      * @param {*} [options] Override http request option.

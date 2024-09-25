@@ -24,6 +24,7 @@ import {
   UserSearchResponse,
   CastResponse,
   CastsResponse,
+  CastsSearchResponse,
   UserResponse,
   BulkUsersResponse,
   FeedType,
@@ -69,6 +70,8 @@ import {
   MuteApi,
   MuteListResponse,
   MuteResponse,
+  BlockApi,
+  BlockListResponse,
   FollowSortType,
   ChannelSearchResponse,
   ChannelType,
@@ -87,6 +90,9 @@ import {
   CastComposerType,
   CastComposerActionsListResponse,
   UserPowerLiteResponse,
+  MarkNotificationsAsSeenReqBody,
+  NotificationType,
+  EmbedType,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -123,6 +129,7 @@ export class NeynarV2APIClient {
     frame: FrameApi;
     webhook: WebhookApi;
     mute: MuteApi;
+    block: BlockApi;
     subscribers: SubscribersApi;
     stp: STPApi;
   };
@@ -205,6 +212,7 @@ export class NeynarV2APIClient {
       frame: new FrameApi(frameConfig, undefined, axiosInstance),
       webhook: new WebhookApi(config, undefined, axiosInstance),
       mute: new MuteApi(config, undefined, axiosInstance),
+      block: new BlockApi(config, undefined, axiosInstance),
       subscribers: new SubscribersApi(config, undefined, axiosInstance),
       stp: new STPApi(config, undefined, axiosInstance),
     };
@@ -607,9 +615,7 @@ export class NeynarV2APIClient {
    *  For more information, refer to the [Farcaster documentation](https://docs.neynar.com/reference/user-power-lite).
    */
   public async fetchPowerUsersLite(): Promise<UserPowerLiteResponse> {
-    const response = await this.apis.user.userPowerLite(
-      this.apiKey
-    );
+    const response = await this.apis.user.userPowerLite(this.apiKey);
     return response.data;
   }
 
@@ -1146,12 +1152,13 @@ export class NeynarV2APIClient {
    * @param {string} q - The query string used for searching users.
    * @param {Object} [options] - Optional parameters for the cast.
    * @param {number} [options.authorFid] - Optional fid of the user to search casts for.
+   * @param {number} [options.viewerFid] Fid of the viewer of the casts, used to show viewer_context
    * @param {string} [options.channelId] - Optional channel to search casts for.
    * @param {string} [options.parentUrl] - Optional parent url to search casts for.
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100)
    * @param {string} [options.cursor] - Optional parameter to specify the pagination cursor for fetching specific subsets of results.
    *
-   * @returns {Promise<CastsResponse>} A promise that resolves to a `CastsResponse` object,
+   * @returns {Promise<CastsSearchResponse>} A promise that resolves to a `CastsResponse` object,
    *   containing the results of the casts search.
    *
    * @example
@@ -1166,20 +1173,22 @@ export class NeynarV2APIClient {
     q: string,
     options?: {
       authorFid?: number;
+      viewerFid?: number;
       parentUrl?: string;
       channelId?: string;
       limit?: number;
       cursor?: string;
     }
-  ): Promise<CastsResponse> {
+  ): Promise<CastsSearchResponse> {
     const response = await this.apis.cast.castSearch(
       this.apiKey,
       q,
       options?.authorFid,
+      options?.viewerFid,
       options?.parentUrl,
       options?.channelId,
       options?.limit,
-      options?.cursor,
+      options?.cursor
     );
     return response.data;
   }
@@ -1288,22 +1297,30 @@ export class NeynarV2APIClient {
    * @param {Object} [options] - Optional parameters for the request.
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 25)
    * @param {string} [options.cursor] - Optional parameter to specify the pagination cursor for fetching specific subsets of results.
-   * 
-   * 
+   *
+   *
    * @returns {Promise<CastComposerActionsListResponse>} A promise that resolves to a `CastComposerActionsListResponse` object,
-   * 
+   *
    * @example
    * // Example: Fetch all composer actions on Warpcast
    * client.fetchComposerActions('top', { limit: 25, cursor: "nextPageCursor" }).then(response => {
    *  console.log('Composer Actions:', response); // Outputs the composer actions
    * });
-   * 
+   *
    */
-  public async fetchComposerActions(list: CastComposerType,options?: {
-limit?: number
-cursor?: string
-  }): Promise<CastComposerActionsListResponse> {
-    const response = await this.apis.cast.composerList(this.apiKey,list,options?.limit,options?.cursor);
+  public async fetchComposerActions(
+    list: CastComposerType,
+    options?: {
+      limit?: number;
+      cursor?: string;
+    }
+  ): Promise<CastComposerActionsListResponse> {
+    const response = await this.apis.cast.composerList(
+      this.apiKey,
+      list,
+      options?.limit,
+      options?.cursor
+    );
     return response.data;
   }
 
@@ -1322,6 +1339,7 @@ cursor?: string
    * @param {string} [options.parentUrl] - Used for fetching content under a specific parent URL. Requires 'feedType' and 'filterType'.
    * @param {string} [options.channelId] Used when filter_type=channel_id can be used to fetch all casts under a channel. Requires feed_type and filter_type
    * @param {string} [options.embedUrl] - Used when filter_type=embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
+   * @param {Array<EmbedType>} [options.embedTypes] Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type
    * @param {boolean} [options.withRecasts] - Whether to include recasts in the response. True by default.
    * @param {number} [options.limit] - Number of results to retrieve, with a default of 25 and a maximum of 100.
    * @param {string} [options.cursor] - Pagination cursor for fetching specific subsets of results.
@@ -1346,6 +1364,7 @@ cursor?: string
       parentUrl?: string;
       channelId?: string;
       embedUrl?: string;
+      embedTypes?: EmbedType[];
       limit?: number;
       cursor?: string;
       withRecasts?: boolean;
@@ -1363,6 +1382,7 @@ cursor?: string
       options?.parentUrl,
       options?.channelId,
       options?.embedUrl,
+      options?.embedTypes,
       options?.withRecasts,
       options?.limit,
       options?.cursor,
@@ -1647,7 +1667,6 @@ cursor?: string
     );
     return response.data;
   }
-
 
   /**
    * Retrieves the most recent replies and recasts for a given user FID. This method is ideal for fetching
@@ -1964,6 +1983,7 @@ cursor?: string
    * @param {number} fid - The FID of the user whose notifications are being fetched.
    * @param {Object} [options] - Optional parameters to tailor the request.
    * @param {string} [options.type] - Type of notifications to fetch.
+   * @param {boolean} [options.priorityMode] When true, only returns notifications from power badge users and users that the viewer follows.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -1982,12 +2002,17 @@ cursor?: string
    */
   public async fetchAllNotifications(
     fid: number,
-    options?: { type?: 'follows' | 'recasts' | 'likes' | 'mentions' | 'replies'; cursor?: string }
+    options?: {
+      type?: "follows" | "recasts" | "likes" | "mentions" | "replies";
+      priorityMode?: boolean;
+      cursor?: string;
+    }
   ): Promise<NotificationsResponse> {
     const response = await this.apis.notifications.notifications(
       this.apiKey,
       fid,
       options?.type,
+      options?.priorityMode,
       options?.cursor
     );
     return response.data;
@@ -2001,6 +2026,7 @@ cursor?: string
    * @param {number} fid - The FID of the user whose channel notifications are being fetched.
    * @param {string} channelIds - channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
    * @param {Object} [options] - Optional parameters for the request.
+   * @param {boolean} [options.priorityMode] When true, only returns notifications from power badge users and users that the viewer follows.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -2022,13 +2048,14 @@ cursor?: string
   public async fetchChannelNotificationsForUser(
     fid: number,
     channelIds: string[],
-    options?: { cursor?: string }
+    options?: { priorityMode?: boolean; cursor?: string }
   ): Promise<NotificationsResponse> {
     const _channelIds = channelIds.join(",");
     const response = await this.apis.notifications.notificationsChannel(
       this.apiKey,
       fid,
       _channelIds,
+      options?.priorityMode,
       options?.cursor
     );
     return response.data;
@@ -2042,6 +2069,7 @@ cursor?: string
    * @param {number} fid - The FID of the user for whom notifications are being fetched.
    * @param {Array<string>} parentUrls - An array of parent URLs to specify the channels.
    * @param {Object} [options] - Optional parameters for customizing the response.
+   * @param {boolean} [options.priorityMode] When true, only returns notifications from power badge users and users that the viewer follows.
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *   omit this parameter for the initial request.
    *
@@ -2059,14 +2087,49 @@ cursor?: string
   public async fetchNotificationsByParentUrlForUser(
     fid: number,
     parentUrls: string[],
-    options?: { cursor?: string }
+    options?: { priorityMode?: boolean; cursor?: string }
   ) {
     const _parentUrls = parentUrls.join(",");
     const response = await this.apis.notifications.notificationsParentUrl(
       this.apiKey,
       fid,
       _parentUrls,
+      options?.priorityMode,
       options?.cursor
+    );
+    return response.data;
+  }
+
+  /**
+   * Allow user to mark notifications as seen.
+   *
+   * @param {string} signerUuid - signerUuid of the user who is marking the notifications as seen.
+   * @param {Object} [options] - Optional parameters for customizing the request.
+   * @param {NotificationType} [options.type] - Type of notifications to mark as seen.
+   *
+   * @returns {Promise<OperationResponse>} A promise that resolves to an `OperationResponse` object
+   *
+   * @example
+   * // Example: Mark notifications as seen for a user
+   * import { NotificationType } from "@neynar/nodejs-sdk";
+   * 
+   * client.markNotificationsAsSeen('19d0c5fd-9b33-4a48-a0e2-bc7b0555baec', { type:  NotificationType.FOLLOWS }).then(response => {
+   *   console.log('response: ', response); // Outputs the status of the operation
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/mark-notifications-seen).
+   */
+  public async markNotificationsAsSeen(
+    signerUuid: string,
+    options?: { type?: NotificationType }
+  ) {
+    const reqBody: MarkNotificationsAsSeenReqBody = {
+      signer_uuid: signerUuid,
+      ...(options?.type && { type: options.type }),
+    };
+    const response = await this.apis.notifications.markNotificationsAsSeen(
+      this.apiKey,
+      reqBody
     );
     return response.data;
   }
@@ -2305,6 +2368,9 @@ cursor?: string
    * channels on the platform using search queries.
    *
    * @param {string} q - The query string used for searching channels, which can be a channel ID or name.
+   * @param {Object} [options] - Optional parameters to tailor the request.
+   * @param {number} [options.limit] Number of results to retrieve
+   * @param {string} [options.cursor] Pagination cursor
    *
    * @returns {Promise<ChannelSearchResponse>} A promise that resolves to a `ChannelSearchResponse` object,
    *   containing a list of channels that match the search criteria.
@@ -2317,8 +2383,16 @@ cursor?: string
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/search-channels).
    */
-  public async searchChannels(q: string): Promise<ChannelSearchResponse> {
-    const response = await this.apis.channel.searchChannels(this.apiKey, q);
+  public async searchChannels(
+    q: string,
+    options?: { limit?: number; cursor?: string }
+  ): Promise<ChannelSearchResponse> {
+    const response = await this.apis.channel.searchChannels(
+      this.apiKey,
+      q,
+      options?.limit,
+      options?.cursor
+    );
     return response.data;
   }
 
@@ -2395,6 +2469,37 @@ cursor?: string
       id,
       options?.cursor,
       options?.limit
+    );
+    return response.data;
+  }
+
+  /**
+   * Retrieves a list of relevant followers for a specific channel. 
+   * This is useful for use-cases like displaying "X, Y, and X more follow this channel".
+   *
+   * @param {string} id - The Channel ID for which followers are being queried.
+   * @param {string} viewerFid - TThe FID of the user viewing this information, used for providing contextual data specific to the viewer.
+   *
+   * @returns {Promise<RelevantFollowersResponse>} A promise that resolves to a `RelevantFollowersResponse` object,
+   *   containing two lists. One list of the top N followers of the channel, hydrated. The second list with all of the channel's follower FIDs.
+   *
+   * @example
+   * // Example: Retrieve relevant followers for a channel
+   * client.fetchRelevantFollowersForAChannel('why', 3).then(response => {
+   *   console.log('Hydrated Relevant Channel Followers:', response.top_relevant_followers_hydrated);
+   *   console.log('All Relevant Channel Follower FIDs:', response.all_relevant_followers_dehydrated);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/relevant-channel-followers).
+   */
+  public async fetchRelevantFollowersForAChannel(
+    id: string,
+    viewerFid: number
+  ): Promise<RelevantFollowersResponse> {
+    const response = await this.apis.channel.relevantChannelFollowers(
+      this.apiKey,
+      id,
+      viewerFid,
     );
     return response.data;
   }
@@ -3336,6 +3441,40 @@ cursor?: string
     return response.data;
   }
 
+  // ------------ Block ------------
+
+  /**
+   * Fetches all fids that a user has blocked or has been blocked by.
+   * @summary Get fids that a user has blocked or has been blocked by.
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {number} [options.blockerFid] - Providing this will return the users that this user has blocked.
+   * @param {number} [options.blockedFid] - Providing this will return the users that have blocked this user.
+   * @param {number} [options.limit=20] - Number of followers to retrieve (default 20, max 100).
+   * @param {string} [options.cursor] Pagination cursor.
+   *
+   * @returns {Promise<BlockListResponse>} A promise that resolves to a `BlockListResponse` object.
+   *
+   * @example
+   * // Example: Retrieve blocked fids for a user
+   * client.fetchBlockList({ blockerFid: 3, limit: 50 }).then(response => {
+   *  console.log('Blocked Fids:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/block-list).
+   */
+  public async fetchBlockList(
+    options?: { blockerFid: number, blockedFid: number, limit?: number; cursor: string }
+  ): Promise<BlockListResponse> {
+    const response = await this.apis.block.blockList(
+      this.apiKey,
+      options?.blockerFid,
+      options?.blockedFid,
+      options?.limit,
+      options?.cursor
+    );
+    return response.data;
+  }
+
   // ------------ Subscribers ------------
 
   /**
@@ -3435,10 +3574,10 @@ cursor?: string
     return response.data;
   }
 
-    // ------------ STP ------------
+  // ------------ STP ------------
 
   /**
-   * 
+   *
    *
    * @param {string[]} addresses - The Ethereum address of the user.
    * @param {string} contractAddress - The contract address associated with the NFT.
@@ -3450,15 +3589,16 @@ cursor?: string
    * @example
    * // Example: Fetch Subscription Check for tabletop on Base.
    * client.fetchSubscriptionCheck(['0xedd3783e8c7c52b80cfbd026a63c207edc9cbee7','0x5a927ac639636e534b678e81768ca19e2c6280b7'], '0x76ad4cb9ac51c09f4d9c2cadcea75c9fa9074e5b', '8453').then(response => {
-   * 
+   *
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscription-check).
    */
   public async fetchSubscriptionCheck(
     addresses: string[],
     contractAddress: string,
-    chainId: string): Promise<{[key: string]: SubscriptionStatus}> {
-      const finishedAddresses = addresses.join(',')
+    chainId: string
+  ): Promise<{ [key: string]: SubscriptionStatus }> {
+    const finishedAddresses = addresses.join(",");
 
     const response = await this.apis.stp.subscriptionCheck(
       this.apiKey,
@@ -3466,7 +3606,6 @@ cursor?: string
       contractAddress,
       chainId
     );
-    return response.data 
+    return response.data;
   }
-
 }

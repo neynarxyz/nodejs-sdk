@@ -15,28 +15,27 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Channel } from './channel';
-// May contain unused imports in some cases
-// @ts-ignore
-import { NextCursor } from './next-cursor';
+import { NotificationType } from './notification-type';
 
 /**
  * 
  * @export
- * @interface ChannelSearchResponse
+ * @interface MarkNotificationsAsSeenReqBody
  */
-export interface ChannelSearchResponse {
+export interface MarkNotificationsAsSeenReqBody {
+    /**
+     * The UUID of the signer. Signer should have atleast one write permission 
+     * @type {string}
+     * @memberof MarkNotificationsAsSeenReqBody
+     */
+    'signer_uuid': string;
     /**
      * 
-     * @type {Array<Channel>}
-     * @memberof ChannelSearchResponse
+     * @type {NotificationType}
+     * @memberof MarkNotificationsAsSeenReqBody
      */
-    'channels': Array<Channel>;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof ChannelSearchResponse
-     */
-    'next': NextCursor;
+    'type'?: NotificationType;
 }
+
+
 

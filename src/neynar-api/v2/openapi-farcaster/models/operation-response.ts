@@ -25,7 +25,7 @@ export interface OperationResponse {
      * @type {boolean}
      * @memberof OperationResponse
      */
-    'success': boolean;
+    'success'?: boolean;
     /**
      * 
      * @type {string}

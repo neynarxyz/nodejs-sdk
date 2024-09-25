@@ -13,23 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { CastsSearchResponseResult } from './casts-search-response-result';
 
 /**
- * The type of filter to apply to the feed.
+ * 
  * @export
- * @enum {string}
+ * @interface CastsSearchResponse
  */
-
-export const FilterType = {
-    Fids: 'fids',
-    ParentUrl: 'parent_url',
-    ChannelId: 'channel_id',
-    EmbedUrl: 'embed_url',
-    EmbedTypes: 'embed_types',
-    GlobalTrending: 'global_trending'
-} as const;
-
-export type FilterType = typeof FilterType[keyof typeof FilterType];
-
-
+export interface CastsSearchResponse {
+    /**
+     * 
+     * @type {CastsSearchResponseResult}
+     * @memberof CastsSearchResponse
+     */
+    'result': CastsSearchResponseResult;
+}
 

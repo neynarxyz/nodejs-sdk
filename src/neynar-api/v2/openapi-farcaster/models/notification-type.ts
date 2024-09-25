@@ -15,21 +15,20 @@
 
 
 /**
- * The type of filter to apply to the feed.
+ * 
  * @export
  * @enum {string}
  */
 
-export const FilterType = {
-    Fids: 'fids',
-    ParentUrl: 'parent_url',
-    ChannelId: 'channel_id',
-    EmbedUrl: 'embed_url',
-    EmbedTypes: 'embed_types',
-    GlobalTrending: 'global_trending'
+export const NotificationType = {
+    Follows: 'follows',
+    Recasts: 'recasts',
+    Likes: 'likes',
+    Mentions: 'mentions',
+    Replies: 'replies'
 } as const;
 
-export type FilterType = typeof FilterType[keyof typeof FilterType];
+export type NotificationType = typeof NotificationType[keyof typeof NotificationType];
 
 
 

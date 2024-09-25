@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Channel } from './channel';
+import { BlockList } from './block-list';
 // May contain unused imports in some cases
 // @ts-ignore
 import { NextCursor } from './next-cursor';
@@ -23,19 +23,19 @@ import { NextCursor } from './next-cursor';
 /**
  * 
  * @export
- * @interface ChannelSearchResponse
+ * @interface BlockListResponse
  */
-export interface ChannelSearchResponse {
+export interface BlockListResponse {
     /**
      * 
-     * @type {Array<Channel>}
-     * @memberof ChannelSearchResponse
+     * @type {Array<BlockList>}
+     * @memberof BlockListResponse
      */
-    'channels': Array<Channel>;
+    'blocks': Array<BlockList>;
     /**
      * 
      * @type {NextCursor}
-     * @memberof ChannelSearchResponse
+     * @memberof BlockListResponse
      */
     'next': NextCursor;
 }
