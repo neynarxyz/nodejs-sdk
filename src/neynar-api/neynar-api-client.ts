@@ -101,16 +101,10 @@ import { AxiosInstance } from "axios";
 import { silentLogger, Logger } from "./common/logger";
 import { NeynarV1APIClient } from "./v1";
 import { NeynarV2APIClient } from "./v2";
-import { encodeAbiParameters } from "viem";
-import { viemPublicClient } from "./common/viemClient";
-import { SignedKeyRequestMetadataABI } from "./abi/signed-key-request-metadata";
-import { keyGatewayAbi } from "./abi/key-gateway";
 import {
   BulkCastsSortType,
   BulkUserAddressTypes,
   SIGNED_KEY_REQUEST_TYPE,
-  SIGNED_KEY_REQUEST_TYPE_FOR_ADD_FOR,
-  SIGNED_KEY_REQUEST_VALIDATOR,
   SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN,
   TimeWindow,
   TrendingFeedTimeWindow,
