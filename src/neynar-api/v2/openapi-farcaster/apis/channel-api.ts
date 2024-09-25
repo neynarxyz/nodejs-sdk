@@ -22,6 +22,8 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 // @ts-ignore
+import { ChannelFollowReqBody } from '../models';
+// @ts-ignore
 import { ChannelListResponse } from '../models';
 // @ts-ignore
 import { ChannelResponse } from '../models';
@@ -33,6 +35,10 @@ import { ChannelSearchResponse } from '../models';
 import { ChannelType } from '../models';
 // @ts-ignore
 import { ErrorRes } from '../models';
+// @ts-ignore
+import { OperationResponse } from '../models';
+// @ts-ignore
+import { RelevantFollowersResponse } from '../models';
 // @ts-ignore
 import { TrendingChannelResponse } from '../models';
 // @ts-ignore
@@ -338,6 +344,49 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * Follow a channel
+         * @summary Follow a channel
+         * @param {string} apiKey API key required for authentication.
+         * @param {ChannelFollowReqBody} channelFollowReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        followChannel: async (apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('followChannel', 'apiKey', apiKey)
+            // verify required parameter 'channelFollowReqBody' is not null or undefined
+            assertParamExists('followChannel', 'channelFollowReqBody', channelFollowReqBody)
+            const localVarPath = `/farcaster/channel/follow`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(channelFollowReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Returns a list of all channels with their details
          * @summary Retrieve all channels with their details
          * @param {string} apiKey API key required for authentication.
@@ -367,6 +416,57 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
 
             if (cursor !== undefined) {
                 localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
+         * @summary Retrieve relevant channel followers for a given user
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} id Channel id being queried
+         * @param {number} viewerFid Viewer who\&#39;s looking at the channel
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        relevantChannelFollowers: async (apiKey: string, id: string, viewerFid: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('relevantChannelFollowers', 'apiKey', apiKey)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('relevantChannelFollowers', 'id', id)
+            // verify required parameter 'viewerFid' is not null or undefined
+            assertParamExists('relevantChannelFollowers', 'viewerFid', viewerFid)
+            const localVarPath = `/farcaster/channel/followers/relevant`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
             if (apiKey != null) {
@@ -484,6 +584,49 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Unfollow a channel
+         * @summary Unfollow a channel
+         * @param {string} apiKey API key required for authentication.
+         * @param {ChannelFollowReqBody} channelFollowReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unfollowChannel: async (apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('unfollowChannel', 'apiKey', apiKey)
+            // verify required parameter 'channelFollowReqBody' is not null or undefined
+            assertParamExists('unfollowChannel', 'channelFollowReqBody', channelFollowReqBody)
+            const localVarPath = `/farcaster/channel/follow`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(channelFollowReqBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -629,6 +772,18 @@ export const ChannelApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Follow a channel
+         * @summary Follow a channel
+         * @param {string} apiKey API key required for authentication.
+         * @param {ChannelFollowReqBody} channelFollowReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async followChannel(apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.followChannel(apiKey, channelFollowReqBody, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Returns a list of all channels with their details
          * @summary Retrieve all channels with their details
          * @param {string} apiKey API key required for authentication.
@@ -639,6 +794,19 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          */
         async listAllChannels(apiKey: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listAllChannels(apiKey, limit, cursor, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
+         * @summary Retrieve relevant channel followers for a given user
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} id Channel id being queried
+         * @param {number} viewerFid Viewer who\&#39;s looking at the channel
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async relevantChannelFollowers(apiKey: string, id: string, viewerFid: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RelevantFollowersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.relevantChannelFollowers(apiKey, id, viewerFid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -667,6 +835,18 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          */
         async trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TrendingChannelResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.trendingChannels(apiKey, timeWindow, limit, cursor, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Unfollow a channel
+         * @summary Unfollow a channel
+         * @param {string} apiKey API key required for authentication.
+         * @param {ChannelFollowReqBody} channelFollowReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async unfollowChannel(apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.unfollowChannel(apiKey, channelFollowReqBody, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -763,6 +943,17 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.channelUsers(apiKey, id, hasRootCastAuthors, hasCastLikers, hasCastRecasters, hasReplyAuthors, cursor, limit, options).then((request) => request(axios, basePath));
         },
         /**
+         * Follow a channel
+         * @summary Follow a channel
+         * @param {string} apiKey API key required for authentication.
+         * @param {ChannelFollowReqBody} channelFollowReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        followChannel(apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options?: any): AxiosPromise<OperationResponse> {
+            return localVarFp.followChannel(apiKey, channelFollowReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Returns a list of all channels with their details
          * @summary Retrieve all channels with their details
          * @param {string} apiKey API key required for authentication.
@@ -773,6 +964,18 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          */
         listAllChannels(apiKey: string, limit?: number, cursor?: string, options?: any): AxiosPromise<ChannelListResponse> {
             return localVarFp.listAllChannels(apiKey, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
+         * @summary Retrieve relevant channel followers for a given user
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} id Channel id being queried
+         * @param {number} viewerFid Viewer who\&#39;s looking at the channel
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        relevantChannelFollowers(apiKey: string, id: string, viewerFid: number, options?: any): AxiosPromise<RelevantFollowersResponse> {
+            return localVarFp.relevantChannelFollowers(apiKey, id, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of channels based on id or name
@@ -799,6 +1002,17 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          */
         trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', limit?: number, cursor?: string, options?: any): AxiosPromise<TrendingChannelResponse> {
             return localVarFp.trendingChannels(apiKey, timeWindow, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Unfollow a channel
+         * @summary Unfollow a channel
+         * @param {string} apiKey API key required for authentication.
+         * @param {ChannelFollowReqBody} channelFollowReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unfollowChannel(apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options?: any): AxiosPromise<OperationResponse> {
+            return localVarFp.unfollowChannel(apiKey, channelFollowReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of all channels with their details that a fid follows.
@@ -903,6 +1117,19 @@ export class ChannelApi extends BaseAPI {
     }
 
     /**
+     * Follow a channel
+     * @summary Follow a channel
+     * @param {string} apiKey API key required for authentication.
+     * @param {ChannelFollowReqBody} channelFollowReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public followChannel(apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options?: AxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).followChannel(apiKey, channelFollowReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Returns a list of all channels with their details
      * @summary Retrieve all channels with their details
      * @param {string} apiKey API key required for authentication.
@@ -914,6 +1141,20 @@ export class ChannelApi extends BaseAPI {
      */
     public listAllChannels(apiKey: string, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
         return ChannelApiFp(this.configuration).listAllChannels(apiKey, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
+     * @summary Retrieve relevant channel followers for a given user
+     * @param {string} apiKey API key required for authentication.
+     * @param {string} id Channel id being queried
+     * @param {number} viewerFid Viewer who\&#39;s looking at the channel
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public relevantChannelFollowers(apiKey: string, id: string, viewerFid: number, options?: AxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).relevantChannelFollowers(apiKey, id, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -944,6 +1185,19 @@ export class ChannelApi extends BaseAPI {
      */
     public trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', limit?: number, cursor?: string, options?: AxiosRequestConfig) {
         return ChannelApiFp(this.configuration).trendingChannels(apiKey, timeWindow, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Unfollow a channel
+     * @summary Unfollow a channel
+     * @param {string} apiKey API key required for authentication.
+     * @param {ChannelFollowReqBody} channelFollowReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public unfollowChannel(apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options?: AxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).unfollowChannel(apiKey, channelFollowReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

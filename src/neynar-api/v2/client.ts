@@ -2473,6 +2473,37 @@ export class NeynarV2APIClient {
     return response.data;
   }
 
+  /**
+   * Retrieves a list of relevant followers for a specific channel. 
+   * This is useful for use-cases like displaying "X, Y, and X more follow this channel".
+   *
+   * @param {string} id - The Channel ID for which followers are being queried.
+   * @param {string} viewerFid - TThe FID of the user viewing this information, used for providing contextual data specific to the viewer.
+   *
+   * @returns {Promise<RelevantFollowersResponse>} A promise that resolves to a `RelevantFollowersResponse` object,
+   *   containing two lists. One list of the top N followers of the channel, hydrated. The second list with all of the channel's follower FIDs.
+   *
+   * @example
+   * // Example: Retrieve relevant followers for a channel
+   * client.fetchRelevantFollowersForAChannel('why', 3).then(response => {
+   *   console.log('Hydrated Relevant Channel Followers:', response.top_relevant_followers_hydrated);
+   *   console.log('All Relevant Channel Follower FIDs:', response.all_relevant_followers_dehydrated);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/relevant-channel-followers).
+   */
+  public async fetchRelevantFollowersForAChannel(
+    id: string,
+    viewerFid: number
+  ): Promise<RelevantFollowersResponse> {
+    const response = await this.apis.channel.relevantChannelFollowers(
+      this.apiKey,
+      id,
+      viewerFid,
+    );
+    return response.data;
+  }
+
   // ------------ Follows ------------
 
   /**
