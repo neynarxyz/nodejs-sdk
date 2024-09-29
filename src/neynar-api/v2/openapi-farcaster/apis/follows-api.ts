@@ -164,7 +164,7 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Returns a list of relevant followers for a specific FID.
+         * Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
          * @summary Retrieve relevant followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} targetFid User who\&#39;s profile you are looking at
@@ -257,7 +257,7 @@ export const FollowsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Returns a list of relevant followers for a specific FID.
+         * Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
          * @summary Retrieve relevant followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} targetFid User who\&#39;s profile you are looking at
@@ -310,7 +310,7 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.followingV2(apiKey, fid, viewerFid, sortType, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns a list of relevant followers for a specific FID.
+         * Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
          * @summary Retrieve relevant followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} targetFid User who\&#39;s profile you are looking at
@@ -366,7 +366,7 @@ export class FollowsApi extends BaseAPI {
     }
 
     /**
-     * Returns a list of relevant followers for a specific FID.
+     * Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
      * @summary Retrieve relevant followers for a given user
      * @param {string} apiKey API key required for authentication.
      * @param {number} targetFid User who\&#39;s profile you are looking at

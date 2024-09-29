@@ -21,13 +21,13 @@
  */
 export interface MuteReqBody {
     /**
-     * User identifier (unsigned integer)
+     * The unique identifier of a farcaster user (unsigned integer)
      * @type {number}
      * @memberof MuteReqBody
      */
     'fid': number;
     /**
-     * User identifier (unsigned integer)
+     * The unique identifier of a farcaster user (unsigned integer)
      * @type {number}
      * @memberof MuteReqBody
      */

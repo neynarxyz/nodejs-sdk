@@ -42,7 +42,7 @@ export interface ReactionReqBody {
      */
     'target': string;
     /**
-     * User identifier (unsigned integer)
+     * The unique identifier of a farcaster user (unsigned integer)
      * @type {number}
      * @memberof ReactionReqBody
      */

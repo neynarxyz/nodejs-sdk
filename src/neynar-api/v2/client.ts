@@ -93,6 +93,9 @@ import {
   MarkNotificationsAsSeenReqBody,
   NotificationType,
   EmbedType,
+  ChannelMemberRole,
+  InviteChannelMemberRequest,
+  RespondChannelInviteRequest,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -1539,24 +1542,35 @@ export class NeynarV2APIClient {
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 50).
    * @param {string} [options.cursor] - Pagination cursor for the next set of results. Omit this parameter for the initial request.
    * @param {number} [options.viewerFid] - The FID of the user viewing this information.
-   * @param {ForYouProvider} [options.provider] - The provider of the For You feed. Defaut is karma3.
+   * @param {ForYouProvider} [options.provider] - The provider of the For You feed. Defaut is openrank.
    *     (karma3 is renamed to openrank, karma 3 will be deprecated in the future release)
+   * @param {string} [options.providerMetadata] - providerMetadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use.
    *
    * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
    *  containing the requested feed data.
    *
    * @example
    * // Example: Retrieve a user's feed based on who they are following
+   *
+   * const providerMetadata = encodeURIComponent(JSON.stringify({
+   *  "filters": {
+   *    "channels": [
+   *      "https://farcaster.group/founders"
+   *    ],
+   *  }
+   * }))
+   *
    * client.fetchFeedForYou(3, {
-   *  limit: 30,
+   *  limit: 20,
    *  viewerFid: 10,
-   *  provider: 'karma3'
+   *  provider: 'mbd',
+   *  providerMetadata: providerMetadata
    *  // cursor: "eyJvZmZzZXQiOjI1fQ==" // Omit this parameter for the initial request.
    * }).then(response => {
    *  console.log('For You Feed:', response); // Outputs the user's For You feed
    * });
    *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-following).
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/feed-for-you).
    */
   public async fetchFeedForYou(
     fid: number,
@@ -1565,6 +1579,7 @@ export class NeynarV2APIClient {
       cursor?: string;
       viewerFid?: number;
       provider?: ForYouProvider;
+      providerMetadata?: string;
     }
   ): Promise<FeedResponse> {
     const response = await this.apis.feed.feedForYou(
@@ -1573,7 +1588,8 @@ export class NeynarV2APIClient {
       options?.viewerFid,
       options?.provider,
       options?.limit,
-      options?.cursor
+      options?.cursor,
+      options?.providerMetadata
     );
     return response.data;
   }
@@ -1619,7 +1635,7 @@ export class NeynarV2APIClient {
    *
    * @param {number} fid FID of user whose recent casts you want to fetch
    * @param {number} [viewerFid] The FID of the user viewing this information, used for providing contextual data specific to the viewer
-   * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+   * @param {number} [limit] Number of results to retrieve (default 25, max 50)
    * @param {string} [cursor] Pagination cursor for the next set of results, Omit this parameter for the initial request
    * @param {boolean} [includeReplies] Include reply casts by the author in the response, true by default
    * @param {string} [parentUrl] Parent URL to filter the feed; mutually exclusive with channelId
@@ -1757,6 +1773,7 @@ export class NeynarV2APIClient {
    *  omit this parameter for the initial request.
    * @param {TrendingFeedTimeWindow} [options.timeWindow] - Time window for the trending feed.
    * @param {FeedTrendingProvider} [options.provider] - The provider of the Trending feed. Default is 'neynar'.
+   * @param {string} [options.providerMetadata] - providerMetadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/trending-feed-w-external-providers) on how to use.
    *
    * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
    *   containing the most popular casts on the platform.
@@ -1765,7 +1782,15 @@ export class NeynarV2APIClient {
    * // Example: Retrieve a feed of the most popular casts
    * import { TrendingFeedTimeWindow } from "@neynar/nodejs-sdk";
    *
-   * client.fetchTrendingFeed({ limit: 10, timeWindow: TrendingFeedTimeWindow.SIX_HOUR, channelId: "farcaster", viewerFid: 3 }).then(response => {
+   * const providerMetadata = encodeURIComponent(JSON.stringify({
+   * "filters": {
+   *  "channels": [
+   *   "https://farcaster.group/founders"
+   * ],
+   * }
+   * }))
+   *
+   * client.fetchTrendingFeed({ limit: 10, timeWindow: TrendingFeedTimeWindow.SIX_HOUR, channelId: "farcaster", viewerFid: 3, provider: 'mbd', providerMetadata: providerMetadata }).then(response => {
    *   console.log('Popular Feed:', response);
    * });
    *
@@ -1778,6 +1803,7 @@ export class NeynarV2APIClient {
     timeWindow?: TrendingFeedTimeWindow;
     channelId?: string;
     provider?: FeedTrendingProvider;
+    providerMetadata?: string;
   }) {
     const response = await this.apis.feed.feedTrending(
       this.apiKey,
@@ -1786,7 +1812,8 @@ export class NeynarV2APIClient {
       options?.viewerFid,
       options?.timeWindow,
       options?.channelId,
-      options?.provider
+      options?.provider,
+      options?.providerMetadata
     );
     return response.data;
   }
@@ -2112,7 +2139,7 @@ export class NeynarV2APIClient {
    * @example
    * // Example: Mark notifications as seen for a user
    * import { NotificationType } from "@neynar/nodejs-sdk";
-   * 
+   *
    * client.markNotificationsAsSeen('19d0c5fd-9b33-4a48-a0e2-bc7b0555baec', { type:  NotificationType.FOLLOWS }).then(response => {
    *   console.log('response: ', response); // Outputs the status of the operation
    * });
@@ -2474,7 +2501,7 @@ export class NeynarV2APIClient {
   }
 
   /**
-   * Retrieves a list of relevant followers for a specific channel. 
+   * Retrieves a list of relevant followers for a specific channel.
    * This is useful for use-cases like displaying "X, Y, and X more follow this channel".
    *
    * @param {string} id - The Channel ID for which followers are being queried.
@@ -2499,7 +2526,148 @@ export class NeynarV2APIClient {
     const response = await this.apis.channel.relevantChannelFollowers(
       this.apiKey,
       id,
-      viewerFid,
+      viewerFid
+    );
+    return response.data;
+  }
+
+  /**
+   * Sends an invitation to a specified user to join a channel.
+   *
+   * @param {string} signerUuid - UUID of the signer
+   * @param {string} channelId - The unique identifier of the Farcaster channel.
+   * @param {number} fid - The unique identifier of the user being invited (unsigned integer).
+   * @param {ChannelMemberRole} role - The role assigned to the invited user within the channel.
+   *
+   * @returns {Promise<OperationResponse>} A promise that resolves to an `OperationResponse` object,
+   *   indicating the success or failure of the invite operation.
+   *
+   * @example
+   * // Example: Invite a user to a channel
+   *
+   * const signnerUuid = '19d0c5fd-9b33-4a48-a0e2-bc7b0555baec';
+   * const channelId = 'neynar';
+   * const fid = 3;
+   * const role = 'member'
+   *
+   *
+   * client.inviteChannelMember(signnerUuid, channelId, fid, role).then(response => {
+   *   console.log('Invite successful:', response);
+   * }).catch(error => {
+   *   console.error('Invite failed:', error);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/invite-channel-member).
+   */
+  public async inviteChannelMember(
+    signerUuid: string,
+    channelId: string,
+    fid: number,
+    role: ChannelMemberRole
+  ): Promise<OperationResponse> {
+    const inviteChannelMemberRequest: InviteChannelMemberRequest = {
+      signer_uuid: signerUuid,
+      channel_id: channelId,
+      fid: fid,
+      role: role,
+    };
+
+    const response = await this.apis.channel.inviteChannelMember(
+      this.apiKey,
+      inviteChannelMemberRequest
+    );
+    return response.data;
+  }
+
+  /**
+   * Remove a user from a channel or a user\'s invite to a channel role
+   *
+   * @param {string} signerUuid - UUID of the signer initiating the removal.
+   * @param {string} channelId - The unique identifier of the Farcaster channel.
+   * @param {number} fid - The unique identifier of the user being removed (unsigned integer).
+   * @param {ChannelMemberRole} role - The role that the user was assigned within the channel (optional, depending on API usage).
+   *
+   * @returns {Promise<OperationResponse>} A promise that resolves to an `OperationResponse` object,
+   *   indicating the success or failure of the removal operation.
+   *
+   * @example
+   *
+   * const signerUuid = '19d0c5fd-9b33-4a48-a0e2-bc7b0555baec';
+   * const channelId = 'neynar';
+   * const fid = 3;
+   * const role = 'member';
+   *
+   * client.removeChannelMember(signerUuid, channelId, fid, role).then(response => {
+   *   console.log('Removal successful:', response);
+   * }).catch(error => {
+   *   console.error('Removal failed:', error);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/remove-channel-member).
+   */
+  public async removeChannelMember(
+    signerUuid: string,
+    channelId: string,
+    fid: number,
+    role: ChannelMemberRole
+  ): Promise<OperationResponse> {
+    const inviteChannelMemberRequest: InviteChannelMemberRequest = {
+      signer_uuid: signerUuid,
+      channel_id: channelId,
+      fid: fid,
+      role: role,
+    };
+
+    const response = await this.apis.channel.removeChannelMember(
+      this.apiKey,
+      inviteChannelMemberRequest
+    );
+    return response.data;
+  }
+
+  /**
+   * Accepts or rejects a channel invite based on the provided parameters.
+   *
+   * @param {string} signerUuid - UUID of the signer responding to the invite.
+   * @param {string} channelId - The unique identifier of the Farcaster channel.
+   * @param {ChannelMemberRole} role - The role assigned to the user if the invite is accepted.
+   * @param {boolean} accept - Indicates whether the invite is accepted (true) or rejected (false).
+   *
+   * @returns {Promise<OperationResponse>} A promise that resolves to an `OperationResponse` object,
+   *   indicating the success or failure of the operation.
+   *
+   * @example
+   * // Example: Accept a channel invite
+   *
+   * const signerUuid = '19d0c5fd-9b33-4a48-a0e2-bc7b0555baec';
+   * const channelId = 'neynar';
+   * const role = 'member';
+   * const accept = true;
+   *
+   * client.respondChannelInvite(signerUuid, channelId, role, accept).then(response => {
+   *   console.log('Response successful:', response);
+   * }).catch(error => {
+   *   console.error('Response failed:', error);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/respond-channel-invite).
+   */
+  public async respondChannelInvite(
+    signerUuid: string,
+    channelId: string,
+    role: ChannelMemberRole,
+    accept: boolean
+  ): Promise<OperationResponse> {
+    const respondChannelInviteRequest: RespondChannelInviteRequest = {
+      signer_uuid: signerUuid,
+      channel_id: channelId,
+      role: role,
+      accept: accept,
+    };
+
+    const response = await this.apis.channel.respondChannelInvite(
+      this.apiKey,
+      respondChannelInviteRequest
     );
     return response.data;
   }
@@ -2507,7 +2675,7 @@ export class NeynarV2APIClient {
   // ------------ Follows ------------
 
   /**
-   * Retrieves a list of relevant followers for a specific FID.
+   * Retrieves a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
    *
    * @param {number} targetFid - The FID of the user whose relevant followers are being fetched.
    * @param {number} viewerFid - The FID of the viewer who is looking at the target user's profile.
@@ -3462,9 +3630,12 @@ export class NeynarV2APIClient {
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/block-list).
    */
-  public async fetchBlockList(
-    options?: { blockerFid: number, blockedFid: number, limit?: number; cursor: string }
-  ): Promise<BlockListResponse> {
+  public async fetchBlockList(options?: {
+    blockerFid: number;
+    blockedFid: number;
+    limit?: number;
+    cursor: string;
+  }): Promise<BlockListResponse> {
     const response = await this.apis.block.blockList(
       this.apiKey,
       options?.blockerFid,

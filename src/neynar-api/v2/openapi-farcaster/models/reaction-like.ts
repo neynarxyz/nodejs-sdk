@@ -21,7 +21,7 @@
  */
 export interface ReactionLike {
     /**
-     * User identifier (unsigned integer)
+     * The unique identifier of a farcaster user (unsigned integer)
      * @type {number}
      * @memberof ReactionLike
      */

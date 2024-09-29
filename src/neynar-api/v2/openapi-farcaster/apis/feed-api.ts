@@ -28,9 +28,9 @@ import { EmbedType } from '../models';
 // @ts-ignore
 import { ErrorRes } from '../models';
 // @ts-ignore
-import { FeedResponse } from '../models';
+import { FeedForYou400Response } from '../models';
 // @ts-ignore
-import { FeedTrending400Response } from '../models';
+import { FeedResponse } from '../models';
 // @ts-ignore
 import { FeedTrendingProvider } from '../models';
 // @ts-ignore
@@ -291,10 +291,11 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {ForYouProvider} [provider] 
          * @param {number} [limit] Number of results to retrieve (default 25, max 50)
          * @param {string} [cursor] Pagination cursor.
+         * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedForYou: async (apiKey: string, fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feedForYou: async (apiKey: string, fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, providerMetadata?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feedForYou', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -329,6 +330,10 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (cursor !== undefined) {
                 localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (providerMetadata !== undefined) {
+                localVarQueryParameter['provider_metadata'] = providerMetadata;
             }
 
             if (apiKey != null) {
@@ -477,10 +482,11 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
          * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
          * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed.
+         * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedTrending: async (apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, provider?: FeedTrendingProvider, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feedTrending: async (apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, provider?: FeedTrendingProvider, providerMetadata?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feedTrending', 'apiKey', apiKey)
             const localVarPath = `/farcaster/feed/trending`;
@@ -519,6 +525,10 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['provider'] = provider;
             }
 
+            if (providerMetadata !== undefined) {
+                localVarQueryParameter['provider_metadata'] = providerMetadata;
+            }
+
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
             }
@@ -540,7 +550,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of user whose recent casts you want to fetch
          * @param {number} [viewerFid] FID of the user viewing the feed
-         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {number} [limit] Number of results to retrieve
          * @param {string} [cursor] Pagination cursor
          * @param {boolean} [includeReplies] Include reply casts by the author in the response, true by default
          * @param {string} [parentUrl] Parent URL to filter the feed; mutually exclusive with channel_id
@@ -797,11 +807,12 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {ForYouProvider} [provider] 
          * @param {number} [limit] Number of results to retrieve (default 25, max 50)
          * @param {string} [cursor] Pagination cursor.
+         * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feedForYou(apiKey: string, fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.feedForYou(apiKey, fid, viewerFid, provider, limit, cursor, options);
+        async feedForYou(apiKey: string, fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, providerMetadata?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedForYou(apiKey, fid, viewerFid, provider, limit, cursor, providerMetadata, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -845,11 +856,12 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
          * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
          * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed.
+         * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, provider?: FeedTrendingProvider, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, provider, options);
+        async feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, provider?: FeedTrendingProvider, providerMetadata?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, provider, providerMetadata, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -858,7 +870,7 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of user whose recent casts you want to fetch
          * @param {number} [viewerFid] FID of the user viewing the feed
-         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {number} [limit] Number of results to retrieve
          * @param {string} [cursor] Pagination cursor
          * @param {boolean} [includeReplies] Include reply casts by the author in the response, true by default
          * @param {string} [parentUrl] Parent URL to filter the feed; mutually exclusive with channel_id
@@ -972,11 +984,12 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {ForYouProvider} [provider] 
          * @param {number} [limit] Number of results to retrieve (default 25, max 50)
          * @param {string} [cursor] Pagination cursor.
+         * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedForYou(apiKey: string, fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
-            return localVarFp.feedForYou(apiKey, fid, viewerFid, provider, limit, cursor, options).then((request) => request(axios, basePath));
+        feedForYou(apiKey: string, fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, providerMetadata?: string, options?: any): AxiosPromise<FeedResponse> {
+            return localVarFp.feedForYou(apiKey, fid, viewerFid, provider, limit, cursor, providerMetadata, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve feed of casts with Frames, reverse chronological order
@@ -1017,11 +1030,12 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
          * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
          * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed.
+         * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, provider?: FeedTrendingProvider, options?: any): AxiosPromise<FeedResponse> {
-            return localVarFp.feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, provider, options).then((request) => request(axios, basePath));
+        feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, provider?: FeedTrendingProvider, providerMetadata?: string, options?: any): AxiosPromise<FeedResponse> {
+            return localVarFp.feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, provider, providerMetadata, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel
@@ -1029,7 +1043,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of user whose recent casts you want to fetch
          * @param {number} [viewerFid] FID of the user viewing the feed
-         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {number} [limit] Number of results to retrieve
          * @param {string} [cursor] Pagination cursor
          * @param {boolean} [includeReplies] Include reply casts by the author in the response, true by default
          * @param {string} [parentUrl] Parent URL to filter the feed; mutually exclusive with channel_id
@@ -1146,12 +1160,13 @@ export class FeedApi extends BaseAPI {
      * @param {ForYouProvider} [provider] 
      * @param {number} [limit] Number of results to retrieve (default 25, max 50)
      * @param {string} [cursor] Pagination cursor.
+     * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feedForYou(apiKey: string, fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
-        return FeedApiFp(this.configuration).feedForYou(apiKey, fid, viewerFid, provider, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public feedForYou(apiKey: string, fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, providerMetadata?: string, options?: AxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedForYou(apiKey, fid, viewerFid, provider, limit, cursor, providerMetadata, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1197,12 +1212,13 @@ export class FeedApi extends BaseAPI {
      * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
      * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
      * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed.
+     * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, provider?: FeedTrendingProvider, options?: AxiosRequestConfig) {
-        return FeedApiFp(this.configuration).feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, provider, options).then((request) => request(this.axios, this.basePath));
+    public feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, provider?: FeedTrendingProvider, providerMetadata?: string, options?: AxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, provider, providerMetadata, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1211,7 +1227,7 @@ export class FeedApi extends BaseAPI {
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid FID of user whose recent casts you want to fetch
      * @param {number} [viewerFid] FID of the user viewing the feed
-     * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+     * @param {number} [limit] Number of results to retrieve
      * @param {string} [cursor] Pagination cursor
      * @param {boolean} [includeReplies] Include reply casts by the author in the response, true by default
      * @param {string} [parentUrl] Parent URL to filter the feed; mutually exclusive with channel_id
