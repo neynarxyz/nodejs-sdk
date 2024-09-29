@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { EmbeddedCast } from './embedded-cast';
+import { PostCastReqBodyEmbeds } from './post-cast-req-body-embeds';
 
 /**
  * 
@@ -37,10 +37,10 @@ export interface PostCastReqBody {
     'text'?: string;
     /**
      * 
-     * @type {Array<EmbeddedCast>}
+     * @type {Array<PostCastReqBodyEmbeds>}
      * @memberof PostCastReqBody
      */
-    'embeds'?: Array<EmbeddedCast>;
+    'embeds'?: Array<PostCastReqBodyEmbeds>;
     /**
      * parent_url of the channel the cast is in, or hash of the cast
      * @type {string}
@@ -60,7 +60,7 @@ export interface PostCastReqBody {
      */
     'idem'?: string;
     /**
-     * User identifier (unsigned integer)
+     * The unique identifier of a farcaster user (unsigned integer)
      * @type {number}
      * @memberof PostCastReqBody
      */

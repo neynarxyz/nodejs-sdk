@@ -45,7 +45,7 @@ export interface Signer {
      */
     'signer_approval_url'?: string;
     /**
-     * User identifier (unsigned integer)
+     * The unique identifier of a farcaster user (unsigned integer)
      * @type {number}
      * @memberof Signer
      */

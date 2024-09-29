@@ -15,18 +15,22 @@
 
 
 /**
- * The provider of the For You feed. 
+ * 
  * @export
- * @enum {string}
+ * @interface ChannelFollowReqBody
  */
-
-export const ForYouProvider = {
-    Openrank: 'openrank',
-    Karma3: 'karma3',
-    Mbd: 'mbd'
-} as const;
-
-export type ForYouProvider = typeof ForYouProvider[keyof typeof ForYouProvider];
-
-
+export interface ChannelFollowReqBody {
+    /**
+     * UUID of the signer
+     * @type {string}
+     * @memberof ChannelFollowReqBody
+     */
+    'signer_uuid': string;
+    /**
+     * The unique identifier of a farcaster channel
+     * @type {string}
+     * @memberof ChannelFollowReqBody
+     */
+    'channel_id': string;
+}
 

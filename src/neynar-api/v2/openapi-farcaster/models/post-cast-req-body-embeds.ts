@@ -15,18 +15,12 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ErrorRes } from './error-res';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ZodError } from './zod-error';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ZodErrorErrorsInner } from './zod-error-errors-inner';
+import { PostCastReqBodyEmbedsCastIdProperties } from './post-cast-req-body-embeds-cast-id-properties';
 
 /**
- * @type FeedTrending400Response
+ * @type PostCastReqBodyEmbeds
  * @export
  */
-export type FeedTrending400Response = ErrorRes | ZodError;
+export type PostCastReqBodyEmbeds = any;
 
 

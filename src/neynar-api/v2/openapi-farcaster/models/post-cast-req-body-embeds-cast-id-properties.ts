@@ -15,18 +15,22 @@
 
 
 /**
- * The provider of the For You feed. 
+ * 
  * @export
- * @enum {string}
+ * @interface PostCastReqBodyEmbedsCastIdProperties
  */
-
-export const ForYouProvider = {
-    Openrank: 'openrank',
-    Karma3: 'karma3',
-    Mbd: 'mbd'
-} as const;
-
-export type ForYouProvider = typeof ForYouProvider[keyof typeof ForYouProvider];
-
-
+export interface PostCastReqBodyEmbedsCastIdProperties {
+    /**
+     * 
+     * @type {string}
+     * @memberof PostCastReqBodyEmbedsCastIdProperties
+     */
+    'hash': string;
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof PostCastReqBodyEmbedsCastIdProperties
+     */
+    'fid': number;
+}
 

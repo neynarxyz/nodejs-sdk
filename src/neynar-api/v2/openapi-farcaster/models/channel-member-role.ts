@@ -15,18 +15,17 @@
 
 
 /**
- * The provider of the For You feed. 
+ * The role of a channel member
  * @export
  * @enum {string}
  */
 
-export const ForYouProvider = {
-    Openrank: 'openrank',
-    Karma3: 'karma3',
-    Mbd: 'mbd'
+export const ChannelMemberRole = {
+    Member: 'member',
+    Moderator: 'moderator'
 } as const;
 
-export type ForYouProvider = typeof ForYouProvider[keyof typeof ForYouProvider];
+export type ChannelMemberRole = typeof ChannelMemberRole[keyof typeof ChannelMemberRole];
 
 
 

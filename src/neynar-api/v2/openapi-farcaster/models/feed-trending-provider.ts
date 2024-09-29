@@ -22,7 +22,8 @@
 
 export const FeedTrendingProvider = {
     Neynar: 'neynar',
-    Openrank: 'openrank'
+    Openrank: 'openrank',
+    Mbd: 'mbd'
 } as const;
 
 export type FeedTrendingProvider = typeof FeedTrendingProvider[keyof typeof FeedTrendingProvider];

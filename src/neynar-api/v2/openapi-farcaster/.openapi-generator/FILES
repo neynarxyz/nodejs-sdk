@@ -56,7 +56,9 @@ models/casts-response.ts
 models/casts-search-response-result.ts
 models/casts-search-response.ts
 models/channel-activity.ts
+models/channel-follow-req-body.ts
 models/channel-list-response.ts
+models/channel-member-role.ts
 models/channel-or-dehydrated-channel.ts
 models/channel-response-bulk.ts
 models/channel-response.ts
@@ -82,9 +84,9 @@ models/embed-url-metadata.ts
 models/embed-url.ts
 models/embedded-cast.ts
 models/error-res.ts
+models/feed-for-you400-response.ts
 models/feed-response.ts
 models/feed-trending-provider.ts
-models/feed-trending400-response.ts
 models/feed-type.ts
 models/filter-type.ts
 models/fname-availability-response.ts
@@ -121,6 +123,7 @@ models/hydrated-follower.ts
 models/image-object.ts
 models/index.ts
 models/individual-hash-obj.ts
+models/invite-channel-member-request.ts
 models/mark-notifications-as-seen-req-body.ts
 models/music-song-object.ts
 models/mute-list-response.ts
@@ -145,6 +148,8 @@ models/notification.ts
 models/notifications-response.ts
 models/og-object.ts
 models/operation-response.ts
+models/post-cast-req-body-embeds-cast-id-properties.ts
+models/post-cast-req-body-embeds.ts
 models/post-cast-req-body.ts
 models/post-cast-response-cast-author.ts
 models/post-cast-response-cast.ts
@@ -167,6 +172,7 @@ models/register-user-req-body.ts
 models/register-user-response.ts
 models/relevant-followers-response.ts
 models/remove-verification-req-body.ts
+models/respond-channel-invite-request.ts
 models/searched-user.ts
 models/signed-key-request-sponsor.ts
 models/signer.ts

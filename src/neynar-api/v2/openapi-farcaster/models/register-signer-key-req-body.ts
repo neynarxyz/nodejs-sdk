@@ -36,7 +36,7 @@ export interface RegisterSignerKeyReqBody {
      */
     'signature': string;
     /**
-     * User identifier (unsigned integer)
+     * The unique identifier of a farcaster user (unsigned integer)
      * @type {number}
      * @memberof RegisterSignerKeyReqBody
      */
