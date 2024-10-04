@@ -2485,6 +2485,64 @@ export class NeynarAPIClient {
   }
 
   /**
+   * Follow a channel.
+   *
+   * @param {string} signerUuid - UUID of the signer who is following the channel.
+   * @param {string} channelId - The unique identifier of the Farcaster channel to follow.
+   *
+   * @returns {Promise<OperationResponse>} A promise that resolves to an `OperationResponse` object,
+   *   indicating the success or failure of the follow operation.
+   *
+   * @example
+   * // Example: Follow a specific channel
+   * const signerUuid = '19d0c5fd-9b33-4a48-a0e2-bc7b0555baec';
+   * const channelId = 'neynar';
+   *
+   * client.followChannel(signerUuid, channelId).then(response => {
+   *  console.log('Follow successful:', response);
+   * }).catch(error => {
+   *  console.error('Follow failed:', error);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/follow-channel).
+   */
+  public async followChannel(
+    signerUuid: string,
+    channelId: string
+  ): Promise<OperationResponse> {
+    return await this.clients.v2.followChannel(signerUuid, channelId);
+  }
+
+  /**
+   * Unfollow a channel.
+   *
+   * @param {string} signerUuid - UUID of the signer who is unfollowing the channel.
+   * @param {string} channelId - The unique identifier of the Farcaster channel to unfollow.
+   *
+   * @returns {Promise<OperationResponse>} A promise that resolves to an `OperationResponse` object,
+   *   indicating the success or failure of the unfollow operation.
+   *
+   * @example
+   * // Example: Unfollow a specific channel
+   * const signerUuid = '19d0c5fd-9b33-4a48-a0e2-bc7b0555baec';
+   * const channelId = 'neynar';
+   *
+   * client.unfollowChannel(signerUuid, channelId).then(response => {
+   *  console.log('Unfollow successful:', response);
+   * }).catch(error => {
+   *  console.error('Unfollow failed:', error);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/unfollow-channel).
+   */
+  public async unfollowChannel(
+    signerUuid: string,
+    channelId: string
+  ): Promise<OperationResponse> {
+    return await this.clients.v2.unfollowChannel(signerUuid, channelId);
+  }
+
+  /**
    * Retrieves a list of all channels, including their details. This method is particularly useful for
    * obtaining a comprehensive overview of all available channels on the platform.
    *

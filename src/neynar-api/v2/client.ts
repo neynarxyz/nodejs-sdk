@@ -98,6 +98,7 @@ import {
   CastConversationSortType,
   RemoveChannelMemberRequest,
   ChannelMemberListResponse,
+  ChannelFollowReqBody,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -2364,6 +2365,80 @@ export class NeynarV2APIClient {
       options?.hasReplyAuthors,
       options?.cursor,
       options?.limit
+    );
+    return response.data;
+  }
+
+  /**
+   * Follow a channel.
+   *
+   * @param {string} signerUuid - UUID of the signer who is following the channel.
+   * @param {string} channelId - The unique identifier of the Farcaster channel to follow.
+   *
+   * @returns {Promise<OperationResponse>} A promise that resolves to an `OperationResponse` object,
+   *   indicating the success or failure of the follow operation.
+   *
+   * @example
+   * // Example: Follow a specific channel
+   * const signerUuid = '19d0c5fd-9b33-4a48-a0e2-bc7b0555baec';
+   * const channelId = 'neynar';
+   *
+   * client.followChannel(signerUuid, channelId).then(response => {
+   *  console.log('Follow successful:', response);
+   * }).catch(error => {
+   *  console.error('Follow failed:', error);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/follow-channel).
+   */
+  public async followChannel(
+    signerUuid: string,
+    channelId: string
+  ): Promise<OperationResponse> {
+    const reqBody: ChannelFollowReqBody = {
+      signer_uuid: signerUuid,
+      channel_id: channelId,
+    };
+    const response = await this.apis.channel.followChannel(
+      this.apiKey,
+      reqBody
+    );
+    return response.data;
+  }
+
+  /**
+   * Unfollow a channel.
+   *
+   * @param {string} signerUuid - UUID of the signer who is unfollowing the channel.
+   * @param {string} channelId - The unique identifier of the Farcaster channel to unfollow.
+   *
+   * @returns {Promise<OperationResponse>} A promise that resolves to an `OperationResponse` object,
+   *   indicating the success or failure of the unfollow operation.
+   *
+   * @example
+   * // Example: Unfollow a specific channel
+   * const signerUuid = '19d0c5fd-9b33-4a48-a0e2-bc7b0555baec';
+   * const channelId = 'neynar';
+   *
+   * client.unfollowChannel(signerUuid, channelId).then(response => {
+   *  console.log('Unfollow successful:', response);
+   * }).catch(error => {
+   *  console.error('Unfollow failed:', error);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/unfollow-channel).
+   */
+  public async unfollowChannel(
+    signerUuid: string,
+    channelId: string
+  ): Promise<OperationResponse> {
+    const reqBody: ChannelFollowReqBody = {
+      signer_uuid: signerUuid,
+      channel_id: channelId,
+    };
+    const response = await this.apis.channel.unfollowChannel(
+      this.apiKey,
+      reqBody
     );
     return response.data;
   }
