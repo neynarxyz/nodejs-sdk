@@ -222,12 +222,13 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Retrieve followers for a given channel
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel ID for the channel being queried
+         * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of followers to retrieve (default 25, max 1000)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        channelFollowers: async (apiKey: string, id: string, cursor?: string, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        channelFollowers: async (apiKey: string, id: string, viewerFid?: number, cursor?: string, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('channelFollowers', 'apiKey', apiKey)
             // verify required parameter 'id' is not null or undefined
@@ -246,6 +247,10 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
 
             if (id !== undefined) {
                 localVarQueryParameter['id'] = id;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
             if (cursor !== undefined) {
@@ -485,7 +490,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Retrieve relevant channel followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel id being queried
-         * @param {number} viewerFid Viewer who\&#39;s looking at the channel
+         * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -877,13 +882,14 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @summary Retrieve followers for a given channel
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel ID for the channel being queried
+         * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of followers to retrieve (default 25, max 1000)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async channelFollowers(apiKey: string, id: string, cursor?: string, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.channelFollowers(apiKey, id, cursor, limit, options);
+        async channelFollowers(apiKey: string, id: string, viewerFid?: number, cursor?: string, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.channelFollowers(apiKey, id, viewerFid, cursor, limit, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -946,7 +952,7 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @summary Retrieve relevant channel followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel id being queried
-         * @param {number} viewerFid Viewer who\&#39;s looking at the channel
+         * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1086,13 +1092,14 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @summary Retrieve followers for a given channel
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel ID for the channel being queried
+         * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of followers to retrieve (default 25, max 1000)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        channelFollowers(apiKey: string, id: string, cursor?: string, limit?: number, options?: any): AxiosPromise<UsersResponse> {
-            return localVarFp.channelFollowers(apiKey, id, cursor, limit, options).then((request) => request(axios, basePath));
+        channelFollowers(apiKey: string, id: string, viewerFid?: number, cursor?: string, limit?: number, options?: any): AxiosPromise<UsersResponse> {
+            return localVarFp.channelFollowers(apiKey, id, viewerFid, cursor, limit, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of users who are active in a given channel, ordered by ascending FIDs
@@ -1150,7 +1157,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @summary Retrieve relevant channel followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel id being queried
-         * @param {number} viewerFid Viewer who\&#39;s looking at the channel
+         * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1289,14 +1296,15 @@ export class ChannelApi extends BaseAPI {
      * @summary Retrieve followers for a given channel
      * @param {string} apiKey API key required for authentication.
      * @param {string} id Channel ID for the channel being queried
+     * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {string} [cursor] Pagination cursor.
      * @param {number} [limit] Number of followers to retrieve (default 25, max 1000)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public channelFollowers(apiKey: string, id: string, cursor?: string, limit?: number, options?: AxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).channelFollowers(apiKey, id, cursor, limit, options).then((request) => request(this.axios, this.basePath));
+    public channelFollowers(apiKey: string, id: string, viewerFid?: number, cursor?: string, limit?: number, options?: AxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).channelFollowers(apiKey, id, viewerFid, cursor, limit, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1363,7 +1371,7 @@ export class ChannelApi extends BaseAPI {
      * @summary Retrieve relevant channel followers for a given user
      * @param {string} apiKey API key required for authentication.
      * @param {string} id Channel id being queried
-     * @param {number} viewerFid Viewer who\&#39;s looking at the channel
+     * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
