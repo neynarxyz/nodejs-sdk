@@ -2275,7 +2275,7 @@ export class NeynarAPIClient {
    * Retrieves a list of notifications for a specific FID in reverse chronological order.
    * This method is useful for obtaining a user's notifications, keeping them updated on various interactions and updates.
    *
-   * @param {number} fid - fid FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
+   * @param {number} fid - FID of the user you want to fetch notifications for. The response will respect this user's mutes and blocks.
    * @param {Object} [options] - Optional parameters to tailor the request.
    * @param {boolean} [options.isPriority] - Whether to include only priority notifications in the response.
    *   This parameter is deprecated and will be removed in the next major release.
@@ -2314,7 +2314,7 @@ export class NeynarAPIClient {
    * obtaining notifications related to user interactions within designated channels, identified by
    * their parent URLs.
    *
-   * @param {number} fid - fid FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
+   * @param {number} fid - FID of the user you want to fetch notifications for. The response will respect this user's mutes and blocks.
    * @param {string} channelIds - channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
    * @param {Object} [options] - Optional parameters for the request.
    * @param {boolean} [options.isPriority] - When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).

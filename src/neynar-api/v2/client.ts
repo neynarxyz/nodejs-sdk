@@ -950,7 +950,7 @@ export class NeynarV2APIClient {
    * identifiable information. The search can be contextualized to the viewer specified by `viewerFid`.
    *
    * @param {string} q - The query string used for searching users.
-   * @param {number} viewerFid - Providing this will return search results that respects this user's mutes and blocks and includes &#x60;viewer_context&#x60;.
+   * @param {number} viewerFid - Providing this will return search results that respects this user's mutes and blocks and includes `viewer_context`.
    *
    * @returns {Promise<UserSearchResponse>} A promise that resolves to a `UserSearchResponse` object,
    *   containing the results of the user search.
@@ -1108,7 +1108,7 @@ export class NeynarV2APIClient {
    * @param {Object} [options] - Optional parameters for the request.
    * @param {number} [options.replyDepth] - Optional parameter to specify how deep the reply chain should be fetched.
    * @param {boolean} [options.includeChronologicalParentCasts] - Optional parameter to include chronological parent casts in the response.
-   * @param {number} [options.viewerFid] - Providing this will return a conversation that respects this user's mutes and blocks and includes &#x60;viewer_context&#x60;.
+   * @param {number} [options.viewerFid] - Providing this will return a conversation that respects this user's mutes and blocks and includes `viewer_context`.
    * @param {CastConversationSortType} [options.sortType] - Optional parameter to modify the sort type. (default 'desc_chron')
    * @param {number} [options.limit] - Number of results to retrieve (default 20, max 50)
    * @param {string} [options.cursor] - Optional parameter to specify the pagination cursor for fetching specific subsets of results.
@@ -1160,7 +1160,7 @@ export class NeynarV2APIClient {
    * @param {string} q - The query string used for searching users.
    * @param {Object} [options] - Optional parameters for the cast.
    * @param {number} [options.authorFid] - Optional fid of the user to search casts for.
-   * @param {number} [options.viewerFid] - Providing this will return search results that respects this user's mutes and blocks and includes &#x60;viewer_context&#x60;.
+   * @param {number} [options.viewerFid] - Providing this will return search results that respects this user's mutes and blocks and includes `viewer_context`.
    * @param {string} [options.channelId] - Optional channel to search casts for.
    * @param {string} [options.parentUrl] - Optional parent url to search casts for.
    * @param {boolean} [options.priorityMode] -  When true, only returns search results from power badge users and users that the viewer follows (if viewer_fid is provided).
@@ -1642,7 +1642,7 @@ export class NeynarV2APIClient {
    * Results are sorted in reverse chronological order. By default, both casts and replies are included in the
    * response.
    *
-   * @param {number} fid FID of user whose recent casts you want to fetch
+   * @param {number} fid - FID of user whose recent casts you want to fetch
    * @param {number} [viewerFid] Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`.
    * @param {number} [limit] Number of results to retrieve (default 25, max 50)
    * @param {string} [cursor] Pagination cursor for the next set of results, Omit this parameter for the initial request
@@ -2013,7 +2013,7 @@ export class NeynarV2APIClient {
    * Retrieves a list of notifications for a specific FID in reverse chronological order.
    * This method is useful for obtaining a user's notifications, keeping them updated on various interactions and updates.
    *
-   * @param {number} fid - fid FID of the user you want to fetch notifications for. The response will respect this user's mutes and blocks.
+   * @param {number} fid - FID of the user you want to fetch notifications for. The response will respect this user's mutes and blocks.
    * @param {Object} [options] - Optional parameters to tailor the request.
    * @param {string} [options.type] - Type of notifications to fetch.
    * @param {boolean} [options.priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
@@ -2056,7 +2056,7 @@ export class NeynarV2APIClient {
    * obtaining notifications related to user interactions within designated channels, identified by
    * their parent URLs.
    *
-   * @param {number} fid - fid FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
+   * @param {number} fid - FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
    * @param {string} channelIds - channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
    * @param {Object} [options] - Optional parameters for the request.
    * @param {boolean} [options.priorityMode] - When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
@@ -2099,7 +2099,7 @@ export class NeynarV2APIClient {
    * particularly useful for fetching notifications related to user interactions within designated
    * channels or content categories.
    *
-   * @param {number} fid - fid FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
+   * @param {number} fid - FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
    * @param {Array<string>} parentUrls - An array of parent URLs to specify the channels.
    * @param {Object} [options] - Optional parameters for customizing the response.
    * @param {boolean} [options.priorityMode] - When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
@@ -2637,7 +2637,7 @@ export class NeynarV2APIClient {
    *
    * @param {string} id - The Channel ID for which followers are being queried.
    * @param {Object} [options] - Optional parameters for customizing the response.
-   * @param {number} [options.viewerFid] - Providing this will return a list of followers that respects this user's mutes and blocks and includes &#x60;viewer_context&#x60;.
+   * @param {number} [options.viewerFid] - Providing this will return a list of followers that respects this user's mutes and blocks and includes `viewer_context`.
    * @param {number} [options.limit] - Number of followers to retrieve (default 25, max 1000).
    * @param {string} [options.cursor] - Pagination cursor for the next set of results,
    *  omit this parameter for the initial request.
@@ -2849,7 +2849,7 @@ export class NeynarV2APIClient {
    * Retrieves a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
    *
    * @param {number} targetFid - The FID of the user whose relevant followers are being fetched.
-   * @param {number} viewerFid - Providing this will return a list of followers that respects this user's mutes and blocks and includes &#x60;viewer_context&#x60;.
+   * @param {number} viewerFid - Providing this will return a list of followers that respects this user's mutes and blocks and includes `viewer_context`.
    *
    * @returns {Promise<RelevantFollowersResponse>} A promise that resolves to a `RelevantFollowersResponse` object,
    *   containing a list of relevant followers for the specified user.
