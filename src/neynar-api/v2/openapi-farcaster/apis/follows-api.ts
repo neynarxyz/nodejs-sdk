@@ -40,7 +40,7 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Retrieve followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid User who\&#39;s profile you are looking at
-         * @param {number} [viewerFid] Viewer who\&#39;s looking at the profile.
+         * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {FollowSortType} [sortType] Sort type for retrieve followers. Default is &#x60;desc_chron&#x60;
          * @param {number} [limit] Number of results to retrieve (default 20, max 100)
          * @param {string} [cursor] Pagination cursor.
@@ -104,7 +104,7 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Retrieve a list of users followed by a user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user whose following you want to fetch.
-         * @param {number} [viewerFid] FID of the user viewing the user.
+         * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {FollowSortType} [sortType] Optional parameter to sort the users based on different criteria.
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
@@ -168,17 +168,15 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Retrieve relevant followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} targetFid User who\&#39;s profile you are looking at
-         * @param {number} viewerFid Viewer who\&#39;s looking at the profile
+         * @param {number} [viewerFid] The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        relevantFollowers: async (apiKey: string, targetFid: number, viewerFid: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        relevantFollowers: async (apiKey: string, targetFid: number, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('relevantFollowers', 'apiKey', apiKey)
             // verify required parameter 'targetFid' is not null or undefined
             assertParamExists('relevantFollowers', 'targetFid', targetFid)
-            // verify required parameter 'viewerFid' is not null or undefined
-            assertParamExists('relevantFollowers', 'viewerFid', viewerFid)
             const localVarPath = `/farcaster/followers/relevant`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -229,7 +227,7 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          * @summary Retrieve followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid User who\&#39;s profile you are looking at
-         * @param {number} [viewerFid] Viewer who\&#39;s looking at the profile.
+         * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {FollowSortType} [sortType] Sort type for retrieve followers. Default is &#x60;desc_chron&#x60;
          * @param {number} [limit] Number of results to retrieve (default 20, max 100)
          * @param {string} [cursor] Pagination cursor.
@@ -245,7 +243,7 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          * @summary Retrieve a list of users followed by a user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user whose following you want to fetch.
-         * @param {number} [viewerFid] FID of the user viewing the user.
+         * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {FollowSortType} [sortType] Optional parameter to sort the users based on different criteria.
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
@@ -261,11 +259,11 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          * @summary Retrieve relevant followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} targetFid User who\&#39;s profile you are looking at
-         * @param {number} viewerFid Viewer who\&#39;s looking at the profile
+         * @param {number} [viewerFid] The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async relevantFollowers(apiKey: string, targetFid: number, viewerFid: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RelevantFollowersResponse>> {
+        async relevantFollowers(apiKey: string, targetFid: number, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RelevantFollowersResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.relevantFollowers(apiKey, targetFid, viewerFid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -284,7 +282,7 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
          * @summary Retrieve followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid User who\&#39;s profile you are looking at
-         * @param {number} [viewerFid] Viewer who\&#39;s looking at the profile.
+         * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {FollowSortType} [sortType] Sort type for retrieve followers. Default is &#x60;desc_chron&#x60;
          * @param {number} [limit] Number of results to retrieve (default 20, max 100)
          * @param {string} [cursor] Pagination cursor.
@@ -299,7 +297,7 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
          * @summary Retrieve a list of users followed by a user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user whose following you want to fetch.
-         * @param {number} [viewerFid] FID of the user viewing the user.
+         * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {FollowSortType} [sortType] Optional parameter to sort the users based on different criteria.
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
@@ -314,11 +312,11 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
          * @summary Retrieve relevant followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} targetFid User who\&#39;s profile you are looking at
-         * @param {number} viewerFid Viewer who\&#39;s looking at the profile
+         * @param {number} [viewerFid] The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        relevantFollowers(apiKey: string, targetFid: number, viewerFid: number, options?: any): AxiosPromise<RelevantFollowersResponse> {
+        relevantFollowers(apiKey: string, targetFid: number, viewerFid?: number, options?: any): AxiosPromise<RelevantFollowersResponse> {
             return localVarFp.relevantFollowers(apiKey, targetFid, viewerFid, options).then((request) => request(axios, basePath));
         },
     };
@@ -336,7 +334,7 @@ export class FollowsApi extends BaseAPI {
      * @summary Retrieve followers for a given user
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid User who\&#39;s profile you are looking at
-     * @param {number} [viewerFid] Viewer who\&#39;s looking at the profile.
+     * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {FollowSortType} [sortType] Sort type for retrieve followers. Default is &#x60;desc_chron&#x60;
      * @param {number} [limit] Number of results to retrieve (default 20, max 100)
      * @param {string} [cursor] Pagination cursor.
@@ -353,7 +351,7 @@ export class FollowsApi extends BaseAPI {
      * @summary Retrieve a list of users followed by a user
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid FID of the user whose following you want to fetch.
-     * @param {number} [viewerFid] FID of the user viewing the user.
+     * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {FollowSortType} [sortType] Optional parameter to sort the users based on different criteria.
      * @param {number} [limit] Number of results to retrieve (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
@@ -370,12 +368,12 @@ export class FollowsApi extends BaseAPI {
      * @summary Retrieve relevant followers for a given user
      * @param {string} apiKey API key required for authentication.
      * @param {number} targetFid User who\&#39;s profile you are looking at
-     * @param {number} viewerFid Viewer who\&#39;s looking at the profile
+     * @param {number} [viewerFid] The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FollowsApi
      */
-    public relevantFollowers(apiKey: string, targetFid: number, viewerFid: number, options?: AxiosRequestConfig) {
+    public relevantFollowers(apiKey: string, targetFid: number, viewerFid?: number, options?: AxiosRequestConfig) {
         return FollowsApiFp(this.configuration).relevantFollowers(apiKey, targetFid, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 }

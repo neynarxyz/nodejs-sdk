@@ -645,7 +645,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Search for Usernames
          * @param {string} apiKey API key required for authentication.
          * @param {string} q 
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {number} [limit] 
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -875,7 +875,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @summary Search for Usernames
          * @param {string} apiKey API key required for authentication.
          * @param {string} q 
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {number} [limit] 
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -1048,7 +1048,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @summary Search for Usernames
          * @param {string} apiKey API key required for authentication.
          * @param {string} q 
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {number} [limit] 
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -1246,7 +1246,7 @@ export class UserApi extends BaseAPI {
      * @summary Search for Usernames
      * @param {string} apiKey API key required for authentication.
      * @param {string} q 
-     * @param {number} [viewerFid] 
+     * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {number} [limit] 
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.

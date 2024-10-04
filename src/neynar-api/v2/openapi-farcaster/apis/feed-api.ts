@@ -60,7 +60,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -150,7 +150,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {string} apiKey API key required for authentication.
          * @param {string} channelIds Comma separated list of channel ids e.g. neynar,farcaster
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {boolean} [withReplies] Include replies in the response, false by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
@@ -223,7 +223,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Retrieve feed based on who a user is following
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
@@ -287,7 +287,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Retrieve a personalized For You feed for a user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {ForYouProvider} [provider] 
          * @param {number} [limit] Number of results to retrieve (default 25, max 50)
          * @param {string} [cursor] Pagination cursor.
@@ -356,7 +356,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Retrieve feed of casts with Frames, reverse chronological order
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -409,7 +409,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {string} apiKey API key required for authentication.
          * @param {string} parentUrls Comma separated list of parent_urls
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {boolean} [withReplies] Include replies in the response, false by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
@@ -478,7 +478,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] Number of results to retrieve (max 10)
          * @param {string} [cursor] Pagination cursor
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
          * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
          * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed.
@@ -675,7 +675,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {'replies' | 'recasts' | 'all'} [filter] filter to fetch only replies or recasts
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -756,7 +756,7 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -770,7 +770,7 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {string} apiKey API key required for authentication.
          * @param {string} channelIds Comma separated list of channel ids e.g. neynar,farcaster
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {boolean} [withReplies] Include replies in the response, false by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
@@ -787,7 +787,7 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @summary Retrieve feed based on who a user is following
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
@@ -803,7 +803,7 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @summary Retrieve a personalized For You feed for a user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {ForYouProvider} [provider] 
          * @param {number} [limit] Number of results to retrieve (default 25, max 50)
          * @param {string} [cursor] Pagination cursor.
@@ -820,7 +820,7 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @summary Retrieve feed of casts with Frames, reverse chronological order
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -835,7 +835,7 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {string} apiKey API key required for authentication.
          * @param {string} parentUrls Comma separated list of parent_urls
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {boolean} [withReplies] Include replies in the response, false by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
@@ -852,7 +852,7 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] Number of results to retrieve (max 10)
          * @param {string} [cursor] Pagination cursor
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
          * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
          * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed.
@@ -903,7 +903,7 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {'replies' | 'recasts' | 'all'} [filter] filter to fetch only replies or recasts
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -936,7 +936,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -949,7 +949,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {string} apiKey API key required for authentication.
          * @param {string} channelIds Comma separated list of channel ids e.g. neynar,farcaster
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {boolean} [withReplies] Include replies in the response, false by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
@@ -965,7 +965,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @summary Retrieve feed based on who a user is following
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
@@ -980,7 +980,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @summary Retrieve a personalized For You feed for a user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {ForYouProvider} [provider] 
          * @param {number} [limit] Number of results to retrieve (default 25, max 50)
          * @param {string} [cursor] Pagination cursor.
@@ -996,7 +996,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @summary Retrieve feed of casts with Frames, reverse chronological order
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1010,7 +1010,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {string} apiKey API key required for authentication.
          * @param {string} parentUrls Comma separated list of parent_urls
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {boolean} [withReplies] Include replies in the response, false by default
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
@@ -1026,7 +1026,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] Number of results to retrieve (max 10)
          * @param {string} [cursor] Pagination cursor
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
          * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
          * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed.
@@ -1074,7 +1074,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {'replies' | 'recasts' | 'all'} [filter] filter to fetch only replies or recasts
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
-         * @param {number} [viewerFid] 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1106,7 +1106,7 @@ export class FeedApi extends BaseAPI {
      * @param {boolean} [withRecasts] Include recasts in the response, true by default
      * @param {number} [limit] Number of results to retrieve (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
-     * @param {number} [viewerFid] 
+     * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FeedApi
@@ -1121,7 +1121,7 @@ export class FeedApi extends BaseAPI {
      * @param {string} apiKey API key required for authentication.
      * @param {string} channelIds Comma separated list of channel ids e.g. neynar,farcaster
      * @param {boolean} [withRecasts] Include recasts in the response, true by default
-     * @param {number} [viewerFid] 
+     * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {boolean} [withReplies] Include replies in the response, false by default
      * @param {number} [limit] Number of results to retrieve (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
@@ -1139,7 +1139,7 @@ export class FeedApi extends BaseAPI {
      * @summary Retrieve feed based on who a user is following
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid fid of user whose feed you want to create
-     * @param {number} [viewerFid] 
+     * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {boolean} [withRecasts] Include recasts in the response, true by default
      * @param {number} [limit] Number of results to retrieve (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
@@ -1156,7 +1156,7 @@ export class FeedApi extends BaseAPI {
      * @summary Retrieve a personalized For You feed for a user
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid fid of user whose feed you want to create
-     * @param {number} [viewerFid] 
+     * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {ForYouProvider} [provider] 
      * @param {number} [limit] Number of results to retrieve (default 25, max 50)
      * @param {string} [cursor] Pagination cursor.
@@ -1174,7 +1174,7 @@ export class FeedApi extends BaseAPI {
      * @summary Retrieve feed of casts with Frames, reverse chronological order
      * @param {string} apiKey API key required for authentication.
      * @param {number} [limit] Number of results to retrieve (default 25, max 100)
-     * @param {number} [viewerFid] 
+     * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1190,7 +1190,7 @@ export class FeedApi extends BaseAPI {
      * @param {string} apiKey API key required for authentication.
      * @param {string} parentUrls Comma separated list of parent_urls
      * @param {boolean} [withRecasts] Include recasts in the response, true by default
-     * @param {number} [viewerFid] 
+     * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {boolean} [withReplies] Include replies in the response, false by default
      * @param {number} [limit] Number of results to retrieve (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
@@ -1208,7 +1208,7 @@ export class FeedApi extends BaseAPI {
      * @param {string} apiKey API key required for authentication.
      * @param {number} [limit] Number of results to retrieve (max 10)
      * @param {string} [cursor] Pagination cursor
-     * @param {number} [viewerFid] 
+     * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
      * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
      * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed.
@@ -1262,7 +1262,7 @@ export class FeedApi extends BaseAPI {
      * @param {'replies' | 'recasts' | 'all'} [filter] filter to fetch only replies or recasts
      * @param {number} [limit] Number of results to retrieve (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
-     * @param {number} [viewerFid] 
+     * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FeedApi

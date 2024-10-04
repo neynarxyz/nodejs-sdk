@@ -15,31 +15,28 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PostCastResponseCastAuthor } from './post-cast-response-cast-author';
+import { ChannelMemberInvite } from './channel-member-invite';
+// May contain unused imports in some cases
+// @ts-ignore
+import { NextCursor } from './next-cursor';
 
 /**
  * 
  * @export
- * @interface PostCastResponseCast
+ * @interface ChannelMemberInviteListResponse
  */
-export interface PostCastResponseCast {
-    /**
-     * Cast Hash
-     * @type {string}
-     * @memberof PostCastResponseCast
-     */
-    'hash': string;
+export interface ChannelMemberInviteListResponse {
     /**
      * 
-     * @type {PostCastResponseCastAuthor}
-     * @memberof PostCastResponseCast
+     * @type {Array<ChannelMemberInvite>}
+     * @memberof ChannelMemberInviteListResponse
      */
-    'author': PostCastResponseCastAuthor;
+    'invites': Array<ChannelMemberInvite>;
     /**
      * 
-     * @type {string}
-     * @memberof PostCastResponseCast
+     * @type {NextCursor}
+     * @memberof ChannelMemberInviteListResponse
      */
-    'text': string;
+    'next'?: NextCursor;
 }
 

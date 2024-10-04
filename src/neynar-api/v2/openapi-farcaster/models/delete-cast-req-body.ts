@@ -27,7 +27,7 @@ export interface DeleteCastReqBody {
      */
     'signer_uuid': string;
     /**
-     * Ethereum address
+     * Cast Hash
      * @type {string}
      * @memberof DeleteCastReqBody
      */
