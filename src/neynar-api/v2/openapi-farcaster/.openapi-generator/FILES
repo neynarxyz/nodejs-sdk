@@ -59,7 +59,11 @@ models/casts-search-response.ts
 models/channel-activity.ts
 models/channel-follow-req-body.ts
 models/channel-list-response.ts
+models/channel-member-invite-list-response.ts
+models/channel-member-invite.ts
+models/channel-member-list-response.ts
 models/channel-member-role.ts
+models/channel-member.ts
 models/channel-or-dehydrated-channel.ts
 models/channel-response-bulk.ts
 models/channel-response.ts
@@ -124,7 +128,6 @@ models/hydrated-follower.ts
 models/image-object.ts
 models/index.ts
 models/individual-hash-obj.ts
-models/invite-channel-member-request.ts
 models/mark-notifications-as-seen-req-body.ts
 models/music-song-object.ts
 models/mute-list-response.ts
@@ -172,6 +175,7 @@ models/register-signer-key-req-body.ts
 models/register-user-req-body.ts
 models/register-user-response.ts
 models/relevant-followers-response.ts
+models/remove-channel-member-request.ts
 models/remove-verification-req-body.ts
 models/respond-channel-invite-request.ts
 models/searched-user.ts

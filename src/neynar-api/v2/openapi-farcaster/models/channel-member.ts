@@ -15,31 +15,36 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PostCastResponseCastAuthor } from './post-cast-response-cast-author';
+import { ChannelMemberRole } from './channel-member-role';
+// May contain unused imports in some cases
+// @ts-ignore
+import { User } from './user';
 
 /**
  * 
  * @export
- * @interface PostCastResponseCast
+ * @interface ChannelMember
  */
-export interface PostCastResponseCast {
+export interface ChannelMember {
     /**
-     * Cast Hash
+     * The unique identifier of a farcaster channel
      * @type {string}
-     * @memberof PostCastResponseCast
+     * @memberof ChannelMember
      */
-    'hash': string;
+    'channel_id': string;
     /**
      * 
-     * @type {PostCastResponseCastAuthor}
-     * @memberof PostCastResponseCast
+     * @type {ChannelMemberRole}
+     * @memberof ChannelMember
      */
-    'author': PostCastResponseCastAuthor;
+    'role': ChannelMemberRole;
     /**
      * 
-     * @type {string}
-     * @memberof PostCastResponseCast
+     * @type {User}
+     * @memberof ChannelMember
      */
-    'text': string;
+    'user': User;
 }
+
+
 

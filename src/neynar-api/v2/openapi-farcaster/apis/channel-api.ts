@@ -26,6 +26,10 @@ import { ChannelFollowReqBody } from '../models';
 // @ts-ignore
 import { ChannelListResponse } from '../models';
 // @ts-ignore
+import { ChannelMemberInviteListResponse } from '../models';
+// @ts-ignore
+import { ChannelMemberListResponse } from '../models';
+// @ts-ignore
 import { ChannelResponse } from '../models';
 // @ts-ignore
 import { ChannelResponseBulk } from '../models';
@@ -36,11 +40,11 @@ import { ChannelType } from '../models';
 // @ts-ignore
 import { ErrorRes } from '../models';
 // @ts-ignore
-import { InviteChannelMemberRequest } from '../models';
-// @ts-ignore
 import { OperationResponse } from '../models';
 // @ts-ignore
 import { RelevantFollowersResponse } from '../models';
+// @ts-ignore
+import { RemoveChannelMemberRequest } from '../models';
 // @ts-ignore
 import { RespondChannelInviteRequest } from '../models';
 // @ts-ignore
@@ -222,12 +226,13 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Retrieve followers for a given channel
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel ID for the channel being queried
+         * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of followers to retrieve (default 25, max 1000)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        channelFollowers: async (apiKey: string, id: string, cursor?: string, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        channelFollowers: async (apiKey: string, id: string, viewerFid?: number, cursor?: string, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('channelFollowers', 'apiKey', apiKey)
             // verify required parameter 'id' is not null or undefined
@@ -246,6 +251,10 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
 
             if (id !== undefined) {
                 localVarQueryParameter['id'] = id;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
             if (cursor !== undefined) {
@@ -394,15 +403,15 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * Invite a user to a channel
          * @summary Invite a user to a channel
          * @param {string} apiKey API key required for authentication.
-         * @param {InviteChannelMemberRequest} inviteChannelMemberRequest 
+         * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        inviteChannelMember: async (apiKey: string, inviteChannelMemberRequest: InviteChannelMemberRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        inviteChannelMember: async (apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('inviteChannelMember', 'apiKey', apiKey)
-            // verify required parameter 'inviteChannelMemberRequest' is not null or undefined
-            assertParamExists('inviteChannelMember', 'inviteChannelMemberRequest', inviteChannelMemberRequest)
+            // verify required parameter 'removeChannelMemberRequest' is not null or undefined
+            assertParamExists('inviteChannelMember', 'removeChannelMemberRequest', removeChannelMemberRequest)
             const localVarPath = `/farcaster/channel/member/invite`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -426,7 +435,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inviteChannelMemberRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(removeChannelMemberRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -481,11 +490,127 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * Retrieve a list of invites in a channel
+         * @summary Retrieve a list of invites in a channel
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} [channelId] Channel ID for the channel being queried
+         * @param {number} [invitedFid] FID of the user being invited
+         * @param {number} [limit] Number of results to retrieve
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listChannelInvites: async (apiKey: string, channelId?: string, invitedFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('listChannelInvites', 'apiKey', apiKey)
+            const localVarPath = `/farcaster/channel/member/invite/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (channelId !== undefined) {
+                localVarQueryParameter['channel_id'] = channelId;
+            }
+
+            if (invitedFid !== undefined) {
+                localVarQueryParameter['invited_fid'] = invitedFid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a list of members in a channel
+         * @summary Retrieve a list of members in a channel
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} channelId Channel ID for the channel being queried
+         * @param {number} [fid] FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members.
+         * @param {number} [limit] Number of results to retrieve
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listChannelMembers: async (apiKey: string, channelId: string, fid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('listChannelMembers', 'apiKey', apiKey)
+            // verify required parameter 'channelId' is not null or undefined
+            assertParamExists('listChannelMembers', 'channelId', channelId)
+            const localVarPath = `/farcaster/channel/member/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (channelId !== undefined) {
+                localVarQueryParameter['channel_id'] = channelId;
+            }
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
          * @summary Retrieve relevant channel followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel id being queried
-         * @param {number} viewerFid Viewer who\&#39;s looking at the channel
+         * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -535,15 +660,15 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * Remove a user from a channel or a user\'s invite to a channel role
          * @summary Remove a user from a channel
          * @param {string} apiKey API key required for authentication.
-         * @param {InviteChannelMemberRequest} inviteChannelMemberRequest 
+         * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeChannelMember: async (apiKey: string, inviteChannelMemberRequest: InviteChannelMemberRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        removeChannelMember: async (apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('removeChannelMember', 'apiKey', apiKey)
-            // verify required parameter 'inviteChannelMemberRequest' is not null or undefined
-            assertParamExists('removeChannelMember', 'inviteChannelMemberRequest', inviteChannelMemberRequest)
+            // verify required parameter 'removeChannelMemberRequest' is not null or undefined
+            assertParamExists('removeChannelMember', 'removeChannelMemberRequest', removeChannelMemberRequest)
             const localVarPath = `/farcaster/channel/member`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -567,7 +692,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inviteChannelMemberRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(removeChannelMemberRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -877,13 +1002,14 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @summary Retrieve followers for a given channel
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel ID for the channel being queried
+         * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of followers to retrieve (default 25, max 1000)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async channelFollowers(apiKey: string, id: string, cursor?: string, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.channelFollowers(apiKey, id, cursor, limit, options);
+        async channelFollowers(apiKey: string, id: string, viewerFid?: number, cursor?: string, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.channelFollowers(apiKey, id, viewerFid, cursor, limit, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -920,12 +1046,12 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * Invite a user to a channel
          * @summary Invite a user to a channel
          * @param {string} apiKey API key required for authentication.
-         * @param {InviteChannelMemberRequest} inviteChannelMemberRequest 
+         * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async inviteChannelMember(apiKey: string, inviteChannelMemberRequest: InviteChannelMemberRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.inviteChannelMember(apiKey, inviteChannelMemberRequest, options);
+        async inviteChannelMember(apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.inviteChannelMember(apiKey, removeChannelMemberRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -942,11 +1068,41 @@ export const ChannelApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Retrieve a list of invites in a channel
+         * @summary Retrieve a list of invites in a channel
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} [channelId] Channel ID for the channel being queried
+         * @param {number} [invitedFid] FID of the user being invited
+         * @param {number} [limit] Number of results to retrieve
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listChannelInvites(apiKey: string, channelId?: string, invitedFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelMemberInviteListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listChannelInvites(apiKey, channelId, invitedFid, limit, cursor, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Retrieve a list of members in a channel
+         * @summary Retrieve a list of members in a channel
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} channelId Channel ID for the channel being queried
+         * @param {number} [fid] FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members.
+         * @param {number} [limit] Number of results to retrieve
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listChannelMembers(apiKey: string, channelId: string, fid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelMemberListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listChannelMembers(apiKey, channelId, fid, limit, cursor, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
          * @summary Retrieve relevant channel followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel id being queried
-         * @param {number} viewerFid Viewer who\&#39;s looking at the channel
+         * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -958,12 +1114,12 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * Remove a user from a channel or a user\'s invite to a channel role
          * @summary Remove a user from a channel
          * @param {string} apiKey API key required for authentication.
-         * @param {InviteChannelMemberRequest} inviteChannelMemberRequest 
+         * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeChannelMember(apiKey: string, inviteChannelMemberRequest: InviteChannelMemberRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.removeChannelMember(apiKey, inviteChannelMemberRequest, options);
+        async removeChannelMember(apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.removeChannelMember(apiKey, removeChannelMemberRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1086,13 +1242,14 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @summary Retrieve followers for a given channel
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel ID for the channel being queried
+         * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {string} [cursor] Pagination cursor.
          * @param {number} [limit] Number of followers to retrieve (default 25, max 1000)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        channelFollowers(apiKey: string, id: string, cursor?: string, limit?: number, options?: any): AxiosPromise<UsersResponse> {
-            return localVarFp.channelFollowers(apiKey, id, cursor, limit, options).then((request) => request(axios, basePath));
+        channelFollowers(apiKey: string, id: string, viewerFid?: number, cursor?: string, limit?: number, options?: any): AxiosPromise<UsersResponse> {
+            return localVarFp.channelFollowers(apiKey, id, viewerFid, cursor, limit, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of users who are active in a given channel, ordered by ascending FIDs
@@ -1126,12 +1283,12 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * Invite a user to a channel
          * @summary Invite a user to a channel
          * @param {string} apiKey API key required for authentication.
-         * @param {InviteChannelMemberRequest} inviteChannelMemberRequest 
+         * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        inviteChannelMember(apiKey: string, inviteChannelMemberRequest: InviteChannelMemberRequest, options?: any): AxiosPromise<OperationResponse> {
-            return localVarFp.inviteChannelMember(apiKey, inviteChannelMemberRequest, options).then((request) => request(axios, basePath));
+        inviteChannelMember(apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options?: any): AxiosPromise<OperationResponse> {
+            return localVarFp.inviteChannelMember(apiKey, removeChannelMemberRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of all channels with their details
@@ -1146,11 +1303,39 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.listAllChannels(apiKey, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
+         * Retrieve a list of invites in a channel
+         * @summary Retrieve a list of invites in a channel
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} [channelId] Channel ID for the channel being queried
+         * @param {number} [invitedFid] FID of the user being invited
+         * @param {number} [limit] Number of results to retrieve
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listChannelInvites(apiKey: string, channelId?: string, invitedFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<ChannelMemberInviteListResponse> {
+            return localVarFp.listChannelInvites(apiKey, channelId, invitedFid, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve a list of members in a channel
+         * @summary Retrieve a list of members in a channel
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} channelId Channel ID for the channel being queried
+         * @param {number} [fid] FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members.
+         * @param {number} [limit] Number of results to retrieve
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listChannelMembers(apiKey: string, channelId: string, fid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<ChannelMemberListResponse> {
+            return localVarFp.listChannelMembers(apiKey, channelId, fid, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
          * @summary Retrieve relevant channel followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel id being queried
-         * @param {number} viewerFid Viewer who\&#39;s looking at the channel
+         * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1161,12 +1346,12 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * Remove a user from a channel or a user\'s invite to a channel role
          * @summary Remove a user from a channel
          * @param {string} apiKey API key required for authentication.
-         * @param {InviteChannelMemberRequest} inviteChannelMemberRequest 
+         * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeChannelMember(apiKey: string, inviteChannelMemberRequest: InviteChannelMemberRequest, options?: any): AxiosPromise<OperationResponse> {
-            return localVarFp.removeChannelMember(apiKey, inviteChannelMemberRequest, options).then((request) => request(axios, basePath));
+        removeChannelMember(apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options?: any): AxiosPromise<OperationResponse> {
+            return localVarFp.removeChannelMember(apiKey, removeChannelMemberRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Accept or reject a channel invite
@@ -1289,14 +1474,15 @@ export class ChannelApi extends BaseAPI {
      * @summary Retrieve followers for a given channel
      * @param {string} apiKey API key required for authentication.
      * @param {string} id Channel ID for the channel being queried
+     * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {string} [cursor] Pagination cursor.
      * @param {number} [limit] Number of followers to retrieve (default 25, max 1000)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public channelFollowers(apiKey: string, id: string, cursor?: string, limit?: number, options?: AxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).channelFollowers(apiKey, id, cursor, limit, options).then((request) => request(this.axios, this.basePath));
+    public channelFollowers(apiKey: string, id: string, viewerFid?: number, cursor?: string, limit?: number, options?: AxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).channelFollowers(apiKey, id, viewerFid, cursor, limit, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1335,13 +1521,13 @@ export class ChannelApi extends BaseAPI {
      * Invite a user to a channel
      * @summary Invite a user to a channel
      * @param {string} apiKey API key required for authentication.
-     * @param {InviteChannelMemberRequest} inviteChannelMemberRequest 
+     * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public inviteChannelMember(apiKey: string, inviteChannelMemberRequest: InviteChannelMemberRequest, options?: AxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).inviteChannelMember(apiKey, inviteChannelMemberRequest, options).then((request) => request(this.axios, this.basePath));
+    public inviteChannelMember(apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options?: AxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).inviteChannelMember(apiKey, removeChannelMemberRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1359,11 +1545,43 @@ export class ChannelApi extends BaseAPI {
     }
 
     /**
+     * Retrieve a list of invites in a channel
+     * @summary Retrieve a list of invites in a channel
+     * @param {string} apiKey API key required for authentication.
+     * @param {string} [channelId] Channel ID for the channel being queried
+     * @param {number} [invitedFid] FID of the user being invited
+     * @param {number} [limit] Number of results to retrieve
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public listChannelInvites(apiKey: string, channelId?: string, invitedFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).listChannelInvites(apiKey, channelId, invitedFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieve a list of members in a channel
+     * @summary Retrieve a list of members in a channel
+     * @param {string} apiKey API key required for authentication.
+     * @param {string} channelId Channel ID for the channel being queried
+     * @param {number} [fid] FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members.
+     * @param {number} [limit] Number of results to retrieve
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public listChannelMembers(apiKey: string, channelId: string, fid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).listChannelMembers(apiKey, channelId, fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
      * @summary Retrieve relevant channel followers for a given user
      * @param {string} apiKey API key required for authentication.
      * @param {string} id Channel id being queried
-     * @param {number} viewerFid Viewer who\&#39;s looking at the channel
+     * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
@@ -1376,13 +1594,13 @@ export class ChannelApi extends BaseAPI {
      * Remove a user from a channel or a user\'s invite to a channel role
      * @summary Remove a user from a channel
      * @param {string} apiKey API key required for authentication.
-     * @param {InviteChannelMemberRequest} inviteChannelMemberRequest 
+     * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public removeChannelMember(apiKey: string, inviteChannelMemberRequest: InviteChannelMemberRequest, options?: AxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).removeChannelMember(apiKey, inviteChannelMemberRequest, options).then((request) => request(this.axios, this.basePath));
+    public removeChannelMember(apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options?: AxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).removeChannelMember(apiKey, removeChannelMemberRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
