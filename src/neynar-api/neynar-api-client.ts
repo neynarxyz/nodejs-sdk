@@ -57,6 +57,7 @@ import {
   MuteResponse,
   BlockListResponse,
   FollowSortType,
+  CastConversationSortType,
   ChannelSearchResponse,
   ChannelType,
   ChannelResponseBulk,
@@ -1446,6 +1447,7 @@ export class NeynarAPIClient {
    * @param {number} [options.replyDepth] - An optional parameter within the options object, specifying the desired depth of replies to fetch within the conversation. This allows for tailored retrieval of conversation data, ranging from top-level casts only to deeper, more comprehensive conversation threads.
    * @param {boolean} [options.includeChronologicalParentCasts] - An optional parameter within the options object, indicating whether to include chronological parent casts in the response. This parameter is useful for applications requiring a structured view of the conversation, including parent casts that provide context for the replies.
    * @param {number} [options.viewerFid] - Optional parameter to add viewer context to the cast objects to indicate whether the viewer has liked or recasted the cast, as well as follows or is followed by the cast creator.
+   * @param {CastConversationSortType} [options.sortType] - Optional parameter to modify the sort type. (default 'desc_chron')
    * @param {number} [options.limit] - Number of results to retrieve (default 20, max 50).
    * @param {string} [options.cursor] - Pagination cursor for fetching specific subsets of results.
    *  Omit this parameter for the initial request.
@@ -1473,6 +1475,7 @@ export class NeynarAPIClient {
       replyDepth?: number;
       includeChronologicalParentCasts?: boolean;
       viewerFid?: number;
+      sortType?: CastConversationSortType;
       limit?: number;
       cursor?: string;
     }
