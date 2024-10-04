@@ -36,6 +36,7 @@ models/cast-composer-actions-list-response-actions-inner-action.ts
 models/cast-composer-actions-list-response-actions-inner.ts
 models/cast-composer-actions-list-response.ts
 models/cast-composer-type.ts
+models/cast-conversation-sort-type.ts
 models/cast-dehydrated.ts
 models/cast-id.ts
 models/cast-notification-type.ts

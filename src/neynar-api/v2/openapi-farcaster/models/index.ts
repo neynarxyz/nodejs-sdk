@@ -13,6 +13,7 @@ export * from './cast-composer-actions-list-response';
 export * from './cast-composer-actions-list-response-actions-inner';
 export * from './cast-composer-actions-list-response-actions-inner-action';
 export * from './cast-composer-type';
+export * from './cast-conversation-sort-type';
 export * from './cast-dehydrated';
 export * from './cast-id';
 export * from './cast-notification-type';
