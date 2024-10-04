@@ -2864,7 +2864,7 @@ export class NeynarV2APIClient {
    */
   public async fetchRelevantFollowers(
     targetFid: number,
-    viewerFid?: number
+    viewerFid: number
   ): Promise<RelevantFollowersResponse> {
     const response = await this.apis.follows.relevantFollowers(
       this.apiKey,
