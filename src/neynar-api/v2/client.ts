@@ -1349,6 +1349,7 @@ export class NeynarV2APIClient {
    * @param {Array<number>} [options.fids] - Used for creating a feed based on a list of FIDs. Requires 'feedType' and 'filterType'.
    * @param {string} [options.parentUrl] - Used for fetching content under a specific parent URL. Requires 'feedType' and 'filterType'.
    * @param {string} [options.channelId] Used when filter_type=channel_id can be used to fetch all casts under a channel. Requires feed_type and filter_type
+   * @param {boolean} [membersOnly] Used when filter_type=channel_id. Only include casts from members of the channel. True by default.
    * @param {string} [options.embedUrl] - Used when filter_type=embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
    * @param {Array<EmbedType>} [options.embedTypes] Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type
    * @param {boolean} [options.withRecasts] - Whether to include recasts in the response. True by default.
@@ -1375,6 +1376,7 @@ export class NeynarV2APIClient {
       fids?: number[];
       parentUrl?: string;
       channelId?: string;
+      membersOnly?: boolean;
       embedUrl?: string;
       embedTypes?: EmbedType[];
       limit?: number;
@@ -1393,6 +1395,7 @@ export class NeynarV2APIClient {
       _fids,
       options?.parentUrl,
       options?.channelId,
+      options?.membersOnly,
       options?.embedUrl,
       options?.embedTypes,
       options?.withRecasts,
@@ -1411,10 +1414,11 @@ export class NeynarV2APIClient {
    * @param {Object} [options] - Optional parameters for customizing the feed.
    * @param {boolean} [options.withRecasts] - Whether to include recasts in the response. True by default.
    * @param {boolean} [options.withReplies] - Whether to include replies in the response. False by default.
+   * @param {boolean} [options.membersOnly] Used when filter_type&#x3D;channel_id. Only include casts from members of the channel. True by default.
    * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
    * @param {string} [options.cursor] - Pagination cursor for the next set of results. Omit this parameter for the initial request.
    * @param {number} [options.viewerFid] - Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`.
-   * @param {boolean} [options.shouldModerate] - Whether to include only casts liked by the moderator in the response. True by default.
+   * @param {boolean} [options.shouldModerate] - Whether to include only casts liked by the moderator in the response. Deprecated.
    *
    * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object,
    *   containing the feed for the specified channel IDs.
@@ -1432,6 +1436,7 @@ export class NeynarV2APIClient {
     options?: {
       withRecasts?: boolean;
       withReplies?: boolean;
+      membersOnly?: boolean;
       limit?: number;
       cursor?: string;
       viewerFid?: number;
@@ -1445,6 +1450,7 @@ export class NeynarV2APIClient {
       options?.withRecasts,
       options?.viewerFid,
       options?.withReplies,
+      options?.membersOnly,
       options?.limit,
       options?.cursor,
       options?.shouldModerate
