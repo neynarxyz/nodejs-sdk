@@ -28,10 +28,10 @@ export interface TwitterImageObject {
     'alt'?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof TwitterImageObject
      */
-    'height'?: number;
+    'height'?: string;
     /**
      * 
      * @type {string}
@@ -40,9 +40,9 @@ export interface TwitterImageObject {
     'url': string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof TwitterImageObject
      */
-    'width'?: number;
+    'width'?: string;
 }
 

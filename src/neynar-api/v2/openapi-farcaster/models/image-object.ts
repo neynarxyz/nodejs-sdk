@@ -22,10 +22,10 @@
 export interface ImageObject {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof ImageObject
      */
-    'height'?: number;
+    'height'?: string;
     /**
      * 
      * @type {string}
@@ -40,10 +40,10 @@ export interface ImageObject {
     'url': string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof ImageObject
      */
-    'width'?: number;
+    'width'?: string;
     /**
      * 
      * @type {string}
