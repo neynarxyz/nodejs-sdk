@@ -75,6 +75,7 @@ export * from './follow';
 export * from './follow-req-body';
 export * from './follow-response';
 export * from './follow-sort-type';
+export * from './followers-response';
 export * from './for-you-provider';
 export * from './frame';
 export * from './frame-action';

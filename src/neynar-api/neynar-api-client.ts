@@ -79,6 +79,7 @@ import {
   ChannelMemberRole,
   ChannelMemberInviteListResponse,
   ChannelMemberListResponse,
+  FollowersResponse,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -2954,7 +2955,7 @@ export class NeynarAPIClient {
    * @param {string} [options.cursor] Pagination cursor.
    *  omit this parameter for the initial request.
    *
-   * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
+   * @returns {Promise<FollowersResponse>} A promise that resolves to a `FollowersResponse` object,
    *
    * @example
    * // Example: Retrieve followers for a user
@@ -2974,7 +2975,7 @@ export class NeynarAPIClient {
       cursor?: string;
       limit?: number;
     }
-  ): Promise<UsersResponse> {
+  ): Promise<FollowersResponse> {
     return await this.clients.v2.fetchUserFollowersV2(fid, options);
   }
 
@@ -2989,7 +2990,7 @@ export class NeynarAPIClient {
    * @param {string} [options.cursor] Pagination cursor.
    *  omit this parameter for the initial request.
    *
-   * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
+   * @returns {Promise<FollowersResponse>} A promise that resolves to a `FollowersResponse` object,
    *
    * @example
    * // Example: Retrieve follows for a user
@@ -3009,7 +3010,7 @@ export class NeynarAPIClient {
       cursor?: string;
       limit?: number;
     }
-  ): Promise<UsersResponse> {
+  ): Promise<FollowersResponse> {
     return await this.clients.v2.fetchUserFollowingV2(fid, options);
   }
 
