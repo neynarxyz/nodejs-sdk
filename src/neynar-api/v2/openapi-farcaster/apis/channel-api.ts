@@ -892,6 +892,60 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * Returns a list of all channels with their details that an fid is a member of. Data may have a delay of up to 1 hour.
+         * @summary Retrieve all channels that a given fid is a member of
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid The fid of the user.
+         * @param {number} [limit] Number of results to retrieve (default 20, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userChannelMemberships: async (apiKey: string, fid: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('userChannelMemberships', 'apiKey', apiKey)
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('userChannelMemberships', 'fid', fid)
+            const localVarPath = `/farcaster/user/memberships/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Returns a list of all channels with their details that a fid follows.
          * @summary Retrieve all channels that a given fid follows
          * @param {string} apiKey API key required for authentication.
@@ -1175,6 +1229,20 @@ export const ChannelApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Returns a list of all channels with their details that an fid is a member of. Data may have a delay of up to 1 hour.
+         * @summary Retrieve all channels that a given fid is a member of
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid The fid of the user.
+         * @param {number} [limit] Number of results to retrieve (default 20, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async userChannelMemberships(apiKey: string, fid: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelMemberListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userChannelMemberships(apiKey, fid, limit, cursor, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Returns a list of all channels with their details that a fid follows.
          * @summary Retrieve all channels that a given fid follows
          * @param {string} apiKey API key required for authentication.
@@ -1400,6 +1468,19 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          */
         unfollowChannel(apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options?: any): AxiosPromise<OperationResponse> {
             return localVarFp.unfollowChannel(apiKey, channelFollowReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of all channels with their details that an fid is a member of. Data may have a delay of up to 1 hour.
+         * @summary Retrieve all channels that a given fid is a member of
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid The fid of the user.
+         * @param {number} [limit] Number of results to retrieve (default 20, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userChannelMemberships(apiKey: string, fid: number, limit?: number, cursor?: string, options?: any): AxiosPromise<ChannelMemberListResponse> {
+            return localVarFp.userChannelMemberships(apiKey, fid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of all channels with their details that a fid follows.
@@ -1657,6 +1738,21 @@ export class ChannelApi extends BaseAPI {
      */
     public unfollowChannel(apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options?: AxiosRequestConfig) {
         return ChannelApiFp(this.configuration).unfollowChannel(apiKey, channelFollowReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of all channels with their details that an fid is a member of. Data may have a delay of up to 1 hour.
+     * @summary Retrieve all channels that a given fid is a member of
+     * @param {string} apiKey API key required for authentication.
+     * @param {number} fid The fid of the user.
+     * @param {number} [limit] Number of results to retrieve (default 20, max 100)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public userChannelMemberships(apiKey: string, fid: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).userChannelMemberships(apiKey, fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
