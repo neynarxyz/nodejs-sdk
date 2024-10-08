@@ -28,10 +28,10 @@ export interface MusicSongObject {
     'disc'?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof MusicSongObject
      */
-    'track'?: number;
+    'track'?: string;
     /**
      * 
      * @type {string}

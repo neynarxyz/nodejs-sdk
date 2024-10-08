@@ -22,10 +22,10 @@
 export interface VideoObject {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof VideoObject
      */
-    'height'?: number;
+    'height'?: string;
     /**
      * 
      * @type {string}
@@ -40,9 +40,9 @@ export interface VideoObject {
     'url': string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof VideoObject
      */
-    'width'?: number;
+    'width'?: string;
 }
 
