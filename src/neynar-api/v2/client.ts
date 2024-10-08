@@ -2965,6 +2965,48 @@ export class NeynarV2APIClient {
     return response.data;
   }
 
+  /**
+   * Retrieve a list of channels that a user is a member of
+   *
+   * @param {number} fid - The id of the user whose channel memberships are being fetched.
+   * @param {Object} [options] - Optional parameters for customizing the request.
+   * @param {number} [options.limit=20] - The number of results to retrieve per request. Defaults to 20, with a maximum of 100.
+   * @param {string} [options.cursor] - Pagination cursor for retrieving the next set of results. If not provided, retrieval starts from the first page.
+   *
+   * @returns {Promise<ChannelMemberListResponse>} A promise that resolves to a `ChannelMemberListResponse` object,
+   *   containing the list of channel member objects, including the channel information and role
+   *
+   * @example
+   * // Example: Retrieve the first 10 members in a channel
+   * const fid: 3,
+   * const options = {
+   *   limit: 10
+   * };
+   *
+   * client.fetchUserChannelMemberships(fid, options).then(response => {
+   *  console.log('Channel Memberships:', response);
+   * }).catch(error => {
+   *  console.error('Failed to retrieve channel memberships:', error);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-channel-memberships).
+   */
+    public async fetchUserChannelMemberships(
+      fid: number,
+      options?: {
+        limit?: number;
+        cursor?: string;
+      }
+    ): Promise<ChannelMemberListResponse> {
+      const response = await this.apis.channel.userChannelMemberships(
+        this.apiKey,
+        fid,
+        options?.limit,
+        options?.cursor
+      );
+      return response.data;
+    }
+
   // ------------ Storage ------------
 
   /**
