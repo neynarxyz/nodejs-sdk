@@ -22,10 +22,10 @@
 export interface TwitterPlayerObject {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof TwitterPlayerObject
      */
-    'height'?: number;
+    'height'?: string;
     /**
      * 
      * @type {string}
@@ -40,9 +40,9 @@ export interface TwitterPlayerObject {
     'url': string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof TwitterPlayerObject
      */
-    'width'?: number;
+    'width'?: string;
 }
 
