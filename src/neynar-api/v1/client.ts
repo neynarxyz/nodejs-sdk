@@ -241,6 +241,9 @@ export class NeynarV1APIClient {
   }
 
   /**
+   * @deprecated
+   * Now deprecated, use v2's `lookupUserByUsernameV2` instead.
+   * 
    * Retrieves the specified user via their username (if found).
    *
    * @param {string} username - The username of the user whose information is being retrieved.
@@ -262,7 +265,7 @@ export class NeynarV1APIClient {
     username: string,
     viewerFid?: number
   ): Promise<UserResponse> {
-    const response = await this.apis.user.userByUsername(
+    const response = await this.apis.user.userByUsernameV1(
       this.apiKey,
       username,
       viewerFid
