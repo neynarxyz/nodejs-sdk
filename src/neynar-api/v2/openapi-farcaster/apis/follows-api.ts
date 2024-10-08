@@ -26,9 +26,9 @@ import { ErrorRes } from '../models';
 // @ts-ignore
 import { FollowSortType } from '../models';
 // @ts-ignore
-import { RelevantFollowersResponse } from '../models';
+import { FollowersResponse } from '../models';
 // @ts-ignore
-import { UsersResponse } from '../models';
+import { RelevantFollowersResponse } from '../models';
 /**
  * FollowsApi - axios parameter creator
  * @export
@@ -236,7 +236,7 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async followersV2(apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+        async followersV2(apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FollowersResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.followersV2(apiKey, fid, viewerFid, sortType, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -252,7 +252,7 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async followingV2(apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+        async followingV2(apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FollowersResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.followingV2(apiKey, fid, viewerFid, sortType, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -291,7 +291,7 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        followersV2(apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: any): AxiosPromise<UsersResponse> {
+        followersV2(apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: any): AxiosPromise<FollowersResponse> {
             return localVarFp.followersV2(apiKey, fid, viewerFid, sortType, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
@@ -306,7 +306,7 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        followingV2(apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: any): AxiosPromise<UsersResponse> {
+        followingV2(apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: any): AxiosPromise<FollowersResponse> {
             return localVarFp.followingV2(apiKey, fid, viewerFid, sortType, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**

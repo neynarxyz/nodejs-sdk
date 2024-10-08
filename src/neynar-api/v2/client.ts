@@ -99,6 +99,7 @@ import {
   RemoveChannelMemberRequest,
   ChannelMemberListResponse,
   ChannelFollowReqBody,
+  FollowersResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -2889,7 +2890,7 @@ export class NeynarV2APIClient {
    * @param {number} [options.limit] Number of results to retrieve (default 20, max 100)
    * @param {string} [options.cursor] Pagination cursor.
    *  omit this parameter for the initial request.
-   * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
+   * @returns {Promise<FollowersResponse>} A promise that resolves to a `FollowersResponse` object,
    *
    * @example
    * // Example: Retrieve followers for a user
@@ -2909,7 +2910,7 @@ export class NeynarV2APIClient {
       cursor?: string;
       sortType?: FollowSortType;
     }
-  ): Promise<UsersResponse> {
+  ): Promise<FollowersResponse> {
     const response = await this.apis.follows.followersV2(
       this.apiKey,
       fid,
@@ -2932,7 +2933,7 @@ export class NeynarV2APIClient {
    * @param {string} [options.cursor] Pagination cursor.
    *  omit this parameter for the initial request.
    *
-   * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
+   * @returns {Promise<FollowersResponse>} A promise that resolves to a `FollowersResponse` object,
    *
    * @example
    * // Example: Retrieve follows for a user
@@ -2952,7 +2953,7 @@ export class NeynarV2APIClient {
       cursor?: string;
       sortType?: FollowSortType;
     }
-  ): Promise<UsersResponse> {
+  ): Promise<FollowersResponse> {
     const response = await this.apis.follows.followingV2(
       this.apiKey,
       fid,
