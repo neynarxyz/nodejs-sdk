@@ -15,10 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { ChannelMemberChannel } from './channel-member-channel';
+// May contain unused imports in some cases
+// @ts-ignore
 import { ChannelMemberRole } from './channel-member-role';
 // May contain unused imports in some cases
 // @ts-ignore
-import { User } from './user';
+import { ChannelMemberUser } from './channel-member-user';
 
 /**
  * 
@@ -40,10 +43,16 @@ export interface ChannelMember {
     'role': ChannelMemberRole;
     /**
      * 
-     * @type {User}
+     * @type {ChannelMemberUser}
      * @memberof ChannelMember
      */
-    'user': User;
+    'user': ChannelMemberUser;
+    /**
+     * 
+     * @type {ChannelMemberChannel}
+     * @memberof ChannelMember
+     */
+    'channel'?: ChannelMemberChannel;
 }
 
 
