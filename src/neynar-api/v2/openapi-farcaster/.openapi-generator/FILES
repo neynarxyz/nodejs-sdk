@@ -2,6 +2,7 @@
 .npmignore
 .openapi-generator-ignore
 api.ts
+apis/ban-api.ts
 apis/block-api.ts
 apis/cast-api.ts
 apis/channel-api.ts
@@ -26,6 +27,10 @@ models/active-status.ts
 models/add-verification-req-body.ts
 models/authorization-url-response-type.ts
 models/authorization-url-response.ts
+models/ban-list-response.ts
+models/ban-list.ts
+models/ban-req-body.ts
+models/ban-response.ts
 models/block-list-response.ts
 models/block-list.ts
 models/bulk-casts-response.ts
