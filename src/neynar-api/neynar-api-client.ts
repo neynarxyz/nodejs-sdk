@@ -3015,9 +3015,10 @@ export class NeynarAPIClient {
   }
 
   /**
-   * Retrieve a list of channels that a user is a member of
+   * Retrieve a list of channels that a user is a member of.
+   * Data may have a delay of up to 1 hour.
    *
-   * @param {number} fid - The id of the user whose channel memberships are being fetched.
+   * @param {number} fid - The fid of the user whose channel memberships are being fetched.
    * @param {Object} [options] - Optional parameters for customizing the request.
    * @param {number} [options.limit=20] - The number of results to retrieve per request. Defaults to 20, with a maximum of 100.
    * @param {string} [options.cursor] - Pagination cursor for retrieving the next set of results. If not provided, retrieval starts from the first page.
@@ -3026,8 +3027,8 @@ export class NeynarAPIClient {
    *   containing the list of channel member objects, including the channel information and role
    *
    * @example
-   * // Example: Retrieve the first 10 members in a channel
-   * const fid: 3,
+   * // Example: Retrieve the first 10 channels a user is a member of
+   * const fid = 3;
    * const options = {
    *   limit: 10
    * };
