@@ -36,12 +36,6 @@ export interface ChannelMember {
      */
     'object': ChannelMemberObjectEnum;
     /**
-     * The unique identifier of a farcaster channel
-     * @type {string}
-     * @memberof ChannelMember
-     */
-    'channel_id': string;
-    /**
      * 
      * @type {ChannelMemberRole}
      * @memberof ChannelMember
