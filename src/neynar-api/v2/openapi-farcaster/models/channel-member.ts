@@ -30,6 +30,12 @@ import { ChannelMemberUser } from './channel-member-user';
  */
 export interface ChannelMember {
     /**
+     * 
+     * @type {string}
+     * @memberof ChannelMember
+     */
+    'object': ChannelMemberObjectEnum;
+    /**
      * The unique identifier of a farcaster channel
      * @type {string}
      * @memberof ChannelMember
@@ -52,8 +58,13 @@ export interface ChannelMember {
      * @type {ChannelMemberChannel}
      * @memberof ChannelMember
      */
-    'channel'?: ChannelMemberChannel;
+    'channel': ChannelMemberChannel;
 }
 
+export const ChannelMemberObjectEnum = {
+    Member: 'member'
+} as const;
+
+export type ChannelMemberObjectEnum = typeof ChannelMemberObjectEnum[keyof typeof ChannelMemberObjectEnum];
 
 
