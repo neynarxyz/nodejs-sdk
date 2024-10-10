@@ -37,6 +37,6 @@ export interface ChannelMemberListResponse {
      * @type {NextCursor}
      * @memberof ChannelMemberListResponse
      */
-    'next'?: NextCursor;
+    'next': NextCursor;
 }
 
