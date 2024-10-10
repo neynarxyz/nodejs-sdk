@@ -40,15 +40,12 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), find custody address in user obj. Returns the custody address for a given FID
          * @summary DEPRECATED - Get the custody address for a given FID
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        custodyAddress: async (apiKey: string, fid: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('custodyAddress', 'apiKey', apiKey)
+        custodyAddress: async (fid: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('custodyAddress', 'fid', fid)
             const localVarPath = `/farcaster/custody-address`;
@@ -63,12 +60,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
-            }
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
             }
 
 
@@ -85,16 +81,13 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Get a list of casts from the protocol in reverse chronological order based on timestamp
          * @summary Get Recent Users
-         * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 100, max 1000)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        recentUsers: async (apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('recentUsers', 'apiKey', apiKey)
+        recentUsers: async (viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/farcaster/recent-users`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -107,6 +100,9 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
             if (viewerFid !== undefined) {
                 localVarQueryParameter['viewerFid'] = viewerFid;
             }
@@ -117,10 +113,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (cursor !== undefined) {
                 localVarQueryParameter['cursor'] = cursor;
-            }
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
             }
 
 
@@ -137,16 +129,13 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk). Returns metadata about a specific user
          * @summary DEPRECATED - Get User Information by FID
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        user: async (apiKey: string, fid: number, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('user', 'apiKey', apiKey)
+        user: async (fid: number, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('user', 'fid', fid)
             const localVarPath = `/farcaster/user`;
@@ -161,16 +150,15 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
             }
 
             if (viewerFid !== undefined) {
                 localVarQueryParameter['viewerFid'] = viewerFid;
-            }
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
             }
 
 
@@ -185,19 +173,17 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Returns metadata about a specific user
-         * @summary Get User Information by username
-         * @param {string} apiKey API key required for authentication.
+         * Now deprecated, use [v2/user/by_username](https://docs.neynar.com/reference/user-by-username-v2) instead. Returns metadata about a specific user
+         * @summary DEPRECATED - Get User Information by username
          * @param {string} username Username of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
-        userByUsername: async (apiKey: string, username: string, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('userByUsername', 'apiKey', apiKey)
+        userByUsernameV1: async (username: string, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'username' is not null or undefined
-            assertParamExists('userByUsername', 'username', username)
+            assertParamExists('userByUsernameV1', 'username', username)
             const localVarPath = `/farcaster/user-by-username`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -210,16 +196,15 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
             if (username !== undefined) {
                 localVarQueryParameter['username'] = username;
             }
 
             if (viewerFid !== undefined) {
                 localVarQueryParameter['viewerFid'] = viewerFid;
-            }
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
             }
 
 
@@ -236,7 +221,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Now deprecated. use [/v2/reactions/user](https://docs.neynar.com/reference/reactions-user). Fetch all the liked cast of a User
          * @summary DEPRECATED -- Get User Cast Likes
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
@@ -245,9 +229,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @deprecated
          * @throws {RequiredError}
          */
-        userCastLikes: async (apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('userCastLikes', 'apiKey', apiKey)
+        userCastLikes: async (fid: number, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('userCastLikes', 'fid', fid)
             const localVarPath = `/farcaster/user-cast-likes`;
@@ -261,6 +243,9 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -276,10 +261,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (cursor !== undefined) {
                 localVarQueryParameter['cursor'] = cursor;
-            }
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
             }
 
 
@@ -306,61 +287,57 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), find custody address in user obj. Returns the custody address for a given FID
          * @summary DEPRECATED - Get the custody address for a given FID
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        async custodyAddress(apiKey: string, fid: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CustodyAddressResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.custodyAddress(apiKey, fid, options);
+        async custodyAddress(fid: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CustodyAddressResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.custodyAddress(fid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get a list of casts from the protocol in reverse chronological order based on timestamp
          * @summary Get Recent Users
-         * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 100, max 1000)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async recentUsers(apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RecentUsersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.recentUsers(apiKey, viewerFid, limit, cursor, options);
+        async recentUsers(viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RecentUsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.recentUsers(viewerFid, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk). Returns metadata about a specific user
          * @summary DEPRECATED - Get User Information by FID
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        async user(apiKey: string, fid: number, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.user(apiKey, fid, viewerFid, options);
+        async user(fid: number, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.user(fid, viewerFid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Returns metadata about a specific user
-         * @summary Get User Information by username
-         * @param {string} apiKey API key required for authentication.
+         * Now deprecated, use [v2/user/by_username](https://docs.neynar.com/reference/user-by-username-v2) instead. Returns metadata about a specific user
+         * @summary DEPRECATED - Get User Information by username
          * @param {string} username Username of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
-        async userByUsername(apiKey: string, username: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userByUsername(apiKey, username, viewerFid, options);
+        async userByUsernameV1(username: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userByUsernameV1(username, viewerFid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Now deprecated. use [/v2/reactions/user](https://docs.neynar.com/reference/reactions-user). Fetch all the liked cast of a User
          * @summary DEPRECATED -- Get User Cast Likes
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
@@ -369,8 +346,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @deprecated
          * @throws {RequiredError}
          */
-        async userCastLikes(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserCastLikeResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userCastLikes(apiKey, fid, viewerFid, limit, cursor, options);
+        async userCastLikes(fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserCastLikeResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userCastLikes(fid, viewerFid, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -386,57 +363,53 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         /**
          * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), find custody address in user obj. Returns the custody address for a given FID
          * @summary DEPRECATED - Get the custody address for a given FID
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        custodyAddress(apiKey: string, fid: number, options?: any): AxiosPromise<CustodyAddressResponse> {
-            return localVarFp.custodyAddress(apiKey, fid, options).then((request) => request(axios, basePath));
+        custodyAddress(fid: number, options?: any): AxiosPromise<CustodyAddressResponse> {
+            return localVarFp.custodyAddress(fid, options).then((request) => request(axios, basePath));
         },
         /**
          * Get a list of casts from the protocol in reverse chronological order based on timestamp
          * @summary Get Recent Users
-         * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 100, max 1000)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        recentUsers(apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<RecentUsersResponse> {
-            return localVarFp.recentUsers(apiKey, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
+        recentUsers(viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<RecentUsersResponse> {
+            return localVarFp.recentUsers(viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk). Returns metadata about a specific user
          * @summary DEPRECATED - Get User Information by FID
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        user(apiKey: string, fid: number, viewerFid?: number, options?: any): AxiosPromise<UserResponse> {
-            return localVarFp.user(apiKey, fid, viewerFid, options).then((request) => request(axios, basePath));
+        user(fid: number, viewerFid?: number, options?: any): AxiosPromise<UserResponse> {
+            return localVarFp.user(fid, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns metadata about a specific user
-         * @summary Get User Information by username
-         * @param {string} apiKey API key required for authentication.
+         * Now deprecated, use [v2/user/by_username](https://docs.neynar.com/reference/user-by-username-v2) instead. Returns metadata about a specific user
+         * @summary DEPRECATED - Get User Information by username
          * @param {string} username Username of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
-        userByUsername(apiKey: string, username: string, viewerFid?: number, options?: any): AxiosPromise<UserResponse> {
-            return localVarFp.userByUsername(apiKey, username, viewerFid, options).then((request) => request(axios, basePath));
+        userByUsernameV1(username: string, viewerFid?: number, options?: any): AxiosPromise<UserResponse> {
+            return localVarFp.userByUsernameV1(username, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Now deprecated. use [/v2/reactions/user](https://docs.neynar.com/reference/reactions-user). Fetch all the liked cast of a User
          * @summary DEPRECATED -- Get User Cast Likes
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
@@ -445,8 +418,8 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @deprecated
          * @throws {RequiredError}
          */
-        userCastLikes(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<UserCastLikeResponse> {
-            return localVarFp.userCastLikes(apiKey, fid, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
+        userCastLikes(fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<UserCastLikeResponse> {
+            return localVarFp.userCastLikes(fid, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -461,21 +434,19 @@ export class UserApi extends BaseAPI {
     /**
      * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), find custody address in user obj. Returns the custody address for a given FID
      * @summary DEPRECATED - Get the custody address for a given FID
-     * @param {string} apiKey API key required for authentication.
      * @param {number} fid fid of a user
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public custodyAddress(apiKey: string, fid: number, options?: AxiosRequestConfig) {
-        return UserApiFp(this.configuration).custodyAddress(apiKey, fid, options).then((request) => request(this.axios, this.basePath));
+    public custodyAddress(fid: number, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).custodyAddress(fid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Get a list of casts from the protocol in reverse chronological order based on timestamp
      * @summary Get Recent Users
-     * @param {string} apiKey API key required for authentication.
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
      * @param {number} [limit] Number of results to retrieve (default 100, max 1000)
      * @param {string} [cursor] Pagination cursor.
@@ -483,14 +454,13 @@ export class UserApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public recentUsers(apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
-        return UserApiFp(this.configuration).recentUsers(apiKey, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public recentUsers(viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).recentUsers(viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk). Returns metadata about a specific user
      * @summary DEPRECATED - Get User Information by FID
-     * @param {string} apiKey API key required for authentication.
      * @param {number} fid fid of a user
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
      * @param {*} [options] Override http request option.
@@ -498,28 +468,27 @@ export class UserApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public user(apiKey: string, fid: number, viewerFid?: number, options?: AxiosRequestConfig) {
-        return UserApiFp(this.configuration).user(apiKey, fid, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    public user(fid: number, viewerFid?: number, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).user(fid, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Returns metadata about a specific user
-     * @summary Get User Information by username
-     * @param {string} apiKey API key required for authentication.
+     * Now deprecated, use [v2/user/by_username](https://docs.neynar.com/reference/user-by-username-v2) instead. Returns metadata about a specific user
+     * @summary DEPRECATED - Get User Information by username
      * @param {string} username Username of the user
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userByUsername(apiKey: string, username: string, viewerFid?: number, options?: AxiosRequestConfig) {
-        return UserApiFp(this.configuration).userByUsername(apiKey, username, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    public userByUsernameV1(username: string, viewerFid?: number, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).userByUsernameV1(username, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Now deprecated. use [/v2/reactions/user](https://docs.neynar.com/reference/reactions-user). Fetch all the liked cast of a User
      * @summary DEPRECATED -- Get User Cast Likes
-     * @param {string} apiKey API key required for authentication.
      * @param {number} fid FID of the user
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
      * @param {number} [limit] Number of results to retrieve (default 25, max 150)
@@ -529,7 +498,7 @@ export class UserApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userCastLikes(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
-        return UserApiFp(this.configuration).userCastLikes(apiKey, fid, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public userCastLikes(fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).userCastLikes(fid, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }

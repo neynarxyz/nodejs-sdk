@@ -1008,6 +1008,38 @@ export class NeynarV2APIClient {
     return response.data;
   }
 
+  /**
+   * Retrieves the specified user via their username (if found).
+   *
+   * @param {string} username - The username of the user whose information is being retrieved.
+   * @param {number} [viewerFid] - Optional. The FID of the user viewing this information,
+   *   used for providing contextual data specific to the viewer.
+   *
+   * @returns {Promise<UserResponse>} A promise that resolves to a `UserResponse` object,
+   *   containing the metadata about the user associated with the given username.
+   *
+   * @example
+   * // Example: Retrieve information about a user with username 'manan' as viewed by a user with FID 3
+   * client.lookupUserByUsernameV2('manan', {viewerFid: 3}).then(response => {
+   *   console.log('User Information:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-by-username-v2).
+   */
+    public async lookupUserByUsernameV2(
+      username: string,
+      options?: {
+        viewerFid?: number;
+      }
+    ): Promise<UserResponse> {
+      const response = await this.apis.user.userByUsernameV2(
+        this.apiKey,
+        username,
+        options?.viewerFid
+      );
+      return response.data;
+    }
+
   // ------------ Cast ------------
 
   /**

@@ -604,6 +604,55 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
+         * Fetches a single hydrated user object given a username
+         * @summary Fetch a user by username
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} username Username of the user to fetch
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userByUsernameV2: async (apiKey: string, username: string, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('userByUsernameV2', 'apiKey', apiKey)
+            // verify required parameter 'username' is not null or undefined
+            assertParamExists('userByUsernameV2', 'username', username)
+            const localVarPath = `/farcaster/user/by_username`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (username !== undefined) {
+                localVarQueryParameter['username'] = username;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
          * @summary Fetch power user FIDs
          * @param {string} apiKey API key required for authentication.
@@ -860,6 +909,19 @@ export const UserApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Fetches a single hydrated user object given a username
+         * @summary Fetch a user by username
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} username Username of the user to fetch
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async userByUsernameV2(apiKey: string, username: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userByUsernameV2(apiKey, username, viewerFid, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
          * @summary Fetch power user FIDs
          * @param {string} apiKey API key required for authentication.
@@ -1032,6 +1094,18 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          */
         userBulkByAddress(apiKey: string, addresses: string, addressTypes?: string, viewerFid?: number, options?: any): AxiosPromise<{ [key: string]: Array<User>; }> {
             return localVarFp.userBulkByAddress(apiKey, addresses, addressTypes, viewerFid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches a single hydrated user object given a username
+         * @summary Fetch a user by username
+         * @param {string} apiKey API key required for authentication.
+         * @param {string} username Username of the user to fetch
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userByUsernameV2(apiKey: string, username: string, viewerFid?: number, options?: any): AxiosPromise<UserResponse> {
+            return localVarFp.userByUsernameV2(apiKey, username, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
@@ -1227,6 +1301,20 @@ export class UserApi extends BaseAPI {
      */
     public userBulkByAddress(apiKey: string, addresses: string, addressTypes?: string, viewerFid?: number, options?: AxiosRequestConfig) {
         return UserApiFp(this.configuration).userBulkByAddress(apiKey, addresses, addressTypes, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches a single hydrated user object given a username
+     * @summary Fetch a user by username
+     * @param {string} apiKey API key required for authentication.
+     * @param {string} username Username of the user to fetch
+     * @param {number} [viewerFid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public userByUsernameV2(apiKey: string, username: string, viewerFid?: number, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).userByUsernameV2(apiKey, username, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
