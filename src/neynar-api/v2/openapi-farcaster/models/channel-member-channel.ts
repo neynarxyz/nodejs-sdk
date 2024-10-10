@@ -15,28 +15,21 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChannelMember } from './channel-member';
+import { Channel } from './channel';
 // May contain unused imports in some cases
 // @ts-ignore
-import { NextCursor } from './next-cursor';
+import { ChannelViewerContext } from './channel-viewer-context';
+// May contain unused imports in some cases
+// @ts-ignore
+import { DehydratedChannel } from './dehydrated-channel';
+// May contain unused imports in some cases
+// @ts-ignore
+import { User } from './user';
 
 /**
- * 
+ * @type ChannelMemberChannel
  * @export
- * @interface ChannelMemberListResponse
  */
-export interface ChannelMemberListResponse {
-    /**
-     * 
-     * @type {Array<ChannelMember>}
-     * @memberof ChannelMemberListResponse
-     */
-    'members': Array<ChannelMember>;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof ChannelMemberListResponse
-     */
-    'next': NextCursor;
-}
+export type ChannelMemberChannel = Channel | DehydratedChannel;
+
 

@@ -59,10 +59,12 @@ models/casts-search-response.ts
 models/channel-activity.ts
 models/channel-follow-req-body.ts
 models/channel-list-response.ts
+models/channel-member-channel.ts
 models/channel-member-invite-list-response.ts
 models/channel-member-invite.ts
 models/channel-member-list-response.ts
 models/channel-member-role.ts
+models/channel-member-user.ts
 models/channel-member.ts
 models/channel-or-dehydrated-channel.ts
 models/channel-response-bulk.ts

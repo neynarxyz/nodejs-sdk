@@ -15,10 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { ChannelMemberChannel } from './channel-member-channel';
+// May contain unused imports in some cases
+// @ts-ignore
 import { ChannelMemberRole } from './channel-member-role';
 // May contain unused imports in some cases
 // @ts-ignore
-import { User } from './user';
+import { ChannelMemberUser } from './channel-member-user';
 
 /**
  * 
@@ -27,11 +30,11 @@ import { User } from './user';
  */
 export interface ChannelMember {
     /**
-     * The unique identifier of a farcaster channel
+     * 
      * @type {string}
      * @memberof ChannelMember
      */
-    'channel_id': string;
+    'object': ChannelMemberObjectEnum;
     /**
      * 
      * @type {ChannelMemberRole}
@@ -40,11 +43,22 @@ export interface ChannelMember {
     'role': ChannelMemberRole;
     /**
      * 
-     * @type {User}
+     * @type {ChannelMemberUser}
      * @memberof ChannelMember
      */
-    'user': User;
+    'user': ChannelMemberUser;
+    /**
+     * 
+     * @type {ChannelMemberChannel}
+     * @memberof ChannelMember
+     */
+    'channel': ChannelMemberChannel;
 }
 
+export const ChannelMemberObjectEnum = {
+    Member: 'member'
+} as const;
+
+export type ChannelMemberObjectEnum = typeof ChannelMemberObjectEnum[keyof typeof ChannelMemberObjectEnum];
 
 
