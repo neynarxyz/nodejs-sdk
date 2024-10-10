@@ -73,7 +73,8 @@ export class NeynarV1APIClient {
     if (axiosInstance === undefined) {
       axiosInstance = axios.create({
         headers: {
-          'x-sdk-version': version
+          'x-sdk-version': version,
+          'x-api-key': apiKey,
         }
       });
     }
@@ -156,7 +157,6 @@ export class NeynarV1APIClient {
     cursor?: string;
   }): Promise<RecentUsersResponse> {
     const response = await this.apis.user.recentUsers(
-      this.apiKey,
       options?.viewerFid,
       options?.limit,
       options?.cursor
@@ -201,7 +201,6 @@ export class NeynarV1APIClient {
     options?: { viewerFid?: number; limit?: number; cursor?: string }
   ): Promise<UserCastLikeResponse> {
     const response = await this.apis.user.userCastLikes(
-      this.apiKey,
       fid,
       options?.viewerFid,
       options?.limit,
@@ -236,7 +235,7 @@ export class NeynarV1APIClient {
     fid: number,
     viewerFid?: number
   ): Promise<UserResponse> {
-    const response = await this.apis.user.user(this.apiKey, fid, viewerFid);
+    const response = await this.apis.user.user(fid, viewerFid);
     return response.data;
   }
 
@@ -266,7 +265,6 @@ export class NeynarV1APIClient {
     viewerFid?: number
   ): Promise<UserResponse> {
     const response = await this.apis.user.userByUsernameV1(
-      this.apiKey,
       username,
       viewerFid
     );
@@ -295,7 +293,7 @@ export class NeynarV1APIClient {
   public async lookupCustodyAddressForUser(
     fid: number
   ): Promise<CustodyAddressResponse> {
-    const response = await this.apis.user.custodyAddress(this.apiKey, fid);
+    const response = await this.apis.user.custodyAddress(fid);
     return response.data;
   }
 
