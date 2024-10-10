@@ -24,6 +24,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@grpc/grpc-js": "^1.12.2",
     "@openapitools/openapi-generator-cli": "^2.7.0",
     "axios": "^1.6.2",
     "semver": "^7.6.0",
