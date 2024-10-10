@@ -1,3 +1,4 @@
+export * from "./hub-grpc";
 export * from "./neynar-api-client";
 export * from "./utils";
 export {
