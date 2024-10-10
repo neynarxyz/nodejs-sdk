@@ -31,6 +31,6 @@ export interface BanResponse {
      * @type {string}
      * @memberof BanResponse
      */
-    'message'?: string;
+    'message'?: string | null;
 }
 

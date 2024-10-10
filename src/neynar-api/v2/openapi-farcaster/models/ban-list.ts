@@ -34,19 +34,13 @@ export interface BanList {
      * @type {User}
      * @memberof BanList
      */
-    'blocked'?: User;
-    /**
-     * 
-     * @type {User}
-     * @memberof BanList
-     */
-    'blocker'?: User;
+    'banned'?: User;
     /**
      * 
      * @type {string}
      * @memberof BanList
      */
-    'blocked_at'?: string;
+    'banned_at': string;
 }
 
 export const BanListObjectEnum = {
