@@ -31,7 +31,7 @@ export interface BanListResponse {
      * @type {Array<BanList>}
      * @memberof BanListResponse
      */
-    'blocks'?: Array<BanList>;
+    'bans': Array<BanList>;
     /**
      * 
      * @type {NextCursor}
