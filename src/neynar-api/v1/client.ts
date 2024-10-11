@@ -4,7 +4,6 @@ import {
   UserApi,
   VerificationApi,
   NotificationsApi,
-  ReactionsApi,
   FollowsApi,
   Configuration,
   ErrorRes,
@@ -33,7 +32,6 @@ const BASE_PATH = "https://api.neynar.com/v1";
 
 export class NeynarV1APIClient {
   private readonly logger: Logger;
-  private readonly apiKey: string;
 
   public readonly apis: {
     user: UserApi;
@@ -41,7 +39,6 @@ export class NeynarV1APIClient {
     follows: FollowsApi;
     verification: VerificationApi;
     notifications: NotificationsApi;
-    reactions: ReactionsApi;
   };
 
   /**
@@ -68,13 +65,11 @@ export class NeynarV1APIClient {
       );
     }
 
-    this.apiKey = apiKey;
-
     if (axiosInstance === undefined) {
       axiosInstance = axios.create({
         headers: {
-          'x-sdk-version': version
-        }
+          "x-sdk-version": version,
+        },
       });
     }
     axiosInstance.defaults.decompress = true;
@@ -104,7 +99,6 @@ export class NeynarV1APIClient {
       follows: new FollowsApi(config, undefined, axiosInstance),
       verification: new VerificationApi(config, undefined, axiosInstance),
       notifications: new NotificationsApi(config, undefined, axiosInstance),
-      reactions: new ReactionsApi(config, undefined, axiosInstance),
     };
   }
 
@@ -156,7 +150,6 @@ export class NeynarV1APIClient {
     cursor?: string;
   }): Promise<RecentUsersResponse> {
     const response = await this.apis.user.recentUsers(
-      this.apiKey,
       options?.viewerFid,
       options?.limit,
       options?.cursor
@@ -201,7 +194,6 @@ export class NeynarV1APIClient {
     options?: { viewerFid?: number; limit?: number; cursor?: string }
   ): Promise<UserCastLikeResponse> {
     const response = await this.apis.user.userCastLikes(
-      this.apiKey,
       fid,
       options?.viewerFid,
       options?.limit,
@@ -236,11 +228,14 @@ export class NeynarV1APIClient {
     fid: number,
     viewerFid?: number
   ): Promise<UserResponse> {
-    const response = await this.apis.user.user(this.apiKey, fid, viewerFid);
+    const response = await this.apis.user.user(fid, viewerFid);
     return response.data;
   }
 
   /**
+   * @deprecated
+   * Now deprecated, use v2's `lookupUserByUsernameV2` instead.
+   *
    * Retrieves the specified user via their username (if found).
    *
    * @param {string} username - The username of the user whose information is being retrieved.
@@ -262,11 +257,7 @@ export class NeynarV1APIClient {
     username: string,
     viewerFid?: number
   ): Promise<UserResponse> {
-    const response = await this.apis.user.userByUsername(
-      this.apiKey,
-      username,
-      viewerFid
-    );
+    const response = await this.apis.user.userByUsernameV1(username, viewerFid);
     return response.data;
   }
 
@@ -292,7 +283,7 @@ export class NeynarV1APIClient {
   public async lookupCustodyAddressForUser(
     fid: number
   ): Promise<CustodyAddressResponse> {
-    const response = await this.apis.user.custodyAddress(this.apiKey, fid);
+    const response = await this.apis.user.custodyAddress(fid);
     return response.data;
   }
 
@@ -324,11 +315,7 @@ export class NeynarV1APIClient {
     hash: string,
     options?: { viewerFid?: number }
   ): Promise<CastResponse> {
-    const response = await this.apis.cast.cast(
-      this.apiKey,
-      hash,
-      options?.viewerFid
-    );
+    const response = await this.apis.cast.cast(hash, options?.viewerFid);
     return response.data;
   }
 
@@ -368,7 +355,6 @@ export class NeynarV1APIClient {
     }
 
     const response = await this.apis.cast.allCastsInThread(
-      this.apiKey,
       threadHash,
       viewerFid
     );
@@ -419,7 +405,6 @@ export class NeynarV1APIClient {
     }
   ): Promise<CastsResponse> {
     const response = await this.apis.cast.casts(
-      this.apiKey,
       fid,
       options?.parentUrl,
       options?.viewerFid,
@@ -462,7 +447,6 @@ export class NeynarV1APIClient {
     cursor?: string;
   }): Promise<RecentCastsResponse> {
     const response = await this.apis.cast.recentCasts(
-      this.apiKey,
       options?.viewerFid,
       options?.limit,
       options?.cursor
@@ -494,10 +478,7 @@ export class NeynarV1APIClient {
   public async fetchUserVerifications(
     fid: number
   ): Promise<VerificationResponse> {
-    const response = await this.apis.verification.verifications(
-      this.apiKey,
-      fid
-    );
+    const response = await this.apis.verification.verifications(fid);
     return response.data;
   }
 
@@ -528,10 +509,7 @@ export class NeynarV1APIClient {
   public async lookupUserByVerification(
     address: string
   ): Promise<UserResponse> {
-    const response = await this.apis.verification.userByVerification(
-      this.apiKey,
-      address
-    );
+    const response = await this.apis.verification.userByVerification(address);
     return response.data;
   }
 
@@ -566,7 +544,6 @@ export class NeynarV1APIClient {
     options?: { viewerFid?: number; cursor?: string }
   ): Promise<MentionsAndRepliesResponse> {
     const response = await this.apis.notifications.mentionsAndReplies(
-      this.apiKey,
       fid,
       options?.viewerFid,
       options?.cursor
@@ -607,166 +584,7 @@ export class NeynarV1APIClient {
     options?: { viewerFid?: number; limit?: number; cursor?: string }
   ): Promise<ReactionsAndRecastsResponse> {
     const response = await this.apis.notifications.reactionsAndRecasts(
-      this.apiKey,
       fid,
-      options?.viewerFid,
-      options?.limit,
-      options?.cursor
-    );
-
-    return response.data;
-  }
-
-  // ------------ Reactions ------------
-
-  /**
-   * @deprecated
-   * Now deprecated, use `fetchReactionsForCast` instead.
-   *
-   * Retrieves all like reactions for a specific cast in reverse chronological order.
-   *
-   * @param {Cast | string} castOrCastHash - The Cast object or its hash for which likes are being retrieved.
-   * @param {Object} [options] - Optional parameters to tailor the request.
-   * @param {number} [options.viewerFid] - The FID of the user viewing this information,
-   *   used for providing contextual data specific to the viewer.
-   * @param {number} [options.limit] - The maximum number of results to be returned in a single response.
-   *   Defaults to 25, with a maximum allowable value of 150.
-   * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
-   *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
-   *
-   * @returns {Promise<CastLikesResponse>} A promise that resolves to a `CastLikesResponse` object,
-   *   containing a list of likes for the given cast.
-   *
-   * @example
-   * // Example: Retrieve the first set of likes for a cast with a specific hash, limited to 2
-   * client.fetchCastLikes('0xfe90f9de682273e05b201629ad2338bdcd89b6be', {
-   *   viewerFid: 3, // The FID of the user viewing this information
-   *   limit: 2, // Fetching up to 2 likes
-   *   // cursor: "nextPageCursor", // Pagination cursor for the next set of results, Omit this parameter for the initial request.
-   * }).then(response => {
-   *   console.log('Cast Likes:', response); // Outputs the cast likes
-   * });
-   *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/cast-likes-v1).
-   */
-  public async fetchCastLikes(
-    castOrCastHash: Cast | string,
-    options?: { viewerFid?: number; limit?: number; cursor?: string }
-  ): Promise<CastLikesResponse> {
-    let castHash: string;
-    if (typeof castOrCastHash === "string") {
-      castHash = castOrCastHash;
-    } else {
-      castHash = castOrCastHash.hash;
-    }
-
-    const response = await this.apis.reactions.castLikes(
-      this.apiKey,
-      castHash,
-      options?.viewerFid,
-      options?.limit,
-      options?.cursor
-    );
-
-    return response.data;
-  }
-
-  /**
-   * @deprecated
-   * Now deprecated, use `fetchReactionsForCast` instead.
-   *
-   * Retrieves all reactions (likes and recasts) for a specific cast.
-   *
-   * @param {Cast | string} castOrCastHash - The Cast object or its hash for which reactions are being retrieved.
-   * @param {Object} [options] - Optional parameters to tailor the request.
-   * @param {number} [options.viewerFid] - The FID of the user viewing this information,
-   *   used for providing contextual data specific to the viewer.
-   * @param {number} [options.limit] - The maximum number of results to be returned in a single response.
-   *   Defaults to 25, with a maximum allowable value of 150.
-   * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
-   *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
-   *
-   * @returns {Promise<CastReactionsResponse>} A promise that resolves to a `CastReactionsResponse` object,
-   *   containing a list of all reactions for the given cast.
-   *
-   * @example
-   * // Example: Retrieve the first set of reactions for a cast with a specific hash, limited to 5
-   * client.fetchCastReactions('0xfe90f9de682273e05b201629ad2338bdcd89b6be', {
-   *   viewerFid: 3, // The FID of the user viewing this information
-   *   limit: 5, // Fetching up to 5 reactions
-   *   // cursor: "nextPageCursor", // Pagination cursor for the next set of results, Omit this parameter for the initial request.
-   * }).then(response => {
-   *   console.log('Cast Reactions:', response); // Outputs the cast reactions
-   * });
-   *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/cast-reactions-v1).
-   */
-  public async fetchCastReactions(
-    castOrCastHash: Cast | string,
-    options?: { viewerFid?: number; limit?: number; cursor?: string }
-  ): Promise<CastReactionsResponse> {
-    let castHash: string;
-    if (typeof castOrCastHash === "string") {
-      castHash = castOrCastHash;
-    } else {
-      castHash = castOrCastHash.hash;
-    }
-
-    const response = await this.apis.reactions.castReactions(
-      this.apiKey,
-      castHash,
-      options?.viewerFid,
-      options?.limit,
-      options?.cursor
-    );
-
-    return response.data;
-  }
-
-  /**
-   * @deprecated
-   * Now deprecated, use `fetchReactionsForCast` instead.
-   *
-   * Retrieves the list of users who have recasted a specific cast.
-   *
-   * @param {Cast | string} castOrCastHash - The Cast object or its hash for which recasters are being retrieved.
-   * @param {Object} [options] - Optional parameters to tailor the request.
-   * @param {number} [options.viewerFid] - The FID of the user viewing this information,
-   *   used for providing contextual data specific to the viewer.
-   * @param {number} [options.limit] - The maximum number of results to be returned in a single response.
-   *   Defaults to 25, with a maximum allowable value of 150.
-   * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
-   *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
-   *
-   * @returns {Promise<CastRecasterResponse>} A promise that resolves to a `CastRecasterResponse` object,
-   *   containing a list of recasters for the given cast.
-   *
-   * @example
-   * // Example: Retrieve the first set of recasters for a cast with a specific hash, limited to 3
-   * client.fetchRecasters('0xafadc0478ede366e3f5232af3190a82dea20b169', {
-   *   viewerFid: 3, // The FID of the user viewing this information
-   *   limit: 3, // Fetching up to 3 recasters
-   *   // cursor: "nextPageCursor", // Pagination cursor for the next set of results, Omit this parameter for the initial request.
-   * }).then(response => {
-   *   console.log('Cast Recasters:', response); // Outputs the cast recasters
-   * });
-   *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/cast-recasters-v1).
-   */
-  public async fetchRecasters(
-    castOrCastHash: Cast | string,
-    options?: { viewerFid?: number; limit?: number; cursor?: string }
-  ): Promise<CastRecasterResponse> {
-    let castHash: string;
-    if (typeof castOrCastHash === "string") {
-      castHash = castOrCastHash;
-    } else {
-      castHash = castOrCastHash.hash;
-    }
-
-    const response = await this.apis.reactions.castRecasters(
-      this.apiKey,
-      castHash,
       options?.viewerFid,
       options?.limit,
       options?.cursor
@@ -809,7 +627,6 @@ export class NeynarV1APIClient {
     options?: { viewerFid?: number; limit?: number; cursor?: string }
   ): Promise<FollowResponse> {
     const response = await this.apis.follows.followers(
-      this.apiKey,
       fid,
       options?.viewerFid,
       options?.limit,
@@ -851,7 +668,6 @@ export class NeynarV1APIClient {
     options?: { viewerFid?: number; limit?: number; cursor?: string }
   ): Promise<FollowResponse> {
     const response = await this.apis.follows.following(
-      this.apiKey,
       fid,
       options?.viewerFid,
       options?.limit,

@@ -34,7 +34,6 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Gets a list of users who follow a given user in reverse chronological order.
          * @summary Gets all followers for a given FID
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
@@ -42,9 +41,7 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        followers: async (apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('followers', 'apiKey', apiKey)
+        followers: async (fid: number, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('followers', 'fid', fid)
             const localVarPath = `/farcaster/followers`;
@@ -58,6 +55,9 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -73,10 +73,6 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
 
             if (cursor !== undefined) {
                 localVarQueryParameter['cursor'] = cursor;
-            }
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
             }
 
 
@@ -93,7 +89,6 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Gets a list of users who is following a given user in reverse chronological order.
          * @summary Gets all following users of a FID
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
@@ -101,9 +96,7 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        following: async (apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('following', 'apiKey', apiKey)
+        following: async (fid: number, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('following', 'fid', fid)
             const localVarPath = `/farcaster/following`;
@@ -117,6 +110,9 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -132,10 +128,6 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
 
             if (cursor !== undefined) {
                 localVarQueryParameter['cursor'] = cursor;
-            }
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
             }
 
 
@@ -162,7 +154,6 @@ export const FollowsApiFp = function(configuration?: Configuration) {
         /**
          * Gets a list of users who follow a given user in reverse chronological order.
          * @summary Gets all followers for a given FID
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
@@ -170,14 +161,13 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async followers(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FollowResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.followers(apiKey, fid, viewerFid, limit, cursor, options);
+        async followers(fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FollowResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.followers(fid, viewerFid, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Gets a list of users who is following a given user in reverse chronological order.
          * @summary Gets all following users of a FID
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
@@ -185,8 +175,8 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async following(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FollowResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.following(apiKey, fid, viewerFid, limit, cursor, options);
+        async following(fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FollowResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.following(fid, viewerFid, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -202,7 +192,6 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
         /**
          * Gets a list of users who follow a given user in reverse chronological order.
          * @summary Gets all followers for a given FID
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
@@ -210,13 +199,12 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        followers(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<FollowResponse> {
-            return localVarFp.followers(apiKey, fid, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
+        followers(fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<FollowResponse> {
+            return localVarFp.followers(fid, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Gets a list of users who is following a given user in reverse chronological order.
          * @summary Gets all following users of a FID
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 150)
@@ -224,8 +212,8 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        following(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<FollowResponse> {
-            return localVarFp.following(apiKey, fid, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
+        following(fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<FollowResponse> {
+            return localVarFp.following(fid, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -240,7 +228,6 @@ export class FollowsApi extends BaseAPI {
     /**
      * Gets a list of users who follow a given user in reverse chronological order.
      * @summary Gets all followers for a given FID
-     * @param {string} apiKey API key required for authentication.
      * @param {number} fid FID of the user
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
      * @param {number} [limit] Number of results to retrieve (default 25, max 150)
@@ -249,14 +236,13 @@ export class FollowsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FollowsApi
      */
-    public followers(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
-        return FollowsApiFp(this.configuration).followers(apiKey, fid, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public followers(fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return FollowsApiFp(this.configuration).followers(fid, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Gets a list of users who is following a given user in reverse chronological order.
      * @summary Gets all following users of a FID
-     * @param {string} apiKey API key required for authentication.
      * @param {number} fid FID of the user
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
      * @param {number} [limit] Number of results to retrieve (default 25, max 150)
@@ -265,7 +251,7 @@ export class FollowsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FollowsApi
      */
-    public following(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
-        return FollowsApiFp(this.configuration).following(apiKey, fid, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public following(fid: number, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return FollowsApiFp(this.configuration).following(fid, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }

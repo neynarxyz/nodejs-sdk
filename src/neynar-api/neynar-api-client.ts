@@ -261,6 +261,9 @@ export class NeynarAPIClient {
   }
 
   /**
+   * @deprecated
+   * Now deprecated, use v2's `lookupUserByUsernameV2` instead.
+   * 
    * Retrieves the specified user via their username (if found).
    *
    * @param {string} username - The username of the user whose information is being retrieved.
@@ -601,119 +604,6 @@ export class NeynarAPIClient {
     options?: { type?: NotificationType }
   ): Promise<OperationResponse> {
     return await this.clients.v2.markNotificationsAsSeen(signerUuid, options);
-  }
-
-  // ------------ Reactions ------------
-
-  /**
-   * @deprecated
-   * Now deprecated, use `fetchReactionsForCast` instead.
-   *
-   * Retrieves all like reactions for a specific cast in reverse chronological order.
-   *
-   * @param {CastV1 | string} castOrCastHash - The Cast object or its hash for which likes are being retrieved.
-   * @param {Object} [options] - Optional parameters to tailor the request.
-   * @param {number} [options.viewerFid] - The FID of the user viewing this information,
-   *   used for providing contextual data specific to the viewer.
-   * @param {number} [options.limit] - The maximum number of results to be returned in a single response.
-   *   Defaults to 25, with a maximum allowable value of 150.
-   * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
-   *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
-   *
-   * @returns {Promise<CastLikesResponse>} A promise that resolves to a `CastLikesResponse` object,
-   *   containing a list of likes for the given cast.
-   *
-   * @example
-   * // Example: Retrieve the first set of likes for a cast with a specific hash, limited to 2
-   * client.fetchCastLikes('0xfe90f9de682273e05b201629ad2338bdcd89b6be', {
-   *   viewerFid: 3, // The FID of the user viewing this information
-   *   limit: 2, // Fetching up to 2 likes
-   *   // cursor: "nextPageCursor", // Pagination cursor for the next set of results, Omit this parameter for the initial request.
-   * }).then(response => {
-   *   console.log('Cast Likes:', response); // Outputs the cast likes
-   * });
-   *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/cast-likes-v1).
-   */
-  public async fetchCastLikes(
-    castOrCastHash: CastV1 | string,
-    options?: { viewerFid?: number; limit?: number; cursor?: string }
-  ): Promise<CastLikesResponse> {
-    return await this.clients.v1.fetchCastLikes(castOrCastHash, options);
-  }
-
-  /**
-   * @deprecated
-   * Now deprecated, use `fetchReactionsForCast` instead.
-   *
-   * Retrieves all reactions (likes and recasts) for a specific cast.
-   *
-   * @param {CastV1 | string} castOrCastHash - The Cast object or its hash for which reactions are being retrieved.
-   * @param {Object} [options] - Optional parameters to tailor the request.
-   * @param {number} [options.viewerFid] - The FID of the user viewing this information,
-   *   used for providing contextual data specific to the viewer.
-   * @param {number} [options.limit] - The maximum number of results to be returned in a single response.
-   *   Defaults to 25, with a maximum allowable value of 150.
-   * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
-   *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
-   *
-   * @returns {Promise<CastReactionsResponse>} A promise that resolves to a `CastReactionsResponse` object,
-   *   containing a list of all reactions for the given cast.
-   *
-   * @example
-   * // Example: Retrieve the first set of reactions for a cast with a specific hash, limited to 5
-   * client.fetchCastReactions('0xfe90f9de682273e05b201629ad2338bdcd89b6be', {
-   *   viewerFid: 3, // The FID of the user viewing this information
-   *   limit: 5, // Fetching up to 5 reactions
-   *   // cursor: "nextPageCursor", // Pagination cursor for the next set of results, Omit this parameter for the initial request.
-   * }).then(response => {
-   *   console.log('Cast Reactions:', response); // Outputs the cast reactions
-   * });
-   *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/cast-reactions-v1).
-   */
-  public async fetchCastReactions(
-    castOrCastHash: CastV1 | string,
-    options?: { viewerFid?: number; limit?: number; cursor?: string }
-  ): Promise<CastReactionsResponse> {
-    return await this.clients.v1.fetchCastReactions(castOrCastHash, options);
-  }
-
-  /**
-   * @deprecated
-   * Now deprecated, use `fetchReactionsForCast` instead.
-   *
-   * Retrieves the list of users who have recasted a specific cast.
-   *
-   * @param {CastV1 | string} castOrCastHash - The Cast object or its hash for which recasters are being retrieved.
-   * @param {Object} [options] - Optional parameters to tailor the request.
-   * @param {number} [options.viewerFid] - The FID of the user viewing this information,
-   *   used for providing contextual data specific to the viewer.
-   * @param {number} [options.limit] - The maximum number of results to be returned in a single response.
-   *   Defaults to 25, with a maximum allowable value of 150.
-   * @param {string} [options.cursor] - A pagination cursor for fetching specific subsets of results.
-   *   Omit this parameter for the initial request. Use it for paginated retrieval of subsequent data.
-   *
-   * @returns {Promise<CastRecasterResponse>} A promise that resolves to a `CastRecasterResponse` object,
-   *   containing a list of recasters for the given cast.
-   *
-   * @example
-   * // Example: Retrieve the first set of recasters for a cast with a specific hash, limited to 3
-   * client.fetchRecasters('0xafadc0478ede366e3f5232af3190a82dea20b169', {
-   *   viewerFid: 3, // The FID of the user viewing this information
-   *   limit: 3, // Fetching up to 3 recasters
-   *   // cursor: "nextPageCursor", // Pagination cursor for the next set of results, Omit this parameter for the initial request.
-   * }).then(response => {
-   *   console.log('Cast Recasters:', response); // Outputs the cast recasters
-   * });
-   *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/cast-recasters-v1).
-   */
-  public async fetchRecasters(
-    castOrCastHash: CastV1 | string,
-    options?: { viewerFid?: number; limit?: number; cursor?: string }
-  ): Promise<CastRecasterResponse> {
-    return await this.clients.v1.fetchRecasters(castOrCastHash, options);
   }
 
   // ------------ Follows ------------
@@ -1509,6 +1399,33 @@ export class NeynarAPIClient {
     custodyAddress: string
   ): Promise<UserResponse> {
     return await this.clients.v2.lookupUserByCustodyAddress(custodyAddress);
+  }
+
+  /**
+   * Retrieves the specified user via their username (if found).
+   *
+   * @param {string} username - The username of the user whose information is being retrieved.
+   * @param {number} [viewerFid] - Optional. The FID of the user viewing this information,
+   *   used for providing contextual data specific to the viewer.
+   *
+   * @returns {Promise<UserResponse>} A promise that resolves to a `UserResponse` object,
+   *   containing the metadata about the user associated with the given username.
+   *
+   * @example
+   * // Example: Retrieve information about a user with username 'manan' as viewed by a user with FID 3
+   * client.lookupUserByUsernameV2('manan', {viewerFid: 3}).then(response => {
+   *   console.log('User Information:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-by-username-v2).
+   */
+  public async lookupUserByUsernameV2(
+    username: string,
+    options?: {
+      viewerFid?: number;
+    }
+  ): Promise<UserResponse> {
+    return await this.clients.v2.lookupUserByUsernameV2(username, options);
   }
 
   // ------------ Cast ------------
