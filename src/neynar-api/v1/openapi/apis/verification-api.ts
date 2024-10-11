@@ -36,15 +36,12 @@ export const VerificationApiAxiosParamCreator = function (configuration?: Config
         /**
          * Now deprecated. Use [v2/user/bulk-by-address](https://docs.neynar.com/reference/user-bulk-by-address). Checks if a given Ethereum address has a Farcaster user associated with it. Note: if an address is associated with multiple users, the API will return the user who most recently published a verification with the address (based on when Warpcast received the proof, not a self-reported timestamp).
          * @summary DEPRECATED - Retrieve user for a given ethereum address
-         * @param {string} apiKey API key required for authentication.
          * @param {string} address 
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        userByVerification: async (apiKey: string, address: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('userByVerification', 'apiKey', apiKey)
+        userByVerification: async (address: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'address' is not null or undefined
             assertParamExists('userByVerification', 'address', address)
             const localVarPath = `/farcaster/user-by-verification`;
@@ -59,12 +56,11 @@ export const VerificationApiAxiosParamCreator = function (configuration?: Config
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
             if (address !== undefined) {
                 localVarQueryParameter['address'] = address;
-            }
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
             }
 
 
@@ -81,15 +77,12 @@ export const VerificationApiAxiosParamCreator = function (configuration?: Config
         /**
          * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), verifications are in the user object. Get all known verifications of a user.
          * @summary DEPRECATED - Retrieve verifications for a given FID
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        verifications: async (apiKey: string, fid: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('verifications', 'apiKey', apiKey)
+        verifications: async (fid: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('verifications', 'fid', fid)
             const localVarPath = `/farcaster/verifications`;
@@ -104,12 +97,11 @@ export const VerificationApiAxiosParamCreator = function (configuration?: Config
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
-            }
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
             }
 
 
@@ -136,27 +128,25 @@ export const VerificationApiFp = function(configuration?: Configuration) {
         /**
          * Now deprecated. Use [v2/user/bulk-by-address](https://docs.neynar.com/reference/user-bulk-by-address). Checks if a given Ethereum address has a Farcaster user associated with it. Note: if an address is associated with multiple users, the API will return the user who most recently published a verification with the address (based on when Warpcast received the proof, not a self-reported timestamp).
          * @summary DEPRECATED - Retrieve user for a given ethereum address
-         * @param {string} apiKey API key required for authentication.
          * @param {string} address 
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        async userByVerification(apiKey: string, address: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userByVerification(apiKey, address, options);
+        async userByVerification(address: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userByVerification(address, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), verifications are in the user object. Get all known verifications of a user.
          * @summary DEPRECATED - Retrieve verifications for a given FID
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        async verifications(apiKey: string, fid: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VerificationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.verifications(apiKey, fid, options);
+        async verifications(fid: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VerificationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.verifications(fid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -172,26 +162,24 @@ export const VerificationApiFactory = function (configuration?: Configuration, b
         /**
          * Now deprecated. Use [v2/user/bulk-by-address](https://docs.neynar.com/reference/user-bulk-by-address). Checks if a given Ethereum address has a Farcaster user associated with it. Note: if an address is associated with multiple users, the API will return the user who most recently published a verification with the address (based on when Warpcast received the proof, not a self-reported timestamp).
          * @summary DEPRECATED - Retrieve user for a given ethereum address
-         * @param {string} apiKey API key required for authentication.
          * @param {string} address 
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        userByVerification(apiKey: string, address: string, options?: any): AxiosPromise<UserResponse> {
-            return localVarFp.userByVerification(apiKey, address, options).then((request) => request(axios, basePath));
+        userByVerification(address: string, options?: any): AxiosPromise<UserResponse> {
+            return localVarFp.userByVerification(address, options).then((request) => request(axios, basePath));
         },
         /**
          * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), verifications are in the user object. Get all known verifications of a user.
          * @summary DEPRECATED - Retrieve verifications for a given FID
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        verifications(apiKey: string, fid: number, options?: any): AxiosPromise<VerificationResponse> {
-            return localVarFp.verifications(apiKey, fid, options).then((request) => request(axios, basePath));
+        verifications(fid: number, options?: any): AxiosPromise<VerificationResponse> {
+            return localVarFp.verifications(fid, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -206,28 +194,26 @@ export class VerificationApi extends BaseAPI {
     /**
      * Now deprecated. Use [v2/user/bulk-by-address](https://docs.neynar.com/reference/user-bulk-by-address). Checks if a given Ethereum address has a Farcaster user associated with it. Note: if an address is associated with multiple users, the API will return the user who most recently published a verification with the address (based on when Warpcast received the proof, not a self-reported timestamp).
      * @summary DEPRECATED - Retrieve user for a given ethereum address
-     * @param {string} apiKey API key required for authentication.
      * @param {string} address 
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      * @memberof VerificationApi
      */
-    public userByVerification(apiKey: string, address: string, options?: AxiosRequestConfig) {
-        return VerificationApiFp(this.configuration).userByVerification(apiKey, address, options).then((request) => request(this.axios, this.basePath));
+    public userByVerification(address: string, options?: AxiosRequestConfig) {
+        return VerificationApiFp(this.configuration).userByVerification(address, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), verifications are in the user object. Get all known verifications of a user.
      * @summary DEPRECATED - Retrieve verifications for a given FID
-     * @param {string} apiKey API key required for authentication.
      * @param {number} fid FID of the user
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      * @memberof VerificationApi
      */
-    public verifications(apiKey: string, fid: number, options?: AxiosRequestConfig) {
-        return VerificationApiFp(this.configuration).verifications(apiKey, fid, options).then((request) => request(this.axios, this.basePath));
+    public verifications(fid: number, options?: AxiosRequestConfig) {
+        return VerificationApiFp(this.configuration).verifications(fid, options).then((request) => request(this.axios, this.basePath));
     }
 }

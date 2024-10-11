@@ -40,16 +40,13 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Now deprecated, use [v2/cast/conversation](https://docs.neynar.com/reference/cast-conversation). Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
          * @summary DEPRECATED - Retrieve all casts in a given thread hash
-         * @param {string} apiKey API key required for authentication.
          * @param {string} threadHash The hash of the thread to retrieve casts from.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        allCastsInThread: async (apiKey: string, threadHash: string, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('allCastsInThread', 'apiKey', apiKey)
+        allCastsInThread: async (threadHash: string, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'threadHash' is not null or undefined
             assertParamExists('allCastsInThread', 'threadHash', threadHash)
             const localVarPath = `/farcaster/all-casts-in-thread`;
@@ -64,16 +61,15 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
             if (threadHash !== undefined) {
                 localVarQueryParameter['threadHash'] = threadHash;
             }
 
             if (viewerFid !== undefined) {
                 localVarQueryParameter['viewerFid'] = viewerFid;
-            }
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
             }
 
 
@@ -90,16 +86,13 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Now deprecated, use [v2/cast](https://docs.neynar.com/reference/cast). Gets information about an individual cast
          * @summary DEPRECATED - Retrieve cast for a given hash
-         * @param {string} apiKey API key required for authentication.
          * @param {string} hash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        cast: async (apiKey: string, hash: string, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('cast', 'apiKey', apiKey)
+        cast: async (hash: string, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'hash' is not null or undefined
             assertParamExists('cast', 'hash', hash)
             const localVarPath = `/farcaster/cast`;
@@ -114,16 +107,15 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
             if (hash !== undefined) {
                 localVarQueryParameter['hash'] = hash;
             }
 
             if (viewerFid !== undefined) {
                 localVarQueryParameter['viewerFid'] = viewerFid;
-            }
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
             }
 
 
@@ -140,7 +132,6 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Now deprecated, use [/v2/farcaster/feed/user/casts](https://docs.neynar.com/reference/feed-user-casts) instead
          * @summary DEPRECATED - Retrieve casts for a given user
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {string} [parentUrl] A cast can be part of a certain channel. The channel is identified by &#x60;parent_url&#x60;. All casts in the channel ladder up to the same parent_url.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
@@ -150,9 +141,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * @deprecated
          * @throws {RequiredError}
          */
-        casts: async (apiKey: string, fid: number, parentUrl?: string, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('casts', 'apiKey', apiKey)
+        casts: async (fid: number, parentUrl?: string, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('casts', 'fid', fid)
             const localVarPath = `/farcaster/casts`;
@@ -166,6 +155,9 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -187,10 +179,6 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['cursor'] = cursor;
             }
 
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
-
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -205,16 +193,13 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Get a list of casts from the protocol in reverse chronological order based on timestamp
          * @summary Get Recent Casts
-         * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        recentCasts: async (apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('recentCasts', 'apiKey', apiKey)
+        recentCasts: async (viewerFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/farcaster/recent-casts`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -227,6 +212,9 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
             if (viewerFid !== undefined) {
                 localVarQueryParameter['viewerFid'] = viewerFid;
             }
@@ -237,10 +225,6 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (cursor !== undefined) {
                 localVarQueryParameter['cursor'] = cursor;
-            }
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
             }
 
 
@@ -267,35 +251,32 @@ export const CastApiFp = function(configuration?: Configuration) {
         /**
          * Now deprecated, use [v2/cast/conversation](https://docs.neynar.com/reference/cast-conversation). Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
          * @summary DEPRECATED - Retrieve all casts in a given thread hash
-         * @param {string} apiKey API key required for authentication.
          * @param {string} threadHash The hash of the thread to retrieve casts from.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        async allCastsInThread(apiKey: string, threadHash: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AllCastsInThreadResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.allCastsInThread(apiKey, threadHash, viewerFid, options);
+        async allCastsInThread(threadHash: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AllCastsInThreadResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.allCastsInThread(threadHash, viewerFid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Now deprecated, use [v2/cast](https://docs.neynar.com/reference/cast). Gets information about an individual cast
          * @summary DEPRECATED - Retrieve cast for a given hash
-         * @param {string} apiKey API key required for authentication.
          * @param {string} hash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        async cast(apiKey: string, hash: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.cast(apiKey, hash, viewerFid, options);
+        async cast(hash: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cast(hash, viewerFid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Now deprecated, use [/v2/farcaster/feed/user/casts](https://docs.neynar.com/reference/feed-user-casts) instead
          * @summary DEPRECATED - Retrieve casts for a given user
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {string} [parentUrl] A cast can be part of a certain channel. The channel is identified by &#x60;parent_url&#x60;. All casts in the channel ladder up to the same parent_url.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
@@ -305,22 +286,21 @@ export const CastApiFp = function(configuration?: Configuration) {
          * @deprecated
          * @throws {RequiredError}
          */
-        async casts(apiKey: string, fid: number, parentUrl?: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.casts(apiKey, fid, parentUrl, viewerFid, limit, cursor, options);
+        async casts(fid: number, parentUrl?: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.casts(fid, parentUrl, viewerFid, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get a list of casts from the protocol in reverse chronological order based on timestamp
          * @summary Get Recent Casts
-         * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async recentCasts(apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RecentCastsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.recentCasts(apiKey, viewerFid, limit, cursor, options);
+        async recentCasts(viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RecentCastsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.recentCasts(viewerFid, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -336,33 +316,30 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
         /**
          * Now deprecated, use [v2/cast/conversation](https://docs.neynar.com/reference/cast-conversation). Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
          * @summary DEPRECATED - Retrieve all casts in a given thread hash
-         * @param {string} apiKey API key required for authentication.
          * @param {string} threadHash The hash of the thread to retrieve casts from.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        allCastsInThread(apiKey: string, threadHash: string, viewerFid?: number, options?: any): AxiosPromise<AllCastsInThreadResponse> {
-            return localVarFp.allCastsInThread(apiKey, threadHash, viewerFid, options).then((request) => request(axios, basePath));
+        allCastsInThread(threadHash: string, viewerFid?: number, options?: any): AxiosPromise<AllCastsInThreadResponse> {
+            return localVarFp.allCastsInThread(threadHash, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Now deprecated, use [v2/cast](https://docs.neynar.com/reference/cast). Gets information about an individual cast
          * @summary DEPRECATED - Retrieve cast for a given hash
-         * @param {string} apiKey API key required for authentication.
          * @param {string} hash Cast hash
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        cast(apiKey: string, hash: string, viewerFid?: number, options?: any): AxiosPromise<CastResponse> {
-            return localVarFp.cast(apiKey, hash, viewerFid, options).then((request) => request(axios, basePath));
+        cast(hash: string, viewerFid?: number, options?: any): AxiosPromise<CastResponse> {
+            return localVarFp.cast(hash, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Now deprecated, use [/v2/farcaster/feed/user/casts](https://docs.neynar.com/reference/feed-user-casts) instead
          * @summary DEPRECATED - Retrieve casts for a given user
-         * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of a user
          * @param {string} [parentUrl] A cast can be part of a certain channel. The channel is identified by &#x60;parent_url&#x60;. All casts in the channel ladder up to the same parent_url.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
@@ -372,21 +349,20 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * @deprecated
          * @throws {RequiredError}
          */
-        casts(apiKey: string, fid: number, parentUrl?: string, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<CastsResponse> {
-            return localVarFp.casts(apiKey, fid, parentUrl, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
+        casts(fid: number, parentUrl?: string, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<CastsResponse> {
+            return localVarFp.casts(fid, parentUrl, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Get a list of casts from the protocol in reverse chronological order based on timestamp
          * @summary Get Recent Casts
-         * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to retrieve (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        recentCasts(apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<RecentCastsResponse> {
-            return localVarFp.recentCasts(apiKey, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
+        recentCasts(viewerFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<RecentCastsResponse> {
+            return localVarFp.recentCasts(viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -401,7 +377,6 @@ export class CastApi extends BaseAPI {
     /**
      * Now deprecated, use [v2/cast/conversation](https://docs.neynar.com/reference/cast-conversation). Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
      * @summary DEPRECATED - Retrieve all casts in a given thread hash
-     * @param {string} apiKey API key required for authentication.
      * @param {string} threadHash The hash of the thread to retrieve casts from.
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
      * @param {*} [options] Override http request option.
@@ -409,14 +384,13 @@ export class CastApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CastApi
      */
-    public allCastsInThread(apiKey: string, threadHash: string, viewerFid?: number, options?: AxiosRequestConfig) {
-        return CastApiFp(this.configuration).allCastsInThread(apiKey, threadHash, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    public allCastsInThread(threadHash: string, viewerFid?: number, options?: AxiosRequestConfig) {
+        return CastApiFp(this.configuration).allCastsInThread(threadHash, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Now deprecated, use [v2/cast](https://docs.neynar.com/reference/cast). Gets information about an individual cast
      * @summary DEPRECATED - Retrieve cast for a given hash
-     * @param {string} apiKey API key required for authentication.
      * @param {string} hash Cast hash
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
      * @param {*} [options] Override http request option.
@@ -424,14 +398,13 @@ export class CastApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CastApi
      */
-    public cast(apiKey: string, hash: string, viewerFid?: number, options?: AxiosRequestConfig) {
-        return CastApiFp(this.configuration).cast(apiKey, hash, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    public cast(hash: string, viewerFid?: number, options?: AxiosRequestConfig) {
+        return CastApiFp(this.configuration).cast(hash, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Now deprecated, use [/v2/farcaster/feed/user/casts](https://docs.neynar.com/reference/feed-user-casts) instead
      * @summary DEPRECATED - Retrieve casts for a given user
-     * @param {string} apiKey API key required for authentication.
      * @param {number} fid fid of a user
      * @param {string} [parentUrl] A cast can be part of a certain channel. The channel is identified by &#x60;parent_url&#x60;. All casts in the channel ladder up to the same parent_url.
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
@@ -442,14 +415,13 @@ export class CastApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CastApi
      */
-    public casts(apiKey: string, fid: number, parentUrl?: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
-        return CastApiFp(this.configuration).casts(apiKey, fid, parentUrl, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public casts(fid: number, parentUrl?: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return CastApiFp(this.configuration).casts(fid, parentUrl, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Get a list of casts from the protocol in reverse chronological order based on timestamp
      * @summary Get Recent Casts
-     * @param {string} apiKey API key required for authentication.
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
      * @param {number} [limit] Number of results to retrieve (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
@@ -457,7 +429,7 @@ export class CastApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CastApi
      */
-    public recentCasts(apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
-        return CastApiFp(this.configuration).recentCasts(apiKey, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public recentCasts(viewerFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return CastApiFp(this.configuration).recentCasts(viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
