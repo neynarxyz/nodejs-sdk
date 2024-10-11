@@ -101,20 +101,6 @@ When writing JS docstrings, adhere to the following guidelines:
    - Include explanatory comments within the example code to clarify the purpose and usage of each line or significant code section.
 6. **Neynar Documentation Reference**: Include a link to the Neynar documentation for additional information.
 
-### Semantic Versioning
-
-SemVer comprises three parts, X.Y.Z, where X, Y and Z are non-negative integers. This means that the primary or major version is X, and the minor version is Y. Bug fixes and patches are called version Z. So, it always takes the form of X.Y.Z, or major.minor.patch
-
-Run following script to update the version
-
-```bash
-npx ts-node update-sdk-version.ts
-```
-
-Choose appropriate version. Script will auto commit the changes.
-
-Note: Updating version is important to publish code to npm registry. If not updated deployment will fail and changes won't reflect in sdk
-
 ### Coding Standards
 
 - Ensure code readability and maintainability.
@@ -129,15 +115,33 @@ Note: Updating version is important to publish code to npm registry. If not upda
 - Provide a clear and detailed description of your changes in the pull request.
 - Link any relevant issues in your pull request description.
 
+PS. Do not update the SDK version in your PR, this is done separately.
+
 ### Publish a release
 
 After PR gets approved and merged in main, follow following steps
 
-1. Visit [Releases.](https://github.com/neynarxyz/nodejs-sdk/releases)
-2. [Draft a new release.](https://github.com/neynarxyz/nodejs-sdk/releases/new)
-3. Create a new Tag by clicking on `Choose a tag` dropdown, enter a new version. Make sure it is the exact same version as the updated semantic version of the SDK.
-4. Click on `Generate release notes`. This will auto generate notes based on newly generated PR/PRs.
-5. If everything looks good to go, click `Publish release`.
+1. Create a new branch, run `npx ts-node update-sdk-version.ts`, and create a new PR. (see 'Semantic Versioning' below to choose the version number)
+2. Wait for the build to pass, then merge.
+3. Visit [Releases.](https://github.com/neynarxyz/nodejs-sdk/releases)
+4. [Draft a new release.](https://github.com/neynarxyz/nodejs-sdk/releases/new)
+5. Create a new Tag by clicking on `Choose a tag` dropdown, enter a new version. Make sure it is the exact same version as the updated semantic version of the SDK.
+6. Click on `Generate release notes`. This will auto generate notes based on newly generated PR/PRs.
+7. If everything looks good to go, click `Publish release`.
+
+### Semantic Versioning
+
+SemVer comprises three parts, X.Y.Z, where X, Y and Z are non-negative integers. This means that the primary or major version is X, and the minor version is Y. Bug fixes and patches are called version Z. So, it always takes the form of X.Y.Z, or major.minor.patch
+
+Run following script to update the version
+
+```bash
+npx ts-node update-sdk-version.ts
+```
+
+Choose appropriate version. Script will auto commit the changes.
+
+Note: Updating version is important to publish code to npm registry. If not updated deployment will fail and changes won't reflect in sdk
 
 ### Community Guidelines
 
