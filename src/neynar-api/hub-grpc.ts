@@ -1,10 +1,12 @@
 import * as grpc from '@grpc/grpc-js';
 
-export function createApiKeyInterceptor(apiKey: string) {
+export function createApiKeyInterceptor(apiKey: string, apiKeyName: string = 'x-api-key') {
     return function apiKeyInterceptor(options: any, nextCall: any) {
         var requester = {
             start: function (metadata: any, listener: any, next: any) {
-                metadata.add('x-api-key', apiKey);
+                if (metadata.get(apiKeyName) == false) {
+                    metadata.add(apiKeyName, apiKey);
+                }
                 var newListener = {
                     onReceiveMetadata: function (metadata: any, next: any) {
                         next(metadata);
