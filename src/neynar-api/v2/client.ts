@@ -1143,6 +1143,7 @@ export class NeynarV2APIClient {
    * @param {boolean} [options.includeChronologicalParentCasts] - Optional parameter to include chronological parent casts in the response.
    * @param {number} [options.viewerFid] - Providing this will return a conversation that respects this user's mutes and blocks and includes `viewer_context`.
    * @param {CastConversationSortType} [options.sortType] - Optional parameter to modify the sort type. (default 'desc_chron')
+   * @param {'above' | 'below'} [options.fold] - Optional parameter to add a fold to the conversation. When not specified, all casts are returned. When specified, only the casts above or below the fold are returned.
    * @param {number} [options.limit] - Number of results to retrieve (default 20, max 50)
    * @param {string} [options.cursor] - Optional parameter to specify the pagination cursor for fetching specific subsets of results.
    * @returns {Promise<Conversation>} A promise that resolves to a `Conversation` object,
@@ -1158,6 +1159,51 @@ export class NeynarV2APIClient {
    *   console.log('Cast Conversation Information:', response); // Outputs detailed information about the specified cast conversation
    * });
    *
+   * @example
+   * // Implement above and below 'the fold', generally seen in clients as "show more replies".
+   * // Fetch first page above the fold:
+   * client.lookupCastConversation(
+   *   'https://warpcast.com/rish/0x9288c1',
+   *   CastParamType.Url,
+   *  { 
+   *    replyDepth: 2,
+   *    includeChronologicalParentCasts: true,
+   *    fold: 'above',
+   *    viewerFid: 3,
+   *    limit: 2,
+   *    // cursor: "nextPageCursor" // Omit this parameter for the initial request
+   * }).then(response => {
+   *   console.log('Cast Conversation Information:', response); // Outputs detailed information about the specified cast conversation
+   * });
+   * // Subsequent pages above the fold
+   * client.lookupCastConversation(
+   *   'https://warpcast.com/rish/0x9288c1',
+   *   CastParamType.Url,
+   *  { 
+   *    replyDepth: 2,
+   *    includeChronologicalParentCasts: false,
+   *    fold: 'above',
+   *    viewerFid: 3,
+   *    limit: 2,
+   *    // cursor: "{{nextPageCursor}}"
+   * }).then(response => {
+   *   console.log('Subsequent casts in conversation above the fold', response.conversation.cast.direct_replies);
+   * });
+   * // Fetch below the fold on "show more replies" click
+   * client.lookupCastConversation(
+   *   'https://warpcast.com/rish/0x9288c1',
+   *   CastParamType.Url,
+   *  { 
+   *    replyDepth: 2,
+   *    includeChronologicalParentCasts: false,
+   *    fold: 'below',
+   *    viewerFid: 3,
+   *    limit: 2,
+   *    // cursor: "{{nextPageCursor}}" // Omit for the first request
+   * }).then(response => {
+   *   console.log('Casts from below the fold:', response.conversation.cast.direct_replies);
+   * });
+   * 
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/cast-conversation).
    */
   public async lookupCastConversation(
@@ -1168,6 +1214,7 @@ export class NeynarV2APIClient {
       includeChronologicalParentCasts?: boolean;
       viewerFid?: number;
       sortType?: CastConversationSortType;
+      fold? : 'above' | 'below';
       limit?: number;
       cursor?: string;
     }
@@ -1180,6 +1227,7 @@ export class NeynarV2APIClient {
       options?.includeChronologicalParentCasts,
       options?.viewerFid,
       options?.sortType,
+      options?.fold,
       options?.limit,
       options?.cursor
     );

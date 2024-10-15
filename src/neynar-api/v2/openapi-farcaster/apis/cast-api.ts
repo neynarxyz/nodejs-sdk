@@ -119,12 +119,13 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
          * @param {number} [viewerFid] Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;desc_chron&#x60;
+         * @param {'above' | 'below'} [fold] Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding.
          * @param {number} [limit] Number of results to retrieve (default 20, max 50)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        castConversation: async (apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        castConversation: async (apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, fold?: 'above' | 'below', limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('castConversation', 'apiKey', apiKey)
             // verify required parameter 'identifier' is not null or undefined
@@ -165,6 +166,10 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (sortType !== undefined) {
                 localVarQueryParameter['sort_type'] = sortType;
+            }
+
+            if (fold !== undefined) {
+                localVarQueryParameter['fold'] = fold;
             }
 
             if (limit !== undefined) {
@@ -497,13 +502,14 @@ export const CastApiFp = function(configuration?: Configuration) {
          * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
          * @param {number} [viewerFid] Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;desc_chron&#x60;
+         * @param {'above' | 'below'} [fold] Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding.
          * @param {number} [limit] Number of results to retrieve (default 20, max 50)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Conversation>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, sortType, limit, cursor, options);
+        async castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, fold?: 'above' | 'below', limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Conversation>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, sortType, fold, limit, cursor, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -610,13 +616,14 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
          * @param {number} [viewerFid] Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;desc_chron&#x60;
+         * @param {'above' | 'below'} [fold] Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding.
          * @param {number} [limit] Number of results to retrieve (default 20, max 50)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, limit?: number, cursor?: string, options?: any): AxiosPromise<Conversation> {
-            return localVarFp.castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, sortType, limit, cursor, options).then((request) => request(axios, basePath));
+        castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, fold?: 'above' | 'below', limit?: number, cursor?: string, options?: any): AxiosPromise<Conversation> {
+            return localVarFp.castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, sortType, fold, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Search for casts based on a query string, with optional AND filters
@@ -719,14 +726,15 @@ export class CastApi extends BaseAPI {
      * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
      * @param {number} [viewerFid] Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;desc_chron&#x60;
+     * @param {'above' | 'below'} [fold] Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding.
      * @param {number} [limit] Number of results to retrieve (default 20, max 50)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CastApi
      */
-    public castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
-        return CastApiFp(this.configuration).castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, sortType, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, fold?: 'above' | 'below', limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+        return CastApiFp(this.configuration).castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, sortType, fold, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
