@@ -1385,7 +1385,7 @@ export class NeynarAPIClient {
    *    fold: 'above',
    *    viewerFid: 3,
    *    limit: 2,
-   *    cursor: "{{nextPageCursor}}"
+   *    // cursor: "{{nextPageCursor}}"
    * }).then(response => {
    *   console.log('Subsequent casts in conversation above the fold', response.conversation.cast.direct_replies);
    * });
