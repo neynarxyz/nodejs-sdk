@@ -15,9 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Cast } from './cast';
-// May contain unused imports in some cases
-// @ts-ignore
 import { CastNotificationType } from './cast-notification-type';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -27,7 +24,10 @@ import { CastParentAuthor } from './cast-parent-author';
 import { CastViewerContext } from './cast-viewer-context';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastWithInteractionsAnyOf } from './cast-with-interactions-any-of';
+import { CastWithInteractions } from './cast-with-interactions';
+// May contain unused imports in some cases
+// @ts-ignore
+import { CastWithInteractionsAndConversationsRefAnyOf } from './cast-with-interactions-and-conversations-ref-any-of';
 // May contain unused imports in some cases
 // @ts-ignore
 import { CastWithInteractionsReactions } from './cast-with-interactions-reactions';
@@ -48,113 +48,119 @@ import { Frame } from './frame';
 import { User } from './user';
 
 /**
- * 
+ * Reference to CastWithInteractionsAndConversations to avoid circular reference
  * @export
- * @interface CastWithInteractions
+ * @interface CastWithInteractionsAndConversationsRef
  */
-export interface CastWithInteractions {
+export interface CastWithInteractionsAndConversationsRef {
     /**
      * 
      * @type {string}
-     * @memberof CastWithInteractions
+     * @memberof CastWithInteractionsAndConversationsRef
      */
     'hash': string;
     /**
      * 
      * @type {string}
-     * @memberof CastWithInteractions
+     * @memberof CastWithInteractionsAndConversationsRef
      */
     'parent_hash': string | null;
     /**
      * 
      * @type {string}
-     * @memberof CastWithInteractions
+     * @memberof CastWithInteractionsAndConversationsRef
      */
     'parent_url': string | null;
     /**
      * 
      * @type {string}
-     * @memberof CastWithInteractions
+     * @memberof CastWithInteractionsAndConversationsRef
      */
     'root_parent_url': string | null;
     /**
      * 
      * @type {CastParentAuthor}
-     * @memberof CastWithInteractions
+     * @memberof CastWithInteractionsAndConversationsRef
      */
     'parent_author': CastParentAuthor;
     /**
      * 
      * @type {User}
-     * @memberof CastWithInteractions
+     * @memberof CastWithInteractionsAndConversationsRef
      */
     'author': User;
     /**
      * 
      * @type {string}
-     * @memberof CastWithInteractions
+     * @memberof CastWithInteractionsAndConversationsRef
      */
     'text': string;
     /**
      * 
      * @type {string}
-     * @memberof CastWithInteractions
+     * @memberof CastWithInteractionsAndConversationsRef
      */
     'timestamp': string;
     /**
      * 
      * @type {Array<EmbeddedCast>}
-     * @memberof CastWithInteractions
+     * @memberof CastWithInteractionsAndConversationsRef
      */
     'embeds': Array<EmbeddedCast>;
     /**
      * 
      * @type {CastNotificationType}
-     * @memberof CastWithInteractions
+     * @memberof CastWithInteractionsAndConversationsRef
      */
     'type'?: CastNotificationType;
     /**
      * 
      * @type {Array<Frame>}
-     * @memberof CastWithInteractions
+     * @memberof CastWithInteractionsAndConversationsRef
      */
     'frames'?: Array<Frame>;
     /**
      * 
      * @type {CastWithInteractionsReactions}
-     * @memberof CastWithInteractions
+     * @memberof CastWithInteractionsAndConversationsRef
      */
     'reactions': CastWithInteractionsReactions;
     /**
      * 
      * @type {CastWithInteractionsReplies}
-     * @memberof CastWithInteractions
+     * @memberof CastWithInteractionsAndConversationsRef
      */
     'replies': CastWithInteractionsReplies;
     /**
      * 
      * @type {string}
-     * @memberof CastWithInteractions
+     * @memberof CastWithInteractionsAndConversationsRef
      */
     'thread_hash': string | null;
     /**
      * 
      * @type {Array<User>}
-     * @memberof CastWithInteractions
+     * @memberof CastWithInteractionsAndConversationsRef
      */
     'mentioned_profiles': Array<User>;
     /**
      * 
      * @type {ChannelOrDehydratedChannel}
-     * @memberof CastWithInteractions
+     * @memberof CastWithInteractionsAndConversationsRef
      */
     'channel': ChannelOrDehydratedChannel;
     /**
      * 
      * @type {CastViewerContext}
-     * @memberof CastWithInteractions
+     * @memberof CastWithInteractionsAndConversationsRef
      */
     'viewer_context'?: CastViewerContext;
+    /**
+     * note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth.
+     * @type {Array<object>}
+     * @memberof CastWithInteractionsAndConversationsRef
+     */
+    'direct_replies': Array<object>;
 }
 
 

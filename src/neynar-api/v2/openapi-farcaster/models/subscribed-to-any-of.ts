@@ -23,31 +23,31 @@ import { User } from './user';
 /**
  * 
  * @export
- * @interface SubscribedToAllOf
+ * @interface SubscribedToAnyOf
  */
-export interface SubscribedToAllOf {
+export interface SubscribedToAnyOf {
     /**
      * 
      * @type {string}
-     * @memberof SubscribedToAllOf
+     * @memberof SubscribedToAnyOf
      */
     'expires_at'?: string;
     /**
      * 
      * @type {string}
-     * @memberof SubscribedToAllOf
+     * @memberof SubscribedToAnyOf
      */
     'subscribed_at'?: string;
     /**
      * 
      * @type {SubscriptionTier}
-     * @memberof SubscribedToAllOf
+     * @memberof SubscribedToAnyOf
      */
     'tier'?: SubscriptionTier;
     /**
      * 
      * @type {User}
-     * @memberof SubscribedToAllOf
+     * @memberof SubscribedToAnyOf
      */
     'creator'?: User;
 }

@@ -17,14 +17,14 @@
 /**
  * 
  * @export
- * @interface WebhookPutReqBodyAllOf
+ * @interface CastWithInteractionsAndConversationsRefAnyOf
  */
-export interface WebhookPutReqBodyAllOf {
+export interface CastWithInteractionsAndConversationsRefAnyOf {
     /**
-     * 
-     * @type {string}
-     * @memberof WebhookPutReqBodyAllOf
+     * note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth.
+     * @type {Array<object>}
+     * @memberof CastWithInteractionsAndConversationsRefAnyOf
      */
-    'webhook_id': string;
+    'direct_replies'?: Array<object>;
 }
 

@@ -17,13 +17,13 @@
 /**
  * 
  * @export
- * @interface CastParentAuthorAllOf
+ * @interface CastParentAuthorAnyOf
  */
-export interface CastParentAuthorAllOf {
+export interface CastParentAuthorAnyOf {
     /**
      * 
      * @type {number}
-     * @memberof CastParentAuthorAllOf
+     * @memberof CastParentAuthorAnyOf
      */
     'fid': number | null;
 }

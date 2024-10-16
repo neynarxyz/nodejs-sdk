@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookSubscriptionFiltersCastCreated } from './webhook-subscription-filters-cast-created';
+import { WebhookSubscriptionFiltersCast } from './webhook-subscription-filters-cast';
 // May contain unused imports in some cases
 // @ts-ignore
 import { WebhookSubscriptionFiltersFollow } from './webhook-subscription-filters-follow';
@@ -34,10 +34,16 @@ import { WebhookSubscriptionFiltersUserUpdated } from './webhook-subscription-fi
 export interface WebhookSubscriptionFilters {
     /**
      * 
-     * @type {WebhookSubscriptionFiltersCastCreated}
+     * @type {WebhookSubscriptionFiltersCast}
      * @memberof WebhookSubscriptionFilters
      */
-    'cast.created'?: WebhookSubscriptionFiltersCastCreated;
+    'cast.created'?: WebhookSubscriptionFiltersCast;
+    /**
+     * 
+     * @type {WebhookSubscriptionFiltersCast}
+     * @memberof WebhookSubscriptionFilters
+     */
+    'cast.deleted'?: WebhookSubscriptionFiltersCast;
     /**
      * 
      * @type {object}
