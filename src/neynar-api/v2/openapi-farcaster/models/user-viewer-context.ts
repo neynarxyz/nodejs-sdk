@@ -32,5 +32,17 @@ export interface UserViewerContext {
      * @memberof UserViewerContext
      */
     'followed_by': boolean;
+    /**
+     * Indicates if the viewer is blocking the user.
+     * @type {boolean}
+     * @memberof UserViewerContext
+     */
+    'blocking': boolean;
+    /**
+     * Indicates if the viewer is blocked by the user.
+     * @type {boolean}
+     * @memberof UserViewerContext
+     */
+    'blocked_by': boolean;
 }
 
