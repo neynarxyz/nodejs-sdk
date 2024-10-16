@@ -48,6 +48,12 @@ export interface RegisterDeveloperManagedSignedKeyReqBody {
      */
     'deadline': number;
     /**
+     * Url to redirect to after the signer is approved.  **Note** : This should only be used when requesting a signer from a native mobile application. 
+     * @type {string}
+     * @memberof RegisterDeveloperManagedSignedKeyReqBody
+     */
+    'redirect_url'?: string;
+    /**
      * 
      * @type {SignedKeyRequestSponsor}
      * @memberof RegisterDeveloperManagedSignedKeyReqBody
