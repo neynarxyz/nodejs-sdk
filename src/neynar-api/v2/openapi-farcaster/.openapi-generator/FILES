@@ -28,11 +28,12 @@ models/add-verification-req-body.ts
 models/authorization-url-response-type.ts
 models/authorization-url-response.ts
 models/ban-list-response.ts
-models/ban-list.ts
+models/ban-record.ts
 models/ban-req-body.ts
 models/ban-response.ts
 models/block-list-response.ts
 models/block-list.ts
+models/block-record.ts
 models/bulk-casts-response.ts
 models/bulk-follow-response.ts
 models/bulk-users-response.ts
@@ -140,6 +141,7 @@ models/mark-notifications-as-seen-req-body.ts
 models/music-song-object.ts
 models/mute-list-response.ts
 models/mute-list.ts
+models/mute-record.ts
 models/mute-req-body.ts
 models/mute-response.ts
 models/next-cursor.ts
