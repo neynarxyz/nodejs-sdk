@@ -13,21 +13,18 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { CastParentAuthorAnyOf } from './cast-parent-author-any-of';
 
 /**
  * 
  * @export
- * @interface CastParentAuthor
+ * @interface CastWithInteractionsAndConversationsRefAnyOf
  */
-export interface CastParentAuthor {
+export interface CastWithInteractionsAndConversationsRefAnyOf {
     /**
-     * 
-     * @type {number}
-     * @memberof CastParentAuthor
+     * note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth.
+     * @type {Array<object>}
+     * @memberof CastWithInteractionsAndConversationsRefAnyOf
      */
-    'fid': number | null;
+    'direct_replies'?: Array<object>;
 }
 

@@ -13,21 +13,18 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { CastParentAuthorAnyOf } from './cast-parent-author-any-of';
 
 /**
  * 
  * @export
- * @interface CastParentAuthor
+ * @interface WebhookPutReqBodyAnyOf
  */
-export interface CastParentAuthor {
+export interface WebhookPutReqBodyAnyOf {
     /**
      * 
-     * @type {number}
-     * @memberof CastParentAuthor
+     * @type {string}
+     * @memberof WebhookPutReqBodyAnyOf
      */
-    'fid': number | null;
+    'webhook_id': string;
 }
 

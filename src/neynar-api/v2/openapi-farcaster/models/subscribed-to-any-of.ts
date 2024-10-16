@@ -15,43 +15,40 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookPostReqBody } from './webhook-post-req-body';
+import { SubscriptionTier } from './subscription-tier';
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookPutReqBodyAnyOf } from './webhook-put-req-body-any-of';
-// May contain unused imports in some cases
-// @ts-ignore
-import { WebhookSubscriptionFilters } from './webhook-subscription-filters';
+import { User } from './user';
 
 /**
  * 
  * @export
- * @interface WebhookPutReqBody
+ * @interface SubscribedToAnyOf
  */
-export interface WebhookPutReqBody {
+export interface SubscribedToAnyOf {
     /**
      * 
      * @type {string}
-     * @memberof WebhookPutReqBody
+     * @memberof SubscribedToAnyOf
      */
-    'name': string;
+    'expires_at'?: string;
     /**
      * 
      * @type {string}
-     * @memberof WebhookPutReqBody
+     * @memberof SubscribedToAnyOf
      */
-    'url': string;
+    'subscribed_at'?: string;
     /**
      * 
-     * @type {WebhookSubscriptionFilters}
-     * @memberof WebhookPutReqBody
+     * @type {SubscriptionTier}
+     * @memberof SubscribedToAnyOf
      */
-    'subscription'?: WebhookSubscriptionFilters;
+    'tier'?: SubscriptionTier;
     /**
      * 
-     * @type {string}
-     * @memberof WebhookPutReqBody
+     * @type {User}
+     * @memberof SubscribedToAnyOf
      */
-    'webhook_id': string;
+    'creator'?: User;
 }
 

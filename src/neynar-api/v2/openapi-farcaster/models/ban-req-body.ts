@@ -13,21 +13,18 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { CastParentAuthorAnyOf } from './cast-parent-author-any-of';
 
 /**
  * 
  * @export
- * @interface CastParentAuthor
+ * @interface BanReqBody
  */
-export interface CastParentAuthor {
+export interface BanReqBody {
     /**
      * 
-     * @type {number}
-     * @memberof CastParentAuthor
+     * @type {Array<number>}
+     * @memberof BanReqBody
      */
-    'fid': number | null;
+    'fids': Array<number>;
 }
 

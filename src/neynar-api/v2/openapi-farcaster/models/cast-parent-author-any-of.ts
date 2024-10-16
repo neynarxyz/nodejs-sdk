@@ -17,14 +17,14 @@
 /**
  * 
  * @export
- * @interface WebhookPutReqBodyAllOf
+ * @interface CastParentAuthorAnyOf
  */
-export interface WebhookPutReqBodyAllOf {
+export interface CastParentAuthorAnyOf {
     /**
      * 
-     * @type {string}
-     * @memberof WebhookPutReqBodyAllOf
+     * @type {number}
+     * @memberof CastParentAuthorAnyOf
      */
-    'webhook_id': string;
+    'fid': number | null;
 }
 

@@ -15,40 +15,28 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { SubscriptionTier } from './subscription-tier';
+import { BanRecord } from './ban-record';
 // May contain unused imports in some cases
 // @ts-ignore
-import { User } from './user';
+import { NextCursor } from './next-cursor';
 
 /**
  * 
  * @export
- * @interface SubscribedToAllOf
+ * @interface BanListResponse
  */
-export interface SubscribedToAllOf {
+export interface BanListResponse {
     /**
      * 
-     * @type {string}
-     * @memberof SubscribedToAllOf
+     * @type {Array<BanRecord>}
+     * @memberof BanListResponse
      */
-    'expires_at'?: string;
+    'bans': Array<BanRecord>;
     /**
      * 
-     * @type {string}
-     * @memberof SubscribedToAllOf
+     * @type {NextCursor}
+     * @memberof BanListResponse
      */
-    'subscribed_at'?: string;
-    /**
-     * 
-     * @type {SubscriptionTier}
-     * @memberof SubscribedToAllOf
-     */
-    'tier'?: SubscriptionTier;
-    /**
-     * 
-     * @type {User}
-     * @memberof SubscribedToAllOf
-     */
-    'creator'?: User;
+    'next': NextCursor;
 }
 

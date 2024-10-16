@@ -17,14 +17,20 @@
 /**
  * 
  * @export
- * @interface CastParentAuthorAllOf
+ * @interface BanResponse
  */
-export interface CastParentAuthorAllOf {
+export interface BanResponse {
     /**
      * 
-     * @type {number}
-     * @memberof CastParentAuthorAllOf
+     * @type {boolean}
+     * @memberof BanResponse
      */
-    'fid': number | null;
+    'success': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof BanResponse
+     */
+    'message'?: string | null;
 }
 
