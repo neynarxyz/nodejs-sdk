@@ -72,6 +72,10 @@ import {
   MuteResponse,
   BlockApi,
   BlockListResponse,
+  BanApi,
+  BanResponse,
+  BanListResponse,
+  BanReqBody,
   FollowSortType,
   ChannelSearchResponse,
   ChannelType,
@@ -137,6 +141,7 @@ export class NeynarV2APIClient {
     webhook: WebhookApi;
     mute: MuteApi;
     block: BlockApi;
+    ban: BanApi;
     subscribers: SubscribersApi;
     stp: STPApi;
   };
@@ -220,6 +225,7 @@ export class NeynarV2APIClient {
       webhook: new WebhookApi(config, undefined, axiosInstance),
       mute: new MuteApi(config, undefined, axiosInstance),
       block: new BlockApi(config, undefined, axiosInstance),
+      ban: new BanApi(config, undefined, axiosInstance),
       subscribers: new SubscribersApi(config, undefined, axiosInstance),
       stp: new STPApi(config, undefined, axiosInstance),
     };
@@ -3824,7 +3830,7 @@ export class NeynarV2APIClient {
    * @summary Get fids that a user has muted.
    * @param {number} fid The user's fid (identifier)
    * @param {Object} [options] - Optional parameters for the request.
-   * @param {number} [options.limit=20] - Number of followers to retrieve (default 20, max 100).
+   * @param {number} [options.limit=20] - Number of muted users to retrieve (default 20, max 100).
    * @param {string} [options.cursor] Pagination cursor.
    *
    * @returns {Promise<MuteListResponse>} A promise that resolves to a `MuteListResponse` object.
@@ -3943,6 +3949,90 @@ export class NeynarV2APIClient {
       options?.blockedFid,
       options?.limit,
       options?.cursor
+    );
+    return response.data;
+  }
+
+  // ------------ Ban ------------
+
+  /**
+   * Fetches all fids that the app has banned.
+   * @summary Get fids that the app has banned.
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {number} [options.limit=20] - Number of banned users to retrieve (default 20, max 100).
+   * @param {string} [options.cursor] Pagination cursor.
+   *
+   * @returns {Promise<BanListResponse>} A promise that resolves to a `BanListResponse` object.
+   *
+   * @example
+   * // Example: Retrieve banned fids for the app
+   * client.fetchBanList({ limit: 50 }).then(response => {
+   *  console.log('Banned Fids:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/ban-list).
+   */
+  public async fetchBanList(
+    options?: { limit?: number; cursor: string }
+  ): Promise<BanListResponse> {
+    const response = await this.apis.ban.banList(
+      this.apiKey,
+      options?.limit,
+      options?.cursor
+    );
+    return response.data;
+  }
+
+  /**
+   * Adds up to 100 bans for the app.
+   * @summary Adds bans for the app.
+   * @param {number[]} fids An array of user fids (identifiers)
+   *
+   * @returns {Promise<BanResponse>} A promise that resolves to a `BanResponse` object.
+   *
+   * @example
+   * // Example: Ban users
+   * client.publishBans([3, 19960]).then(response => {
+   * console.log('Ban Response:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/add-ban).
+   *
+   */
+  public async publishBans(
+    fids: number[]
+  ): Promise<BanResponse> {
+    const addBanBody = {
+      fids
+    };
+    const response = await this.apis.ban.addBan(this.apiKey, addBanBody);
+    return response.data;
+  }
+
+  /**
+   * Deletes up to 100 bans for the app.
+   * @summary Deletes bans for the app.
+   * @param {number[]} fids The user's fid (identifier)
+   *
+   * @returns {Promise<BanResponse>} A promise that resolves to a `BanResponse` object.
+   *
+   * @example
+   * // Example: Unban some users
+   * client.deleteBans([3, 19960]).then(response => {
+   * console.log('Ban Response:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/delete-ban).
+   */
+  public async deleteBans(
+    fids: number[]
+  ): Promise<BanResponse> {
+    const deleteBanBody = {
+      fids,
+    };
+    const response = await this.apis.ban.deleteBan(
+      this.apiKey,
+      deleteBanBody
     );
     return response.data;
   }

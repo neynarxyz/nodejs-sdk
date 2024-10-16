@@ -14,6 +14,7 @@
 
 
 
+export * from './apis/ban-api';
 export * from './apis/block-api';
 export * from './apis/cast-api';
 export * from './apis/channel-api';

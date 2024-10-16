@@ -56,6 +56,8 @@ import {
   MuteListResponse,
   MuteResponse,
   BlockListResponse,
+  BanListResponse,
+  BanResponse,
   FollowSortType,
   CastConversationSortType,
   ChannelSearchResponse,
@@ -3796,6 +3798,73 @@ export class NeynarAPIClient {
     cursor: string;
   }): Promise<BlockListResponse> {
     return await this.clients.v2.fetchBlockList(options);
+  }
+
+  // ------------ Ban ------------
+
+  /**
+   * Fetches all fids that the app has banned.
+   * @summary Get fids that the app has banned.
+   * @param {Object} [options] - Optional parameters for the request.
+   * @param {number} [options.limit=20] - Number of followers to retrieve (default 20, max 100).
+   * @param {string} [options.cursor] Pagination cursor.
+   *
+   * @returns {Promise<BanListResponse>} A promise that resolves to a `BanListResponse` object.
+   *
+   * @example
+   * // Example: Retrieve banned fids for the app
+   * client.fetchBanList({ limit: 50 }).then(response => {
+   *  console.log('Banned Fids:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/ban-list).
+   */
+  public async fetchBanList(
+    options: { limit?: number; cursor?: string } = {}
+  ): Promise<BanListResponse> {
+    const { limit, cursor = '' } = options;
+    return await this.clients.v2.fetchBanList({ limit, cursor });
+  }
+
+  /**
+   * Adds a ban for given fids.
+   * @summary Adds a ban for fids.
+   * @param {number[]} fids The array of fids (identifiers) to be banned.
+   *
+   * @returns {Promise<BanResponse>} A promise that resolves to a `BanResponse` object.
+   *
+   * @example
+   * // Example: Ban users
+   * client.publishBan([3, 19960]).then(response => {
+   * console.log('Ban Response:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/add-ban).
+   *
+   */
+  public async publishBans(
+    fids: number[]
+  ): Promise<BanResponse> {
+    return await this.clients.v2.publishBans(fids);
+  }
+
+  /**
+   * Deletes bans for given fids.
+   * @summary Deletes bans for fids.
+   * @param {number[]} fids The array of fids (identifiers) to be unbanned.
+   *
+   * @returns {Promise<BanResponse>} A promise that resolves to a `BanResponse` object.
+   *
+   * @example
+   * // Example: Unban users
+   * client.deleteBans([3, 19960]).then(response => {
+   * console.log('Ban Response:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/delete-ban).
+   */
+  public async deleteBans(fids: number[]): Promise<BanResponse> {
+    return await this.clients.v2.deleteBans(fids);
   }
 
   // ------------ Subscribers ------------

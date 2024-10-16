@@ -13,30 +13,24 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { MuteRecord } from './mute-record';
-// May contain unused imports in some cases
-// @ts-ignore
-import { NextCursor } from './next-cursor';
 
 /**
  * 
  * @export
- * @interface MuteListResponse
+ * @interface BanResponse
  */
-export interface MuteListResponse {
+export interface BanResponse {
     /**
      * 
-     * @type {Array<MuteRecord>}
-     * @memberof MuteListResponse
+     * @type {boolean}
+     * @memberof BanResponse
      */
-    'mutes': Array<MuteRecord>;
+    'success': boolean;
     /**
      * 
-     * @type {NextCursor}
-     * @memberof MuteListResponse
+     * @type {string}
+     * @memberof BanResponse
      */
-    'next': NextCursor;
+    'message'?: string | null;
 }
 

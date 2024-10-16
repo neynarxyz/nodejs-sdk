@@ -15,28 +15,38 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { MuteRecord } from './mute-record';
-// May contain unused imports in some cases
-// @ts-ignore
-import { NextCursor } from './next-cursor';
+import { User } from './user';
 
 /**
  * 
  * @export
- * @interface MuteListResponse
+ * @interface BanRecord
  */
-export interface MuteListResponse {
+export interface BanRecord {
     /**
      * 
-     * @type {Array<MuteRecord>}
-     * @memberof MuteListResponse
+     * @type {string}
+     * @memberof BanRecord
      */
-    'mutes': Array<MuteRecord>;
+    'object': BanRecordObjectEnum;
     /**
      * 
-     * @type {NextCursor}
-     * @memberof MuteListResponse
+     * @type {User}
+     * @memberof BanRecord
      */
-    'next': NextCursor;
+    'banned'?: User;
+    /**
+     * 
+     * @type {string}
+     * @memberof BanRecord
+     */
+    'banned_at': string;
 }
+
+export const BanRecordObjectEnum = {
+    Ban: 'ban'
+} as const;
+
+export type BanRecordObjectEnum = typeof BanRecordObjectEnum[keyof typeof BanRecordObjectEnum];
+
 
