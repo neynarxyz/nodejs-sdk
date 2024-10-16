@@ -105,9 +105,16 @@ export interface Channel {
      */
     'moderator'?: User;
     /**
+     * Cast Hash
+     * @type {string}
+     * @memberof Channel
+     */
+    'pinned_cast_hash'?: string;
+    /**
      * 
      * @type {Array<User>}
      * @memberof Channel
+     * @deprecated
      */
     'hosts'?: Array<User>;
     /**
