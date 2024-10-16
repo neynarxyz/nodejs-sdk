@@ -20,33 +20,39 @@ import { User } from './user';
 /**
  * 
  * @export
- * @interface BanList
+ * @interface BlockRecord
  */
-export interface BanList {
+export interface BlockRecord {
     /**
      * 
      * @type {string}
-     * @memberof BanList
+     * @memberof BlockRecord
      */
-    'object': BanListObjectEnum;
+    'object': BlockRecordObjectEnum;
     /**
      * 
      * @type {User}
-     * @memberof BanList
+     * @memberof BlockRecord
      */
-    'banned'?: User;
+    'blocked'?: User;
+    /**
+     * 
+     * @type {User}
+     * @memberof BlockRecord
+     */
+    'blocker'?: User;
     /**
      * 
      * @type {string}
-     * @memberof BanList
+     * @memberof BlockRecord
      */
-    'banned_at': string;
+    'blocked_at': string;
 }
 
-export const BanListObjectEnum = {
-    Ban: 'ban'
+export const BlockRecordObjectEnum = {
+    Block: 'block'
 } as const;
 
-export type BanListObjectEnum = typeof BanListObjectEnum[keyof typeof BanListObjectEnum];
+export type BlockRecordObjectEnum = typeof BlockRecordObjectEnum[keyof typeof BlockRecordObjectEnum];
 
 

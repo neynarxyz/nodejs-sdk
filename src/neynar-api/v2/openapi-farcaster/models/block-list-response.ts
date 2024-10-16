@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { BlockList } from './block-list';
+import { BlockRecord } from './block-record';
 // May contain unused imports in some cases
 // @ts-ignore
 import { NextCursor } from './next-cursor';
@@ -28,10 +28,10 @@ import { NextCursor } from './next-cursor';
 export interface BlockListResponse {
     /**
      * 
-     * @type {Array<BlockList>}
+     * @type {Array<BlockRecord>}
      * @memberof BlockListResponse
      */
-    'blocks': Array<BlockList>;
+    'blocks': Array<BlockRecord>;
     /**
      * 
      * @type {NextCursor}

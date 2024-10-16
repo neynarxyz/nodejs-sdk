@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { MuteList } from './mute-list';
+import { MuteRecord } from './mute-record';
 // May contain unused imports in some cases
 // @ts-ignore
 import { NextCursor } from './next-cursor';
@@ -28,10 +28,10 @@ import { NextCursor } from './next-cursor';
 export interface MuteListResponse {
     /**
      * 
-     * @type {Array<MuteList>}
+     * @type {Array<MuteRecord>}
      * @memberof MuteListResponse
      */
-    'mutes': Array<MuteList>;
+    'mutes': Array<MuteRecord>;
     /**
      * 
      * @type {NextCursor}
