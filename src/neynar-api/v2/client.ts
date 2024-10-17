@@ -1148,7 +1148,7 @@ export class NeynarV2APIClient {
    * @param {number} [options.replyDepth] - Optional parameter to specify how deep the reply chain should be fetched.
    * @param {boolean} [options.includeChronologicalParentCasts] - Optional parameter to include chronological parent casts in the response.
    * @param {number} [options.viewerFid] - Providing this will return a conversation that respects this user's mutes and blocks and includes `viewer_context`.
-   * @param {CastConversationSortType} [options.sortType] - Optional parameter to modify the sort type. (default 'desc_chron')
+   * @param {CastConversationSortType} [options.sortType] - Optional parameter to modify the sort type. (default 'chron')
    * @param {'above' | 'below'} [options.fold] - Optional parameter to add a fold to the conversation. When not specified, all casts are returned. When specified, only the casts above or below the fold are returned.
    * @param {number} [options.limit] - Number of results to retrieve (default 20, max 50)
    * @param {string} [options.cursor] - Optional parameter to specify the pagination cursor for fetching specific subsets of results.
