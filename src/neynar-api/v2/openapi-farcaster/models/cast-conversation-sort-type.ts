@@ -21,6 +21,7 @@
  */
 
 export const CastConversationSortType = {
+    Chron: 'chron',
     DescChron: 'desc_chron',
     Algorithmic: 'algorithmic'
 } as const;

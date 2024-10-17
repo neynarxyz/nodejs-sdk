@@ -118,7 +118,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
          * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
          * @param {number} [viewerFid] Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;desc_chron&#x60;
+         * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;chron&#x60;
          * @param {'above' | 'below'} [fold] Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding.
          * @param {number} [limit] Number of results to retrieve (default 20, max 50)
          * @param {string} [cursor] Pagination cursor.
@@ -501,7 +501,7 @@ export const CastApiFp = function(configuration?: Configuration) {
          * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
          * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
          * @param {number} [viewerFid] Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;desc_chron&#x60;
+         * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;chron&#x60;
          * @param {'above' | 'below'} [fold] Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding.
          * @param {number} [limit] Number of results to retrieve (default 20, max 50)
          * @param {string} [cursor] Pagination cursor.
@@ -615,7 +615,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
          * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
          * @param {number} [viewerFid] Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;desc_chron&#x60;
+         * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;chron&#x60;
          * @param {'above' | 'below'} [fold] Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding.
          * @param {number} [limit] Number of results to retrieve (default 20, max 50)
          * @param {string} [cursor] Pagination cursor.
@@ -725,7 +725,7 @@ export class CastApi extends BaseAPI {
      * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
      * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
      * @param {number} [viewerFid] Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-     * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;desc_chron&#x60;
+     * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;chron&#x60;
      * @param {'above' | 'below'} [fold] Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding.
      * @param {number} [limit] Number of results to retrieve (default 20, max 50)
      * @param {string} [cursor] Pagination cursor.
