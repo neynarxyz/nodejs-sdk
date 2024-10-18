@@ -15,16 +15,22 @@
 
 
 /**
- * 
+ * Channel\'s external link.
  * @export
- * @interface CastParentAuthor
+ * @interface ChannelExternalLink
  */
-export interface CastParentAuthor {
+export interface ChannelExternalLink {
     /**
-     * The unique identifier of a farcaster user (unsigned integer)
-     * @type {number}
-     * @memberof CastParentAuthor
+     * 
+     * @type {string}
+     * @memberof ChannelExternalLink
      */
-    'fid': number | null;
+    'title'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ChannelExternalLink
+     */
+    'url'?: string;
 }
 

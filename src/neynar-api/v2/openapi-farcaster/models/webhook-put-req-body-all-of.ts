@@ -17,13 +17,13 @@
 /**
  * 
  * @export
- * @interface WebhookPutReqBodyAnyOf
+ * @interface WebhookPutReqBodyAllOf
  */
-export interface WebhookPutReqBodyAnyOf {
+export interface WebhookPutReqBodyAllOf {
     /**
      * 
      * @type {string}
-     * @memberof WebhookPutReqBodyAnyOf
+     * @memberof WebhookPutReqBodyAllOf
      */
     'webhook_id': string;
 }

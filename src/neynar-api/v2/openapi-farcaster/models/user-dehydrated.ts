@@ -32,6 +32,24 @@ export interface UserDehydrated {
      * @memberof UserDehydrated
      */
     'fid': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDehydrated
+     */
+    'username'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDehydrated
+     */
+    'display_name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDehydrated
+     */
+    'pfp_url'?: string;
 }
 
 export const UserDehydratedObjectEnum = {

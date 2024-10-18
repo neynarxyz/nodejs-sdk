@@ -18,6 +18,9 @@
 import { Channel } from './channel';
 // May contain unused imports in some cases
 // @ts-ignore
+import { ChannelExternalLink } from './channel-external-link';
+// May contain unused imports in some cases
+// @ts-ignore
 import { ChannelViewerContext } from './channel-viewer-context';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -30,6 +33,6 @@ import { User } from './user';
  * @type ChannelOrDehydratedChannel
  * @export
  */
-export type ChannelOrDehydratedChannel = { type: 'channel' } & Channel | { type: 'dehydratedChannel' } & DehydratedChannel;
+export type ChannelOrDehydratedChannel = { object: 'channel' } & Channel | { object: 'dehydrated_channel' } & DehydratedChannel;
 
 
