@@ -33,11 +33,11 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
     return {
         /**
          * Fetches all fids that a user has blocked or has been blocked by
-         * @summary Get fids that a user has blocked or has been blocked by
+         * @summary Fetch fids that a user has blocked or has been blocked by
          * @param {string} apiKey API key required for authentication.
          * @param {number} [blockerFid] Providing this will return the users that this user has blocked
          * @param {number} [blockedFid] Providing this will return the users that have blocked this user
-         * @param {number} [limit] Number of results to retrieve (default 20, max 100).
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -100,11 +100,11 @@ export const BlockApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Fetches all fids that a user has blocked or has been blocked by
-         * @summary Get fids that a user has blocked or has been blocked by
+         * @summary Fetch fids that a user has blocked or has been blocked by
          * @param {string} apiKey API key required for authentication.
          * @param {number} [blockerFid] Providing this will return the users that this user has blocked
          * @param {number} [blockedFid] Providing this will return the users that have blocked this user
-         * @param {number} [limit] Number of results to retrieve (default 20, max 100).
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -125,11 +125,11 @@ export const BlockApiFactory = function (configuration?: Configuration, basePath
     return {
         /**
          * Fetches all fids that a user has blocked or has been blocked by
-         * @summary Get fids that a user has blocked or has been blocked by
+         * @summary Fetch fids that a user has blocked or has been blocked by
          * @param {string} apiKey API key required for authentication.
          * @param {number} [blockerFid] Providing this will return the users that this user has blocked
          * @param {number} [blockedFid] Providing this will return the users that have blocked this user
-         * @param {number} [limit] Number of results to retrieve (default 20, max 100).
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -149,11 +149,11 @@ export const BlockApiFactory = function (configuration?: Configuration, basePath
 export class BlockApi extends BaseAPI {
     /**
      * Fetches all fids that a user has blocked or has been blocked by
-     * @summary Get fids that a user has blocked or has been blocked by
+     * @summary Fetch fids that a user has blocked or has been blocked by
      * @param {string} apiKey API key required for authentication.
      * @param {number} [blockerFid] Providing this will return the users that this user has blocked
      * @param {number} [blockedFid] Providing this will return the users that have blocked this user
-     * @param {number} [limit] Number of results to retrieve (default 20, max 100).
+     * @param {number} [limit] Number of results to fetch (default 20, max 100).
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

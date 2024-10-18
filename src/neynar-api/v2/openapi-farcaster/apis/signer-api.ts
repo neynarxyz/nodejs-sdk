@@ -43,7 +43,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * Creates a signer and returns the signer status. \\ **Note**: While tesing please reuse the signer, it costs money to approve a signer. 
-         * @summary Creates a signer and returns the signer status
+         * @summary Create signer
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -80,7 +80,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * Fetches the status of a developer managed signer by public key
-         * @summary Fetches the status of a signer by public key
+         * @summary Fetch status by public key
          * @param {string} apiKey API key required for authentication.
          * @param {string} publicKey 
          * @param {*} [options] Override http request option.
@@ -304,7 +304,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
-         * @summary Fetches the status of a signer
+         * @summary Fetch status
          * @param {string} apiKey API key required for authentication.
          * @param {string} signerUuid 
          * @param {*} [options] Override http request option.
@@ -358,7 +358,7 @@ export const SignerApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Creates a signer and returns the signer status. \\ **Note**: While tesing please reuse the signer, it costs money to approve a signer. 
-         * @summary Creates a signer and returns the signer status
+         * @summary Create signer
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -369,7 +369,7 @@ export const SignerApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches the status of a developer managed signer by public key
-         * @summary Fetches the status of a signer by public key
+         * @summary Fetch status by public key
          * @param {string} apiKey API key required for authentication.
          * @param {string} publicKey 
          * @param {*} [options] Override http request option.
@@ -430,7 +430,7 @@ export const SignerApiFp = function(configuration?: Configuration) {
         },
         /**
          * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
-         * @summary Fetches the status of a signer
+         * @summary Fetch status
          * @param {string} apiKey API key required for authentication.
          * @param {string} signerUuid 
          * @param {*} [options] Override http request option.
@@ -452,7 +452,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * Creates a signer and returns the signer status. \\ **Note**: While tesing please reuse the signer, it costs money to approve a signer. 
-         * @summary Creates a signer and returns the signer status
+         * @summary Create signer
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -462,7 +462,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * Fetches the status of a developer managed signer by public key
-         * @summary Fetches the status of a signer by public key
+         * @summary Fetch status by public key
          * @param {string} apiKey API key required for authentication.
          * @param {string} publicKey 
          * @param {*} [options] Override http request option.
@@ -518,7 +518,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
-         * @summary Fetches the status of a signer
+         * @summary Fetch status
          * @param {string} apiKey API key required for authentication.
          * @param {string} signerUuid 
          * @param {*} [options] Override http request option.
@@ -539,7 +539,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
 export class SignerApi extends BaseAPI {
     /**
      * Creates a signer and returns the signer status. \\ **Note**: While tesing please reuse the signer, it costs money to approve a signer. 
-     * @summary Creates a signer and returns the signer status
+     * @summary Create signer
      * @param {string} apiKey API key required for authentication.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -551,7 +551,7 @@ export class SignerApi extends BaseAPI {
 
     /**
      * Fetches the status of a developer managed signer by public key
-     * @summary Fetches the status of a signer by public key
+     * @summary Fetch status by public key
      * @param {string} apiKey API key required for authentication.
      * @param {string} publicKey 
      * @param {*} [options] Override http request option.
@@ -617,7 +617,7 @@ export class SignerApi extends BaseAPI {
 
     /**
      * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
-     * @summary Fetches the status of a signer
+     * @summary Fetch status
      * @param {string} apiKey API key required for authentication.
      * @param {string} signerUuid 
      * @param {*} [options] Override http request option.

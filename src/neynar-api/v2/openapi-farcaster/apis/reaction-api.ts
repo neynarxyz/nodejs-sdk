@@ -84,7 +84,7 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
-         * @summary Posts a reaction
+         * @summary Post a reaction
          * @param {string} apiKey API key required for authentication.
          * @param {ReactionReqBody} reactionReqBody 
          * @param {*} [options] Override http request option.
@@ -127,12 +127,12 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * Fetches reactions for a given cast
-         * @summary Fetches reactions for a given cast
+         * @summary Fetch reactions for a given cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} hash 
          * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
          * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -193,12 +193,12 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * Fetches reactions for a given user
-         * @summary Fetches reactions for a given user
+         * @summary Fetch reactions for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
          * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -281,7 +281,7 @@ export const ReactionApiFp = function(configuration?: Configuration) {
         },
         /**
          * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
-         * @summary Posts a reaction
+         * @summary Post a reaction
          * @param {string} apiKey API key required for authentication.
          * @param {ReactionReqBody} reactionReqBody 
          * @param {*} [options] Override http request option.
@@ -293,12 +293,12 @@ export const ReactionApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches reactions for a given cast
-         * @summary Fetches reactions for a given cast
+         * @summary Fetch reactions for a given cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} hash 
          * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
          * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -309,12 +309,12 @@ export const ReactionApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches reactions for a given user
-         * @summary Fetches reactions for a given user
+         * @summary Fetch reactions for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
          * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -346,7 +346,7 @@ export const ReactionApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
-         * @summary Posts a reaction
+         * @summary Post a reaction
          * @param {string} apiKey API key required for authentication.
          * @param {ReactionReqBody} reactionReqBody 
          * @param {*} [options] Override http request option.
@@ -357,12 +357,12 @@ export const ReactionApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * Fetches reactions for a given cast
-         * @summary Fetches reactions for a given cast
+         * @summary Fetch reactions for a given cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} hash 
          * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
          * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -372,12 +372,12 @@ export const ReactionApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * Fetches reactions for a given user
-         * @summary Fetches reactions for a given user
+         * @summary Fetch reactions for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
          * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -410,7 +410,7 @@ export class ReactionApi extends BaseAPI {
 
     /**
      * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
-     * @summary Posts a reaction
+     * @summary Post a reaction
      * @param {string} apiKey API key required for authentication.
      * @param {ReactionReqBody} reactionReqBody 
      * @param {*} [options] Override http request option.
@@ -423,12 +423,12 @@ export class ReactionApi extends BaseAPI {
 
     /**
      * Fetches reactions for a given cast
-     * @summary Fetches reactions for a given cast
+     * @summary Fetch reactions for a given cast
      * @param {string} apiKey API key required for authentication.
      * @param {string} hash 
      * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
      * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-     * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -440,12 +440,12 @@ export class ReactionApi extends BaseAPI {
 
     /**
      * Fetches reactions for a given user
-     * @summary Fetches reactions for a given user
+     * @summary Fetch reactions for a given user
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid 
      * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
      * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-     * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
