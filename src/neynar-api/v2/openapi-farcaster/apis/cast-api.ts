@@ -55,7 +55,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
     return {
         /**
          * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
-         * @summary Retrieve cast for a given hash or Warpcast URL
+         * @summary Fetch cast for a given hash or Warpcast URL
          * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
@@ -111,7 +111,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
-         * @summary Retrieve the conversation for a given cast
+         * @summary Fetch the conversation for a given cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
@@ -120,7 +120,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {number} [viewerFid] Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;chron&#x60;
          * @param {'above' | 'below'} [fold] Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding.
-         * @param {number} [limit] Number of results to retrieve (default 20, max 50)
+         * @param {number} [limit] Number of results to fetch (default 20, max 50)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -275,8 +275,8 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Retrieve multiple casts using their respective hashes.
-         * @summary Gets information about an array of casts
+         * Fetch multiple casts using their respective hashes.
+         * @summary Bulk fetch casts
          * @param {string} apiKey API key required for authentication.
          * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces)
          * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
@@ -330,10 +330,10 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Fetches all composer actions on Warpcast. You can filter by top or featured.
-         * @summary Fetches all composer actions on Warpcast
+         * @summary Fetch all composer actions on Warpcast
          * @param {string} apiKey API key required for authentication.
          * @param {CastComposerType} list Type of list to fetch.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 25).
+         * @param {number} [limit] Number of results to fetch (default 25, max 25).
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -427,7 +427,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Posts a cast or cast reply. Works with mentions and embeds.   (In order to post a cast `signer_uuid` must be approved) 
-         * @summary Posts a cast
+         * @summary Post a cast
          * @param {string} apiKey API key required for authentication.
          * @param {PostCastReqBody} postCastReqBody 
          * @param {*} [options] Override http request option.
@@ -480,7 +480,7 @@ export const CastApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
-         * @summary Retrieve cast for a given hash or Warpcast URL
+         * @summary Fetch cast for a given hash or Warpcast URL
          * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
@@ -494,7 +494,7 @@ export const CastApiFp = function(configuration?: Configuration) {
         },
         /**
          * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
-         * @summary Retrieve the conversation for a given cast
+         * @summary Fetch the conversation for a given cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
@@ -503,7 +503,7 @@ export const CastApiFp = function(configuration?: Configuration) {
          * @param {number} [viewerFid] Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;chron&#x60;
          * @param {'above' | 'below'} [fold] Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding.
-         * @param {number} [limit] Number of results to retrieve (default 20, max 50)
+         * @param {number} [limit] Number of results to fetch (default 20, max 50)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -532,8 +532,8 @@ export const CastApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Retrieve multiple casts using their respective hashes.
-         * @summary Gets information about an array of casts
+         * Fetch multiple casts using their respective hashes.
+         * @summary Bulk fetch casts
          * @param {string} apiKey API key required for authentication.
          * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces)
          * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
@@ -547,10 +547,10 @@ export const CastApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches all composer actions on Warpcast. You can filter by top or featured.
-         * @summary Fetches all composer actions on Warpcast
+         * @summary Fetch all composer actions on Warpcast
          * @param {string} apiKey API key required for authentication.
          * @param {CastComposerType} list Type of list to fetch.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 25).
+         * @param {number} [limit] Number of results to fetch (default 25, max 25).
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -573,7 +573,7 @@ export const CastApiFp = function(configuration?: Configuration) {
         },
         /**
          * Posts a cast or cast reply. Works with mentions and embeds.   (In order to post a cast `signer_uuid` must be approved) 
-         * @summary Posts a cast
+         * @summary Post a cast
          * @param {string} apiKey API key required for authentication.
          * @param {PostCastReqBody} postCastReqBody 
          * @param {*} [options] Override http request option.
@@ -595,7 +595,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
     return {
         /**
          * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
-         * @summary Retrieve cast for a given hash or Warpcast URL
+         * @summary Fetch cast for a given hash or Warpcast URL
          * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
@@ -608,7 +608,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
-         * @summary Retrieve the conversation for a given cast
+         * @summary Fetch the conversation for a given cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
@@ -617,7 +617,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * @param {number} [viewerFid] Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;chron&#x60;
          * @param {'above' | 'below'} [fold] Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding.
-         * @param {number} [limit] Number of results to retrieve (default 20, max 50)
+         * @param {number} [limit] Number of results to fetch (default 20, max 50)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -644,8 +644,8 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.castSearch(apiKey, q, authorFid, viewerFid, parentUrl, channelId, priorityMode, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieve multiple casts using their respective hashes.
-         * @summary Gets information about an array of casts
+         * Fetch multiple casts using their respective hashes.
+         * @summary Bulk fetch casts
          * @param {string} apiKey API key required for authentication.
          * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces)
          * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
@@ -658,10 +658,10 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Fetches all composer actions on Warpcast. You can filter by top or featured.
-         * @summary Fetches all composer actions on Warpcast
+         * @summary Fetch all composer actions on Warpcast
          * @param {string} apiKey API key required for authentication.
          * @param {CastComposerType} list Type of list to fetch.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 25).
+         * @param {number} [limit] Number of results to fetch (default 25, max 25).
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -682,7 +682,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Posts a cast or cast reply. Works with mentions and embeds.   (In order to post a cast `signer_uuid` must be approved) 
-         * @summary Posts a cast
+         * @summary Post a cast
          * @param {string} apiKey API key required for authentication.
          * @param {PostCastReqBody} postCastReqBody 
          * @param {*} [options] Override http request option.
@@ -703,7 +703,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
 export class CastApi extends BaseAPI {
     /**
      * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
-     * @summary Retrieve cast for a given hash or Warpcast URL
+     * @summary Fetch cast for a given hash or Warpcast URL
      * @param {string} apiKey API key required for authentication.
      * @param {string} identifier Cast identifier (Its either a url or a hash)
      * @param {CastParamType} type 
@@ -718,7 +718,7 @@ export class CastApi extends BaseAPI {
 
     /**
      * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
-     * @summary Retrieve the conversation for a given cast
+     * @summary Fetch the conversation for a given cast
      * @param {string} apiKey API key required for authentication.
      * @param {string} identifier Cast identifier (Its either a url or a hash)
      * @param {CastParamType} type 
@@ -727,7 +727,7 @@ export class CastApi extends BaseAPI {
      * @param {number} [viewerFid] Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;chron&#x60;
      * @param {'above' | 'below'} [fold] Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding.
-     * @param {number} [limit] Number of results to retrieve (default 20, max 50)
+     * @param {number} [limit] Number of results to fetch (default 20, max 50)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -758,8 +758,8 @@ export class CastApi extends BaseAPI {
     }
 
     /**
-     * Retrieve multiple casts using their respective hashes.
-     * @summary Gets information about an array of casts
+     * Fetch multiple casts using their respective hashes.
+     * @summary Bulk fetch casts
      * @param {string} apiKey API key required for authentication.
      * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces)
      * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
@@ -774,10 +774,10 @@ export class CastApi extends BaseAPI {
 
     /**
      * Fetches all composer actions on Warpcast. You can filter by top or featured.
-     * @summary Fetches all composer actions on Warpcast
+     * @summary Fetch all composer actions on Warpcast
      * @param {string} apiKey API key required for authentication.
      * @param {CastComposerType} list Type of list to fetch.
-     * @param {number} [limit] Number of results to retrieve (default 25, max 25).
+     * @param {number} [limit] Number of results to fetch (default 25, max 25).
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -802,7 +802,7 @@ export class CastApi extends BaseAPI {
 
     /**
      * Posts a cast or cast reply. Works with mentions and embeds.   (In order to post a cast `signer_uuid` must be approved) 
-     * @summary Posts a cast
+     * @summary Post a cast
      * @param {string} apiKey API key required for authentication.
      * @param {PostCastReqBody} postCastReqBody 
      * @param {*} [options] Override http request option.

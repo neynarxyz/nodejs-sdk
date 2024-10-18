@@ -240,7 +240,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Fetches fid to assign it new user
-         * @summary Fetches fid to assign it new user
+         * @summary Fetch fresh fid
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -277,7 +277,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Lookup a user by custody-address
-         * @summary Lookup a user by custody-address
+         * @summary By custody-address
          * @param {string} apiKey API key required for authentication.
          * @param {string} custodyAddress Custody Address associated with mnemonic
          * @param {*} [options] Override http request option.
@@ -373,7 +373,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch fid API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this fid to another available user. 
-         * @summary Register account on farcaster
+         * @summary Register farcaster account
          * @param {string} apiKey API key required for authentication.
          * @param {RegisterUserReqBody} registerUserReqBody 
          * @param {*} [options] Override http request option.
@@ -502,7 +502,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Fetches information about multiple users based on FIDs
-         * @summary Fetch users based on FIDs
+         * @summary Based on FIDs
          * @param {string} apiKey API key required for authentication.
          * @param {string} fids Comma separated list of FIDs, up to 100 at a time
          * @param {number} [viewerFid] 
@@ -551,7 +551,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
-         * @summary Fetches users based on Eth or Sol addresses
+         * @summary Based on Eth or Sol addresses
          * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
          * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
@@ -605,7 +605,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Fetches a single hydrated user object given a username
-         * @summary Fetch a user by username
+         * @summary By username
          * @param {string} apiKey API key required for authentication.
          * @param {string} username Username of the user to fetch
          * @param {number} [viewerFid] 
@@ -810,7 +810,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches fid to assign it new user
-         * @summary Fetches fid to assign it new user
+         * @summary Fetch fresh fid
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -821,7 +821,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         },
         /**
          * Lookup a user by custody-address
-         * @summary Lookup a user by custody-address
+         * @summary By custody-address
          * @param {string} apiKey API key required for authentication.
          * @param {string} custodyAddress Custody Address associated with mnemonic
          * @param {*} [options] Override http request option.
@@ -847,7 +847,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         },
         /**
          * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch fid API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this fid to another available user. 
-         * @summary Register account on farcaster
+         * @summary Register farcaster account
          * @param {string} apiKey API key required for authentication.
          * @param {RegisterUserReqBody} registerUserReqBody 
          * @param {*} [options] Override http request option.
@@ -883,7 +883,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches information about multiple users based on FIDs
-         * @summary Fetch users based on FIDs
+         * @summary Based on FIDs
          * @param {string} apiKey API key required for authentication.
          * @param {string} fids Comma separated list of FIDs, up to 100 at a time
          * @param {number} [viewerFid] 
@@ -896,7 +896,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
-         * @summary Fetches users based on Eth or Sol addresses
+         * @summary Based on Eth or Sol addresses
          * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
          * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
@@ -910,7 +910,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches a single hydrated user object given a username
-         * @summary Fetch a user by username
+         * @summary By username
          * @param {string} apiKey API key required for authentication.
          * @param {string} username Username of the user to fetch
          * @param {number} [viewerFid] 
@@ -1005,7 +1005,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Fetches fid to assign it new user
-         * @summary Fetches fid to assign it new user
+         * @summary Fetch fresh fid
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1015,7 +1015,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Lookup a user by custody-address
-         * @summary Lookup a user by custody-address
+         * @summary By custody-address
          * @param {string} apiKey API key required for authentication.
          * @param {string} custodyAddress Custody Address associated with mnemonic
          * @param {*} [options] Override http request option.
@@ -1039,7 +1039,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch fid API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this fid to another available user. 
-         * @summary Register account on farcaster
+         * @summary Register farcaster account
          * @param {string} apiKey API key required for authentication.
          * @param {RegisterUserReqBody} registerUserReqBody 
          * @param {*} [options] Override http request option.
@@ -1072,7 +1072,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Fetches information about multiple users based on FIDs
-         * @summary Fetch users based on FIDs
+         * @summary Based on FIDs
          * @param {string} apiKey API key required for authentication.
          * @param {string} fids Comma separated list of FIDs, up to 100 at a time
          * @param {number} [viewerFid] 
@@ -1084,7 +1084,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
-         * @summary Fetches users based on Eth or Sol addresses
+         * @summary Based on Eth or Sol addresses
          * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
          * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
@@ -1097,7 +1097,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Fetches a single hydrated user object given a username
-         * @summary Fetch a user by username
+         * @summary By username
          * @param {string} apiKey API key required for authentication.
          * @param {string} username Username of the user to fetch
          * @param {number} [viewerFid] 
@@ -1197,7 +1197,7 @@ export class UserApi extends BaseAPI {
 
     /**
      * Fetches fid to assign it new user
-     * @summary Fetches fid to assign it new user
+     * @summary Fetch fresh fid
      * @param {string} apiKey API key required for authentication.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1209,7 +1209,7 @@ export class UserApi extends BaseAPI {
 
     /**
      * Lookup a user by custody-address
-     * @summary Lookup a user by custody-address
+     * @summary By custody-address
      * @param {string} apiKey API key required for authentication.
      * @param {string} custodyAddress Custody Address associated with mnemonic
      * @param {*} [options] Override http request option.
@@ -1237,7 +1237,7 @@ export class UserApi extends BaseAPI {
 
     /**
      * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch fid API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this fid to another available user. 
-     * @summary Register account on farcaster
+     * @summary Register farcaster account
      * @param {string} apiKey API key required for authentication.
      * @param {RegisterUserReqBody} registerUserReqBody 
      * @param {*} [options] Override http request option.
@@ -1276,7 +1276,7 @@ export class UserApi extends BaseAPI {
 
     /**
      * Fetches information about multiple users based on FIDs
-     * @summary Fetch users based on FIDs
+     * @summary Based on FIDs
      * @param {string} apiKey API key required for authentication.
      * @param {string} fids Comma separated list of FIDs, up to 100 at a time
      * @param {number} [viewerFid] 
@@ -1290,7 +1290,7 @@ export class UserApi extends BaseAPI {
 
     /**
      * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
-     * @summary Fetches users based on Eth or Sol addresses
+     * @summary Based on Eth or Sol addresses
      * @param {string} apiKey API key required for authentication.
      * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
      * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
@@ -1305,7 +1305,7 @@ export class UserApi extends BaseAPI {
 
     /**
      * Fetches a single hydrated user object given a username
-     * @summary Fetch a user by username
+     * @summary By username
      * @param {string} apiKey API key required for authentication.
      * @param {string} username Username of the user to fetch
      * @param {number} [viewerFid] 

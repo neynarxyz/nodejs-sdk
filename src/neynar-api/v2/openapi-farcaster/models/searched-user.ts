@@ -30,6 +30,9 @@ import { User } from './user';
 import { UserProfile } from './user-profile';
 // May contain unused imports in some cases
 // @ts-ignore
+import { UserVerifiedAccountsInner } from './user-verified-accounts-inner';
+// May contain unused imports in some cases
+// @ts-ignore
 import { UserVerifiedAddresses } from './user-verified-addresses';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -107,6 +110,12 @@ export interface SearchedUser {
      * @memberof SearchedUser
      */
     'verified_addresses': UserVerifiedAddresses;
+    /**
+     * Verified accounts of the user on other platforms, currently only X is supported.
+     * @type {Array<UserVerifiedAccountsInner>}
+     * @memberof SearchedUser
+     */
+    'verified_accounts': Array<UserVerifiedAccountsInner>;
     /**
      * 
      * @type {ActiveStatus}
