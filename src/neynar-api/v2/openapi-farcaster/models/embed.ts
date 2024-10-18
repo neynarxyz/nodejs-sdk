@@ -15,19 +15,21 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { Cast } from './cast';
+// May contain unused imports in some cases
+// @ts-ignore
 import { CastId } from './cast-id';
+// May contain unused imports in some cases
+// @ts-ignore
+import { EmbedCast } from './embed-cast';
+// May contain unused imports in some cases
+// @ts-ignore
+import { EmbedUrl } from './embed-url';
 
 /**
- * 
+ * @type Embed
  * @export
- * @interface EmbedCastId
  */
-export interface EmbedCastId {
-    /**
-     * 
-     * @type {CastId}
-     * @memberof EmbedCastId
-     */
-    'cast_id': CastId;
-}
+export type Embed = EmbedCast | EmbedUrl;
+
 

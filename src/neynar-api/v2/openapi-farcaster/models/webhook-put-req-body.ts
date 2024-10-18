@@ -18,40 +18,15 @@
 import { WebhookPostReqBody } from './webhook-post-req-body';
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookPutReqBodyAnyOf } from './webhook-put-req-body-any-of';
+import { WebhookPutReqBodyAllOf } from './webhook-put-req-body-all-of';
 // May contain unused imports in some cases
 // @ts-ignore
 import { WebhookSubscriptionFilters } from './webhook-subscription-filters';
 
 /**
- * 
+ * @type WebhookPutReqBody
  * @export
- * @interface WebhookPutReqBody
  */
-export interface WebhookPutReqBody {
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookPutReqBody
-     */
-    'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookPutReqBody
-     */
-    'url': string;
-    /**
-     * 
-     * @type {WebhookSubscriptionFilters}
-     * @memberof WebhookPutReqBody
-     */
-    'subscription'?: WebhookSubscriptionFilters;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookPutReqBody
-     */
-    'webhook_id': string;
-}
+export type WebhookPutReqBody = WebhookPostReqBody & WebhookPutReqBodyAllOf;
+
 

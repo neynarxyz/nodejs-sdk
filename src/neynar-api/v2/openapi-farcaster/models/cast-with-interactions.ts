@@ -18,6 +18,9 @@
 import { Cast } from './cast';
 // May contain unused imports in some cases
 // @ts-ignore
+import { CastAuthor } from './cast-author';
+// May contain unused imports in some cases
+// @ts-ignore
 import { CastNotificationType } from './cast-notification-type';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -27,7 +30,7 @@ import { CastParentAuthor } from './cast-parent-author';
 import { CastViewerContext } from './cast-viewer-context';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastWithInteractionsAnyOf } from './cast-with-interactions-any-of';
+import { CastWithInteractionsAllOf } from './cast-with-interactions-all-of';
 // May contain unused imports in some cases
 // @ts-ignore
 import { CastWithInteractionsReactions } from './cast-with-interactions-reactions';
@@ -39,7 +42,7 @@ import { CastWithInteractionsReplies } from './cast-with-interactions-replies';
 import { ChannelOrDehydratedChannel } from './channel-or-dehydrated-channel';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EmbeddedCast } from './embedded-cast';
+import { Embed } from './embed';
 // May contain unused imports in some cases
 // @ts-ignore
 import { Frame } from './frame';
@@ -48,114 +51,9 @@ import { Frame } from './frame';
 import { User } from './user';
 
 /**
- * 
+ * @type CastWithInteractions
  * @export
- * @interface CastWithInteractions
  */
-export interface CastWithInteractions {
-    /**
-     * 
-     * @type {string}
-     * @memberof CastWithInteractions
-     */
-    'hash': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastWithInteractions
-     */
-    'parent_hash': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastWithInteractions
-     */
-    'parent_url': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastWithInteractions
-     */
-    'root_parent_url': string | null;
-    /**
-     * 
-     * @type {CastParentAuthor}
-     * @memberof CastWithInteractions
-     */
-    'parent_author': CastParentAuthor;
-    /**
-     * 
-     * @type {User}
-     * @memberof CastWithInteractions
-     */
-    'author': User;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastWithInteractions
-     */
-    'text': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastWithInteractions
-     */
-    'timestamp': string;
-    /**
-     * 
-     * @type {Array<EmbeddedCast>}
-     * @memberof CastWithInteractions
-     */
-    'embeds': Array<EmbeddedCast>;
-    /**
-     * 
-     * @type {CastNotificationType}
-     * @memberof CastWithInteractions
-     */
-    'type'?: CastNotificationType;
-    /**
-     * 
-     * @type {Array<Frame>}
-     * @memberof CastWithInteractions
-     */
-    'frames'?: Array<Frame>;
-    /**
-     * 
-     * @type {CastWithInteractionsReactions}
-     * @memberof CastWithInteractions
-     */
-    'reactions': CastWithInteractionsReactions;
-    /**
-     * 
-     * @type {CastWithInteractionsReplies}
-     * @memberof CastWithInteractions
-     */
-    'replies': CastWithInteractionsReplies;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastWithInteractions
-     */
-    'thread_hash': string | null;
-    /**
-     * 
-     * @type {Array<User>}
-     * @memberof CastWithInteractions
-     */
-    'mentioned_profiles': Array<User>;
-    /**
-     * 
-     * @type {ChannelOrDehydratedChannel}
-     * @memberof CastWithInteractions
-     */
-    'channel': ChannelOrDehydratedChannel;
-    /**
-     * 
-     * @type {CastViewerContext}
-     * @memberof CastWithInteractions
-     */
-    'viewer_context'?: CastViewerContext;
-}
-
+export type CastWithInteractions = Cast & CastWithInteractionsAllOf;
 
 

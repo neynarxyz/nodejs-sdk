@@ -35,49 +35,49 @@ import { User } from './user';
 /**
  * 
  * @export
- * @interface CastWithInteractionsAnyOf
+ * @interface CastWithInteractionsAllOf
  */
-export interface CastWithInteractionsAnyOf {
+export interface CastWithInteractionsAllOf {
     /**
      * 
      * @type {Array<Frame>}
-     * @memberof CastWithInteractionsAnyOf
+     * @memberof CastWithInteractionsAllOf
      */
     'frames'?: Array<Frame>;
     /**
      * 
      * @type {CastWithInteractionsReactions}
-     * @memberof CastWithInteractionsAnyOf
+     * @memberof CastWithInteractionsAllOf
      */
     'reactions': CastWithInteractionsReactions;
     /**
      * 
      * @type {CastWithInteractionsReplies}
-     * @memberof CastWithInteractionsAnyOf
+     * @memberof CastWithInteractionsAllOf
      */
     'replies': CastWithInteractionsReplies;
     /**
      * 
      * @type {string}
-     * @memberof CastWithInteractionsAnyOf
+     * @memberof CastWithInteractionsAllOf
      */
     'thread_hash': string | null;
     /**
      * 
      * @type {Array<User>}
-     * @memberof CastWithInteractionsAnyOf
+     * @memberof CastWithInteractionsAllOf
      */
     'mentioned_profiles': Array<User>;
     /**
      * 
      * @type {ChannelOrDehydratedChannel}
-     * @memberof CastWithInteractionsAnyOf
+     * @memberof CastWithInteractionsAllOf
      */
-    'channel': ChannelOrDehydratedChannel;
+    'channel': ChannelOrDehydratedChannel | null;
     /**
      * 
      * @type {CastViewerContext}
-     * @memberof CastWithInteractionsAnyOf
+     * @memberof CastWithInteractionsAllOf
      */
     'viewer_context'?: CastViewerContext;
 }
