@@ -84,7 +84,7 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Fetches storage allocations for a given user
-         * @summary Fetches storage allocations for a given user
+         * @summary Fetch storage allocations for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {*} [options] Override http request option.
@@ -128,7 +128,7 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Fetches storage usage for a given user
-         * @summary Fetches storage usage for a given user
+         * @summary Fetch storage usage for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {*} [options] Override http request option.
@@ -194,7 +194,7 @@ export const StorageApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches storage allocations for a given user
-         * @summary Fetches storage allocations for a given user
+         * @summary Fetch storage allocations for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {*} [options] Override http request option.
@@ -206,7 +206,7 @@ export const StorageApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches storage usage for a given user
-         * @summary Fetches storage usage for a given user
+         * @summary Fetch storage usage for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {*} [options] Override http request option.
@@ -239,7 +239,7 @@ export const StorageApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Fetches storage allocations for a given user
-         * @summary Fetches storage allocations for a given user
+         * @summary Fetch storage allocations for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {*} [options] Override http request option.
@@ -250,7 +250,7 @@ export const StorageApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Fetches storage usage for a given user
-         * @summary Fetches storage usage for a given user
+         * @summary Fetch storage usage for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {*} [options] Override http request option.
@@ -284,7 +284,7 @@ export class StorageApi extends BaseAPI {
 
     /**
      * Fetches storage allocations for a given user
-     * @summary Fetches storage allocations for a given user
+     * @summary Fetch storage allocations for a given user
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid 
      * @param {*} [options] Override http request option.
@@ -297,7 +297,7 @@ export class StorageApi extends BaseAPI {
 
     /**
      * Fetches storage usage for a given user
-     * @summary Fetches storage usage for a given user
+     * @summary Fetch storage usage for a given user
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid 
      * @param {*} [options] Override http request option.

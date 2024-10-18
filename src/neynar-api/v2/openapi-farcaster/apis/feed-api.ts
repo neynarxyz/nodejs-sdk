@@ -46,8 +46,8 @@ import { ForYouProvider } from '../models';
 export const FeedApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Retrieve casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type.
-         * @summary Retrieve casts based on filters
+         * Fetch casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type.
+         * @summary Fetch casts based on filters
          * @param {string} apiKey API key required for authentication.
          * @param {FeedType} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
          * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url) or channel_id (requires channel_id)
@@ -59,7 +59,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
          * @param {Array<EmbedType>} [embedTypes] Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
@@ -150,15 +150,15 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Retrieve feed based on channel ids
-         * @summary Retrieve feed based on channel ids
+         * Fetch feed based on channel ids
+         * @summary Fetch feed based on channel ids
          * @param {string} apiKey API key required for authentication.
          * @param {string} channelIds Comma separated list of channel ids e.g. neynar,farcaster
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {boolean} [withReplies] Include replies in the response, false by default
          * @param {boolean} [membersOnly] Only include casts from members of the channel. True by default.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {boolean} [shouldModerate] If true, only casts that have been liked by the moderator (if one exists) will be returned.
          * @param {*} [options] Override http request option.
@@ -229,13 +229,13 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Retrieve feed based on who a user is following
-         * @summary Retrieve feed based on who a user is following
+         * Fetch feed based on who a user is following
+         * @summary Following
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -293,13 +293,13 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Retrieve a personalized For You feed for a user
-         * @summary Retrieve a personalized For You feed for a user
+         * Fetch a personalized For You feed for a user
+         * @summary For you
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {ForYouProvider} [provider] 
-         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {number} [limit] Number of results to fetch (default 25, max 50)
          * @param {string} [cursor] Pagination cursor.
          * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
          * @param {*} [options] Override http request option.
@@ -362,10 +362,10 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Retrieve feed of casts with Frames, reverse chronological order
-         * @summary Retrieve feed of casts with Frames, reverse chronological order
+         * Fetch feed of casts with Frames, reverse chronological order
+         * @summary Casts with Frames
          * @param {string} apiKey API key required for authentication.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -414,14 +414,14 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Retrieve feed based on parent urls
-         * @summary Retrieve feed based on parent urls
+         * Fetch feed based on parent urls
+         * @summary Fetch feed based on parent urls
          * @param {string} apiKey API key required for authentication.
          * @param {string} parentUrls Comma separated list of parent_urls
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {boolean} [withReplies] Include replies in the response, false by default
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -483,10 +483,10 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Retrieve trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
-         * @summary Retrieve trending casts
+         * Fetch trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
+         * @summary Fetch trending casts
          * @param {string} apiKey API key required for authentication.
-         * @param {number} [limit] Number of results to retrieve (max 10)
+         * @param {number} [limit] Number of results to fetch (max 10)
          * @param {string} [cursor] Pagination cursor
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
@@ -555,12 +555,12 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Retrieve casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel
-         * @summary Retrieve casts for a user
+         * Fetch casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel
+         * @summary Chronologically
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of user whose recent casts you want to fetch
          * @param {number} [viewerFid] FID of the user viewing the feed
-         * @param {number} [limit] Number of results to retrieve
+         * @param {number} [limit] Number of results to fetch
          * @param {string} [cursor] Pagination cursor
          * @param {boolean} [includeReplies] Include reply casts by the author in the response, true by default
          * @param {string} [parentUrl] Parent URL to filter the feed; mutually exclusive with channel_id
@@ -629,8 +629,8 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Retrieve 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
-         * @summary Retrieve 10 most popular casts for a user
+         * Fetch 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
+         * @summary 10 most popular casts
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
          * @param {number} [viewerFid] 
@@ -678,12 +678,12 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Retrieve recent replies and recasts for a given user FID; sorted by most recent first
-         * @summary Retrieve recent replies and recasts for a user
+         * Fetch recent replies and recasts for a given user FID; sorted by most recent first
+         * @summary Recent replies and recasts
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose replies and recasts you want to fetch
          * @param {'replies' | 'recasts' | 'all'} [filter] filter to fetch only replies or recasts
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
@@ -752,8 +752,8 @@ export const FeedApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = FeedApiAxiosParamCreator(configuration)
     return {
         /**
-         * Retrieve casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type.
-         * @summary Retrieve casts based on filters
+         * Fetch casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type.
+         * @summary Fetch casts based on filters
          * @param {string} apiKey API key required for authentication.
          * @param {FeedType} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
          * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url) or channel_id (requires channel_id)
@@ -765,7 +765,7 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
          * @param {Array<EmbedType>} [embedTypes] Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
@@ -776,15 +776,15 @@ export const FeedApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Retrieve feed based on channel ids
-         * @summary Retrieve feed based on channel ids
+         * Fetch feed based on channel ids
+         * @summary Fetch feed based on channel ids
          * @param {string} apiKey API key required for authentication.
          * @param {string} channelIds Comma separated list of channel ids e.g. neynar,farcaster
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {boolean} [withReplies] Include replies in the response, false by default
          * @param {boolean} [membersOnly] Only include casts from members of the channel. True by default.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {boolean} [shouldModerate] If true, only casts that have been liked by the moderator (if one exists) will be returned.
          * @param {*} [options] Override http request option.
@@ -795,13 +795,13 @@ export const FeedApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Retrieve feed based on who a user is following
-         * @summary Retrieve feed based on who a user is following
+         * Fetch feed based on who a user is following
+         * @summary Following
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -811,13 +811,13 @@ export const FeedApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Retrieve a personalized For You feed for a user
-         * @summary Retrieve a personalized For You feed for a user
+         * Fetch a personalized For You feed for a user
+         * @summary For you
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {ForYouProvider} [provider] 
-         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {number} [limit] Number of results to fetch (default 25, max 50)
          * @param {string} [cursor] Pagination cursor.
          * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
          * @param {*} [options] Override http request option.
@@ -828,10 +828,10 @@ export const FeedApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Retrieve feed of casts with Frames, reverse chronological order
-         * @summary Retrieve feed of casts with Frames, reverse chronological order
+         * Fetch feed of casts with Frames, reverse chronological order
+         * @summary Casts with Frames
          * @param {string} apiKey API key required for authentication.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -842,14 +842,14 @@ export const FeedApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Retrieve feed based on parent urls
-         * @summary Retrieve feed based on parent urls
+         * Fetch feed based on parent urls
+         * @summary Fetch feed based on parent urls
          * @param {string} apiKey API key required for authentication.
          * @param {string} parentUrls Comma separated list of parent_urls
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {boolean} [withReplies] Include replies in the response, false by default
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -859,10 +859,10 @@ export const FeedApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Retrieve trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
-         * @summary Retrieve trending casts
+         * Fetch trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
+         * @summary Fetch trending casts
          * @param {string} apiKey API key required for authentication.
-         * @param {number} [limit] Number of results to retrieve (max 10)
+         * @param {number} [limit] Number of results to fetch (max 10)
          * @param {string} [cursor] Pagination cursor
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
@@ -877,12 +877,12 @@ export const FeedApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Retrieve casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel
-         * @summary Retrieve casts for a user
+         * Fetch casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel
+         * @summary Chronologically
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of user whose recent casts you want to fetch
          * @param {number} [viewerFid] FID of the user viewing the feed
-         * @param {number} [limit] Number of results to retrieve
+         * @param {number} [limit] Number of results to fetch
          * @param {string} [cursor] Pagination cursor
          * @param {boolean} [includeReplies] Include reply casts by the author in the response, true by default
          * @param {string} [parentUrl] Parent URL to filter the feed; mutually exclusive with channel_id
@@ -895,8 +895,8 @@ export const FeedApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Retrieve 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
-         * @summary Retrieve 10 most popular casts for a user
+         * Fetch 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
+         * @summary 10 most popular casts
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
          * @param {number} [viewerFid] 
@@ -908,12 +908,12 @@ export const FeedApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Retrieve recent replies and recasts for a given user FID; sorted by most recent first
-         * @summary Retrieve recent replies and recasts for a user
+         * Fetch recent replies and recasts for a given user FID; sorted by most recent first
+         * @summary Recent replies and recasts
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose replies and recasts you want to fetch
          * @param {'replies' | 'recasts' | 'all'} [filter] filter to fetch only replies or recasts
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
@@ -934,8 +934,8 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
     const localVarFp = FeedApiFp(configuration)
     return {
         /**
-         * Retrieve casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type.
-         * @summary Retrieve casts based on filters
+         * Fetch casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type.
+         * @summary Fetch casts based on filters
          * @param {string} apiKey API key required for authentication.
          * @param {FeedType} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
          * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url) or channel_id (requires channel_id)
@@ -947,7 +947,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
          * @param {Array<EmbedType>} [embedTypes] Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
@@ -957,15 +957,15 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.feed(apiKey, feedType, filterType, fid, fids, parentUrl, channelId, membersOnly, embedUrl, embedTypes, withRecasts, limit, cursor, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieve feed based on channel ids
-         * @summary Retrieve feed based on channel ids
+         * Fetch feed based on channel ids
+         * @summary Fetch feed based on channel ids
          * @param {string} apiKey API key required for authentication.
          * @param {string} channelIds Comma separated list of channel ids e.g. neynar,farcaster
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {boolean} [withReplies] Include replies in the response, false by default
          * @param {boolean} [membersOnly] Only include casts from members of the channel. True by default.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {boolean} [shouldModerate] If true, only casts that have been liked by the moderator (if one exists) will be returned.
          * @param {*} [options] Override http request option.
@@ -975,13 +975,13 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.feedChannels(apiKey, channelIds, withRecasts, viewerFid, withReplies, membersOnly, limit, cursor, shouldModerate, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieve feed based on who a user is following
-         * @summary Retrieve feed based on who a user is following
+         * Fetch feed based on who a user is following
+         * @summary Following
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -990,13 +990,13 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.feedFollowing(apiKey, fid, viewerFid, withRecasts, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieve a personalized For You feed for a user
-         * @summary Retrieve a personalized For You feed for a user
+         * Fetch a personalized For You feed for a user
+         * @summary For you
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {ForYouProvider} [provider] 
-         * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+         * @param {number} [limit] Number of results to fetch (default 25, max 50)
          * @param {string} [cursor] Pagination cursor.
          * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
          * @param {*} [options] Override http request option.
@@ -1006,10 +1006,10 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.feedForYou(apiKey, fid, viewerFid, provider, limit, cursor, providerMetadata, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieve feed of casts with Frames, reverse chronological order
-         * @summary Retrieve feed of casts with Frames, reverse chronological order
+         * Fetch feed of casts with Frames, reverse chronological order
+         * @summary Casts with Frames
          * @param {string} apiKey API key required for authentication.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -1019,14 +1019,14 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.feedFrames(apiKey, limit, viewerFid, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieve feed based on parent urls
-         * @summary Retrieve feed based on parent urls
+         * Fetch feed based on parent urls
+         * @summary Fetch feed based on parent urls
          * @param {string} apiKey API key required for authentication.
          * @param {string} parentUrls Comma separated list of parent_urls
          * @param {boolean} [withRecasts] Include recasts in the response, true by default
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {boolean} [withReplies] Include replies in the response, false by default
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1035,10 +1035,10 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.feedParentUrls(apiKey, parentUrls, withRecasts, viewerFid, withReplies, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieve trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
-         * @summary Retrieve trending casts
+         * Fetch trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
+         * @summary Fetch trending casts
          * @param {string} apiKey API key required for authentication.
-         * @param {number} [limit] Number of results to retrieve (max 10)
+         * @param {number} [limit] Number of results to fetch (max 10)
          * @param {string} [cursor] Pagination cursor
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
@@ -1052,12 +1052,12 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, provider, providerMetadata, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieve casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel
-         * @summary Retrieve casts for a user
+         * Fetch casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel
+         * @summary Chronologically
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of user whose recent casts you want to fetch
          * @param {number} [viewerFid] FID of the user viewing the feed
-         * @param {number} [limit] Number of results to retrieve
+         * @param {number} [limit] Number of results to fetch
          * @param {string} [cursor] Pagination cursor
          * @param {boolean} [includeReplies] Include reply casts by the author in the response, true by default
          * @param {string} [parentUrl] Parent URL to filter the feed; mutually exclusive with channel_id
@@ -1069,8 +1069,8 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.feedUserCasts(apiKey, fid, viewerFid, limit, cursor, includeReplies, parentUrl, channelId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieve 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
-         * @summary Retrieve 10 most popular casts for a user
+         * Fetch 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
+         * @summary 10 most popular casts
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose feed you want to create
          * @param {number} [viewerFid] 
@@ -1081,12 +1081,12 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.feedUserPopular(apiKey, fid, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieve recent replies and recasts for a given user FID; sorted by most recent first
-         * @summary Retrieve recent replies and recasts for a user
+         * Fetch recent replies and recasts for a given user FID; sorted by most recent first
+         * @summary Recent replies and recasts
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid fid of user whose replies and recasts you want to fetch
          * @param {'replies' | 'recasts' | 'all'} [filter] filter to fetch only replies or recasts
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
@@ -1106,8 +1106,8 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
  */
 export class FeedApi extends BaseAPI {
     /**
-     * Retrieve casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type.
-     * @summary Retrieve casts based on filters
+     * Fetch casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type.
+     * @summary Fetch casts based on filters
      * @param {string} apiKey API key required for authentication.
      * @param {FeedType} feedType Defaults to following (requires fid or address). If set to filter (requires filter_type)
      * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to fids (requires fids) or parent_url (requires parent_url) or channel_id (requires channel_id)
@@ -1119,7 +1119,7 @@ export class FeedApi extends BaseAPI {
      * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
      * @param {Array<EmbedType>} [embedTypes] Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type
      * @param {boolean} [withRecasts] Include recasts in the response, true by default
-     * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
      * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {*} [options] Override http request option.
@@ -1131,15 +1131,15 @@ export class FeedApi extends BaseAPI {
     }
 
     /**
-     * Retrieve feed based on channel ids
-     * @summary Retrieve feed based on channel ids
+     * Fetch feed based on channel ids
+     * @summary Fetch feed based on channel ids
      * @param {string} apiKey API key required for authentication.
      * @param {string} channelIds Comma separated list of channel ids e.g. neynar,farcaster
      * @param {boolean} [withRecasts] Include recasts in the response, true by default
      * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {boolean} [withReplies] Include replies in the response, false by default
      * @param {boolean} [membersOnly] Only include casts from members of the channel. True by default.
-     * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
      * @param {boolean} [shouldModerate] If true, only casts that have been liked by the moderator (if one exists) will be returned.
      * @param {*} [options] Override http request option.
@@ -1151,13 +1151,13 @@ export class FeedApi extends BaseAPI {
     }
 
     /**
-     * Retrieve feed based on who a user is following
-     * @summary Retrieve feed based on who a user is following
+     * Fetch feed based on who a user is following
+     * @summary Following
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid fid of user whose feed you want to create
      * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {boolean} [withRecasts] Include recasts in the response, true by default
-     * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1168,13 +1168,13 @@ export class FeedApi extends BaseAPI {
     }
 
     /**
-     * Retrieve a personalized For You feed for a user
-     * @summary Retrieve a personalized For You feed for a user
+     * Fetch a personalized For You feed for a user
+     * @summary For you
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid fid of user whose feed you want to create
      * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {ForYouProvider} [provider] 
-     * @param {number} [limit] Number of results to retrieve (default 25, max 50)
+     * @param {number} [limit] Number of results to fetch (default 25, max 50)
      * @param {string} [cursor] Pagination cursor.
      * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
      * @param {*} [options] Override http request option.
@@ -1186,10 +1186,10 @@ export class FeedApi extends BaseAPI {
     }
 
     /**
-     * Retrieve feed of casts with Frames, reverse chronological order
-     * @summary Retrieve feed of casts with Frames, reverse chronological order
+     * Fetch feed of casts with Frames, reverse chronological order
+     * @summary Casts with Frames
      * @param {string} apiKey API key required for authentication.
-     * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
      * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
@@ -1201,14 +1201,14 @@ export class FeedApi extends BaseAPI {
     }
 
     /**
-     * Retrieve feed based on parent urls
-     * @summary Retrieve feed based on parent urls
+     * Fetch feed based on parent urls
+     * @summary Fetch feed based on parent urls
      * @param {string} apiKey API key required for authentication.
      * @param {string} parentUrls Comma separated list of parent_urls
      * @param {boolean} [withRecasts] Include recasts in the response, true by default
      * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {boolean} [withReplies] Include replies in the response, false by default
-     * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1219,10 +1219,10 @@ export class FeedApi extends BaseAPI {
     }
 
     /**
-     * Retrieve trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
-     * @summary Retrieve trending casts
+     * Fetch trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
+     * @summary Fetch trending casts
      * @param {string} apiKey API key required for authentication.
-     * @param {number} [limit] Number of results to retrieve (max 10)
+     * @param {number} [limit] Number of results to fetch (max 10)
      * @param {string} [cursor] Pagination cursor
      * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
@@ -1238,12 +1238,12 @@ export class FeedApi extends BaseAPI {
     }
 
     /**
-     * Retrieve casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel
-     * @summary Retrieve casts for a user
+     * Fetch casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel
+     * @summary Chronologically
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid FID of user whose recent casts you want to fetch
      * @param {number} [viewerFid] FID of the user viewing the feed
-     * @param {number} [limit] Number of results to retrieve
+     * @param {number} [limit] Number of results to fetch
      * @param {string} [cursor] Pagination cursor
      * @param {boolean} [includeReplies] Include reply casts by the author in the response, true by default
      * @param {string} [parentUrl] Parent URL to filter the feed; mutually exclusive with channel_id
@@ -1257,8 +1257,8 @@ export class FeedApi extends BaseAPI {
     }
 
     /**
-     * Retrieve 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
-     * @summary Retrieve 10 most popular casts for a user
+     * Fetch 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
+     * @summary 10 most popular casts
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid fid of user whose feed you want to create
      * @param {number} [viewerFid] 
@@ -1271,12 +1271,12 @@ export class FeedApi extends BaseAPI {
     }
 
     /**
-     * Retrieve recent replies and recasts for a given user FID; sorted by most recent first
-     * @summary Retrieve recent replies and recasts for a user
+     * Fetch recent replies and recasts for a given user FID; sorted by most recent first
+     * @summary Recent replies and recasts
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid fid of user whose replies and recasts you want to fetch
      * @param {'replies' | 'recasts' | 'all'} [filter] filter to fetch only replies or recasts
-     * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
      * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {*} [options] Override http request option.

@@ -123,10 +123,10 @@ export const MuteApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Fetches all fids that a user has muted.
-         * @summary Get fids that a user has muted
+         * @summary Fetch fids that a user has muted
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid The user\&#39;s fid (identifier)
-         * @param {number} [limit] Number of results to retrieve (default 20, max 100).
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -211,10 +211,10 @@ export const MuteApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches all fids that a user has muted.
-         * @summary Get fids that a user has muted
+         * @summary Fetch fids that a user has muted
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid The user\&#39;s fid (identifier)
-         * @param {number} [limit] Number of results to retrieve (default 20, max 100).
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -257,10 +257,10 @@ export const MuteApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Fetches all fids that a user has muted.
-         * @summary Get fids that a user has muted
+         * @summary Fetch fids that a user has muted
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid The user\&#39;s fid (identifier)
-         * @param {number} [limit] Number of results to retrieve (default 20, max 100).
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -306,10 +306,10 @@ export class MuteApi extends BaseAPI {
 
     /**
      * Fetches all fids that a user has muted.
-     * @summary Get fids that a user has muted
+     * @summary Fetch fids that a user has muted
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid The user\&#39;s fid (identifier)
-     * @param {number} [limit] Number of results to retrieve (default 20, max 100).
+     * @param {number} [limit] Number of results to fetch (default 20, max 100).
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

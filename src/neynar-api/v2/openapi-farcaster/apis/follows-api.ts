@@ -37,12 +37,12 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * Returns a list of followers for a specific FID.
-         * @summary Retrieve followers for a given user
+         * @summary Fetch followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid User who\&#39;s profile you are looking at
          * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {FollowSortType} [sortType] Sort type for retrieve followers. Default is &#x60;desc_chron&#x60;
-         * @param {number} [limit] Number of results to retrieve (default 20, max 100)
+         * @param {FollowSortType} [sortType] Sort type for fetch followers. Default is &#x60;desc_chron&#x60;
+         * @param {number} [limit] Number of results to fetch (default 20, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -100,13 +100,13 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Retrieve a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
-         * @summary Retrieve a list of users followed by a user
+         * Fetch a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
+         * @summary Fetch a list of users followed by a user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user whose following you want to fetch.
          * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {FollowSortType} [sortType] Optional parameter to sort the users based on different criteria.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -165,7 +165,7 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
-         * @summary Retrieve relevant followers for a given user
+         * @summary Fetch relevant followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} targetFid User who\&#39;s profile you are looking at
          * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -226,12 +226,12 @@ export const FollowsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Returns a list of followers for a specific FID.
-         * @summary Retrieve followers for a given user
+         * @summary Fetch followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid User who\&#39;s profile you are looking at
          * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {FollowSortType} [sortType] Sort type for retrieve followers. Default is &#x60;desc_chron&#x60;
-         * @param {number} [limit] Number of results to retrieve (default 20, max 100)
+         * @param {FollowSortType} [sortType] Sort type for fetch followers. Default is &#x60;desc_chron&#x60;
+         * @param {number} [limit] Number of results to fetch (default 20, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -241,13 +241,13 @@ export const FollowsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Retrieve a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
-         * @summary Retrieve a list of users followed by a user
+         * Fetch a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
+         * @summary Fetch a list of users followed by a user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user whose following you want to fetch.
          * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {FollowSortType} [sortType] Optional parameter to sort the users based on different criteria.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -258,7 +258,7 @@ export const FollowsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
-         * @summary Retrieve relevant followers for a given user
+         * @summary Fetch relevant followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} targetFid User who\&#39;s profile you are looking at
          * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -281,12 +281,12 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * Returns a list of followers for a specific FID.
-         * @summary Retrieve followers for a given user
+         * @summary Fetch followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid User who\&#39;s profile you are looking at
          * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {FollowSortType} [sortType] Sort type for retrieve followers. Default is &#x60;desc_chron&#x60;
-         * @param {number} [limit] Number of results to retrieve (default 20, max 100)
+         * @param {FollowSortType} [sortType] Sort type for fetch followers. Default is &#x60;desc_chron&#x60;
+         * @param {number} [limit] Number of results to fetch (default 20, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -295,13 +295,13 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.followersV2(apiKey, fid, viewerFid, sortType, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieve a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
-         * @summary Retrieve a list of users followed by a user
+         * Fetch a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
+         * @summary Fetch a list of users followed by a user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user whose following you want to fetch.
          * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {FollowSortType} [sortType] Optional parameter to sort the users based on different criteria.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -311,7 +311,7 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
-         * @summary Retrieve relevant followers for a given user
+         * @summary Fetch relevant followers for a given user
          * @param {string} apiKey API key required for authentication.
          * @param {number} targetFid User who\&#39;s profile you are looking at
          * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -333,12 +333,12 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
 export class FollowsApi extends BaseAPI {
     /**
      * Returns a list of followers for a specific FID.
-     * @summary Retrieve followers for a given user
+     * @summary Fetch followers for a given user
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid User who\&#39;s profile you are looking at
      * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-     * @param {FollowSortType} [sortType] Sort type for retrieve followers. Default is &#x60;desc_chron&#x60;
-     * @param {number} [limit] Number of results to retrieve (default 20, max 100)
+     * @param {FollowSortType} [sortType] Sort type for fetch followers. Default is &#x60;desc_chron&#x60;
+     * @param {number} [limit] Number of results to fetch (default 20, max 100)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -349,13 +349,13 @@ export class FollowsApi extends BaseAPI {
     }
 
     /**
-     * Retrieve a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
-     * @summary Retrieve a list of users followed by a user
+     * Fetch a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
+     * @summary Fetch a list of users followed by a user
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid FID of the user whose following you want to fetch.
      * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {FollowSortType} [sortType] Optional parameter to sort the users based on different criteria.
-     * @param {number} [limit] Number of results to retrieve (default 25, max 100)
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -367,7 +367,7 @@ export class FollowsApi extends BaseAPI {
 
     /**
      * Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
-     * @summary Retrieve relevant followers for a given user
+     * @summary Fetch relevant followers for a given user
      * @param {string} apiKey API key required for authentication.
      * @param {number} targetFid User who\&#39;s profile you are looking at
      * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.

@@ -80,9 +80,9 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
         },
         /**
          * Fetches all fids that your app has banned.
-         * @summary Get fids that your app has banned
+         * @summary Fetch fids that your app has banned
          * @param {string} apiKey API key required for authentication.
-         * @param {number} [limit] Number of results to retrieve (default 20, max 100).
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -192,9 +192,9 @@ export const BanApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches all fids that your app has banned.
-         * @summary Get fids that your app has banned
+         * @summary Fetch fids that your app has banned
          * @param {string} apiKey API key required for authentication.
-         * @param {number} [limit] Number of results to retrieve (default 20, max 100).
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -238,9 +238,9 @@ export const BanApiFactory = function (configuration?: Configuration, basePath?:
         },
         /**
          * Fetches all fids that your app has banned.
-         * @summary Get fids that your app has banned
+         * @summary Fetch fids that your app has banned
          * @param {string} apiKey API key required for authentication.
-         * @param {number} [limit] Number of results to retrieve (default 20, max 100).
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -284,9 +284,9 @@ export class BanApi extends BaseAPI {
 
     /**
      * Fetches all fids that your app has banned.
-     * @summary Get fids that your app has banned
+     * @summary Fetch fids that your app has banned
      * @param {string} apiKey API key required for authentication.
-     * @param {number} [limit] Number of results to retrieve (default 20, max 100).
+     * @param {number} [limit] Number of results to fetch (default 20, max 100).
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
