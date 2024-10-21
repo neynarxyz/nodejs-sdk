@@ -74,6 +74,8 @@ export * from './embed-url-metadata-video';
 export * from './embed-url-metadata-video-stream-inner';
 export * from './embedded-cast';
 export * from './error-res';
+export * from './farcaster-action-req-body';
+export * from './farcaster-action-req-body-action';
 export * from './feed-for-you400-response';
 export * from './feed-response';
 export * from './feed-trending-provider';
