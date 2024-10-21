@@ -34,13 +34,16 @@ export const STPApiAxiosParamCreator = function (configuration?: Configuration) 
         /**
          * Check if a wallet address is subscribed to a given STP contract.
          * @summary Check if a wallet address is subscribed to a STP contract
+         * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
          * @param {string} contractAddress Ethereum address of the STP contract
          * @param {string} chainId Chain ID of the STP contract
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscriptionCheck: async (addresses: string, contractAddress: string, chainId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        subscriptionCheck: async (apiKey: string, addresses: string, contractAddress: string, chainId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('subscriptionCheck', 'apiKey', apiKey)
             // verify required parameter 'addresses' is not null or undefined
             assertParamExists('subscriptionCheck', 'addresses', addresses)
             // verify required parameter 'contractAddress' is not null or undefined
@@ -59,9 +62,6 @@ export const STPApiAxiosParamCreator = function (configuration?: Configuration) 
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
             if (addresses !== undefined) {
                 localVarQueryParameter['addresses'] = addresses;
             }
@@ -72,6 +72,10 @@ export const STPApiAxiosParamCreator = function (configuration?: Configuration) 
 
             if (chainId !== undefined) {
                 localVarQueryParameter['chain_id'] = chainId;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
             }
 
 
@@ -98,14 +102,15 @@ export const STPApiFp = function(configuration?: Configuration) {
         /**
          * Check if a wallet address is subscribed to a given STP contract.
          * @summary Check if a wallet address is subscribed to a STP contract
+         * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
          * @param {string} contractAddress Ethereum address of the STP contract
          * @param {string} chainId Chain ID of the STP contract
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async subscriptionCheck(addresses: string, contractAddress: string, chainId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: SubscriptionStatus; }>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.subscriptionCheck(addresses, contractAddress, chainId, options);
+        async subscriptionCheck(apiKey: string, addresses: string, contractAddress: string, chainId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: SubscriptionStatus; }>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.subscriptionCheck(apiKey, addresses, contractAddress, chainId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -121,14 +126,15 @@ export const STPApiFactory = function (configuration?: Configuration, basePath?:
         /**
          * Check if a wallet address is subscribed to a given STP contract.
          * @summary Check if a wallet address is subscribed to a STP contract
+         * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
          * @param {string} contractAddress Ethereum address of the STP contract
          * @param {string} chainId Chain ID of the STP contract
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscriptionCheck(addresses: string, contractAddress: string, chainId: string, options?: any): AxiosPromise<{ [key: string]: SubscriptionStatus; }> {
-            return localVarFp.subscriptionCheck(addresses, contractAddress, chainId, options).then((request) => request(axios, basePath));
+        subscriptionCheck(apiKey: string, addresses: string, contractAddress: string, chainId: string, options?: any): AxiosPromise<{ [key: string]: SubscriptionStatus; }> {
+            return localVarFp.subscriptionCheck(apiKey, addresses, contractAddress, chainId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -143,6 +149,7 @@ export class STPApi extends BaseAPI {
     /**
      * Check if a wallet address is subscribed to a given STP contract.
      * @summary Check if a wallet address is subscribed to a STP contract
+     * @param {string} apiKey API key required for authentication.
      * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
      * @param {string} contractAddress Ethereum address of the STP contract
      * @param {string} chainId Chain ID of the STP contract
@@ -150,7 +157,7 @@ export class STPApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof STPApi
      */
-    public subscriptionCheck(addresses: string, contractAddress: string, chainId: string, options?: AxiosRequestConfig) {
-        return STPApiFp(this.configuration).subscriptionCheck(addresses, contractAddress, chainId, options).then((request) => request(this.axios, this.basePath));
+    public subscriptionCheck(apiKey: string, addresses: string, contractAddress: string, chainId: string, options?: AxiosRequestConfig) {
+        return STPApiFp(this.configuration).subscriptionCheck(apiKey, addresses, contractAddress, chainId, options).then((request) => request(this.axios, this.basePath));
     }
 }
