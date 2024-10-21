@@ -81,6 +81,7 @@ models/channel-response-bulk.ts
 models/channel-response.ts
 models/channel-search-response.ts
 models/channel-type.ts
+models/channel-user-context.ts
 models/channel-viewer-context.ts
 models/channel.ts
 models/conflict-error-res.ts

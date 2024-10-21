@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { ChannelUserContext } from './channel-user-context';
 
 /**
  * 
@@ -44,6 +47,12 @@ export interface DehydratedChannel {
      * @memberof DehydratedChannel
      */
     'image_url'?: string;
+    /**
+     * 
+     * @type {ChannelUserContext}
+     * @memberof DehydratedChannel
+     */
+    'viewer_context'?: ChannelUserContext;
 }
 
 export const DehydratedChannelObjectEnum = {

@@ -42,6 +42,9 @@ import { CastWithInteractionsReplies } from './cast-with-interactions-replies';
 import { ChannelOrDehydratedChannel } from './channel-or-dehydrated-channel';
 // May contain unused imports in some cases
 // @ts-ignore
+import { ChannelUserContext } from './channel-user-context';
+// May contain unused imports in some cases
+// @ts-ignore
 import { Embed } from './embed';
 // May contain unused imports in some cases
 // @ts-ignore

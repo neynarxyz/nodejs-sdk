@@ -56,6 +56,7 @@ export * from './channel-response';
 export * from './channel-response-bulk';
 export * from './channel-search-response';
 export * from './channel-type';
+export * from './channel-user-context';
 export * from './channel-viewer-context';
 export * from './conflict-error-res';
 export * from './conversation';
