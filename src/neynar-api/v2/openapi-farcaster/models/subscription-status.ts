@@ -52,7 +52,7 @@ export interface SubscriptionStatus {
      * @type {SubscriptionTier}
      * @memberof SubscriptionStatus
      */
-    'tier': SubscriptionTier;
+    'tier': SubscriptionTier | null;
 }
 
 export const SubscriptionStatusObjectEnum = {

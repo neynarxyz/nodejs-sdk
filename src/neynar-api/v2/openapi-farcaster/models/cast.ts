@@ -15,16 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { CastAuthor } from './cast-author';
+// May contain unused imports in some cases
+// @ts-ignore
 import { CastNotificationType } from './cast-notification-type';
 // May contain unused imports in some cases
 // @ts-ignore
 import { CastParentAuthor } from './cast-parent-author';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EmbeddedCast } from './embedded-cast';
-// May contain unused imports in some cases
-// @ts-ignore
-import { User } from './user';
+import { Embed } from './embed';
 
 /**
  * 
@@ -64,10 +64,10 @@ export interface Cast {
     'parent_author': CastParentAuthor;
     /**
      * 
-     * @type {User}
+     * @type {CastAuthor}
      * @memberof Cast
      */
-    'author': User;
+    'author': CastAuthor;
     /**
      * 
      * @type {string}
@@ -82,10 +82,10 @@ export interface Cast {
     'timestamp': string;
     /**
      * 
-     * @type {Array<EmbeddedCast>}
+     * @type {Array<Embed>}
      * @memberof Cast
      */
-    'embeds': Array<EmbeddedCast>;
+    'embeds': Array<Embed>;
     /**
      * 
      * @type {CastNotificationType}

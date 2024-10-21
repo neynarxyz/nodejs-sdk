@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { ChannelExternalLink } from './channel-external-link';
+// May contain unused imports in some cases
+// @ts-ignore
 import { ChannelViewerContext } from './channel-viewer-context';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -68,6 +71,12 @@ export interface Channel {
      * @memberof Channel
      */
     'follower_count'?: number;
+    /**
+     * 
+     * @type {ChannelExternalLink}
+     * @memberof Channel
+     */
+    'external_link'?: ChannelExternalLink;
     /**
      * 
      * @type {string}

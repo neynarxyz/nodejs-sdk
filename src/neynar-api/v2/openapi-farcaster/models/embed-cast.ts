@@ -13,18 +13,30 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { Cast } from './cast';
+// May contain unused imports in some cases
+// @ts-ignore
+import { CastId } from './cast-id';
 
 /**
  * 
  * @export
- * @interface CastParentAuthorAnyOf
+ * @interface EmbedCast
  */
-export interface CastParentAuthorAnyOf {
+export interface EmbedCast {
     /**
      * 
-     * @type {number}
-     * @memberof CastParentAuthorAnyOf
+     * @type {CastId}
+     * @memberof EmbedCast
      */
-    'fid': number | null;
+    'cast_id': CastId;
+    /**
+     * 
+     * @type {Cast}
+     * @memberof EmbedCast
+     */
+    'metadata'?: Cast;
 }
 

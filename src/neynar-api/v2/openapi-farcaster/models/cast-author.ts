@@ -15,24 +15,30 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Channel } from './channel';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ChannelExternalLink } from './channel-external-link';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ChannelViewerContext } from './channel-viewer-context';
-// May contain unused imports in some cases
-// @ts-ignore
-import { DehydratedChannel } from './dehydrated-channel';
+import { ActiveStatus } from './active-status';
 // May contain unused imports in some cases
 // @ts-ignore
 import { User } from './user';
+// May contain unused imports in some cases
+// @ts-ignore
+import { UserDehydrated } from './user-dehydrated';
+// May contain unused imports in some cases
+// @ts-ignore
+import { UserProfile } from './user-profile';
+// May contain unused imports in some cases
+// @ts-ignore
+import { UserVerifiedAccountsInner } from './user-verified-accounts-inner';
+// May contain unused imports in some cases
+// @ts-ignore
+import { UserVerifiedAddresses } from './user-verified-addresses';
+// May contain unused imports in some cases
+// @ts-ignore
+import { UserViewerContext } from './user-viewer-context';
 
 /**
- * @type ChannelMemberChannel
+ * @type CastAuthor
  * @export
  */
-export type ChannelMemberChannel = Channel | DehydratedChannel;
+export type CastAuthor = { object: 'user' } & User | { object: 'user_dehydrated' } & UserDehydrated;
 
 
