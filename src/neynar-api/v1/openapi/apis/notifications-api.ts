@@ -35,7 +35,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
     return {
         /**
          * Gets a list of 15 mentions and replies to the user’s casts in reverse chronological order
-         * @summary Get mentions and replies
+         * @summary Fetch mentions and replies
          * @param {number} fid fid of a user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {string} [cursor] Pagination cursor.
@@ -84,11 +84,11 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
             };
         },
         /**
-         * Get a list of reactions and recasts to the users’s casts in reverse chronological order
-         * @summary Get reactions and recasts
+         * Fetch a list of reactions and recasts to the users’s casts in reverse chronological order
+         * @summary Fetch reactions and recasts
          * @param {number} fid fid of a user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -150,7 +150,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Gets a list of 15 mentions and replies to the user’s casts in reverse chronological order
-         * @summary Get mentions and replies
+         * @summary Fetch mentions and replies
          * @param {number} fid fid of a user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {string} [cursor] Pagination cursor.
@@ -162,11 +162,11 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Get a list of reactions and recasts to the users’s casts in reverse chronological order
-         * @summary Get reactions and recasts
+         * Fetch a list of reactions and recasts to the users’s casts in reverse chronological order
+         * @summary Fetch reactions and recasts
          * @param {number} fid fid of a user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -187,7 +187,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
     return {
         /**
          * Gets a list of 15 mentions and replies to the user’s casts in reverse chronological order
-         * @summary Get mentions and replies
+         * @summary Fetch mentions and replies
          * @param {number} fid fid of a user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
          * @param {string} [cursor] Pagination cursor.
@@ -198,11 +198,11 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
             return localVarFp.mentionsAndReplies(fid, viewerFid, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * Get a list of reactions and recasts to the users’s casts in reverse chronological order
-         * @summary Get reactions and recasts
+         * Fetch a list of reactions and recasts to the users’s casts in reverse chronological order
+         * @summary Fetch reactions and recasts
          * @param {number} fid fid of a user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -222,7 +222,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
 export class NotificationsApi extends BaseAPI {
     /**
      * Gets a list of 15 mentions and replies to the user’s casts in reverse chronological order
-     * @summary Get mentions and replies
+     * @summary Fetch mentions and replies
      * @param {number} fid fid of a user
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
      * @param {string} [cursor] Pagination cursor.
@@ -235,11 +235,11 @@ export class NotificationsApi extends BaseAPI {
     }
 
     /**
-     * Get a list of reactions and recasts to the users’s casts in reverse chronological order
-     * @summary Get reactions and recasts
+     * Fetch a list of reactions and recasts to the users’s casts in reverse chronological order
+     * @summary Fetch reactions and recasts
      * @param {number} fid fid of a user
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-     * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+     * @param {number} [limit] Number of results to fetch (default 25, max 150)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

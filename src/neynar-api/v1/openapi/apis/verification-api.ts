@@ -35,7 +35,7 @@ export const VerificationApiAxiosParamCreator = function (configuration?: Config
     return {
         /**
          * Now deprecated. Use [v2/user/bulk-by-address](https://docs.neynar.com/reference/user-bulk-by-address). Checks if a given Ethereum address has a Farcaster user associated with it. Note: if an address is associated with multiple users, the API will return the user who most recently published a verification with the address (based on when Warpcast received the proof, not a self-reported timestamp).
-         * @summary DEPRECATED - Retrieve user for a given ethereum address
+         * @summary DEPRECATED - Fetch user for a given ethereum address
          * @param {string} address 
          * @param {*} [options] Override http request option.
          * @deprecated
@@ -75,8 +75,8 @@ export const VerificationApiAxiosParamCreator = function (configuration?: Config
             };
         },
         /**
-         * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), verifications are in the user object. Get all known verifications of a user.
-         * @summary DEPRECATED - Retrieve verifications for a given FID
+         * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), verifications are in the user object. Fetch all known verifications of a user.
+         * @summary DEPRECATED - Fetch verifications for a given FID
          * @param {number} fid FID of the user
          * @param {*} [options] Override http request option.
          * @deprecated
@@ -127,7 +127,7 @@ export const VerificationApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Now deprecated. Use [v2/user/bulk-by-address](https://docs.neynar.com/reference/user-bulk-by-address). Checks if a given Ethereum address has a Farcaster user associated with it. Note: if an address is associated with multiple users, the API will return the user who most recently published a verification with the address (based on when Warpcast received the proof, not a self-reported timestamp).
-         * @summary DEPRECATED - Retrieve user for a given ethereum address
+         * @summary DEPRECATED - Fetch user for a given ethereum address
          * @param {string} address 
          * @param {*} [options] Override http request option.
          * @deprecated
@@ -138,8 +138,8 @@ export const VerificationApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), verifications are in the user object. Get all known verifications of a user.
-         * @summary DEPRECATED - Retrieve verifications for a given FID
+         * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), verifications are in the user object. Fetch all known verifications of a user.
+         * @summary DEPRECATED - Fetch verifications for a given FID
          * @param {number} fid FID of the user
          * @param {*} [options] Override http request option.
          * @deprecated
@@ -161,7 +161,7 @@ export const VerificationApiFactory = function (configuration?: Configuration, b
     return {
         /**
          * Now deprecated. Use [v2/user/bulk-by-address](https://docs.neynar.com/reference/user-bulk-by-address). Checks if a given Ethereum address has a Farcaster user associated with it. Note: if an address is associated with multiple users, the API will return the user who most recently published a verification with the address (based on when Warpcast received the proof, not a self-reported timestamp).
-         * @summary DEPRECATED - Retrieve user for a given ethereum address
+         * @summary DEPRECATED - Fetch user for a given ethereum address
          * @param {string} address 
          * @param {*} [options] Override http request option.
          * @deprecated
@@ -171,8 +171,8 @@ export const VerificationApiFactory = function (configuration?: Configuration, b
             return localVarFp.userByVerification(address, options).then((request) => request(axios, basePath));
         },
         /**
-         * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), verifications are in the user object. Get all known verifications of a user.
-         * @summary DEPRECATED - Retrieve verifications for a given FID
+         * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), verifications are in the user object. Fetch all known verifications of a user.
+         * @summary DEPRECATED - Fetch verifications for a given FID
          * @param {number} fid FID of the user
          * @param {*} [options] Override http request option.
          * @deprecated
@@ -193,7 +193,7 @@ export const VerificationApiFactory = function (configuration?: Configuration, b
 export class VerificationApi extends BaseAPI {
     /**
      * Now deprecated. Use [v2/user/bulk-by-address](https://docs.neynar.com/reference/user-bulk-by-address). Checks if a given Ethereum address has a Farcaster user associated with it. Note: if an address is associated with multiple users, the API will return the user who most recently published a verification with the address (based on when Warpcast received the proof, not a self-reported timestamp).
-     * @summary DEPRECATED - Retrieve user for a given ethereum address
+     * @summary DEPRECATED - Fetch user for a given ethereum address
      * @param {string} address 
      * @param {*} [options] Override http request option.
      * @deprecated
@@ -205,8 +205,8 @@ export class VerificationApi extends BaseAPI {
     }
 
     /**
-     * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), verifications are in the user object. Get all known verifications of a user.
-     * @summary DEPRECATED - Retrieve verifications for a given FID
+     * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), verifications are in the user object. Fetch all known verifications of a user.
+     * @summary DEPRECATED - Fetch verifications for a given FID
      * @param {number} fid FID of the user
      * @param {*} [options] Override http request option.
      * @deprecated

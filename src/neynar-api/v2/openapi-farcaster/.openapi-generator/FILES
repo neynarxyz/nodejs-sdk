@@ -2,6 +2,7 @@
 .npmignore
 .openapi-generator-ignore
 api.ts
+apis/action-api.ts
 apis/ban-api.ts
 apis/block-api.ts
 apis/cast-api.ts
@@ -100,6 +101,8 @@ models/embed-url-metadata.ts
 models/embed-url.ts
 models/embed.ts
 models/error-res.ts
+models/farcaster-action-req-body-action.ts
+models/farcaster-action-req-body.ts
 models/feed-for-you400-response.ts
 models/feed-response.ts
 models/feed-trending-provider.ts
