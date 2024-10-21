@@ -36,7 +36,7 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Gets all followers for a given FID
          * @param {number} fid FID of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -91,7 +91,7 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Gets all following users of a FID
          * @param {number} fid FID of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -156,7 +156,7 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          * @summary Gets all followers for a given FID
          * @param {number} fid FID of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -170,7 +170,7 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          * @summary Gets all following users of a FID
          * @param {number} fid FID of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -194,7 +194,7 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
          * @summary Gets all followers for a given FID
          * @param {number} fid FID of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -207,7 +207,7 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
          * @summary Gets all following users of a FID
          * @param {number} fid FID of the user
          * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-         * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+         * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -230,7 +230,7 @@ export class FollowsApi extends BaseAPI {
      * @summary Gets all followers for a given FID
      * @param {number} fid FID of the user
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-     * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+     * @param {number} [limit] Number of results to fetch (default 25, max 150)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -245,7 +245,7 @@ export class FollowsApi extends BaseAPI {
      * @summary Gets all following users of a FID
      * @param {number} fid FID of the user
      * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
-     * @param {number} [limit] Number of results to retrieve (default 25, max 150)
+     * @param {number} [limit] Number of results to fetch (default 25, max 150)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

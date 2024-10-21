@@ -12,7 +12,6 @@
     "build": "yarn run clean && tsc",
     "generate:neynar-oas-v1-farcaster": "del-cli src/neynar-api/v1/openapi; openapi-generator-cli generate -i src/oas/src/v1/spec.yaml -g typescript-axios -o src/neynar-api/v1/openapi --config src/oas/openapi-generator-config.json",
     "generate:neynar-oas-v2-farcaster": "del-cli src/neynar-api/v2/openapi-farcaster; openapi-generator-cli generate -i src/oas/src/v2/spec.yaml -g typescript-axios -o src/neynar-api/v2/openapi-farcaster --config src/oas/openapi-generator-config.json",
-    "generate:neynar-oas-v2-recommendation": "del-cli src/neynar-api/v2/openapi-recommendation; openapi-generator-cli generate -i src/oas/src/v2/recommendation/spec.yaml -g typescript-axios -o src/neynar-api/v2/openapi-recommendation --config src/oas/openapi-generator-config.json",
     "generate:neynar-oas-v2-stp": "del-cli src/neynar-api/v2/openapi-stp; openapi-generator-cli generate -i src/oas/src/v2/stp/spec.yaml -g typescript-axios -o src/neynar-api/v2/openapi-stp --config src/oas/openapi-generator-config.json"
   },
   "author": "Neynar",

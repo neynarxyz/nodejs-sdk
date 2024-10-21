@@ -108,7 +108,6 @@ import {
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
 import type { SetRequired } from "type-fest";
-import { NFTApi, RelevantMints } from "./openapi-recommendation";
 import {
   BulkCastsSortType,
   BulkUserAddressTypes,
@@ -135,7 +134,6 @@ export class NeynarV2APIClient {
     channel: ChannelApi;
     follows: FollowsApi;
     storage: StorageApi;
-    nft: NFTApi;
     fname: FnameApi;
     frame: FrameApi;
     webhook: WebhookApi;
@@ -219,7 +217,6 @@ export class NeynarV2APIClient {
       channel: new ChannelApi(config, undefined, axiosInstance),
       follows: new FollowsApi(config, undefined, axiosInstance),
       storage: new StorageApi(config, undefined, axiosInstance),
-      nft: new NFTApi(config, undefined, axiosInstance),
       fname: new FnameApi(config, undefined, axiosInstance),
       frame: new FrameApi(frameConfig, undefined, axiosInstance),
       webhook: new WebhookApi(config, undefined, axiosInstance),
@@ -3783,43 +3780,6 @@ export class NeynarV2APIClient {
    */
   public async fetchWebhooks(): Promise<WebhookListResponse> {
     const response = await this.apis.webhook.fetchWebhooks(this.apiKey);
-    return response.data;
-  }
-
-  // ------------ Recommendation ------------
-
-  /**
-   * Fetches all mint actions relevant for a given contract address and user's Ethereum address,
-   * with an optional focus on a specific tokenId for ERC1155 contracts. This method is useful for
-   * tracking NFT minting activities linked to specific contracts and user addresses.
-   *
-   * @param {string} address - The Ethereum address of the user.
-   * @param {string} contractAddress - The contract address associated with the NFTs.
-   * @param {Object} [options] - Optional parameters for the request.
-   * @param {string} [options.tokenId] - (Optional) The tokenId, particularly for ERC1155 contract types.
-   *
-   * @returns {Promise<RelevantMints>} A promise that resolves to a `RelevantMints` object,
-   *   containing information about mint actions relevant to the user and contract.
-   *
-   * @example
-   * // Example: Fetch mint actions for a contract address with a specific tokenId
-   * client.fetchRelevantMints('0x5a927ac639636e534b678e81768ca19e2c6280b7', '0xe8e0e543a3dd32d366cb756fa4d112f30172bcb1', { tokenId: '1' }).then(response => {
-   *   console.log('Relevant Mint Actions:', response);
-   * });
-   *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/fetch-relevant-mints).
-   */
-  public async fetchRelevantMints(
-    address: string,
-    contractAddress: string,
-    options?: { tokenId?: string }
-  ): Promise<RelevantMints> {
-    const response = await this.apis.nft.fetchRelevantMints(
-      this.apiKey,
-      address,
-      contractAddress,
-      options?.tokenId
-    );
     return response.data;
   }
 
