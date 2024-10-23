@@ -82,6 +82,7 @@ import {
   ChannelMemberInviteListResponse,
   ChannelMemberListResponse,
   FollowersResponse,
+  FarcasterActionReqBodyAction,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -264,7 +265,7 @@ export class NeynarAPIClient {
   /**
    * @deprecated
    * Now deprecated, use v2's `lookupUserByUsernameV2` instead.
-   * 
+   *
    * Retrieves the specified user via their username (if found).
    *
    * @param {string} username - The username of the user whose information is being retrieved.
@@ -677,6 +678,48 @@ export class NeynarAPIClient {
   }
 
   // ============ v2 APIs ============
+
+  // ------------ Action ------------
+
+  /**
+   * Perform actions on behalf of users across different apps.
+   *
+   * This method enables an application to securely communicate and trigger actions in another app on behalf of a mutual user.
+   * The actions are performed by signing messages using the user's Farcaster signer, ensuring that all actions are authenticated and authorized.
+   *
+   * @param {FarcasterActionReqBody} farcasterActionReqBody - The request body containing the action details and the necessary information to perform the action.
+   *
+   * @returns {Promise<Object>} A promise that resolves to an object containing the response data.
+   *   The structure of the response can vary depending on the action performed, as defined by the API's response schema by the app performing the action.
+   *
+   * @example
+   * // Example: Perform an action on behalf of a user
+   * const signerUuid = '19d0c5fd-9b33-4a48-a0e2-bc7b0555baec';
+   * const base_url = "https://appb.example.com",
+   * const action = {
+   *  type: "sendMessage",
+   *  payload: {
+   *    "message": "Hello from App A!"
+   *  }
+   * };
+   *
+   * client.publishFarcasterAction(signerUuid, url, action).then(response => {
+   *  console.log('Action Response:', response); // Outputs the response of the action
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/docs/farcaster-actions-spec).
+   */
+  public async publishFarcasterAction(
+    signerUuid: string,
+    base_url: string,
+    action: FarcasterActionReqBodyAction
+  ): Promise<Object> {
+    return await this.clients.v2.publishFarcasterAction(
+      signerUuid,
+      base_url,
+      action
+    );
+  }
 
   // ------------ Signer ------------
 
@@ -1359,14 +1402,14 @@ export class NeynarAPIClient {
    *   console.log('Cast Conversation Information:', response); // Displays the detailed structure of the specified cast conversation
    * });
    *
-   * 
+   *
    * @example
    * // Implement above and below 'the fold', generally seen in clients as "show more replies".
    * // Fetch first page above the fold:
    * client.lookupCastConversation(
    *   'https://warpcast.com/rish/0x9288c1',
    *   CastParamType.Url,
-   *  { 
+   *  {
    *    replyDepth: 2,
    *    includeChronologicalParentCasts: true,
    *    fold: 'above',
@@ -1380,7 +1423,7 @@ export class NeynarAPIClient {
    * client.lookupCastConversation(
    *   'https://warpcast.com/rish/0x9288c1',
    *   CastParamType.Url,
-   *  { 
+   *  {
    *    replyDepth: 2,
    *    includeChronologicalParentCasts: false,
    *    fold: 'above',
@@ -1394,7 +1437,7 @@ export class NeynarAPIClient {
    * client.lookupCastConversation(
    *   'https://warpcast.com/rish/0x9288c1',
    *   CastParamType.Url,
-   *  { 
+   *  {
    *    replyDepth: 2,
    *    includeChronologicalParentCasts: false,
    *    fold: 'below',
@@ -1404,8 +1447,8 @@ export class NeynarAPIClient {
    * }).then(response => {
    *   console.log('Casts from below the fold:', response.conversation.cast.direct_replies);
    * });
-   * 
-   * 
+   *
+   *
    * // Refer to the Neynar API documentation for more details and advanced options:
    * // https://docs.neynar.com/reference/cast-conversation
    */
@@ -1417,7 +1460,7 @@ export class NeynarAPIClient {
       includeChronologicalParentCasts?: boolean;
       viewerFid?: number;
       sortType?: CastConversationSortType;
-      fold?: 'above' | 'below';
+      fold?: "above" | "below";
       limit?: number;
       cursor?: string;
     }
@@ -3008,7 +3051,8 @@ export class NeynarAPIClient {
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-channel-memberships).
    */
-  public async fetchUserChannelMemberships(fid: number,
+  public async fetchUserChannelMemberships(
+    fid: number,
     options?: {
       limit?: number;
       cursor?: string;
@@ -3787,7 +3831,7 @@ export class NeynarAPIClient {
   public async fetchBanList(
     options: { limit?: number; cursor?: string } = {}
   ): Promise<BanListResponse> {
-    const { limit, cursor = '' } = options;
+    const { limit, cursor = "" } = options;
     return await this.clients.v2.fetchBanList({ limit, cursor });
   }
 
@@ -3807,9 +3851,7 @@ export class NeynarAPIClient {
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/add-ban).
    *
    */
-  public async publishBans(
-    fids: number[]
-  ): Promise<BanResponse> {
+  public async publishBans(fids: number[]): Promise<BanResponse> {
     return await this.clients.v2.publishBans(fids);
   }
 
