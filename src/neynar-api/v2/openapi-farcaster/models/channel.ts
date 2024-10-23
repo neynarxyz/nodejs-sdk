@@ -18,7 +18,7 @@
 import { ChannelExternalLink } from './channel-external-link';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChannelViewerContext } from './channel-viewer-context';
+import { ChannelUserContext } from './channel-user-context';
 // May contain unused imports in some cases
 // @ts-ignore
 import { User } from './user';
@@ -128,10 +128,10 @@ export interface Channel {
     'hosts'?: Array<User>;
     /**
      * 
-     * @type {ChannelViewerContext}
+     * @type {ChannelUserContext}
      * @memberof Channel
      */
-    'viewer_context'?: ChannelViewerContext;
+    'viewer_context'?: ChannelUserContext;
 }
 
 export const ChannelObjectEnum = {

@@ -21,7 +21,7 @@ import { Channel } from './channel';
 import { ChannelExternalLink } from './channel-external-link';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChannelViewerContext } from './channel-viewer-context';
+import { ChannelUserContext } from './channel-user-context';
 // May contain unused imports in some cases
 // @ts-ignore
 import { DehydratedChannel } from './dehydrated-channel';
