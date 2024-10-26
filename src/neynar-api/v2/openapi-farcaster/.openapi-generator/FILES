@@ -144,6 +144,8 @@ models/hydrated-follower.ts
 models/image-object.ts
 models/index.ts
 models/individual-hash-obj.ts
+models/location-address.ts
+models/location.ts
 models/mark-notifications-as-seen-req-body.ts
 models/music-song-object.ts
 models/mute-list-response.ts

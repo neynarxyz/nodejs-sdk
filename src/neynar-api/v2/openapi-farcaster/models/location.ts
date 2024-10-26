@@ -15,28 +15,31 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Location } from './location';
-// May contain unused imports in some cases
-// @ts-ignore
-import { UserProfileBio } from './user-profile-bio';
+import { LocationAddress } from './location-address';
 
 /**
- * 
+ * Coordinates and place names for a location
  * @export
- * @interface UserProfile
+ * @interface Location
  */
-export interface UserProfile {
+export interface Location {
     /**
      * 
-     * @type {UserProfileBio}
-     * @memberof UserProfile
+     * @type {number}
+     * @memberof Location
      */
-    'bio': UserProfileBio;
+    'latitude': number;
     /**
      * 
-     * @type {Location}
-     * @memberof UserProfile
+     * @type {number}
+     * @memberof Location
      */
-    'location'?: Location;
+    'longitude': number;
+    /**
+     * 
+     * @type {LocationAddress}
+     * @memberof Location
+     */
+    'address'?: LocationAddress;
 }
 

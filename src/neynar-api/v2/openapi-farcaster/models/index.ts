@@ -117,6 +117,8 @@ export * from './get-casts-req-body';
 export * from './hydrated-follower';
 export * from './image-object';
 export * from './individual-hash-obj';
+export * from './location';
+export * from './location-address';
 export * from './mark-notifications-as-seen-req-body';
 export * from './music-song-object';
 export * from './mute-list';
