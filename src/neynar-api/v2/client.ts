@@ -107,6 +107,7 @@ import {
   FarcasterActionReqBody,
   FarcasterActionReqBodyAction,
   ActionApi,
+  UpdateUserReqBodyLocation,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -872,6 +873,7 @@ export class NeynarV2APIClient {
    * @param {string} [options.url] - Personal URL of the user.
    * @param {string} [options.username] - The user's chosen username.
    * @param {string} [options.displayName] - The user's display name.
+   * @param {UpdateUserReqBodyLocation} [options.location] - The user's location.
    *
    * @returns {Promise<OperationResponse>} A promise that resolves to an `OperationResponse` object,
    *   indicating the success or failure of the update operation.
@@ -897,6 +899,7 @@ export class NeynarV2APIClient {
       url?: string;
       username?: string;
       displayName?: string;
+      location?: UpdateUserReqBodyLocation;
     }
   ): Promise<OperationResponse> {
     const updateUserReqBody = {
@@ -906,6 +909,7 @@ export class NeynarV2APIClient {
       url: options?.url,
       username: options?.username,
       display_name: options?.displayName,
+      location: options?.location,
     };
     const response = await this.apis.user.updateUser(
       this.apiKey,

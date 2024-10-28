@@ -83,6 +83,7 @@ import {
   ChannelMemberListResponse,
   FollowersResponse,
   FarcasterActionReqBodyAction,
+  UpdateUserReqBodyLocation,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -1215,6 +1216,7 @@ export class NeynarAPIClient {
    * @param {string} [options.url] - Personal URL of the user.
    * @param {string} [options.username] - The user's chosen username.
    * @param {string} [options.displayName] - The user's display name.
+   * @param {UpdateUserReqBodyLocation} [options.location] - The user's location.
    *
    * @returns {Promise<OperationResponse>} A promise that resolves to an `OperationResponse` object,
    *   indicating the success or failure of the update operation.
@@ -1240,6 +1242,7 @@ export class NeynarAPIClient {
       url?: string;
       username?: string;
       displayName?: string;
+      location?: UpdateUserReqBodyLocation;
     }
   ): Promise<OperationResponse> {
     return await this.clients.v2.updateUser(signerUuid, options);
