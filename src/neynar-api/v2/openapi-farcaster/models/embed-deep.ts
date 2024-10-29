@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastEmbedded } from './cast-embedded';
+import { CastDehydrated } from './cast-dehydrated';
 // May contain unused imports in some cases
 // @ts-ignore
 import { CastId } from './cast-id';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EmbedCast } from './embed-cast';
+import { EmbedCastDeep } from './embed-cast-deep';
 // May contain unused imports in some cases
 // @ts-ignore
 import { EmbedUrl } from './embed-url';
@@ -30,9 +30,9 @@ import { EmbedUrl } from './embed-url';
 import { EmbedUrlMetadata } from './embed-url-metadata';
 
 /**
- * @type Embed
+ * @type EmbedDeep
  * @export
  */
-export type Embed = EmbedCast | EmbedUrl;
+export type EmbedDeep = EmbedCastDeep | EmbedUrl;
 
 

@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { EmbedUrlMetadataHtml } from './embed-url-metadata-html';
+// May contain unused imports in some cases
+// @ts-ignore
 import { EmbedUrlMetadataImage } from './embed-url-metadata-image';
 // May contain unused imports in some cases
 // @ts-ignore
 import { EmbedUrlMetadataVideo } from './embed-url-metadata-video';
-// May contain unused imports in some cases
-// @ts-ignore
-import { OgObject } from './og-object';
 
 /**
  * 
@@ -61,9 +61,9 @@ export interface EmbedUrlMetadata {
     'video'?: EmbedUrlMetadataVideo;
     /**
      * 
-     * @type {OgObject}
+     * @type {EmbedUrlMetadataHtml}
      * @memberof EmbedUrlMetadata
      */
-    'html'?: OgObject;
+    'html'?: EmbedUrlMetadataHtml;
 }
 

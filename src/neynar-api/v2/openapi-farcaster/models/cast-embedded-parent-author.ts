@@ -13,30 +13,18 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { CastEmbedded } from './cast-embedded';
-// May contain unused imports in some cases
-// @ts-ignore
-import { CastId } from './cast-id';
 
 /**
  * 
  * @export
- * @interface EmbedCast
+ * @interface CastEmbeddedParentAuthor
  */
-export interface EmbedCast {
+export interface CastEmbeddedParentAuthor {
     /**
-     * 
-     * @type {CastId}
-     * @memberof EmbedCast
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof CastEmbeddedParentAuthor
      */
-    'cast_id'?: CastId;
-    /**
-     * 
-     * @type {CastEmbedded}
-     * @memberof EmbedCast
-     */
-    'cast': CastEmbedded;
+    'fid': number | null;
 }
 

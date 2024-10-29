@@ -15,24 +15,15 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastEmbedded } from './cast-embedded';
+import { LinkTypeDataAllOf } from './link-type-data-all-of';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastId } from './cast-id';
-// May contain unused imports in some cases
-// @ts-ignore
-import { EmbedCast } from './embed-cast';
-// May contain unused imports in some cases
-// @ts-ignore
-import { EmbedUrl } from './embed-url';
-// May contain unused imports in some cases
-// @ts-ignore
-import { EmbedUrlMetadata } from './embed-url-metadata';
+import { OembedData } from './oembed-data';
 
 /**
- * @type Embed
+ * @type LinkTypeData
  * @export
  */
-export type Embed = EmbedCast | EmbedUrl;
+export type LinkTypeData = LinkTypeDataAllOf & OembedData;
 
 
