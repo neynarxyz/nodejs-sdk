@@ -148,8 +148,6 @@ models/hydrated-follower.ts
 models/image-object.ts
 models/index.ts
 models/individual-hash-obj.ts
-models/link-type-data-all-of.ts
-models/link-type-data.ts
 models/location-address.ts
 models/location.ts
 models/mark-notifications-as-seen-req-body.ts
@@ -175,10 +173,16 @@ models/notification-type.ts
 models/notification.ts
 models/notifications-response.ts
 models/oembed-data.ts
+models/oembed-link-data-all-of.ts
+models/oembed-link-data.ts
+models/oembed-photo-data-all-of.ts
+models/oembed-photo-data.ts
+models/oembed-rich-data-all-of.ts
+models/oembed-rich-data.ts
+models/oembed-video-data-all-of.ts
+models/oembed-video-data.ts
 models/og-object.ts
 models/operation-response.ts
-models/photo-type-data-all-of.ts
-models/photo-type-data.ts
 models/post-cast-req-body-embeds-cast-id-properties.ts
 models/post-cast-req-body-embeds.ts
 models/post-cast-req-body.ts
@@ -205,8 +209,6 @@ models/relevant-followers-response.ts
 models/remove-channel-member-request.ts
 models/remove-verification-req-body.ts
 models/respond-channel-invite-request.ts
-models/rich-type-data-all-of.ts
-models/rich-type-data.ts
 models/searched-user.ts
 models/signed-key-request-sponsor.ts
 models/signer.ts
@@ -258,8 +260,6 @@ models/validated-frame-action.ts
 models/verification-chain-id.ts
 models/verification-type.ts
 models/video-object.ts
-models/video-type-data-all-of.ts
-models/video-type-data.ts
 models/webhook-delete-req-body.ts
 models/webhook-list-response.ts
 models/webhook-patch-req-body.ts
