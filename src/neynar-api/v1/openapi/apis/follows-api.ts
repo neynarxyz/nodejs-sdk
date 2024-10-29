@@ -32,10 +32,10 @@ import { FollowResponse } from '../models';
 export const FollowsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Gets a list of users who follow a given user in reverse chronological order.
+         * Gets a list of users who follow a user in reverse chronological order.
          * @summary Gets all followers for a given FID
          * @param {number} fid FID of the user
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -87,10 +87,10 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Gets a list of users who is following a given user in reverse chronological order.
+         * Gets a list of users who is following a user in reverse chronological order.
          * @summary Gets all following users of a FID
          * @param {number} fid FID of the user
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -152,10 +152,10 @@ export const FollowsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = FollowsApiAxiosParamCreator(configuration)
     return {
         /**
-         * Gets a list of users who follow a given user in reverse chronological order.
+         * Gets a list of users who follow a user in reverse chronological order.
          * @summary Gets all followers for a given FID
          * @param {number} fid FID of the user
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -166,10 +166,10 @@ export const FollowsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Gets a list of users who is following a given user in reverse chronological order.
+         * Gets a list of users who is following a user in reverse chronological order.
          * @summary Gets all following users of a FID
          * @param {number} fid FID of the user
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -190,10 +190,10 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
     const localVarFp = FollowsApiFp(configuration)
     return {
         /**
-         * Gets a list of users who follow a given user in reverse chronological order.
+         * Gets a list of users who follow a user in reverse chronological order.
          * @summary Gets all followers for a given FID
          * @param {number} fid FID of the user
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -203,10 +203,10 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.followers(fid, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * Gets a list of users who is following a given user in reverse chronological order.
+         * Gets a list of users who is following a user in reverse chronological order.
          * @summary Gets all following users of a FID
          * @param {number} fid FID of the user
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -226,10 +226,10 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
  */
 export class FollowsApi extends BaseAPI {
     /**
-     * Gets a list of users who follow a given user in reverse chronological order.
+     * Gets a list of users who follow a user in reverse chronological order.
      * @summary Gets all followers for a given FID
      * @param {number} fid FID of the user
-     * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+     * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
      * @param {number} [limit] Number of results to fetch (default 25, max 150)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
@@ -241,10 +241,10 @@ export class FollowsApi extends BaseAPI {
     }
 
     /**
-     * Gets a list of users who is following a given user in reverse chronological order.
+     * Gets a list of users who is following a user in reverse chronological order.
      * @summary Gets all following users of a FID
      * @param {number} fid FID of the user
-     * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+     * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
      * @param {number} [limit] Number of results to fetch (default 25, max 150)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
