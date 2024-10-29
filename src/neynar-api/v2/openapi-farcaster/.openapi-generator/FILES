@@ -24,7 +24,6 @@ common.ts
 configuration.ts
 git_push.sh
 index.ts
-models/active-status.ts
 models/add-verification-req-body.ts
 models/authorization-url-response-type.ts
 models/authorization-url-response.ts

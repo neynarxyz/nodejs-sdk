@@ -1,4 +1,3 @@
-export * from './active-status';
 export * from './add-verification-req-body';
 export * from './authorization-url-response';
 export * from './authorization-url-response-type';

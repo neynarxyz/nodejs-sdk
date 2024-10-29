@@ -15,9 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ActiveStatus } from './active-status';
-// May contain unused imports in some cases
-// @ts-ignore
 import { UserProfile } from './user-profile';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -107,12 +104,6 @@ export interface User {
      * @memberof User
      */
     'verified_accounts': Array<UserVerifiedAccountsInner>;
-    /**
-     * 
-     * @type {ActiveStatus}
-     * @memberof User
-     */
-    'active_status': ActiveStatus;
     /**
      * 
      * @type {boolean}
