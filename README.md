@@ -10,7 +10,7 @@ Checkout [examples](https://github.com/neynarxyz/farcaster-examples) using this 
 
 ## Contribution Guidelines
 
-see [CONTRIBUTING.md](./docs/CONTRIBUTING.md).
+see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## License
 
