@@ -18,12 +18,12 @@
 import { OembedData } from './oembed-data';
 // May contain unused imports in some cases
 // @ts-ignore
-import { VideoTypeDataAllOf } from './video-type-data-all-of';
+import { OembedRichDataAllOf } from './oembed-rich-data-all-of';
 
 /**
- * @type VideoTypeData
+ * @type OembedRichData
  * @export
  */
-export type VideoTypeData = OembedData & VideoTypeDataAllOf;
+export type OembedRichData = OembedData & OembedRichDataAllOf;
 
 

@@ -18,12 +18,12 @@
 import { OembedData } from './oembed-data';
 // May contain unused imports in some cases
 // @ts-ignore
-import { RichTypeDataAllOf } from './rich-type-data-all-of';
+import { OembedLinkDataAllOf } from './oembed-link-data-all-of';
 
 /**
- * @type RichTypeData
+ * @type OembedLinkData
  * @export
  */
-export type RichTypeData = OembedData & RichTypeDataAllOf;
+export type OembedLinkData = OembedData & OembedLinkDataAllOf;
 
 

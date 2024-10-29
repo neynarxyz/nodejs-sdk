@@ -25,7 +25,7 @@ export interface OembedData {
      * @type {string}
      * @memberof OembedData
      */
-    'type': OembedDataTypeEnum;
+    'type': string;
     /**
      * 
      * @type {string}
@@ -87,14 +87,4 @@ export interface OembedData {
      */
     'thumbnail_height'?: number | null;
 }
-
-export const OembedDataTypeEnum = {
-    Rich: 'rich',
-    Video: 'video',
-    Photo: 'photo',
-    Link: 'link'
-} as const;
-
-export type OembedDataTypeEnum = typeof OembedDataTypeEnum[keyof typeof OembedDataTypeEnum];
-
 

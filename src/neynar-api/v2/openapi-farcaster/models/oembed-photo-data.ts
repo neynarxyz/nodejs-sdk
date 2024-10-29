@@ -13,25 +13,17 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { OembedData } from './oembed-data';
+// May contain unused imports in some cases
+// @ts-ignore
+import { OembedPhotoDataAllOf } from './oembed-photo-data-all-of';
 
 /**
- * 
+ * @type OembedPhotoData
  * @export
- * @interface LinkTypeDataAllOf
  */
-export interface LinkTypeDataAllOf {
-    /**
-     * 
-     * @type {string}
-     * @memberof LinkTypeDataAllOf
-     */
-    'type'?: LinkTypeDataAllOfTypeEnum;
-}
-
-export const LinkTypeDataAllOfTypeEnum = {
-    Link: 'link'
-} as const;
-
-export type LinkTypeDataAllOfTypeEnum = typeof LinkTypeDataAllOfTypeEnum[keyof typeof LinkTypeDataAllOfTypeEnum];
+export type OembedPhotoData = OembedData & OembedPhotoDataAllOf;
 
 

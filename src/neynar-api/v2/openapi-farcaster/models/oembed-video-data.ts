@@ -15,15 +15,15 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { LinkTypeDataAllOf } from './link-type-data-all-of';
+import { OembedData } from './oembed-data';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OembedData } from './oembed-data';
+import { OembedVideoDataAllOf } from './oembed-video-data-all-of';
 
 /**
- * @type LinkTypeData
+ * @type OembedVideoData
  * @export
  */
-export type LinkTypeData = LinkTypeDataAllOf & OembedData;
+export type OembedVideoData = OembedData & OembedVideoDataAllOf;
 
 
