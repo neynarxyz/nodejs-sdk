@@ -15,15 +15,82 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { OembedData } from './oembed-data';
+import type { OembedData } from './oembed-data';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OembedLinkDataAllOf } from './oembed-link-data-all-of';
+import type { OembedLinkDataAnyOf } from './oembed-link-data-any-of';
 
 /**
- * @type OembedLinkData
+ * 
  * @export
+ * @interface OembedLinkData
  */
-export type OembedLinkData = OembedData & OembedLinkDataAllOf;
-
+export interface OembedLinkData {
+    /**
+     * 
+     * @type {string}
+     * @memberof OembedLinkData
+     */
+    'type': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OembedLinkData
+     */
+    'version': string;
+    /**
+     * A text title, describing the resource.
+     * @type {string}
+     * @memberof OembedLinkData
+     */
+    'title'?: string;
+    /**
+     * The name of the author/owner of the resource.
+     * @type {string}
+     * @memberof OembedLinkData
+     */
+    'author_name'?: string;
+    /**
+     * A URL for the author/owner of the resource.
+     * @type {string}
+     * @memberof OembedLinkData
+     */
+    'author_url'?: string;
+    /**
+     * The name of the resource provider.
+     * @type {string}
+     * @memberof OembedLinkData
+     */
+    'provider_name'?: string;
+    /**
+     * The url of the resource provider.
+     * @type {string}
+     * @memberof OembedLinkData
+     */
+    'provider_url'?: string;
+    /**
+     * The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
+     * @type {string}
+     * @memberof OembedLinkData
+     */
+    'cache_age'?: string;
+    /**
+     * A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
+     * @type {string}
+     * @memberof OembedLinkData
+     */
+    'thumbnail_url'?: string;
+    /**
+     * The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
+     * @type {number}
+     * @memberof OembedLinkData
+     */
+    'thumbnail_width'?: number;
+    /**
+     * The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
+     * @type {number}
+     * @memberof OembedLinkData
+     */
+    'thumbnail_height'?: number;
+}
 

@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { UpdateUserReqBodyLocation } from './update-user-req-body-location';
+import type { UpdateUserReqBodyLocation } from './update-user-req-body-location';
 
 /**
  * 

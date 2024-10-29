@@ -15,19 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Channel } from './channel';
+import type { Channel } from './channel';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChannelExternalLink } from './channel-external-link';
+import type { ChannelExternalLink } from './channel-external-link';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChannelUserContext } from './channel-user-context';
+import type { ChannelUserContext } from './channel-user-context';
 // May contain unused imports in some cases
 // @ts-ignore
-import { DehydratedChannel } from './dehydrated-channel';
+import type { DehydratedChannel } from './dehydrated-channel';
 // May contain unused imports in some cases
 // @ts-ignore
-import { User } from './user';
+import type { User } from './user';
 
 /**
  * @type ChannelOrDehydratedChannel

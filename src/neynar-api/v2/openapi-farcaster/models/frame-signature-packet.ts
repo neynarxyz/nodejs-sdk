@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameSignaturePacketTrustedData } from './frame-signature-packet-trusted-data';
+import type { FrameSignaturePacketTrustedData } from './frame-signature-packet-trusted-data';
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameSignaturePacketUntrustedData } from './frame-signature-packet-untrusted-data';
+import type { FrameSignaturePacketUntrustedData } from './frame-signature-packet-untrusted-data';
 
 /**
  * The Frame Signature Packet (https://docs.farcaster.xyz/developers/frames/spec#frame-signature-packet)

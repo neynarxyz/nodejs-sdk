@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Location } from './location';
+import type { Location } from './location';
 // May contain unused imports in some cases
 // @ts-ignore
-import { UserProfileBio } from './user-profile-bio';
+import type { UserProfileBio } from './user-profile-bio';
 
 /**
  * 

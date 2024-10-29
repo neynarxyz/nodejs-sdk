@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { StorageAllocation } from './storage-allocation';
+import type { StorageAllocation } from './storage-allocation';
 
 /**
  * 

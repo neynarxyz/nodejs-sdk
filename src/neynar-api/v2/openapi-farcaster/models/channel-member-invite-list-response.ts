@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChannelMemberInvite } from './channel-member-invite';
+import type { ChannelMemberInvite } from './channel-member-invite';
 // May contain unused imports in some cases
 // @ts-ignore
-import { NextCursor } from './next-cursor';
+import type { NextCursor } from './next-cursor';
 
 /**
  * 

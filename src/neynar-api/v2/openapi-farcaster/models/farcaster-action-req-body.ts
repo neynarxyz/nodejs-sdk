@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { FarcasterActionReqBodyAction } from './farcaster-action-req-body-action';
+import type { FarcasterActionReqBodyAction } from './farcaster-action-req-body-action';
 
 /**
  * 

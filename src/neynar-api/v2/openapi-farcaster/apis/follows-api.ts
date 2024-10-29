@@ -14,23 +14,23 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { ErrorRes } from '../models';
+import type { ErrorRes } from '../models';
 // @ts-ignore
-import { FollowSortType } from '../models';
+import type { FollowSortType } from '../models';
 // @ts-ignore
-import { FollowersResponse } from '../models';
+import type { FollowersResponse } from '../models';
 // @ts-ignore
-import { RelevantFollowersResponse } from '../models';
+import type { RelevantFollowersResponse } from '../models';
 // @ts-ignore
-import { UsersResponse } from '../models';
+import type { UsersResponse } from '../models';
 /**
  * FollowsApi - axios parameter creator
  * @export
@@ -49,7 +49,7 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        followersV2: async (apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        followersV2: async (apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('followersV2', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -65,6 +65,9 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -113,7 +116,7 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        followingV2: async (apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        followingV2: async (apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('followingV2', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -129,6 +132,9 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -174,7 +180,7 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        relevantFollowers: async (apiKey: string, targetFid: number, viewerFid: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        relevantFollowers: async (apiKey: string, targetFid: number, viewerFid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('relevantFollowers', 'apiKey', apiKey)
             // verify required parameter 'targetFid' is not null or undefined
@@ -192,6 +198,9 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (targetFid !== undefined) {
                 localVarQueryParameter['target_fid'] = targetFid;
@@ -226,7 +235,7 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        suggestedFollows: async (apiKey: string, fid: number, viewerFid?: number, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        suggestedFollows: async (apiKey: string, fid: number, viewerFid?: number, limit?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('suggestedFollows', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -242,6 +251,9 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -292,9 +304,11 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async followersV2(apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FollowersResponse>> {
+        async followersV2(apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FollowersResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.followersV2(apiKey, fid, viewerFid, sortType, limit, cursor, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FollowsApi.followersV2']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
@@ -308,9 +322,11 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async followingV2(apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FollowersResponse>> {
+        async followingV2(apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FollowersResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.followingV2(apiKey, fid, viewerFid, sortType, limit, cursor, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FollowsApi.followingV2']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
@@ -321,9 +337,11 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async relevantFollowers(apiKey: string, targetFid: number, viewerFid: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RelevantFollowersResponse>> {
+        async relevantFollowers(apiKey: string, targetFid: number, viewerFid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RelevantFollowersResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.relevantFollowers(apiKey, targetFid, viewerFid, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FollowsApi.relevantFollowers']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch a list of suggested users to follow. Used to help users discover new users to follow
@@ -335,9 +353,11 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async suggestedFollows(apiKey: string, fid: number, viewerFid?: number, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+        async suggestedFollows(apiKey: string, fid: number, viewerFid?: number, limit?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.suggestedFollows(apiKey, fid, viewerFid, limit, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FollowsApi.suggestedFollows']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -361,7 +381,7 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        followersV2(apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: any): AxiosPromise<FollowersResponse> {
+        followersV2(apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<FollowersResponse> {
             return localVarFp.followersV2(apiKey, fid, viewerFid, sortType, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
@@ -376,7 +396,7 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        followingV2(apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: any): AxiosPromise<FollowersResponse> {
+        followingV2(apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<FollowersResponse> {
             return localVarFp.followingV2(apiKey, fid, viewerFid, sortType, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
@@ -388,7 +408,7 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        relevantFollowers(apiKey: string, targetFid: number, viewerFid: number, options?: any): AxiosPromise<RelevantFollowersResponse> {
+        relevantFollowers(apiKey: string, targetFid: number, viewerFid: number, options?: RawAxiosRequestConfig): AxiosPromise<RelevantFollowersResponse> {
             return localVarFp.relevantFollowers(apiKey, targetFid, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
@@ -401,7 +421,7 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        suggestedFollows(apiKey: string, fid: number, viewerFid?: number, limit?: number, options?: any): AxiosPromise<UsersResponse> {
+        suggestedFollows(apiKey: string, fid: number, viewerFid?: number, limit?: number, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
             return localVarFp.suggestedFollows(apiKey, fid, viewerFid, limit, options).then((request) => request(axios, basePath));
         },
     };
@@ -427,7 +447,7 @@ export class FollowsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FollowsApi
      */
-    public followersV2(apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+    public followersV2(apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
         return FollowsApiFp(this.configuration).followersV2(apiKey, fid, viewerFid, sortType, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -444,7 +464,7 @@ export class FollowsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FollowsApi
      */
-    public followingV2(apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+    public followingV2(apiKey: string, fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
         return FollowsApiFp(this.configuration).followingV2(apiKey, fid, viewerFid, sortType, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -458,7 +478,7 @@ export class FollowsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FollowsApi
      */
-    public relevantFollowers(apiKey: string, targetFid: number, viewerFid: number, options?: AxiosRequestConfig) {
+    public relevantFollowers(apiKey: string, targetFid: number, viewerFid: number, options?: RawAxiosRequestConfig) {
         return FollowsApiFp(this.configuration).relevantFollowers(apiKey, targetFid, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -473,7 +493,8 @@ export class FollowsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FollowsApi
      */
-    public suggestedFollows(apiKey: string, fid: number, viewerFid?: number, limit?: number, options?: AxiosRequestConfig) {
+    public suggestedFollows(apiKey: string, fid: number, viewerFid?: number, limit?: number, options?: RawAxiosRequestConfig) {
         return FollowsApiFp(this.configuration).suggestedFollows(apiKey, fid, viewerFid, limit, options).then((request) => request(this.axios, this.basePath));
     }
 }
+

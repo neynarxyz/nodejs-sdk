@@ -14,23 +14,23 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { ErrorRes } from '../models';
+import type { ErrorRes } from '../models';
 // @ts-ignore
-import { MarkNotificationsAsSeenReqBody } from '../models';
+import type { MarkNotificationsAsSeenReqBody } from '../models';
 // @ts-ignore
-import { NotificationType } from '../models';
+import type { NotificationType } from '../models';
 // @ts-ignore
-import { NotificationsResponse } from '../models';
+import type { NotificationsResponse } from '../models';
 // @ts-ignore
-import { OperationResponse } from '../models';
+import type { OperationResponse } from '../models';
 /**
  * NotificationsApi - axios parameter creator
  * @export
@@ -45,7 +45,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        markNotificationsAsSeen: async (apiKey: string, markNotificationsAsSeenReqBody: MarkNotificationsAsSeenReqBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        markNotificationsAsSeen: async (apiKey: string, markNotificationsAsSeenReqBody: MarkNotificationsAsSeenReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('markNotificationsAsSeen', 'apiKey', apiKey)
             // verify required parameter 'markNotificationsAsSeenReqBody' is not null or undefined
@@ -61,6 +61,9 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -91,7 +94,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notifications: async (apiKey: string, fid: number, type?: NotificationType, priorityMode?: boolean, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        notifications: async (apiKey: string, fid: number, type?: NotificationType, priorityMode?: boolean, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('notifications', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -107,6 +110,9 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -150,7 +156,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notificationsChannel: async (apiKey: string, fid: number, channelIds: string, priorityMode?: boolean, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        notificationsChannel: async (apiKey: string, fid: number, channelIds: string, priorityMode?: boolean, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('notificationsChannel', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -168,6 +174,9 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -211,7 +220,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notificationsParentUrl: async (apiKey: string, fid: number, parentUrls: string, priorityMode?: boolean, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        notificationsParentUrl: async (apiKey: string, fid: number, parentUrls: string, priorityMode?: boolean, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('notificationsParentUrl', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -229,6 +238,9 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -279,9 +291,11 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async markNotificationsAsSeen(apiKey: string, markNotificationsAsSeenReqBody: MarkNotificationsAsSeenReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+        async markNotificationsAsSeen(apiKey: string, markNotificationsAsSeenReqBody: MarkNotificationsAsSeenReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.markNotificationsAsSeen(apiKey, markNotificationsAsSeenReqBody, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['NotificationsApi.markNotificationsAsSeen']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Returns a list of notifications for a specific FID.
@@ -294,9 +308,11 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async notifications(apiKey: string, fid: number, type?: NotificationType, priorityMode?: boolean, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
+        async notifications(apiKey: string, fid: number, type?: NotificationType, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notifications(apiKey, fid, type, priorityMode, cursor, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['NotificationsApi.notifications']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Returns a list of notifications for a user in specific channels
@@ -309,9 +325,11 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async notificationsChannel(apiKey: string, fid: number, channelIds: string, priorityMode?: boolean, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
+        async notificationsChannel(apiKey: string, fid: number, channelIds: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notificationsChannel(apiKey, fid, channelIds, priorityMode, cursor, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['NotificationsApi.notificationsChannel']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Returns a list of notifications for a user in specific parent_urls
@@ -324,9 +342,11 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async notificationsParentUrl(apiKey: string, fid: number, parentUrls: string, priorityMode?: boolean, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
+        async notificationsParentUrl(apiKey: string, fid: number, parentUrls: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notificationsParentUrl(apiKey, fid, parentUrls, priorityMode, cursor, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['NotificationsApi.notificationsParentUrl']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -346,7 +366,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        markNotificationsAsSeen(apiKey: string, markNotificationsAsSeenReqBody: MarkNotificationsAsSeenReqBody, options?: any): AxiosPromise<OperationResponse> {
+        markNotificationsAsSeen(apiKey: string, markNotificationsAsSeenReqBody: MarkNotificationsAsSeenReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
             return localVarFp.markNotificationsAsSeen(apiKey, markNotificationsAsSeenReqBody, options).then((request) => request(axios, basePath));
         },
         /**
@@ -360,7 +380,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notifications(apiKey: string, fid: number, type?: NotificationType, priorityMode?: boolean, cursor?: string, options?: any): AxiosPromise<NotificationsResponse> {
+        notifications(apiKey: string, fid: number, type?: NotificationType, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<NotificationsResponse> {
             return localVarFp.notifications(apiKey, fid, type, priorityMode, cursor, options).then((request) => request(axios, basePath));
         },
         /**
@@ -374,7 +394,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notificationsChannel(apiKey: string, fid: number, channelIds: string, priorityMode?: boolean, cursor?: string, options?: any): AxiosPromise<NotificationsResponse> {
+        notificationsChannel(apiKey: string, fid: number, channelIds: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<NotificationsResponse> {
             return localVarFp.notificationsChannel(apiKey, fid, channelIds, priorityMode, cursor, options).then((request) => request(axios, basePath));
         },
         /**
@@ -388,7 +408,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notificationsParentUrl(apiKey: string, fid: number, parentUrls: string, priorityMode?: boolean, cursor?: string, options?: any): AxiosPromise<NotificationsResponse> {
+        notificationsParentUrl(apiKey: string, fid: number, parentUrls: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<NotificationsResponse> {
             return localVarFp.notificationsParentUrl(apiKey, fid, parentUrls, priorityMode, cursor, options).then((request) => request(axios, basePath));
         },
     };
@@ -410,7 +430,7 @@ export class NotificationsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof NotificationsApi
      */
-    public markNotificationsAsSeen(apiKey: string, markNotificationsAsSeenReqBody: MarkNotificationsAsSeenReqBody, options?: AxiosRequestConfig) {
+    public markNotificationsAsSeen(apiKey: string, markNotificationsAsSeenReqBody: MarkNotificationsAsSeenReqBody, options?: RawAxiosRequestConfig) {
         return NotificationsApiFp(this.configuration).markNotificationsAsSeen(apiKey, markNotificationsAsSeenReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -426,7 +446,7 @@ export class NotificationsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof NotificationsApi
      */
-    public notifications(apiKey: string, fid: number, type?: NotificationType, priorityMode?: boolean, cursor?: string, options?: AxiosRequestConfig) {
+    public notifications(apiKey: string, fid: number, type?: NotificationType, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig) {
         return NotificationsApiFp(this.configuration).notifications(apiKey, fid, type, priorityMode, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -442,7 +462,7 @@ export class NotificationsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof NotificationsApi
      */
-    public notificationsChannel(apiKey: string, fid: number, channelIds: string, priorityMode?: boolean, cursor?: string, options?: AxiosRequestConfig) {
+    public notificationsChannel(apiKey: string, fid: number, channelIds: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig) {
         return NotificationsApiFp(this.configuration).notificationsChannel(apiKey, fid, channelIds, priorityMode, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -458,7 +478,8 @@ export class NotificationsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof NotificationsApi
      */
-    public notificationsParentUrl(apiKey: string, fid: number, parentUrls: string, priorityMode?: boolean, cursor?: string, options?: AxiosRequestConfig) {
+    public notificationsParentUrl(apiKey: string, fid: number, parentUrls: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig) {
         return NotificationsApiFp(this.configuration).notificationsParentUrl(apiKey, fid, parentUrls, priorityMode, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
+

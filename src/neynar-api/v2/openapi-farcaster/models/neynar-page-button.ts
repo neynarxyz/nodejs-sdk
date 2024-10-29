@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { NeynarPageButtonNextPage } from './neynar-page-button-next-page';
+import type { NeynarPageButtonNextPage } from './neynar-page-button-next-page';
 
 /**
  * 

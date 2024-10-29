@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookSubscriptionFilters } from './webhook-subscription-filters';
+import type { WebhookSubscriptionFilters } from './webhook-subscription-filters';
 
 /**
  * 

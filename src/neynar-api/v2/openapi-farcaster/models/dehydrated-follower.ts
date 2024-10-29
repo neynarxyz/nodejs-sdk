@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { UserDehydrated } from './user-dehydrated';
+import type { UserDehydrated } from './user-dehydrated';
 
 /**
  * 

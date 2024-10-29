@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { SubscribedToObject } from './subscribed-to-object';
+import type { SubscribedToObject } from './subscribed-to-object';
 // May contain unused imports in some cases
 // @ts-ignore
-import { User } from './user';
+import type { User } from './user';
 
 /**
  * 

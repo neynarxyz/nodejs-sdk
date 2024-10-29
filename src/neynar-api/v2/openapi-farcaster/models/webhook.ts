@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookSecret } from './webhook-secret';
+import type { WebhookSecret } from './webhook-secret';
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookSubscription } from './webhook-subscription';
+import type { WebhookSubscription } from './webhook-subscription';
 
 /**
  * 

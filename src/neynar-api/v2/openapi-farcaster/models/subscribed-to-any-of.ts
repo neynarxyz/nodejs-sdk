@@ -15,38 +15,40 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { User } from './user';
+import type { SubscriptionTier } from './subscription-tier';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { User } from './user';
 
 /**
  * 
  * @export
- * @interface MuteList
+ * @interface SubscribedToAnyOf
  */
-export interface MuteList {
+export interface SubscribedToAnyOf {
     /**
      * 
      * @type {string}
-     * @memberof MuteList
+     * @memberof SubscribedToAnyOf
      */
-    'object': MuteListObjectEnum;
+    'expires_at': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscribedToAnyOf
+     */
+    'subscribed_at': string;
+    /**
+     * 
+     * @type {SubscriptionTier}
+     * @memberof SubscribedToAnyOf
+     */
+    'tier': SubscriptionTier;
     /**
      * 
      * @type {User}
-     * @memberof MuteList
+     * @memberof SubscribedToAnyOf
      */
-    'muted': User;
-    /**
-     * 
-     * @type {string}
-     * @memberof MuteList
-     */
-    'muted_at': string;
+    'creator': User;
 }
-
-export const MuteListObjectEnum = {
-    Mute: 'mute'
-} as const;
-
-export type MuteListObjectEnum = typeof MuteListObjectEnum[keyof typeof MuteListObjectEnum];
-
 

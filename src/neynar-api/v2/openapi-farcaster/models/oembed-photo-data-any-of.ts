@@ -17,39 +17,39 @@
 /**
  * 
  * @export
- * @interface OembedPhotoDataAllOf
+ * @interface OembedPhotoDataAnyOf
  */
-export interface OembedPhotoDataAllOf {
+export interface OembedPhotoDataAnyOf {
     /**
      * 
      * @type {string}
-     * @memberof OembedPhotoDataAllOf
+     * @memberof OembedPhotoDataAnyOf
      */
-    'type'?: OembedPhotoDataAllOfTypeEnum;
+    'type'?: OembedPhotoDataAnyOfTypeEnum;
     /**
      * The source URL of the image. Consumers should be able to insert this URL into an <img> element. Only HTTP and HTTPS URLs are valid.
      * @type {string}
-     * @memberof OembedPhotoDataAllOf
+     * @memberof OembedPhotoDataAnyOf
      */
     'url': string | null;
     /**
      * The width in pixels of the image specified in the url parameter.
      * @type {number}
-     * @memberof OembedPhotoDataAllOf
+     * @memberof OembedPhotoDataAnyOf
      */
     'width': number | null;
     /**
      * The height in pixels of the image specified in the url parameter.
      * @type {number}
-     * @memberof OembedPhotoDataAllOf
+     * @memberof OembedPhotoDataAnyOf
      */
     'height': number | null;
 }
 
-export const OembedPhotoDataAllOfTypeEnum = {
+export const OembedPhotoDataAnyOfTypeEnum = {
     Photo: 'photo'
 } as const;
 
-export type OembedPhotoDataAllOfTypeEnum = typeof OembedPhotoDataAllOfTypeEnum[keyof typeof OembedPhotoDataAllOfTypeEnum];
+export type OembedPhotoDataAnyOfTypeEnum = typeof OembedPhotoDataAnyOfTypeEnum[keyof typeof OembedPhotoDataAnyOfTypeEnum];
 
 

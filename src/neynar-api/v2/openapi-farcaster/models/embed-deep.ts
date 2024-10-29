@@ -15,19 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastDehydrated } from './cast-dehydrated';
+import type { CastDehydrated } from './cast-dehydrated';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastId } from './cast-id';
+import type { CastId } from './cast-id';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EmbedCastDeep } from './embed-cast-deep';
+import type { EmbedCastDeep } from './embed-cast-deep';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EmbedUrl } from './embed-url';
+import type { EmbedUrl } from './embed-url';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EmbedUrlMetadata } from './embed-url-metadata';
+import type { EmbedUrlMetadata } from './embed-url-metadata';
 
 /**
  * @type EmbedDeep

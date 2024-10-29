@@ -15,45 +15,156 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Cast } from './cast';
+import type { Cast } from './cast';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastEmbeddedParentAuthor } from './cast-embedded-parent-author';
+import type { CastEmbeddedParentAuthor } from './cast-embedded-parent-author';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastNotificationType } from './cast-notification-type';
+import type { CastNotificationType } from './cast-notification-type';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastViewerContext } from './cast-viewer-context';
+import type { CastViewerContext } from './cast-viewer-context';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastWithInteractionsAllOf } from './cast-with-interactions-all-of';
+import type { CastWithInteractionsAnyOf } from './cast-with-interactions-any-of';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastWithInteractionsReactions } from './cast-with-interactions-reactions';
+import type { CastWithInteractionsReactions } from './cast-with-interactions-reactions';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastWithInteractionsReplies } from './cast-with-interactions-replies';
+import type { CastWithInteractionsReplies } from './cast-with-interactions-replies';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChannelOrDehydratedChannel } from './channel-or-dehydrated-channel';
+import type { ChannelOrDehydratedChannel } from './channel-or-dehydrated-channel';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChannelUserContext } from './channel-user-context';
+import type { ChannelUserContext } from './channel-user-context';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Embed } from './embed';
+import type { Embed } from './embed';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Frame } from './frame';
+import type { Frame } from './frame';
 // May contain unused imports in some cases
 // @ts-ignore
-import { User } from './user';
+import type { User } from './user';
 
 /**
- * @type CastWithInteractions
+ * 
  * @export
+ * @interface CastWithInteractions
  */
-export type CastWithInteractions = Cast & CastWithInteractionsAllOf;
+export interface CastWithInteractions {
+    /**
+     * 
+     * @type {string}
+     * @memberof CastWithInteractions
+     */
+    'hash': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CastWithInteractions
+     */
+    'parent_hash': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CastWithInteractions
+     */
+    'parent_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CastWithInteractions
+     */
+    'root_parent_url': string;
+    /**
+     * 
+     * @type {CastEmbeddedParentAuthor}
+     * @memberof CastWithInteractions
+     */
+    'parent_author': CastEmbeddedParentAuthor;
+    /**
+     * 
+     * @type {User}
+     * @memberof CastWithInteractions
+     */
+    'author': User;
+    /**
+     * 
+     * @type {string}
+     * @memberof CastWithInteractions
+     */
+    'text': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CastWithInteractions
+     */
+    'timestamp': string;
+    /**
+     * 
+     * @type {Array<Embed>}
+     * @memberof CastWithInteractions
+     */
+    'embeds': Array<Embed>;
+    /**
+     * 
+     * @type {CastNotificationType}
+     * @memberof CastWithInteractions
+     */
+    'type'?: CastNotificationType;
+    /**
+     * 
+     * @type {Array<Frame>}
+     * @memberof CastWithInteractions
+     */
+    'frames'?: Array<Frame>;
+    /**
+     * 
+     * @type {CastWithInteractionsReactions}
+     * @memberof CastWithInteractions
+     */
+    'reactions': CastWithInteractionsReactions;
+    /**
+     * 
+     * @type {CastWithInteractionsReplies}
+     * @memberof CastWithInteractions
+     */
+    'replies': CastWithInteractionsReplies;
+    /**
+     * 
+     * @type {string}
+     * @memberof CastWithInteractions
+     */
+    'thread_hash': string;
+    /**
+     * 
+     * @type {Array<User>}
+     * @memberof CastWithInteractions
+     */
+    'mentioned_profiles': Array<User>;
+    /**
+     * 
+     * @type {ChannelOrDehydratedChannel}
+     * @memberof CastWithInteractions
+     */
+    'channel': ChannelOrDehydratedChannel;
+    /**
+     * 
+     * @type {CastViewerContext}
+     * @memberof CastWithInteractions
+     */
+    'viewer_context'?: CastViewerContext;
+    /**
+     * 
+     * @type {ChannelUserContext}
+     * @memberof CastWithInteractions
+     */
+    'author_channel_context'?: ChannelUserContext;
+}
+
 
 

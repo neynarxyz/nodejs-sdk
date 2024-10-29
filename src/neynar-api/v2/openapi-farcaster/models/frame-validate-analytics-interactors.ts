@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameValidateAnalyticsInteractorsInteractorsInner } from './frame-validate-analytics-interactors-interactors-inner';
+import type { FrameValidateAnalyticsInteractorsInteractorsInner } from './frame-validate-analytics-interactors-interactors-inner';
 
 /**
  * 

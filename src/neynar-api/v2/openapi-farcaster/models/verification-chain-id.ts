@@ -17,7 +17,7 @@
 /**
  * Chain ID for farcaster verifications. 0 for EOA verifications, 1 or 10 for contract verifications
  * @export
- * @enum {string}
+ * @enum {number}
  */
 
 export const VerificationChainId = {

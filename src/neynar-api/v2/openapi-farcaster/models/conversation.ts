@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ConversationConversation } from './conversation-conversation';
+import type { ConversationConversation } from './conversation-conversation';
 // May contain unused imports in some cases
 // @ts-ignore
-import { NextCursor } from './next-cursor';
+import type { NextCursor } from './next-cursor';
 
 /**
  * 

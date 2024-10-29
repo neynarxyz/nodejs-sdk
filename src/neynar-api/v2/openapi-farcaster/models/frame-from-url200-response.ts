@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Frame } from './frame';
+import type { Frame } from './frame';
 
 /**
  * The frame object containing the meta tags

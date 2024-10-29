@@ -13,21 +13,25 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { IndividualHashObj } from './individual-hash-obj';
 
 /**
  * 
  * @export
- * @interface GetCastsReqBody
+ * @interface OembedLinkDataAnyOf
  */
-export interface GetCastsReqBody {
+export interface OembedLinkDataAnyOf {
     /**
      * 
-     * @type {Array<IndividualHashObj>}
-     * @memberof GetCastsReqBody
+     * @type {string}
+     * @memberof OembedLinkDataAnyOf
      */
-    'casts'?: Array<IndividualHashObj>;
+    'type'?: OembedLinkDataAnyOfTypeEnum;
 }
+
+export const OembedLinkDataAnyOfTypeEnum = {
+    Link: 'link'
+} as const;
+
+export type OembedLinkDataAnyOfTypeEnum = typeof OembedLinkDataAnyOfTypeEnum[keyof typeof OembedLinkDataAnyOfTypeEnum];
+
 

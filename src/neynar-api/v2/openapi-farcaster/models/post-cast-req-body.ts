@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PostCastReqBodyEmbeds } from './post-cast-req-body-embeds';
+import type { PostCastReqBodyEmbeds } from './post-cast-req-body-embeds';
 
 /**
  * 

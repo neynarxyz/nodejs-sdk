@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { NeynarPageInputText } from './neynar-page-input-text';
+import type { NeynarPageInputText } from './neynar-page-input-text';
 
 /**
  * 

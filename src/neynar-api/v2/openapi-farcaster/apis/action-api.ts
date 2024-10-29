@@ -14,15 +14,15 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { FarcasterActionReqBody } from '../models';
+import type { FarcasterActionReqBody } from '../models';
 /**
  * ActionApi - axios parameter creator
  * @export
@@ -37,7 +37,7 @@ export const ActionApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publishFarcasterAction: async (apiKey: string, farcasterActionReqBody: FarcasterActionReqBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        publishFarcasterAction: async (apiKey: string, farcasterActionReqBody: FarcasterActionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('publishFarcasterAction', 'apiKey', apiKey)
             // verify required parameter 'farcasterActionReqBody' is not null or undefined
@@ -53,6 +53,9 @@ export const ActionApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -90,9 +93,11 @@ export const ActionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async publishFarcasterAction(apiKey: string, farcasterActionReqBody: FarcasterActionReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
+        async publishFarcasterAction(apiKey: string, farcasterActionReqBody: FarcasterActionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.publishFarcasterAction(apiKey, farcasterActionReqBody, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ActionApi.publishFarcasterAction']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -112,7 +117,7 @@ export const ActionApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publishFarcasterAction(apiKey: string, farcasterActionReqBody: FarcasterActionReqBody, options?: any): AxiosPromise<{ [key: string]: any; }> {
+        publishFarcasterAction(apiKey: string, farcasterActionReqBody: FarcasterActionReqBody, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: any; }> {
             return localVarFp.publishFarcasterAction(apiKey, farcasterActionReqBody, options).then((request) => request(axios, basePath));
         },
     };
@@ -134,7 +139,8 @@ export class ActionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ActionApi
      */
-    public publishFarcasterAction(apiKey: string, farcasterActionReqBody: FarcasterActionReqBody, options?: AxiosRequestConfig) {
+    public publishFarcasterAction(apiKey: string, farcasterActionReqBody: FarcasterActionReqBody, options?: RawAxiosRequestConfig) {
         return ActionApiFp(this.configuration).publishFarcasterAction(apiKey, farcasterActionReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 }
+

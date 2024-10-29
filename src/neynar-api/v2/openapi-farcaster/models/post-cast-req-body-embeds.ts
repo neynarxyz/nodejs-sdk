@@ -15,12 +15,31 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PostCastReqBodyEmbedsCastIdProperties } from './post-cast-req-body-embeds-cast-id-properties';
+import type { PostCastReqBodyEmbedsCastIdProperties } from './post-cast-req-body-embeds-cast-id-properties';
 
 /**
- * @type PostCastReqBodyEmbeds
+ * 
  * @export
+ * @interface PostCastReqBodyEmbeds
  */
-export type PostCastReqBodyEmbeds = any;
-
+export interface PostCastReqBodyEmbeds {
+    /**
+     * 
+     * @type {PostCastReqBodyEmbedsCastIdProperties}
+     * @memberof PostCastReqBodyEmbeds
+     */
+    'cast_id'?: PostCastReqBodyEmbedsCastIdProperties;
+    /**
+     * 
+     * @type {PostCastReqBodyEmbedsCastIdProperties}
+     * @memberof PostCastReqBodyEmbeds
+     */
+    'castId'?: PostCastReqBodyEmbedsCastIdProperties;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostCastReqBodyEmbeds
+     */
+    'url'?: string;
+}
 

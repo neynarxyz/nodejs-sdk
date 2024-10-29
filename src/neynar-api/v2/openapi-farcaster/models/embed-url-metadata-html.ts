@@ -15,24 +15,325 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { EmbedUrlMetadataHtmlAllOf } from './embed-url-metadata-html-all-of';
+import type { EmbedUrlMetadataHtmlAnyOf } from './embed-url-metadata-html-any-of';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EmbedUrlMetadataHtmlAllOfOembed } from './embed-url-metadata-html-all-of-oembed';
+import type { EmbedUrlMetadataHtmlAnyOfOembed } from './embed-url-metadata-html-any-of-oembed';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ImageObject } from './image-object';
+import type { ImageObject } from './image-object';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OgObject } from './og-object';
+import type { OgObject } from './og-object';
 // May contain unused imports in some cases
 // @ts-ignore
-import { VideoObject } from './video-object';
+import type { VideoObject } from './video-object';
 
 /**
- * @type EmbedUrlMetadataHtml
+ * 
  * @export
+ * @interface EmbedUrlMetadataHtml
  */
-export type EmbedUrlMetadataHtml = EmbedUrlMetadataHtmlAllOf & OgObject;
-
+export interface EmbedUrlMetadataHtml {
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'favicon'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'modifiedTime'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogArticleAuthor'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogArticleExpirationTime'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogArticleModifiedTime'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogArticlePublishedTime'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogArticlePublisher'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogArticleSection'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogArticleTag'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogAudio'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogAudioSecureURL'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogAudioType'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogAudioURL'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogAvailability'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogDate'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogDescription'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogDeterminer'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogEpisode'?: string;
+    /**
+     * 
+     * @type {Array<ImageObject>}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogImage'?: Array<ImageObject>;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogLocale'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogLocaleAlternate'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogLogo'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogMovie'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogPriceAmount'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogPriceCurrency'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogProductAvailability'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogProductCondition'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogProductPriceAmount'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogProductPriceCurrency'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogProductRetailerItemId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogSiteName'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogTitle'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogType'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogUrl'?: string;
+    /**
+     * 
+     * @type {Array<VideoObject>}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogVideo'?: Array<VideoObject>;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogVideoActor'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogVideoActorId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogVideoActorRole'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogVideoDirector'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogVideoDuration'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogVideoOther'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogVideoReleaseDate'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogVideoSecureURL'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogVideoSeries'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogVideoTag'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogVideoTvShow'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogVideoWriter'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'ogWebsite'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'updatedTime'?: string;
+    /**
+     * 
+     * @type {EmbedUrlMetadataHtmlAnyOfOembed}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'oembed'?: EmbedUrlMetadataHtmlAnyOfOembed;
+}
 

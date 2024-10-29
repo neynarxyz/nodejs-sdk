@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { NeynarNextFramePage } from './neynar-next-frame-page';
+import type { NeynarNextFramePage } from './neynar-next-frame-page';
 // May contain unused imports in some cases
 // @ts-ignore
-import { NeynarNextFramePageMintUrl } from './neynar-next-frame-page-mint-url';
+import type { NeynarNextFramePageMintUrl } from './neynar-next-frame-page-mint-url';
 // May contain unused imports in some cases
 // @ts-ignore
-import { NeynarNextFramePageRedirect } from './neynar-next-frame-page-redirect';
+import type { NeynarNextFramePageRedirect } from './neynar-next-frame-page-redirect';
 
 /**
  * @type NeynarPageButtonNextPage

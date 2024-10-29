@@ -14,21 +14,21 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { BanListResponse } from '../models';
+import type { BanListResponse } from '../models';
 // @ts-ignore
-import { BanReqBody } from '../models';
+import type { BanReqBody } from '../models';
 // @ts-ignore
-import { BanResponse } from '../models';
+import type { BanResponse } from '../models';
 // @ts-ignore
-import { ErrorRes } from '../models';
+import type { ErrorRes } from '../models';
 /**
  * BanApi - axios parameter creator
  * @export
@@ -43,7 +43,7 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addBan: async (apiKey: string, banReqBody: BanReqBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        addBan: async (apiKey: string, banReqBody: BanReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('addBan', 'apiKey', apiKey)
             // verify required parameter 'banReqBody' is not null or undefined
@@ -59,6 +59,9 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -87,7 +90,7 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        banList: async (apiKey: string, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        banList: async (apiKey: string, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('banList', 'apiKey', apiKey)
             const localVarPath = `/farcaster/ban/list`;
@@ -101,6 +104,9 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
@@ -133,7 +139,7 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteBan: async (apiKey: string, banReqBody: BanReqBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteBan: async (apiKey: string, banReqBody: BanReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('deleteBan', 'apiKey', apiKey)
             // verify required parameter 'banReqBody' is not null or undefined
@@ -149,6 +155,9 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
             const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -186,9 +195,11 @@ export const BanApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async addBan(apiKey: string, banReqBody: BanReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanResponse>> {
+        async addBan(apiKey: string, banReqBody: BanReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.addBan(apiKey, banReqBody, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BanApi.addBan']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetches all FIDs that your app has banned.
@@ -199,9 +210,11 @@ export const BanApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async banList(apiKey: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanListResponse>> {
+        async banList(apiKey: string, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanListResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.banList(apiKey, limit, cursor, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BanApi.banList']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Deletes a list of FIDs from the app associated with your API key.
@@ -211,9 +224,11 @@ export const BanApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteBan(apiKey: string, banReqBody: BanReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanResponse>> {
+        async deleteBan(apiKey: string, banReqBody: BanReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteBan(apiKey, banReqBody, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BanApi.deleteBan']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -233,7 +248,7 @@ export const BanApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addBan(apiKey: string, banReqBody: BanReqBody, options?: any): AxiosPromise<BanResponse> {
+        addBan(apiKey: string, banReqBody: BanReqBody, options?: RawAxiosRequestConfig): AxiosPromise<BanResponse> {
             return localVarFp.addBan(apiKey, banReqBody, options).then((request) => request(axios, basePath));
         },
         /**
@@ -245,7 +260,7 @@ export const BanApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        banList(apiKey: string, limit?: number, cursor?: string, options?: any): AxiosPromise<BanListResponse> {
+        banList(apiKey: string, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<BanListResponse> {
             return localVarFp.banList(apiKey, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
@@ -256,7 +271,7 @@ export const BanApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteBan(apiKey: string, banReqBody: BanReqBody, options?: any): AxiosPromise<BanResponse> {
+        deleteBan(apiKey: string, banReqBody: BanReqBody, options?: RawAxiosRequestConfig): AxiosPromise<BanResponse> {
             return localVarFp.deleteBan(apiKey, banReqBody, options).then((request) => request(axios, basePath));
         },
     };
@@ -278,7 +293,7 @@ export class BanApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof BanApi
      */
-    public addBan(apiKey: string, banReqBody: BanReqBody, options?: AxiosRequestConfig) {
+    public addBan(apiKey: string, banReqBody: BanReqBody, options?: RawAxiosRequestConfig) {
         return BanApiFp(this.configuration).addBan(apiKey, banReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -292,7 +307,7 @@ export class BanApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof BanApi
      */
-    public banList(apiKey: string, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+    public banList(apiKey: string, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
         return BanApiFp(this.configuration).banList(apiKey, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -305,7 +320,8 @@ export class BanApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof BanApi
      */
-    public deleteBan(apiKey: string, banReqBody: BanReqBody, options?: AxiosRequestConfig) {
+    public deleteBan(apiKey: string, banReqBody: BanReqBody, options?: RawAxiosRequestConfig) {
         return BanApiFp(this.configuration).deleteBan(apiKey, banReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 }
+

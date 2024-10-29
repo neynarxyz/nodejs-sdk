@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameButtonActionType } from './frame-button-action-type';
+import type { FrameButtonActionType } from './frame-button-action-type';
 
 /**
  * 

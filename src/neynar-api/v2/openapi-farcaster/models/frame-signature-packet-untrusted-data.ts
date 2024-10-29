@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastId } from './cast-id';
+import type { CastId } from './cast-id';
 
 /**
  * Untrusted data from the user

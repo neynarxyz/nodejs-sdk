@@ -13,18 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { EmbedUrlMetadataHtmlAnyOfOembed } from './embed-url-metadata-html-any-of-oembed';
 
 /**
  * 
  * @export
- * @interface PostCastResponseCastAuthor
+ * @interface EmbedUrlMetadataHtmlAnyOf
  */
-export interface PostCastResponseCastAuthor {
+export interface EmbedUrlMetadataHtmlAnyOf {
     /**
-     * The unique identifier of a farcaster user (unsigned integer)
-     * @type {number}
-     * @memberof PostCastResponseCastAuthor
+     * 
+     * @type {EmbedUrlMetadataHtmlAnyOfOembed}
+     * @memberof EmbedUrlMetadataHtmlAnyOf
      */
-    'fid': number;
+    'oembed'?: EmbedUrlMetadataHtmlAnyOfOembed;
 }
 

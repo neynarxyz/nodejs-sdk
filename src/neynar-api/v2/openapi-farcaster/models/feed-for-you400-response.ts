@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ErrorRes } from './error-res';
+import type { ErrorRes } from './error-res';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ZodError } from './zod-error';
+import type { ZodError } from './zod-error';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ZodErrorErrorsInner } from './zod-error-errors-inner';
+import type { ZodErrorErrorsInner } from './zod-error-errors-inner';
 
 /**
  * @type FeedForYou400Response

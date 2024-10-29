@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Channel } from './channel';
+import type { Channel } from './channel';
 
 /**
  * 

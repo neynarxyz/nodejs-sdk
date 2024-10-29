@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { NextCursor } from './next-cursor';
+import type { NextCursor } from './next-cursor';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ReactionWithCastInfo } from './reaction-with-cast-info';
+import type { ReactionWithCastInfo } from './reaction-with-cast-info';
 
 /**
  * 

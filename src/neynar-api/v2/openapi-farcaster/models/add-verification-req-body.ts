@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { VerificationChainId } from './verification-chain-id';
+import type { VerificationChainId } from './verification-chain-id';
 // May contain unused imports in some cases
 // @ts-ignore
-import { VerificationType } from './verification-type';
+import type { VerificationType } from './verification-type';
 
 /**
  * 

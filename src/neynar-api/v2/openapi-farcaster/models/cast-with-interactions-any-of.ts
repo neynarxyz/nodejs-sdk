@@ -15,78 +15,78 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastViewerContext } from './cast-viewer-context';
+import type { CastViewerContext } from './cast-viewer-context';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastWithInteractionsReactions } from './cast-with-interactions-reactions';
+import type { CastWithInteractionsReactions } from './cast-with-interactions-reactions';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastWithInteractionsReplies } from './cast-with-interactions-replies';
+import type { CastWithInteractionsReplies } from './cast-with-interactions-replies';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChannelOrDehydratedChannel } from './channel-or-dehydrated-channel';
+import type { ChannelOrDehydratedChannel } from './channel-or-dehydrated-channel';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChannelUserContext } from './channel-user-context';
+import type { ChannelUserContext } from './channel-user-context';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Frame } from './frame';
+import type { Frame } from './frame';
 // May contain unused imports in some cases
 // @ts-ignore
-import { User } from './user';
+import type { User } from './user';
 
 /**
  * 
  * @export
- * @interface CastWithInteractionsAllOf
+ * @interface CastWithInteractionsAnyOf
  */
-export interface CastWithInteractionsAllOf {
+export interface CastWithInteractionsAnyOf {
     /**
      * 
      * @type {Array<Frame>}
-     * @memberof CastWithInteractionsAllOf
+     * @memberof CastWithInteractionsAnyOf
      */
     'frames'?: Array<Frame>;
     /**
      * 
      * @type {CastWithInteractionsReactions}
-     * @memberof CastWithInteractionsAllOf
+     * @memberof CastWithInteractionsAnyOf
      */
     'reactions': CastWithInteractionsReactions;
     /**
      * 
      * @type {CastWithInteractionsReplies}
-     * @memberof CastWithInteractionsAllOf
+     * @memberof CastWithInteractionsAnyOf
      */
     'replies': CastWithInteractionsReplies;
     /**
      * 
      * @type {string}
-     * @memberof CastWithInteractionsAllOf
+     * @memberof CastWithInteractionsAnyOf
      */
     'thread_hash': string | null;
     /**
      * 
      * @type {Array<User>}
-     * @memberof CastWithInteractionsAllOf
+     * @memberof CastWithInteractionsAnyOf
      */
     'mentioned_profiles': Array<User>;
     /**
      * 
      * @type {ChannelOrDehydratedChannel}
-     * @memberof CastWithInteractionsAllOf
+     * @memberof CastWithInteractionsAnyOf
      */
     'channel': ChannelOrDehydratedChannel | null;
     /**
      * 
      * @type {CastViewerContext}
-     * @memberof CastWithInteractionsAllOf
+     * @memberof CastWithInteractionsAnyOf
      */
     'viewer_context'?: CastViewerContext;
     /**
      * 
      * @type {ChannelUserContext}
-     * @memberof CastWithInteractionsAllOf
+     * @memberof CastWithInteractionsAnyOf
      */
     'author_channel_context'?: ChannelUserContext;
 }

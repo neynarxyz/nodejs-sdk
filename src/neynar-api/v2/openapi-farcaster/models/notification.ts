@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastWithInteractions } from './cast-with-interactions';
+import type { CastWithInteractions } from './cast-with-interactions';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Follow } from './follow';
+import type { Follow } from './follow';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ReactionWithUserInfo } from './reaction-with-user-info';
+import type { ReactionWithUserInfo } from './reaction-with-user-info';
 
 /**
  * 

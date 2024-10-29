@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastEmbedded } from './cast-embedded';
+import type { CastEmbedded } from './cast-embedded';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastId } from './cast-id';
+import type { CastId } from './cast-id';
 
 /**
  * 
@@ -27,9 +27,10 @@ import { CastId } from './cast-id';
  */
 export interface EmbedCast {
     /**
-     * 
+     * [DEPRECATED: Use \"cast\" key instead]
      * @type {CastId}
      * @memberof EmbedCast
+     * @deprecated
      */
     'cast_id'?: CastId;
     /**

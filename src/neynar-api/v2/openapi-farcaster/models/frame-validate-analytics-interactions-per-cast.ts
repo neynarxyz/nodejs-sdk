@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner } from './frame-validate-analytics-interactions-per-cast-interactions-per-cast-inner';
+import type { FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner } from './frame-validate-analytics-interactions-per-cast-interactions-per-cast-inner';
 
 /**
  * 

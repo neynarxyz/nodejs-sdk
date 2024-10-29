@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameValidateAnalyticsInputTextInputTextsInner } from './frame-validate-analytics-input-text-input-texts-inner';
+import type { FrameValidateAnalyticsInputTextInputTextsInner } from './frame-validate-analytics-input-text-input-texts-inner';
 
 /**
  * 

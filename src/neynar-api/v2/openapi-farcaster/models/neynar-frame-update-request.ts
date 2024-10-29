@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { NeynarFramePage } from './neynar-frame-page';
+import type { NeynarFramePage } from './neynar-frame-page';
 
 /**
  * 

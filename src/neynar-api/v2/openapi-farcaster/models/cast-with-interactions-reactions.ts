@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ReactionLike } from './reaction-like';
+import type { ReactionLike } from './reaction-like';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ReactionRecast } from './reaction-recast';
+import type { ReactionRecast } from './reaction-recast';
 
 /**
  * 

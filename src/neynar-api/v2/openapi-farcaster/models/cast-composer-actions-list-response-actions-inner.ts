@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastComposerActionsListResponseActionsInnerAction } from './cast-composer-actions-list-response-actions-inner-action';
+import type { CastComposerActionsListResponseActionsInnerAction } from './cast-composer-actions-list-response-actions-inner-action';
 
 /**
  * 

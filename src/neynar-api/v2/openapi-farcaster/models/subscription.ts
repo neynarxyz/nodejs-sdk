@@ -15,16 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { SubscriptionMetadata } from './subscription-metadata';
+import type { SubscriptionMetadata } from './subscription-metadata';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SubscriptionPrice } from './subscription-price';
+import type { SubscriptionPrice } from './subscription-price';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SubscriptionTier } from './subscription-tier';
+import type { SubscriptionTier } from './subscription-tier';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SubscriptionToken } from './subscription-token';
+import type { SubscriptionToken } from './subscription-token';
 
 /**
  * 

@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { UserSearchResponseResult } from './user-search-response-result';
+import type { UserSearchResponseResult } from './user-search-response-result';
 
 /**
  * 

@@ -15,25 +15,25 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ProfileUrl } from './profile-url';
+import type { ProfileUrl } from './profile-url';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ProfileUrlPfp } from './profile-url-pfp';
+import type { ProfileUrlPfp } from './profile-url-pfp';
 // May contain unused imports in some cases
 // @ts-ignore
-import { User } from './user';
+import type { User } from './user';
 // May contain unused imports in some cases
 // @ts-ignore
-import { UserProfile } from './user-profile';
+import type { UserProfile } from './user-profile';
 // May contain unused imports in some cases
 // @ts-ignore
-import { UserVerifiedAccountsInner } from './user-verified-accounts-inner';
+import type { UserVerifiedAccountsInner } from './user-verified-accounts-inner';
 // May contain unused imports in some cases
 // @ts-ignore
-import { UserVerifiedAddresses } from './user-verified-addresses';
+import type { UserVerifiedAddresses } from './user-verified-addresses';
 // May contain unused imports in some cases
 // @ts-ignore
-import { UserViewerContext } from './user-viewer-context';
+import type { UserViewerContext } from './user-viewer-context';
 
 /**
  * 

@@ -14,31 +14,31 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { BulkCastsResponse } from '../models';
+import type { BulkCastsResponse } from '../models';
 // @ts-ignore
-import { EmbedType } from '../models';
+import type { EmbedType } from '../models';
 // @ts-ignore
-import { ErrorRes } from '../models';
+import type { ErrorRes } from '../models';
 // @ts-ignore
-import { FeedForYou400Response } from '../models';
+import type { FeedForYou400Response } from '../models';
 // @ts-ignore
-import { FeedResponse } from '../models';
+import type { FeedResponse } from '../models';
 // @ts-ignore
-import { FeedTrendingProvider } from '../models';
+import type { FeedTrendingProvider } from '../models';
 // @ts-ignore
-import { FeedType } from '../models';
+import type { FeedType } from '../models';
 // @ts-ignore
-import { FilterType } from '../models';
+import type { FilterType } from '../models';
 // @ts-ignore
-import { ForYouProvider } from '../models';
+import type { ForYouProvider } from '../models';
 /**
  * FeedApi - axios parameter creator
  * @export
@@ -65,7 +65,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feed: async (apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, membersOnly?: boolean, embedUrl?: string, embedTypes?: Array<EmbedType>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feed: async (apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, membersOnly?: boolean, embedUrl?: string, embedTypes?: Array<EmbedType>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feed', 'apiKey', apiKey)
             // verify required parameter 'feedType' is not null or undefined
@@ -81,6 +81,9 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (feedType !== undefined) {
                 localVarQueryParameter['feed_type'] = feedType;
@@ -164,7 +167,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedChannels: async (apiKey: string, channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, membersOnly?: boolean, limit?: number, cursor?: string, shouldModerate?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feedChannels: async (apiKey: string, channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, membersOnly?: boolean, limit?: number, cursor?: string, shouldModerate?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feedChannels', 'apiKey', apiKey)
             // verify required parameter 'channelIds' is not null or undefined
@@ -180,6 +183,9 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (channelIds !== undefined) {
                 localVarQueryParameter['channel_ids'] = channelIds;
@@ -240,7 +246,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedFollowing: async (apiKey: string, fid: number, viewerFid?: number, withRecasts?: boolean, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feedFollowing: async (apiKey: string, fid: number, viewerFid?: number, withRecasts?: boolean, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feedFollowing', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -256,6 +262,9 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -305,7 +314,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedForYou: async (apiKey: string, fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, providerMetadata?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feedForYou: async (apiKey: string, fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, providerMetadata?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feedForYou', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -321,6 +330,9 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -371,7 +383,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedFrames: async (apiKey: string, limit?: number, viewerFid?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feedFrames: async (apiKey: string, limit?: number, viewerFid?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feedFrames', 'apiKey', apiKey)
             const localVarPath = `/farcaster/feed/frames`;
@@ -385,6 +397,9 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
@@ -426,7 +441,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedParentUrls: async (apiKey: string, parentUrls: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feedParentUrls: async (apiKey: string, parentUrls: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feedParentUrls', 'apiKey', apiKey)
             // verify required parameter 'parentUrls' is not null or undefined
@@ -442,6 +457,9 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (parentUrls !== undefined) {
                 localVarQueryParameter['parent_urls'] = parentUrls;
@@ -489,14 +507,14 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {number} [limit] Number of results to fetch (max 10)
          * @param {string} [cursor] Pagination cursor
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
+         * @param {FeedTrendingTimeWindowEnum} [timeWindow] Time window for trending casts (7d window for channel feeds only)
          * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
          * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed.
          * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedTrending: async (apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, provider?: FeedTrendingProvider, providerMetadata?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feedTrending: async (apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: FeedTrendingTimeWindowEnum, channelId?: string, provider?: FeedTrendingProvider, providerMetadata?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feedTrending', 'apiKey', apiKey)
             const localVarPath = `/farcaster/feed/trending`;
@@ -510,6 +528,9 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
@@ -568,7 +589,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedUserCasts: async (apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feedUserCasts: async (apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feedUserCasts', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -584,6 +605,9 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -637,7 +661,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedUserPopular: async (apiKey: string, fid: number, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feedUserPopular: async (apiKey: string, fid: number, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feedUserPopular', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -653,6 +677,9 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -682,14 +709,14 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Replies and recasts
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of user whose replies and recasts you want to fetch
-         * @param {'replies' | 'recasts' | 'all'} [filter] filter to fetch only replies or recasts
+         * @param {FeedUserRepliesRecastsFilterEnum} [filter] filter to fetch only replies or recasts
          * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedUserRepliesRecasts: async (apiKey: string, fid: number, filter?: 'replies' | 'recasts' | 'all', limit?: number, cursor?: string, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        feedUserRepliesRecasts: async (apiKey: string, fid: number, filter?: FeedUserRepliesRecastsFilterEnum, limit?: number, cursor?: string, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('feedUserRepliesRecasts', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -705,6 +732,9 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -771,9 +801,11 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, membersOnly?: boolean, embedUrl?: string, embedTypes?: Array<EmbedType>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+        async feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, membersOnly?: boolean, embedUrl?: string, embedTypes?: Array<EmbedType>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.feed(apiKey, feedType, filterType, fid, fids, parentUrl, channelId, membersOnly, embedUrl, embedTypes, withRecasts, limit, cursor, viewerFid, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeedApi.feed']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch feed based on channel IDs
@@ -790,9 +822,11 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feedChannels(apiKey: string, channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, membersOnly?: boolean, limit?: number, cursor?: string, shouldModerate?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+        async feedChannels(apiKey: string, channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, membersOnly?: boolean, limit?: number, cursor?: string, shouldModerate?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.feedChannels(apiKey, channelIds, withRecasts, viewerFid, withReplies, membersOnly, limit, cursor, shouldModerate, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeedApi.feedChannels']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch feed based on who a user is following
@@ -806,9 +840,11 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feedFollowing(apiKey: string, fid: number, viewerFid?: number, withRecasts?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+        async feedFollowing(apiKey: string, fid: number, viewerFid?: number, withRecasts?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.feedFollowing(apiKey, fid, viewerFid, withRecasts, limit, cursor, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeedApi.feedFollowing']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch a personalized For You feed for a user
@@ -823,9 +859,11 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feedForYou(apiKey: string, fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, providerMetadata?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+        async feedForYou(apiKey: string, fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, providerMetadata?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.feedForYou(apiKey, fid, viewerFid, provider, limit, cursor, providerMetadata, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeedApi.feedForYou']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch feed of casts with Frames, reverse chronological order
@@ -837,9 +875,11 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feedFrames(apiKey: string, limit?: number, viewerFid?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+        async feedFrames(apiKey: string, limit?: number, viewerFid?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.feedFrames(apiKey, limit, viewerFid, cursor, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeedApi.feedFrames']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch feed based on parent URLs
@@ -854,9 +894,11 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feedParentUrls(apiKey: string, parentUrls: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+        async feedParentUrls(apiKey: string, parentUrls: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.feedParentUrls(apiKey, parentUrls, withRecasts, viewerFid, withReplies, limit, cursor, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeedApi.feedParentUrls']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
@@ -865,16 +907,18 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {number} [limit] Number of results to fetch (max 10)
          * @param {string} [cursor] Pagination cursor
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
+         * @param {FeedTrendingTimeWindowEnum} [timeWindow] Time window for trending casts (7d window for channel feeds only)
          * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
          * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed.
          * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, provider?: FeedTrendingProvider, providerMetadata?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+        async feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: FeedTrendingTimeWindowEnum, channelId?: string, provider?: FeedTrendingProvider, providerMetadata?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, provider, providerMetadata, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeedApi.feedTrending']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel
@@ -890,9 +934,11 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feedUserCasts(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+        async feedUserCasts(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.feedUserCasts(apiKey, fid, viewerFid, limit, cursor, includeReplies, parentUrl, channelId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeedApi.feedUserCasts']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
@@ -903,25 +949,29 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feedUserPopular(apiKey: string, fid: number, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkCastsResponse>> {
+        async feedUserPopular(apiKey: string, fid: number, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkCastsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.feedUserPopular(apiKey, fid, viewerFid, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeedApi.feedUserPopular']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch recent replies and recasts for a given user FID; sorted by most recent first
          * @summary Replies and recasts
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of user whose replies and recasts you want to fetch
-         * @param {'replies' | 'recasts' | 'all'} [filter] filter to fetch only replies or recasts
+         * @param {FeedUserRepliesRecastsFilterEnum} [filter] filter to fetch only replies or recasts
          * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async feedUserRepliesRecasts(apiKey: string, fid: number, filter?: 'replies' | 'recasts' | 'all', limit?: number, cursor?: string, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+        async feedUserRepliesRecasts(apiKey: string, fid: number, filter?: FeedUserRepliesRecastsFilterEnum, limit?: number, cursor?: string, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.feedUserRepliesRecasts(apiKey, fid, filter, limit, cursor, viewerFid, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeedApi.feedUserRepliesRecasts']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -953,7 +1003,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, membersOnly?: boolean, embedUrl?: string, embedTypes?: Array<EmbedType>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options?: any): AxiosPromise<FeedResponse> {
+        feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, membersOnly?: boolean, embedUrl?: string, embedTypes?: Array<EmbedType>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
             return localVarFp.feed(apiKey, feedType, filterType, fid, fids, parentUrl, channelId, membersOnly, embedUrl, embedTypes, withRecasts, limit, cursor, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
@@ -971,7 +1021,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedChannels(apiKey: string, channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, membersOnly?: boolean, limit?: number, cursor?: string, shouldModerate?: boolean, options?: any): AxiosPromise<FeedResponse> {
+        feedChannels(apiKey: string, channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, membersOnly?: boolean, limit?: number, cursor?: string, shouldModerate?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
             return localVarFp.feedChannels(apiKey, channelIds, withRecasts, viewerFid, withReplies, membersOnly, limit, cursor, shouldModerate, options).then((request) => request(axios, basePath));
         },
         /**
@@ -986,7 +1036,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedFollowing(apiKey: string, fid: number, viewerFid?: number, withRecasts?: boolean, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
+        feedFollowing(apiKey: string, fid: number, viewerFid?: number, withRecasts?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
             return localVarFp.feedFollowing(apiKey, fid, viewerFid, withRecasts, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1002,7 +1052,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedForYou(apiKey: string, fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, providerMetadata?: string, options?: any): AxiosPromise<FeedResponse> {
+        feedForYou(apiKey: string, fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, providerMetadata?: string, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
             return localVarFp.feedForYou(apiKey, fid, viewerFid, provider, limit, cursor, providerMetadata, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1015,7 +1065,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedFrames(apiKey: string, limit?: number, viewerFid?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
+        feedFrames(apiKey: string, limit?: number, viewerFid?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
             return localVarFp.feedFrames(apiKey, limit, viewerFid, cursor, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1031,7 +1081,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedParentUrls(apiKey: string, parentUrls: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options?: any): AxiosPromise<FeedResponse> {
+        feedParentUrls(apiKey: string, parentUrls: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
             return localVarFp.feedParentUrls(apiKey, parentUrls, withRecasts, viewerFid, withReplies, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1041,14 +1091,14 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {number} [limit] Number of results to fetch (max 10)
          * @param {string} [cursor] Pagination cursor
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
+         * @param {FeedTrendingTimeWindowEnum} [timeWindow] Time window for trending casts (7d window for channel feeds only)
          * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
          * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed.
          * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, provider?: FeedTrendingProvider, providerMetadata?: string, options?: any): AxiosPromise<FeedResponse> {
+        feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: FeedTrendingTimeWindowEnum, channelId?: string, provider?: FeedTrendingProvider, providerMetadata?: string, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
             return localVarFp.feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, provider, providerMetadata, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1065,7 +1115,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedUserCasts(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string, options?: any): AxiosPromise<FeedResponse> {
+        feedUserCasts(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
             return localVarFp.feedUserCasts(apiKey, fid, viewerFid, limit, cursor, includeReplies, parentUrl, channelId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1077,7 +1127,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedUserPopular(apiKey: string, fid: number, viewerFid?: number, options?: any): AxiosPromise<BulkCastsResponse> {
+        feedUserPopular(apiKey: string, fid: number, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<BulkCastsResponse> {
             return localVarFp.feedUserPopular(apiKey, fid, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1085,14 +1135,14 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * @summary Replies and recasts
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of user whose replies and recasts you want to fetch
-         * @param {'replies' | 'recasts' | 'all'} [filter] filter to fetch only replies or recasts
+         * @param {FeedUserRepliesRecastsFilterEnum} [filter] filter to fetch only replies or recasts
          * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        feedUserRepliesRecasts(apiKey: string, fid: number, filter?: 'replies' | 'recasts' | 'all', limit?: number, cursor?: string, viewerFid?: number, options?: any): AxiosPromise<FeedResponse> {
+        feedUserRepliesRecasts(apiKey: string, fid: number, filter?: FeedUserRepliesRecastsFilterEnum, limit?: number, cursor?: string, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
             return localVarFp.feedUserRepliesRecasts(apiKey, fid, filter, limit, cursor, viewerFid, options).then((request) => request(axios, basePath));
         },
     };
@@ -1126,7 +1176,7 @@ export class FeedApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, membersOnly?: boolean, embedUrl?: string, embedTypes?: Array<EmbedType>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options?: AxiosRequestConfig) {
+    public feed(apiKey: string, feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, membersOnly?: boolean, embedUrl?: string, embedTypes?: Array<EmbedType>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options?: RawAxiosRequestConfig) {
         return FeedApiFp(this.configuration).feed(apiKey, feedType, filterType, fid, fids, parentUrl, channelId, membersOnly, embedUrl, embedTypes, withRecasts, limit, cursor, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1146,7 +1196,7 @@ export class FeedApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feedChannels(apiKey: string, channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, membersOnly?: boolean, limit?: number, cursor?: string, shouldModerate?: boolean, options?: AxiosRequestConfig) {
+    public feedChannels(apiKey: string, channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, membersOnly?: boolean, limit?: number, cursor?: string, shouldModerate?: boolean, options?: RawAxiosRequestConfig) {
         return FeedApiFp(this.configuration).feedChannels(apiKey, channelIds, withRecasts, viewerFid, withReplies, membersOnly, limit, cursor, shouldModerate, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1163,7 +1213,7 @@ export class FeedApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feedFollowing(apiKey: string, fid: number, viewerFid?: number, withRecasts?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+    public feedFollowing(apiKey: string, fid: number, viewerFid?: number, withRecasts?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
         return FeedApiFp(this.configuration).feedFollowing(apiKey, fid, viewerFid, withRecasts, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1181,7 +1231,7 @@ export class FeedApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feedForYou(apiKey: string, fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, providerMetadata?: string, options?: AxiosRequestConfig) {
+    public feedForYou(apiKey: string, fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, providerMetadata?: string, options?: RawAxiosRequestConfig) {
         return FeedApiFp(this.configuration).feedForYou(apiKey, fid, viewerFid, provider, limit, cursor, providerMetadata, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1196,7 +1246,7 @@ export class FeedApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feedFrames(apiKey: string, limit?: number, viewerFid?: number, cursor?: string, options?: AxiosRequestConfig) {
+    public feedFrames(apiKey: string, limit?: number, viewerFid?: number, cursor?: string, options?: RawAxiosRequestConfig) {
         return FeedApiFp(this.configuration).feedFrames(apiKey, limit, viewerFid, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1214,7 +1264,7 @@ export class FeedApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feedParentUrls(apiKey: string, parentUrls: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+    public feedParentUrls(apiKey: string, parentUrls: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
         return FeedApiFp(this.configuration).feedParentUrls(apiKey, parentUrls, withRecasts, viewerFid, withReplies, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1225,7 +1275,7 @@ export class FeedApi extends BaseAPI {
      * @param {number} [limit] Number of results to fetch (max 10)
      * @param {string} [cursor] Pagination cursor
      * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-     * @param {'1h' | '6h' | '12h' | '24h' | '7d'} [timeWindow] Time window for trending casts (7d window for channel feeds only)
+     * @param {FeedTrendingTimeWindowEnum} [timeWindow] Time window for trending casts (7d window for channel feeds only)
      * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
      * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed.
      * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
@@ -1233,7 +1283,7 @@ export class FeedApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: '1h' | '6h' | '12h' | '24h' | '7d', channelId?: string, provider?: FeedTrendingProvider, providerMetadata?: string, options?: AxiosRequestConfig) {
+    public feedTrending(apiKey: string, limit?: number, cursor?: string, viewerFid?: number, timeWindow?: FeedTrendingTimeWindowEnum, channelId?: string, provider?: FeedTrendingProvider, providerMetadata?: string, options?: RawAxiosRequestConfig) {
         return FeedApiFp(this.configuration).feedTrending(apiKey, limit, cursor, viewerFid, timeWindow, channelId, provider, providerMetadata, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1252,7 +1302,7 @@ export class FeedApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feedUserCasts(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string, options?: AxiosRequestConfig) {
+    public feedUserCasts(apiKey: string, fid: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string, options?: RawAxiosRequestConfig) {
         return FeedApiFp(this.configuration).feedUserCasts(apiKey, fid, viewerFid, limit, cursor, includeReplies, parentUrl, channelId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1266,7 +1316,7 @@ export class FeedApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feedUserPopular(apiKey: string, fid: number, viewerFid?: number, options?: AxiosRequestConfig) {
+    public feedUserPopular(apiKey: string, fid: number, viewerFid?: number, options?: RawAxiosRequestConfig) {
         return FeedApiFp(this.configuration).feedUserPopular(apiKey, fid, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1275,7 +1325,7 @@ export class FeedApi extends BaseAPI {
      * @summary Replies and recasts
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid FID of user whose replies and recasts you want to fetch
-     * @param {'replies' | 'recasts' | 'all'} [filter] filter to fetch only replies or recasts
+     * @param {FeedUserRepliesRecastsFilterEnum} [filter] filter to fetch only replies or recasts
      * @param {number} [limit] Number of results to fetch (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
      * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -1283,7 +1333,28 @@ export class FeedApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FeedApi
      */
-    public feedUserRepliesRecasts(apiKey: string, fid: number, filter?: 'replies' | 'recasts' | 'all', limit?: number, cursor?: string, viewerFid?: number, options?: AxiosRequestConfig) {
+    public feedUserRepliesRecasts(apiKey: string, fid: number, filter?: FeedUserRepliesRecastsFilterEnum, limit?: number, cursor?: string, viewerFid?: number, options?: RawAxiosRequestConfig) {
         return FeedApiFp(this.configuration).feedUserRepliesRecasts(apiKey, fid, filter, limit, cursor, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 }
+
+/**
+ * @export
+ */
+export const FeedTrendingTimeWindowEnum = {
+    _1h: '1h',
+    _6h: '6h',
+    _12h: '12h',
+    _24h: '24h',
+    _7d: '7d'
+} as const;
+export type FeedTrendingTimeWindowEnum = typeof FeedTrendingTimeWindowEnum[keyof typeof FeedTrendingTimeWindowEnum];
+/**
+ * @export
+ */
+export const FeedUserRepliesRecastsFilterEnum = {
+    Replies: 'replies',
+    Recasts: 'recasts',
+    All: 'all'
+} as const;
+export type FeedUserRepliesRecastsFilterEnum = typeof FeedUserRepliesRecastsFilterEnum[keyof typeof FeedUserRepliesRecastsFilterEnum];

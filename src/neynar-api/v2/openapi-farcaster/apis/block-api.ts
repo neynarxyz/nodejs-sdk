@@ -14,17 +14,17 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { BlockListResponse } from '../models';
+import type { BlockListResponse } from '../models';
 // @ts-ignore
-import { ErrorRes } from '../models';
+import type { ErrorRes } from '../models';
 /**
  * BlockApi - axios parameter creator
  * @export
@@ -42,7 +42,7 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        blockList: async (apiKey: string, blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        blockList: async (apiKey: string, blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('blockList', 'apiKey', apiKey)
             const localVarPath = `/farcaster/block/list`;
@@ -56,6 +56,9 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (blockerFid !== undefined) {
                 localVarQueryParameter['blocker_fid'] = blockerFid;
@@ -109,9 +112,11 @@ export const BlockApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async blockList(apiKey: string, blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BlockListResponse>> {
+        async blockList(apiKey: string, blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BlockListResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.blockList(apiKey, blockerFid, blockedFid, limit, cursor, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BlockApi.blockList']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -134,7 +139,7 @@ export const BlockApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        blockList(apiKey: string, blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<BlockListResponse> {
+        blockList(apiKey: string, blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<BlockListResponse> {
             return localVarFp.blockList(apiKey, blockerFid, blockedFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
@@ -159,7 +164,8 @@ export class BlockApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof BlockApi
      */
-    public blockList(apiKey: string, blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+    public blockList(apiKey: string, blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
         return BlockApiFp(this.configuration).blockList(apiKey, blockerFid, blockedFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
+

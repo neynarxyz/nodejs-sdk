@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ReactionType } from './reaction-type';
+import type { ReactionType } from './reaction-type';
 
 /**
  * 

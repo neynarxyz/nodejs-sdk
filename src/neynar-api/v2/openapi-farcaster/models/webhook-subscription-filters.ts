@@ -15,16 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookSubscriptionFiltersCast } from './webhook-subscription-filters-cast';
+import type { WebhookSubscriptionFiltersCast } from './webhook-subscription-filters-cast';
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookSubscriptionFiltersFollow } from './webhook-subscription-filters-follow';
+import type { WebhookSubscriptionFiltersFollow } from './webhook-subscription-filters-follow';
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookSubscriptionFiltersReaction } from './webhook-subscription-filters-reaction';
+import type { WebhookSubscriptionFiltersReaction } from './webhook-subscription-filters-reaction';
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookSubscriptionFiltersUserUpdated } from './webhook-subscription-filters-user-updated';
+import type { WebhookSubscriptionFiltersUserUpdated } from './webhook-subscription-filters-user-updated';
 
 /**
  * 

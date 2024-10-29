@@ -15,16 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastEmbeddedParentAuthor } from './cast-embedded-parent-author';
+import type { CastEmbeddedParentAuthor } from './cast-embedded-parent-author';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastNotificationType } from './cast-notification-type';
+import type { CastNotificationType } from './cast-notification-type';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Embed } from './embed';
+import type { Embed } from './embed';
 // May contain unused imports in some cases
 // @ts-ignore
-import { User } from './user';
+import type { User } from './user';
 
 /**
  * 

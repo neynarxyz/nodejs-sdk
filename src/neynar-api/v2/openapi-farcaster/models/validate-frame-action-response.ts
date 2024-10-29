@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ValidatedFrameAction } from './validated-frame-action';
+import type { ValidatedFrameAction } from './validated-frame-action';
 
 /**
  * 

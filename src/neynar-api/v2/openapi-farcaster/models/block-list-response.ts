@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { BlockRecord } from './block-record';
+import type { BlockRecord } from './block-record';
 // May contain unused imports in some cases
 // @ts-ignore
-import { NextCursor } from './next-cursor';
+import type { NextCursor } from './next-cursor';
 
 /**
  * 

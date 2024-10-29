@@ -14,25 +14,25 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { BuyStorageReqBody } from '../models';
+import type { BuyStorageReqBody } from '../models';
 // @ts-ignore
-import { ConflictErrorRes } from '../models';
+import type { ConflictErrorRes } from '../models';
 // @ts-ignore
-import { ErrorRes } from '../models';
+import type { ErrorRes } from '../models';
 // @ts-ignore
-import { StorageAllocationsResponse } from '../models';
+import type { StorageAllocationsResponse } from '../models';
 // @ts-ignore
-import { StorageUsageResponse } from '../models';
+import type { StorageUsageResponse } from '../models';
 // @ts-ignore
-import { ZodError } from '../models';
+import type { ZodError } from '../models';
 /**
  * StorageApi - axios parameter creator
  * @export
@@ -47,7 +47,7 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        buyStorage: async (apiKey: string, buyStorageReqBody: BuyStorageReqBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        buyStorage: async (apiKey: string, buyStorageReqBody: BuyStorageReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('buyStorage', 'apiKey', apiKey)
             // verify required parameter 'buyStorageReqBody' is not null or undefined
@@ -63,6 +63,9 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -90,7 +93,7 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storageAllocations: async (apiKey: string, fid: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        storageAllocations: async (apiKey: string, fid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('storageAllocations', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -106,6 +109,9 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -134,7 +140,7 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storageUsage: async (apiKey: string, fid: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        storageUsage: async (apiKey: string, fid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('storageUsage', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -150,6 +156,9 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -188,9 +197,11 @@ export const StorageApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async buyStorage(apiKey: string, buyStorageReqBody: BuyStorageReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageAllocationsResponse>> {
+        async buyStorage(apiKey: string, buyStorageReqBody: BuyStorageReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageAllocationsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.buyStorage(apiKey, buyStorageReqBody, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StorageApi.buyStorage']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetches storage allocations for a given user
@@ -200,9 +211,11 @@ export const StorageApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async storageAllocations(apiKey: string, fid: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageAllocationsResponse>> {
+        async storageAllocations(apiKey: string, fid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageAllocationsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.storageAllocations(apiKey, fid, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StorageApi.storageAllocations']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetches storage usage for a given user
@@ -212,9 +225,11 @@ export const StorageApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async storageUsage(apiKey: string, fid: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageUsageResponse>> {
+        async storageUsage(apiKey: string, fid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageUsageResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.storageUsage(apiKey, fid, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StorageApi.storageUsage']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -234,7 +249,7 @@ export const StorageApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        buyStorage(apiKey: string, buyStorageReqBody: BuyStorageReqBody, options?: any): AxiosPromise<StorageAllocationsResponse> {
+        buyStorage(apiKey: string, buyStorageReqBody: BuyStorageReqBody, options?: RawAxiosRequestConfig): AxiosPromise<StorageAllocationsResponse> {
             return localVarFp.buyStorage(apiKey, buyStorageReqBody, options).then((request) => request(axios, basePath));
         },
         /**
@@ -245,7 +260,7 @@ export const StorageApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storageAllocations(apiKey: string, fid: number, options?: any): AxiosPromise<StorageAllocationsResponse> {
+        storageAllocations(apiKey: string, fid: number, options?: RawAxiosRequestConfig): AxiosPromise<StorageAllocationsResponse> {
             return localVarFp.storageAllocations(apiKey, fid, options).then((request) => request(axios, basePath));
         },
         /**
@@ -256,7 +271,7 @@ export const StorageApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storageUsage(apiKey: string, fid: number, options?: any): AxiosPromise<StorageUsageResponse> {
+        storageUsage(apiKey: string, fid: number, options?: RawAxiosRequestConfig): AxiosPromise<StorageUsageResponse> {
             return localVarFp.storageUsage(apiKey, fid, options).then((request) => request(axios, basePath));
         },
     };
@@ -278,7 +293,7 @@ export class StorageApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof StorageApi
      */
-    public buyStorage(apiKey: string, buyStorageReqBody: BuyStorageReqBody, options?: AxiosRequestConfig) {
+    public buyStorage(apiKey: string, buyStorageReqBody: BuyStorageReqBody, options?: RawAxiosRequestConfig) {
         return StorageApiFp(this.configuration).buyStorage(apiKey, buyStorageReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -291,7 +306,7 @@ export class StorageApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof StorageApi
      */
-    public storageAllocations(apiKey: string, fid: number, options?: AxiosRequestConfig) {
+    public storageAllocations(apiKey: string, fid: number, options?: RawAxiosRequestConfig) {
         return StorageApiFp(this.configuration).storageAllocations(apiKey, fid, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -304,7 +319,8 @@ export class StorageApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof StorageApi
      */
-    public storageUsage(apiKey: string, fid: number, options?: AxiosRequestConfig) {
+    public storageUsage(apiKey: string, fid: number, options?: RawAxiosRequestConfig) {
         return StorageApiFp(this.configuration).storageUsage(apiKey, fid, options).then((request) => request(this.axios, this.basePath));
     }
 }
+

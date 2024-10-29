@@ -15,25 +15,25 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameValidateAnalyticsInputText } from './frame-validate-analytics-input-text';
+import type { FrameValidateAnalyticsInputText } from './frame-validate-analytics-input-text';
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameValidateAnalyticsInputTextInputTextsInner } from './frame-validate-analytics-input-text-input-texts-inner';
+import type { FrameValidateAnalyticsInputTextInputTextsInner } from './frame-validate-analytics-input-text-input-texts-inner';
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameValidateAnalyticsInteractionsPerCast } from './frame-validate-analytics-interactions-per-cast';
+import type { FrameValidateAnalyticsInteractionsPerCast } from './frame-validate-analytics-interactions-per-cast';
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner } from './frame-validate-analytics-interactions-per-cast-interactions-per-cast-inner';
+import type { FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner } from './frame-validate-analytics-interactions-per-cast-interactions-per-cast-inner';
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameValidateAnalyticsInteractors } from './frame-validate-analytics-interactors';
+import type { FrameValidateAnalyticsInteractors } from './frame-validate-analytics-interactors';
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameValidateAnalyticsInteractorsInteractorsInner } from './frame-validate-analytics-interactors-interactors-inner';
+import type { FrameValidateAnalyticsInteractorsInteractorsInner } from './frame-validate-analytics-interactors-interactors-inner';
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameValidateAnalyticsTotalInteractors } from './frame-validate-analytics-total-interactors';
+import type { FrameValidateAnalyticsTotalInteractors } from './frame-validate-analytics-total-interactors';
 
 /**
  * @type FrameValidateAnalyticsResponse

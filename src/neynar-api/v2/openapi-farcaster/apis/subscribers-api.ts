@@ -14,25 +14,25 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { ErrorRes } from '../models';
+import type { ErrorRes } from '../models';
 // @ts-ignore
-import { SubscribedToResponse } from '../models';
+import type { SubscribedToResponse } from '../models';
 // @ts-ignore
-import { SubscribersResponse } from '../models';
+import type { SubscribersResponse } from '../models';
 // @ts-ignore
-import { SubscriptionProvider } from '../models';
+import type { SubscriptionProvider } from '../models';
 // @ts-ignore
-import { SubscriptionProviders } from '../models';
+import type { SubscriptionProviders } from '../models';
 // @ts-ignore
-import { SubscriptionsResponse } from '../models';
+import type { SubscriptionsResponse } from '../models';
 /**
  * SubscribersApi - axios parameter creator
  * @export
@@ -49,7 +49,7 @@ export const SubscribersApiAxiosParamCreator = function (configuration?: Configu
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscribedTo: async (apiKey: string, fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        subscribedTo: async (apiKey: string, fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('subscribedTo', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -67,6 +67,9 @@ export const SubscribersApiAxiosParamCreator = function (configuration?: Configu
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -105,7 +108,7 @@ export const SubscribersApiAxiosParamCreator = function (configuration?: Configu
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscribers: async (apiKey: string, fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        subscribers: async (apiKey: string, fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('subscribers', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -123,6 +126,9 @@ export const SubscribersApiAxiosParamCreator = function (configuration?: Configu
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -160,7 +166,7 @@ export const SubscribersApiAxiosParamCreator = function (configuration?: Configu
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscriptionsCreated: async (apiKey: string, fid: number, subscriptionProvider: SubscriptionProvider, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        subscriptionsCreated: async (apiKey: string, fid: number, subscriptionProvider: SubscriptionProvider, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('subscriptionsCreated', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -178,6 +184,9 @@ export const SubscribersApiAxiosParamCreator = function (configuration?: Configu
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -222,9 +231,11 @@ export const SubscribersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async subscribedTo(apiKey: string, fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscribedToResponse>> {
+        async subscribedTo(apiKey: string, fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscribedToResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.subscribedTo(apiKey, fid, subscriptionProvider, viewerFid, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscribersApi.subscribedTo']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch subscribers for a given FID\'s contracts. Doesn\'t return addresses that don\'t have an FID.
@@ -236,9 +247,11 @@ export const SubscribersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async subscribers(apiKey: string, fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscribersResponse>> {
+        async subscribers(apiKey: string, fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscribersResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.subscribers(apiKey, fid, subscriptionProvider, viewerFid, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscribersApi.subscribers']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch created subscriptions for a given FID\'s.
@@ -249,9 +262,11 @@ export const SubscribersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async subscriptionsCreated(apiKey: string, fid: number, subscriptionProvider: SubscriptionProvider, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionsResponse>> {
+        async subscriptionsCreated(apiKey: string, fid: number, subscriptionProvider: SubscriptionProvider, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.subscriptionsCreated(apiKey, fid, subscriptionProvider, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscribersApi.subscriptionsCreated']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -273,7 +288,7 @@ export const SubscribersApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscribedTo(apiKey: string, fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: any): AxiosPromise<SubscribedToResponse> {
+        subscribedTo(apiKey: string, fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<SubscribedToResponse> {
             return localVarFp.subscribedTo(apiKey, fid, subscriptionProvider, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
@@ -286,7 +301,7 @@ export const SubscribersApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscribers(apiKey: string, fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: any): AxiosPromise<SubscribersResponse> {
+        subscribers(apiKey: string, fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<SubscribersResponse> {
             return localVarFp.subscribers(apiKey, fid, subscriptionProvider, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
@@ -298,7 +313,7 @@ export const SubscribersApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscriptionsCreated(apiKey: string, fid: number, subscriptionProvider: SubscriptionProvider, options?: any): AxiosPromise<SubscriptionsResponse> {
+        subscriptionsCreated(apiKey: string, fid: number, subscriptionProvider: SubscriptionProvider, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionsResponse> {
             return localVarFp.subscriptionsCreated(apiKey, fid, subscriptionProvider, options).then((request) => request(axios, basePath));
         },
     };
@@ -322,7 +337,7 @@ export class SubscribersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SubscribersApi
      */
-    public subscribedTo(apiKey: string, fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: AxiosRequestConfig) {
+    public subscribedTo(apiKey: string, fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: RawAxiosRequestConfig) {
         return SubscribersApiFp(this.configuration).subscribedTo(apiKey, fid, subscriptionProvider, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -337,7 +352,7 @@ export class SubscribersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SubscribersApi
      */
-    public subscribers(apiKey: string, fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: AxiosRequestConfig) {
+    public subscribers(apiKey: string, fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: RawAxiosRequestConfig) {
         return SubscribersApiFp(this.configuration).subscribers(apiKey, fid, subscriptionProvider, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -351,7 +366,8 @@ export class SubscribersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SubscribersApi
      */
-    public subscriptionsCreated(apiKey: string, fid: number, subscriptionProvider: SubscriptionProvider, options?: AxiosRequestConfig) {
+    public subscriptionsCreated(apiKey: string, fid: number, subscriptionProvider: SubscriptionProvider, options?: RawAxiosRequestConfig) {
         return SubscribersApiFp(this.configuration).subscriptionsCreated(apiKey, fid, subscriptionProvider, options).then((request) => request(this.axios, this.basePath));
     }
 }
+

@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { UserPowerLiteResponseResult } from './user-power-lite-response-result';
+import type { UserPowerLiteResponseResult } from './user-power-lite-response-result';
 
 /**
  * 

@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { EmbedUrlMetadataVideoStreamInner } from './embed-url-metadata-video-stream-inner';
+import type { EmbedUrlMetadataVideoStreamInner } from './embed-url-metadata-video-stream-inner';
 
 /**
  * 

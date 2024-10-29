@@ -15,21 +15,21 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { OembedLinkData } from './oembed-link-data';
+import type { OembedLinkData } from './oembed-link-data';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OembedPhotoData } from './oembed-photo-data';
+import type { OembedPhotoData } from './oembed-photo-data';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OembedRichData } from './oembed-rich-data';
+import type { OembedRichData } from './oembed-rich-data';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OembedVideoData } from './oembed-video-data';
+import type { OembedVideoData } from './oembed-video-data';
 
 /**
- * @type EmbedUrlMetadataHtmlAllOfOembed
+ * @type EmbedUrlMetadataHtmlAnyOfOembed
  * @export
  */
-export type EmbedUrlMetadataHtmlAllOfOembed = { type: 'link' } & OembedLinkData | { type: 'photo' } & OembedPhotoData | { type: 'rich' } & OembedRichData | { type: 'video' } & OembedVideoData;
+export type EmbedUrlMetadataHtmlAnyOfOembed = { type: 'link' } & OembedLinkData | { type: 'photo' } & OembedPhotoData | { type: 'rich' } & OembedRichData | { type: 'video' } & OembedVideoData;
 
 

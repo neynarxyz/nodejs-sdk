@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { SignedKeyRequestSponsor } from './signed-key-request-sponsor';
+import type { SignedKeyRequestSponsor } from './signed-key-request-sponsor';
 
 /**
  * 

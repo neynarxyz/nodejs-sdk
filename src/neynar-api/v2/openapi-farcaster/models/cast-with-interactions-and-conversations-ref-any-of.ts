@@ -17,21 +17,14 @@
 /**
  * 
  * @export
- * @interface OembedLinkDataAllOf
+ * @interface CastWithInteractionsAndConversationsRefAnyOf
  */
-export interface OembedLinkDataAllOf {
+export interface CastWithInteractionsAndConversationsRefAnyOf {
     /**
-     * 
-     * @type {string}
-     * @memberof OembedLinkDataAllOf
+     * note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth.
+     * @type {Array<object>}
+     * @memberof CastWithInteractionsAndConversationsRefAnyOf
      */
-    'type'?: OembedLinkDataAllOfTypeEnum;
+    'direct_replies': Array<object>;
 }
-
-export const OembedLinkDataAllOfTypeEnum = {
-    Link: 'link'
-} as const;
-
-export type OembedLinkDataAllOfTypeEnum = typeof OembedLinkDataAllOfTypeEnum[keyof typeof OembedLinkDataAllOfTypeEnum];
-
 

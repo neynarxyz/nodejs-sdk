@@ -15,16 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameActionButton } from './frame-action-button';
+import type { FrameActionButton } from './frame-action-button';
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameInput } from './frame-input';
+import type { FrameInput } from './frame-input';
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameState } from './frame-state';
+import type { FrameState } from './frame-state';
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameTransaction } from './frame-transaction';
+import type { FrameTransaction } from './frame-transaction';
 
 /**
  * 

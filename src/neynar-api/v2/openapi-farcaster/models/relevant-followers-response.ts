@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { DehydratedFollower } from './dehydrated-follower';
+import type { DehydratedFollower } from './dehydrated-follower';
 // May contain unused imports in some cases
 // @ts-ignore
-import { HydratedFollower } from './hydrated-follower';
+import type { HydratedFollower } from './hydrated-follower';
 
 /**
  * 

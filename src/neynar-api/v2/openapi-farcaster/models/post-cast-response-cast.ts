@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PostCastResponseCastAuthor } from './post-cast-response-cast-author';
+import type { CastEmbeddedParentAuthor } from './cast-embedded-parent-author';
 
 /**
  * 
@@ -31,10 +31,10 @@ export interface PostCastResponseCast {
     'hash': string;
     /**
      * 
-     * @type {PostCastResponseCastAuthor}
+     * @type {CastEmbeddedParentAuthor}
      * @memberof PostCastResponseCast
      */
-    'author': PostCastResponseCastAuthor;
+    'author': CastEmbeddedParentAuthor;
     /**
      * 
      * @type {string}

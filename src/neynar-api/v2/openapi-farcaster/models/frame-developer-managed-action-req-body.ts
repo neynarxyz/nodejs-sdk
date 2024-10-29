@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameAction } from './frame-action';
+import type { FrameAction } from './frame-action';
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameSignaturePacket } from './frame-signature-packet';
+import type { FrameSignaturePacket } from './frame-signature-packet';
 
 /**
  * 

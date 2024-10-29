@@ -15,19 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastEmbeddedParentAuthor } from './cast-embedded-parent-author';
+import type { CastEmbeddedParentAuthor } from './cast-embedded-parent-author';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastNotificationType } from './cast-notification-type';
+import type { CastNotificationType } from './cast-notification-type';
 // May contain unused imports in some cases
 // @ts-ignore
-import { DehydratedChannel } from './dehydrated-channel';
+import type { DehydratedChannel } from './dehydrated-channel';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EmbedDeep } from './embed-deep';
+import type { EmbedDeep } from './embed-deep';
 // May contain unused imports in some cases
 // @ts-ignore
-import { UserDehydrated } from './user-dehydrated';
+import type { UserDehydrated } from './user-dehydrated';
 
 /**
  * 

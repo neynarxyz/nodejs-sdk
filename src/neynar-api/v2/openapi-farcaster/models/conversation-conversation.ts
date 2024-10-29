@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastWithInteractions } from './cast-with-interactions';
+import type { CastWithInteractions } from './cast-with-interactions';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastWithInteractionsAndConversations } from './cast-with-interactions-and-conversations';
+import type { CastWithInteractionsAndConversations } from './cast-with-interactions-and-conversations';
 
 /**
  * 

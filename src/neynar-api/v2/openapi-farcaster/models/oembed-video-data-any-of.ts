@@ -17,39 +17,39 @@
 /**
  * 
  * @export
- * @interface OembedRichDataAllOf
+ * @interface OembedVideoDataAnyOf
  */
-export interface OembedRichDataAllOf {
+export interface OembedVideoDataAnyOf {
     /**
      * 
      * @type {string}
-     * @memberof OembedRichDataAllOf
+     * @memberof OembedVideoDataAnyOf
      */
-    'type'?: OembedRichDataAllOfTypeEnum;
+    'type'?: OembedVideoDataAnyOfTypeEnum;
     /**
-     * The HTML required to display the resource. The HTML should have no padding or margins. Consumers may wish to load the HTML in an off-domain iframe to avoid XSS vulnerabilities. The markup should be valid XHTML 1.0 Basic.
+     * The HTML required to embed a video player. The HTML should have no padding or margins. Consumers may wish to load the HTML in an off-domain iframe to avoid XSS vulnerabilities.
      * @type {string}
-     * @memberof OembedRichDataAllOf
+     * @memberof OembedVideoDataAnyOf
      */
     'html': string | null;
     /**
      * The width in pixels required to display the HTML.
      * @type {number}
-     * @memberof OembedRichDataAllOf
+     * @memberof OembedVideoDataAnyOf
      */
     'width': number | null;
     /**
      * The height in pixels required to display the HTML.
      * @type {number}
-     * @memberof OembedRichDataAllOf
+     * @memberof OembedVideoDataAnyOf
      */
     'height': number | null;
 }
 
-export const OembedRichDataAllOfTypeEnum = {
-    Rich: 'rich'
+export const OembedVideoDataAnyOfTypeEnum = {
+    Video: 'video'
 } as const;
 
-export type OembedRichDataAllOfTypeEnum = typeof OembedRichDataAllOfTypeEnum[keyof typeof OembedRichDataAllOfTypeEnum];
+export type OembedVideoDataAnyOfTypeEnum = typeof OembedVideoDataAnyOfTypeEnum[keyof typeof OembedVideoDataAnyOfTypeEnum];
 
 

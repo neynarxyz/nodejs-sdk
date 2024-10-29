@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { EmbedUrlMetadataHtml } from './embed-url-metadata-html';
+import type { EmbedUrlMetadataHtml } from './embed-url-metadata-html';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EmbedUrlMetadataImage } from './embed-url-metadata-image';
+import type { EmbedUrlMetadataImage } from './embed-url-metadata-image';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EmbedUrlMetadataVideo } from './embed-url-metadata-video';
+import type { EmbedUrlMetadataVideo } from './embed-url-metadata-video';
 
 /**
  * 

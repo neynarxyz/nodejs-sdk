@@ -14,27 +14,27 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { AuthorizationUrlResponse } from '../models';
+import type { AuthorizationUrlResponse } from '../models';
 // @ts-ignore
-import { AuthorizationUrlResponseType } from '../models';
+import type { AuthorizationUrlResponseType } from '../models';
 // @ts-ignore
-import { DeveloperManagedSigner } from '../models';
+import type { DeveloperManagedSigner } from '../models';
 // @ts-ignore
-import { ErrorRes } from '../models';
+import type { ErrorRes } from '../models';
 // @ts-ignore
-import { RegisterDeveloperManagedSignedKeyReqBody } from '../models';
+import type { RegisterDeveloperManagedSignedKeyReqBody } from '../models';
 // @ts-ignore
-import { RegisterSignerKeyReqBody } from '../models';
+import type { RegisterSignerKeyReqBody } from '../models';
 // @ts-ignore
-import { Signer } from '../models';
+import type { Signer } from '../models';
 /**
  * SignerApi - axios parameter creator
  * @export
@@ -48,7 +48,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createSigner: async (apiKey: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createSigner: async (apiKey: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('createSigner', 'apiKey', apiKey)
             const localVarPath = `/farcaster/signer`;
@@ -62,6 +62,9 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -86,7 +89,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        developerManagedSigner: async (apiKey: string, publicKey: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        developerManagedSigner: async (apiKey: string, publicKey: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('developerManagedSigner', 'apiKey', apiKey)
             // verify required parameter 'publicKey' is not null or undefined
@@ -102,6 +105,9 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (publicKey !== undefined) {
                 localVarQueryParameter['public_key'] = publicKey;
@@ -131,7 +137,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchAuthorizationUrl: async (apiKey: string, clientId: string, responseType: AuthorizationUrlResponseType, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchAuthorizationUrl: async (apiKey: string, clientId: string, responseType: AuthorizationUrlResponseType, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('fetchAuthorizationUrl', 'apiKey', apiKey)
             // verify required parameter 'clientId' is not null or undefined
@@ -149,6 +155,9 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (clientId !== undefined) {
                 localVarQueryParameter['client_id'] = clientId;
@@ -181,7 +190,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publishMessage: async (apiKey: string, body: object, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        publishMessage: async (apiKey: string, body: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('publishMessage', 'apiKey', apiKey)
             // verify required parameter 'body' is not null or undefined
@@ -197,6 +206,9 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -224,7 +236,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        registerSignedKey: async (apiKey: string, registerSignerKeyReqBody: RegisterSignerKeyReqBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        registerSignedKey: async (apiKey: string, registerSignerKeyReqBody: RegisterSignerKeyReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('registerSignedKey', 'apiKey', apiKey)
             // verify required parameter 'registerSignerKeyReqBody' is not null or undefined
@@ -240,6 +252,9 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -267,7 +282,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        registerSignedKeyForDeveloperManagedSigner: async (apiKey: string, registerDeveloperManagedSignedKeyReqBody: RegisterDeveloperManagedSignedKeyReqBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        registerSignedKeyForDeveloperManagedSigner: async (apiKey: string, registerDeveloperManagedSignedKeyReqBody: RegisterDeveloperManagedSignedKeyReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('registerSignedKeyForDeveloperManagedSigner', 'apiKey', apiKey)
             // verify required parameter 'registerDeveloperManagedSignedKeyReqBody' is not null or undefined
@@ -283,6 +298,9 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -310,7 +328,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        signer: async (apiKey: string, signerUuid: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        signer: async (apiKey: string, signerUuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('signer', 'apiKey', apiKey)
             // verify required parameter 'signerUuid' is not null or undefined
@@ -326,6 +344,9 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (signerUuid !== undefined) {
                 localVarQueryParameter['signer_uuid'] = signerUuid;
@@ -363,9 +384,11 @@ export const SignerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createSigner(apiKey: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signer>> {
+        async createSigner(apiKey: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signer>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createSigner(apiKey, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SignerApi.createSigner']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetches the status of a developer managed signer by public key
@@ -375,9 +398,11 @@ export const SignerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async developerManagedSigner(apiKey: string, publicKey: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeveloperManagedSigner>> {
+        async developerManagedSigner(apiKey: string, publicKey: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeveloperManagedSigner>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.developerManagedSigner(apiKey, publicKey, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SignerApi.developerManagedSigner']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
@@ -388,9 +413,11 @@ export const SignerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async fetchAuthorizationUrl(apiKey: string, clientId: string, responseType: AuthorizationUrlResponseType, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthorizationUrlResponse>> {
+        async fetchAuthorizationUrl(apiKey: string, clientId: string, responseType: AuthorizationUrlResponseType, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthorizationUrlResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.fetchAuthorizationUrl(apiKey, clientId, responseType, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SignerApi.fetchAuthorizationUrl']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Publish a message to farcaster. The message must be signed by a signer managed by the developer. Use the @farcaster/core library to construct and sign the message. Use the Message.toJSON method on the signed message and pass the JSON in the body of this POST request.
@@ -400,9 +427,11 @@ export const SignerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async publishMessage(apiKey: string, body: object, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+        async publishMessage(apiKey: string, body: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.publishMessage(apiKey, body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SignerApi.publishMessage']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Registers an app FID, deadline and a signature. Returns the signer status with an approval url.
@@ -412,9 +441,11 @@ export const SignerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async registerSignedKey(apiKey: string, registerSignerKeyReqBody: RegisterSignerKeyReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signer>> {
+        async registerSignedKey(apiKey: string, registerSignerKeyReqBody: RegisterSignerKeyReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signer>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.registerSignedKey(apiKey, registerSignerKeyReqBody, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SignerApi.registerSignedKey']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Registers an signed key and returns the developer managed signer status with an approval url.
@@ -424,9 +455,11 @@ export const SignerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async registerSignedKeyForDeveloperManagedSigner(apiKey: string, registerDeveloperManagedSignedKeyReqBody: RegisterDeveloperManagedSignedKeyReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeveloperManagedSigner>> {
+        async registerSignedKeyForDeveloperManagedSigner(apiKey: string, registerDeveloperManagedSignedKeyReqBody: RegisterDeveloperManagedSignedKeyReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeveloperManagedSigner>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.registerSignedKeyForDeveloperManagedSigner(apiKey, registerDeveloperManagedSignedKeyReqBody, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SignerApi.registerSignedKeyForDeveloperManagedSigner']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
@@ -436,9 +469,11 @@ export const SignerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async signer(apiKey: string, signerUuid: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signer>> {
+        async signer(apiKey: string, signerUuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signer>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.signer(apiKey, signerUuid, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SignerApi.signer']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -457,7 +492,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createSigner(apiKey: string, options?: any): AxiosPromise<Signer> {
+        createSigner(apiKey: string, options?: RawAxiosRequestConfig): AxiosPromise<Signer> {
             return localVarFp.createSigner(apiKey, options).then((request) => request(axios, basePath));
         },
         /**
@@ -468,7 +503,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        developerManagedSigner(apiKey: string, publicKey: string, options?: any): AxiosPromise<DeveloperManagedSigner> {
+        developerManagedSigner(apiKey: string, publicKey: string, options?: RawAxiosRequestConfig): AxiosPromise<DeveloperManagedSigner> {
             return localVarFp.developerManagedSigner(apiKey, publicKey, options).then((request) => request(axios, basePath));
         },
         /**
@@ -480,7 +515,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchAuthorizationUrl(apiKey: string, clientId: string, responseType: AuthorizationUrlResponseType, options?: any): AxiosPromise<AuthorizationUrlResponse> {
+        fetchAuthorizationUrl(apiKey: string, clientId: string, responseType: AuthorizationUrlResponseType, options?: RawAxiosRequestConfig): AxiosPromise<AuthorizationUrlResponse> {
             return localVarFp.fetchAuthorizationUrl(apiKey, clientId, responseType, options).then((request) => request(axios, basePath));
         },
         /**
@@ -491,7 +526,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publishMessage(apiKey: string, body: object, options?: any): AxiosPromise<object> {
+        publishMessage(apiKey: string, body: object, options?: RawAxiosRequestConfig): AxiosPromise<object> {
             return localVarFp.publishMessage(apiKey, body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -502,7 +537,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        registerSignedKey(apiKey: string, registerSignerKeyReqBody: RegisterSignerKeyReqBody, options?: any): AxiosPromise<Signer> {
+        registerSignedKey(apiKey: string, registerSignerKeyReqBody: RegisterSignerKeyReqBody, options?: RawAxiosRequestConfig): AxiosPromise<Signer> {
             return localVarFp.registerSignedKey(apiKey, registerSignerKeyReqBody, options).then((request) => request(axios, basePath));
         },
         /**
@@ -513,7 +548,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        registerSignedKeyForDeveloperManagedSigner(apiKey: string, registerDeveloperManagedSignedKeyReqBody: RegisterDeveloperManagedSignedKeyReqBody, options?: any): AxiosPromise<DeveloperManagedSigner> {
+        registerSignedKeyForDeveloperManagedSigner(apiKey: string, registerDeveloperManagedSignedKeyReqBody: RegisterDeveloperManagedSignedKeyReqBody, options?: RawAxiosRequestConfig): AxiosPromise<DeveloperManagedSigner> {
             return localVarFp.registerSignedKeyForDeveloperManagedSigner(apiKey, registerDeveloperManagedSignedKeyReqBody, options).then((request) => request(axios, basePath));
         },
         /**
@@ -524,7 +559,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        signer(apiKey: string, signerUuid: string, options?: any): AxiosPromise<Signer> {
+        signer(apiKey: string, signerUuid: string, options?: RawAxiosRequestConfig): AxiosPromise<Signer> {
             return localVarFp.signer(apiKey, signerUuid, options).then((request) => request(axios, basePath));
         },
     };
@@ -545,7 +580,7 @@ export class SignerApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SignerApi
      */
-    public createSigner(apiKey: string, options?: AxiosRequestConfig) {
+    public createSigner(apiKey: string, options?: RawAxiosRequestConfig) {
         return SignerApiFp(this.configuration).createSigner(apiKey, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -558,7 +593,7 @@ export class SignerApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SignerApi
      */
-    public developerManagedSigner(apiKey: string, publicKey: string, options?: AxiosRequestConfig) {
+    public developerManagedSigner(apiKey: string, publicKey: string, options?: RawAxiosRequestConfig) {
         return SignerApiFp(this.configuration).developerManagedSigner(apiKey, publicKey, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -572,7 +607,7 @@ export class SignerApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SignerApi
      */
-    public fetchAuthorizationUrl(apiKey: string, clientId: string, responseType: AuthorizationUrlResponseType, options?: AxiosRequestConfig) {
+    public fetchAuthorizationUrl(apiKey: string, clientId: string, responseType: AuthorizationUrlResponseType, options?: RawAxiosRequestConfig) {
         return SignerApiFp(this.configuration).fetchAuthorizationUrl(apiKey, clientId, responseType, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -585,7 +620,7 @@ export class SignerApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SignerApi
      */
-    public publishMessage(apiKey: string, body: object, options?: AxiosRequestConfig) {
+    public publishMessage(apiKey: string, body: object, options?: RawAxiosRequestConfig) {
         return SignerApiFp(this.configuration).publishMessage(apiKey, body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -598,7 +633,7 @@ export class SignerApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SignerApi
      */
-    public registerSignedKey(apiKey: string, registerSignerKeyReqBody: RegisterSignerKeyReqBody, options?: AxiosRequestConfig) {
+    public registerSignedKey(apiKey: string, registerSignerKeyReqBody: RegisterSignerKeyReqBody, options?: RawAxiosRequestConfig) {
         return SignerApiFp(this.configuration).registerSignedKey(apiKey, registerSignerKeyReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -611,7 +646,7 @@ export class SignerApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SignerApi
      */
-    public registerSignedKeyForDeveloperManagedSigner(apiKey: string, registerDeveloperManagedSignedKeyReqBody: RegisterDeveloperManagedSignedKeyReqBody, options?: AxiosRequestConfig) {
+    public registerSignedKeyForDeveloperManagedSigner(apiKey: string, registerDeveloperManagedSignedKeyReqBody: RegisterDeveloperManagedSignedKeyReqBody, options?: RawAxiosRequestConfig) {
         return SignerApiFp(this.configuration).registerSignedKeyForDeveloperManagedSigner(apiKey, registerDeveloperManagedSignedKeyReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -624,7 +659,8 @@ export class SignerApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SignerApi
      */
-    public signer(apiKey: string, signerUuid: string, options?: AxiosRequestConfig) {
+    public signer(apiKey: string, signerUuid: string, options?: RawAxiosRequestConfig) {
         return SignerApiFp(this.configuration).signer(apiKey, signerUuid, options).then((request) => request(this.axios, this.basePath));
     }
 }
+

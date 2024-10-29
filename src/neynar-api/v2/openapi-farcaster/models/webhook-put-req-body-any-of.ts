@@ -13,21 +13,18 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { EmbedUrlMetadataHtmlAllOfOembed } from './embed-url-metadata-html-all-of-oembed';
 
 /**
  * 
  * @export
- * @interface EmbedUrlMetadataHtmlAllOf
+ * @interface WebhookPutReqBodyAnyOf
  */
-export interface EmbedUrlMetadataHtmlAllOf {
+export interface WebhookPutReqBodyAnyOf {
     /**
      * 
-     * @type {EmbedUrlMetadataHtmlAllOfOembed}
-     * @memberof EmbedUrlMetadataHtmlAllOf
+     * @type {string}
+     * @memberof WebhookPutReqBodyAnyOf
      */
-    'oembed'?: EmbedUrlMetadataHtmlAllOfOembed;
+    'webhook_id': string;
 }
 

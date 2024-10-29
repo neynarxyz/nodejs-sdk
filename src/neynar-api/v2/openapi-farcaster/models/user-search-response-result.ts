@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { NextCursor } from './next-cursor';
+import type { NextCursor } from './next-cursor';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SearchedUser } from './searched-user';
+import type { SearchedUser } from './searched-user';
 
 /**
  * 

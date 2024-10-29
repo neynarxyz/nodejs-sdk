@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { LocationAddress } from './location-address';
+import type { LocationAddress } from './location-address';
 
 /**
  * Coordinates and place names for a location

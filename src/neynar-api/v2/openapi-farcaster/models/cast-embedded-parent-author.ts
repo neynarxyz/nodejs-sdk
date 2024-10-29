@@ -25,6 +25,6 @@ export interface CastEmbeddedParentAuthor {
      * @type {number}
      * @memberof CastEmbeddedParentAuthor
      */
-    'fid': number | null;
+    'fid': number;
 }
 

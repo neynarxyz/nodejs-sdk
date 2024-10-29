@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { EmbedUrlMetadata } from './embed-url-metadata';
+import type { EmbedUrlMetadata } from './embed-url-metadata';
 
 /**
  * 

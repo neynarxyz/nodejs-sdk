@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ZodErrorErrorsInner } from './zod-error-errors-inner';
+import type { ZodErrorErrorsInner } from './zod-error-errors-inner';
 
 /**
  * 

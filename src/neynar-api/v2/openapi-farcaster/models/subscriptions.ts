@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Subscription } from './subscription';
+import type { Subscription } from './subscription';
 
 /**
  * 

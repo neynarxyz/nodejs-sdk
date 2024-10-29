@@ -13,18 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { CastWithInteractionsAndConversationsRef } from './cast-with-interactions-and-conversations-ref';
 
 /**
  * 
  * @export
- * @interface CastWithInteractionsAndConversationsRefAllOf
+ * @interface CastWithInteractionsAndConversationsAnyOf
  */
-export interface CastWithInteractionsAndConversationsRefAllOf {
+export interface CastWithInteractionsAndConversationsAnyOf {
     /**
      * note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth.
-     * @type {Array<object>}
-     * @memberof CastWithInteractionsAndConversationsRefAllOf
+     * @type {Array<CastWithInteractionsAndConversationsRef>}
+     * @memberof CastWithInteractionsAndConversationsAnyOf
      */
-    'direct_replies': Array<object>;
+    'direct_replies': Array<CastWithInteractionsAndConversationsRef>;
 }
 

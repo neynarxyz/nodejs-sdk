@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { NeynarPageButton } from './neynar-page-button';
+import type { NeynarPageButton } from './neynar-page-button';
 // May contain unused imports in some cases
 // @ts-ignore
-import { NeynarPageImage } from './neynar-page-image';
+import type { NeynarPageImage } from './neynar-page-image';
 // May contain unused imports in some cases
 // @ts-ignore
-import { NeynarPageInput } from './neynar-page-input';
+import type { NeynarPageInput } from './neynar-page-input';
 
 /**
  * 

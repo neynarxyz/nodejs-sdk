@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastComposerActionsListResponseActionsInner } from './cast-composer-actions-list-response-actions-inner';
+import type { CastComposerActionsListResponseActionsInner } from './cast-composer-actions-list-response-actions-inner';
 // May contain unused imports in some cases
 // @ts-ignore
-import { NextCursor } from './next-cursor';
+import type { NextCursor } from './next-cursor';
 
 /**
  * 

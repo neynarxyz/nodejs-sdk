@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChannelExternalLink } from './channel-external-link';
+import type { ChannelExternalLink } from './channel-external-link';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChannelUserContext } from './channel-user-context';
+import type { ChannelUserContext } from './channel-user-context';
 // May contain unused imports in some cases
 // @ts-ignore
-import { User } from './user';
+import type { User } from './user';
 
 /**
  * 
@@ -108,9 +108,10 @@ export interface Channel {
      */
     'member_count'?: number;
     /**
-     * 
+     * Use `lead` instead.
      * @type {User}
      * @memberof Channel
+     * @deprecated
      */
     'moderator'?: User;
     /**
@@ -123,7 +124,6 @@ export interface Channel {
      * 
      * @type {Array<User>}
      * @memberof Channel
-     * @deprecated
      */
     'hosts'?: Array<User>;
     /**

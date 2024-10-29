@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChannelMemberChannel } from './channel-member-channel';
+import type { ChannelMemberChannel } from './channel-member-channel';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChannelMemberRole } from './channel-member-role';
+import type { ChannelMemberRole } from './channel-member-role';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChannelMemberUser } from './channel-member-user';
+import type { ChannelMemberUser } from './channel-member-user';
 
 /**
  * 

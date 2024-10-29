@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChannelMemberRole } from './channel-member-role';
+import type { ChannelMemberRole } from './channel-member-role';
 
 /**
  * Adds context on the viewer\'s or author\'s role in the channel.

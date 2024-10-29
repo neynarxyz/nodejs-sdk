@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ImageObject } from './image-object';
+import type { ImageObject } from './image-object';
 // May contain unused imports in some cases
 // @ts-ignore
-import { VideoObject } from './video-object';
+import type { VideoObject } from './video-object';
 
 /**
  * 

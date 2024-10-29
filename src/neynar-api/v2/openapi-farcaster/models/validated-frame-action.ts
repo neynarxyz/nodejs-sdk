@@ -15,25 +15,25 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastWithInteractions } from './cast-with-interactions';
+import type { CastWithInteractions } from './cast-with-interactions';
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameInput } from './frame-input';
+import type { FrameInput } from './frame-input';
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameState } from './frame-state';
+import type { FrameState } from './frame-state';
 // May contain unused imports in some cases
 // @ts-ignore
-import { FrameTransaction } from './frame-transaction';
+import type { FrameTransaction } from './frame-transaction';
 // May contain unused imports in some cases
 // @ts-ignore
-import { User } from './user';
+import type { User } from './user';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ValidatedFrameActionSigner } from './validated-frame-action-signer';
+import type { ValidatedFrameActionSigner } from './validated-frame-action-signer';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ValidatedFrameActionTappedButton } from './validated-frame-action-tapped-button';
+import type { ValidatedFrameActionTappedButton } from './validated-frame-action-tapped-button';
 
 /**
  * 

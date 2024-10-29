@@ -14,27 +14,27 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { ErrorRes } from '../models';
+import type { ErrorRes } from '../models';
 // @ts-ignore
-import { WebhookDeleteReqBody } from '../models';
+import type { WebhookDeleteReqBody } from '../models';
 // @ts-ignore
-import { WebhookListResponse } from '../models';
+import type { WebhookListResponse } from '../models';
 // @ts-ignore
-import { WebhookPatchReqBody } from '../models';
+import type { WebhookPatchReqBody } from '../models';
 // @ts-ignore
-import { WebhookPostReqBody } from '../models';
+import type { WebhookPostReqBody } from '../models';
 // @ts-ignore
-import { WebhookPutReqBody } from '../models';
+import type { WebhookPutReqBody } from '../models';
 // @ts-ignore
-import { WebhookResponse } from '../models';
+import type { WebhookResponse } from '../models';
 /**
  * WebhookApi - axios parameter creator
  * @export
@@ -49,7 +49,7 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteWebhook: async (apiKey: string, webhookDeleteReqBody: WebhookDeleteReqBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteWebhook: async (apiKey: string, webhookDeleteReqBody: WebhookDeleteReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('deleteWebhook', 'apiKey', apiKey)
             // verify required parameter 'webhookDeleteReqBody' is not null or undefined
@@ -65,6 +65,9 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -91,7 +94,7 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchWebhooks: async (apiKey: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchWebhooks: async (apiKey: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('fetchWebhooks', 'apiKey', apiKey)
             const localVarPath = `/farcaster/webhook/list`;
@@ -105,6 +108,9 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -129,7 +135,7 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lookupWebhook: async (apiKey: string, webhookId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        lookupWebhook: async (apiKey: string, webhookId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('lookupWebhook', 'apiKey', apiKey)
             // verify required parameter 'webhookId' is not null or undefined
@@ -145,6 +151,9 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (webhookId !== undefined) {
                 localVarQueryParameter['webhook_id'] = webhookId;
@@ -173,7 +182,7 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publishWebhook: async (apiKey: string, webhookPostReqBody: WebhookPostReqBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        publishWebhook: async (apiKey: string, webhookPostReqBody: WebhookPostReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('publishWebhook', 'apiKey', apiKey)
             // verify required parameter 'webhookPostReqBody' is not null or undefined
@@ -189,6 +198,9 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -216,7 +228,7 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateWebhook: async (apiKey: string, webhookPutReqBody: WebhookPutReqBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateWebhook: async (apiKey: string, webhookPutReqBody: WebhookPutReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('updateWebhook', 'apiKey', apiKey)
             // verify required parameter 'webhookPutReqBody' is not null or undefined
@@ -232,6 +244,9 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -259,7 +274,7 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateWebhookActiveStatus: async (apiKey: string, webhookPatchReqBody: WebhookPatchReqBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateWebhookActiveStatus: async (apiKey: string, webhookPatchReqBody: WebhookPatchReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('updateWebhookActiveStatus', 'apiKey', apiKey)
             // verify required parameter 'webhookPatchReqBody' is not null or undefined
@@ -275,6 +290,9 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -312,9 +330,11 @@ export const WebhookApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteWebhook(apiKey: string, webhookDeleteReqBody: WebhookDeleteReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
+        async deleteWebhook(apiKey: string, webhookDeleteReqBody: WebhookDeleteReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteWebhook(apiKey, webhookDeleteReqBody, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookApi.deleteWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch a list of webhooks associated to a user
@@ -323,9 +343,11 @@ export const WebhookApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async fetchWebhooks(apiKey: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookListResponse>> {
+        async fetchWebhooks(apiKey: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookListResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.fetchWebhooks(apiKey, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookApi.fetchWebhooks']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch a webhook
@@ -335,9 +357,11 @@ export const WebhookApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async lookupWebhook(apiKey: string, webhookId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
+        async lookupWebhook(apiKey: string, webhookId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.lookupWebhook(apiKey, webhookId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookApi.lookupWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Create a webhook
@@ -347,9 +371,11 @@ export const WebhookApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async publishWebhook(apiKey: string, webhookPostReqBody: WebhookPostReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
+        async publishWebhook(apiKey: string, webhookPostReqBody: WebhookPostReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.publishWebhook(apiKey, webhookPostReqBody, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookApi.publishWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Update a webhook
@@ -359,9 +385,11 @@ export const WebhookApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateWebhook(apiKey: string, webhookPutReqBody: WebhookPutReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
+        async updateWebhook(apiKey: string, webhookPutReqBody: WebhookPutReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateWebhook(apiKey, webhookPutReqBody, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookApi.updateWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Update webhook active status
@@ -371,9 +399,11 @@ export const WebhookApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateWebhookActiveStatus(apiKey: string, webhookPatchReqBody: WebhookPatchReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
+        async updateWebhookActiveStatus(apiKey: string, webhookPatchReqBody: WebhookPatchReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateWebhookActiveStatus(apiKey, webhookPatchReqBody, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookApi.updateWebhookActiveStatus']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -393,7 +423,7 @@ export const WebhookApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteWebhook(apiKey: string, webhookDeleteReqBody: WebhookDeleteReqBody, options?: any): AxiosPromise<WebhookResponse> {
+        deleteWebhook(apiKey: string, webhookDeleteReqBody: WebhookDeleteReqBody, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse> {
             return localVarFp.deleteWebhook(apiKey, webhookDeleteReqBody, options).then((request) => request(axios, basePath));
         },
         /**
@@ -403,7 +433,7 @@ export const WebhookApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchWebhooks(apiKey: string, options?: any): AxiosPromise<WebhookListResponse> {
+        fetchWebhooks(apiKey: string, options?: RawAxiosRequestConfig): AxiosPromise<WebhookListResponse> {
             return localVarFp.fetchWebhooks(apiKey, options).then((request) => request(axios, basePath));
         },
         /**
@@ -414,7 +444,7 @@ export const WebhookApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lookupWebhook(apiKey: string, webhookId: string, options?: any): AxiosPromise<WebhookResponse> {
+        lookupWebhook(apiKey: string, webhookId: string, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse> {
             return localVarFp.lookupWebhook(apiKey, webhookId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -425,7 +455,7 @@ export const WebhookApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publishWebhook(apiKey: string, webhookPostReqBody: WebhookPostReqBody, options?: any): AxiosPromise<WebhookResponse> {
+        publishWebhook(apiKey: string, webhookPostReqBody: WebhookPostReqBody, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse> {
             return localVarFp.publishWebhook(apiKey, webhookPostReqBody, options).then((request) => request(axios, basePath));
         },
         /**
@@ -436,7 +466,7 @@ export const WebhookApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateWebhook(apiKey: string, webhookPutReqBody: WebhookPutReqBody, options?: any): AxiosPromise<WebhookResponse> {
+        updateWebhook(apiKey: string, webhookPutReqBody: WebhookPutReqBody, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse> {
             return localVarFp.updateWebhook(apiKey, webhookPutReqBody, options).then((request) => request(axios, basePath));
         },
         /**
@@ -447,7 +477,7 @@ export const WebhookApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateWebhookActiveStatus(apiKey: string, webhookPatchReqBody: WebhookPatchReqBody, options?: any): AxiosPromise<WebhookResponse> {
+        updateWebhookActiveStatus(apiKey: string, webhookPatchReqBody: WebhookPatchReqBody, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse> {
             return localVarFp.updateWebhookActiveStatus(apiKey, webhookPatchReqBody, options).then((request) => request(axios, basePath));
         },
     };
@@ -469,7 +499,7 @@ export class WebhookApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WebhookApi
      */
-    public deleteWebhook(apiKey: string, webhookDeleteReqBody: WebhookDeleteReqBody, options?: AxiosRequestConfig) {
+    public deleteWebhook(apiKey: string, webhookDeleteReqBody: WebhookDeleteReqBody, options?: RawAxiosRequestConfig) {
         return WebhookApiFp(this.configuration).deleteWebhook(apiKey, webhookDeleteReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -481,7 +511,7 @@ export class WebhookApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WebhookApi
      */
-    public fetchWebhooks(apiKey: string, options?: AxiosRequestConfig) {
+    public fetchWebhooks(apiKey: string, options?: RawAxiosRequestConfig) {
         return WebhookApiFp(this.configuration).fetchWebhooks(apiKey, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -494,7 +524,7 @@ export class WebhookApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WebhookApi
      */
-    public lookupWebhook(apiKey: string, webhookId: string, options?: AxiosRequestConfig) {
+    public lookupWebhook(apiKey: string, webhookId: string, options?: RawAxiosRequestConfig) {
         return WebhookApiFp(this.configuration).lookupWebhook(apiKey, webhookId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -507,7 +537,7 @@ export class WebhookApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WebhookApi
      */
-    public publishWebhook(apiKey: string, webhookPostReqBody: WebhookPostReqBody, options?: AxiosRequestConfig) {
+    public publishWebhook(apiKey: string, webhookPostReqBody: WebhookPostReqBody, options?: RawAxiosRequestConfig) {
         return WebhookApiFp(this.configuration).publishWebhook(apiKey, webhookPostReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -520,7 +550,7 @@ export class WebhookApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WebhookApi
      */
-    public updateWebhook(apiKey: string, webhookPutReqBody: WebhookPutReqBody, options?: AxiosRequestConfig) {
+    public updateWebhook(apiKey: string, webhookPutReqBody: WebhookPutReqBody, options?: RawAxiosRequestConfig) {
         return WebhookApiFp(this.configuration).updateWebhook(apiKey, webhookPutReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -533,7 +563,8 @@ export class WebhookApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WebhookApi
      */
-    public updateWebhookActiveStatus(apiKey: string, webhookPatchReqBody: WebhookPatchReqBody, options?: AxiosRequestConfig) {
+    public updateWebhookActiveStatus(apiKey: string, webhookPatchReqBody: WebhookPatchReqBody, options?: RawAxiosRequestConfig) {
         return WebhookApiFp(this.configuration).updateWebhookActiveStatus(apiKey, webhookPatchReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 }
+

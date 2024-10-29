@@ -14,45 +14,45 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { ChannelFollowReqBody } from '../models';
+import type { ChannelFollowReqBody } from '../models';
 // @ts-ignore
-import { ChannelListResponse } from '../models';
+import type { ChannelListResponse } from '../models';
 // @ts-ignore
-import { ChannelMemberInviteListResponse } from '../models';
+import type { ChannelMemberInviteListResponse } from '../models';
 // @ts-ignore
-import { ChannelMemberListResponse } from '../models';
+import type { ChannelMemberListResponse } from '../models';
 // @ts-ignore
-import { ChannelResponse } from '../models';
+import type { ChannelResponse } from '../models';
 // @ts-ignore
-import { ChannelResponseBulk } from '../models';
+import type { ChannelResponseBulk } from '../models';
 // @ts-ignore
-import { ChannelSearchResponse } from '../models';
+import type { ChannelSearchResponse } from '../models';
 // @ts-ignore
-import { ChannelType } from '../models';
+import type { ChannelType } from '../models';
 // @ts-ignore
-import { ErrorRes } from '../models';
+import type { ErrorRes } from '../models';
 // @ts-ignore
-import { OperationResponse } from '../models';
+import type { OperationResponse } from '../models';
 // @ts-ignore
-import { RelevantFollowersResponse } from '../models';
+import type { RelevantFollowersResponse } from '../models';
 // @ts-ignore
-import { RemoveChannelMemberRequest } from '../models';
+import type { RemoveChannelMemberRequest } from '../models';
 // @ts-ignore
-import { RespondChannelInviteRequest } from '../models';
+import type { RespondChannelInviteRequest } from '../models';
 // @ts-ignore
-import { TrendingChannelResponse } from '../models';
+import type { TrendingChannelResponse } from '../models';
 // @ts-ignore
-import { UsersActiveChannelsResponse } from '../models';
+import type { UsersActiveChannelsResponse } from '../models';
 // @ts-ignore
-import { UsersResponse } from '../models';
+import type { UsersResponse } from '../models';
 /**
  * ChannelApi - axios parameter creator
  * @export
@@ -69,7 +69,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        activeChannels: async (apiKey: string, fid: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        activeChannels: async (apiKey: string, fid: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('activeChannels', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -85,6 +85,9 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -123,7 +126,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        channelDetails: async (apiKey: string, id: string, type?: ChannelType, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        channelDetails: async (apiKey: string, id: string, type?: ChannelType, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('channelDetails', 'apiKey', apiKey)
             // verify required parameter 'id' is not null or undefined
@@ -139,6 +142,9 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (id !== undefined) {
                 localVarQueryParameter['id'] = id;
@@ -177,7 +183,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        channelDetailsBulk: async (apiKey: string, ids: string, type?: ChannelType, viewerFid?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        channelDetailsBulk: async (apiKey: string, ids: string, type?: ChannelType, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('channelDetailsBulk', 'apiKey', apiKey)
             // verify required parameter 'ids' is not null or undefined
@@ -193,6 +199,9 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (ids !== undefined) {
                 localVarQueryParameter['ids'] = ids;
@@ -232,7 +241,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        channelFollowers: async (apiKey: string, id: string, viewerFid?: number, cursor?: string, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        channelFollowers: async (apiKey: string, id: string, viewerFid?: number, cursor?: string, limit?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('channelFollowers', 'apiKey', apiKey)
             // verify required parameter 'id' is not null or undefined
@@ -248,6 +257,9 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (id !== undefined) {
                 localVarQueryParameter['id'] = id;
@@ -294,7 +306,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        channelUsers: async (apiKey: string, id: string, hasRootCastAuthors: boolean, hasCastLikers?: boolean, hasCastRecasters?: boolean, hasReplyAuthors?: boolean, cursor?: string, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        channelUsers: async (apiKey: string, id: string, hasRootCastAuthors: boolean, hasCastLikers?: boolean, hasCastRecasters?: boolean, hasReplyAuthors?: boolean, cursor?: string, limit?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('channelUsers', 'apiKey', apiKey)
             // verify required parameter 'id' is not null or undefined
@@ -312,6 +324,9 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (id !== undefined) {
                 localVarQueryParameter['id'] = id;
@@ -364,7 +379,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        followChannel: async (apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        followChannel: async (apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('followChannel', 'apiKey', apiKey)
             // verify required parameter 'channelFollowReqBody' is not null or undefined
@@ -380,6 +395,9 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -407,7 +425,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        inviteChannelMember: async (apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        inviteChannelMember: async (apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('inviteChannelMember', 'apiKey', apiKey)
             // verify required parameter 'removeChannelMemberRequest' is not null or undefined
@@ -423,6 +441,9 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -451,7 +472,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listAllChannels: async (apiKey: string, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        listAllChannels: async (apiKey: string, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('listAllChannels', 'apiKey', apiKey)
             const localVarPath = `/farcaster/channel/list`;
@@ -465,6 +486,9 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
@@ -500,7 +524,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listChannelInvites: async (apiKey: string, channelId?: string, invitedFid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        listChannelInvites: async (apiKey: string, channelId?: string, invitedFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('listChannelInvites', 'apiKey', apiKey)
             const localVarPath = `/farcaster/channel/member/invite/list`;
@@ -514,6 +538,9 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (channelId !== undefined) {
                 localVarQueryParameter['channel_id'] = channelId;
@@ -557,7 +584,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listChannelMembers: async (apiKey: string, channelId: string, fid?: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        listChannelMembers: async (apiKey: string, channelId: string, fid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('listChannelMembers', 'apiKey', apiKey)
             // verify required parameter 'channelId' is not null or undefined
@@ -573,6 +600,9 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (channelId !== undefined) {
                 localVarQueryParameter['channel_id'] = channelId;
@@ -614,7 +644,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        relevantChannelFollowers: async (apiKey: string, id: string, viewerFid: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        relevantChannelFollowers: async (apiKey: string, id: string, viewerFid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('relevantChannelFollowers', 'apiKey', apiKey)
             // verify required parameter 'id' is not null or undefined
@@ -632,6 +662,9 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (id !== undefined) {
                 localVarQueryParameter['id'] = id;
@@ -664,7 +697,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeChannelMember: async (apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        removeChannelMember: async (apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('removeChannelMember', 'apiKey', apiKey)
             // verify required parameter 'removeChannelMemberRequest' is not null or undefined
@@ -680,6 +713,9 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -707,7 +743,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        respondChannelInvite: async (apiKey: string, respondChannelInviteRequest: RespondChannelInviteRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        respondChannelInvite: async (apiKey: string, respondChannelInviteRequest: RespondChannelInviteRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('respondChannelInvite', 'apiKey', apiKey)
             // verify required parameter 'respondChannelInviteRequest' is not null or undefined
@@ -723,6 +759,9 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -752,7 +791,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchChannels: async (apiKey: string, q: string, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        searchChannels: async (apiKey: string, q: string, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('searchChannels', 'apiKey', apiKey)
             // verify required parameter 'q' is not null or undefined
@@ -768,6 +807,9 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (q !== undefined) {
                 localVarQueryParameter['q'] = q;
@@ -800,13 +842,13 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * Returns a list of trending channels based on activity
          * @summary Channels by activity
          * @param {string} apiKey API key required for authentication.
-         * @param {'1d' | '7d' | '30d'} [timeWindow] 
+         * @param {TrendingChannelsTimeWindowEnum} [timeWindow] 
          * @param {number} [limit] Number of results to fetch (default 10, max 25)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        trendingChannels: async (apiKey: string, timeWindow?: '1d' | '7d' | '30d', limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        trendingChannels: async (apiKey: string, timeWindow?: TrendingChannelsTimeWindowEnum, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('trendingChannels', 'apiKey', apiKey)
             const localVarPath = `/farcaster/channel/trending`;
@@ -820,6 +862,9 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (timeWindow !== undefined) {
                 localVarQueryParameter['time_window'] = timeWindow;
@@ -856,7 +901,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        unfollowChannel: async (apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        unfollowChannel: async (apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('unfollowChannel', 'apiKey', apiKey)
             // verify required parameter 'channelFollowReqBody' is not null or undefined
@@ -872,6 +917,9 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (apiKey != null) {
                 localVarHeaderParameter['api_key'] = String(apiKey);
@@ -901,7 +949,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userChannelMemberships: async (apiKey: string, fid: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        userChannelMemberships: async (apiKey: string, fid: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('userChannelMemberships', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -917,6 +965,9 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -955,7 +1006,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userChannels: async (apiKey: string, fid: number, limit?: number, cursor?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        userChannels: async (apiKey: string, fid: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKey' is not null or undefined
             assertParamExists('userChannels', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
@@ -971,6 +1022,9 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -1019,9 +1073,11 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async activeChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersActiveChannelsResponse>> {
+        async activeChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersActiveChannelsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.activeChannels(apiKey, fid, limit, cursor, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.activeChannels']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Returns details of a channel
@@ -1033,9 +1089,11 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async channelDetails(apiKey: string, id: string, type?: ChannelType, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelResponse>> {
+        async channelDetails(apiKey: string, id: string, type?: ChannelType, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.channelDetails(apiKey, id, type, viewerFid, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.channelDetails']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Returns details of multiple channels
@@ -1047,9 +1105,11 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async channelDetailsBulk(apiKey: string, ids: string, type?: ChannelType, viewerFid?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelResponseBulk>> {
+        async channelDetailsBulk(apiKey: string, ids: string, type?: ChannelType, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelResponseBulk>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.channelDetailsBulk(apiKey, ids, type, viewerFid, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.channelDetailsBulk']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
@@ -1062,9 +1122,11 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async channelFollowers(apiKey: string, id: string, viewerFid?: number, cursor?: string, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+        async channelFollowers(apiKey: string, id: string, viewerFid?: number, cursor?: string, limit?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.channelFollowers(apiKey, id, viewerFid, cursor, limit, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.channelFollowers']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Returns a list of users who are active in a given channel, ordered by ascending FIDs
@@ -1080,9 +1142,11 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async channelUsers(apiKey: string, id: string, hasRootCastAuthors: boolean, hasCastLikers?: boolean, hasCastRecasters?: boolean, hasReplyAuthors?: boolean, cursor?: string, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+        async channelUsers(apiKey: string, id: string, hasRootCastAuthors: boolean, hasCastLikers?: boolean, hasCastRecasters?: boolean, hasReplyAuthors?: boolean, cursor?: string, limit?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.channelUsers(apiKey, id, hasRootCastAuthors, hasCastLikers, hasCastRecasters, hasReplyAuthors, cursor, limit, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.channelUsers']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Follow a channel
@@ -1092,9 +1156,11 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async followChannel(apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+        async followChannel(apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.followChannel(apiKey, channelFollowReqBody, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.followChannel']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Invite a user to a channel
@@ -1104,9 +1170,11 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async inviteChannelMember(apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+        async inviteChannelMember(apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.inviteChannelMember(apiKey, removeChannelMemberRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.inviteChannelMember']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Returns a list of all channels with their details
@@ -1117,9 +1185,11 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listAllChannels(apiKey: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
+        async listAllChannels(apiKey: string, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listAllChannels(apiKey, limit, cursor, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.listAllChannels']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.
@@ -1132,9 +1202,11 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listChannelInvites(apiKey: string, channelId?: string, invitedFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelMemberInviteListResponse>> {
+        async listChannelInvites(apiKey: string, channelId?: string, invitedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelMemberInviteListResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listChannelInvites(apiKey, channelId, invitedFid, limit, cursor, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.listChannelInvites']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch a list of members in a channel
@@ -1147,9 +1219,11 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listChannelMembers(apiKey: string, channelId: string, fid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelMemberListResponse>> {
+        async listChannelMembers(apiKey: string, channelId: string, fid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelMemberListResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listChannelMembers(apiKey, channelId, fid, limit, cursor, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.listChannelMembers']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
@@ -1160,9 +1234,11 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async relevantChannelFollowers(apiKey: string, id: string, viewerFid: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RelevantFollowersResponse>> {
+        async relevantChannelFollowers(apiKey: string, id: string, viewerFid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RelevantFollowersResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.relevantChannelFollowers(apiKey, id, viewerFid, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.relevantChannelFollowers']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Remove a user from a channel or a user\'s invite to a channel role
@@ -1172,9 +1248,11 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeChannelMember(apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+        async removeChannelMember(apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeChannelMember(apiKey, removeChannelMemberRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.removeChannelMember']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Accept or reject a channel invite
@@ -1184,9 +1262,11 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async respondChannelInvite(apiKey: string, respondChannelInviteRequest: RespondChannelInviteRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+        async respondChannelInvite(apiKey: string, respondChannelInviteRequest: RespondChannelInviteRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.respondChannelInvite(apiKey, respondChannelInviteRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.respondChannelInvite']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Returns a list of channels based on ID or name
@@ -1198,23 +1278,27 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async searchChannels(apiKey: string, q: string, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelSearchResponse>> {
+        async searchChannels(apiKey: string, q: string, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelSearchResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.searchChannels(apiKey, q, limit, cursor, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.searchChannels']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Returns a list of trending channels based on activity
          * @summary Channels by activity
          * @param {string} apiKey API key required for authentication.
-         * @param {'1d' | '7d' | '30d'} [timeWindow] 
+         * @param {TrendingChannelsTimeWindowEnum} [timeWindow] 
          * @param {number} [limit] Number of results to fetch (default 10, max 25)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TrendingChannelResponse>> {
+        async trendingChannels(apiKey: string, timeWindow?: TrendingChannelsTimeWindowEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TrendingChannelResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.trendingChannels(apiKey, timeWindow, limit, cursor, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.trendingChannels']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Unfollow a channel
@@ -1224,9 +1308,11 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async unfollowChannel(apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+        async unfollowChannel(apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.unfollowChannel(apiKey, channelFollowReqBody, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.unfollowChannel']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour.
@@ -1238,9 +1324,11 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async userChannelMemberships(apiKey: string, fid: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelMemberListResponse>> {
+        async userChannelMemberships(apiKey: string, fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelMemberListResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.userChannelMemberships(apiKey, fid, limit, cursor, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.userChannelMemberships']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Returns a list of all channels with their details that a FID follows.
@@ -1252,9 +1340,11 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async userChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
+        async userChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.userChannels(apiKey, fid, limit, cursor, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.userChannels']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -1276,7 +1366,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        activeChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: any): AxiosPromise<UsersActiveChannelsResponse> {
+        activeChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<UsersActiveChannelsResponse> {
             return localVarFp.activeChannels(apiKey, fid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1289,7 +1379,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        channelDetails(apiKey: string, id: string, type?: ChannelType, viewerFid?: number, options?: any): AxiosPromise<ChannelResponse> {
+        channelDetails(apiKey: string, id: string, type?: ChannelType, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<ChannelResponse> {
             return localVarFp.channelDetails(apiKey, id, type, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1302,7 +1392,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        channelDetailsBulk(apiKey: string, ids: string, type?: ChannelType, viewerFid?: number, options?: any): AxiosPromise<ChannelResponseBulk> {
+        channelDetailsBulk(apiKey: string, ids: string, type?: ChannelType, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<ChannelResponseBulk> {
             return localVarFp.channelDetailsBulk(apiKey, ids, type, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1316,7 +1406,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        channelFollowers(apiKey: string, id: string, viewerFid?: number, cursor?: string, limit?: number, options?: any): AxiosPromise<UsersResponse> {
+        channelFollowers(apiKey: string, id: string, viewerFid?: number, cursor?: string, limit?: number, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
             return localVarFp.channelFollowers(apiKey, id, viewerFid, cursor, limit, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1333,7 +1423,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        channelUsers(apiKey: string, id: string, hasRootCastAuthors: boolean, hasCastLikers?: boolean, hasCastRecasters?: boolean, hasReplyAuthors?: boolean, cursor?: string, limit?: number, options?: any): AxiosPromise<UsersResponse> {
+        channelUsers(apiKey: string, id: string, hasRootCastAuthors: boolean, hasCastLikers?: boolean, hasCastRecasters?: boolean, hasReplyAuthors?: boolean, cursor?: string, limit?: number, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
             return localVarFp.channelUsers(apiKey, id, hasRootCastAuthors, hasCastLikers, hasCastRecasters, hasReplyAuthors, cursor, limit, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1344,7 +1434,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        followChannel(apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options?: any): AxiosPromise<OperationResponse> {
+        followChannel(apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
             return localVarFp.followChannel(apiKey, channelFollowReqBody, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1355,7 +1445,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        inviteChannelMember(apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options?: any): AxiosPromise<OperationResponse> {
+        inviteChannelMember(apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
             return localVarFp.inviteChannelMember(apiKey, removeChannelMemberRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1367,7 +1457,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listAllChannels(apiKey: string, limit?: number, cursor?: string, options?: any): AxiosPromise<ChannelListResponse> {
+        listAllChannels(apiKey: string, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChannelListResponse> {
             return localVarFp.listAllChannels(apiKey, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1381,7 +1471,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listChannelInvites(apiKey: string, channelId?: string, invitedFid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<ChannelMemberInviteListResponse> {
+        listChannelInvites(apiKey: string, channelId?: string, invitedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChannelMemberInviteListResponse> {
             return localVarFp.listChannelInvites(apiKey, channelId, invitedFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1395,7 +1485,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listChannelMembers(apiKey: string, channelId: string, fid?: number, limit?: number, cursor?: string, options?: any): AxiosPromise<ChannelMemberListResponse> {
+        listChannelMembers(apiKey: string, channelId: string, fid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChannelMemberListResponse> {
             return localVarFp.listChannelMembers(apiKey, channelId, fid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1407,7 +1497,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        relevantChannelFollowers(apiKey: string, id: string, viewerFid: number, options?: any): AxiosPromise<RelevantFollowersResponse> {
+        relevantChannelFollowers(apiKey: string, id: string, viewerFid: number, options?: RawAxiosRequestConfig): AxiosPromise<RelevantFollowersResponse> {
             return localVarFp.relevantChannelFollowers(apiKey, id, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1418,7 +1508,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeChannelMember(apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options?: any): AxiosPromise<OperationResponse> {
+        removeChannelMember(apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
             return localVarFp.removeChannelMember(apiKey, removeChannelMemberRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1429,7 +1519,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        respondChannelInvite(apiKey: string, respondChannelInviteRequest: RespondChannelInviteRequest, options?: any): AxiosPromise<OperationResponse> {
+        respondChannelInvite(apiKey: string, respondChannelInviteRequest: RespondChannelInviteRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
             return localVarFp.respondChannelInvite(apiKey, respondChannelInviteRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1442,20 +1532,20 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchChannels(apiKey: string, q: string, limit?: number, cursor?: string, options?: any): AxiosPromise<ChannelSearchResponse> {
+        searchChannels(apiKey: string, q: string, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChannelSearchResponse> {
             return localVarFp.searchChannels(apiKey, q, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of trending channels based on activity
          * @summary Channels by activity
          * @param {string} apiKey API key required for authentication.
-         * @param {'1d' | '7d' | '30d'} [timeWindow] 
+         * @param {TrendingChannelsTimeWindowEnum} [timeWindow] 
          * @param {number} [limit] Number of results to fetch (default 10, max 25)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', limit?: number, cursor?: string, options?: any): AxiosPromise<TrendingChannelResponse> {
+        trendingChannels(apiKey: string, timeWindow?: TrendingChannelsTimeWindowEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<TrendingChannelResponse> {
             return localVarFp.trendingChannels(apiKey, timeWindow, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1466,7 +1556,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        unfollowChannel(apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options?: any): AxiosPromise<OperationResponse> {
+        unfollowChannel(apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
             return localVarFp.unfollowChannel(apiKey, channelFollowReqBody, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1479,7 +1569,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userChannelMemberships(apiKey: string, fid: number, limit?: number, cursor?: string, options?: any): AxiosPromise<ChannelMemberListResponse> {
+        userChannelMemberships(apiKey: string, fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChannelMemberListResponse> {
             return localVarFp.userChannelMemberships(apiKey, fid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1492,7 +1582,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: any): AxiosPromise<ChannelListResponse> {
+        userChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChannelListResponse> {
             return localVarFp.userChannels(apiKey, fid, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
@@ -1516,7 +1606,7 @@ export class ChannelApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public activeChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+    public activeChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
         return ChannelApiFp(this.configuration).activeChannels(apiKey, fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1531,7 +1621,7 @@ export class ChannelApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public channelDetails(apiKey: string, id: string, type?: ChannelType, viewerFid?: number, options?: AxiosRequestConfig) {
+    public channelDetails(apiKey: string, id: string, type?: ChannelType, viewerFid?: number, options?: RawAxiosRequestConfig) {
         return ChannelApiFp(this.configuration).channelDetails(apiKey, id, type, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1546,7 +1636,7 @@ export class ChannelApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public channelDetailsBulk(apiKey: string, ids: string, type?: ChannelType, viewerFid?: number, options?: AxiosRequestConfig) {
+    public channelDetailsBulk(apiKey: string, ids: string, type?: ChannelType, viewerFid?: number, options?: RawAxiosRequestConfig) {
         return ChannelApiFp(this.configuration).channelDetailsBulk(apiKey, ids, type, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1562,7 +1652,7 @@ export class ChannelApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public channelFollowers(apiKey: string, id: string, viewerFid?: number, cursor?: string, limit?: number, options?: AxiosRequestConfig) {
+    public channelFollowers(apiKey: string, id: string, viewerFid?: number, cursor?: string, limit?: number, options?: RawAxiosRequestConfig) {
         return ChannelApiFp(this.configuration).channelFollowers(apiKey, id, viewerFid, cursor, limit, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1581,7 +1671,7 @@ export class ChannelApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public channelUsers(apiKey: string, id: string, hasRootCastAuthors: boolean, hasCastLikers?: boolean, hasCastRecasters?: boolean, hasReplyAuthors?: boolean, cursor?: string, limit?: number, options?: AxiosRequestConfig) {
+    public channelUsers(apiKey: string, id: string, hasRootCastAuthors: boolean, hasCastLikers?: boolean, hasCastRecasters?: boolean, hasReplyAuthors?: boolean, cursor?: string, limit?: number, options?: RawAxiosRequestConfig) {
         return ChannelApiFp(this.configuration).channelUsers(apiKey, id, hasRootCastAuthors, hasCastLikers, hasCastRecasters, hasReplyAuthors, cursor, limit, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1594,7 +1684,7 @@ export class ChannelApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public followChannel(apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options?: AxiosRequestConfig) {
+    public followChannel(apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options?: RawAxiosRequestConfig) {
         return ChannelApiFp(this.configuration).followChannel(apiKey, channelFollowReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1607,7 +1697,7 @@ export class ChannelApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public inviteChannelMember(apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options?: AxiosRequestConfig) {
+    public inviteChannelMember(apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options?: RawAxiosRequestConfig) {
         return ChannelApiFp(this.configuration).inviteChannelMember(apiKey, removeChannelMemberRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1621,7 +1711,7 @@ export class ChannelApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public listAllChannels(apiKey: string, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+    public listAllChannels(apiKey: string, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
         return ChannelApiFp(this.configuration).listAllChannels(apiKey, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1637,7 +1727,7 @@ export class ChannelApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public listChannelInvites(apiKey: string, channelId?: string, invitedFid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+    public listChannelInvites(apiKey: string, channelId?: string, invitedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
         return ChannelApiFp(this.configuration).listChannelInvites(apiKey, channelId, invitedFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1653,7 +1743,7 @@ export class ChannelApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public listChannelMembers(apiKey: string, channelId: string, fid?: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+    public listChannelMembers(apiKey: string, channelId: string, fid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
         return ChannelApiFp(this.configuration).listChannelMembers(apiKey, channelId, fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1667,7 +1757,7 @@ export class ChannelApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public relevantChannelFollowers(apiKey: string, id: string, viewerFid: number, options?: AxiosRequestConfig) {
+    public relevantChannelFollowers(apiKey: string, id: string, viewerFid: number, options?: RawAxiosRequestConfig) {
         return ChannelApiFp(this.configuration).relevantChannelFollowers(apiKey, id, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1680,7 +1770,7 @@ export class ChannelApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public removeChannelMember(apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options?: AxiosRequestConfig) {
+    public removeChannelMember(apiKey: string, removeChannelMemberRequest: RemoveChannelMemberRequest, options?: RawAxiosRequestConfig) {
         return ChannelApiFp(this.configuration).removeChannelMember(apiKey, removeChannelMemberRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1693,7 +1783,7 @@ export class ChannelApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public respondChannelInvite(apiKey: string, respondChannelInviteRequest: RespondChannelInviteRequest, options?: AxiosRequestConfig) {
+    public respondChannelInvite(apiKey: string, respondChannelInviteRequest: RespondChannelInviteRequest, options?: RawAxiosRequestConfig) {
         return ChannelApiFp(this.configuration).respondChannelInvite(apiKey, respondChannelInviteRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1708,7 +1798,7 @@ export class ChannelApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public searchChannels(apiKey: string, q: string, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+    public searchChannels(apiKey: string, q: string, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
         return ChannelApiFp(this.configuration).searchChannels(apiKey, q, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1716,14 +1806,14 @@ export class ChannelApi extends BaseAPI {
      * Returns a list of trending channels based on activity
      * @summary Channels by activity
      * @param {string} apiKey API key required for authentication.
-     * @param {'1d' | '7d' | '30d'} [timeWindow] 
+     * @param {TrendingChannelsTimeWindowEnum} [timeWindow] 
      * @param {number} [limit] Number of results to fetch (default 10, max 25)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public trendingChannels(apiKey: string, timeWindow?: '1d' | '7d' | '30d', limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+    public trendingChannels(apiKey: string, timeWindow?: TrendingChannelsTimeWindowEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
         return ChannelApiFp(this.configuration).trendingChannels(apiKey, timeWindow, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1736,7 +1826,7 @@ export class ChannelApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public unfollowChannel(apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options?: AxiosRequestConfig) {
+    public unfollowChannel(apiKey: string, channelFollowReqBody: ChannelFollowReqBody, options?: RawAxiosRequestConfig) {
         return ChannelApiFp(this.configuration).unfollowChannel(apiKey, channelFollowReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1751,7 +1841,7 @@ export class ChannelApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public userChannelMemberships(apiKey: string, fid: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+    public userChannelMemberships(apiKey: string, fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
         return ChannelApiFp(this.configuration).userChannelMemberships(apiKey, fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1766,7 +1856,17 @@ export class ChannelApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChannelApi
      */
-    public userChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: AxiosRequestConfig) {
+    public userChannels(apiKey: string, fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
         return ChannelApiFp(this.configuration).userChannels(apiKey, fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
+
+/**
+ * @export
+ */
+export const TrendingChannelsTimeWindowEnum = {
+    _1d: '1d',
+    _7d: '7d',
+    _30d: '30d'
+} as const;
+export type TrendingChannelsTimeWindowEnum = typeof TrendingChannelsTimeWindowEnum[keyof typeof TrendingChannelsTimeWindowEnum];
