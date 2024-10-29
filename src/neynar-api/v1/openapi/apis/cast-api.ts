@@ -41,7 +41,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * Now deprecated, use [v2/cast/conversation](https://docs.neynar.com/reference/cast-conversation). Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
          * @summary DEPRECATED - Fetch all casts in a given thread hash
          * @param {string} threadHash The hash of the thread to fetch casts from.
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -87,7 +87,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * Now deprecated, use [v2/cast](https://docs.neynar.com/reference/cast). Gets information about an individual cast
          * @summary DEPRECATED - Fetch cast for a given hash
          * @param {string} hash Cast hash
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -131,10 +131,10 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Now deprecated, use [/v2/farcaster/feed/user/casts](https://docs.neynar.com/reference/feed-user-casts) instead
-         * @summary DEPRECATED - Fetch casts for a given user
-         * @param {number} fid fid of a user
+         * @summary DEPRECATED - Casts by user
+         * @param {number} fid FID of a user
          * @param {string} [parentUrl] A cast can be part of a certain channel. The channel is identified by &#x60;parent_url&#x60;. All casts in the channel ladder up to the same parent_url.
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -193,7 +193,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Fetch a list of casts from the protocol in reverse chronological order based on timestamp
          * @summary Fetch Recent Casts
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -252,7 +252,7 @@ export const CastApiFp = function(configuration?: Configuration) {
          * Now deprecated, use [v2/cast/conversation](https://docs.neynar.com/reference/cast-conversation). Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
          * @summary DEPRECATED - Fetch all casts in a given thread hash
          * @param {string} threadHash The hash of the thread to fetch casts from.
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -265,7 +265,7 @@ export const CastApiFp = function(configuration?: Configuration) {
          * Now deprecated, use [v2/cast](https://docs.neynar.com/reference/cast). Gets information about an individual cast
          * @summary DEPRECATED - Fetch cast for a given hash
          * @param {string} hash Cast hash
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -276,10 +276,10 @@ export const CastApiFp = function(configuration?: Configuration) {
         },
         /**
          * Now deprecated, use [/v2/farcaster/feed/user/casts](https://docs.neynar.com/reference/feed-user-casts) instead
-         * @summary DEPRECATED - Fetch casts for a given user
-         * @param {number} fid fid of a user
+         * @summary DEPRECATED - Casts by user
+         * @param {number} fid FID of a user
          * @param {string} [parentUrl] A cast can be part of a certain channel. The channel is identified by &#x60;parent_url&#x60;. All casts in the channel ladder up to the same parent_url.
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -293,7 +293,7 @@ export const CastApiFp = function(configuration?: Configuration) {
         /**
          * Fetch a list of casts from the protocol in reverse chronological order based on timestamp
          * @summary Fetch Recent Casts
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -317,7 +317,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * Now deprecated, use [v2/cast/conversation](https://docs.neynar.com/reference/cast-conversation). Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
          * @summary DEPRECATED - Fetch all casts in a given thread hash
          * @param {string} threadHash The hash of the thread to fetch casts from.
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -329,7 +329,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * Now deprecated, use [v2/cast](https://docs.neynar.com/reference/cast). Gets information about an individual cast
          * @summary DEPRECATED - Fetch cast for a given hash
          * @param {string} hash Cast hash
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -339,10 +339,10 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Now deprecated, use [/v2/farcaster/feed/user/casts](https://docs.neynar.com/reference/feed-user-casts) instead
-         * @summary DEPRECATED - Fetch casts for a given user
-         * @param {number} fid fid of a user
+         * @summary DEPRECATED - Casts by user
+         * @param {number} fid FID of a user
          * @param {string} [parentUrl] A cast can be part of a certain channel. The channel is identified by &#x60;parent_url&#x60;. All casts in the channel ladder up to the same parent_url.
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -355,7 +355,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
         /**
          * Fetch a list of casts from the protocol in reverse chronological order based on timestamp
          * @summary Fetch Recent Casts
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -378,7 +378,7 @@ export class CastApi extends BaseAPI {
      * Now deprecated, use [v2/cast/conversation](https://docs.neynar.com/reference/cast-conversation). Gets all casts, including root cast and all replies for a given thread hash. No limit the depth of replies.
      * @summary DEPRECATED - Fetch all casts in a given thread hash
      * @param {string} threadHash The hash of the thread to fetch casts from.
-     * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+     * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -392,7 +392,7 @@ export class CastApi extends BaseAPI {
      * Now deprecated, use [v2/cast](https://docs.neynar.com/reference/cast). Gets information about an individual cast
      * @summary DEPRECATED - Fetch cast for a given hash
      * @param {string} hash Cast hash
-     * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+     * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -404,10 +404,10 @@ export class CastApi extends BaseAPI {
 
     /**
      * Now deprecated, use [/v2/farcaster/feed/user/casts](https://docs.neynar.com/reference/feed-user-casts) instead
-     * @summary DEPRECATED - Fetch casts for a given user
-     * @param {number} fid fid of a user
+     * @summary DEPRECATED - Casts by user
+     * @param {number} fid FID of a user
      * @param {string} [parentUrl] A cast can be part of a certain channel. The channel is identified by &#x60;parent_url&#x60;. All casts in the channel ladder up to the same parent_url.
-     * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+     * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
      * @param {number} [limit] Number of results to fetch (default 25, max 150)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
@@ -422,7 +422,7 @@ export class CastApi extends BaseAPI {
     /**
      * Fetch a list of casts from the protocol in reverse chronological order based on timestamp
      * @summary Fetch Recent Casts
-     * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+     * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
      * @param {number} [limit] Number of results to fetch (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
