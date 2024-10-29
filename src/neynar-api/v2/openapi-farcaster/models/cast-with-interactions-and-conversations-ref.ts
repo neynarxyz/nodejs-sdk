@@ -30,6 +30,9 @@ import { CastViewerContext } from './cast-viewer-context';
 import { CastWithInteractions } from './cast-with-interactions';
 // May contain unused imports in some cases
 // @ts-ignore
+import { CastWithInteractionsAllOfChannel } from './cast-with-interactions-all-of-channel';
+// May contain unused imports in some cases
+// @ts-ignore
 import { CastWithInteractionsAndConversationsRefAllOf } from './cast-with-interactions-and-conversations-ref-all-of';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -37,9 +40,6 @@ import { CastWithInteractionsReactions } from './cast-with-interactions-reaction
 // May contain unused imports in some cases
 // @ts-ignore
 import { CastWithInteractionsReplies } from './cast-with-interactions-replies';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ChannelOrDehydratedChannel } from './channel-or-dehydrated-channel';
 // May contain unused imports in some cases
 // @ts-ignore
 import { ChannelUserContext } from './channel-user-context';

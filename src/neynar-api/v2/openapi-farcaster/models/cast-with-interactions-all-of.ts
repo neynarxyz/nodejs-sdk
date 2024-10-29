@@ -18,13 +18,13 @@
 import { CastViewerContext } from './cast-viewer-context';
 // May contain unused imports in some cases
 // @ts-ignore
+import { CastWithInteractionsAllOfChannel } from './cast-with-interactions-all-of-channel';
+// May contain unused imports in some cases
+// @ts-ignore
 import { CastWithInteractionsReactions } from './cast-with-interactions-reactions';
 // May contain unused imports in some cases
 // @ts-ignore
 import { CastWithInteractionsReplies } from './cast-with-interactions-replies';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ChannelOrDehydratedChannel } from './channel-or-dehydrated-channel';
 // May contain unused imports in some cases
 // @ts-ignore
 import { ChannelUserContext } from './channel-user-context';
@@ -73,10 +73,10 @@ export interface CastWithInteractionsAllOf {
     'mentioned_profiles': Array<User>;
     /**
      * 
-     * @type {ChannelOrDehydratedChannel}
+     * @type {CastWithInteractionsAllOfChannel}
      * @memberof CastWithInteractionsAllOf
      */
-    'channel': ChannelOrDehydratedChannel | null;
+    'channel': CastWithInteractionsAllOfChannel | null;
     /**
      * 
      * @type {CastViewerContext}

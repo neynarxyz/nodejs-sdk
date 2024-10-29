@@ -28,6 +28,7 @@ export * from './cast-response';
 export * from './cast-viewer-context';
 export * from './cast-with-interactions';
 export * from './cast-with-interactions-all-of';
+export * from './cast-with-interactions-all-of-channel';
 export * from './cast-with-interactions-and-conversations';
 export * from './cast-with-interactions-and-conversations-all-of';
 export * from './cast-with-interactions-and-conversations-ref';
