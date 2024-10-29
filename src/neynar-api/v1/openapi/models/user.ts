@@ -15,9 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ActiveStatus } from './active-status';
-// May contain unused imports in some cases
-// @ts-ignore
 import { UserPfp } from './user-pfp';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -88,17 +85,9 @@ export interface User {
     'verifications': Array<string>;
     /**
      * 
-     * @type {ActiveStatus}
-     * @memberof User
-     */
-    'activeStatus': ActiveStatus;
-    /**
-     * 
      * @type {ViewerContext}
      * @memberof User
      */
     'viewerContext'?: ViewerContext;
 }
-
-
 
