@@ -27,10 +27,9 @@ import type { CastId } from './cast-id';
  */
 export interface EmbedCast {
     /**
-     * [DEPRECATED: Use \"cast\" key instead]
+     * 
      * @type {CastId}
      * @memberof EmbedCast
-     * @deprecated
      */
     'cast_id'?: CastId;
     /**

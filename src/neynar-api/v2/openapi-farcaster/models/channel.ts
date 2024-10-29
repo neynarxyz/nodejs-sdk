@@ -108,10 +108,9 @@ export interface Channel {
      */
     'member_count'?: number;
     /**
-     * Use `lead` instead.
+     * 
      * @type {User}
      * @memberof Channel
-     * @deprecated
      */
     'moderator'?: User;
     /**
@@ -124,6 +123,7 @@ export interface Channel {
      * 
      * @type {Array<User>}
      * @memberof Channel
+     * @deprecated
      */
     'hosts'?: Array<User>;
     /**

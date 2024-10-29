@@ -17,14 +17,14 @@
 /**
  * 
  * @export
- * @interface WebhookPutReqBodyAnyOf
+ * @interface PostCastResponseCastAuthor
  */
-export interface WebhookPutReqBodyAnyOf {
+export interface PostCastResponseCastAuthor {
     /**
-     * 
-     * @type {string}
-     * @memberof WebhookPutReqBodyAnyOf
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof PostCastResponseCastAuthor
      */
-    'webhook_id': string;
+    'fid': number;
 }
 

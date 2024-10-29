@@ -15,31 +15,44 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { PostCastResponseCastAuthor } from './post-cast-response-cast-author';
+import type { User } from './user';
 
 /**
  * 
  * @export
- * @interface PostCastResponseCast
+ * @interface BlockList
  */
-export interface PostCastResponseCast {
-    /**
-     * Cast Hash
-     * @type {string}
-     * @memberof PostCastResponseCast
-     */
-    'hash': string;
-    /**
-     * 
-     * @type {PostCastResponseCastAuthor}
-     * @memberof PostCastResponseCast
-     */
-    'author': PostCastResponseCastAuthor;
+export interface BlockList {
     /**
      * 
      * @type {string}
-     * @memberof PostCastResponseCast
+     * @memberof BlockList
      */
-    'text': string;
+    'object': BlockListObjectEnum;
+    /**
+     * 
+     * @type {User}
+     * @memberof BlockList
+     */
+    'blocked'?: User;
+    /**
+     * 
+     * @type {User}
+     * @memberof BlockList
+     */
+    'blocker'?: User;
+    /**
+     * 
+     * @type {string}
+     * @memberof BlockList
+     */
+    'blocked_at': string;
 }
+
+export const BlockListObjectEnum = {
+    Block: 'block'
+} as const;
+
+export type BlockListObjectEnum = typeof BlockListObjectEnum[keyof typeof BlockListObjectEnum];
+
 

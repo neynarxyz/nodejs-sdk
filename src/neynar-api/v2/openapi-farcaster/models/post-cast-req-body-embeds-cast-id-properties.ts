@@ -21,16 +21,16 @@
  */
 export interface PostCastReqBodyEmbedsCastIdProperties {
     /**
-     * The unique identifier of a farcaster user (unsigned integer)
-     * @type {number}
-     * @memberof PostCastReqBodyEmbedsCastIdProperties
-     */
-    'fid': number;
-    /**
      * 
      * @type {string}
      * @memberof PostCastReqBodyEmbedsCastIdProperties
      */
     'hash': string;
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof PostCastReqBodyEmbedsCastIdProperties
+     */
+    'fid': number;
 }
 

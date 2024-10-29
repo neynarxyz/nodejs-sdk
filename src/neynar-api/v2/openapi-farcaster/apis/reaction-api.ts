@@ -42,11 +42,14 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * Delete a reaction (like or recast) to a cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
          * @summary Delete reaction
+         * @param {string} apiKey API key required for authentication.
          * @param {ReactionReqBody} reactionReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteReaction: async (reactionReqBody: ReactionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteReaction: async (apiKey: string, reactionReqBody: ReactionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('deleteReaction', 'apiKey', apiKey)
             // verify required parameter 'reactionReqBody' is not null or undefined
             assertParamExists('deleteReaction', 'reactionReqBody', reactionReqBody)
             const localVarPath = `/farcaster/reaction`;
@@ -61,8 +64,9 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
 
 
     
@@ -81,11 +85,14 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
          * @summary Post a reaction
+         * @param {string} apiKey API key required for authentication.
          * @param {ReactionReqBody} reactionReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postReaction: async (reactionReqBody: ReactionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        postReaction: async (apiKey: string, reactionReqBody: ReactionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('postReaction', 'apiKey', apiKey)
             // verify required parameter 'reactionReqBody' is not null or undefined
             assertParamExists('postReaction', 'reactionReqBody', reactionReqBody)
             const localVarPath = `/farcaster/reaction`;
@@ -100,8 +107,9 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
 
 
     
@@ -120,6 +128,7 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * Fetches reactions for a given cast
          * @summary Reactions for cast
+         * @param {string} apiKey API key required for authentication.
          * @param {string} hash 
          * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
          * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -128,7 +137,9 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        reactionsCast: async (hash: string, types: string, viewerFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        reactionsCast: async (apiKey: string, hash: string, types: string, viewerFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('reactionsCast', 'apiKey', apiKey)
             // verify required parameter 'hash' is not null or undefined
             assertParamExists('reactionsCast', 'hash', hash)
             // verify required parameter 'types' is not null or undefined
@@ -144,9 +155,6 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (hash !== undefined) {
                 localVarQueryParameter['hash'] = hash;
@@ -168,6 +176,10 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['cursor'] = cursor;
             }
 
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -182,6 +194,7 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * Fetches reactions for a given user
          * @summary Reactions for user
+         * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
          * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -190,7 +203,9 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        reactionsUser: async (fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        reactionsUser: async (apiKey: string, fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('reactionsUser', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('reactionsUser', 'fid', fid)
             // verify required parameter 'type' is not null or undefined
@@ -206,9 +221,6 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
@@ -228,6 +240,10 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
 
             if (cursor !== undefined) {
                 localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
             }
 
 
@@ -254,12 +270,13 @@ export const ReactionApiFp = function(configuration?: Configuration) {
         /**
          * Delete a reaction (like or recast) to a cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
          * @summary Delete reaction
+         * @param {string} apiKey API key required for authentication.
          * @param {ReactionReqBody} reactionReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteReaction(reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteReaction(reactionReqBody, options);
+        async deleteReaction(apiKey: string, reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteReaction(apiKey, reactionReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ReactionApi.deleteReaction']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -267,12 +284,13 @@ export const ReactionApiFp = function(configuration?: Configuration) {
         /**
          * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
          * @summary Post a reaction
+         * @param {string} apiKey API key required for authentication.
          * @param {ReactionReqBody} reactionReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postReaction(reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.postReaction(reactionReqBody, options);
+        async postReaction(apiKey: string, reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postReaction(apiKey, reactionReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ReactionApi.postReaction']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -280,6 +298,7 @@ export const ReactionApiFp = function(configuration?: Configuration) {
         /**
          * Fetches reactions for a given cast
          * @summary Reactions for cast
+         * @param {string} apiKey API key required for authentication.
          * @param {string} hash 
          * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
          * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -288,8 +307,8 @@ export const ReactionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async reactionsCast(hash: string, types: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsCastResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.reactionsCast(hash, types, viewerFid, limit, cursor, options);
+        async reactionsCast(apiKey: string, hash: string, types: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsCastResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.reactionsCast(apiKey, hash, types, viewerFid, limit, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ReactionApi.reactionsCast']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -297,6 +316,7 @@ export const ReactionApiFp = function(configuration?: Configuration) {
         /**
          * Fetches reactions for a given user
          * @summary Reactions for user
+         * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
          * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -305,8 +325,8 @@ export const ReactionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async reactionsUser(fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.reactionsUser(fid, type, viewerFid, limit, cursor, options);
+        async reactionsUser(apiKey: string, fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.reactionsUser(apiKey, fid, type, viewerFid, limit, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ReactionApi.reactionsUser']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -324,26 +344,29 @@ export const ReactionApiFactory = function (configuration?: Configuration, baseP
         /**
          * Delete a reaction (like or recast) to a cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
          * @summary Delete reaction
+         * @param {string} apiKey API key required for authentication.
          * @param {ReactionReqBody} reactionReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteReaction(reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.deleteReaction(reactionReqBody, options).then((request) => request(axios, basePath));
+        deleteReaction(apiKey: string, reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.deleteReaction(apiKey, reactionReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
          * @summary Post a reaction
+         * @param {string} apiKey API key required for authentication.
          * @param {ReactionReqBody} reactionReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postReaction(reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.postReaction(reactionReqBody, options).then((request) => request(axios, basePath));
+        postReaction(apiKey: string, reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.postReaction(apiKey, reactionReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches reactions for a given cast
          * @summary Reactions for cast
+         * @param {string} apiKey API key required for authentication.
          * @param {string} hash 
          * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
          * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -352,12 +375,13 @@ export const ReactionApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        reactionsCast(hash: string, types: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ReactionsCastResponse> {
-            return localVarFp.reactionsCast(hash, types, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
+        reactionsCast(apiKey: string, hash: string, types: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ReactionsCastResponse> {
+            return localVarFp.reactionsCast(apiKey, hash, types, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches reactions for a given user
          * @summary Reactions for user
+         * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
          * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -366,8 +390,8 @@ export const ReactionApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        reactionsUser(fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ReactionsResponse> {
-            return localVarFp.reactionsUser(fid, type, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
+        reactionsUser(apiKey: string, fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ReactionsResponse> {
+            return localVarFp.reactionsUser(apiKey, fid, type, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -382,30 +406,33 @@ export class ReactionApi extends BaseAPI {
     /**
      * Delete a reaction (like or recast) to a cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
      * @summary Delete reaction
+     * @param {string} apiKey API key required for authentication.
      * @param {ReactionReqBody} reactionReqBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReactionApi
      */
-    public deleteReaction(reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig) {
-        return ReactionApiFp(this.configuration).deleteReaction(reactionReqBody, options).then((request) => request(this.axios, this.basePath));
+    public deleteReaction(apiKey: string, reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig) {
+        return ReactionApiFp(this.configuration).deleteReaction(apiKey, reactionReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
      * @summary Post a reaction
+     * @param {string} apiKey API key required for authentication.
      * @param {ReactionReqBody} reactionReqBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReactionApi
      */
-    public postReaction(reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig) {
-        return ReactionApiFp(this.configuration).postReaction(reactionReqBody, options).then((request) => request(this.axios, this.basePath));
+    public postReaction(apiKey: string, reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig) {
+        return ReactionApiFp(this.configuration).postReaction(apiKey, reactionReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetches reactions for a given cast
      * @summary Reactions for cast
+     * @param {string} apiKey API key required for authentication.
      * @param {string} hash 
      * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
      * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -415,13 +442,14 @@ export class ReactionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ReactionApi
      */
-    public reactionsCast(hash: string, types: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return ReactionApiFp(this.configuration).reactionsCast(hash, types, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public reactionsCast(apiKey: string, hash: string, types: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return ReactionApiFp(this.configuration).reactionsCast(apiKey, hash, types, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetches reactions for a given user
      * @summary Reactions for user
+     * @param {string} apiKey API key required for authentication.
      * @param {number} fid 
      * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
      * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -431,8 +459,8 @@ export class ReactionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ReactionApi
      */
-    public reactionsUser(fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return ReactionApiFp(this.configuration).reactionsUser(fid, type, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public reactionsUser(apiKey: string, fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return ReactionApiFp(this.configuration).reactionsUser(apiKey, fid, type, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

@@ -42,11 +42,14 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * This api will help you rent units of storage for an year for a specific FID. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
          * @summary Buy storage
+         * @param {string} apiKey API key required for authentication.
          * @param {BuyStorageReqBody} buyStorageReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        buyStorage: async (buyStorageReqBody: BuyStorageReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        buyStorage: async (apiKey: string, buyStorageReqBody: BuyStorageReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('buyStorage', 'apiKey', apiKey)
             // verify required parameter 'buyStorageReqBody' is not null or undefined
             assertParamExists('buyStorage', 'buyStorageReqBody', buyStorageReqBody)
             const localVarPath = `/farcaster/storage/buy`;
@@ -61,8 +64,9 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
 
 
     
@@ -81,11 +85,14 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Fetches storage allocations for a given user
          * @summary Allocation of user
+         * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storageAllocations: async (fid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        storageAllocations: async (apiKey: string, fid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('storageAllocations', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('storageAllocations', 'fid', fid)
             const localVarPath = `/farcaster/storage/allocations`;
@@ -100,11 +107,12 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
             }
 
 
@@ -121,11 +129,14 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Fetches storage usage for a given user
          * @summary Usage of user
+         * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storageUsage: async (fid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        storageUsage: async (apiKey: string, fid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('storageUsage', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('storageUsage', 'fid', fid)
             const localVarPath = `/farcaster/storage/usage`;
@@ -140,11 +151,12 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
             }
 
 
@@ -171,12 +183,13 @@ export const StorageApiFp = function(configuration?: Configuration) {
         /**
          * This api will help you rent units of storage for an year for a specific FID. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
          * @summary Buy storage
+         * @param {string} apiKey API key required for authentication.
          * @param {BuyStorageReqBody} buyStorageReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async buyStorage(buyStorageReqBody: BuyStorageReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageAllocationsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.buyStorage(buyStorageReqBody, options);
+        async buyStorage(apiKey: string, buyStorageReqBody: BuyStorageReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageAllocationsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.buyStorage(apiKey, buyStorageReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['StorageApi.buyStorage']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -184,12 +197,13 @@ export const StorageApiFp = function(configuration?: Configuration) {
         /**
          * Fetches storage allocations for a given user
          * @summary Allocation of user
+         * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async storageAllocations(fid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageAllocationsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.storageAllocations(fid, options);
+        async storageAllocations(apiKey: string, fid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageAllocationsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.storageAllocations(apiKey, fid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['StorageApi.storageAllocations']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -197,12 +211,13 @@ export const StorageApiFp = function(configuration?: Configuration) {
         /**
          * Fetches storage usage for a given user
          * @summary Usage of user
+         * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async storageUsage(fid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageUsageResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.storageUsage(fid, options);
+        async storageUsage(apiKey: string, fid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageUsageResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.storageUsage(apiKey, fid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['StorageApi.storageUsage']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -220,32 +235,35 @@ export const StorageApiFactory = function (configuration?: Configuration, basePa
         /**
          * This api will help you rent units of storage for an year for a specific FID. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
          * @summary Buy storage
+         * @param {string} apiKey API key required for authentication.
          * @param {BuyStorageReqBody} buyStorageReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        buyStorage(buyStorageReqBody: BuyStorageReqBody, options?: RawAxiosRequestConfig): AxiosPromise<StorageAllocationsResponse> {
-            return localVarFp.buyStorage(buyStorageReqBody, options).then((request) => request(axios, basePath));
+        buyStorage(apiKey: string, buyStorageReqBody: BuyStorageReqBody, options?: RawAxiosRequestConfig): AxiosPromise<StorageAllocationsResponse> {
+            return localVarFp.buyStorage(apiKey, buyStorageReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches storage allocations for a given user
          * @summary Allocation of user
+         * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storageAllocations(fid: number, options?: RawAxiosRequestConfig): AxiosPromise<StorageAllocationsResponse> {
-            return localVarFp.storageAllocations(fid, options).then((request) => request(axios, basePath));
+        storageAllocations(apiKey: string, fid: number, options?: RawAxiosRequestConfig): AxiosPromise<StorageAllocationsResponse> {
+            return localVarFp.storageAllocations(apiKey, fid, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches storage usage for a given user
          * @summary Usage of user
+         * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storageUsage(fid: number, options?: RawAxiosRequestConfig): AxiosPromise<StorageUsageResponse> {
-            return localVarFp.storageUsage(fid, options).then((request) => request(axios, basePath));
+        storageUsage(apiKey: string, fid: number, options?: RawAxiosRequestConfig): AxiosPromise<StorageUsageResponse> {
+            return localVarFp.storageUsage(apiKey, fid, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -260,37 +278,40 @@ export class StorageApi extends BaseAPI {
     /**
      * This api will help you rent units of storage for an year for a specific FID. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
      * @summary Buy storage
+     * @param {string} apiKey API key required for authentication.
      * @param {BuyStorageReqBody} buyStorageReqBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StorageApi
      */
-    public buyStorage(buyStorageReqBody: BuyStorageReqBody, options?: RawAxiosRequestConfig) {
-        return StorageApiFp(this.configuration).buyStorage(buyStorageReqBody, options).then((request) => request(this.axios, this.basePath));
+    public buyStorage(apiKey: string, buyStorageReqBody: BuyStorageReqBody, options?: RawAxiosRequestConfig) {
+        return StorageApiFp(this.configuration).buyStorage(apiKey, buyStorageReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetches storage allocations for a given user
      * @summary Allocation of user
+     * @param {string} apiKey API key required for authentication.
      * @param {number} fid 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StorageApi
      */
-    public storageAllocations(fid: number, options?: RawAxiosRequestConfig) {
-        return StorageApiFp(this.configuration).storageAllocations(fid, options).then((request) => request(this.axios, this.basePath));
+    public storageAllocations(apiKey: string, fid: number, options?: RawAxiosRequestConfig) {
+        return StorageApiFp(this.configuration).storageAllocations(apiKey, fid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetches storage usage for a given user
      * @summary Usage of user
+     * @param {string} apiKey API key required for authentication.
      * @param {number} fid 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StorageApi
      */
-    public storageUsage(fid: number, options?: RawAxiosRequestConfig) {
-        return StorageApiFp(this.configuration).storageUsage(fid, options).then((request) => request(this.axios, this.basePath));
+    public storageUsage(apiKey: string, fid: number, options?: RawAxiosRequestConfig) {
+        return StorageApiFp(this.configuration).storageUsage(apiKey, fid, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

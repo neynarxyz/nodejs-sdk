@@ -13,18 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { IndividualHashObj } from './individual-hash-obj';
 
 /**
  * 
  * @export
- * @interface CastWithInteractionsAndConversationsRefAnyOf
+ * @interface GetCastsReqBody
  */
-export interface CastWithInteractionsAndConversationsRefAnyOf {
+export interface GetCastsReqBody {
     /**
-     * note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth.
-     * @type {Array<object>}
-     * @memberof CastWithInteractionsAndConversationsRefAnyOf
+     * 
+     * @type {Array<IndividualHashObj>}
+     * @memberof GetCastsReqBody
      */
-    'direct_replies': Array<object>;
+    'casts'?: Array<IndividualHashObj>;
 }
 

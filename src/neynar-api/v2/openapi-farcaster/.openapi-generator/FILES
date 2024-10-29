@@ -32,6 +32,7 @@ models/ban-record.ts
 models/ban-req-body.ts
 models/ban-response.ts
 models/block-list-response.ts
+models/block-list.ts
 models/block-record.ts
 models/bulk-casts-response.ts
 models/bulk-follow-response.ts
@@ -50,11 +51,8 @@ models/cast-notification-type.ts
 models/cast-param-type.ts
 models/cast-response.ts
 models/cast-viewer-context.ts
-models/cast-with-interactions-and-conversations-any-of.ts
-models/cast-with-interactions-and-conversations-ref-any-of.ts
 models/cast-with-interactions-and-conversations-ref.ts
 models/cast-with-interactions-and-conversations.ts
-models/cast-with-interactions-any-of.ts
 models/cast-with-interactions-reactions.ts
 models/cast-with-interactions-replies.ts
 models/cast-with-interactions.ts
@@ -95,8 +93,7 @@ models/embed-cast-deep.ts
 models/embed-cast.ts
 models/embed-deep.ts
 models/embed-type.ts
-models/embed-url-metadata-html-any-of-oembed.ts
-models/embed-url-metadata-html-any-of.ts
+models/embed-url-metadata-html-all-of-oembed.ts
 models/embed-url-metadata-html.ts
 models/embed-url-metadata-image.ts
 models/embed-url-metadata-video-stream-inner.ts
@@ -142,6 +139,7 @@ models/frame-validate-analytics-response.ts
 models/frame-validate-analytics-total-interactors.ts
 models/frame-validate-list-response.ts
 models/frame.ts
+models/get-casts-req-body.ts
 models/hydrated-follower.ts
 models/image-object.ts
 models/index.ts
@@ -150,6 +148,7 @@ models/location-address.ts
 models/location.ts
 models/mark-notifications-as-seen-req-body.ts
 models/mute-list-response.ts
+models/mute-list.ts
 models/mute-record.ts
 models/mute-req-body.ts
 models/mute-response.ts
@@ -170,19 +169,16 @@ models/notification-type.ts
 models/notification.ts
 models/notifications-response.ts
 models/oembed-data.ts
-models/oembed-link-data-any-of.ts
 models/oembed-link-data.ts
-models/oembed-photo-data-any-of.ts
 models/oembed-photo-data.ts
-models/oembed-rich-data-any-of.ts
 models/oembed-rich-data.ts
-models/oembed-video-data-any-of.ts
 models/oembed-video-data.ts
 models/og-object.ts
 models/operation-response.ts
 models/post-cast-req-body-embeds-cast-id-properties.ts
 models/post-cast-req-body-embeds.ts
 models/post-cast-req-body.ts
+models/post-cast-response-cast-author.ts
 models/post-cast-response-cast.ts
 models/post-cast-response.ts
 models/profile-url-pfp.ts
@@ -212,7 +208,6 @@ models/storage-allocation.ts
 models/storage-allocations-response.ts
 models/storage-object.ts
 models/storage-usage-response.ts
-models/subscribed-to-any-of.ts
 models/subscribed-to-object.ts
 models/subscribed-to-response.ts
 models/subscribed-to.ts
@@ -260,7 +255,6 @@ models/webhook-delete-req-body.ts
 models/webhook-list-response.ts
 models/webhook-patch-req-body.ts
 models/webhook-post-req-body.ts
-models/webhook-put-req-body-any-of.ts
 models/webhook-put-req-body.ts
 models/webhook-response.ts
 models/webhook-secret.ts

@@ -15,9 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { SubscribedToAnyOf } from './subscribed-to-any-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import type { Subscription } from './subscription';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -36,94 +33,9 @@ import type { SubscriptionToken } from './subscription-token';
 import type { User } from './user';
 
 /**
- * 
+ * @type SubscribedTo
  * @export
- * @interface SubscribedTo
  */
-export interface SubscribedTo {
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscribedTo
-     */
-    'object': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscribedTo
-     */
-    'provider_name'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscribedTo
-     */
-    'contract_address': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscribedTo
-     */
-    'chain': number;
-    /**
-     * 
-     * @type {SubscriptionMetadata}
-     * @memberof SubscribedTo
-     */
-    'metadata': SubscriptionMetadata;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscribedTo
-     */
-    'owner_address': string;
-    /**
-     * 
-     * @type {SubscriptionPrice}
-     * @memberof SubscribedTo
-     */
-    'price': SubscriptionPrice;
-    /**
-     * 
-     * @type {Array<SubscriptionTier>}
-     * @memberof SubscribedTo
-     */
-    'tiers'?: Array<SubscriptionTier>;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscribedTo
-     */
-    'protocol_version': number;
-    /**
-     * 
-     * @type {SubscriptionToken}
-     * @memberof SubscribedTo
-     */
-    'token': SubscriptionToken;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscribedTo
-     */
-    'expires_at': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscribedTo
-     */
-    'subscribed_at': string;
-    /**
-     * 
-     * @type {SubscriptionTier}
-     * @memberof SubscribedTo
-     */
-    'tier': SubscriptionTier;
-    /**
-     * 
-     * @type {User}
-     * @memberof SubscribedTo
-     */
-    'creator': User;
-}
+export type SubscribedTo = Subscription;
+
 
