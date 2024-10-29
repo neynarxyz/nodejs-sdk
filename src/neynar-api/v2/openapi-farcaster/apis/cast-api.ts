@@ -55,7 +55,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
     return {
         /**
          * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
-         * @summary Fetch cast for a given hash or Warpcast URL
+         * @summary By hash or URL
          * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
@@ -111,7 +111,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
-         * @summary Fetch the conversation for a given cast
+         * @summary Conversation for a cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
@@ -330,7 +330,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Fetches all composer actions on Warpcast. You can filter by top or featured.
-         * @summary Fetch all composer actions on Warpcast
+         * @summary Fetch composer actions
          * @param {string} apiKey API key required for authentication.
          * @param {CastComposerType} list Type of list to fetch.
          * @param {number} [limit] Number of results to fetch (default 25, max 25).
@@ -480,7 +480,7 @@ export const CastApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
-         * @summary Fetch cast for a given hash or Warpcast URL
+         * @summary By hash or URL
          * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
@@ -494,7 +494,7 @@ export const CastApiFp = function(configuration?: Configuration) {
         },
         /**
          * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
-         * @summary Fetch the conversation for a given cast
+         * @summary Conversation for a cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
@@ -547,7 +547,7 @@ export const CastApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches all composer actions on Warpcast. You can filter by top or featured.
-         * @summary Fetch all composer actions on Warpcast
+         * @summary Fetch composer actions
          * @param {string} apiKey API key required for authentication.
          * @param {CastComposerType} list Type of list to fetch.
          * @param {number} [limit] Number of results to fetch (default 25, max 25).
@@ -595,7 +595,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
     return {
         /**
          * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
-         * @summary Fetch cast for a given hash or Warpcast URL
+         * @summary By hash or URL
          * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
@@ -608,7 +608,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
-         * @summary Fetch the conversation for a given cast
+         * @summary Conversation for a cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
@@ -658,7 +658,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Fetches all composer actions on Warpcast. You can filter by top or featured.
-         * @summary Fetch all composer actions on Warpcast
+         * @summary Fetch composer actions
          * @param {string} apiKey API key required for authentication.
          * @param {CastComposerType} list Type of list to fetch.
          * @param {number} [limit] Number of results to fetch (default 25, max 25).
@@ -703,7 +703,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
 export class CastApi extends BaseAPI {
     /**
      * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
-     * @summary Fetch cast for a given hash or Warpcast URL
+     * @summary By hash or URL
      * @param {string} apiKey API key required for authentication.
      * @param {string} identifier Cast identifier (Its either a url or a hash)
      * @param {CastParamType} type 
@@ -718,7 +718,7 @@ export class CastApi extends BaseAPI {
 
     /**
      * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
-     * @summary Fetch the conversation for a given cast
+     * @summary Conversation for a cast
      * @param {string} apiKey API key required for authentication.
      * @param {string} identifier Cast identifier (Its either a url or a hash)
      * @param {CastParamType} type 
@@ -774,7 +774,7 @@ export class CastApi extends BaseAPI {
 
     /**
      * Fetches all composer actions on Warpcast. You can filter by top or featured.
-     * @summary Fetch all composer actions on Warpcast
+     * @summary Fetch composer actions
      * @param {string} apiKey API key required for authentication.
      * @param {CastComposerType} list Type of list to fetch.
      * @param {number} [limit] Number of results to fetch (default 25, max 25).
