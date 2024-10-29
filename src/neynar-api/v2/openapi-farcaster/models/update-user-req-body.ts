@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { UpdateUserReqBodyLocation } from './update-user-req-body-location';
 
 /**
  * 
@@ -56,5 +59,11 @@ export interface UpdateUserReqBody {
      * @memberof UpdateUserReqBody
      */
     'display_name'?: string;
+    /**
+     * 
+     * @type {UpdateUserReqBodyLocation}
+     * @memberof UpdateUserReqBody
+     */
+    'location'?: UpdateUserReqBodyLocation;
 }
 
