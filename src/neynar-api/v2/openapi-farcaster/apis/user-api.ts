@@ -64,16 +64,13 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Warpcast has deprecated the active badge. Use user/power endpoint instead.
          * @summary Fetch active users
-         * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] 
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        activeUsers: async (apiKey: string, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('activeUsers', 'apiKey', apiKey)
+        activeUsers: async (limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/farcaster/user/active`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -97,10 +94,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['cursor'] = cursor;
             }
 
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
-
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -115,14 +108,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
          * @summary Delete verification
-         * @param {string} apiKey API key required for authentication.
          * @param {RemoveVerificationReqBody} removeVerificationReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        farcasterUserVerificationDelete: async (apiKey: string, removeVerificationReqBody: RemoveVerificationReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('farcasterUserVerificationDelete', 'apiKey', apiKey)
+        farcasterUserVerificationDelete: async (removeVerificationReqBody: RemoveVerificationReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'removeVerificationReqBody' is not null or undefined
             assertParamExists('farcasterUserVerificationDelete', 'removeVerificationReqBody', removeVerificationReqBody)
             const localVarPath = `/farcaster/user/verification`;
@@ -139,10 +129,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
 
 
     
@@ -161,14 +147,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Adds verification for an eth address or contract for the user \\ (In order to add verification `signer_uuid` must be approved) 
          * @summary Add verification
-         * @param {string} apiKey API key required for authentication.
          * @param {AddVerificationReqBody} addVerificationReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        farcasterUserVerificationPost: async (apiKey: string, addVerificationReqBody: AddVerificationReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('farcasterUserVerificationPost', 'apiKey', apiKey)
+        farcasterUserVerificationPost: async (addVerificationReqBody: AddVerificationReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'addVerificationReqBody' is not null or undefined
             assertParamExists('farcasterUserVerificationPost', 'addVerificationReqBody', addVerificationReqBody)
             const localVarPath = `/farcaster/user/verification`;
@@ -185,10 +168,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
 
 
     
@@ -207,14 +186,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
          * @summary Follow user
-         * @param {string} apiKey API key required for authentication.
          * @param {FollowReqBody} followReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        followUser: async (apiKey: string, followReqBody: FollowReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('followUser', 'apiKey', apiKey)
+        followUser: async (followReqBody: FollowReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'followReqBody' is not null or undefined
             assertParamExists('followUser', 'followReqBody', followReqBody)
             const localVarPath = `/farcaster/user/follow`;
@@ -231,10 +207,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
 
 
     
@@ -253,13 +225,10 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
          * @summary Fetch fresh FID
-         * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFreshFid: async (apiKey: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('getFreshFid', 'apiKey', apiKey)
+        getFreshFid: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/farcaster/user/fid`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -275,10 +244,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
-
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -293,14 +258,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Lookup a user by custody-address
          * @summary By custody-address
-         * @param {string} apiKey API key required for authentication.
          * @param {string} custodyAddress Custody Address associated with mnemonic
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lookupUserByCustodyAddress: async (apiKey: string, custodyAddress: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('lookupUserByCustodyAddress', 'apiKey', apiKey)
+        lookupUserByCustodyAddress: async (custodyAddress: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'custodyAddress' is not null or undefined
             assertParamExists('lookupUserByCustodyAddress', 'custodyAddress', custodyAddress)
             const localVarPath = `/farcaster/user/custody-address`;
@@ -322,10 +284,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['custody_address'] = custodyAddress;
             }
 
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
-
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -340,16 +298,13 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Fetches power users based on Warpcast power badges. Information is updated once a day.
          * @summary Power users
-         * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] 
          * @param {number} [limit] Number of power users to fetch, max 100
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        powerUsers: async (apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('powerUsers', 'apiKey', apiKey)
+        powerUsers: async (viewerFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/farcaster/user/power`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -377,10 +332,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['cursor'] = cursor;
             }
 
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
-
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -395,14 +346,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user. 
          * @summary Register new account
-         * @param {string} apiKey API key required for authentication.
          * @param {RegisterUserReqBody} registerUserReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        registerUser: async (apiKey: string, registerUserReqBody: RegisterUserReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('registerUser', 'apiKey', apiKey)
+        registerUser: async (registerUserReqBody: RegisterUserReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'registerUserReqBody' is not null or undefined
             assertParamExists('registerUser', 'registerUserReqBody', registerUserReqBody)
             const localVarPath = `/farcaster/user`;
@@ -419,10 +367,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
 
 
     
@@ -441,14 +385,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved) 
          * @summary Unfollow user
-         * @param {string} apiKey API key required for authentication.
          * @param {FollowReqBody} followReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        unfollowUser: async (apiKey: string, followReqBody: FollowReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('unfollowUser', 'apiKey', apiKey)
+        unfollowUser: async (followReqBody: FollowReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'followReqBody' is not null or undefined
             assertParamExists('unfollowUser', 'followReqBody', followReqBody)
             const localVarPath = `/farcaster/user/follow`;
@@ -465,10 +406,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
 
 
     
@@ -487,14 +424,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Update user profile \\ (In order to update user\'s profile `signer_uuid` must be approved) 
          * @summary Update user profile
-         * @param {string} apiKey API key required for authentication.
          * @param {UpdateUserReqBody} updateUserReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateUser: async (apiKey: string, updateUserReqBody: UpdateUserReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('updateUser', 'apiKey', apiKey)
+        updateUser: async (updateUserReqBody: UpdateUserReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'updateUserReqBody' is not null or undefined
             assertParamExists('updateUser', 'updateUserReqBody', updateUserReqBody)
             const localVarPath = `/farcaster/user`;
@@ -511,10 +445,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
 
 
     
@@ -533,15 +463,12 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Fetches information about multiple users based on FIDs
          * @summary By FIDs
-         * @param {string} apiKey API key required for authentication.
          * @param {string} fids Comma separated list of FIDs, up to 100 at a time
          * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userBulk: async (apiKey: string, fids: string, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('userBulk', 'apiKey', apiKey)
+        userBulk: async (fids: string, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fids' is not null or undefined
             assertParamExists('userBulk', 'fids', fids)
             const localVarPath = `/farcaster/user/bulk`;
@@ -567,10 +494,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
-
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -585,16 +508,13 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
          * @summary By Eth or Sol addresses
-         * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
          * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
          * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userBulkByAddress: async (apiKey: string, addresses: string, addressTypes?: string, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('userBulkByAddress', 'apiKey', apiKey)
+        userBulkByAddress: async (addresses: string, addressTypes?: string, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'addresses' is not null or undefined
             assertParamExists('userBulkByAddress', 'addresses', addresses)
             const localVarPath = `/farcaster/user/bulk-by-address`;
@@ -624,10 +544,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
-
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -642,15 +558,12 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Fetches a single hydrated user object given a username
          * @summary By username
-         * @param {string} apiKey API key required for authentication.
          * @param {string} username Username of the user to fetch
          * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userByUsernameV2: async (apiKey: string, username: string, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('userByUsernameV2', 'apiKey', apiKey)
+        userByUsernameV2: async (username: string, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'username' is not null or undefined
             assertParamExists('userByUsernameV2', 'username', username)
             const localVarPath = `/farcaster/user/by_username`;
@@ -676,10 +589,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
-
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -694,13 +603,10 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
          * @summary Power user FIDs
-         * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userPowerLite: async (apiKey: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('userPowerLite', 'apiKey', apiKey)
+        userPowerLite: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/farcaster/user/power_lite`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -716,10 +622,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
-
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -734,7 +636,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Search for Usernames
          * @summary Search for Usernames
-         * @param {string} apiKey API key required for authentication.
          * @param {string} q 
          * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {number} [limit] 
@@ -742,9 +643,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userSearch: async (apiKey: string, q: string, viewerFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('userSearch', 'apiKey', apiKey)
+        userSearch: async (q: string, viewerFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'q' is not null or undefined
             assertParamExists('userSearch', 'q', q)
             const localVarPath = `/farcaster/user/search`;
@@ -778,10 +677,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['cursor'] = cursor;
             }
 
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
-
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -806,15 +701,14 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Warpcast has deprecated the active badge. Use user/power endpoint instead.
          * @summary Fetch active users
-         * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] 
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        async activeUsers(apiKey: string, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.activeUsers(apiKey, limit, cursor, options);
+        async activeUsers(limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.activeUsers(limit, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.activeUsers']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -822,13 +716,12 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
          * @summary Delete verification
-         * @param {string} apiKey API key required for authentication.
          * @param {RemoveVerificationReqBody} removeVerificationReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async farcasterUserVerificationDelete(apiKey: string, removeVerificationReqBody: RemoveVerificationReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.farcasterUserVerificationDelete(apiKey, removeVerificationReqBody, options);
+        async farcasterUserVerificationDelete(removeVerificationReqBody: RemoveVerificationReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.farcasterUserVerificationDelete(removeVerificationReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.farcasterUserVerificationDelete']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -836,13 +729,12 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Adds verification for an eth address or contract for the user \\ (In order to add verification `signer_uuid` must be approved) 
          * @summary Add verification
-         * @param {string} apiKey API key required for authentication.
          * @param {AddVerificationReqBody} addVerificationReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async farcasterUserVerificationPost(apiKey: string, addVerificationReqBody: AddVerificationReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.farcasterUserVerificationPost(apiKey, addVerificationReqBody, options);
+        async farcasterUserVerificationPost(addVerificationReqBody: AddVerificationReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.farcasterUserVerificationPost(addVerificationReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.farcasterUserVerificationPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -850,13 +742,12 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
          * @summary Follow user
-         * @param {string} apiKey API key required for authentication.
          * @param {FollowReqBody} followReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async followUser(apiKey: string, followReqBody: FollowReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkFollowResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.followUser(apiKey, followReqBody, options);
+        async followUser(followReqBody: FollowReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkFollowResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.followUser(followReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.followUser']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -864,12 +755,11 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
          * @summary Fetch fresh FID
-         * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFreshFid(apiKey: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserFIDResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getFreshFid(apiKey, options);
+        async getFreshFid(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserFIDResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getFreshFid(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.getFreshFid']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -877,13 +767,12 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Lookup a user by custody-address
          * @summary By custody-address
-         * @param {string} apiKey API key required for authentication.
          * @param {string} custodyAddress Custody Address associated with mnemonic
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async lookupUserByCustodyAddress(apiKey: string, custodyAddress: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupUserByCustodyAddress(apiKey, custodyAddress, options);
+        async lookupUserByCustodyAddress(custodyAddress: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupUserByCustodyAddress(custodyAddress, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.lookupUserByCustodyAddress']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -891,15 +780,14 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Fetches power users based on Warpcast power badges. Information is updated once a day.
          * @summary Power users
-         * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] 
          * @param {number} [limit] Number of power users to fetch, max 100
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async powerUsers(apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.powerUsers(apiKey, viewerFid, limit, cursor, options);
+        async powerUsers(viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.powerUsers(viewerFid, limit, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.powerUsers']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -907,13 +795,12 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user. 
          * @summary Register new account
-         * @param {string} apiKey API key required for authentication.
          * @param {RegisterUserReqBody} registerUserReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async registerUser(apiKey: string, registerUserReqBody: RegisterUserReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RegisterUserResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.registerUser(apiKey, registerUserReqBody, options);
+        async registerUser(registerUserReqBody: RegisterUserReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RegisterUserResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.registerUser(registerUserReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.registerUser']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -921,13 +808,12 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved) 
          * @summary Unfollow user
-         * @param {string} apiKey API key required for authentication.
          * @param {FollowReqBody} followReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async unfollowUser(apiKey: string, followReqBody: FollowReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkFollowResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.unfollowUser(apiKey, followReqBody, options);
+        async unfollowUser(followReqBody: FollowReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkFollowResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.unfollowUser(followReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.unfollowUser']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -935,13 +821,12 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Update user profile \\ (In order to update user\'s profile `signer_uuid` must be approved) 
          * @summary Update user profile
-         * @param {string} apiKey API key required for authentication.
          * @param {UpdateUserReqBody} updateUserReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateUser(apiKey: string, updateUserReqBody: UpdateUserReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateUser(apiKey, updateUserReqBody, options);
+        async updateUser(updateUserReqBody: UpdateUserReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateUser(updateUserReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.updateUser']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -949,14 +834,13 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Fetches information about multiple users based on FIDs
          * @summary By FIDs
-         * @param {string} apiKey API key required for authentication.
          * @param {string} fids Comma separated list of FIDs, up to 100 at a time
          * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async userBulk(apiKey: string, fids: string, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkUsersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userBulk(apiKey, fids, viewerFid, options);
+        async userBulk(fids: string, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkUsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userBulk(fids, viewerFid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.userBulk']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -964,15 +848,14 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
          * @summary By Eth or Sol addresses
-         * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
          * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
          * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async userBulkByAddress(apiKey: string, addresses: string, addressTypes?: string, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: Array<User>; }>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userBulkByAddress(apiKey, addresses, addressTypes, viewerFid, options);
+        async userBulkByAddress(addresses: string, addressTypes?: string, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: Array<User>; }>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userBulkByAddress(addresses, addressTypes, viewerFid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.userBulkByAddress']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -980,14 +863,13 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Fetches a single hydrated user object given a username
          * @summary By username
-         * @param {string} apiKey API key required for authentication.
          * @param {string} username Username of the user to fetch
          * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async userByUsernameV2(apiKey: string, username: string, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userByUsernameV2(apiKey, username, viewerFid, options);
+        async userByUsernameV2(username: string, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userByUsernameV2(username, viewerFid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.userByUsernameV2']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -995,12 +877,11 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
          * @summary Power user FIDs
-         * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async userPowerLite(apiKey: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserPowerLiteResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userPowerLite(apiKey, options);
+        async userPowerLite(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserPowerLiteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userPowerLite(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.userPowerLite']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1008,7 +889,6 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Search for Usernames
          * @summary Search for Usernames
-         * @param {string} apiKey API key required for authentication.
          * @param {string} q 
          * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {number} [limit] 
@@ -1016,8 +896,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async userSearch(apiKey: string, q: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userSearch(apiKey, q, viewerFid, limit, cursor, options);
+        async userSearch(q: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userSearch(q, viewerFid, limit, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.userSearch']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1035,167 +915,152 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         /**
          * Warpcast has deprecated the active badge. Use user/power endpoint instead.
          * @summary Fetch active users
-         * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] 
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
-        activeUsers(apiKey: string, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
-            return localVarFp.activeUsers(apiKey, limit, cursor, options).then((request) => request(axios, basePath));
+        activeUsers(limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
+            return localVarFp.activeUsers(limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
          * @summary Delete verification
-         * @param {string} apiKey API key required for authentication.
          * @param {RemoveVerificationReqBody} removeVerificationReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        farcasterUserVerificationDelete(apiKey: string, removeVerificationReqBody: RemoveVerificationReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.farcasterUserVerificationDelete(apiKey, removeVerificationReqBody, options).then((request) => request(axios, basePath));
+        farcasterUserVerificationDelete(removeVerificationReqBody: RemoveVerificationReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.farcasterUserVerificationDelete(removeVerificationReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Adds verification for an eth address or contract for the user \\ (In order to add verification `signer_uuid` must be approved) 
          * @summary Add verification
-         * @param {string} apiKey API key required for authentication.
          * @param {AddVerificationReqBody} addVerificationReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        farcasterUserVerificationPost(apiKey: string, addVerificationReqBody: AddVerificationReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.farcasterUserVerificationPost(apiKey, addVerificationReqBody, options).then((request) => request(axios, basePath));
+        farcasterUserVerificationPost(addVerificationReqBody: AddVerificationReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.farcasterUserVerificationPost(addVerificationReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
          * @summary Follow user
-         * @param {string} apiKey API key required for authentication.
          * @param {FollowReqBody} followReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        followUser(apiKey: string, followReqBody: FollowReqBody, options?: RawAxiosRequestConfig): AxiosPromise<BulkFollowResponse> {
-            return localVarFp.followUser(apiKey, followReqBody, options).then((request) => request(axios, basePath));
+        followUser(followReqBody: FollowReqBody, options?: RawAxiosRequestConfig): AxiosPromise<BulkFollowResponse> {
+            return localVarFp.followUser(followReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
          * @summary Fetch fresh FID
-         * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFreshFid(apiKey: string, options?: RawAxiosRequestConfig): AxiosPromise<UserFIDResponse> {
-            return localVarFp.getFreshFid(apiKey, options).then((request) => request(axios, basePath));
+        getFreshFid(options?: RawAxiosRequestConfig): AxiosPromise<UserFIDResponse> {
+            return localVarFp.getFreshFid(options).then((request) => request(axios, basePath));
         },
         /**
          * Lookup a user by custody-address
          * @summary By custody-address
-         * @param {string} apiKey API key required for authentication.
          * @param {string} custodyAddress Custody Address associated with mnemonic
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lookupUserByCustodyAddress(apiKey: string, custodyAddress: string, options?: RawAxiosRequestConfig): AxiosPromise<UserResponse> {
-            return localVarFp.lookupUserByCustodyAddress(apiKey, custodyAddress, options).then((request) => request(axios, basePath));
+        lookupUserByCustodyAddress(custodyAddress: string, options?: RawAxiosRequestConfig): AxiosPromise<UserResponse> {
+            return localVarFp.lookupUserByCustodyAddress(custodyAddress, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches power users based on Warpcast power badges. Information is updated once a day.
          * @summary Power users
-         * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] 
          * @param {number} [limit] Number of power users to fetch, max 100
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        powerUsers(apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
-            return localVarFp.powerUsers(apiKey, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
+        powerUsers(viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
+            return localVarFp.powerUsers(viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user. 
          * @summary Register new account
-         * @param {string} apiKey API key required for authentication.
          * @param {RegisterUserReqBody} registerUserReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        registerUser(apiKey: string, registerUserReqBody: RegisterUserReqBody, options?: RawAxiosRequestConfig): AxiosPromise<RegisterUserResponse> {
-            return localVarFp.registerUser(apiKey, registerUserReqBody, options).then((request) => request(axios, basePath));
+        registerUser(registerUserReqBody: RegisterUserReqBody, options?: RawAxiosRequestConfig): AxiosPromise<RegisterUserResponse> {
+            return localVarFp.registerUser(registerUserReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved) 
          * @summary Unfollow user
-         * @param {string} apiKey API key required for authentication.
          * @param {FollowReqBody} followReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        unfollowUser(apiKey: string, followReqBody: FollowReqBody, options?: RawAxiosRequestConfig): AxiosPromise<BulkFollowResponse> {
-            return localVarFp.unfollowUser(apiKey, followReqBody, options).then((request) => request(axios, basePath));
+        unfollowUser(followReqBody: FollowReqBody, options?: RawAxiosRequestConfig): AxiosPromise<BulkFollowResponse> {
+            return localVarFp.unfollowUser(followReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Update user profile \\ (In order to update user\'s profile `signer_uuid` must be approved) 
          * @summary Update user profile
-         * @param {string} apiKey API key required for authentication.
          * @param {UpdateUserReqBody} updateUserReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateUser(apiKey: string, updateUserReqBody: UpdateUserReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.updateUser(apiKey, updateUserReqBody, options).then((request) => request(axios, basePath));
+        updateUser(updateUserReqBody: UpdateUserReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.updateUser(updateUserReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches information about multiple users based on FIDs
          * @summary By FIDs
-         * @param {string} apiKey API key required for authentication.
          * @param {string} fids Comma separated list of FIDs, up to 100 at a time
          * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userBulk(apiKey: string, fids: string, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<BulkUsersResponse> {
-            return localVarFp.userBulk(apiKey, fids, viewerFid, options).then((request) => request(axios, basePath));
+        userBulk(fids: string, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<BulkUsersResponse> {
+            return localVarFp.userBulk(fids, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
          * @summary By Eth or Sol addresses
-         * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
          * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
          * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userBulkByAddress(apiKey: string, addresses: string, addressTypes?: string, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: Array<User>; }> {
-            return localVarFp.userBulkByAddress(apiKey, addresses, addressTypes, viewerFid, options).then((request) => request(axios, basePath));
+        userBulkByAddress(addresses: string, addressTypes?: string, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: Array<User>; }> {
+            return localVarFp.userBulkByAddress(addresses, addressTypes, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches a single hydrated user object given a username
          * @summary By username
-         * @param {string} apiKey API key required for authentication.
          * @param {string} username Username of the user to fetch
          * @param {number} [viewerFid] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userByUsernameV2(apiKey: string, username: string, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<UserResponse> {
-            return localVarFp.userByUsernameV2(apiKey, username, viewerFid, options).then((request) => request(axios, basePath));
+        userByUsernameV2(username: string, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<UserResponse> {
+            return localVarFp.userByUsernameV2(username, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
          * @summary Power user FIDs
-         * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userPowerLite(apiKey: string, options?: RawAxiosRequestConfig): AxiosPromise<UserPowerLiteResponse> {
-            return localVarFp.userPowerLite(apiKey, options).then((request) => request(axios, basePath));
+        userPowerLite(options?: RawAxiosRequestConfig): AxiosPromise<UserPowerLiteResponse> {
+            return localVarFp.userPowerLite(options).then((request) => request(axios, basePath));
         },
         /**
          * Search for Usernames
          * @summary Search for Usernames
-         * @param {string} apiKey API key required for authentication.
          * @param {string} q 
          * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {number} [limit] 
@@ -1203,8 +1068,8 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userSearch(apiKey: string, q: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<UserSearchResponse> {
-            return localVarFp.userSearch(apiKey, q, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
+        userSearch(q: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<UserSearchResponse> {
+            return localVarFp.userSearch(q, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1219,7 +1084,6 @@ export class UserApi extends BaseAPI {
     /**
      * Warpcast has deprecated the active badge. Use user/power endpoint instead.
      * @summary Fetch active users
-     * @param {string} apiKey API key required for authentication.
      * @param {number} [limit] 
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
@@ -1227,78 +1091,72 @@ export class UserApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public activeUsers(apiKey: string, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).activeUsers(apiKey, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public activeUsers(limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).activeUsers(limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
      * @summary Delete verification
-     * @param {string} apiKey API key required for authentication.
      * @param {RemoveVerificationReqBody} removeVerificationReqBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public farcasterUserVerificationDelete(apiKey: string, removeVerificationReqBody: RemoveVerificationReqBody, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).farcasterUserVerificationDelete(apiKey, removeVerificationReqBody, options).then((request) => request(this.axios, this.basePath));
+    public farcasterUserVerificationDelete(removeVerificationReqBody: RemoveVerificationReqBody, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).farcasterUserVerificationDelete(removeVerificationReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Adds verification for an eth address or contract for the user \\ (In order to add verification `signer_uuid` must be approved) 
      * @summary Add verification
-     * @param {string} apiKey API key required for authentication.
      * @param {AddVerificationReqBody} addVerificationReqBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public farcasterUserVerificationPost(apiKey: string, addVerificationReqBody: AddVerificationReqBody, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).farcasterUserVerificationPost(apiKey, addVerificationReqBody, options).then((request) => request(this.axios, this.basePath));
+    public farcasterUserVerificationPost(addVerificationReqBody: AddVerificationReqBody, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).farcasterUserVerificationPost(addVerificationReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
      * @summary Follow user
-     * @param {string} apiKey API key required for authentication.
      * @param {FollowReqBody} followReqBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public followUser(apiKey: string, followReqBody: FollowReqBody, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).followUser(apiKey, followReqBody, options).then((request) => request(this.axios, this.basePath));
+    public followUser(followReqBody: FollowReqBody, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).followUser(followReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
      * @summary Fetch fresh FID
-     * @param {string} apiKey API key required for authentication.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public getFreshFid(apiKey: string, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).getFreshFid(apiKey, options).then((request) => request(this.axios, this.basePath));
+    public getFreshFid(options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).getFreshFid(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Lookup a user by custody-address
      * @summary By custody-address
-     * @param {string} apiKey API key required for authentication.
      * @param {string} custodyAddress Custody Address associated with mnemonic
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public lookupUserByCustodyAddress(apiKey: string, custodyAddress: string, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).lookupUserByCustodyAddress(apiKey, custodyAddress, options).then((request) => request(this.axios, this.basePath));
+    public lookupUserByCustodyAddress(custodyAddress: string, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).lookupUserByCustodyAddress(custodyAddress, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetches power users based on Warpcast power badges. Information is updated once a day.
      * @summary Power users
-     * @param {string} apiKey API key required for authentication.
      * @param {number} [viewerFid] 
      * @param {number} [limit] Number of power users to fetch, max 100
      * @param {string} [cursor] Pagination cursor.
@@ -1306,67 +1164,62 @@ export class UserApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public powerUsers(apiKey: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).powerUsers(apiKey, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public powerUsers(viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).powerUsers(viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user. 
      * @summary Register new account
-     * @param {string} apiKey API key required for authentication.
      * @param {RegisterUserReqBody} registerUserReqBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public registerUser(apiKey: string, registerUserReqBody: RegisterUserReqBody, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).registerUser(apiKey, registerUserReqBody, options).then((request) => request(this.axios, this.basePath));
+    public registerUser(registerUserReqBody: RegisterUserReqBody, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).registerUser(registerUserReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved) 
      * @summary Unfollow user
-     * @param {string} apiKey API key required for authentication.
      * @param {FollowReqBody} followReqBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public unfollowUser(apiKey: string, followReqBody: FollowReqBody, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).unfollowUser(apiKey, followReqBody, options).then((request) => request(this.axios, this.basePath));
+    public unfollowUser(followReqBody: FollowReqBody, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).unfollowUser(followReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Update user profile \\ (In order to update user\'s profile `signer_uuid` must be approved) 
      * @summary Update user profile
-     * @param {string} apiKey API key required for authentication.
      * @param {UpdateUserReqBody} updateUserReqBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public updateUser(apiKey: string, updateUserReqBody: UpdateUserReqBody, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).updateUser(apiKey, updateUserReqBody, options).then((request) => request(this.axios, this.basePath));
+    public updateUser(updateUserReqBody: UpdateUserReqBody, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).updateUser(updateUserReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetches information about multiple users based on FIDs
      * @summary By FIDs
-     * @param {string} apiKey API key required for authentication.
      * @param {string} fids Comma separated list of FIDs, up to 100 at a time
      * @param {number} [viewerFid] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userBulk(apiKey: string, fids: string, viewerFid?: number, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).userBulk(apiKey, fids, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    public userBulk(fids: string, viewerFid?: number, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).userBulk(fids, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
      * @summary By Eth or Sol addresses
-     * @param {string} apiKey API key required for authentication.
      * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
      * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
      * @param {number} [viewerFid] 
@@ -1374,40 +1227,37 @@ export class UserApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userBulkByAddress(apiKey: string, addresses: string, addressTypes?: string, viewerFid?: number, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).userBulkByAddress(apiKey, addresses, addressTypes, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    public userBulkByAddress(addresses: string, addressTypes?: string, viewerFid?: number, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).userBulkByAddress(addresses, addressTypes, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetches a single hydrated user object given a username
      * @summary By username
-     * @param {string} apiKey API key required for authentication.
      * @param {string} username Username of the user to fetch
      * @param {number} [viewerFid] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userByUsernameV2(apiKey: string, username: string, viewerFid?: number, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).userByUsernameV2(apiKey, username, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    public userByUsernameV2(username: string, viewerFid?: number, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).userByUsernameV2(username, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
      * @summary Power user FIDs
-     * @param {string} apiKey API key required for authentication.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userPowerLite(apiKey: string, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).userPowerLite(apiKey, options).then((request) => request(this.axios, this.basePath));
+    public userPowerLite(options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).userPowerLite(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Search for Usernames
      * @summary Search for Usernames
-     * @param {string} apiKey API key required for authentication.
      * @param {string} q 
      * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {number} [limit] 
@@ -1416,8 +1266,8 @@ export class UserApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userSearch(apiKey: string, q: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).userSearch(apiKey, q, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public userSearch(q: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).userSearch(q, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

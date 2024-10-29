@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { SubscriptionTierPrice } from './subscription-tier-price';
+import type { SubscriptionTierPrice } from './subscription-tier-price';
 
 /**
  * 

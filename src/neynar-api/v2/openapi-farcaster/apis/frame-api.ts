@@ -62,14 +62,11 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Delete an existing frame, if it was made by the developer (identified by API key)
          * @summary Delete frame
-         * @param {string} apiKey API key required for authentication.
          * @param {DeleteNeynarFrameRequest} deleteNeynarFrameRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteNeynarFrame: async (apiKey: string, deleteNeynarFrameRequest: DeleteNeynarFrameRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('deleteNeynarFrame', 'apiKey', apiKey)
+        deleteNeynarFrame: async (deleteNeynarFrameRequest: DeleteNeynarFrameRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deleteNeynarFrameRequest' is not null or undefined
             assertParamExists('deleteNeynarFrame', 'deleteNeynarFrameRequest', deleteNeynarFrameRequest)
             const localVarPath = `/farcaster/frame`;
@@ -86,10 +83,6 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
 
 
     
@@ -108,13 +101,10 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Fetch a list of frames made by the developer (identified by API key)
          * @summary List of frames
-         * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchNeynarFrames: async (apiKey: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('fetchNeynarFrames', 'apiKey', apiKey)
+        fetchNeynarFrames: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/farcaster/frame/list`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -130,10 +120,6 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
-
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -148,14 +134,11 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Fetches the frame meta tags from the URL
          * @summary Meta tags from URL
-         * @param {string} apiKey API key required for authentication.
          * @param {string} url The frame URL to crawl
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        frameFromUrl: async (apiKey: string, url: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('frameFromUrl', 'apiKey', apiKey)
+        frameFromUrl: async (url: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'url' is not null or undefined
             assertParamExists('frameFromUrl', 'url', url)
             const localVarPath = `/farcaster/frame/crawl`;
@@ -177,10 +160,6 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
                 localVarQueryParameter['url'] = url;
             }
 
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
-
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -195,16 +174,13 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Fetch a frame either by UUID or Neynar URL
          * @summary Frame by UUID or URL
-         * @param {string} apiKey API key required for authentication.
          * @param {FrameType} type 
          * @param {string} [uuid] UUID of the frame to fetch
          * @param {string} [url] URL of the Neynar frame to fetch
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lookupNeynarFrame: async (apiKey: string, type: FrameType, uuid?: string, url?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('lookupNeynarFrame', 'apiKey', apiKey)
+        lookupNeynarFrame: async (type: FrameType, uuid?: string, url?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'type' is not null or undefined
             assertParamExists('lookupNeynarFrame', 'type', type)
             const localVarPath = `/farcaster/frame`;
@@ -234,10 +210,6 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
                 localVarQueryParameter['url'] = url;
             }
 
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
-
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -252,14 +224,11 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Post frame actions, cast actions or cast composer actions to the server  \\ (In order to post any of these actions, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds for frames. 
          * @summary Post a frame action, cast action or a cast composer action
-         * @param {string} apiKey API key required for authentication.
          * @param {FrameActionReqBody} frameActionReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postFrameAction: async (apiKey: string, frameActionReqBody: FrameActionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('postFrameAction', 'apiKey', apiKey)
+        postFrameAction: async (frameActionReqBody: FrameActionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'frameActionReqBody' is not null or undefined
             assertParamExists('postFrameAction', 'frameActionReqBody', frameActionReqBody)
             const localVarPath = `/farcaster/frame/action`;
@@ -276,10 +245,6 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
 
 
     
@@ -298,14 +263,11 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Post a frame action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds. 
          * @summary Signature packet
-         * @param {string} apiKey API key required for authentication.
          * @param {FrameDeveloperManagedActionReqBody} frameDeveloperManagedActionReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postFrameDeveloperManagedAction: async (apiKey: string, frameDeveloperManagedActionReqBody: FrameDeveloperManagedActionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('postFrameDeveloperManagedAction', 'apiKey', apiKey)
+        postFrameDeveloperManagedAction: async (frameDeveloperManagedActionReqBody: FrameDeveloperManagedActionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'frameDeveloperManagedActionReqBody' is not null or undefined
             assertParamExists('postFrameDeveloperManagedAction', 'frameDeveloperManagedActionReqBody', frameDeveloperManagedActionReqBody)
             const localVarPath = `/farcaster/frame/developer_managed/action`;
@@ -322,10 +284,6 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
 
 
     
@@ -344,14 +302,11 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Create a new frame with a list of pages.
          * @summary Create frame
-         * @param {string} apiKey API key required for authentication.
          * @param {NeynarFrameCreationRequest} neynarFrameCreationRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publishNeynarFrame: async (apiKey: string, neynarFrameCreationRequest: NeynarFrameCreationRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('publishNeynarFrame', 'apiKey', apiKey)
+        publishNeynarFrame: async (neynarFrameCreationRequest: NeynarFrameCreationRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'neynarFrameCreationRequest' is not null or undefined
             assertParamExists('publishNeynarFrame', 'neynarFrameCreationRequest', neynarFrameCreationRequest)
             const localVarPath = `/farcaster/frame`;
@@ -368,10 +323,6 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
 
 
     
@@ -390,14 +341,11 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Update an existing frame with a list of pages, if it was made by the developer (identified by API key)
          * @summary Update frame
-         * @param {string} apiKey API key required for authentication.
          * @param {NeynarFrameUpdateRequest} neynarFrameUpdateRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateNeynarFrame: async (apiKey: string, neynarFrameUpdateRequest: NeynarFrameUpdateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('updateNeynarFrame', 'apiKey', apiKey)
+        updateNeynarFrame: async (neynarFrameUpdateRequest: NeynarFrameUpdateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'neynarFrameUpdateRequest' is not null or undefined
             assertParamExists('updateNeynarFrame', 'neynarFrameUpdateRequest', neynarFrameUpdateRequest)
             const localVarPath = `/farcaster/frame`;
@@ -414,10 +362,6 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
 
 
     
@@ -436,14 +380,11 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Validates a frame against by an interacting user against a Farcaster Hub \\ (In order to validate a frame, message bytes from Frame Action must be provided in hex) 
          * @summary Validate frame action
-         * @param {string} apiKey API key required for authentication.
          * @param {ValidateFrameRequest} validateFrameRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        validateFrame: async (apiKey: string, validateFrameRequest: ValidateFrameRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('validateFrame', 'apiKey', apiKey)
+        validateFrame: async (validateFrameRequest: ValidateFrameRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'validateFrameRequest' is not null or undefined
             assertParamExists('validateFrame', 'validateFrameRequest', validateFrameRequest)
             const localVarPath = `/farcaster/frame/validate`;
@@ -460,10 +401,6 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
 
 
     
@@ -482,7 +419,6 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Fetch analytics for total-interactors, interactors, nteractions-per-cast and input-text.
          * @summary Analytics for the frame
-         * @param {string} apiKey API key required for authentication.
          * @param {string} frameUrl 
          * @param {ValidateFrameAnalyticsType} analyticsType 
          * @param {string} start 
@@ -491,9 +427,7 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        validateFrameAnalytics: async (apiKey: string, frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: ValidateFrameAnalyticsAggregateWindowEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('validateFrameAnalytics', 'apiKey', apiKey)
+        validateFrameAnalytics: async (frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: ValidateFrameAnalyticsAggregateWindowEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'frameUrl' is not null or undefined
             assertParamExists('validateFrameAnalytics', 'frameUrl', frameUrl)
             // verify required parameter 'analyticsType' is not null or undefined
@@ -541,10 +475,6 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
                 localVarQueryParameter['aggregate_window'] = aggregateWindow;
             }
 
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
-
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -559,13 +489,10 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Fetch a list of all the frames validated by a user
          * @summary All frames validated by user
-         * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        validateFrameList: async (apiKey: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('validateFrameList', 'apiKey', apiKey)
+        validateFrameList: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/farcaster/frame/validate/list`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -580,10 +507,6 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
 
 
     
@@ -609,13 +532,12 @@ export const FrameApiFp = function(configuration?: Configuration) {
         /**
          * Delete an existing frame, if it was made by the developer (identified by API key)
          * @summary Delete frame
-         * @param {string} apiKey API key required for authentication.
          * @param {DeleteNeynarFrameRequest} deleteNeynarFrameRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteNeynarFrame(apiKey: string, deleteNeynarFrameRequest: DeleteNeynarFrameRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteFrameResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteNeynarFrame(apiKey, deleteNeynarFrameRequest, options);
+        async deleteNeynarFrame(deleteNeynarFrameRequest: DeleteNeynarFrameRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteFrameResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteNeynarFrame(deleteNeynarFrameRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FrameApi.deleteNeynarFrame']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -623,12 +545,11 @@ export const FrameApiFp = function(configuration?: Configuration) {
         /**
          * Fetch a list of frames made by the developer (identified by API key)
          * @summary List of frames
-         * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async fetchNeynarFrames(apiKey: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<NeynarFrame>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchNeynarFrames(apiKey, options);
+        async fetchNeynarFrames(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<NeynarFrame>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchNeynarFrames(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FrameApi.fetchNeynarFrames']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -636,13 +557,12 @@ export const FrameApiFp = function(configuration?: Configuration) {
         /**
          * Fetches the frame meta tags from the URL
          * @summary Meta tags from URL
-         * @param {string} apiKey API key required for authentication.
          * @param {string} url The frame URL to crawl
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async frameFromUrl(apiKey: string, url: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FrameFromUrl200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.frameFromUrl(apiKey, url, options);
+        async frameFromUrl(url: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FrameFromUrl200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.frameFromUrl(url, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FrameApi.frameFromUrl']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -650,15 +570,14 @@ export const FrameApiFp = function(configuration?: Configuration) {
         /**
          * Fetch a frame either by UUID or Neynar URL
          * @summary Frame by UUID or URL
-         * @param {string} apiKey API key required for authentication.
          * @param {FrameType} type 
          * @param {string} [uuid] UUID of the frame to fetch
          * @param {string} [url] URL of the Neynar frame to fetch
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async lookupNeynarFrame(apiKey: string, type: FrameType, uuid?: string, url?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NeynarFrame>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupNeynarFrame(apiKey, type, uuid, url, options);
+        async lookupNeynarFrame(type: FrameType, uuid?: string, url?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NeynarFrame>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupNeynarFrame(type, uuid, url, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FrameApi.lookupNeynarFrame']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -666,13 +585,12 @@ export const FrameApiFp = function(configuration?: Configuration) {
         /**
          * Post frame actions, cast actions or cast composer actions to the server  \\ (In order to post any of these actions, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds for frames. 
          * @summary Post a frame action, cast action or a cast composer action
-         * @param {string} apiKey API key required for authentication.
          * @param {FrameActionReqBody} frameActionReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postFrameAction(apiKey: string, frameActionReqBody: FrameActionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Frame>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.postFrameAction(apiKey, frameActionReqBody, options);
+        async postFrameAction(frameActionReqBody: FrameActionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Frame>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postFrameAction(frameActionReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FrameApi.postFrameAction']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -680,13 +598,12 @@ export const FrameApiFp = function(configuration?: Configuration) {
         /**
          * Post a frame action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds. 
          * @summary Signature packet
-         * @param {string} apiKey API key required for authentication.
          * @param {FrameDeveloperManagedActionReqBody} frameDeveloperManagedActionReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postFrameDeveloperManagedAction(apiKey: string, frameDeveloperManagedActionReqBody: FrameDeveloperManagedActionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Frame>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.postFrameDeveloperManagedAction(apiKey, frameDeveloperManagedActionReqBody, options);
+        async postFrameDeveloperManagedAction(frameDeveloperManagedActionReqBody: FrameDeveloperManagedActionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Frame>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postFrameDeveloperManagedAction(frameDeveloperManagedActionReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FrameApi.postFrameDeveloperManagedAction']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -694,13 +611,12 @@ export const FrameApiFp = function(configuration?: Configuration) {
         /**
          * Create a new frame with a list of pages.
          * @summary Create frame
-         * @param {string} apiKey API key required for authentication.
          * @param {NeynarFrameCreationRequest} neynarFrameCreationRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async publishNeynarFrame(apiKey: string, neynarFrameCreationRequest: NeynarFrameCreationRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NeynarFrame>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.publishNeynarFrame(apiKey, neynarFrameCreationRequest, options);
+        async publishNeynarFrame(neynarFrameCreationRequest: NeynarFrameCreationRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NeynarFrame>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publishNeynarFrame(neynarFrameCreationRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FrameApi.publishNeynarFrame']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -708,13 +624,12 @@ export const FrameApiFp = function(configuration?: Configuration) {
         /**
          * Update an existing frame with a list of pages, if it was made by the developer (identified by API key)
          * @summary Update frame
-         * @param {string} apiKey API key required for authentication.
          * @param {NeynarFrameUpdateRequest} neynarFrameUpdateRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateNeynarFrame(apiKey: string, neynarFrameUpdateRequest: NeynarFrameUpdateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NeynarFrame>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateNeynarFrame(apiKey, neynarFrameUpdateRequest, options);
+        async updateNeynarFrame(neynarFrameUpdateRequest: NeynarFrameUpdateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NeynarFrame>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateNeynarFrame(neynarFrameUpdateRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FrameApi.updateNeynarFrame']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -722,13 +637,12 @@ export const FrameApiFp = function(configuration?: Configuration) {
         /**
          * Validates a frame against by an interacting user against a Farcaster Hub \\ (In order to validate a frame, message bytes from Frame Action must be provided in hex) 
          * @summary Validate frame action
-         * @param {string} apiKey API key required for authentication.
          * @param {ValidateFrameRequest} validateFrameRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async validateFrame(apiKey: string, validateFrameRequest: ValidateFrameRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ValidateFrameActionResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.validateFrame(apiKey, validateFrameRequest, options);
+        async validateFrame(validateFrameRequest: ValidateFrameRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ValidateFrameActionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.validateFrame(validateFrameRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FrameApi.validateFrame']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -736,7 +650,6 @@ export const FrameApiFp = function(configuration?: Configuration) {
         /**
          * Fetch analytics for total-interactors, interactors, nteractions-per-cast and input-text.
          * @summary Analytics for the frame
-         * @param {string} apiKey API key required for authentication.
          * @param {string} frameUrl 
          * @param {ValidateFrameAnalyticsType} analyticsType 
          * @param {string} start 
@@ -745,8 +658,8 @@ export const FrameApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async validateFrameAnalytics(apiKey: string, frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: ValidateFrameAnalyticsAggregateWindowEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FrameValidateAnalyticsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.validateFrameAnalytics(apiKey, frameUrl, analyticsType, start, stop, aggregateWindow, options);
+        async validateFrameAnalytics(frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: ValidateFrameAnalyticsAggregateWindowEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FrameValidateAnalyticsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.validateFrameAnalytics(frameUrl, analyticsType, start, stop, aggregateWindow, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FrameApi.validateFrameAnalytics']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -754,12 +667,11 @@ export const FrameApiFp = function(configuration?: Configuration) {
         /**
          * Fetch a list of all the frames validated by a user
          * @summary All frames validated by user
-         * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async validateFrameList(apiKey: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FrameValidateListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.validateFrameList(apiKey, options);
+        async validateFrameList(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FrameValidateListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.validateFrameList(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FrameApi.validateFrameList']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -777,107 +689,97 @@ export const FrameApiFactory = function (configuration?: Configuration, basePath
         /**
          * Delete an existing frame, if it was made by the developer (identified by API key)
          * @summary Delete frame
-         * @param {string} apiKey API key required for authentication.
          * @param {DeleteNeynarFrameRequest} deleteNeynarFrameRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteNeynarFrame(apiKey: string, deleteNeynarFrameRequest: DeleteNeynarFrameRequest, options?: RawAxiosRequestConfig): AxiosPromise<DeleteFrameResponse> {
-            return localVarFp.deleteNeynarFrame(apiKey, deleteNeynarFrameRequest, options).then((request) => request(axios, basePath));
+        deleteNeynarFrame(deleteNeynarFrameRequest: DeleteNeynarFrameRequest, options?: RawAxiosRequestConfig): AxiosPromise<DeleteFrameResponse> {
+            return localVarFp.deleteNeynarFrame(deleteNeynarFrameRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch a list of frames made by the developer (identified by API key)
          * @summary List of frames
-         * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchNeynarFrames(apiKey: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<NeynarFrame>> {
-            return localVarFp.fetchNeynarFrames(apiKey, options).then((request) => request(axios, basePath));
+        fetchNeynarFrames(options?: RawAxiosRequestConfig): AxiosPromise<Array<NeynarFrame>> {
+            return localVarFp.fetchNeynarFrames(options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches the frame meta tags from the URL
          * @summary Meta tags from URL
-         * @param {string} apiKey API key required for authentication.
          * @param {string} url The frame URL to crawl
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        frameFromUrl(apiKey: string, url: string, options?: RawAxiosRequestConfig): AxiosPromise<FrameFromUrl200Response> {
-            return localVarFp.frameFromUrl(apiKey, url, options).then((request) => request(axios, basePath));
+        frameFromUrl(url: string, options?: RawAxiosRequestConfig): AxiosPromise<FrameFromUrl200Response> {
+            return localVarFp.frameFromUrl(url, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch a frame either by UUID or Neynar URL
          * @summary Frame by UUID or URL
-         * @param {string} apiKey API key required for authentication.
          * @param {FrameType} type 
          * @param {string} [uuid] UUID of the frame to fetch
          * @param {string} [url] URL of the Neynar frame to fetch
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lookupNeynarFrame(apiKey: string, type: FrameType, uuid?: string, url?: string, options?: RawAxiosRequestConfig): AxiosPromise<NeynarFrame> {
-            return localVarFp.lookupNeynarFrame(apiKey, type, uuid, url, options).then((request) => request(axios, basePath));
+        lookupNeynarFrame(type: FrameType, uuid?: string, url?: string, options?: RawAxiosRequestConfig): AxiosPromise<NeynarFrame> {
+            return localVarFp.lookupNeynarFrame(type, uuid, url, options).then((request) => request(axios, basePath));
         },
         /**
          * Post frame actions, cast actions or cast composer actions to the server  \\ (In order to post any of these actions, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds for frames. 
          * @summary Post a frame action, cast action or a cast composer action
-         * @param {string} apiKey API key required for authentication.
          * @param {FrameActionReqBody} frameActionReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postFrameAction(apiKey: string, frameActionReqBody: FrameActionReqBody, options?: RawAxiosRequestConfig): AxiosPromise<Frame> {
-            return localVarFp.postFrameAction(apiKey, frameActionReqBody, options).then((request) => request(axios, basePath));
+        postFrameAction(frameActionReqBody: FrameActionReqBody, options?: RawAxiosRequestConfig): AxiosPromise<Frame> {
+            return localVarFp.postFrameAction(frameActionReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Post a frame action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds. 
          * @summary Signature packet
-         * @param {string} apiKey API key required for authentication.
          * @param {FrameDeveloperManagedActionReqBody} frameDeveloperManagedActionReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postFrameDeveloperManagedAction(apiKey: string, frameDeveloperManagedActionReqBody: FrameDeveloperManagedActionReqBody, options?: RawAxiosRequestConfig): AxiosPromise<Frame> {
-            return localVarFp.postFrameDeveloperManagedAction(apiKey, frameDeveloperManagedActionReqBody, options).then((request) => request(axios, basePath));
+        postFrameDeveloperManagedAction(frameDeveloperManagedActionReqBody: FrameDeveloperManagedActionReqBody, options?: RawAxiosRequestConfig): AxiosPromise<Frame> {
+            return localVarFp.postFrameDeveloperManagedAction(frameDeveloperManagedActionReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Create a new frame with a list of pages.
          * @summary Create frame
-         * @param {string} apiKey API key required for authentication.
          * @param {NeynarFrameCreationRequest} neynarFrameCreationRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publishNeynarFrame(apiKey: string, neynarFrameCreationRequest: NeynarFrameCreationRequest, options?: RawAxiosRequestConfig): AxiosPromise<NeynarFrame> {
-            return localVarFp.publishNeynarFrame(apiKey, neynarFrameCreationRequest, options).then((request) => request(axios, basePath));
+        publishNeynarFrame(neynarFrameCreationRequest: NeynarFrameCreationRequest, options?: RawAxiosRequestConfig): AxiosPromise<NeynarFrame> {
+            return localVarFp.publishNeynarFrame(neynarFrameCreationRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Update an existing frame with a list of pages, if it was made by the developer (identified by API key)
          * @summary Update frame
-         * @param {string} apiKey API key required for authentication.
          * @param {NeynarFrameUpdateRequest} neynarFrameUpdateRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateNeynarFrame(apiKey: string, neynarFrameUpdateRequest: NeynarFrameUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<NeynarFrame> {
-            return localVarFp.updateNeynarFrame(apiKey, neynarFrameUpdateRequest, options).then((request) => request(axios, basePath));
+        updateNeynarFrame(neynarFrameUpdateRequest: NeynarFrameUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<NeynarFrame> {
+            return localVarFp.updateNeynarFrame(neynarFrameUpdateRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Validates a frame against by an interacting user against a Farcaster Hub \\ (In order to validate a frame, message bytes from Frame Action must be provided in hex) 
          * @summary Validate frame action
-         * @param {string} apiKey API key required for authentication.
          * @param {ValidateFrameRequest} validateFrameRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        validateFrame(apiKey: string, validateFrameRequest: ValidateFrameRequest, options?: RawAxiosRequestConfig): AxiosPromise<ValidateFrameActionResponse> {
-            return localVarFp.validateFrame(apiKey, validateFrameRequest, options).then((request) => request(axios, basePath));
+        validateFrame(validateFrameRequest: ValidateFrameRequest, options?: RawAxiosRequestConfig): AxiosPromise<ValidateFrameActionResponse> {
+            return localVarFp.validateFrame(validateFrameRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch analytics for total-interactors, interactors, nteractions-per-cast and input-text.
          * @summary Analytics for the frame
-         * @param {string} apiKey API key required for authentication.
          * @param {string} frameUrl 
          * @param {ValidateFrameAnalyticsType} analyticsType 
          * @param {string} start 
@@ -886,18 +788,17 @@ export const FrameApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        validateFrameAnalytics(apiKey: string, frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: ValidateFrameAnalyticsAggregateWindowEnum, options?: RawAxiosRequestConfig): AxiosPromise<FrameValidateAnalyticsResponse> {
-            return localVarFp.validateFrameAnalytics(apiKey, frameUrl, analyticsType, start, stop, aggregateWindow, options).then((request) => request(axios, basePath));
+        validateFrameAnalytics(frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: ValidateFrameAnalyticsAggregateWindowEnum, options?: RawAxiosRequestConfig): AxiosPromise<FrameValidateAnalyticsResponse> {
+            return localVarFp.validateFrameAnalytics(frameUrl, analyticsType, start, stop, aggregateWindow, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch a list of all the frames validated by a user
          * @summary All frames validated by user
-         * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        validateFrameList(apiKey: string, options?: RawAxiosRequestConfig): AxiosPromise<FrameValidateListResponse> {
-            return localVarFp.validateFrameList(apiKey, options).then((request) => request(axios, basePath));
+        validateFrameList(options?: RawAxiosRequestConfig): AxiosPromise<FrameValidateListResponse> {
+            return localVarFp.validateFrameList(options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -912,45 +813,41 @@ export class FrameApi extends BaseAPI {
     /**
      * Delete an existing frame, if it was made by the developer (identified by API key)
      * @summary Delete frame
-     * @param {string} apiKey API key required for authentication.
      * @param {DeleteNeynarFrameRequest} deleteNeynarFrameRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FrameApi
      */
-    public deleteNeynarFrame(apiKey: string, deleteNeynarFrameRequest: DeleteNeynarFrameRequest, options?: RawAxiosRequestConfig) {
-        return FrameApiFp(this.configuration).deleteNeynarFrame(apiKey, deleteNeynarFrameRequest, options).then((request) => request(this.axios, this.basePath));
+    public deleteNeynarFrame(deleteNeynarFrameRequest: DeleteNeynarFrameRequest, options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).deleteNeynarFrame(deleteNeynarFrameRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetch a list of frames made by the developer (identified by API key)
      * @summary List of frames
-     * @param {string} apiKey API key required for authentication.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FrameApi
      */
-    public fetchNeynarFrames(apiKey: string, options?: RawAxiosRequestConfig) {
-        return FrameApiFp(this.configuration).fetchNeynarFrames(apiKey, options).then((request) => request(this.axios, this.basePath));
+    public fetchNeynarFrames(options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).fetchNeynarFrames(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetches the frame meta tags from the URL
      * @summary Meta tags from URL
-     * @param {string} apiKey API key required for authentication.
      * @param {string} url The frame URL to crawl
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FrameApi
      */
-    public frameFromUrl(apiKey: string, url: string, options?: RawAxiosRequestConfig) {
-        return FrameApiFp(this.configuration).frameFromUrl(apiKey, url, options).then((request) => request(this.axios, this.basePath));
+    public frameFromUrl(url: string, options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).frameFromUrl(url, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetch a frame either by UUID or Neynar URL
      * @summary Frame by UUID or URL
-     * @param {string} apiKey API key required for authentication.
      * @param {FrameType} type 
      * @param {string} [uuid] UUID of the frame to fetch
      * @param {string} [url] URL of the Neynar frame to fetch
@@ -958,79 +855,73 @@ export class FrameApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FrameApi
      */
-    public lookupNeynarFrame(apiKey: string, type: FrameType, uuid?: string, url?: string, options?: RawAxiosRequestConfig) {
-        return FrameApiFp(this.configuration).lookupNeynarFrame(apiKey, type, uuid, url, options).then((request) => request(this.axios, this.basePath));
+    public lookupNeynarFrame(type: FrameType, uuid?: string, url?: string, options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).lookupNeynarFrame(type, uuid, url, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Post frame actions, cast actions or cast composer actions to the server  \\ (In order to post any of these actions, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds for frames. 
      * @summary Post a frame action, cast action or a cast composer action
-     * @param {string} apiKey API key required for authentication.
      * @param {FrameActionReqBody} frameActionReqBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FrameApi
      */
-    public postFrameAction(apiKey: string, frameActionReqBody: FrameActionReqBody, options?: RawAxiosRequestConfig) {
-        return FrameApiFp(this.configuration).postFrameAction(apiKey, frameActionReqBody, options).then((request) => request(this.axios, this.basePath));
+    public postFrameAction(frameActionReqBody: FrameActionReqBody, options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).postFrameAction(frameActionReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Post a frame action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds. 
      * @summary Signature packet
-     * @param {string} apiKey API key required for authentication.
      * @param {FrameDeveloperManagedActionReqBody} frameDeveloperManagedActionReqBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FrameApi
      */
-    public postFrameDeveloperManagedAction(apiKey: string, frameDeveloperManagedActionReqBody: FrameDeveloperManagedActionReqBody, options?: RawAxiosRequestConfig) {
-        return FrameApiFp(this.configuration).postFrameDeveloperManagedAction(apiKey, frameDeveloperManagedActionReqBody, options).then((request) => request(this.axios, this.basePath));
+    public postFrameDeveloperManagedAction(frameDeveloperManagedActionReqBody: FrameDeveloperManagedActionReqBody, options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).postFrameDeveloperManagedAction(frameDeveloperManagedActionReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Create a new frame with a list of pages.
      * @summary Create frame
-     * @param {string} apiKey API key required for authentication.
      * @param {NeynarFrameCreationRequest} neynarFrameCreationRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FrameApi
      */
-    public publishNeynarFrame(apiKey: string, neynarFrameCreationRequest: NeynarFrameCreationRequest, options?: RawAxiosRequestConfig) {
-        return FrameApiFp(this.configuration).publishNeynarFrame(apiKey, neynarFrameCreationRequest, options).then((request) => request(this.axios, this.basePath));
+    public publishNeynarFrame(neynarFrameCreationRequest: NeynarFrameCreationRequest, options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).publishNeynarFrame(neynarFrameCreationRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Update an existing frame with a list of pages, if it was made by the developer (identified by API key)
      * @summary Update frame
-     * @param {string} apiKey API key required for authentication.
      * @param {NeynarFrameUpdateRequest} neynarFrameUpdateRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FrameApi
      */
-    public updateNeynarFrame(apiKey: string, neynarFrameUpdateRequest: NeynarFrameUpdateRequest, options?: RawAxiosRequestConfig) {
-        return FrameApiFp(this.configuration).updateNeynarFrame(apiKey, neynarFrameUpdateRequest, options).then((request) => request(this.axios, this.basePath));
+    public updateNeynarFrame(neynarFrameUpdateRequest: NeynarFrameUpdateRequest, options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).updateNeynarFrame(neynarFrameUpdateRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Validates a frame against by an interacting user against a Farcaster Hub \\ (In order to validate a frame, message bytes from Frame Action must be provided in hex) 
      * @summary Validate frame action
-     * @param {string} apiKey API key required for authentication.
      * @param {ValidateFrameRequest} validateFrameRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FrameApi
      */
-    public validateFrame(apiKey: string, validateFrameRequest: ValidateFrameRequest, options?: RawAxiosRequestConfig) {
-        return FrameApiFp(this.configuration).validateFrame(apiKey, validateFrameRequest, options).then((request) => request(this.axios, this.basePath));
+    public validateFrame(validateFrameRequest: ValidateFrameRequest, options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).validateFrame(validateFrameRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetch analytics for total-interactors, interactors, nteractions-per-cast and input-text.
      * @summary Analytics for the frame
-     * @param {string} apiKey API key required for authentication.
      * @param {string} frameUrl 
      * @param {ValidateFrameAnalyticsType} analyticsType 
      * @param {string} start 
@@ -1040,20 +931,19 @@ export class FrameApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FrameApi
      */
-    public validateFrameAnalytics(apiKey: string, frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: ValidateFrameAnalyticsAggregateWindowEnum, options?: RawAxiosRequestConfig) {
-        return FrameApiFp(this.configuration).validateFrameAnalytics(apiKey, frameUrl, analyticsType, start, stop, aggregateWindow, options).then((request) => request(this.axios, this.basePath));
+    public validateFrameAnalytics(frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: ValidateFrameAnalyticsAggregateWindowEnum, options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).validateFrameAnalytics(frameUrl, analyticsType, start, stop, aggregateWindow, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetch a list of all the frames validated by a user
      * @summary All frames validated by user
-     * @param {string} apiKey API key required for authentication.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FrameApi
      */
-    public validateFrameList(apiKey: string, options?: RawAxiosRequestConfig) {
-        return FrameApiFp(this.configuration).validateFrameList(apiKey, options).then((request) => request(this.axios, this.basePath));
+    public validateFrameList(options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).validateFrameList(options).then((request) => request(this.axios, this.basePath));
     }
 }
 

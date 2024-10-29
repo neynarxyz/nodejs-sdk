@@ -32,14 +32,11 @@ export const ActionApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Securely communicate and perform actions on behalf of users across different apps. It enables an app to send data or trigger actions in another app on behalf of a mutual user by signing messages using the user\'s Farcaster signer.
          * @summary User actions across apps
-         * @param {string} apiKey API key required for authentication.
          * @param {FarcasterActionReqBody} farcasterActionReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publishFarcasterAction: async (apiKey: string, farcasterActionReqBody: FarcasterActionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('publishFarcasterAction', 'apiKey', apiKey)
+        publishFarcasterAction: async (farcasterActionReqBody: FarcasterActionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'farcasterActionReqBody' is not null or undefined
             assertParamExists('publishFarcasterAction', 'farcasterActionReqBody', farcasterActionReqBody)
             const localVarPath = `/farcaster/action`;
@@ -56,10 +53,6 @@ export const ActionApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (apiKey != null) {
-                localVarHeaderParameter['api_key'] = String(apiKey);
-            }
 
 
     
@@ -88,13 +81,12 @@ export const ActionApiFp = function(configuration?: Configuration) {
         /**
          * Securely communicate and perform actions on behalf of users across different apps. It enables an app to send data or trigger actions in another app on behalf of a mutual user by signing messages using the user\'s Farcaster signer.
          * @summary User actions across apps
-         * @param {string} apiKey API key required for authentication.
          * @param {FarcasterActionReqBody} farcasterActionReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async publishFarcasterAction(apiKey: string, farcasterActionReqBody: FarcasterActionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.publishFarcasterAction(apiKey, farcasterActionReqBody, options);
+        async publishFarcasterAction(farcasterActionReqBody: FarcasterActionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publishFarcasterAction(farcasterActionReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ActionApi.publishFarcasterAction']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -112,13 +104,12 @@ export const ActionApiFactory = function (configuration?: Configuration, basePat
         /**
          * Securely communicate and perform actions on behalf of users across different apps. It enables an app to send data or trigger actions in another app on behalf of a mutual user by signing messages using the user\'s Farcaster signer.
          * @summary User actions across apps
-         * @param {string} apiKey API key required for authentication.
          * @param {FarcasterActionReqBody} farcasterActionReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publishFarcasterAction(apiKey: string, farcasterActionReqBody: FarcasterActionReqBody, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: any; }> {
-            return localVarFp.publishFarcasterAction(apiKey, farcasterActionReqBody, options).then((request) => request(axios, basePath));
+        publishFarcasterAction(farcasterActionReqBody: FarcasterActionReqBody, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: any; }> {
+            return localVarFp.publishFarcasterAction(farcasterActionReqBody, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -133,14 +124,13 @@ export class ActionApi extends BaseAPI {
     /**
      * Securely communicate and perform actions on behalf of users across different apps. It enables an app to send data or trigger actions in another app on behalf of a mutual user by signing messages using the user\'s Farcaster signer.
      * @summary User actions across apps
-     * @param {string} apiKey API key required for authentication.
      * @param {FarcasterActionReqBody} farcasterActionReqBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ActionApi
      */
-    public publishFarcasterAction(apiKey: string, farcasterActionReqBody: FarcasterActionReqBody, options?: RawAxiosRequestConfig) {
-        return ActionApiFp(this.configuration).publishFarcasterAction(apiKey, farcasterActionReqBody, options).then((request) => request(this.axios, this.basePath));
+    public publishFarcasterAction(farcasterActionReqBody: FarcasterActionReqBody, options?: RawAxiosRequestConfig) {
+        return ActionApiFp(this.configuration).publishFarcasterAction(farcasterActionReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
