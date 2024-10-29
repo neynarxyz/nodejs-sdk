@@ -34,11 +34,14 @@ export const FnameApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Check if a given fname is available
          * @summary Check fname availability
+         * @param {string} apiKey API key required for authentication.
          * @param {string} fname 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fnameAvailability: async (fname: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fnameAvailability: async (apiKey: string, fname: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('fnameAvailability', 'apiKey', apiKey)
             // verify required parameter 'fname' is not null or undefined
             assertParamExists('fnameAvailability', 'fname', fname)
             const localVarPath = `/farcaster/fname/availability`;
@@ -58,6 +61,10 @@ export const FnameApiAxiosParamCreator = function (configuration?: Configuration
 
             if (fname !== undefined) {
                 localVarQueryParameter['fname'] = fname;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
             }
 
 
@@ -84,12 +91,13 @@ export const FnameApiFp = function(configuration?: Configuration) {
         /**
          * Check if a given fname is available
          * @summary Check fname availability
+         * @param {string} apiKey API key required for authentication.
          * @param {string} fname 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async fnameAvailability(fname: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FnameAvailabilityResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fnameAvailability(fname, options);
+        async fnameAvailability(apiKey: string, fname: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FnameAvailabilityResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fnameAvailability(apiKey, fname, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FnameApi.fnameAvailability']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -107,12 +115,13 @@ export const FnameApiFactory = function (configuration?: Configuration, basePath
         /**
          * Check if a given fname is available
          * @summary Check fname availability
+         * @param {string} apiKey API key required for authentication.
          * @param {string} fname 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fnameAvailability(fname: string, options?: RawAxiosRequestConfig): AxiosPromise<FnameAvailabilityResponse> {
-            return localVarFp.fnameAvailability(fname, options).then((request) => request(axios, basePath));
+        fnameAvailability(apiKey: string, fname: string, options?: RawAxiosRequestConfig): AxiosPromise<FnameAvailabilityResponse> {
+            return localVarFp.fnameAvailability(apiKey, fname, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -127,13 +136,14 @@ export class FnameApi extends BaseAPI {
     /**
      * Check if a given fname is available
      * @summary Check fname availability
+     * @param {string} apiKey API key required for authentication.
      * @param {string} fname 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FnameApi
      */
-    public fnameAvailability(fname: string, options?: RawAxiosRequestConfig) {
-        return FnameApiFp(this.configuration).fnameAvailability(fname, options).then((request) => request(this.axios, this.basePath));
+    public fnameAvailability(apiKey: string, fname: string, options?: RawAxiosRequestConfig) {
+        return FnameApiFp(this.configuration).fnameAvailability(apiKey, fname, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

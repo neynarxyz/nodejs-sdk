@@ -27,9 +27,9 @@ import type { OembedRichData } from './oembed-rich-data';
 import type { OembedVideoData } from './oembed-video-data';
 
 /**
- * @type EmbedUrlMetadataHtmlAnyOfOembed
+ * @type EmbedUrlMetadataHtmlAllOfOembed
  * @export
  */
-export type EmbedUrlMetadataHtmlAnyOfOembed = { type: 'link' } & OembedLinkData | { type: 'photo' } & OembedPhotoData | { type: 'rich' } & OembedRichData | { type: 'video' } & OembedVideoData;
+export type EmbedUrlMetadataHtmlAllOfOembed = { type: 'link' } & OembedLinkData | { type: 'photo' } & OembedPhotoData | { type: 'rich' } & OembedRichData | { type: 'video' } & OembedVideoData;
 
 

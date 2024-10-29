@@ -16,99 +16,11 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import type { OembedData } from './oembed-data';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { OembedPhotoDataAnyOf } from './oembed-photo-data-any-of';
 
 /**
- * 
+ * @type OembedPhotoData
  * @export
- * @interface OembedPhotoData
  */
-export interface OembedPhotoData {
-    /**
-     * 
-     * @type {string}
-     * @memberof OembedPhotoData
-     */
-    'type': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OembedPhotoData
-     */
-    'version': string;
-    /**
-     * A text title, describing the resource.
-     * @type {string}
-     * @memberof OembedPhotoData
-     */
-    'title'?: string;
-    /**
-     * The name of the author/owner of the resource.
-     * @type {string}
-     * @memberof OembedPhotoData
-     */
-    'author_name'?: string;
-    /**
-     * A URL for the author/owner of the resource.
-     * @type {string}
-     * @memberof OembedPhotoData
-     */
-    'author_url'?: string;
-    /**
-     * The name of the resource provider.
-     * @type {string}
-     * @memberof OembedPhotoData
-     */
-    'provider_name'?: string;
-    /**
-     * The url of the resource provider.
-     * @type {string}
-     * @memberof OembedPhotoData
-     */
-    'provider_url'?: string;
-    /**
-     * The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
-     * @type {string}
-     * @memberof OembedPhotoData
-     */
-    'cache_age'?: string;
-    /**
-     * A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
-     * @type {string}
-     * @memberof OembedPhotoData
-     */
-    'thumbnail_url'?: string;
-    /**
-     * The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
-     * @type {number}
-     * @memberof OembedPhotoData
-     */
-    'thumbnail_width'?: number;
-    /**
-     * The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
-     * @type {number}
-     * @memberof OembedPhotoData
-     */
-    'thumbnail_height'?: number;
-    /**
-     * The source URL of the image. Consumers should be able to insert this URL into an <img> element. Only HTTP and HTTPS URLs are valid.
-     * @type {string}
-     * @memberof OembedPhotoData
-     */
-    'url': string;
-    /**
-     * The width in pixels of the image specified in the url parameter.
-     * @type {number}
-     * @memberof OembedPhotoData
-     */
-    'width': number;
-    /**
-     * The height in pixels of the image specified in the url parameter.
-     * @type {number}
-     * @memberof OembedPhotoData
-     */
-    'height': number;
-}
+export type OembedPhotoData = OembedData;
+
 

@@ -56,13 +56,16 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
          * @summary By hash or URL
+         * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
          * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cast: async (identifier: string, type: CastParamType, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        cast: async (apiKey: string, identifier: string, type: CastParamType, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('cast', 'apiKey', apiKey)
             // verify required parameter 'identifier' is not null or undefined
             assertParamExists('cast', 'identifier', identifier)
             // verify required parameter 'type' is not null or undefined
@@ -94,6 +97,10 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -108,6 +115,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
          * @summary Conversation for a cast
+         * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
          * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
@@ -120,7 +128,9 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        castConversation: async (identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, fold?: CastConversationFoldEnum, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        castConversation: async (apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, fold?: CastConversationFoldEnum, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('castConversation', 'apiKey', apiKey)
             // verify required parameter 'identifier' is not null or undefined
             assertParamExists('castConversation', 'identifier', identifier)
             // verify required parameter 'type' is not null or undefined
@@ -176,6 +186,10 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['cursor'] = cursor;
             }
 
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -190,6 +204,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Search for casts based on a query string, with optional AND filters
          * @summary Search for casts
+         * @param {string} apiKey API key required for authentication.
          * @param {string} q Query string to search for casts
          * @param {number} [authorFid] Fid of the user whose casts you want to search
          * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -201,7 +216,9 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        castSearch: async (q: string, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        castSearch: async (apiKey: string, q: string, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('castSearch', 'apiKey', apiKey)
             // verify required parameter 'q' is not null or undefined
             assertParamExists('castSearch', 'q', q)
             const localVarPath = `/farcaster/cast/search`;
@@ -251,6 +268,10 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['cursor'] = cursor;
             }
 
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -265,13 +286,16 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Fetch multiple casts using their respective hashes.
          * @summary Bulk fetch casts
+         * @param {string} apiKey API key required for authentication.
          * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces)
          * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
          * @param {CastsSortTypeEnum} [sortType] Optional parameter to sort the casts based on different criteria
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        casts: async (casts: string, viewerFid?: number, sortType?: CastsSortTypeEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        casts: async (apiKey: string, casts: string, viewerFid?: number, sortType?: CastsSortTypeEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('casts', 'apiKey', apiKey)
             // verify required parameter 'casts' is not null or undefined
             assertParamExists('casts', 'casts', casts)
             const localVarPath = `/farcaster/casts`;
@@ -301,6 +325,10 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['sort_type'] = sortType;
             }
 
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -315,13 +343,16 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Fetches all composer actions on Warpcast. You can filter by top or featured.
          * @summary Fetch composer actions
+         * @param {string} apiKey API key required for authentication.
          * @param {CastComposerType} list Type of list to fetch.
          * @param {number} [limit] Number of results to fetch (default 25, max 25).
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        composerList: async (list: CastComposerType, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        composerList: async (apiKey: string, list: CastComposerType, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('composerList', 'apiKey', apiKey)
             // verify required parameter 'list' is not null or undefined
             assertParamExists('composerList', 'list', list)
             const localVarPath = `/farcaster/cast/composer_actions/list`;
@@ -351,6 +382,10 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['cursor'] = cursor;
             }
 
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -365,11 +400,14 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved) 
          * @summary Delete a cast
+         * @param {string} apiKey API key required for authentication.
          * @param {DeleteCastReqBody} deleteCastReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteCast: async (deleteCastReqBody: DeleteCastReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteCast: async (apiKey: string, deleteCastReqBody: DeleteCastReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('deleteCast', 'apiKey', apiKey)
             // verify required parameter 'deleteCastReqBody' is not null or undefined
             assertParamExists('deleteCast', 'deleteCastReqBody', deleteCastReqBody)
             const localVarPath = `/farcaster/cast`;
@@ -386,6 +424,10 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
 
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
 
 
     
@@ -404,11 +446,14 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Posts a cast or cast reply. Works with mentions and embeds.   (In order to post a cast `signer_uuid` must be approved) 
          * @summary Post a cast
+         * @param {string} apiKey API key required for authentication.
          * @param {PostCastReqBody} postCastReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postCast: async (postCastReqBody: PostCastReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        postCast: async (apiKey: string, postCastReqBody: PostCastReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('postCast', 'apiKey', apiKey)
             // verify required parameter 'postCastReqBody' is not null or undefined
             assertParamExists('postCast', 'postCastReqBody', postCastReqBody)
             const localVarPath = `/farcaster/cast`;
@@ -425,6 +470,10 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
 
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
 
 
     
@@ -453,14 +502,15 @@ export const CastApiFp = function(configuration?: Configuration) {
         /**
          * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
          * @summary By hash or URL
+         * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
          * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async cast(identifier: string, type: CastParamType, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.cast(identifier, type, viewerFid, options);
+        async cast(apiKey: string, identifier: string, type: CastParamType, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cast(apiKey, identifier, type, viewerFid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CastApi.cast']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -468,6 +518,7 @@ export const CastApiFp = function(configuration?: Configuration) {
         /**
          * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
          * @summary Conversation for a cast
+         * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
          * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
@@ -480,8 +531,8 @@ export const CastApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async castConversation(identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, fold?: CastConversationFoldEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Conversation>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.castConversation(identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, sortType, fold, limit, cursor, options);
+        async castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, fold?: CastConversationFoldEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Conversation>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, sortType, fold, limit, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CastApi.castConversation']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -489,6 +540,7 @@ export const CastApiFp = function(configuration?: Configuration) {
         /**
          * Search for casts based on a query string, with optional AND filters
          * @summary Search for casts
+         * @param {string} apiKey API key required for authentication.
          * @param {string} q Query string to search for casts
          * @param {number} [authorFid] Fid of the user whose casts you want to search
          * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -500,8 +552,8 @@ export const CastApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async castSearch(q: string, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.castSearch(q, authorFid, viewerFid, parentUrl, channelId, priorityMode, limit, cursor, options);
+        async castSearch(apiKey: string, q: string, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.castSearch(apiKey, q, authorFid, viewerFid, parentUrl, channelId, priorityMode, limit, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CastApi.castSearch']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -509,14 +561,15 @@ export const CastApiFp = function(configuration?: Configuration) {
         /**
          * Fetch multiple casts using their respective hashes.
          * @summary Bulk fetch casts
+         * @param {string} apiKey API key required for authentication.
          * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces)
          * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
          * @param {CastsSortTypeEnum} [sortType] Optional parameter to sort the casts based on different criteria
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async casts(casts: string, viewerFid?: number, sortType?: CastsSortTypeEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.casts(casts, viewerFid, sortType, options);
+        async casts(apiKey: string, casts: string, viewerFid?: number, sortType?: CastsSortTypeEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.casts(apiKey, casts, viewerFid, sortType, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CastApi.casts']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -524,14 +577,15 @@ export const CastApiFp = function(configuration?: Configuration) {
         /**
          * Fetches all composer actions on Warpcast. You can filter by top or featured.
          * @summary Fetch composer actions
+         * @param {string} apiKey API key required for authentication.
          * @param {CastComposerType} list Type of list to fetch.
          * @param {number} [limit] Number of results to fetch (default 25, max 25).
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async composerList(list: CastComposerType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastComposerActionsListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.composerList(list, limit, cursor, options);
+        async composerList(apiKey: string, list: CastComposerType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastComposerActionsListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.composerList(apiKey, list, limit, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CastApi.composerList']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -539,12 +593,13 @@ export const CastApiFp = function(configuration?: Configuration) {
         /**
          * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved) 
          * @summary Delete a cast
+         * @param {string} apiKey API key required for authentication.
          * @param {DeleteCastReqBody} deleteCastReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteCast(deleteCastReqBody: DeleteCastReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteCast(deleteCastReqBody, options);
+        async deleteCast(apiKey: string, deleteCastReqBody: DeleteCastReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteCast(apiKey, deleteCastReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CastApi.deleteCast']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -552,12 +607,13 @@ export const CastApiFp = function(configuration?: Configuration) {
         /**
          * Posts a cast or cast reply. Works with mentions and embeds.   (In order to post a cast `signer_uuid` must be approved) 
          * @summary Post a cast
+         * @param {string} apiKey API key required for authentication.
          * @param {PostCastReqBody} postCastReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postCast(postCastReqBody: PostCastReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PostCastResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.postCast(postCastReqBody, options);
+        async postCast(apiKey: string, postCastReqBody: PostCastReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PostCastResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postCast(apiKey, postCastReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CastApi.postCast']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -575,18 +631,20 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
         /**
          * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
          * @summary By hash or URL
+         * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
          * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cast(identifier: string, type: CastParamType, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<CastResponse> {
-            return localVarFp.cast(identifier, type, viewerFid, options).then((request) => request(axios, basePath));
+        cast(apiKey: string, identifier: string, type: CastParamType, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<CastResponse> {
+            return localVarFp.cast(apiKey, identifier, type, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
          * @summary Conversation for a cast
+         * @param {string} apiKey API key required for authentication.
          * @param {string} identifier Cast identifier (Its either a url or a hash)
          * @param {CastParamType} type 
          * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
@@ -599,12 +657,13 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        castConversation(identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, fold?: CastConversationFoldEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<Conversation> {
-            return localVarFp.castConversation(identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, sortType, fold, limit, cursor, options).then((request) => request(axios, basePath));
+        castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, fold?: CastConversationFoldEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<Conversation> {
+            return localVarFp.castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, sortType, fold, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Search for casts based on a query string, with optional AND filters
          * @summary Search for casts
+         * @param {string} apiKey API key required for authentication.
          * @param {string} q Query string to search for casts
          * @param {number} [authorFid] Fid of the user whose casts you want to search
          * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -616,52 +675,56 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        castSearch(q: string, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<CastsSearchResponse> {
-            return localVarFp.castSearch(q, authorFid, viewerFid, parentUrl, channelId, priorityMode, limit, cursor, options).then((request) => request(axios, basePath));
+        castSearch(apiKey: string, q: string, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<CastsSearchResponse> {
+            return localVarFp.castSearch(apiKey, q, authorFid, viewerFid, parentUrl, channelId, priorityMode, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch multiple casts using their respective hashes.
          * @summary Bulk fetch casts
+         * @param {string} apiKey API key required for authentication.
          * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces)
          * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
          * @param {CastsSortTypeEnum} [sortType] Optional parameter to sort the casts based on different criteria
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        casts(casts: string, viewerFid?: number, sortType?: CastsSortTypeEnum, options?: RawAxiosRequestConfig): AxiosPromise<CastsResponse> {
-            return localVarFp.casts(casts, viewerFid, sortType, options).then((request) => request(axios, basePath));
+        casts(apiKey: string, casts: string, viewerFid?: number, sortType?: CastsSortTypeEnum, options?: RawAxiosRequestConfig): AxiosPromise<CastsResponse> {
+            return localVarFp.casts(apiKey, casts, viewerFid, sortType, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches all composer actions on Warpcast. You can filter by top or featured.
          * @summary Fetch composer actions
+         * @param {string} apiKey API key required for authentication.
          * @param {CastComposerType} list Type of list to fetch.
          * @param {number} [limit] Number of results to fetch (default 25, max 25).
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        composerList(list: CastComposerType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<CastComposerActionsListResponse> {
-            return localVarFp.composerList(list, limit, cursor, options).then((request) => request(axios, basePath));
+        composerList(apiKey: string, list: CastComposerType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<CastComposerActionsListResponse> {
+            return localVarFp.composerList(apiKey, list, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved) 
          * @summary Delete a cast
+         * @param {string} apiKey API key required for authentication.
          * @param {DeleteCastReqBody} deleteCastReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteCast(deleteCastReqBody: DeleteCastReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.deleteCast(deleteCastReqBody, options).then((request) => request(axios, basePath));
+        deleteCast(apiKey: string, deleteCastReqBody: DeleteCastReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.deleteCast(apiKey, deleteCastReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Posts a cast or cast reply. Works with mentions and embeds.   (In order to post a cast `signer_uuid` must be approved) 
          * @summary Post a cast
+         * @param {string} apiKey API key required for authentication.
          * @param {PostCastReqBody} postCastReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postCast(postCastReqBody: PostCastReqBody, options?: RawAxiosRequestConfig): AxiosPromise<PostCastResponse> {
-            return localVarFp.postCast(postCastReqBody, options).then((request) => request(axios, basePath));
+        postCast(apiKey: string, postCastReqBody: PostCastReqBody, options?: RawAxiosRequestConfig): AxiosPromise<PostCastResponse> {
+            return localVarFp.postCast(apiKey, postCastReqBody, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -676,6 +739,7 @@ export class CastApi extends BaseAPI {
     /**
      * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
      * @summary By hash or URL
+     * @param {string} apiKey API key required for authentication.
      * @param {string} identifier Cast identifier (Its either a url or a hash)
      * @param {CastParamType} type 
      * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
@@ -683,13 +747,14 @@ export class CastApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CastApi
      */
-    public cast(identifier: string, type: CastParamType, viewerFid?: number, options?: RawAxiosRequestConfig) {
-        return CastApiFp(this.configuration).cast(identifier, type, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    public cast(apiKey: string, identifier: string, type: CastParamType, viewerFid?: number, options?: RawAxiosRequestConfig) {
+        return CastApiFp(this.configuration).cast(apiKey, identifier, type, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
      * @summary Conversation for a cast
+     * @param {string} apiKey API key required for authentication.
      * @param {string} identifier Cast identifier (Its either a url or a hash)
      * @param {CastParamType} type 
      * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
@@ -703,13 +768,14 @@ export class CastApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CastApi
      */
-    public castConversation(identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, fold?: CastConversationFoldEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return CastApiFp(this.configuration).castConversation(identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, sortType, fold, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public castConversation(apiKey: string, identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, fold?: CastConversationFoldEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return CastApiFp(this.configuration).castConversation(apiKey, identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, sortType, fold, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Search for casts based on a query string, with optional AND filters
      * @summary Search for casts
+     * @param {string} apiKey API key required for authentication.
      * @param {string} q Query string to search for casts
      * @param {number} [authorFid] Fid of the user whose casts you want to search
      * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -722,13 +788,14 @@ export class CastApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CastApi
      */
-    public castSearch(q: string, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return CastApiFp(this.configuration).castSearch(q, authorFid, viewerFid, parentUrl, channelId, priorityMode, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public castSearch(apiKey: string, q: string, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return CastApiFp(this.configuration).castSearch(apiKey, q, authorFid, viewerFid, parentUrl, channelId, priorityMode, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetch multiple casts using their respective hashes.
      * @summary Bulk fetch casts
+     * @param {string} apiKey API key required for authentication.
      * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces)
      * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
      * @param {CastsSortTypeEnum} [sortType] Optional parameter to sort the casts based on different criteria
@@ -736,13 +803,14 @@ export class CastApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CastApi
      */
-    public casts(casts: string, viewerFid?: number, sortType?: CastsSortTypeEnum, options?: RawAxiosRequestConfig) {
-        return CastApiFp(this.configuration).casts(casts, viewerFid, sortType, options).then((request) => request(this.axios, this.basePath));
+    public casts(apiKey: string, casts: string, viewerFid?: number, sortType?: CastsSortTypeEnum, options?: RawAxiosRequestConfig) {
+        return CastApiFp(this.configuration).casts(apiKey, casts, viewerFid, sortType, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetches all composer actions on Warpcast. You can filter by top or featured.
      * @summary Fetch composer actions
+     * @param {string} apiKey API key required for authentication.
      * @param {CastComposerType} list Type of list to fetch.
      * @param {number} [limit] Number of results to fetch (default 25, max 25).
      * @param {string} [cursor] Pagination cursor.
@@ -750,32 +818,34 @@ export class CastApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CastApi
      */
-    public composerList(list: CastComposerType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return CastApiFp(this.configuration).composerList(list, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public composerList(apiKey: string, list: CastComposerType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return CastApiFp(this.configuration).composerList(apiKey, list, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved) 
      * @summary Delete a cast
+     * @param {string} apiKey API key required for authentication.
      * @param {DeleteCastReqBody} deleteCastReqBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CastApi
      */
-    public deleteCast(deleteCastReqBody: DeleteCastReqBody, options?: RawAxiosRequestConfig) {
-        return CastApiFp(this.configuration).deleteCast(deleteCastReqBody, options).then((request) => request(this.axios, this.basePath));
+    public deleteCast(apiKey: string, deleteCastReqBody: DeleteCastReqBody, options?: RawAxiosRequestConfig) {
+        return CastApiFp(this.configuration).deleteCast(apiKey, deleteCastReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Posts a cast or cast reply. Works with mentions and embeds.   (In order to post a cast `signer_uuid` must be approved) 
      * @summary Post a cast
+     * @param {string} apiKey API key required for authentication.
      * @param {PostCastReqBody} postCastReqBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CastApi
      */
-    public postCast(postCastReqBody: PostCastReqBody, options?: RawAxiosRequestConfig) {
-        return CastApiFp(this.configuration).postCast(postCastReqBody, options).then((request) => request(this.axios, this.basePath));
+    public postCast(apiKey: string, postCastReqBody: PostCastReqBody, options?: RawAxiosRequestConfig) {
+        return CastApiFp(this.configuration).postCast(apiKey, postCastReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

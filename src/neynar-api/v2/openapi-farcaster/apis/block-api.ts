@@ -34,6 +34,7 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Fetches all FIDs that a user has blocked or has been blocked by
          * @summary Blocked / Blocked by FIDs
+         * @param {string} apiKey API key required for authentication.
          * @param {number} [blockerFid] Providing this will return the users that this user has blocked
          * @param {number} [blockedFid] Providing this will return the users that have blocked this user
          * @param {number} [limit] Number of results to fetch (default 20, max 100).
@@ -41,7 +42,9 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        blockList: async (blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        blockList: async (apiKey: string, blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('blockList', 'apiKey', apiKey)
             const localVarPath = `/farcaster/block/list`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -73,6 +76,10 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
                 localVarQueryParameter['cursor'] = cursor;
             }
 
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -97,6 +104,7 @@ export const BlockApiFp = function(configuration?: Configuration) {
         /**
          * Fetches all FIDs that a user has blocked or has been blocked by
          * @summary Blocked / Blocked by FIDs
+         * @param {string} apiKey API key required for authentication.
          * @param {number} [blockerFid] Providing this will return the users that this user has blocked
          * @param {number} [blockedFid] Providing this will return the users that have blocked this user
          * @param {number} [limit] Number of results to fetch (default 20, max 100).
@@ -104,8 +112,8 @@ export const BlockApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async blockList(blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BlockListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.blockList(blockerFid, blockedFid, limit, cursor, options);
+        async blockList(apiKey: string, blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BlockListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.blockList(apiKey, blockerFid, blockedFid, limit, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['BlockApi.blockList']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -123,6 +131,7 @@ export const BlockApiFactory = function (configuration?: Configuration, basePath
         /**
          * Fetches all FIDs that a user has blocked or has been blocked by
          * @summary Blocked / Blocked by FIDs
+         * @param {string} apiKey API key required for authentication.
          * @param {number} [blockerFid] Providing this will return the users that this user has blocked
          * @param {number} [blockedFid] Providing this will return the users that have blocked this user
          * @param {number} [limit] Number of results to fetch (default 20, max 100).
@@ -130,8 +139,8 @@ export const BlockApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        blockList(blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<BlockListResponse> {
-            return localVarFp.blockList(blockerFid, blockedFid, limit, cursor, options).then((request) => request(axios, basePath));
+        blockList(apiKey: string, blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<BlockListResponse> {
+            return localVarFp.blockList(apiKey, blockerFid, blockedFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -146,6 +155,7 @@ export class BlockApi extends BaseAPI {
     /**
      * Fetches all FIDs that a user has blocked or has been blocked by
      * @summary Blocked / Blocked by FIDs
+     * @param {string} apiKey API key required for authentication.
      * @param {number} [blockerFid] Providing this will return the users that this user has blocked
      * @param {number} [blockedFid] Providing this will return the users that have blocked this user
      * @param {number} [limit] Number of results to fetch (default 20, max 100).
@@ -154,8 +164,8 @@ export class BlockApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof BlockApi
      */
-    public blockList(blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return BlockApiFp(this.configuration).blockList(blockerFid, blockedFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public blockList(apiKey: string, blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return BlockApiFp(this.configuration).blockList(apiKey, blockerFid, blockedFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

@@ -40,11 +40,14 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
         /**
          * Mark notifications as seen
          * @summary Mark as seen
+         * @param {string} apiKey API key required for authentication.
          * @param {MarkNotificationsAsSeenReqBody} markNotificationsAsSeenReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        markNotificationsAsSeen: async (markNotificationsAsSeenReqBody: MarkNotificationsAsSeenReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        markNotificationsAsSeen: async (apiKey: string, markNotificationsAsSeenReqBody: MarkNotificationsAsSeenReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('markNotificationsAsSeen', 'apiKey', apiKey)
             // verify required parameter 'markNotificationsAsSeenReqBody' is not null or undefined
             assertParamExists('markNotificationsAsSeen', 'markNotificationsAsSeenReqBody', markNotificationsAsSeenReqBody)
             const localVarPath = `/farcaster/notifications/seen`;
@@ -61,6 +64,10 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
 
 
     
@@ -79,6 +86,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
         /**
          * Returns a list of notifications for a specific FID.
          * @summary For user
+         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
          * @param {NotificationType} [type] Notification type to fetch.
          * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
@@ -86,7 +94,9 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notifications: async (fid: number, type?: NotificationType, priorityMode?: boolean, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        notifications: async (apiKey: string, fid: number, type?: NotificationType, priorityMode?: boolean, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('notifications', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('notifications', 'fid', fid)
             const localVarPath = `/farcaster/notifications`;
@@ -120,6 +130,10 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
                 localVarQueryParameter['cursor'] = cursor;
             }
 
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -134,6 +148,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
         /**
          * Returns a list of notifications for a user in specific channels
          * @summary For user by channel
+         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
          * @param {string} channelIds Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
          * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
@@ -141,7 +156,9 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notificationsChannel: async (fid: number, channelIds: string, priorityMode?: boolean, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        notificationsChannel: async (apiKey: string, fid: number, channelIds: string, priorityMode?: boolean, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('notificationsChannel', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('notificationsChannel', 'fid', fid)
             // verify required parameter 'channelIds' is not null or undefined
@@ -177,6 +194,10 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
                 localVarQueryParameter['cursor'] = cursor;
             }
 
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -191,6 +212,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
         /**
          * Returns a list of notifications for a user in specific parent_urls
          * @summary For user by parent_urls
+         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
          * @param {string} parentUrls Comma separated parent_urls
          * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
@@ -198,7 +220,9 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notificationsParentUrl: async (fid: number, parentUrls: string, priorityMode?: boolean, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        notificationsParentUrl: async (apiKey: string, fid: number, parentUrls: string, priorityMode?: boolean, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('notificationsParentUrl', 'apiKey', apiKey)
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('notificationsParentUrl', 'fid', fid)
             // verify required parameter 'parentUrls' is not null or undefined
@@ -234,6 +258,10 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
                 localVarQueryParameter['cursor'] = cursor;
             }
 
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -258,12 +286,13 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
         /**
          * Mark notifications as seen
          * @summary Mark as seen
+         * @param {string} apiKey API key required for authentication.
          * @param {MarkNotificationsAsSeenReqBody} markNotificationsAsSeenReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async markNotificationsAsSeen(markNotificationsAsSeenReqBody: MarkNotificationsAsSeenReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.markNotificationsAsSeen(markNotificationsAsSeenReqBody, options);
+        async markNotificationsAsSeen(apiKey: string, markNotificationsAsSeenReqBody: MarkNotificationsAsSeenReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.markNotificationsAsSeen(apiKey, markNotificationsAsSeenReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['NotificationsApi.markNotificationsAsSeen']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -271,6 +300,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a list of notifications for a specific FID.
          * @summary For user
+         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
          * @param {NotificationType} [type] Notification type to fetch.
          * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
@@ -278,8 +308,8 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async notifications(fid: number, type?: NotificationType, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.notifications(fid, type, priorityMode, cursor, options);
+        async notifications(apiKey: string, fid: number, type?: NotificationType, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notifications(apiKey, fid, type, priorityMode, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['NotificationsApi.notifications']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -287,6 +317,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a list of notifications for a user in specific channels
          * @summary For user by channel
+         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
          * @param {string} channelIds Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
          * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
@@ -294,8 +325,8 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async notificationsChannel(fid: number, channelIds: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.notificationsChannel(fid, channelIds, priorityMode, cursor, options);
+        async notificationsChannel(apiKey: string, fid: number, channelIds: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notificationsChannel(apiKey, fid, channelIds, priorityMode, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['NotificationsApi.notificationsChannel']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -303,6 +334,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a list of notifications for a user in specific parent_urls
          * @summary For user by parent_urls
+         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
          * @param {string} parentUrls Comma separated parent_urls
          * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
@@ -310,8 +342,8 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async notificationsParentUrl(fid: number, parentUrls: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.notificationsParentUrl(fid, parentUrls, priorityMode, cursor, options);
+        async notificationsParentUrl(apiKey: string, fid: number, parentUrls: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notificationsParentUrl(apiKey, fid, parentUrls, priorityMode, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['NotificationsApi.notificationsParentUrl']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -329,16 +361,18 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
         /**
          * Mark notifications as seen
          * @summary Mark as seen
+         * @param {string} apiKey API key required for authentication.
          * @param {MarkNotificationsAsSeenReqBody} markNotificationsAsSeenReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        markNotificationsAsSeen(markNotificationsAsSeenReqBody: MarkNotificationsAsSeenReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.markNotificationsAsSeen(markNotificationsAsSeenReqBody, options).then((request) => request(axios, basePath));
+        markNotificationsAsSeen(apiKey: string, markNotificationsAsSeenReqBody: MarkNotificationsAsSeenReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.markNotificationsAsSeen(apiKey, markNotificationsAsSeenReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of notifications for a specific FID.
          * @summary For user
+         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
          * @param {NotificationType} [type] Notification type to fetch.
          * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
@@ -346,12 +380,13 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notifications(fid: number, type?: NotificationType, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<NotificationsResponse> {
-            return localVarFp.notifications(fid, type, priorityMode, cursor, options).then((request) => request(axios, basePath));
+        notifications(apiKey: string, fid: number, type?: NotificationType, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<NotificationsResponse> {
+            return localVarFp.notifications(apiKey, fid, type, priorityMode, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of notifications for a user in specific channels
          * @summary For user by channel
+         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
          * @param {string} channelIds Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
          * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
@@ -359,12 +394,13 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notificationsChannel(fid: number, channelIds: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<NotificationsResponse> {
-            return localVarFp.notificationsChannel(fid, channelIds, priorityMode, cursor, options).then((request) => request(axios, basePath));
+        notificationsChannel(apiKey: string, fid: number, channelIds: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<NotificationsResponse> {
+            return localVarFp.notificationsChannel(apiKey, fid, channelIds, priorityMode, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of notifications for a user in specific parent_urls
          * @summary For user by parent_urls
+         * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
          * @param {string} parentUrls Comma separated parent_urls
          * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
@@ -372,8 +408,8 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notificationsParentUrl(fid: number, parentUrls: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<NotificationsResponse> {
-            return localVarFp.notificationsParentUrl(fid, parentUrls, priorityMode, cursor, options).then((request) => request(axios, basePath));
+        notificationsParentUrl(apiKey: string, fid: number, parentUrls: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<NotificationsResponse> {
+            return localVarFp.notificationsParentUrl(apiKey, fid, parentUrls, priorityMode, cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -388,18 +424,20 @@ export class NotificationsApi extends BaseAPI {
     /**
      * Mark notifications as seen
      * @summary Mark as seen
+     * @param {string} apiKey API key required for authentication.
      * @param {MarkNotificationsAsSeenReqBody} markNotificationsAsSeenReqBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotificationsApi
      */
-    public markNotificationsAsSeen(markNotificationsAsSeenReqBody: MarkNotificationsAsSeenReqBody, options?: RawAxiosRequestConfig) {
-        return NotificationsApiFp(this.configuration).markNotificationsAsSeen(markNotificationsAsSeenReqBody, options).then((request) => request(this.axios, this.basePath));
+    public markNotificationsAsSeen(apiKey: string, markNotificationsAsSeenReqBody: MarkNotificationsAsSeenReqBody, options?: RawAxiosRequestConfig) {
+        return NotificationsApiFp(this.configuration).markNotificationsAsSeen(apiKey, markNotificationsAsSeenReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Returns a list of notifications for a specific FID.
      * @summary For user
+     * @param {string} apiKey API key required for authentication.
      * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
      * @param {NotificationType} [type] Notification type to fetch.
      * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
@@ -408,13 +446,14 @@ export class NotificationsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof NotificationsApi
      */
-    public notifications(fid: number, type?: NotificationType, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig) {
-        return NotificationsApiFp(this.configuration).notifications(fid, type, priorityMode, cursor, options).then((request) => request(this.axios, this.basePath));
+    public notifications(apiKey: string, fid: number, type?: NotificationType, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig) {
+        return NotificationsApiFp(this.configuration).notifications(apiKey, fid, type, priorityMode, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Returns a list of notifications for a user in specific channels
      * @summary For user by channel
+     * @param {string} apiKey API key required for authentication.
      * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
      * @param {string} channelIds Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
      * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
@@ -423,13 +462,14 @@ export class NotificationsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof NotificationsApi
      */
-    public notificationsChannel(fid: number, channelIds: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig) {
-        return NotificationsApiFp(this.configuration).notificationsChannel(fid, channelIds, priorityMode, cursor, options).then((request) => request(this.axios, this.basePath));
+    public notificationsChannel(apiKey: string, fid: number, channelIds: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig) {
+        return NotificationsApiFp(this.configuration).notificationsChannel(apiKey, fid, channelIds, priorityMode, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Returns a list of notifications for a user in specific parent_urls
      * @summary For user by parent_urls
+     * @param {string} apiKey API key required for authentication.
      * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
      * @param {string} parentUrls Comma separated parent_urls
      * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
@@ -438,8 +478,8 @@ export class NotificationsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof NotificationsApi
      */
-    public notificationsParentUrl(fid: number, parentUrls: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig) {
-        return NotificationsApiFp(this.configuration).notificationsParentUrl(fid, parentUrls, priorityMode, cursor, options).then((request) => request(this.axios, this.basePath));
+    public notificationsParentUrl(apiKey: string, fid: number, parentUrls: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig) {
+        return NotificationsApiFp(this.configuration).notificationsParentUrl(apiKey, fid, parentUrls, priorityMode, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
