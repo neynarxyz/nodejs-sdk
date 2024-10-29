@@ -15,13 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastAuthor } from './cast-author';
+import { CastEmbeddedParentAuthor } from './cast-embedded-parent-author';
 // May contain unused imports in some cases
 // @ts-ignore
 import { CastNotificationType } from './cast-notification-type';
-// May contain unused imports in some cases
-// @ts-ignore
-import { CastParentAuthor } from './cast-parent-author';
 // May contain unused imports in some cases
 // @ts-ignore
 import { CastViewerContext } from './cast-viewer-context';

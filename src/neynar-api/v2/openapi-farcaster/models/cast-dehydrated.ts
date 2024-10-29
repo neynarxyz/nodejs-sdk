@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { UserDehydrated } from './user-dehydrated';
 
 /**
  * 
@@ -25,13 +28,19 @@ export interface CastDehydrated {
      * @type {string}
      * @memberof CastDehydrated
      */
-    'hash': string;
+    'object': CastDehydratedObjectEnum;
     /**
      * 
      * @type {string}
      * @memberof CastDehydrated
      */
-    'object': CastDehydratedObjectEnum;
+    'hash': string;
+    /**
+     * 
+     * @type {UserDehydrated}
+     * @memberof CastDehydrated
+     */
+    'author'?: UserDehydrated;
 }
 
 export const CastDehydratedObjectEnum = {

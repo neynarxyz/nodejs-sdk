@@ -15,28 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastEmbedded } from './cast-embedded';
-// May contain unused imports in some cases
-// @ts-ignore
-import { CastId } from './cast-id';
+import { EmbedUrlMetadataHtmlAllOfOembed } from './embed-url-metadata-html-all-of-oembed';
 
 /**
  * 
  * @export
- * @interface EmbedCast
+ * @interface EmbedUrlMetadataHtmlAllOf
  */
-export interface EmbedCast {
+export interface EmbedUrlMetadataHtmlAllOf {
     /**
      * 
-     * @type {CastId}
-     * @memberof EmbedCast
+     * @type {EmbedUrlMetadataHtmlAllOfOembed}
+     * @memberof EmbedUrlMetadataHtmlAllOf
      */
-    'cast_id'?: CastId;
-    /**
-     * 
-     * @type {CastEmbedded}
-     * @memberof EmbedCast
-     */
-    'cast': CastEmbedded;
+    'oembed'?: EmbedUrlMetadataHtmlAllOfOembed;
 }
 

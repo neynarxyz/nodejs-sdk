@@ -15,24 +15,21 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastEmbedded } from './cast-embedded';
+import { LinkTypeData } from './link-type-data';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CastId } from './cast-id';
+import { PhotoTypeData } from './photo-type-data';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EmbedCast } from './embed-cast';
+import { RichTypeData } from './rich-type-data';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EmbedUrl } from './embed-url';
-// May contain unused imports in some cases
-// @ts-ignore
-import { EmbedUrlMetadata } from './embed-url-metadata';
+import { VideoTypeData } from './video-type-data';
 
 /**
- * @type Embed
+ * @type EmbedUrlMetadataHtmlAllOfOembed
  * @export
  */
-export type Embed = EmbedCast | EmbedUrl;
+export type EmbedUrlMetadataHtmlAllOfOembed = { type: 'link' } & LinkTypeData | { type: 'photo' } & PhotoTypeData | { type: 'rich' } & RichTypeData | { type: 'video' } & VideoTypeData;
 
 

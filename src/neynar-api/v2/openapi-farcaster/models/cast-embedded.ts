@@ -21,77 +21,86 @@ import { CastEmbeddedParentAuthor } from './cast-embedded-parent-author';
 import { CastNotificationType } from './cast-notification-type';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Embed } from './embed';
+import { DehydratedChannel } from './dehydrated-channel';
 // May contain unused imports in some cases
 // @ts-ignore
-import { User } from './user';
+import { EmbedDeep } from './embed-deep';
+// May contain unused imports in some cases
+// @ts-ignore
+import { UserDehydrated } from './user-dehydrated';
 
 /**
  * 
  * @export
- * @interface Cast
+ * @interface CastEmbedded
  */
-export interface Cast {
+export interface CastEmbedded {
     /**
      * 
      * @type {string}
-     * @memberof Cast
+     * @memberof CastEmbedded
      */
     'hash': string;
     /**
      * 
      * @type {string}
-     * @memberof Cast
+     * @memberof CastEmbedded
      */
     'parent_hash': string | null;
     /**
      * 
      * @type {string}
-     * @memberof Cast
+     * @memberof CastEmbedded
      */
     'parent_url': string | null;
     /**
      * 
      * @type {string}
-     * @memberof Cast
+     * @memberof CastEmbedded
      */
     'root_parent_url': string | null;
     /**
      * 
      * @type {CastEmbeddedParentAuthor}
-     * @memberof Cast
+     * @memberof CastEmbedded
      */
     'parent_author': CastEmbeddedParentAuthor;
     /**
      * 
-     * @type {User}
-     * @memberof Cast
+     * @type {UserDehydrated}
+     * @memberof CastEmbedded
      */
-    'author': User;
+    'author': UserDehydrated;
     /**
      * 
      * @type {string}
-     * @memberof Cast
+     * @memberof CastEmbedded
      */
     'text': string;
     /**
      * 
      * @type {string}
-     * @memberof Cast
+     * @memberof CastEmbedded
      */
     'timestamp': string;
     /**
      * 
-     * @type {Array<Embed>}
-     * @memberof Cast
+     * @type {CastNotificationType}
+     * @memberof CastEmbedded
      */
-    'embeds': Array<Embed>;
+    'type': CastNotificationType;
     /**
      * 
-     * @type {CastNotificationType}
-     * @memberof Cast
+     * @type {Array<EmbedDeep>}
+     * @memberof CastEmbedded
      */
-    'type'?: CastNotificationType;
+    'embeds': Array<EmbedDeep>;
+    /**
+     * 
+     * @type {DehydratedChannel}
+     * @memberof CastEmbedded
+     */
+    'channel': DehydratedChannel | null;
 }
 
 

@@ -17,32 +17,21 @@
 /**
  * 
  * @export
- * @interface TwitterImageObject
+ * @interface LinkTypeDataAllOf
  */
-export interface TwitterImageObject {
+export interface LinkTypeDataAllOf {
     /**
      * 
      * @type {string}
-     * @memberof TwitterImageObject
+     * @memberof LinkTypeDataAllOf
      */
-    'alt'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TwitterImageObject
-     */
-    'height'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TwitterImageObject
-     */
-    'url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TwitterImageObject
-     */
-    'width'?: string;
+    'type'?: LinkTypeDataAllOfTypeEnum;
 }
+
+export const LinkTypeDataAllOfTypeEnum = {
+    Link: 'link'
+} as const;
+
+export type LinkTypeDataAllOfTypeEnum = typeof LinkTypeDataAllOfTypeEnum[keyof typeof LinkTypeDataAllOfTypeEnum];
+
 
