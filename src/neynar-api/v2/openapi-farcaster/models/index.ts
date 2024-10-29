@@ -197,6 +197,7 @@ export * from './trending-channel-response';
 export * from './twitter-image-object';
 export * from './twitter-player-object';
 export * from './update-user-req-body';
+export * from './update-user-req-body-location';
 export * from './user';
 export * from './user-dehydrated';
 export * from './user-fidresponse';

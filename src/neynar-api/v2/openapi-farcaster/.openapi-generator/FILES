@@ -223,6 +223,7 @@ models/subscriptions.ts
 models/trending-channel-response.ts
 models/twitter-image-object.ts
 models/twitter-player-object.ts
+models/update-user-req-body-location.ts
 models/update-user-req-body.ts
 models/user-dehydrated.ts
 models/user-fidresponse.ts
