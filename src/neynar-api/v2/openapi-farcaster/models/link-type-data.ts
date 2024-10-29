@@ -13,18 +13,17 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { LinkTypeDataAllOf } from './link-type-data-all-of';
+// May contain unused imports in some cases
+// @ts-ignore
+import { OembedData } from './oembed-data';
 
 /**
- * 
+ * @type LinkTypeData
  * @export
- * @interface CastParentAuthor
  */
-export interface CastParentAuthor {
-    /**
-     * The unique identifier of a farcaster user (unsigned integer)
-     * @type {number}
-     * @memberof CastParentAuthor
-     */
-    'fid': number | null;
-}
+export type LinkTypeData = LinkTypeDataAllOf & OembedData;
+
 

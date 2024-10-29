@@ -13,19 +13,17 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { OembedData } from './oembed-data';
+// May contain unused imports in some cases
+// @ts-ignore
+import { PhotoTypeDataAllOf } from './photo-type-data-all-of';
 
 /**
- * The status of a user.   - active: The user is currently active.   - inactive: The user is not currently active. 
+ * @type PhotoTypeData
  * @export
- * @enum {string}
  */
-
-export const ActiveStatus = {
-    Active: 'active',
-    Inactive: 'inactive'
-} as const;
-
-export type ActiveStatus = typeof ActiveStatus[keyof typeof ActiveStatus];
-
+export type PhotoTypeData = OembedData & PhotoTypeDataAllOf;
 
 

@@ -61,9 +61,9 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * Fetches all channels that a user has casted in, in reverse chronological order.
-         * @summary Fetch channels that a user is active in
+         * @summary Fetch channels that user is active in
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid The user\&#39;s fid (identifier)
+         * @param {number} fid The user\&#39;s FID (identifier)
          * @param {number} [limit] Number of results to fetch (default 20, max 100).
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -115,10 +115,10 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Returns details of a channel
-         * @summary Fetch channel details by id or parent_url
+         * @summary By ID or parent_url
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel ID for the channel being queried
-         * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to id.
+         * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to ID.
          * @param {number} [viewerFid] FID of the user viewing the channel.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -169,10 +169,10 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Returns details of multiple channels
-         * @summary (Bulk) Fetch channels by id or parent_url
+         * @summary Bulk fetch
          * @param {string} apiKey API key required for authentication.
          * @param {string} ids Comma separated list of channel IDs or parent_urls, up to 100 at a time
-         * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to id.
+         * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to ID.
          * @param {number} [viewerFid] FID of the user viewing the channels.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -223,7 +223,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
-         * @summary Fetch followers for a given channel
+         * @summary For channel
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel ID for the channel being queried
          * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -401,7 +401,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Invite a user to a channel
-         * @summary Invite a user to a channel
+         * @summary Invite
          * @param {string} apiKey API key required for authentication.
          * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
          * @param {*} [options] Override http request option.
@@ -491,7 +491,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.
-         * @summary List of open invites
+         * @summary Open invites
          * @param {string} apiKey API key required for authentication.
          * @param {string} [channelId] Channel ID for the channel being queried
          * @param {number} [invitedFid] FID of the user being invited
@@ -548,7 +548,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Fetch a list of members in a channel
-         * @summary Fetch a list of members in a channel
+         * @summary Fetch members
          * @param {string} apiKey API key required for authentication.
          * @param {string} channelId Channel ID for the channel being queried
          * @param {number} [fid] FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members.
@@ -607,9 +607,9 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
-         * @summary Fetch relevant channel followers for a given user
+         * @summary Relevant followers
          * @param {string} apiKey API key required for authentication.
-         * @param {string} id Channel id being queried
+         * @param {string} id Channel ID being queried
          * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -658,7 +658,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Remove a user from a channel or a user\'s invite to a channel role
-         * @summary Remove a user from a channel
+         * @summary Remove user
          * @param {string} apiKey API key required for authentication.
          * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
          * @param {*} [options] Override http request option.
@@ -701,7 +701,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Accept or reject a channel invite
-         * @summary Accept or reject a channel invite
+         * @summary Accept or reject an invite
          * @param {string} apiKey API key required for authentication.
          * @param {RespondChannelInviteRequest} respondChannelInviteRequest 
          * @param {*} [options] Override http request option.
@@ -743,8 +743,8 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Returns a list of channels based on id or name
-         * @summary Search for channels based on id or name
+         * Returns a list of channels based on ID or name
+         * @summary Search by ID or name
          * @param {string} apiKey API key required for authentication.
          * @param {string} q Channel ID or name for the channel being queried
          * @param {number} [limit] Number of results to fetch
@@ -798,7 +798,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Returns a list of trending channels based on activity
-         * @summary Fetch trending channels based on activity
+         * @summary Channels by activity
          * @param {string} apiKey API key required for authentication.
          * @param {'1d' | '7d' | '30d'} [timeWindow] 
          * @param {number} [limit] Number of results to fetch (default 10, max 25)
@@ -892,10 +892,10 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Returns a list of all channels with their details that an fid is a member of. Data may have a delay of up to 1 hour.
-         * @summary Fetch all channels that a given fid is a member of
+         * Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour.
+         * @summary Member of
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid The fid of the user.
+         * @param {number} fid The FID of the user.
          * @param {number} [limit] Number of results to fetch (default 20, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -946,10 +946,10 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Returns a list of all channels with their details that a fid follows.
-         * @summary Fetch all channels that a given fid follows
+         * Returns a list of all channels with their details that a FID follows.
+         * @summary Following
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid The fid of the user.
+         * @param {number} fid The FID of the user.
          * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -1011,9 +1011,9 @@ export const ChannelApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Fetches all channels that a user has casted in, in reverse chronological order.
-         * @summary Fetch channels that a user is active in
+         * @summary Fetch channels that user is active in
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid The user\&#39;s fid (identifier)
+         * @param {number} fid The user\&#39;s FID (identifier)
          * @param {number} [limit] Number of results to fetch (default 20, max 100).
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -1025,10 +1025,10 @@ export const ChannelApiFp = function(configuration?: Configuration) {
         },
         /**
          * Returns details of a channel
-         * @summary Fetch channel details by id or parent_url
+         * @summary By ID or parent_url
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel ID for the channel being queried
-         * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to id.
+         * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to ID.
          * @param {number} [viewerFid] FID of the user viewing the channel.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1039,10 +1039,10 @@ export const ChannelApiFp = function(configuration?: Configuration) {
         },
         /**
          * Returns details of multiple channels
-         * @summary (Bulk) Fetch channels by id or parent_url
+         * @summary Bulk fetch
          * @param {string} apiKey API key required for authentication.
          * @param {string} ids Comma separated list of channel IDs or parent_urls, up to 100 at a time
-         * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to id.
+         * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to ID.
          * @param {number} [viewerFid] FID of the user viewing the channels.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1053,7 +1053,7 @@ export const ChannelApiFp = function(configuration?: Configuration) {
         },
         /**
          * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
-         * @summary Fetch followers for a given channel
+         * @summary For channel
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel ID for the channel being queried
          * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -1098,7 +1098,7 @@ export const ChannelApiFp = function(configuration?: Configuration) {
         },
         /**
          * Invite a user to a channel
-         * @summary Invite a user to a channel
+         * @summary Invite
          * @param {string} apiKey API key required for authentication.
          * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
          * @param {*} [options] Override http request option.
@@ -1123,7 +1123,7 @@ export const ChannelApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.
-         * @summary List of open invites
+         * @summary Open invites
          * @param {string} apiKey API key required for authentication.
          * @param {string} [channelId] Channel ID for the channel being queried
          * @param {number} [invitedFid] FID of the user being invited
@@ -1138,7 +1138,7 @@ export const ChannelApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetch a list of members in a channel
-         * @summary Fetch a list of members in a channel
+         * @summary Fetch members
          * @param {string} apiKey API key required for authentication.
          * @param {string} channelId Channel ID for the channel being queried
          * @param {number} [fid] FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members.
@@ -1153,9 +1153,9 @@ export const ChannelApiFp = function(configuration?: Configuration) {
         },
         /**
          * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
-         * @summary Fetch relevant channel followers for a given user
+         * @summary Relevant followers
          * @param {string} apiKey API key required for authentication.
-         * @param {string} id Channel id being queried
+         * @param {string} id Channel ID being queried
          * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1166,7 +1166,7 @@ export const ChannelApiFp = function(configuration?: Configuration) {
         },
         /**
          * Remove a user from a channel or a user\'s invite to a channel role
-         * @summary Remove a user from a channel
+         * @summary Remove user
          * @param {string} apiKey API key required for authentication.
          * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
          * @param {*} [options] Override http request option.
@@ -1178,7 +1178,7 @@ export const ChannelApiFp = function(configuration?: Configuration) {
         },
         /**
          * Accept or reject a channel invite
-         * @summary Accept or reject a channel invite
+         * @summary Accept or reject an invite
          * @param {string} apiKey API key required for authentication.
          * @param {RespondChannelInviteRequest} respondChannelInviteRequest 
          * @param {*} [options] Override http request option.
@@ -1189,8 +1189,8 @@ export const ChannelApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Returns a list of channels based on id or name
-         * @summary Search for channels based on id or name
+         * Returns a list of channels based on ID or name
+         * @summary Search by ID or name
          * @param {string} apiKey API key required for authentication.
          * @param {string} q Channel ID or name for the channel being queried
          * @param {number} [limit] Number of results to fetch
@@ -1204,7 +1204,7 @@ export const ChannelApiFp = function(configuration?: Configuration) {
         },
         /**
          * Returns a list of trending channels based on activity
-         * @summary Fetch trending channels based on activity
+         * @summary Channels by activity
          * @param {string} apiKey API key required for authentication.
          * @param {'1d' | '7d' | '30d'} [timeWindow] 
          * @param {number} [limit] Number of results to fetch (default 10, max 25)
@@ -1229,10 +1229,10 @@ export const ChannelApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Returns a list of all channels with their details that an fid is a member of. Data may have a delay of up to 1 hour.
-         * @summary Fetch all channels that a given fid is a member of
+         * Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour.
+         * @summary Member of
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid The fid of the user.
+         * @param {number} fid The FID of the user.
          * @param {number} [limit] Number of results to fetch (default 20, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -1243,10 +1243,10 @@ export const ChannelApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Returns a list of all channels with their details that a fid follows.
-         * @summary Fetch all channels that a given fid follows
+         * Returns a list of all channels with their details that a FID follows.
+         * @summary Following
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid The fid of the user.
+         * @param {number} fid The FID of the user.
          * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -1268,9 +1268,9 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * Fetches all channels that a user has casted in, in reverse chronological order.
-         * @summary Fetch channels that a user is active in
+         * @summary Fetch channels that user is active in
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid The user\&#39;s fid (identifier)
+         * @param {number} fid The user\&#39;s FID (identifier)
          * @param {number} [limit] Number of results to fetch (default 20, max 100).
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -1281,10 +1281,10 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Returns details of a channel
-         * @summary Fetch channel details by id or parent_url
+         * @summary By ID or parent_url
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel ID for the channel being queried
-         * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to id.
+         * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to ID.
          * @param {number} [viewerFid] FID of the user viewing the channel.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1294,10 +1294,10 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Returns details of multiple channels
-         * @summary (Bulk) Fetch channels by id or parent_url
+         * @summary Bulk fetch
          * @param {string} apiKey API key required for authentication.
          * @param {string} ids Comma separated list of channel IDs or parent_urls, up to 100 at a time
-         * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to id.
+         * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to ID.
          * @param {number} [viewerFid] FID of the user viewing the channels.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1307,7 +1307,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
-         * @summary Fetch followers for a given channel
+         * @summary For channel
          * @param {string} apiKey API key required for authentication.
          * @param {string} id Channel ID for the channel being queried
          * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -1349,7 +1349,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Invite a user to a channel
-         * @summary Invite a user to a channel
+         * @summary Invite
          * @param {string} apiKey API key required for authentication.
          * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
          * @param {*} [options] Override http request option.
@@ -1372,7 +1372,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.
-         * @summary List of open invites
+         * @summary Open invites
          * @param {string} apiKey API key required for authentication.
          * @param {string} [channelId] Channel ID for the channel being queried
          * @param {number} [invitedFid] FID of the user being invited
@@ -1386,7 +1386,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Fetch a list of members in a channel
-         * @summary Fetch a list of members in a channel
+         * @summary Fetch members
          * @param {string} apiKey API key required for authentication.
          * @param {string} channelId Channel ID for the channel being queried
          * @param {number} [fid] FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members.
@@ -1400,9 +1400,9 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
-         * @summary Fetch relevant channel followers for a given user
+         * @summary Relevant followers
          * @param {string} apiKey API key required for authentication.
-         * @param {string} id Channel id being queried
+         * @param {string} id Channel ID being queried
          * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1412,7 +1412,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Remove a user from a channel or a user\'s invite to a channel role
-         * @summary Remove a user from a channel
+         * @summary Remove user
          * @param {string} apiKey API key required for authentication.
          * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
          * @param {*} [options] Override http request option.
@@ -1423,7 +1423,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Accept or reject a channel invite
-         * @summary Accept or reject a channel invite
+         * @summary Accept or reject an invite
          * @param {string} apiKey API key required for authentication.
          * @param {RespondChannelInviteRequest} respondChannelInviteRequest 
          * @param {*} [options] Override http request option.
@@ -1433,8 +1433,8 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.respondChannelInvite(apiKey, respondChannelInviteRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns a list of channels based on id or name
-         * @summary Search for channels based on id or name
+         * Returns a list of channels based on ID or name
+         * @summary Search by ID or name
          * @param {string} apiKey API key required for authentication.
          * @param {string} q Channel ID or name for the channel being queried
          * @param {number} [limit] Number of results to fetch
@@ -1447,7 +1447,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Returns a list of trending channels based on activity
-         * @summary Fetch trending channels based on activity
+         * @summary Channels by activity
          * @param {string} apiKey API key required for authentication.
          * @param {'1d' | '7d' | '30d'} [timeWindow] 
          * @param {number} [limit] Number of results to fetch (default 10, max 25)
@@ -1470,10 +1470,10 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.unfollowChannel(apiKey, channelFollowReqBody, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns a list of all channels with their details that an fid is a member of. Data may have a delay of up to 1 hour.
-         * @summary Fetch all channels that a given fid is a member of
+         * Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour.
+         * @summary Member of
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid The fid of the user.
+         * @param {number} fid The FID of the user.
          * @param {number} [limit] Number of results to fetch (default 20, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -1483,10 +1483,10 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.userChannelMemberships(apiKey, fid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns a list of all channels with their details that a fid follows.
-         * @summary Fetch all channels that a given fid follows
+         * Returns a list of all channels with their details that a FID follows.
+         * @summary Following
          * @param {string} apiKey API key required for authentication.
-         * @param {number} fid The fid of the user.
+         * @param {number} fid The FID of the user.
          * @param {number} [limit] Number of results to fetch (default 25, max 100)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -1507,9 +1507,9 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
 export class ChannelApi extends BaseAPI {
     /**
      * Fetches all channels that a user has casted in, in reverse chronological order.
-     * @summary Fetch channels that a user is active in
+     * @summary Fetch channels that user is active in
      * @param {string} apiKey API key required for authentication.
-     * @param {number} fid The user\&#39;s fid (identifier)
+     * @param {number} fid The user\&#39;s FID (identifier)
      * @param {number} [limit] Number of results to fetch (default 20, max 100).
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
@@ -1522,10 +1522,10 @@ export class ChannelApi extends BaseAPI {
 
     /**
      * Returns details of a channel
-     * @summary Fetch channel details by id or parent_url
+     * @summary By ID or parent_url
      * @param {string} apiKey API key required for authentication.
      * @param {string} id Channel ID for the channel being queried
-     * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to id.
+     * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to ID.
      * @param {number} [viewerFid] FID of the user viewing the channel.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1537,10 +1537,10 @@ export class ChannelApi extends BaseAPI {
 
     /**
      * Returns details of multiple channels
-     * @summary (Bulk) Fetch channels by id or parent_url
+     * @summary Bulk fetch
      * @param {string} apiKey API key required for authentication.
      * @param {string} ids Comma separated list of channel IDs or parent_urls, up to 100 at a time
-     * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to id.
+     * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to ID.
      * @param {number} [viewerFid] FID of the user viewing the channels.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1552,7 +1552,7 @@ export class ChannelApi extends BaseAPI {
 
     /**
      * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
-     * @summary Fetch followers for a given channel
+     * @summary For channel
      * @param {string} apiKey API key required for authentication.
      * @param {string} id Channel ID for the channel being queried
      * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -1600,7 +1600,7 @@ export class ChannelApi extends BaseAPI {
 
     /**
      * Invite a user to a channel
-     * @summary Invite a user to a channel
+     * @summary Invite
      * @param {string} apiKey API key required for authentication.
      * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
      * @param {*} [options] Override http request option.
@@ -1627,7 +1627,7 @@ export class ChannelApi extends BaseAPI {
 
     /**
      * Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.
-     * @summary List of open invites
+     * @summary Open invites
      * @param {string} apiKey API key required for authentication.
      * @param {string} [channelId] Channel ID for the channel being queried
      * @param {number} [invitedFid] FID of the user being invited
@@ -1643,7 +1643,7 @@ export class ChannelApi extends BaseAPI {
 
     /**
      * Fetch a list of members in a channel
-     * @summary Fetch a list of members in a channel
+     * @summary Fetch members
      * @param {string} apiKey API key required for authentication.
      * @param {string} channelId Channel ID for the channel being queried
      * @param {number} [fid] FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members.
@@ -1659,9 +1659,9 @@ export class ChannelApi extends BaseAPI {
 
     /**
      * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
-     * @summary Fetch relevant channel followers for a given user
+     * @summary Relevant followers
      * @param {string} apiKey API key required for authentication.
-     * @param {string} id Channel id being queried
+     * @param {string} id Channel ID being queried
      * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1673,7 +1673,7 @@ export class ChannelApi extends BaseAPI {
 
     /**
      * Remove a user from a channel or a user\'s invite to a channel role
-     * @summary Remove a user from a channel
+     * @summary Remove user
      * @param {string} apiKey API key required for authentication.
      * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
      * @param {*} [options] Override http request option.
@@ -1686,7 +1686,7 @@ export class ChannelApi extends BaseAPI {
 
     /**
      * Accept or reject a channel invite
-     * @summary Accept or reject a channel invite
+     * @summary Accept or reject an invite
      * @param {string} apiKey API key required for authentication.
      * @param {RespondChannelInviteRequest} respondChannelInviteRequest 
      * @param {*} [options] Override http request option.
@@ -1698,8 +1698,8 @@ export class ChannelApi extends BaseAPI {
     }
 
     /**
-     * Returns a list of channels based on id or name
-     * @summary Search for channels based on id or name
+     * Returns a list of channels based on ID or name
+     * @summary Search by ID or name
      * @param {string} apiKey API key required for authentication.
      * @param {string} q Channel ID or name for the channel being queried
      * @param {number} [limit] Number of results to fetch
@@ -1714,7 +1714,7 @@ export class ChannelApi extends BaseAPI {
 
     /**
      * Returns a list of trending channels based on activity
-     * @summary Fetch trending channels based on activity
+     * @summary Channels by activity
      * @param {string} apiKey API key required for authentication.
      * @param {'1d' | '7d' | '30d'} [timeWindow] 
      * @param {number} [limit] Number of results to fetch (default 10, max 25)
@@ -1741,10 +1741,10 @@ export class ChannelApi extends BaseAPI {
     }
 
     /**
-     * Returns a list of all channels with their details that an fid is a member of. Data may have a delay of up to 1 hour.
-     * @summary Fetch all channels that a given fid is a member of
+     * Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour.
+     * @summary Member of
      * @param {string} apiKey API key required for authentication.
-     * @param {number} fid The fid of the user.
+     * @param {number} fid The FID of the user.
      * @param {number} [limit] Number of results to fetch (default 20, max 100)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
@@ -1756,10 +1756,10 @@ export class ChannelApi extends BaseAPI {
     }
 
     /**
-     * Returns a list of all channels with their details that a fid follows.
-     * @summary Fetch all channels that a given fid follows
+     * Returns a list of all channels with their details that a FID follows.
+     * @summary Following
      * @param {string} apiKey API key required for authentication.
-     * @param {number} fid The fid of the user.
+     * @param {number} fid The FID of the user.
      * @param {number} [limit] Number of results to fetch (default 25, max 100)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.

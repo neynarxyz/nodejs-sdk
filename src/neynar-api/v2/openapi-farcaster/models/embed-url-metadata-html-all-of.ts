@@ -13,24 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { EmbedUrlMetadataHtmlAllOfOembed } from './embed-url-metadata-html-all-of-oembed';
 
 /**
  * 
  * @export
- * @interface FarcasterActionReqBodyAction
+ * @interface EmbedUrlMetadataHtmlAllOf
  */
-export interface FarcasterActionReqBodyAction {
+export interface EmbedUrlMetadataHtmlAllOf {
     /**
-     * The type of action being performed. 
-     * @type {string}
-     * @memberof FarcasterActionReqBodyAction
+     * 
+     * @type {EmbedUrlMetadataHtmlAllOfOembed}
+     * @memberof EmbedUrlMetadataHtmlAllOf
      */
-    'type': string;
-    /**
-     * The payload of the action being performed. 
-     * @type {object}
-     * @memberof FarcasterActionReqBodyAction
-     */
-    'payload'?: object;
+    'oembed'?: EmbedUrlMetadataHtmlAllOfOembed;
 }
 

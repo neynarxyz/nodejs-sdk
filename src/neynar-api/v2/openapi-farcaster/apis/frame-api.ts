@@ -61,7 +61,7 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
     return {
         /**
          * Delete an existing frame, if it was made by the developer (identified by API key)
-         * @summary Delete a frame
+         * @summary Delete frame
          * @param {string} apiKey API key required for authentication.
          * @param {DeleteNeynarFrameRequest} deleteNeynarFrameRequest 
          * @param {*} [options] Override http request option.
@@ -104,7 +104,7 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Fetch a list of frames made by the developer (identified by API key)
-         * @summary Fetch a list of frames
+         * @summary List of frames
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -141,7 +141,7 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Fetches the frame meta tags from the URL
-         * @summary Fetch the frame meta tags from the URL
+         * @summary Meta tags from URL
          * @param {string} apiKey API key required for authentication.
          * @param {string} url The frame URL to crawl
          * @param {*} [options] Override http request option.
@@ -185,7 +185,7 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Fetch a frame either by UUID or Neynar URL
-         * @summary Fetch a frame by UUID or URL
+         * @summary Frame by UUID or URL
          * @param {string} apiKey API key required for authentication.
          * @param {FrameType} type 
          * @param {string} [uuid] UUID of the frame to fetch
@@ -282,7 +282,7 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Post a frame action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds. 
-         * @summary Post a frame signature packet
+         * @summary Signature packet
          * @param {string} apiKey API key required for authentication.
          * @param {FrameDeveloperManagedActionReqBody} frameDeveloperManagedActionReqBody 
          * @param {*} [options] Override http request option.
@@ -325,7 +325,7 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Create a new frame with a list of pages.
-         * @summary Create a new frame
+         * @summary Create frame
          * @param {string} apiKey API key required for authentication.
          * @param {NeynarFrameCreationRequest} neynarFrameCreationRequest 
          * @param {*} [options] Override http request option.
@@ -368,7 +368,7 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Update an existing frame with a list of pages, if it was made by the developer (identified by API key)
-         * @summary Update an existing frame
+         * @summary Update frame
          * @param {string} apiKey API key required for authentication.
          * @param {NeynarFrameUpdateRequest} neynarFrameUpdateRequest 
          * @param {*} [options] Override http request option.
@@ -411,7 +411,7 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Validates a frame against by an interacting user against a Farcaster Hub \\ (In order to validate a frame, message bytes from Frame Action must be provided in hex) 
-         * @summary Validates a frame action against Farcaster Hub
+         * @summary Validate frame action
          * @param {string} apiKey API key required for authentication.
          * @param {ValidateFrameRequest} validateFrameRequest 
          * @param {*} [options] Override http request option.
@@ -454,7 +454,7 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Fetch analytics for total-interactors, interactors, nteractions-per-cast and input-text.
-         * @summary Fetch analytics for the frame
+         * @summary Analytics for the frame
          * @param {string} apiKey API key required for authentication.
          * @param {string} frameUrl 
          * @param {ValidateFrameAnalyticsType} analyticsType 
@@ -528,7 +528,7 @@ export const FrameApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Fetch a list of all the frames validated by a user
-         * @summary Fetch a list of all the frames validated by a user
+         * @summary All frames validated by user
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -575,7 +575,7 @@ export const FrameApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Delete an existing frame, if it was made by the developer (identified by API key)
-         * @summary Delete a frame
+         * @summary Delete frame
          * @param {string} apiKey API key required for authentication.
          * @param {DeleteNeynarFrameRequest} deleteNeynarFrameRequest 
          * @param {*} [options] Override http request option.
@@ -587,7 +587,7 @@ export const FrameApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetch a list of frames made by the developer (identified by API key)
-         * @summary Fetch a list of frames
+         * @summary List of frames
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -598,7 +598,7 @@ export const FrameApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches the frame meta tags from the URL
-         * @summary Fetch the frame meta tags from the URL
+         * @summary Meta tags from URL
          * @param {string} apiKey API key required for authentication.
          * @param {string} url The frame URL to crawl
          * @param {*} [options] Override http request option.
@@ -610,7 +610,7 @@ export const FrameApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetch a frame either by UUID or Neynar URL
-         * @summary Fetch a frame by UUID or URL
+         * @summary Frame by UUID or URL
          * @param {string} apiKey API key required for authentication.
          * @param {FrameType} type 
          * @param {string} [uuid] UUID of the frame to fetch
@@ -636,7 +636,7 @@ export const FrameApiFp = function(configuration?: Configuration) {
         },
         /**
          * Post a frame action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds. 
-         * @summary Post a frame signature packet
+         * @summary Signature packet
          * @param {string} apiKey API key required for authentication.
          * @param {FrameDeveloperManagedActionReqBody} frameDeveloperManagedActionReqBody 
          * @param {*} [options] Override http request option.
@@ -648,7 +648,7 @@ export const FrameApiFp = function(configuration?: Configuration) {
         },
         /**
          * Create a new frame with a list of pages.
-         * @summary Create a new frame
+         * @summary Create frame
          * @param {string} apiKey API key required for authentication.
          * @param {NeynarFrameCreationRequest} neynarFrameCreationRequest 
          * @param {*} [options] Override http request option.
@@ -660,7 +660,7 @@ export const FrameApiFp = function(configuration?: Configuration) {
         },
         /**
          * Update an existing frame with a list of pages, if it was made by the developer (identified by API key)
-         * @summary Update an existing frame
+         * @summary Update frame
          * @param {string} apiKey API key required for authentication.
          * @param {NeynarFrameUpdateRequest} neynarFrameUpdateRequest 
          * @param {*} [options] Override http request option.
@@ -672,7 +672,7 @@ export const FrameApiFp = function(configuration?: Configuration) {
         },
         /**
          * Validates a frame against by an interacting user against a Farcaster Hub \\ (In order to validate a frame, message bytes from Frame Action must be provided in hex) 
-         * @summary Validates a frame action against Farcaster Hub
+         * @summary Validate frame action
          * @param {string} apiKey API key required for authentication.
          * @param {ValidateFrameRequest} validateFrameRequest 
          * @param {*} [options] Override http request option.
@@ -684,7 +684,7 @@ export const FrameApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetch analytics for total-interactors, interactors, nteractions-per-cast and input-text.
-         * @summary Fetch analytics for the frame
+         * @summary Analytics for the frame
          * @param {string} apiKey API key required for authentication.
          * @param {string} frameUrl 
          * @param {ValidateFrameAnalyticsType} analyticsType 
@@ -700,7 +700,7 @@ export const FrameApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetch a list of all the frames validated by a user
-         * @summary Fetch a list of all the frames validated by a user
+         * @summary All frames validated by user
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -721,7 +721,7 @@ export const FrameApiFactory = function (configuration?: Configuration, basePath
     return {
         /**
          * Delete an existing frame, if it was made by the developer (identified by API key)
-         * @summary Delete a frame
+         * @summary Delete frame
          * @param {string} apiKey API key required for authentication.
          * @param {DeleteNeynarFrameRequest} deleteNeynarFrameRequest 
          * @param {*} [options] Override http request option.
@@ -732,7 +732,7 @@ export const FrameApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Fetch a list of frames made by the developer (identified by API key)
-         * @summary Fetch a list of frames
+         * @summary List of frames
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -742,7 +742,7 @@ export const FrameApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Fetches the frame meta tags from the URL
-         * @summary Fetch the frame meta tags from the URL
+         * @summary Meta tags from URL
          * @param {string} apiKey API key required for authentication.
          * @param {string} url The frame URL to crawl
          * @param {*} [options] Override http request option.
@@ -753,7 +753,7 @@ export const FrameApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Fetch a frame either by UUID or Neynar URL
-         * @summary Fetch a frame by UUID or URL
+         * @summary Frame by UUID or URL
          * @param {string} apiKey API key required for authentication.
          * @param {FrameType} type 
          * @param {string} [uuid] UUID of the frame to fetch
@@ -777,7 +777,7 @@ export const FrameApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Post a frame action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds. 
-         * @summary Post a frame signature packet
+         * @summary Signature packet
          * @param {string} apiKey API key required for authentication.
          * @param {FrameDeveloperManagedActionReqBody} frameDeveloperManagedActionReqBody 
          * @param {*} [options] Override http request option.
@@ -788,7 +788,7 @@ export const FrameApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Create a new frame with a list of pages.
-         * @summary Create a new frame
+         * @summary Create frame
          * @param {string} apiKey API key required for authentication.
          * @param {NeynarFrameCreationRequest} neynarFrameCreationRequest 
          * @param {*} [options] Override http request option.
@@ -799,7 +799,7 @@ export const FrameApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Update an existing frame with a list of pages, if it was made by the developer (identified by API key)
-         * @summary Update an existing frame
+         * @summary Update frame
          * @param {string} apiKey API key required for authentication.
          * @param {NeynarFrameUpdateRequest} neynarFrameUpdateRequest 
          * @param {*} [options] Override http request option.
@@ -810,7 +810,7 @@ export const FrameApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Validates a frame against by an interacting user against a Farcaster Hub \\ (In order to validate a frame, message bytes from Frame Action must be provided in hex) 
-         * @summary Validates a frame action against Farcaster Hub
+         * @summary Validate frame action
          * @param {string} apiKey API key required for authentication.
          * @param {ValidateFrameRequest} validateFrameRequest 
          * @param {*} [options] Override http request option.
@@ -821,7 +821,7 @@ export const FrameApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Fetch analytics for total-interactors, interactors, nteractions-per-cast and input-text.
-         * @summary Fetch analytics for the frame
+         * @summary Analytics for the frame
          * @param {string} apiKey API key required for authentication.
          * @param {string} frameUrl 
          * @param {ValidateFrameAnalyticsType} analyticsType 
@@ -836,7 +836,7 @@ export const FrameApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Fetch a list of all the frames validated by a user
-         * @summary Fetch a list of all the frames validated by a user
+         * @summary All frames validated by user
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -856,7 +856,7 @@ export const FrameApiFactory = function (configuration?: Configuration, basePath
 export class FrameApi extends BaseAPI {
     /**
      * Delete an existing frame, if it was made by the developer (identified by API key)
-     * @summary Delete a frame
+     * @summary Delete frame
      * @param {string} apiKey API key required for authentication.
      * @param {DeleteNeynarFrameRequest} deleteNeynarFrameRequest 
      * @param {*} [options] Override http request option.
@@ -869,7 +869,7 @@ export class FrameApi extends BaseAPI {
 
     /**
      * Fetch a list of frames made by the developer (identified by API key)
-     * @summary Fetch a list of frames
+     * @summary List of frames
      * @param {string} apiKey API key required for authentication.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -881,7 +881,7 @@ export class FrameApi extends BaseAPI {
 
     /**
      * Fetches the frame meta tags from the URL
-     * @summary Fetch the frame meta tags from the URL
+     * @summary Meta tags from URL
      * @param {string} apiKey API key required for authentication.
      * @param {string} url The frame URL to crawl
      * @param {*} [options] Override http request option.
@@ -894,7 +894,7 @@ export class FrameApi extends BaseAPI {
 
     /**
      * Fetch a frame either by UUID or Neynar URL
-     * @summary Fetch a frame by UUID or URL
+     * @summary Frame by UUID or URL
      * @param {string} apiKey API key required for authentication.
      * @param {FrameType} type 
      * @param {string} [uuid] UUID of the frame to fetch
@@ -922,7 +922,7 @@ export class FrameApi extends BaseAPI {
 
     /**
      * Post a frame action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds. 
-     * @summary Post a frame signature packet
+     * @summary Signature packet
      * @param {string} apiKey API key required for authentication.
      * @param {FrameDeveloperManagedActionReqBody} frameDeveloperManagedActionReqBody 
      * @param {*} [options] Override http request option.
@@ -935,7 +935,7 @@ export class FrameApi extends BaseAPI {
 
     /**
      * Create a new frame with a list of pages.
-     * @summary Create a new frame
+     * @summary Create frame
      * @param {string} apiKey API key required for authentication.
      * @param {NeynarFrameCreationRequest} neynarFrameCreationRequest 
      * @param {*} [options] Override http request option.
@@ -948,7 +948,7 @@ export class FrameApi extends BaseAPI {
 
     /**
      * Update an existing frame with a list of pages, if it was made by the developer (identified by API key)
-     * @summary Update an existing frame
+     * @summary Update frame
      * @param {string} apiKey API key required for authentication.
      * @param {NeynarFrameUpdateRequest} neynarFrameUpdateRequest 
      * @param {*} [options] Override http request option.
@@ -961,7 +961,7 @@ export class FrameApi extends BaseAPI {
 
     /**
      * Validates a frame against by an interacting user against a Farcaster Hub \\ (In order to validate a frame, message bytes from Frame Action must be provided in hex) 
-     * @summary Validates a frame action against Farcaster Hub
+     * @summary Validate frame action
      * @param {string} apiKey API key required for authentication.
      * @param {ValidateFrameRequest} validateFrameRequest 
      * @param {*} [options] Override http request option.
@@ -974,7 +974,7 @@ export class FrameApi extends BaseAPI {
 
     /**
      * Fetch analytics for total-interactors, interactors, nteractions-per-cast and input-text.
-     * @summary Fetch analytics for the frame
+     * @summary Analytics for the frame
      * @param {string} apiKey API key required for authentication.
      * @param {string} frameUrl 
      * @param {ValidateFrameAnalyticsType} analyticsType 
@@ -991,7 +991,7 @@ export class FrameApi extends BaseAPI {
 
     /**
      * Fetch a list of all the frames validated by a user
-     * @summary Fetch a list of all the frames validated by a user
+     * @summary All frames validated by user
      * @param {string} apiKey API key required for authentication.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

@@ -15,30 +15,24 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ActiveStatus } from './active-status';
+import { EmbedUrlMetadataHtmlAllOf } from './embed-url-metadata-html-all-of';
 // May contain unused imports in some cases
 // @ts-ignore
-import { User } from './user';
+import { EmbedUrlMetadataHtmlAllOfOembed } from './embed-url-metadata-html-all-of-oembed';
 // May contain unused imports in some cases
 // @ts-ignore
-import { UserDehydrated } from './user-dehydrated';
+import { ImageObject } from './image-object';
 // May contain unused imports in some cases
 // @ts-ignore
-import { UserProfile } from './user-profile';
+import { OgObject } from './og-object';
 // May contain unused imports in some cases
 // @ts-ignore
-import { UserVerifiedAccountsInner } from './user-verified-accounts-inner';
-// May contain unused imports in some cases
-// @ts-ignore
-import { UserVerifiedAddresses } from './user-verified-addresses';
-// May contain unused imports in some cases
-// @ts-ignore
-import { UserViewerContext } from './user-viewer-context';
+import { VideoObject } from './video-object';
 
 /**
- * @type CastAuthor
+ * @type EmbedUrlMetadataHtml
  * @export
  */
-export type CastAuthor = { object: 'user' } & User | { object: 'user_dehydrated' } & UserDehydrated;
+export type EmbedUrlMetadataHtml = EmbedUrlMetadataHtmlAllOf & OgObject;
 
 

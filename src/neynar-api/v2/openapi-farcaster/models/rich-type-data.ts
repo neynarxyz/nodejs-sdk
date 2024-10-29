@@ -13,30 +13,17 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { OembedData } from './oembed-data';
+// May contain unused imports in some cases
+// @ts-ignore
+import { RichTypeDataAllOf } from './rich-type-data-all-of';
 
 /**
- * 
+ * @type RichTypeData
  * @export
- * @interface MusicSongObject
  */
-export interface MusicSongObject {
-    /**
-     * 
-     * @type {string}
-     * @memberof MusicSongObject
-     */
-    'disc'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MusicSongObject
-     */
-    'track'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MusicSongObject
-     */
-    'url': string;
-}
+export type RichTypeData = OembedData & RichTypeDataAllOf;
+
 

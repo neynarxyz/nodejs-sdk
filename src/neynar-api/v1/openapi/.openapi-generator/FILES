@@ -12,7 +12,6 @@ common.ts
 configuration.ts
 git_push.sh
 index.ts
-models/active-status.ts
 models/all-casts-in-thread-response-result.ts
 models/all-casts-in-thread-response.ts
 models/cast-author-one-of.ts

@@ -80,7 +80,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * Fetches the status of a developer managed signer by public key
-         * @summary Fetch status by public key
+         * @summary Status by public key
          * @param {string} apiKey API key required for authentication.
          * @param {string} publicKey 
          * @param {*} [options] Override http request option.
@@ -175,7 +175,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * Publish a message to farcaster. The message must be signed by a signer managed by the developer. Use the @farcaster/core library to construct and sign the message. Use the Message.toJSON method on the signed message and pass the JSON in the body of this POST request.
-         * @summary Publish a message to farcaster
+         * @summary Publish message
          * @param {string} apiKey API key required for authentication.
          * @param {object} body 
          * @param {*} [options] Override http request option.
@@ -217,7 +217,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * Registers an app fid, deadline and a signature. Returns the signer status with an approval url.
+         * Registers an app FID, deadline and a signature. Returns the signer status with an approval url.
          * @summary Register Signed Key
          * @param {string} apiKey API key required for authentication.
          * @param {RegisterSignerKeyReqBody} registerSignerKeyReqBody 
@@ -261,7 +261,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * Registers an signed key and returns the developer managed signer status with an approval url.
-         * @summary Registers Signed Key
+         * @summary Register Signed Key
          * @param {string} apiKey API key required for authentication.
          * @param {RegisterDeveloperManagedSignedKeyReqBody} registerDeveloperManagedSignedKeyReqBody 
          * @param {*} [options] Override http request option.
@@ -304,7 +304,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
-         * @summary Fetch status
+         * @summary Status
          * @param {string} apiKey API key required for authentication.
          * @param {string} signerUuid 
          * @param {*} [options] Override http request option.
@@ -369,7 +369,7 @@ export const SignerApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches the status of a developer managed signer by public key
-         * @summary Fetch status by public key
+         * @summary Status by public key
          * @param {string} apiKey API key required for authentication.
          * @param {string} publicKey 
          * @param {*} [options] Override http request option.
@@ -394,7 +394,7 @@ export const SignerApiFp = function(configuration?: Configuration) {
         },
         /**
          * Publish a message to farcaster. The message must be signed by a signer managed by the developer. Use the @farcaster/core library to construct and sign the message. Use the Message.toJSON method on the signed message and pass the JSON in the body of this POST request.
-         * @summary Publish a message to farcaster
+         * @summary Publish message
          * @param {string} apiKey API key required for authentication.
          * @param {object} body 
          * @param {*} [options] Override http request option.
@@ -405,7 +405,7 @@ export const SignerApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Registers an app fid, deadline and a signature. Returns the signer status with an approval url.
+         * Registers an app FID, deadline and a signature. Returns the signer status with an approval url.
          * @summary Register Signed Key
          * @param {string} apiKey API key required for authentication.
          * @param {RegisterSignerKeyReqBody} registerSignerKeyReqBody 
@@ -418,7 +418,7 @@ export const SignerApiFp = function(configuration?: Configuration) {
         },
         /**
          * Registers an signed key and returns the developer managed signer status with an approval url.
-         * @summary Registers Signed Key
+         * @summary Register Signed Key
          * @param {string} apiKey API key required for authentication.
          * @param {RegisterDeveloperManagedSignedKeyReqBody} registerDeveloperManagedSignedKeyReqBody 
          * @param {*} [options] Override http request option.
@@ -430,7 +430,7 @@ export const SignerApiFp = function(configuration?: Configuration) {
         },
         /**
          * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
-         * @summary Fetch status
+         * @summary Status
          * @param {string} apiKey API key required for authentication.
          * @param {string} signerUuid 
          * @param {*} [options] Override http request option.
@@ -462,7 +462,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * Fetches the status of a developer managed signer by public key
-         * @summary Fetch status by public key
+         * @summary Status by public key
          * @param {string} apiKey API key required for authentication.
          * @param {string} publicKey 
          * @param {*} [options] Override http request option.
@@ -485,7 +485,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * Publish a message to farcaster. The message must be signed by a signer managed by the developer. Use the @farcaster/core library to construct and sign the message. Use the Message.toJSON method on the signed message and pass the JSON in the body of this POST request.
-         * @summary Publish a message to farcaster
+         * @summary Publish message
          * @param {string} apiKey API key required for authentication.
          * @param {object} body 
          * @param {*} [options] Override http request option.
@@ -495,7 +495,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
             return localVarFp.publishMessage(apiKey, body, options).then((request) => request(axios, basePath));
         },
         /**
-         * Registers an app fid, deadline and a signature. Returns the signer status with an approval url.
+         * Registers an app FID, deadline and a signature. Returns the signer status with an approval url.
          * @summary Register Signed Key
          * @param {string} apiKey API key required for authentication.
          * @param {RegisterSignerKeyReqBody} registerSignerKeyReqBody 
@@ -507,7 +507,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * Registers an signed key and returns the developer managed signer status with an approval url.
-         * @summary Registers Signed Key
+         * @summary Register Signed Key
          * @param {string} apiKey API key required for authentication.
          * @param {RegisterDeveloperManagedSignedKeyReqBody} registerDeveloperManagedSignedKeyReqBody 
          * @param {*} [options] Override http request option.
@@ -518,7 +518,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
-         * @summary Fetch status
+         * @summary Status
          * @param {string} apiKey API key required for authentication.
          * @param {string} signerUuid 
          * @param {*} [options] Override http request option.
@@ -551,7 +551,7 @@ export class SignerApi extends BaseAPI {
 
     /**
      * Fetches the status of a developer managed signer by public key
-     * @summary Fetch status by public key
+     * @summary Status by public key
      * @param {string} apiKey API key required for authentication.
      * @param {string} publicKey 
      * @param {*} [options] Override http request option.
@@ -578,7 +578,7 @@ export class SignerApi extends BaseAPI {
 
     /**
      * Publish a message to farcaster. The message must be signed by a signer managed by the developer. Use the @farcaster/core library to construct and sign the message. Use the Message.toJSON method on the signed message and pass the JSON in the body of this POST request.
-     * @summary Publish a message to farcaster
+     * @summary Publish message
      * @param {string} apiKey API key required for authentication.
      * @param {object} body 
      * @param {*} [options] Override http request option.
@@ -590,7 +590,7 @@ export class SignerApi extends BaseAPI {
     }
 
     /**
-     * Registers an app fid, deadline and a signature. Returns the signer status with an approval url.
+     * Registers an app FID, deadline and a signature. Returns the signer status with an approval url.
      * @summary Register Signed Key
      * @param {string} apiKey API key required for authentication.
      * @param {RegisterSignerKeyReqBody} registerSignerKeyReqBody 
@@ -604,7 +604,7 @@ export class SignerApi extends BaseAPI {
 
     /**
      * Registers an signed key and returns the developer managed signer status with an approval url.
-     * @summary Registers Signed Key
+     * @summary Register Signed Key
      * @param {string} apiKey API key required for authentication.
      * @param {RegisterDeveloperManagedSignedKeyReqBody} registerDeveloperManagedSignedKeyReqBody 
      * @param {*} [options] Override http request option.
@@ -617,7 +617,7 @@ export class SignerApi extends BaseAPI {
 
     /**
      * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
-     * @summary Fetch status
+     * @summary Status
      * @param {string} apiKey API key required for authentication.
      * @param {string} signerUuid 
      * @param {*} [options] Override http request option.

@@ -17,20 +17,14 @@
 /**
  * 
  * @export
- * @interface FarcasterActionReqBodyAction
+ * @interface CastEmbeddedParentAuthor
  */
-export interface FarcasterActionReqBodyAction {
+export interface CastEmbeddedParentAuthor {
     /**
-     * The type of action being performed. 
-     * @type {string}
-     * @memberof FarcasterActionReqBodyAction
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof CastEmbeddedParentAuthor
      */
-    'type': string;
-    /**
-     * The payload of the action being performed. 
-     * @type {object}
-     * @memberof FarcasterActionReqBodyAction
-     */
-    'payload'?: object;
+    'fid': number | null;
 }
 

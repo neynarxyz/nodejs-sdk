@@ -13,36 +13,30 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { CastDehydrated } from './cast-dehydrated';
+// May contain unused imports in some cases
+// @ts-ignore
+import { CastId } from './cast-id';
 
 /**
  * 
  * @export
- * @interface TwitterPlayerObject
+ * @interface EmbedCastDeep
  */
-export interface TwitterPlayerObject {
+export interface EmbedCastDeep {
     /**
      * 
-     * @type {string}
-     * @memberof TwitterPlayerObject
+     * @type {CastId}
+     * @memberof EmbedCastDeep
      */
-    'height'?: string;
+    'cast_id'?: CastId;
     /**
      * 
-     * @type {string}
-     * @memberof TwitterPlayerObject
+     * @type {CastDehydrated}
+     * @memberof EmbedCastDeep
      */
-    'stream'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TwitterPlayerObject
-     */
-    'url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TwitterPlayerObject
-     */
-    'width'?: string;
+    'cast': CastDehydrated;
 }
 

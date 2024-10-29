@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Cast } from './cast';
+import { CastEmbedded } from './cast-embedded';
 // May contain unused imports in some cases
 // @ts-ignore
 import { CastId } from './cast-id';
@@ -31,12 +31,12 @@ export interface EmbedCast {
      * @type {CastId}
      * @memberof EmbedCast
      */
-    'cast_id': CastId;
+    'cast_id'?: CastId;
     /**
      * 
-     * @type {Cast}
+     * @type {CastEmbedded}
      * @memberof EmbedCast
      */
-    'metadata'?: Cast;
+    'cast': CastEmbedded;
 }
 

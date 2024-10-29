@@ -33,7 +33,7 @@ export const FnameApiAxiosParamCreator = function (configuration?: Configuration
     return {
         /**
          * Check if a given fname is available
-         * @summary Check if a given fname is available
+         * @summary Check fname availability
          * @param {string} apiKey API key required for authentication.
          * @param {string} fname 
          * @param {*} [options] Override http request option.
@@ -87,7 +87,7 @@ export const FnameApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Check if a given fname is available
-         * @summary Check if a given fname is available
+         * @summary Check fname availability
          * @param {string} apiKey API key required for authentication.
          * @param {string} fname 
          * @param {*} [options] Override http request option.
@@ -109,7 +109,7 @@ export const FnameApiFactory = function (configuration?: Configuration, basePath
     return {
         /**
          * Check if a given fname is available
-         * @summary Check if a given fname is available
+         * @summary Check fname availability
          * @param {string} apiKey API key required for authentication.
          * @param {string} fname 
          * @param {*} [options] Override http request option.
@@ -130,7 +130,7 @@ export const FnameApiFactory = function (configuration?: Configuration, basePath
 export class FnameApi extends BaseAPI {
     /**
      * Check if a given fname is available
-     * @summary Check if a given fname is available
+     * @summary Check fname availability
      * @param {string} apiKey API key required for authentication.
      * @param {string} fname 
      * @param {*} [options] Override http request option.

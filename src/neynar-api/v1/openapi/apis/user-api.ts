@@ -40,7 +40,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), find custody address in user obj. Returns the custody address for a given FID
          * @summary DEPRECATED - Fetch the custody address for a given FID
-         * @param {number} fid fid of a user
+         * @param {number} fid FID of a user
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -81,7 +81,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Fetch a list of casts from the protocol in reverse chronological order based on timestamp
          * @summary Fetch Recent Users
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to fetch (default 100, max 1000)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -129,8 +129,8 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk). Returns metadata about a specific user
          * @summary DEPRECATED - Fetch User Information by FID
-         * @param {number} fid fid of a user
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} fid FID of a user
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -176,7 +176,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * Now deprecated, use [v2/user/by_username](https://docs.neynar.com/reference/user-by-username-v2) instead. Returns metadata about a specific user
          * @summary DEPRECATED - Fetch User Information by username
          * @param {string} username Username of the user
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -222,7 +222,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * Now deprecated. use [/v2/reactions/user](https://docs.neynar.com/reference/reactions-user). Fetch all the liked cast of a User
          * @summary DEPRECATED -- Fetch User Cast Likes
          * @param {number} fid FID of the user
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor
          * @param {*} [options] Override http request option.
@@ -287,7 +287,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), find custody address in user obj. Returns the custody address for a given FID
          * @summary DEPRECATED - Fetch the custody address for a given FID
-         * @param {number} fid fid of a user
+         * @param {number} fid FID of a user
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -299,7 +299,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Fetch a list of casts from the protocol in reverse chronological order based on timestamp
          * @summary Fetch Recent Users
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to fetch (default 100, max 1000)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -312,8 +312,8 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk). Returns metadata about a specific user
          * @summary DEPRECATED - Fetch User Information by FID
-         * @param {number} fid fid of a user
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} fid FID of a user
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -326,7 +326,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * Now deprecated, use [v2/user/by_username](https://docs.neynar.com/reference/user-by-username-v2) instead. Returns metadata about a specific user
          * @summary DEPRECATED - Fetch User Information by username
          * @param {string} username Username of the user
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -339,7 +339,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * Now deprecated. use [/v2/reactions/user](https://docs.neynar.com/reference/reactions-user). Fetch all the liked cast of a User
          * @summary DEPRECATED -- Fetch User Cast Likes
          * @param {number} fid FID of the user
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor
          * @param {*} [options] Override http request option.
@@ -363,7 +363,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         /**
          * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), find custody address in user obj. Returns the custody address for a given FID
          * @summary DEPRECATED - Fetch the custody address for a given FID
-         * @param {number} fid fid of a user
+         * @param {number} fid FID of a user
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -374,7 +374,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         /**
          * Fetch a list of casts from the protocol in reverse chronological order based on timestamp
          * @summary Fetch Recent Users
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to fetch (default 100, max 1000)
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
@@ -386,8 +386,8 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         /**
          * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk). Returns metadata about a specific user
          * @summary DEPRECATED - Fetch User Information by FID
-         * @param {number} fid fid of a user
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} fid FID of a user
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -399,7 +399,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * Now deprecated, use [v2/user/by_username](https://docs.neynar.com/reference/user-by-username-v2) instead. Returns metadata about a specific user
          * @summary DEPRECATED - Fetch User Information by username
          * @param {string} username Username of the user
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -411,7 +411,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * Now deprecated. use [/v2/reactions/user](https://docs.neynar.com/reference/reactions-user). Fetch all the liked cast of a User
          * @summary DEPRECATED -- Fetch User Cast Likes
          * @param {number} fid FID of the user
-         * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+         * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
          * @param {number} [limit] Number of results to fetch (default 25, max 150)
          * @param {string} [cursor] Pagination cursor
          * @param {*} [options] Override http request option.
@@ -434,7 +434,7 @@ export class UserApi extends BaseAPI {
     /**
      * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk), find custody address in user obj. Returns the custody address for a given FID
      * @summary DEPRECATED - Fetch the custody address for a given FID
-     * @param {number} fid fid of a user
+     * @param {number} fid FID of a user
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -447,7 +447,7 @@ export class UserApi extends BaseAPI {
     /**
      * Fetch a list of casts from the protocol in reverse chronological order based on timestamp
      * @summary Fetch Recent Users
-     * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+     * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
      * @param {number} [limit] Number of results to fetch (default 100, max 1000)
      * @param {string} [cursor] Pagination cursor.
      * @param {*} [options] Override http request option.
@@ -461,8 +461,8 @@ export class UserApi extends BaseAPI {
     /**
      * Now deprecated, use [v2/user/bulk](https://docs.neynar.com/reference/user-bulk). Returns metadata about a specific user
      * @summary DEPRECATED - Fetch User Information by FID
-     * @param {number} fid fid of a user
-     * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+     * @param {number} fid FID of a user
+     * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -476,7 +476,7 @@ export class UserApi extends BaseAPI {
      * Now deprecated, use [v2/user/by_username](https://docs.neynar.com/reference/user-by-username-v2) instead. Returns metadata about a specific user
      * @summary DEPRECATED - Fetch User Information by username
      * @param {string} username Username of the user
-     * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+     * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -490,7 +490,7 @@ export class UserApi extends BaseAPI {
      * Now deprecated. use [/v2/reactions/user](https://docs.neynar.com/reference/reactions-user). Fetch all the liked cast of a User
      * @summary DEPRECATED -- Fetch User Cast Likes
      * @param {number} fid FID of the user
-     * @param {number} [viewerFid] fid of the user viewing this information, needed for contextual information.
+     * @param {number} [viewerFid] FID of the user viewing this information, needed for contextual information.
      * @param {number} [limit] Number of results to fetch (default 25, max 150)
      * @param {string} [cursor] Pagination cursor
      * @param {*} [options] Override http request option.

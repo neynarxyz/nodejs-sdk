@@ -32,8 +32,8 @@ import { ErrorRes } from '../models';
 export const BlockApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Fetches all fids that a user has blocked or has been blocked by
-         * @summary Fetch fids that a user has blocked or has been blocked by
+         * Fetches all FIDs that a user has blocked or has been blocked by
+         * @summary Blocked / Blocked by FIDs
          * @param {string} apiKey API key required for authentication.
          * @param {number} [blockerFid] Providing this will return the users that this user has blocked
          * @param {number} [blockedFid] Providing this will return the users that have blocked this user
@@ -99,8 +99,8 @@ export const BlockApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = BlockApiAxiosParamCreator(configuration)
     return {
         /**
-         * Fetches all fids that a user has blocked or has been blocked by
-         * @summary Fetch fids that a user has blocked or has been blocked by
+         * Fetches all FIDs that a user has blocked or has been blocked by
+         * @summary Blocked / Blocked by FIDs
          * @param {string} apiKey API key required for authentication.
          * @param {number} [blockerFid] Providing this will return the users that this user has blocked
          * @param {number} [blockedFid] Providing this will return the users that have blocked this user
@@ -124,8 +124,8 @@ export const BlockApiFactory = function (configuration?: Configuration, basePath
     const localVarFp = BlockApiFp(configuration)
     return {
         /**
-         * Fetches all fids that a user has blocked or has been blocked by
-         * @summary Fetch fids that a user has blocked or has been blocked by
+         * Fetches all FIDs that a user has blocked or has been blocked by
+         * @summary Blocked / Blocked by FIDs
          * @param {string} apiKey API key required for authentication.
          * @param {number} [blockerFid] Providing this will return the users that this user has blocked
          * @param {number} [blockedFid] Providing this will return the users that have blocked this user
@@ -148,8 +148,8 @@ export const BlockApiFactory = function (configuration?: Configuration, basePath
  */
 export class BlockApi extends BaseAPI {
     /**
-     * Fetches all fids that a user has blocked or has been blocked by
-     * @summary Fetch fids that a user has blocked or has been blocked by
+     * Fetches all FIDs that a user has blocked or has been blocked by
+     * @summary Blocked / Blocked by FIDs
      * @param {string} apiKey API key required for authentication.
      * @param {number} [blockerFid] Providing this will return the users that this user has blocked
      * @param {number} [blockedFid] Providing this will return the users that have blocked this user

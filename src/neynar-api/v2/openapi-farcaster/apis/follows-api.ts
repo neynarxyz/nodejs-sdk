@@ -29,6 +29,8 @@ import { FollowSortType } from '../models';
 import { FollowersResponse } from '../models';
 // @ts-ignore
 import { RelevantFollowersResponse } from '../models';
+// @ts-ignore
+import { UsersResponse } from '../models';
 /**
  * FollowsApi - axios parameter creator
  * @export
@@ -37,7 +39,7 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * Returns a list of followers for a specific FID.
-         * @summary Fetch followers for a given user
+         * @summary Followers
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid User who\&#39;s profile you are looking at
          * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -101,7 +103,7 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Fetch a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
-         * @summary Fetch a list of users followed by a user
+         * @summary Followed by
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user whose following you want to fetch.
          * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -165,7 +167,7 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
-         * @summary Fetch relevant followers for a given user
+         * @summary Relevant followers
          * @param {string} apiKey API key required for authentication.
          * @param {number} targetFid User who\&#39;s profile you are looking at
          * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -214,6 +216,60 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Fetch a list of suggested users to follow. Used to help users discover new users to follow
+         * @summary Suggest Follows
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid FID of the user whose following you want to fetch.
+         * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        suggestedFollows: async (apiKey: string, fid: number, viewerFid?: number, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('suggestedFollows', 'apiKey', apiKey)
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('suggestedFollows', 'fid', fid)
+            const localVarPath = `/farcaster/following/suggested`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (apiKey != null) {
+                localVarHeaderParameter['api_key'] = String(apiKey);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -226,7 +282,7 @@ export const FollowsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Returns a list of followers for a specific FID.
-         * @summary Fetch followers for a given user
+         * @summary Followers
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid User who\&#39;s profile you are looking at
          * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -242,7 +298,7 @@ export const FollowsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetch a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
-         * @summary Fetch a list of users followed by a user
+         * @summary Followed by
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user whose following you want to fetch.
          * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -258,7 +314,7 @@ export const FollowsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
-         * @summary Fetch relevant followers for a given user
+         * @summary Relevant followers
          * @param {string} apiKey API key required for authentication.
          * @param {number} targetFid User who\&#39;s profile you are looking at
          * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -267,6 +323,20 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          */
         async relevantFollowers(apiKey: string, targetFid: number, viewerFid: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RelevantFollowersResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.relevantFollowers(apiKey, targetFid, viewerFid, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Fetch a list of suggested users to follow. Used to help users discover new users to follow
+         * @summary Suggest Follows
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid FID of the user whose following you want to fetch.
+         * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async suggestedFollows(apiKey: string, fid: number, viewerFid?: number, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.suggestedFollows(apiKey, fid, viewerFid, limit, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -281,7 +351,7 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * Returns a list of followers for a specific FID.
-         * @summary Fetch followers for a given user
+         * @summary Followers
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid User who\&#39;s profile you are looking at
          * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -296,7 +366,7 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Fetch a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
-         * @summary Fetch a list of users followed by a user
+         * @summary Followed by
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user whose following you want to fetch.
          * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -311,7 +381,7 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
-         * @summary Fetch relevant followers for a given user
+         * @summary Relevant followers
          * @param {string} apiKey API key required for authentication.
          * @param {number} targetFid User who\&#39;s profile you are looking at
          * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -320,6 +390,19 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
          */
         relevantFollowers(apiKey: string, targetFid: number, viewerFid: number, options?: any): AxiosPromise<RelevantFollowersResponse> {
             return localVarFp.relevantFollowers(apiKey, targetFid, viewerFid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch a list of suggested users to follow. Used to help users discover new users to follow
+         * @summary Suggest Follows
+         * @param {string} apiKey API key required for authentication.
+         * @param {number} fid FID of the user whose following you want to fetch.
+         * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        suggestedFollows(apiKey: string, fid: number, viewerFid?: number, limit?: number, options?: any): AxiosPromise<UsersResponse> {
+            return localVarFp.suggestedFollows(apiKey, fid, viewerFid, limit, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -333,7 +416,7 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
 export class FollowsApi extends BaseAPI {
     /**
      * Returns a list of followers for a specific FID.
-     * @summary Fetch followers for a given user
+     * @summary Followers
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid User who\&#39;s profile you are looking at
      * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -350,7 +433,7 @@ export class FollowsApi extends BaseAPI {
 
     /**
      * Fetch a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
-     * @summary Fetch a list of users followed by a user
+     * @summary Followed by
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid FID of the user whose following you want to fetch.
      * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -367,7 +450,7 @@ export class FollowsApi extends BaseAPI {
 
     /**
      * Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
-     * @summary Fetch relevant followers for a given user
+     * @summary Relevant followers
      * @param {string} apiKey API key required for authentication.
      * @param {number} targetFid User who\&#39;s profile you are looking at
      * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -377,5 +460,20 @@ export class FollowsApi extends BaseAPI {
      */
     public relevantFollowers(apiKey: string, targetFid: number, viewerFid: number, options?: AxiosRequestConfig) {
         return FollowsApiFp(this.configuration).relevantFollowers(apiKey, targetFid, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch a list of suggested users to follow. Used to help users discover new users to follow
+     * @summary Suggest Follows
+     * @param {string} apiKey API key required for authentication.
+     * @param {number} fid FID of the user whose following you want to fetch.
+     * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FollowsApi
+     */
+    public suggestedFollows(apiKey: string, fid: number, viewerFid?: number, limit?: number, options?: AxiosRequestConfig) {
+        return FollowsApiFp(this.configuration).suggestedFollows(apiKey, fid, viewerFid, limit, options).then((request) => request(this.axios, this.basePath));
     }
 }

@@ -31,7 +31,7 @@ export const ActionApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * Securely communicate and perform actions on behalf of users across different apps. It enables an app to send data or trigger actions in another app on behalf of a mutual user by signing messages using the user\'s Farcaster signer.
-         * @summary Perform actions on behalf of users across different apps
+         * @summary User actions across apps
          * @param {string} apiKey API key required for authentication.
          * @param {FarcasterActionReqBody} farcasterActionReqBody 
          * @param {*} [options] Override http request option.
@@ -84,7 +84,7 @@ export const ActionApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Securely communicate and perform actions on behalf of users across different apps. It enables an app to send data or trigger actions in another app on behalf of a mutual user by signing messages using the user\'s Farcaster signer.
-         * @summary Perform actions on behalf of users across different apps
+         * @summary User actions across apps
          * @param {string} apiKey API key required for authentication.
          * @param {FarcasterActionReqBody} farcasterActionReqBody 
          * @param {*} [options] Override http request option.
@@ -106,7 +106,7 @@ export const ActionApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * Securely communicate and perform actions on behalf of users across different apps. It enables an app to send data or trigger actions in another app on behalf of a mutual user by signing messages using the user\'s Farcaster signer.
-         * @summary Perform actions on behalf of users across different apps
+         * @summary User actions across apps
          * @param {string} apiKey API key required for authentication.
          * @param {FarcasterActionReqBody} farcasterActionReqBody 
          * @param {*} [options] Override http request option.
@@ -127,7 +127,7 @@ export const ActionApiFactory = function (configuration?: Configuration, basePat
 export class ActionApi extends BaseAPI {
     /**
      * Securely communicate and perform actions on behalf of users across different apps. It enables an app to send data or trigger actions in another app on behalf of a mutual user by signing messages using the user\'s Farcaster signer.
-     * @summary Perform actions on behalf of users across different apps
+     * @summary User actions across apps
      * @param {string} apiKey API key required for authentication.
      * @param {FarcasterActionReqBody} farcasterActionReqBody 
      * @param {*} [options] Override http request option.

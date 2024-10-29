@@ -40,8 +40,8 @@ import { ReactionsType } from '../models';
 export const ReactionApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Delete a reaction (like or recast) to a given cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
-         * @summary Delete a reaction
+         * Delete a reaction (like or recast) to a cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
+         * @summary Delete reaction
          * @param {string} apiKey API key required for authentication.
          * @param {ReactionReqBody} reactionReqBody 
          * @param {*} [options] Override http request option.
@@ -127,7 +127,7 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * Fetches reactions for a given cast
-         * @summary Fetch reactions for a given cast
+         * @summary Reactions for cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} hash 
          * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
@@ -193,7 +193,7 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * Fetches reactions for a given user
-         * @summary Fetch reactions for a given user
+         * @summary Reactions for user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
@@ -268,8 +268,8 @@ export const ReactionApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ReactionApiAxiosParamCreator(configuration)
     return {
         /**
-         * Delete a reaction (like or recast) to a given cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
-         * @summary Delete a reaction
+         * Delete a reaction (like or recast) to a cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
+         * @summary Delete reaction
          * @param {string} apiKey API key required for authentication.
          * @param {ReactionReqBody} reactionReqBody 
          * @param {*} [options] Override http request option.
@@ -293,7 +293,7 @@ export const ReactionApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches reactions for a given cast
-         * @summary Fetch reactions for a given cast
+         * @summary Reactions for cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} hash 
          * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
@@ -309,7 +309,7 @@ export const ReactionApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches reactions for a given user
-         * @summary Fetch reactions for a given user
+         * @summary Reactions for user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
@@ -334,8 +334,8 @@ export const ReactionApiFactory = function (configuration?: Configuration, baseP
     const localVarFp = ReactionApiFp(configuration)
     return {
         /**
-         * Delete a reaction (like or recast) to a given cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
-         * @summary Delete a reaction
+         * Delete a reaction (like or recast) to a cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
+         * @summary Delete reaction
          * @param {string} apiKey API key required for authentication.
          * @param {ReactionReqBody} reactionReqBody 
          * @param {*} [options] Override http request option.
@@ -357,7 +357,7 @@ export const ReactionApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * Fetches reactions for a given cast
-         * @summary Fetch reactions for a given cast
+         * @summary Reactions for cast
          * @param {string} apiKey API key required for authentication.
          * @param {string} hash 
          * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
@@ -372,7 +372,7 @@ export const ReactionApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * Fetches reactions for a given user
-         * @summary Fetch reactions for a given user
+         * @summary Reactions for user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
@@ -396,8 +396,8 @@ export const ReactionApiFactory = function (configuration?: Configuration, baseP
  */
 export class ReactionApi extends BaseAPI {
     /**
-     * Delete a reaction (like or recast) to a given cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
-     * @summary Delete a reaction
+     * Delete a reaction (like or recast) to a cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
+     * @summary Delete reaction
      * @param {string} apiKey API key required for authentication.
      * @param {ReactionReqBody} reactionReqBody 
      * @param {*} [options] Override http request option.
@@ -423,7 +423,7 @@ export class ReactionApi extends BaseAPI {
 
     /**
      * Fetches reactions for a given cast
-     * @summary Fetch reactions for a given cast
+     * @summary Reactions for cast
      * @param {string} apiKey API key required for authentication.
      * @param {string} hash 
      * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
@@ -440,7 +440,7 @@ export class ReactionApi extends BaseAPI {
 
     /**
      * Fetches reactions for a given user
-     * @summary Fetch reactions for a given user
+     * @summary Reactions for user
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid 
      * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)

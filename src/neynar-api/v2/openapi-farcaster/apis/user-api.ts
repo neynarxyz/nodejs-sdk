@@ -111,7 +111,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
-         * @summary Removes verification for an eth address for the user
+         * @summary Delete verification
          * @param {string} apiKey API key required for authentication.
          * @param {RemoveVerificationReqBody} removeVerificationReqBody 
          * @param {*} [options] Override http request option.
@@ -154,7 +154,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Adds verification for an eth address or contract for the user \\ (In order to add verification `signer_uuid` must be approved) 
-         * @summary Adds verification for an ethereum address or contract for the user
+         * @summary Add verification
          * @param {string} apiKey API key required for authentication.
          * @param {AddVerificationReqBody} addVerificationReqBody 
          * @param {*} [options] Override http request option.
@@ -197,7 +197,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
-         * @summary Follow a user
+         * @summary Follow user
          * @param {string} apiKey API key required for authentication.
          * @param {FollowReqBody} followReqBody 
          * @param {*} [options] Override http request option.
@@ -239,8 +239,8 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Fetches fid to assign it new user
-         * @summary Fetch fresh fid
+         * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
+         * @summary Fetch fresh FID
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -321,7 +321,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Fetches power users based on Warpcast power badges. Information is updated once a day.
-         * @summary Fetch power user objects
+         * @summary Power users
          * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] 
          * @param {number} [limit] Number of power users to fetch, max 100
@@ -372,8 +372,8 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch fid API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this fid to another available user. 
-         * @summary Register farcaster account
+         * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user. 
+         * @summary Register new account
          * @param {string} apiKey API key required for authentication.
          * @param {RegisterUserReqBody} registerUserReqBody 
          * @param {*} [options] Override http request option.
@@ -416,7 +416,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved) 
-         * @summary Unfollow a user
+         * @summary Unfollow user
          * @param {string} apiKey API key required for authentication.
          * @param {FollowReqBody} followReqBody 
          * @param {*} [options] Override http request option.
@@ -502,7 +502,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Fetches information about multiple users based on FIDs
-         * @summary Based on FIDs
+         * @summary By FIDs
          * @param {string} apiKey API key required for authentication.
          * @param {string} fids Comma separated list of FIDs, up to 100 at a time
          * @param {number} [viewerFid] 
@@ -551,7 +551,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
-         * @summary Based on Eth or Sol addresses
+         * @summary By Eth or Sol addresses
          * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
          * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
@@ -654,7 +654,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
-         * @summary Fetch power user FIDs
+         * @summary Power user FIDs
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -774,7 +774,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         },
         /**
          * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
-         * @summary Removes verification for an eth address for the user
+         * @summary Delete verification
          * @param {string} apiKey API key required for authentication.
          * @param {RemoveVerificationReqBody} removeVerificationReqBody 
          * @param {*} [options] Override http request option.
@@ -786,7 +786,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         },
         /**
          * Adds verification for an eth address or contract for the user \\ (In order to add verification `signer_uuid` must be approved) 
-         * @summary Adds verification for an ethereum address or contract for the user
+         * @summary Add verification
          * @param {string} apiKey API key required for authentication.
          * @param {AddVerificationReqBody} addVerificationReqBody 
          * @param {*} [options] Override http request option.
@@ -798,7 +798,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         },
         /**
          * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
-         * @summary Follow a user
+         * @summary Follow user
          * @param {string} apiKey API key required for authentication.
          * @param {FollowReqBody} followReqBody 
          * @param {*} [options] Override http request option.
@@ -809,8 +809,8 @@ export const UserApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Fetches fid to assign it new user
-         * @summary Fetch fresh fid
+         * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
+         * @summary Fetch fresh FID
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -833,7 +833,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches power users based on Warpcast power badges. Information is updated once a day.
-         * @summary Fetch power user objects
+         * @summary Power users
          * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] 
          * @param {number} [limit] Number of power users to fetch, max 100
@@ -846,8 +846,8 @@ export const UserApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch fid API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this fid to another available user. 
-         * @summary Register farcaster account
+         * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user. 
+         * @summary Register new account
          * @param {string} apiKey API key required for authentication.
          * @param {RegisterUserReqBody} registerUserReqBody 
          * @param {*} [options] Override http request option.
@@ -859,7 +859,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         },
         /**
          * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved) 
-         * @summary Unfollow a user
+         * @summary Unfollow user
          * @param {string} apiKey API key required for authentication.
          * @param {FollowReqBody} followReqBody 
          * @param {*} [options] Override http request option.
@@ -883,7 +883,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches information about multiple users based on FIDs
-         * @summary Based on FIDs
+         * @summary By FIDs
          * @param {string} apiKey API key required for authentication.
          * @param {string} fids Comma separated list of FIDs, up to 100 at a time
          * @param {number} [viewerFid] 
@@ -896,7 +896,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
-         * @summary Based on Eth or Sol addresses
+         * @summary By Eth or Sol addresses
          * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
          * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
@@ -923,7 +923,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
-         * @summary Fetch power user FIDs
+         * @summary Power user FIDs
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -972,7 +972,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
-         * @summary Removes verification for an eth address for the user
+         * @summary Delete verification
          * @param {string} apiKey API key required for authentication.
          * @param {RemoveVerificationReqBody} removeVerificationReqBody 
          * @param {*} [options] Override http request option.
@@ -983,7 +983,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Adds verification for an eth address or contract for the user \\ (In order to add verification `signer_uuid` must be approved) 
-         * @summary Adds verification for an ethereum address or contract for the user
+         * @summary Add verification
          * @param {string} apiKey API key required for authentication.
          * @param {AddVerificationReqBody} addVerificationReqBody 
          * @param {*} [options] Override http request option.
@@ -994,7 +994,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
-         * @summary Follow a user
+         * @summary Follow user
          * @param {string} apiKey API key required for authentication.
          * @param {FollowReqBody} followReqBody 
          * @param {*} [options] Override http request option.
@@ -1004,8 +1004,8 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.followUser(apiKey, followReqBody, options).then((request) => request(axios, basePath));
         },
         /**
-         * Fetches fid to assign it new user
-         * @summary Fetch fresh fid
+         * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
+         * @summary Fetch fresh FID
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1026,7 +1026,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Fetches power users based on Warpcast power badges. Information is updated once a day.
-         * @summary Fetch power user objects
+         * @summary Power users
          * @param {string} apiKey API key required for authentication.
          * @param {number} [viewerFid] 
          * @param {number} [limit] Number of power users to fetch, max 100
@@ -1038,8 +1038,8 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.powerUsers(apiKey, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch fid API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this fid to another available user. 
-         * @summary Register farcaster account
+         * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user. 
+         * @summary Register new account
          * @param {string} apiKey API key required for authentication.
          * @param {RegisterUserReqBody} registerUserReqBody 
          * @param {*} [options] Override http request option.
@@ -1050,7 +1050,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved) 
-         * @summary Unfollow a user
+         * @summary Unfollow user
          * @param {string} apiKey API key required for authentication.
          * @param {FollowReqBody} followReqBody 
          * @param {*} [options] Override http request option.
@@ -1072,7 +1072,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Fetches information about multiple users based on FIDs
-         * @summary Based on FIDs
+         * @summary By FIDs
          * @param {string} apiKey API key required for authentication.
          * @param {string} fids Comma separated list of FIDs, up to 100 at a time
          * @param {number} [viewerFid] 
@@ -1084,7 +1084,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
-         * @summary Based on Eth or Sol addresses
+         * @summary By Eth or Sol addresses
          * @param {string} apiKey API key required for authentication.
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
          * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
@@ -1109,7 +1109,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
-         * @summary Fetch power user FIDs
+         * @summary Power user FIDs
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1158,7 +1158,7 @@ export class UserApi extends BaseAPI {
 
     /**
      * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
-     * @summary Removes verification for an eth address for the user
+     * @summary Delete verification
      * @param {string} apiKey API key required for authentication.
      * @param {RemoveVerificationReqBody} removeVerificationReqBody 
      * @param {*} [options] Override http request option.
@@ -1171,7 +1171,7 @@ export class UserApi extends BaseAPI {
 
     /**
      * Adds verification for an eth address or contract for the user \\ (In order to add verification `signer_uuid` must be approved) 
-     * @summary Adds verification for an ethereum address or contract for the user
+     * @summary Add verification
      * @param {string} apiKey API key required for authentication.
      * @param {AddVerificationReqBody} addVerificationReqBody 
      * @param {*} [options] Override http request option.
@@ -1184,7 +1184,7 @@ export class UserApi extends BaseAPI {
 
     /**
      * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
-     * @summary Follow a user
+     * @summary Follow user
      * @param {string} apiKey API key required for authentication.
      * @param {FollowReqBody} followReqBody 
      * @param {*} [options] Override http request option.
@@ -1196,8 +1196,8 @@ export class UserApi extends BaseAPI {
     }
 
     /**
-     * Fetches fid to assign it new user
-     * @summary Fetch fresh fid
+     * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
+     * @summary Fetch fresh FID
      * @param {string} apiKey API key required for authentication.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1222,7 +1222,7 @@ export class UserApi extends BaseAPI {
 
     /**
      * Fetches power users based on Warpcast power badges. Information is updated once a day.
-     * @summary Fetch power user objects
+     * @summary Power users
      * @param {string} apiKey API key required for authentication.
      * @param {number} [viewerFid] 
      * @param {number} [limit] Number of power users to fetch, max 100
@@ -1236,8 +1236,8 @@ export class UserApi extends BaseAPI {
     }
 
     /**
-     * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch fid API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this fid to another available user. 
-     * @summary Register farcaster account
+     * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user. 
+     * @summary Register new account
      * @param {string} apiKey API key required for authentication.
      * @param {RegisterUserReqBody} registerUserReqBody 
      * @param {*} [options] Override http request option.
@@ -1250,7 +1250,7 @@ export class UserApi extends BaseAPI {
 
     /**
      * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved) 
-     * @summary Unfollow a user
+     * @summary Unfollow user
      * @param {string} apiKey API key required for authentication.
      * @param {FollowReqBody} followReqBody 
      * @param {*} [options] Override http request option.
@@ -1276,7 +1276,7 @@ export class UserApi extends BaseAPI {
 
     /**
      * Fetches information about multiple users based on FIDs
-     * @summary Based on FIDs
+     * @summary By FIDs
      * @param {string} apiKey API key required for authentication.
      * @param {string} fids Comma separated list of FIDs, up to 100 at a time
      * @param {number} [viewerFid] 
@@ -1290,7 +1290,7 @@ export class UserApi extends BaseAPI {
 
     /**
      * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
-     * @summary Based on Eth or Sol addresses
+     * @summary By Eth or Sol addresses
      * @param {string} apiKey API key required for authentication.
      * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
      * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
@@ -1319,7 +1319,7 @@ export class UserApi extends BaseAPI {
 
     /**
      * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
-     * @summary Fetch power user FIDs
+     * @summary Power user FIDs
      * @param {string} apiKey API key required for authentication.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

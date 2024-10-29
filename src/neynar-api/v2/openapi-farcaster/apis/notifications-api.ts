@@ -39,7 +39,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
     return {
         /**
          * Mark notifications as seen
-         * @summary Mark notifications as seen
+         * @summary Mark as seen
          * @param {string} apiKey API key required for authentication.
          * @param {MarkNotificationsAsSeenReqBody} markNotificationsAsSeenReqBody 
          * @param {*} [options] Override http request option.
@@ -82,7 +82,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * Returns a list of notifications for a specific FID.
-         * @summary Fetch notifications for a user
+         * @summary For user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
          * @param {NotificationType} [type] Notification type to fetch.
@@ -141,7 +141,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * Returns a list of notifications for a user in specific channels
-         * @summary Fetch notifications for a user in specific channels
+         * @summary For user by channel
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
          * @param {string} channelIds Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
@@ -202,7 +202,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * Returns a list of notifications for a user in specific parent_urls
-         * @summary Fetch notifications for a user in given parent_urls
+         * @summary For user by parent_urls
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
          * @param {string} parentUrls Comma separated parent_urls
@@ -273,7 +273,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Mark notifications as seen
-         * @summary Mark notifications as seen
+         * @summary Mark as seen
          * @param {string} apiKey API key required for authentication.
          * @param {MarkNotificationsAsSeenReqBody} markNotificationsAsSeenReqBody 
          * @param {*} [options] Override http request option.
@@ -285,7 +285,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Returns a list of notifications for a specific FID.
-         * @summary Fetch notifications for a user
+         * @summary For user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
          * @param {NotificationType} [type] Notification type to fetch.
@@ -300,7 +300,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Returns a list of notifications for a user in specific channels
-         * @summary Fetch notifications for a user in specific channels
+         * @summary For user by channel
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
          * @param {string} channelIds Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
@@ -315,7 +315,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Returns a list of notifications for a user in specific parent_urls
-         * @summary Fetch notifications for a user in given parent_urls
+         * @summary For user by parent_urls
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
          * @param {string} parentUrls Comma separated parent_urls
@@ -340,7 +340,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
     return {
         /**
          * Mark notifications as seen
-         * @summary Mark notifications as seen
+         * @summary Mark as seen
          * @param {string} apiKey API key required for authentication.
          * @param {MarkNotificationsAsSeenReqBody} markNotificationsAsSeenReqBody 
          * @param {*} [options] Override http request option.
@@ -351,7 +351,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
         },
         /**
          * Returns a list of notifications for a specific FID.
-         * @summary Fetch notifications for a user
+         * @summary For user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
          * @param {NotificationType} [type] Notification type to fetch.
@@ -365,7 +365,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
         },
         /**
          * Returns a list of notifications for a user in specific channels
-         * @summary Fetch notifications for a user in specific channels
+         * @summary For user by channel
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
          * @param {string} channelIds Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
@@ -379,7 +379,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
         },
         /**
          * Returns a list of notifications for a user in specific parent_urls
-         * @summary Fetch notifications for a user in given parent_urls
+         * @summary For user by parent_urls
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
          * @param {string} parentUrls Comma separated parent_urls
@@ -403,7 +403,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
 export class NotificationsApi extends BaseAPI {
     /**
      * Mark notifications as seen
-     * @summary Mark notifications as seen
+     * @summary Mark as seen
      * @param {string} apiKey API key required for authentication.
      * @param {MarkNotificationsAsSeenReqBody} markNotificationsAsSeenReqBody 
      * @param {*} [options] Override http request option.
@@ -416,7 +416,7 @@ export class NotificationsApi extends BaseAPI {
 
     /**
      * Returns a list of notifications for a specific FID.
-     * @summary Fetch notifications for a user
+     * @summary For user
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
      * @param {NotificationType} [type] Notification type to fetch.
@@ -432,7 +432,7 @@ export class NotificationsApi extends BaseAPI {
 
     /**
      * Returns a list of notifications for a user in specific channels
-     * @summary Fetch notifications for a user in specific channels
+     * @summary For user by channel
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
      * @param {string} channelIds Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
@@ -448,7 +448,7 @@ export class NotificationsApi extends BaseAPI {
 
     /**
      * Returns a list of notifications for a user in specific parent_urls
-     * @summary Fetch notifications for a user in given parent_urls
+     * @summary For user by parent_urls
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
      * @param {string} parentUrls Comma separated parent_urls
