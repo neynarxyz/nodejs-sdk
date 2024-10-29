@@ -15,9 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ActiveStatus } from './active-status';
-// May contain unused imports in some cases
-// @ts-ignore
 import { User } from './user';
 // May contain unused imports in some cases
 // @ts-ignore
