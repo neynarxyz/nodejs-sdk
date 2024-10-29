@@ -40,8 +40,8 @@ import { SubscriptionsResponse } from '../models';
 export const SubscribersApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Fetch what fids and contracts a fid is subscribed to.
-         * @summary Fetch what a given fid is subscribed to
+         * Fetch what FIDs and contracts a FID is subscribed to.
+         * @summary Subscribed to
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {SubscriptionProvider} subscriptionProvider 
@@ -96,8 +96,8 @@ export const SubscribersApiAxiosParamCreator = function (configuration?: Configu
             };
         },
         /**
-         * Fetch subscribers for a given fid\'s contracts. Doesn\'t return addresses that don\'t have an fid.
-         * @summary Fetch subscribers for a given fid
+         * Fetch subscribers for a given FID\'s contracts. Doesn\'t return addresses that don\'t have an FID.
+         * @summary Subscribers of a user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {SubscriptionProviders} subscriptionProvider 
@@ -152,8 +152,8 @@ export const SubscribersApiAxiosParamCreator = function (configuration?: Configu
             };
         },
         /**
-         * Fetch created subscriptions for a given fid\'s.
-         * @summary Fetch created subscriptions for a given fid
+         * Fetch created subscriptions for a given FID\'s.
+         * @summary Subscriptions created by FID
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {SubscriptionProvider} subscriptionProvider 
@@ -213,8 +213,8 @@ export const SubscribersApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = SubscribersApiAxiosParamCreator(configuration)
     return {
         /**
-         * Fetch what fids and contracts a fid is subscribed to.
-         * @summary Fetch what a given fid is subscribed to
+         * Fetch what FIDs and contracts a FID is subscribed to.
+         * @summary Subscribed to
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {SubscriptionProvider} subscriptionProvider 
@@ -227,8 +227,8 @@ export const SubscribersApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Fetch subscribers for a given fid\'s contracts. Doesn\'t return addresses that don\'t have an fid.
-         * @summary Fetch subscribers for a given fid
+         * Fetch subscribers for a given FID\'s contracts. Doesn\'t return addresses that don\'t have an FID.
+         * @summary Subscribers of a user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {SubscriptionProviders} subscriptionProvider 
@@ -241,8 +241,8 @@ export const SubscribersApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Fetch created subscriptions for a given fid\'s.
-         * @summary Fetch created subscriptions for a given fid
+         * Fetch created subscriptions for a given FID\'s.
+         * @summary Subscriptions created by FID
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {SubscriptionProvider} subscriptionProvider 
@@ -264,8 +264,8 @@ export const SubscribersApiFactory = function (configuration?: Configuration, ba
     const localVarFp = SubscribersApiFp(configuration)
     return {
         /**
-         * Fetch what fids and contracts a fid is subscribed to.
-         * @summary Fetch what a given fid is subscribed to
+         * Fetch what FIDs and contracts a FID is subscribed to.
+         * @summary Subscribed to
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {SubscriptionProvider} subscriptionProvider 
@@ -277,8 +277,8 @@ export const SubscribersApiFactory = function (configuration?: Configuration, ba
             return localVarFp.subscribedTo(apiKey, fid, subscriptionProvider, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
-         * Fetch subscribers for a given fid\'s contracts. Doesn\'t return addresses that don\'t have an fid.
-         * @summary Fetch subscribers for a given fid
+         * Fetch subscribers for a given FID\'s contracts. Doesn\'t return addresses that don\'t have an FID.
+         * @summary Subscribers of a user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {SubscriptionProviders} subscriptionProvider 
@@ -290,8 +290,8 @@ export const SubscribersApiFactory = function (configuration?: Configuration, ba
             return localVarFp.subscribers(apiKey, fid, subscriptionProvider, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
-         * Fetch created subscriptions for a given fid\'s.
-         * @summary Fetch created subscriptions for a given fid
+         * Fetch created subscriptions for a given FID\'s.
+         * @summary Subscriptions created by FID
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {SubscriptionProvider} subscriptionProvider 
@@ -312,8 +312,8 @@ export const SubscribersApiFactory = function (configuration?: Configuration, ba
  */
 export class SubscribersApi extends BaseAPI {
     /**
-     * Fetch what fids and contracts a fid is subscribed to.
-     * @summary Fetch what a given fid is subscribed to
+     * Fetch what FIDs and contracts a FID is subscribed to.
+     * @summary Subscribed to
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid 
      * @param {SubscriptionProvider} subscriptionProvider 
@@ -327,8 +327,8 @@ export class SubscribersApi extends BaseAPI {
     }
 
     /**
-     * Fetch subscribers for a given fid\'s contracts. Doesn\'t return addresses that don\'t have an fid.
-     * @summary Fetch subscribers for a given fid
+     * Fetch subscribers for a given FID\'s contracts. Doesn\'t return addresses that don\'t have an FID.
+     * @summary Subscribers of a user
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid 
      * @param {SubscriptionProviders} subscriptionProvider 
@@ -342,8 +342,8 @@ export class SubscribersApi extends BaseAPI {
     }
 
     /**
-     * Fetch created subscriptions for a given fid\'s.
-     * @summary Fetch created subscriptions for a given fid
+     * Fetch created subscriptions for a given FID\'s.
+     * @summary Subscriptions created by FID
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid 
      * @param {SubscriptionProvider} subscriptionProvider 

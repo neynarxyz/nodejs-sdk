@@ -86,7 +86,7 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Fetch a list of webhooks associated to a user
-         * @summary Fetch a list of webhooks associated to a user
+         * @summary Associated webhooks of user
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -253,7 +253,7 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Update webhook active status
-         * @summary Update webhook active status
+         * @summary Update webhook status
          * @param {string} apiKey API key required for authentication.
          * @param {WebhookPatchReqBody} webhookPatchReqBody 
          * @param {*} [options] Override http request option.
@@ -318,7 +318,7 @@ export const WebhookApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetch a list of webhooks associated to a user
-         * @summary Fetch a list of webhooks associated to a user
+         * @summary Associated webhooks of user
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -365,7 +365,7 @@ export const WebhookApiFp = function(configuration?: Configuration) {
         },
         /**
          * Update webhook active status
-         * @summary Update webhook active status
+         * @summary Update webhook status
          * @param {string} apiKey API key required for authentication.
          * @param {WebhookPatchReqBody} webhookPatchReqBody 
          * @param {*} [options] Override http request option.
@@ -398,7 +398,7 @@ export const WebhookApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Fetch a list of webhooks associated to a user
-         * @summary Fetch a list of webhooks associated to a user
+         * @summary Associated webhooks of user
          * @param {string} apiKey API key required for authentication.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -441,7 +441,7 @@ export const WebhookApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Update webhook active status
-         * @summary Update webhook active status
+         * @summary Update webhook status
          * @param {string} apiKey API key required for authentication.
          * @param {WebhookPatchReqBody} webhookPatchReqBody 
          * @param {*} [options] Override http request option.
@@ -475,7 +475,7 @@ export class WebhookApi extends BaseAPI {
 
     /**
      * Fetch a list of webhooks associated to a user
-     * @summary Fetch a list of webhooks associated to a user
+     * @summary Associated webhooks of user
      * @param {string} apiKey API key required for authentication.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -526,7 +526,7 @@ export class WebhookApi extends BaseAPI {
 
     /**
      * Update webhook active status
-     * @summary Update webhook active status
+     * @summary Update webhook status
      * @param {string} apiKey API key required for authentication.
      * @param {WebhookPatchReqBody} webhookPatchReqBody 
      * @param {*} [options] Override http request option.

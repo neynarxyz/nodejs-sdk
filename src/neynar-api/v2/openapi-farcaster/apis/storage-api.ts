@@ -40,8 +40,8 @@ import { ZodError } from '../models';
 export const StorageApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * This api will help you rent units of storage for an year for a specific fid. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
-         * @summary Buy storage for an fid
+         * This api will help you rent units of storage for an year for a specific FID. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
+         * @summary Buy storage
          * @param {string} apiKey API key required for authentication.
          * @param {BuyStorageReqBody} buyStorageReqBody 
          * @param {*} [options] Override http request option.
@@ -84,7 +84,7 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Fetches storage allocations for a given user
-         * @summary Fetch storage allocations for a given user
+         * @summary Allocation of user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {*} [options] Override http request option.
@@ -128,7 +128,7 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Fetches storage usage for a given user
-         * @summary Fetch storage usage for a given user
+         * @summary Usage of user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {*} [options] Override http request option.
@@ -181,8 +181,8 @@ export const StorageApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = StorageApiAxiosParamCreator(configuration)
     return {
         /**
-         * This api will help you rent units of storage for an year for a specific fid. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
-         * @summary Buy storage for an fid
+         * This api will help you rent units of storage for an year for a specific FID. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
+         * @summary Buy storage
          * @param {string} apiKey API key required for authentication.
          * @param {BuyStorageReqBody} buyStorageReqBody 
          * @param {*} [options] Override http request option.
@@ -194,7 +194,7 @@ export const StorageApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches storage allocations for a given user
-         * @summary Fetch storage allocations for a given user
+         * @summary Allocation of user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {*} [options] Override http request option.
@@ -206,7 +206,7 @@ export const StorageApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetches storage usage for a given user
-         * @summary Fetch storage usage for a given user
+         * @summary Usage of user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {*} [options] Override http request option.
@@ -227,8 +227,8 @@ export const StorageApiFactory = function (configuration?: Configuration, basePa
     const localVarFp = StorageApiFp(configuration)
     return {
         /**
-         * This api will help you rent units of storage for an year for a specific fid. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
-         * @summary Buy storage for an fid
+         * This api will help you rent units of storage for an year for a specific FID. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
+         * @summary Buy storage
          * @param {string} apiKey API key required for authentication.
          * @param {BuyStorageReqBody} buyStorageReqBody 
          * @param {*} [options] Override http request option.
@@ -239,7 +239,7 @@ export const StorageApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Fetches storage allocations for a given user
-         * @summary Fetch storage allocations for a given user
+         * @summary Allocation of user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {*} [options] Override http request option.
@@ -250,7 +250,7 @@ export const StorageApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Fetches storage usage for a given user
-         * @summary Fetch storage usage for a given user
+         * @summary Usage of user
          * @param {string} apiKey API key required for authentication.
          * @param {number} fid 
          * @param {*} [options] Override http request option.
@@ -270,8 +270,8 @@ export const StorageApiFactory = function (configuration?: Configuration, basePa
  */
 export class StorageApi extends BaseAPI {
     /**
-     * This api will help you rent units of storage for an year for a specific fid. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
-     * @summary Buy storage for an fid
+     * This api will help you rent units of storage for an year for a specific FID. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
+     * @summary Buy storage
      * @param {string} apiKey API key required for authentication.
      * @param {BuyStorageReqBody} buyStorageReqBody 
      * @param {*} [options] Override http request option.
@@ -284,7 +284,7 @@ export class StorageApi extends BaseAPI {
 
     /**
      * Fetches storage allocations for a given user
-     * @summary Fetch storage allocations for a given user
+     * @summary Allocation of user
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid 
      * @param {*} [options] Override http request option.
@@ -297,7 +297,7 @@ export class StorageApi extends BaseAPI {
 
     /**
      * Fetches storage usage for a given user
-     * @summary Fetch storage usage for a given user
+     * @summary Usage of user
      * @param {string} apiKey API key required for authentication.
      * @param {number} fid 
      * @param {*} [options] Override http request option.

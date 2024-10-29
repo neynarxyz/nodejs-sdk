@@ -36,8 +36,8 @@ import { ErrorRes } from '../models';
 export const BanApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Bans a list of fids from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
-         * @summary Bans a list of fids from your app.
+         * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
+         * @summary Ban FIDs from app
          * @param {string} apiKey API key required for authentication.
          * @param {BanReqBody} banReqBody 
          * @param {*} [options] Override http request option.
@@ -79,8 +79,8 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
             };
         },
         /**
-         * Fetches all fids that your app has banned.
-         * @summary Fetch fids that your app has banned
+         * Fetches all FIDs that your app has banned.
+         * @summary Banned FIDs of app
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] Number of results to fetch (default 20, max 100).
          * @param {string} [cursor] Pagination cursor.
@@ -126,8 +126,8 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
             };
         },
         /**
-         * Deletes a list of fids from the app associated with your API key.
-         * @summary Deletes a list of fids from your app\'s ban list.
+         * Deletes a list of FIDs from the app associated with your API key.
+         * @summary Unban FIDs from app
          * @param {string} apiKey API key required for authentication.
          * @param {BanReqBody} banReqBody 
          * @param {*} [options] Override http request option.
@@ -179,8 +179,8 @@ export const BanApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = BanApiAxiosParamCreator(configuration)
     return {
         /**
-         * Bans a list of fids from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
-         * @summary Bans a list of fids from your app.
+         * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
+         * @summary Ban FIDs from app
          * @param {string} apiKey API key required for authentication.
          * @param {BanReqBody} banReqBody 
          * @param {*} [options] Override http request option.
@@ -191,8 +191,8 @@ export const BanApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Fetches all fids that your app has banned.
-         * @summary Fetch fids that your app has banned
+         * Fetches all FIDs that your app has banned.
+         * @summary Banned FIDs of app
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] Number of results to fetch (default 20, max 100).
          * @param {string} [cursor] Pagination cursor.
@@ -204,8 +204,8 @@ export const BanApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Deletes a list of fids from the app associated with your API key.
-         * @summary Deletes a list of fids from your app\'s ban list.
+         * Deletes a list of FIDs from the app associated with your API key.
+         * @summary Unban FIDs from app
          * @param {string} apiKey API key required for authentication.
          * @param {BanReqBody} banReqBody 
          * @param {*} [options] Override http request option.
@@ -226,8 +226,8 @@ export const BanApiFactory = function (configuration?: Configuration, basePath?:
     const localVarFp = BanApiFp(configuration)
     return {
         /**
-         * Bans a list of fids from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
-         * @summary Bans a list of fids from your app.
+         * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
+         * @summary Ban FIDs from app
          * @param {string} apiKey API key required for authentication.
          * @param {BanReqBody} banReqBody 
          * @param {*} [options] Override http request option.
@@ -237,8 +237,8 @@ export const BanApiFactory = function (configuration?: Configuration, basePath?:
             return localVarFp.addBan(apiKey, banReqBody, options).then((request) => request(axios, basePath));
         },
         /**
-         * Fetches all fids that your app has banned.
-         * @summary Fetch fids that your app has banned
+         * Fetches all FIDs that your app has banned.
+         * @summary Banned FIDs of app
          * @param {string} apiKey API key required for authentication.
          * @param {number} [limit] Number of results to fetch (default 20, max 100).
          * @param {string} [cursor] Pagination cursor.
@@ -249,8 +249,8 @@ export const BanApiFactory = function (configuration?: Configuration, basePath?:
             return localVarFp.banList(apiKey, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * Deletes a list of fids from the app associated with your API key.
-         * @summary Deletes a list of fids from your app\'s ban list.
+         * Deletes a list of FIDs from the app associated with your API key.
+         * @summary Unban FIDs from app
          * @param {string} apiKey API key required for authentication.
          * @param {BanReqBody} banReqBody 
          * @param {*} [options] Override http request option.
@@ -270,8 +270,8 @@ export const BanApiFactory = function (configuration?: Configuration, basePath?:
  */
 export class BanApi extends BaseAPI {
     /**
-     * Bans a list of fids from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
-     * @summary Bans a list of fids from your app.
+     * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
+     * @summary Ban FIDs from app
      * @param {string} apiKey API key required for authentication.
      * @param {BanReqBody} banReqBody 
      * @param {*} [options] Override http request option.
@@ -283,8 +283,8 @@ export class BanApi extends BaseAPI {
     }
 
     /**
-     * Fetches all fids that your app has banned.
-     * @summary Fetch fids that your app has banned
+     * Fetches all FIDs that your app has banned.
+     * @summary Banned FIDs of app
      * @param {string} apiKey API key required for authentication.
      * @param {number} [limit] Number of results to fetch (default 20, max 100).
      * @param {string} [cursor] Pagination cursor.
@@ -297,8 +297,8 @@ export class BanApi extends BaseAPI {
     }
 
     /**
-     * Deletes a list of fids from the app associated with your API key.
-     * @summary Deletes a list of fids from your app\'s ban list.
+     * Deletes a list of FIDs from the app associated with your API key.
+     * @summary Unban FIDs from app
      * @param {string} apiKey API key required for authentication.
      * @param {BanReqBody} banReqBody 
      * @param {*} [options] Override http request option.

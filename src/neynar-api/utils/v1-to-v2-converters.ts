@@ -3,7 +3,7 @@ import {
   Cast as ICastV1,
   CastWithInteractions as ICastWithInteractionsV1,
 } from "../v1";
-import { User as IUserV2, ActiveStatus, Cast as ICastV2 } from "../v2";
+import { User as IUserV2, Cast as ICastV2 } from "../v2";
 
 export const convertToV2User = (v1User: IUserV1): IUserV2 => {
   // @ts-ignore
@@ -27,18 +27,6 @@ export const convertToV2User = (v1User: IUserV1): IUserV2 => {
       eth_addresses: [],
       sol_addresses: [],
     },
-    active_status:
-      v1User?.activeStatus === "active"
-        ? ActiveStatus.Active
-        : ActiveStatus.Inactive,
-    ...(v1User.viewerContext
-      ? {
-         viewer_context: {
-           following: v1User.viewerContext.following,
-           followed_by: v1User.viewerContext.followedBy,
-         }
-        }
-      : {}),
   };
   return v2User;
 };
