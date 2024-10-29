@@ -31,6 +31,6 @@ export interface FarcasterActionReqBodyAction {
      * @type {object}
      * @memberof FarcasterActionReqBodyAction
      */
-    'payload': object;
+    'payload'?: object;
 }
 
