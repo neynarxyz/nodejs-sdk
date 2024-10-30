@@ -108,6 +108,8 @@ import {
   FarcasterActionReqBodyAction,
   ActionApi,
   UpdateUserReqBodyLocation,
+  PostCastReqBodyEmbeds,
+  PostCastReqBody,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -1339,14 +1341,14 @@ export class NeynarV2APIClient {
     signerUuid: string,
     text: string,
     options?: {
-      embeds?: Embed[];
+      embeds?: PostCastReqBodyEmbeds[];
       replyTo?: string;
       channelId?: string;
       idem?: string;
       parent_author_fid?: number;
     }
   ): Promise<PostCastResponseCast> {
-    const postCastReqBody = {
+    const postCastReqBody: PostCastReqBody = {
       signer_uuid: signerUuid,
       text: text,
       embeds: options?.embeds,

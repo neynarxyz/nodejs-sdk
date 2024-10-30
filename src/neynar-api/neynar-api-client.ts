@@ -84,6 +84,7 @@ import {
   FollowersResponse,
   FarcasterActionReqBodyAction,
   UpdateUserReqBodyLocation,
+  PostCastReqBodyEmbeds,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -1680,7 +1681,7 @@ export class NeynarAPIClient {
     signerUuid: string,
     text: string,
     options?: {
-      embeds?: Embed[];
+      embeds?: PostCastReqBodyEmbeds[];
       replyTo?: string;
       channelId?: string;
       idem?: string;
@@ -3641,7 +3642,6 @@ export class NeynarAPIClient {
   public async fetchWebhooks(): Promise<WebhookListResponse> {
     return await this.clients.v2.fetchWebhooks();
   }
-
 
   // ------------ Additional utility methods ------------
 
