@@ -1095,7 +1095,7 @@ export class NeynarV2APIClient {
       cursor?: string;
     }
   ): Promise<UsersResponse> {
-    const response = await this.apis.user.userByLocation(
+    const response = await this.apis.user.fetchUsersByLocation(
       latitude,
       longitude,
       options?.viewerFid,
