@@ -13,22 +13,16004 @@
  */
 
 
+import type { Configuration } from './configuration';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
+// Some imports not used depending on template conditions
+// @ts-ignore
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
+import type { RequestArgs } from './base';
+// @ts-ignore
+import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
-export * from './apis/action-api';
-export * from './apis/ban-api';
-export * from './apis/block-api';
-export * from './apis/cast-api';
-export * from './apis/channel-api';
-export * from './apis/feed-api';
-export * from './apis/fname-api';
-export * from './apis/follows-api';
-export * from './apis/frame-api';
-export * from './apis/mute-api';
-export * from './apis/notifications-api';
-export * from './apis/reaction-api';
-export * from './apis/signer-api';
-export * from './apis/storage-api';
-export * from './apis/subscribers-api';
-export * from './apis/user-api';
-export * from './apis/webhook-api';
+/**
+ * 
+ * @export
+ * @interface AddVerificationReqBody
+ */
+export interface AddVerificationReqBody {
+    /**
+     * UUID of the signer
+     * @type {string}
+     * @memberof AddVerificationReqBody
+     */
+    'signer_uuid': string;
+    /**
+     * Ethereum address
+     * @type {string}
+     * @memberof AddVerificationReqBody
+     */
+    'address': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AddVerificationReqBody
+     */
+    'block_hash': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AddVerificationReqBody
+     */
+    'eth_signature': string;
+    /**
+     * 
+     * @type {VerificationType}
+     * @memberof AddVerificationReqBody
+     */
+    'verification_type'?: VerificationType;
+    /**
+     * 
+     * @type {VerificationChainId}
+     * @memberof AddVerificationReqBody
+     */
+    'chain_id'?: VerificationChainId;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface AuthorizationUrlResponse
+ */
+export interface AuthorizationUrlResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthorizationUrlResponse
+     */
+    'authorization_url': string;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const AuthorizationUrlResponseType = {
+    Code: 'code'
+} as const;
+
+export type AuthorizationUrlResponseType = typeof AuthorizationUrlResponseType[keyof typeof AuthorizationUrlResponseType];
+
+
+/**
+ * 
+ * @export
+ * @interface BanListResponse
+ */
+export interface BanListResponse {
+    /**
+     * 
+     * @type {Array<BanRecord>}
+     * @memberof BanListResponse
+     */
+    'bans': Array<BanRecord>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof BanListResponse
+     */
+    'next': NextCursor;
+}
+/**
+ * 
+ * @export
+ * @interface BanRecord
+ */
+export interface BanRecord {
+    /**
+     * 
+     * @type {string}
+     * @memberof BanRecord
+     */
+    'object': BanRecordObjectEnum;
+    /**
+     * 
+     * @type {User}
+     * @memberof BanRecord
+     */
+    'banned'?: User;
+    /**
+     * 
+     * @type {string}
+     * @memberof BanRecord
+     */
+    'banned_at': string;
+}
+
+export const BanRecordObjectEnum = {
+    Ban: 'ban'
+} as const;
+
+export type BanRecordObjectEnum = typeof BanRecordObjectEnum[keyof typeof BanRecordObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface BanReqBody
+ */
+export interface BanReqBody {
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof BanReqBody
+     */
+    'fids': Array<number>;
+}
+/**
+ * 
+ * @export
+ * @interface BanResponse
+ */
+export interface BanResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof BanResponse
+     */
+    'success': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof BanResponse
+     */
+    'message'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface BlockListResponse
+ */
+export interface BlockListResponse {
+    /**
+     * 
+     * @type {Array<BlockRecord>}
+     * @memberof BlockListResponse
+     */
+    'blocks': Array<BlockRecord>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof BlockListResponse
+     */
+    'next': NextCursor;
+}
+/**
+ * 
+ * @export
+ * @interface BlockRecord
+ */
+export interface BlockRecord {
+    /**
+     * 
+     * @type {string}
+     * @memberof BlockRecord
+     */
+    'object': BlockRecordObjectEnum;
+    /**
+     * 
+     * @type {User}
+     * @memberof BlockRecord
+     */
+    'blocked'?: User;
+    /**
+     * 
+     * @type {User}
+     * @memberof BlockRecord
+     */
+    'blocker'?: User;
+    /**
+     * 
+     * @type {string}
+     * @memberof BlockRecord
+     */
+    'blocked_at': string;
+}
+
+export const BlockRecordObjectEnum = {
+    Block: 'block'
+} as const;
+
+export type BlockRecordObjectEnum = typeof BlockRecordObjectEnum[keyof typeof BlockRecordObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface BulkCastsResponse
+ */
+export interface BulkCastsResponse {
+    /**
+     * 
+     * @type {Array<CastWithInteractions>}
+     * @memberof BulkCastsResponse
+     */
+    'casts': Array<CastWithInteractions>;
+}
+/**
+ * 
+ * @export
+ * @interface BulkFollowResponse
+ */
+export interface BulkFollowResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof BulkFollowResponse
+     */
+    'success': boolean;
+    /**
+     * 
+     * @type {Array<FollowResponse>}
+     * @memberof BulkFollowResponse
+     */
+    'details': Array<FollowResponse>;
+}
+/**
+ * 
+ * @export
+ * @interface BulkUsersResponse
+ */
+export interface BulkUsersResponse {
+    /**
+     * 
+     * @type {Array<User>}
+     * @memberof BulkUsersResponse
+     */
+    'users': Array<User>;
+}
+/**
+ * 
+ * @export
+ * @interface BuyStorageReqBody
+ */
+export interface BuyStorageReqBody {
+    /**
+     * 
+     * @type {number}
+     * @memberof BuyStorageReqBody
+     */
+    'fid': number;
+    /**
+     * Number of storage units to buy. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
+     * @type {number}
+     * @memberof BuyStorageReqBody
+     */
+    'units'?: number;
+    /**
+     * An Idempotency key is a unique identifier for the request. **Note:**  1) This is used to prevent duplicate requests. Use the same idem key on retry attempts. 2) This should be a unique identifier for each request. 3) Recommended format is a 16-character string generated by the developer at the time of making this request. 
+     * @type {string}
+     * @memberof BuyStorageReqBody
+     */
+    'idem'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface Cast
+ */
+export interface Cast {
+    /**
+     * 
+     * @type {string}
+     * @memberof Cast
+     */
+    'hash': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Cast
+     */
+    'parent_hash': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Cast
+     */
+    'parent_url': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Cast
+     */
+    'root_parent_url': string | null;
+    /**
+     * 
+     * @type {CastEmbeddedParentAuthor}
+     * @memberof Cast
+     */
+    'parent_author': CastEmbeddedParentAuthor;
+    /**
+     * 
+     * @type {User}
+     * @memberof Cast
+     */
+    'author': User;
+    /**
+     * 
+     * @type {string}
+     * @memberof Cast
+     */
+    'text': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Cast
+     */
+    'timestamp': string;
+    /**
+     * 
+     * @type {Array<Embed>}
+     * @memberof Cast
+     */
+    'embeds': Array<Embed>;
+    /**
+     * 
+     * @type {CastNotificationType}
+     * @memberof Cast
+     */
+    'type'?: CastNotificationType;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface CastComposerActionsListResponse
+ */
+export interface CastComposerActionsListResponse {
+    /**
+     * 
+     * @type {Array<CastComposerActionsListResponseActionsInner>}
+     * @memberof CastComposerActionsListResponse
+     */
+    'actions'?: Array<CastComposerActionsListResponseActionsInner>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof CastComposerActionsListResponse
+     */
+    'next'?: NextCursor;
+}
+/**
+ * 
+ * @export
+ * @interface CastComposerActionsListResponseActionsInner
+ */
+export interface CastComposerActionsListResponseActionsInner {
+    /**
+     * The name of the action.
+     * @type {string}
+     * @memberof CastComposerActionsListResponseActionsInner
+     */
+    'name'?: string;
+    /**
+     * The icon representing the action.
+     * @type {string}
+     * @memberof CastComposerActionsListResponseActionsInner
+     */
+    'icon'?: string;
+    /**
+     * A brief description of the action.
+     * @type {string}
+     * @memberof CastComposerActionsListResponseActionsInner
+     */
+    'description'?: string;
+    /**
+     * URL to learn more about the action.
+     * @type {string}
+     * @memberof CastComposerActionsListResponseActionsInner
+     */
+    'about_url'?: string;
+    /**
+     * URL of the action\'s image.
+     * @type {string}
+     * @memberof CastComposerActionsListResponseActionsInner
+     */
+    'image_url'?: string;
+    /**
+     * URL to perform the action.
+     * @type {string}
+     * @memberof CastComposerActionsListResponseActionsInner
+     */
+    'action_url'?: string;
+    /**
+     * 
+     * @type {CastComposerActionsListResponseActionsInnerAction}
+     * @memberof CastComposerActionsListResponseActionsInner
+     */
+    'action'?: CastComposerActionsListResponseActionsInnerAction;
+    /**
+     * Icon name for the action.
+     * @type {string}
+     * @memberof CastComposerActionsListResponseActionsInner
+     */
+    'octicon'?: string;
+    /**
+     * Number of times the action has been added.
+     * @type {number}
+     * @memberof CastComposerActionsListResponseActionsInner
+     */
+    'added_count'?: number;
+    /**
+     * Name of the application providing the action.
+     * @type {string}
+     * @memberof CastComposerActionsListResponseActionsInner
+     */
+    'app_name'?: string;
+    /**
+     * Author\'s Farcaster ID.
+     * @type {number}
+     * @memberof CastComposerActionsListResponseActionsInner
+     */
+    'author_fid'?: number;
+    /**
+     * Category of the action.
+     * @type {string}
+     * @memberof CastComposerActionsListResponseActionsInner
+     */
+    'category'?: string;
+    /**
+     * Object type, which is \"composer_action\".
+     * @type {string}
+     * @memberof CastComposerActionsListResponseActionsInner
+     */
+    'object'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface CastComposerActionsListResponseActionsInnerAction
+ */
+export interface CastComposerActionsListResponseActionsInnerAction {
+    /**
+     * Type of the action (e.g., post).
+     * @type {string}
+     * @memberof CastComposerActionsListResponseActionsInnerAction
+     */
+    'action_type'?: string;
+    /**
+     * URL to post the action.
+     * @type {string}
+     * @memberof CastComposerActionsListResponseActionsInnerAction
+     */
+    'post_url'?: string;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const CastComposerType = {
+    Top: 'top',
+    Featured: 'featured'
+} as const;
+
+export type CastComposerType = typeof CastComposerType[keyof typeof CastComposerType];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const CastConversationSortType = {
+    Chron: 'chron',
+    DescChron: 'desc_chron',
+    Algorithmic: 'algorithmic'
+} as const;
+
+export type CastConversationSortType = typeof CastConversationSortType[keyof typeof CastConversationSortType];
+
+
+/**
+ * 
+ * @export
+ * @interface CastDehydrated
+ */
+export interface CastDehydrated {
+    /**
+     * 
+     * @type {string}
+     * @memberof CastDehydrated
+     */
+    'object': CastDehydratedObjectEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof CastDehydrated
+     */
+    'hash': string;
+    /**
+     * 
+     * @type {UserDehydrated}
+     * @memberof CastDehydrated
+     */
+    'author'?: UserDehydrated;
+}
+
+export const CastDehydratedObjectEnum = {
+    CastDehydrated: 'cast_dehydrated'
+} as const;
+
+export type CastDehydratedObjectEnum = typeof CastDehydratedObjectEnum[keyof typeof CastDehydratedObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface CastEmbedded
+ */
+export interface CastEmbedded {
+    /**
+     * 
+     * @type {string}
+     * @memberof CastEmbedded
+     */
+    'hash': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CastEmbedded
+     */
+    'parent_hash': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CastEmbedded
+     */
+    'parent_url': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CastEmbedded
+     */
+    'root_parent_url': string | null;
+    /**
+     * 
+     * @type {CastEmbeddedParentAuthor}
+     * @memberof CastEmbedded
+     */
+    'parent_author': CastEmbeddedParentAuthor;
+    /**
+     * 
+     * @type {UserDehydrated}
+     * @memberof CastEmbedded
+     */
+    'author': UserDehydrated;
+    /**
+     * 
+     * @type {string}
+     * @memberof CastEmbedded
+     */
+    'text': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CastEmbedded
+     */
+    'timestamp': string;
+    /**
+     * 
+     * @type {CastNotificationType}
+     * @memberof CastEmbedded
+     */
+    'type': CastNotificationType;
+    /**
+     * 
+     * @type {Array<EmbedDeep>}
+     * @memberof CastEmbedded
+     */
+    'embeds': Array<EmbedDeep>;
+    /**
+     * 
+     * @type {DehydratedChannel}
+     * @memberof CastEmbedded
+     */
+    'channel': DehydratedChannel | null;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface CastEmbeddedParentAuthor
+ */
+export interface CastEmbeddedParentAuthor {
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof CastEmbeddedParentAuthor
+     */
+    'fid': number;
+}
+/**
+ * 
+ * @export
+ * @interface CastId
+ */
+export interface CastId {
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof CastId
+     */
+    'fid': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CastId
+     */
+    'hash': string;
+}
+/**
+ * The notification type of a cast. 
+ * @export
+ * @enum {string}
+ */
+
+export const CastNotificationType = {
+    Mention: 'cast-mention',
+    Reply: 'cast-reply'
+} as const;
+
+export type CastNotificationType = typeof CastNotificationType[keyof typeof CastNotificationType];
+
+
+/**
+ * The query param accepted by the API. Sent along with identifier param. url - Cast identifier is a url hash - Cast identifier is a hash 
+ * @export
+ * @enum {string}
+ */
+
+export const CastParamType = {
+    Url: 'url',
+    Hash: 'hash'
+} as const;
+
+export type CastParamType = typeof CastParamType[keyof typeof CastParamType];
+
+
+/**
+ * 
+ * @export
+ * @interface CastResponse
+ */
+export interface CastResponse {
+    /**
+     * 
+     * @type {CastWithInteractions}
+     * @memberof CastResponse
+     */
+    'cast': CastWithInteractions;
+}
+/**
+ * Adds context on interactions the viewer has made with the cast.
+ * @export
+ * @interface CastViewerContext
+ */
+export interface CastViewerContext {
+    /**
+     * Indicates if the viewer liked the cast.
+     * @type {boolean}
+     * @memberof CastViewerContext
+     */
+    'liked': boolean;
+    /**
+     * Indicates if the viewer recasted the cast.
+     * @type {boolean}
+     * @memberof CastViewerContext
+     */
+    'recasted': boolean;
+}
+/**
+ * 
+ * @export
+ * @interface CastWithInteractions
+ */
+export interface CastWithInteractions extends Cast {
+    /**
+     * 
+     * @type {Array<Frame>}
+     * @memberof CastWithInteractions
+     */
+    'frames'?: Array<Frame>;
+    /**
+     * 
+     * @type {CastWithInteractionsReactions}
+     * @memberof CastWithInteractions
+     */
+    'reactions': CastWithInteractionsReactions;
+    /**
+     * 
+     * @type {CastWithInteractionsReplies}
+     * @memberof CastWithInteractions
+     */
+    'replies': CastWithInteractionsReplies;
+    /**
+     * 
+     * @type {string}
+     * @memberof CastWithInteractions
+     */
+    'thread_hash': string | null;
+    /**
+     * 
+     * @type {Array<User>}
+     * @memberof CastWithInteractions
+     */
+    'mentioned_profiles': Array<User>;
+    /**
+     * 
+     * @type {ChannelOrDehydratedChannel}
+     * @memberof CastWithInteractions
+     */
+    'channel': ChannelOrDehydratedChannel | null;
+    /**
+     * 
+     * @type {CastViewerContext}
+     * @memberof CastWithInteractions
+     */
+    'viewer_context'?: CastViewerContext;
+    /**
+     * 
+     * @type {ChannelUserContext}
+     * @memberof CastWithInteractions
+     */
+    'author_channel_context'?: ChannelUserContext;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface CastWithInteractionsAndConversations
+ */
+export interface CastWithInteractionsAndConversations extends CastWithInteractions {
+    /**
+     * note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth.
+     * @type {Array<CastWithInteractionsAndConversationsRef>}
+     * @memberof CastWithInteractionsAndConversations
+     */
+    'direct_replies': Array<CastWithInteractionsAndConversationsRef>;
+}
+
+
+/**
+ * Reference to CastWithInteractionsAndConversations to avoid circular reference
+ * @export
+ * @interface CastWithInteractionsAndConversationsRef
+ */
+export interface CastWithInteractionsAndConversationsRef extends CastWithInteractions {
+    /**
+     * note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth.
+     * @type {Array<object>}
+     * @memberof CastWithInteractionsAndConversationsRef
+     */
+    'direct_replies': Array<object>;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface CastWithInteractionsReactions
+ */
+export interface CastWithInteractionsReactions {
+    /**
+     * 
+     * @type {Array<ReactionLike>}
+     * @memberof CastWithInteractionsReactions
+     */
+    'likes': Array<ReactionLike>;
+    /**
+     * 
+     * @type {Array<ReactionRecast>}
+     * @memberof CastWithInteractionsReactions
+     */
+    'recasts': Array<ReactionRecast>;
+    /**
+     * 
+     * @type {number}
+     * @memberof CastWithInteractionsReactions
+     */
+    'likes_count': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CastWithInteractionsReactions
+     */
+    'recasts_count': number;
+}
+/**
+ * 
+ * @export
+ * @interface CastWithInteractionsReplies
+ */
+export interface CastWithInteractionsReplies {
+    /**
+     * 
+     * @type {number}
+     * @memberof CastWithInteractionsReplies
+     */
+    'count': number;
+}
+/**
+ * 
+ * @export
+ * @interface CastsResponse
+ */
+export interface CastsResponse {
+    /**
+     * 
+     * @type {CastsResponseResult}
+     * @memberof CastsResponse
+     */
+    'result': CastsResponseResult;
+}
+/**
+ * 
+ * @export
+ * @interface CastsResponseResult
+ */
+export interface CastsResponseResult {
+    /**
+     * 
+     * @type {Array<CastWithInteractions>}
+     * @memberof CastsResponseResult
+     */
+    'casts': Array<CastWithInteractions>;
+}
+/**
+ * 
+ * @export
+ * @interface CastsSearchResponse
+ */
+export interface CastsSearchResponse {
+    /**
+     * 
+     * @type {CastsSearchResponseResult}
+     * @memberof CastsSearchResponse
+     */
+    'result': CastsSearchResponseResult;
+}
+/**
+ * 
+ * @export
+ * @interface CastsSearchResponseResult
+ */
+export interface CastsSearchResponseResult {
+    /**
+     * 
+     * @type {Array<CastWithInteractions>}
+     * @memberof CastsSearchResponseResult
+     */
+    'casts': Array<CastWithInteractions>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof CastsSearchResponseResult
+     */
+    'next': NextCursor;
+}
+/**
+ * 
+ * @export
+ * @interface Channel
+ */
+export interface Channel {
+    /**
+     * 
+     * @type {string}
+     * @memberof Channel
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Channel
+     */
+    'url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Channel
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Channel
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Channel
+     */
+    'object': ChannelObjectEnum;
+    /**
+     * Epoch timestamp in seconds.
+     * @type {number}
+     * @memberof Channel
+     */
+    'created_at'?: number;
+    /**
+     * Number of followers the channel has.
+     * @type {number}
+     * @memberof Channel
+     */
+    'follower_count'?: number;
+    /**
+     * 
+     * @type {ChannelExternalLink}
+     * @memberof Channel
+     */
+    'external_link'?: ChannelExternalLink;
+    /**
+     * 
+     * @type {string}
+     * @memberof Channel
+     */
+    'image_url'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Channel
+     */
+    'parent_url'?: string;
+    /**
+     * 
+     * @type {User}
+     * @memberof Channel
+     */
+    'lead'?: User;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof Channel
+     */
+    'moderator_fids'?: Array<number>;
+    /**
+     * 
+     * @type {number}
+     * @memberof Channel
+     */
+    'member_count'?: number;
+    /**
+     * Use `lead` instead.
+     * @type {User}
+     * @memberof Channel
+     * @deprecated
+     */
+    'moderator'?: User;
+    /**
+     * Cast Hash
+     * @type {string}
+     * @memberof Channel
+     */
+    'pinned_cast_hash'?: string;
+    /**
+     * 
+     * @type {Array<User>}
+     * @memberof Channel
+     */
+    'hosts'?: Array<User>;
+    /**
+     * 
+     * @type {ChannelUserContext}
+     * @memberof Channel
+     */
+    'viewer_context'?: ChannelUserContext;
+}
+
+export const ChannelObjectEnum = {
+    Channel: 'channel'
+} as const;
+
+export type ChannelObjectEnum = typeof ChannelObjectEnum[keyof typeof ChannelObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface ChannelActivity
+ */
+export interface ChannelActivity {
+    /**
+     * 
+     * @type {string}
+     * @memberof ChannelActivity
+     */
+    'object': ChannelActivityObjectEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof ChannelActivity
+     */
+    'cast_count_1d': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ChannelActivity
+     */
+    'cast_count_7d': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ChannelActivity
+     */
+    'cast_count_30d': string;
+    /**
+     * 
+     * @type {Channel}
+     * @memberof ChannelActivity
+     */
+    'channel': Channel;
+}
+
+export const ChannelActivityObjectEnum = {
+    ChannelActivity: 'channel_activity'
+} as const;
+
+export type ChannelActivityObjectEnum = typeof ChannelActivityObjectEnum[keyof typeof ChannelActivityObjectEnum];
+
+/**
+ * Channel\'s external link.
+ * @export
+ * @interface ChannelExternalLink
+ */
+export interface ChannelExternalLink {
+    /**
+     * 
+     * @type {string}
+     * @memberof ChannelExternalLink
+     */
+    'title'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ChannelExternalLink
+     */
+    'url'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ChannelFollowReqBody
+ */
+export interface ChannelFollowReqBody {
+    /**
+     * UUID of the signer
+     * @type {string}
+     * @memberof ChannelFollowReqBody
+     */
+    'signer_uuid': string;
+    /**
+     * The unique identifier of a farcaster channel
+     * @type {string}
+     * @memberof ChannelFollowReqBody
+     */
+    'channel_id': string;
+}
+/**
+ * 
+ * @export
+ * @interface ChannelListResponse
+ */
+export interface ChannelListResponse {
+    /**
+     * 
+     * @type {Array<Channel>}
+     * @memberof ChannelListResponse
+     */
+    'channels': Array<Channel>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof ChannelListResponse
+     */
+    'next'?: NextCursor;
+}
+/**
+ * 
+ * @export
+ * @interface ChannelMember
+ */
+export interface ChannelMember {
+    /**
+     * 
+     * @type {string}
+     * @memberof ChannelMember
+     */
+    'object': ChannelMemberObjectEnum;
+    /**
+     * 
+     * @type {ChannelMemberRole}
+     * @memberof ChannelMember
+     */
+    'role': ChannelMemberRole;
+    /**
+     * 
+     * @type {ChannelMemberUser}
+     * @memberof ChannelMember
+     */
+    'user': ChannelMemberUser;
+    /**
+     * 
+     * @type {ChannelMemberChannel}
+     * @memberof ChannelMember
+     */
+    'channel': ChannelMemberChannel;
+}
+
+export const ChannelMemberObjectEnum = {
+    Member: 'member'
+} as const;
+
+export type ChannelMemberObjectEnum = typeof ChannelMemberObjectEnum[keyof typeof ChannelMemberObjectEnum];
+
+/**
+ * @type ChannelMemberChannel
+ * @export
+ */
+export type ChannelMemberChannel = Channel | DehydratedChannel;
+
+/**
+ * 
+ * @export
+ * @interface ChannelMemberInvite
+ */
+export interface ChannelMemberInvite {
+    /**
+     * The unique identifier of a farcaster channel
+     * @type {string}
+     * @memberof ChannelMemberInvite
+     */
+    'channel_id': string;
+    /**
+     * 
+     * @type {ChannelMemberRole}
+     * @memberof ChannelMemberInvite
+     */
+    'role': ChannelMemberRole;
+    /**
+     * 
+     * @type {User}
+     * @memberof ChannelMemberInvite
+     */
+    'inviter': User;
+    /**
+     * 
+     * @type {User}
+     * @memberof ChannelMemberInvite
+     */
+    'invited': User;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface ChannelMemberInviteListResponse
+ */
+export interface ChannelMemberInviteListResponse {
+    /**
+     * 
+     * @type {Array<ChannelMemberInvite>}
+     * @memberof ChannelMemberInviteListResponse
+     */
+    'invites': Array<ChannelMemberInvite>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof ChannelMemberInviteListResponse
+     */
+    'next'?: NextCursor;
+}
+/**
+ * 
+ * @export
+ * @interface ChannelMemberListResponse
+ */
+export interface ChannelMemberListResponse {
+    /**
+     * 
+     * @type {Array<ChannelMember>}
+     * @memberof ChannelMemberListResponse
+     */
+    'members': Array<ChannelMember>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof ChannelMemberListResponse
+     */
+    'next': NextCursor;
+}
+/**
+ * The role of a channel member
+ * @export
+ * @enum {string}
+ */
+
+export const ChannelMemberRole = {
+    Member: 'member',
+    Moderator: 'moderator'
+} as const;
+
+export type ChannelMemberRole = typeof ChannelMemberRole[keyof typeof ChannelMemberRole];
+
+
+/**
+ * @type ChannelMemberUser
+ * @export
+ */
+export type ChannelMemberUser = User | UserDehydrated;
+
+/**
+ * @type ChannelOrDehydratedChannel
+ * @export
+ */
+export type ChannelOrDehydratedChannel = { object: 'channel' } & Channel | { object: 'dehydrated_channel' } & DehydratedChannel;
+
+/**
+ * 
+ * @export
+ * @interface ChannelResponse
+ */
+export interface ChannelResponse {
+    /**
+     * 
+     * @type {Channel}
+     * @memberof ChannelResponse
+     */
+    'channel': Channel;
+}
+/**
+ * 
+ * @export
+ * @interface ChannelResponseBulk
+ */
+export interface ChannelResponseBulk {
+    /**
+     * 
+     * @type {Array<Channel>}
+     * @memberof ChannelResponseBulk
+     */
+    'channels': Array<Channel>;
+}
+/**
+ * 
+ * @export
+ * @interface ChannelSearchResponse
+ */
+export interface ChannelSearchResponse {
+    /**
+     * 
+     * @type {Array<Channel>}
+     * @memberof ChannelSearchResponse
+     */
+    'channels': Array<Channel>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof ChannelSearchResponse
+     */
+    'next': NextCursor;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const ChannelType = {
+    Id: 'id',
+    ParentUrl: 'parent_url'
+} as const;
+
+export type ChannelType = typeof ChannelType[keyof typeof ChannelType];
+
+
+/**
+ * Adds context on the viewer\'s or author\'s role in the channel.
+ * @export
+ * @interface ChannelUserContext
+ */
+export interface ChannelUserContext {
+    /**
+     * Indicates if the user is following the channel.
+     * @type {boolean}
+     * @memberof ChannelUserContext
+     */
+    'following': boolean;
+    /**
+     * 
+     * @type {ChannelMemberRole}
+     * @memberof ChannelUserContext
+     */
+    'role'?: ChannelMemberRole;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface ChannelViewerContext
+ */
+export interface ChannelViewerContext {
+    /**
+     * Indicates if the viewer is following the channel.
+     * @type {boolean}
+     * @memberof ChannelViewerContext
+     */
+    'following': boolean;
+}
+/**
+ * Details for the conflict error response
+ * @export
+ * @interface ConflictErrorRes
+ */
+export interface ConflictErrorRes {
+    /**
+     * 
+     * @type {string}
+     * @memberof ConflictErrorRes
+     */
+    'code'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConflictErrorRes
+     */
+    'message': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConflictErrorRes
+     */
+    'property'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConflictErrorRes
+     */
+    'key'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface Conversation
+ */
+export interface Conversation {
+    /**
+     * 
+     * @type {ConversationConversation}
+     * @memberof Conversation
+     */
+    'conversation': ConversationConversation;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof Conversation
+     */
+    'next'?: NextCursor;
+}
+/**
+ * 
+ * @export
+ * @interface ConversationConversation
+ */
+export interface ConversationConversation {
+    /**
+     * 
+     * @type {CastWithInteractionsAndConversations}
+     * @memberof ConversationConversation
+     */
+    'cast': CastWithInteractionsAndConversations;
+    /**
+     * 
+     * @type {Array<CastWithInteractions>}
+     * @memberof ConversationConversation
+     */
+    'chronological_parent_casts'?: Array<CastWithInteractions>;
+}
+/**
+ * 
+ * @export
+ * @interface DehydratedChannel
+ */
+export interface DehydratedChannel {
+    /**
+     * 
+     * @type {string}
+     * @memberof DehydratedChannel
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DehydratedChannel
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DehydratedChannel
+     */
+    'object': DehydratedChannelObjectEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof DehydratedChannel
+     */
+    'image_url'?: string;
+    /**
+     * 
+     * @type {ChannelUserContext}
+     * @memberof DehydratedChannel
+     */
+    'viewer_context'?: ChannelUserContext;
+}
+
+export const DehydratedChannelObjectEnum = {
+    ChannelDehydrated: 'channel_dehydrated'
+} as const;
+
+export type DehydratedChannelObjectEnum = typeof DehydratedChannelObjectEnum[keyof typeof DehydratedChannelObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface DehydratedFollower
+ */
+export interface DehydratedFollower {
+    /**
+     * 
+     * @type {string}
+     * @memberof DehydratedFollower
+     */
+    'object'?: DehydratedFollowerObjectEnum;
+    /**
+     * 
+     * @type {UserDehydrated}
+     * @memberof DehydratedFollower
+     */
+    'user'?: UserDehydrated;
+}
+
+export const DehydratedFollowerObjectEnum = {
+    Follow: 'follow'
+} as const;
+
+export type DehydratedFollowerObjectEnum = typeof DehydratedFollowerObjectEnum[keyof typeof DehydratedFollowerObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface DeleteCastReqBody
+ */
+export interface DeleteCastReqBody {
+    /**
+     * UUID of the signer
+     * @type {string}
+     * @memberof DeleteCastReqBody
+     */
+    'signer_uuid': string;
+    /**
+     * Cast Hash
+     * @type {string}
+     * @memberof DeleteCastReqBody
+     */
+    'target_hash': string;
+}
+/**
+ * 
+ * @export
+ * @interface DeleteFrameResponse
+ */
+export interface DeleteFrameResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DeleteFrameResponse
+     */
+    'success'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeleteFrameResponse
+     */
+    'uuid'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface DeleteNeynarFrameRequest
+ */
+export interface DeleteNeynarFrameRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof DeleteNeynarFrameRequest
+     */
+    'uuid'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface DeveloperManagedSigner
+ */
+export interface DeveloperManagedSigner {
+    /**
+     * Ed25519 public key
+     * @type {string}
+     * @memberof DeveloperManagedSigner
+     */
+    'public_key': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeveloperManagedSigner
+     */
+    'status': DeveloperManagedSignerStatusEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeveloperManagedSigner
+     */
+    'signer_approval_url'?: string;
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof DeveloperManagedSigner
+     */
+    'fid'?: number;
+}
+
+export const DeveloperManagedSignerStatusEnum = {
+    PendingApproval: 'pending_approval',
+    Approved: 'approved',
+    Revoked: 'revoked'
+} as const;
+
+export type DeveloperManagedSignerStatusEnum = typeof DeveloperManagedSignerStatusEnum[keyof typeof DeveloperManagedSignerStatusEnum];
+
+/**
+ * @type Embed
+ * @export
+ */
+export type Embed = EmbedCast | EmbedUrl;
+
+/**
+ * 
+ * @export
+ * @interface EmbedCast
+ */
+export interface EmbedCast {
+    /**
+     * [DEPRECATED: Use \"cast\" key instead]
+     * @type {CastId}
+     * @memberof EmbedCast
+     * @deprecated
+     */
+    'cast_id'?: CastId;
+    /**
+     * 
+     * @type {CastEmbedded}
+     * @memberof EmbedCast
+     */
+    'cast': CastEmbedded;
+}
+/**
+ * 
+ * @export
+ * @interface EmbedCastDeep
+ */
+export interface EmbedCastDeep {
+    /**
+     * [DEPRECATED: Use \"cast\" key instead]
+     * @type {CastId}
+     * @memberof EmbedCastDeep
+     * @deprecated
+     */
+    'cast_id'?: CastId;
+    /**
+     * 
+     * @type {CastDehydrated}
+     * @memberof EmbedCastDeep
+     */
+    'cast': CastDehydrated;
+}
+/**
+ * @type EmbedDeep
+ * @export
+ */
+export type EmbedDeep = EmbedCastDeep | EmbedUrl;
+
+/**
+ * The content type of the embedded file
+ * @export
+ * @enum {string}
+ */
+
+export const EmbedType = {
+    Text: 'text',
+    Image: 'image',
+    Video: 'video',
+    Audio: 'audio',
+    TextHtml: 'text/html',
+    TextPlain: 'text/plain',
+    ImageJpeg: 'image/jpeg',
+    ImagePng: 'image/png',
+    ImageGif: 'image/gif',
+    ImageWebp: 'image/webp',
+    ImageSvgxml: 'image/svg+xml',
+    ImageHeif: 'image/heif',
+    VideoMp4: 'video/mp4',
+    VideoQuicktime: 'video/quicktime',
+    AudioMpeg: 'audio/mpeg',
+    ApplicationPdf: 'application/pdf',
+    ApplicationJson: 'application/json',
+    ApplicationXMpegurl: 'application/x-mpegurl'
+} as const;
+
+export type EmbedType = typeof EmbedType[keyof typeof EmbedType];
+
+
+/**
+ * 
+ * @export
+ * @interface EmbedUrl
+ */
+export interface EmbedUrl {
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrl
+     */
+    'url': string;
+    /**
+     * 
+     * @type {EmbedUrlMetadata}
+     * @memberof EmbedUrl
+     */
+    'metadata'?: EmbedUrlMetadata;
+}
+/**
+ * 
+ * @export
+ * @interface EmbedUrlMetadata
+ */
+export interface EmbedUrlMetadata {
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadata
+     */
+    '_status': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadata
+     */
+    'content_type'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof EmbedUrlMetadata
+     */
+    'content_length'?: number | null;
+    /**
+     * 
+     * @type {EmbedUrlMetadataImage}
+     * @memberof EmbedUrlMetadata
+     */
+    'image'?: EmbedUrlMetadataImage;
+    /**
+     * 
+     * @type {EmbedUrlMetadataVideo}
+     * @memberof EmbedUrlMetadata
+     */
+    'video'?: EmbedUrlMetadataVideo;
+    /**
+     * 
+     * @type {EmbedUrlMetadataHtml}
+     * @memberof EmbedUrlMetadata
+     */
+    'html'?: EmbedUrlMetadataHtml;
+}
+/**
+ * 
+ * @export
+ * @interface EmbedUrlMetadataHtml
+ */
+export interface EmbedUrlMetadataHtml extends OgObject {
+    /**
+     * 
+     * @type {EmbedUrlMetadataHtmlAllOfOembed}
+     * @memberof EmbedUrlMetadataHtml
+     */
+    'oembed'?: EmbedUrlMetadataHtmlAllOfOembed;
+}
+/**
+ * @type EmbedUrlMetadataHtmlAllOfOembed
+ * @export
+ */
+export type EmbedUrlMetadataHtmlAllOfOembed = { type: 'link' } & OembedLinkData | { type: 'photo' } & OembedPhotoData | { type: 'rich' } & OembedRichData | { type: 'video' } & OembedVideoData;
+
+/**
+ * 
+ * @export
+ * @interface EmbedUrlMetadataImage
+ */
+export interface EmbedUrlMetadataImage {
+    /**
+     * 
+     * @type {number}
+     * @memberof EmbedUrlMetadataImage
+     */
+    'height_px'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EmbedUrlMetadataImage
+     */
+    'width_px'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface EmbedUrlMetadataVideo
+ */
+export interface EmbedUrlMetadataVideo {
+    /**
+     * 
+     * @type {number}
+     * @memberof EmbedUrlMetadataVideo
+     */
+    'duration_s'?: number;
+    /**
+     * 
+     * @type {Array<EmbedUrlMetadataVideoStreamInner>}
+     * @memberof EmbedUrlMetadataVideo
+     */
+    'stream'?: Array<EmbedUrlMetadataVideoStreamInner>;
+}
+/**
+ * 
+ * @export
+ * @interface EmbedUrlMetadataVideoStreamInner
+ */
+export interface EmbedUrlMetadataVideoStreamInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof EmbedUrlMetadataVideoStreamInner
+     */
+    'codec_name'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof EmbedUrlMetadataVideoStreamInner
+     */
+    'height_px'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EmbedUrlMetadataVideoStreamInner
+     */
+    'width_px'?: number;
+}
+/**
+ * Details for the error response
+ * @export
+ * @interface ErrorRes
+ */
+export interface ErrorRes {
+    /**
+     * 
+     * @type {string}
+     * @memberof ErrorRes
+     */
+    'code'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ErrorRes
+     */
+    'message': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ErrorRes
+     */
+    'property'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ErrorRes
+     */
+    'status'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface FarcasterActionReqBody
+ */
+export interface FarcasterActionReqBody {
+    /**
+     * The signer_uuid of the user on behalf of whom the action is being performed. 
+     * @type {string}
+     * @memberof FarcasterActionReqBody
+     */
+    'signer_uuid': string;
+    /**
+     * The base URL of the app on which the action is being performed. 
+     * @type {string}
+     * @memberof FarcasterActionReqBody
+     */
+    'base_url': string;
+    /**
+     * 
+     * @type {FarcasterActionReqBodyAction}
+     * @memberof FarcasterActionReqBody
+     */
+    'action': FarcasterActionReqBodyAction;
+}
+/**
+ * 
+ * @export
+ * @interface FarcasterActionReqBodyAction
+ */
+export interface FarcasterActionReqBodyAction {
+    /**
+     * The type of action being performed. 
+     * @type {string}
+     * @memberof FarcasterActionReqBodyAction
+     */
+    'type': string;
+    /**
+     * The payload of the action being performed. 
+     * @type {object}
+     * @memberof FarcasterActionReqBodyAction
+     */
+    'payload'?: object;
+}
+/**
+ * @type FeedForYou400Response
+ * @export
+ */
+export type FeedForYou400Response = ErrorRes | ZodError;
+
+/**
+ * 
+ * @export
+ * @interface FeedResponse
+ */
+export interface FeedResponse {
+    /**
+     * 
+     * @type {Array<CastWithInteractions>}
+     * @memberof FeedResponse
+     */
+    'casts': Array<CastWithInteractions>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof FeedResponse
+     */
+    'next': NextCursor;
+}
+/**
+ * The provider of the trending casts feed. 
+ * @export
+ * @enum {string}
+ */
+
+export const FeedTrendingProvider = {
+    Neynar: 'neynar',
+    Openrank: 'openrank',
+    Mbd: 'mbd'
+} as const;
+
+export type FeedTrendingProvider = typeof FeedTrendingProvider[keyof typeof FeedTrendingProvider];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const FeedType = {
+    Following: 'following',
+    Filter: 'filter'
+} as const;
+
+export type FeedType = typeof FeedType[keyof typeof FeedType];
+
+
+/**
+ * The type of filter to apply to the feed.
+ * @export
+ * @enum {string}
+ */
+
+export const FilterType = {
+    Fids: 'fids',
+    ParentUrl: 'parent_url',
+    ChannelId: 'channel_id',
+    EmbedUrl: 'embed_url',
+    EmbedTypes: 'embed_types',
+    GlobalTrending: 'global_trending'
+} as const;
+
+export type FilterType = typeof FilterType[keyof typeof FilterType];
+
+
+/**
+ * 
+ * @export
+ * @interface FnameAvailabilityResponse
+ */
+export interface FnameAvailabilityResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FnameAvailabilityResponse
+     */
+    'available': boolean;
+}
+/**
+ * 
+ * @export
+ * @interface Follow
+ */
+export interface Follow {
+    /**
+     * 
+     * @type {string}
+     * @memberof Follow
+     */
+    'object': FollowObjectEnum;
+    /**
+     * 
+     * @type {User}
+     * @memberof Follow
+     */
+    'user': User;
+}
+
+export const FollowObjectEnum = {
+    Follow: 'follow'
+} as const;
+
+export type FollowObjectEnum = typeof FollowObjectEnum[keyof typeof FollowObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface FollowReqBody
+ */
+export interface FollowReqBody {
+    /**
+     * UUID of the signer
+     * @type {string}
+     * @memberof FollowReqBody
+     */
+    'signer_uuid': string;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof FollowReqBody
+     */
+    'target_fids': Array<number>;
+}
+/**
+ * 
+ * @export
+ * @interface FollowResponse
+ */
+export interface FollowResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FollowResponse
+     */
+    'success': boolean;
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof FollowResponse
+     */
+    'target_fid': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FollowResponse
+     */
+    'hash': string;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const FollowSortType = {
+    DescChron: 'desc_chron',
+    Algorithmic: 'algorithmic'
+} as const;
+
+export type FollowSortType = typeof FollowSortType[keyof typeof FollowSortType];
+
+
+/**
+ * 
+ * @export
+ * @interface FollowersResponse
+ */
+export interface FollowersResponse {
+    /**
+     * 
+     * @type {Array<HydratedFollower>}
+     * @memberof FollowersResponse
+     */
+    'users': Array<HydratedFollower>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof FollowersResponse
+     */
+    'next': NextCursor;
+}
+/**
+ * The provider of the For You feed. 
+ * @export
+ * @enum {string}
+ */
+
+export const ForYouProvider = {
+    Openrank: 'openrank',
+    Karma3: 'karma3',
+    Mbd: 'mbd'
+} as const;
+
+export type ForYouProvider = typeof ForYouProvider[keyof typeof ForYouProvider];
+
+
+/**
+ * 
+ * @export
+ * @interface Frame
+ */
+export interface Frame {
+    /**
+     * Version of the frame
+     * @type {string}
+     * @memberof Frame
+     */
+    'version': string;
+    /**
+     * URL of the image
+     * @type {string}
+     * @memberof Frame
+     */
+    'image': string;
+    /**
+     * 
+     * @type {Array<FrameActionButton>}
+     * @memberof Frame
+     */
+    'buttons'?: Array<FrameActionButton>;
+    /**
+     * Post URL to take an action on this frame
+     * @type {string}
+     * @memberof Frame
+     */
+    'post_url'?: string;
+    /**
+     * URL of the frames
+     * @type {string}
+     * @memberof Frame
+     */
+    'frames_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Frame
+     */
+    'title'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Frame
+     */
+    'image_aspect_ratio'?: string;
+    /**
+     * 
+     * @type {FrameInput}
+     * @memberof Frame
+     */
+    'input'?: FrameInput;
+    /**
+     * 
+     * @type {FrameState}
+     * @memberof Frame
+     */
+    'state'?: FrameState;
+}
+/**
+ * 
+ * @export
+ * @interface FrameAction
+ */
+export interface FrameAction {
+    /**
+     * 
+     * @type {string}
+     * @memberof FrameAction
+     */
+    'version'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FrameAction
+     */
+    'title'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FrameAction
+     */
+    'image'?: string;
+    /**
+     * 
+     * @type {FrameActionButton}
+     * @memberof FrameAction
+     */
+    'button': FrameActionButton;
+    /**
+     * 
+     * @type {FrameInput}
+     * @memberof FrameAction
+     */
+    'input'?: FrameInput;
+    /**
+     * 
+     * @type {FrameState}
+     * @memberof FrameAction
+     */
+    'state'?: FrameState;
+    /**
+     * 
+     * @type {FrameTransaction}
+     * @memberof FrameAction
+     */
+    'transaction'?: FrameTransaction;
+    /**
+     * The connected wallet address of the interacting user.
+     * @type {string}
+     * @memberof FrameAction
+     */
+    'address'?: string;
+    /**
+     * URL of the frames
+     * @type {string}
+     * @memberof FrameAction
+     */
+    'frames_url': string;
+    /**
+     * URL of the post to get the next frame
+     * @type {string}
+     * @memberof FrameAction
+     */
+    'post_url': string;
+}
+/**
+ * 
+ * @export
+ * @interface FrameActionButton
+ */
+export interface FrameActionButton {
+    /**
+     * Title of the button
+     * @type {string}
+     * @memberof FrameActionButton
+     */
+    'title'?: string;
+    /**
+     * Index of the button
+     * @type {number}
+     * @memberof FrameActionButton
+     */
+    'index': number;
+    /**
+     * 
+     * @type {FrameButtonActionType}
+     * @memberof FrameActionButton
+     */
+    'action_type': FrameButtonActionType;
+    /**
+     * Target of the button
+     * @type {string}
+     * @memberof FrameActionButton
+     */
+    'target'?: string;
+    /**
+     * Used specifically for the tx action type to post a successful transaction hash
+     * @type {string}
+     * @memberof FrameActionButton
+     */
+    'post_url'?: string;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface FrameActionReqBody
+ */
+export interface FrameActionReqBody {
+    /**
+     * UUID of the signer
+     * @type {string}
+     * @memberof FrameActionReqBody
+     */
+    'signer_uuid': string;
+    /**
+     * Cast Hash
+     * @type {string}
+     * @memberof FrameActionReqBody
+     */
+    'cast_hash'?: string;
+    /**
+     * 
+     * @type {FrameAction}
+     * @memberof FrameActionReqBody
+     */
+    'action': FrameAction;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const FrameButtonActionType = {
+    Post: 'post',
+    PostRedirect: 'post_redirect',
+    Tx: 'tx'
+} as const;
+
+export type FrameButtonActionType = typeof FrameButtonActionType[keyof typeof FrameButtonActionType];
+
+
+/**
+ * 
+ * @export
+ * @interface FrameDeveloperManagedActionReqBody
+ */
+export interface FrameDeveloperManagedActionReqBody {
+    /**
+     * Cast Hash
+     * @type {string}
+     * @memberof FrameDeveloperManagedActionReqBody
+     */
+    'cast_hash'?: string;
+    /**
+     * 
+     * @type {FrameAction}
+     * @memberof FrameDeveloperManagedActionReqBody
+     */
+    'action': FrameAction;
+    /**
+     * 
+     * @type {FrameSignaturePacket}
+     * @memberof FrameDeveloperManagedActionReqBody
+     */
+    'signature_packet': FrameSignaturePacket;
+}
+/**
+ * The frame object containing the meta tags
+ * @export
+ * @interface FrameFromUrl200Response
+ */
+export interface FrameFromUrl200Response {
+    /**
+     * 
+     * @type {Frame}
+     * @memberof FrameFromUrl200Response
+     */
+    'frame': Frame;
+}
+/**
+ * 
+ * @export
+ * @interface FrameInput
+ */
+export interface FrameInput {
+    /**
+     * Input text for the frame
+     * @type {string}
+     * @memberof FrameInput
+     */
+    'text'?: string;
+}
+/**
+ * The Frame Signature Packet (https://docs.farcaster.xyz/developers/frames/spec#frame-signature-packet)
+ * @export
+ * @interface FrameSignaturePacket
+ */
+export interface FrameSignaturePacket {
+    /**
+     * 
+     * @type {FrameSignaturePacketUntrustedData}
+     * @memberof FrameSignaturePacket
+     */
+    'untrustedData': FrameSignaturePacketUntrustedData;
+    /**
+     * 
+     * @type {FrameSignaturePacketTrustedData}
+     * @memberof FrameSignaturePacket
+     */
+    'trustedData': FrameSignaturePacketTrustedData;
+}
+/**
+ * Trusted data from the user
+ * @export
+ * @interface FrameSignaturePacketTrustedData
+ */
+export interface FrameSignaturePacketTrustedData {
+    /**
+     * Message bytes
+     * @type {string}
+     * @memberof FrameSignaturePacketTrustedData
+     */
+    'messageBytes'?: string;
+}
+/**
+ * Untrusted data from the user
+ * @export
+ * @interface FrameSignaturePacketUntrustedData
+ */
+export interface FrameSignaturePacketUntrustedData {
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof FrameSignaturePacketUntrustedData
+     */
+    'fid'?: number;
+    /**
+     * URL of the frame
+     * @type {string}
+     * @memberof FrameSignaturePacketUntrustedData
+     */
+    'url'?: string;
+    /**
+     * Message hash
+     * @type {string}
+     * @memberof FrameSignaturePacketUntrustedData
+     */
+    'messageHash'?: string;
+    /**
+     * Timestamp
+     * @type {string}
+     * @memberof FrameSignaturePacketUntrustedData
+     */
+    'timestamp'?: string;
+    /**
+     * Network
+     * @type {number}
+     * @memberof FrameSignaturePacketUntrustedData
+     */
+    'network'?: number;
+    /**
+     * Index of the button
+     * @type {number}
+     * @memberof FrameSignaturePacketUntrustedData
+     */
+    'buttonIndex'?: number;
+    /**
+     * Input text
+     * @type {string}
+     * @memberof FrameSignaturePacketUntrustedData
+     */
+    'inputText'?: string;
+    /**
+     * State
+     * @type {string}
+     * @memberof FrameSignaturePacketUntrustedData
+     */
+    'state'?: string;
+    /**
+     * Transaction ID
+     * @type {string}
+     * @memberof FrameSignaturePacketUntrustedData
+     */
+    'transactionId'?: string;
+    /**
+     * Ethereum address
+     * @type {string}
+     * @memberof FrameSignaturePacketUntrustedData
+     */
+    'address'?: string;
+    /**
+     * 
+     * @type {CastId}
+     * @memberof FrameSignaturePacketUntrustedData
+     */
+    'castId'?: CastId;
+}
+/**
+ * 
+ * @export
+ * @interface FrameState
+ */
+export interface FrameState {
+    /**
+     * State for the frame in a serialized format
+     * @type {string}
+     * @memberof FrameState
+     */
+    'serialized'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FrameTransaction
+ */
+export interface FrameTransaction {
+    /**
+     * Transaction hash
+     * @type {string}
+     * @memberof FrameTransaction
+     */
+    'hash': string;
+}
+/**
+ * Type of identifier (either \'uuid\' or \'url\')
+ * @export
+ * @enum {string}
+ */
+
+export const FrameType = {
+    Uuid: 'uuid',
+    Url: 'url'
+} as const;
+
+export type FrameType = typeof FrameType[keyof typeof FrameType];
+
+
+/**
+ * 
+ * @export
+ * @interface FrameValidateAnalyticsInputText
+ */
+export interface FrameValidateAnalyticsInputText {
+    /**
+     * 
+     * @type {Array<FrameValidateAnalyticsInputTextInputTextsInner>}
+     * @memberof FrameValidateAnalyticsInputText
+     */
+    'input_texts': Array<FrameValidateAnalyticsInputTextInputTextsInner>;
+}
+/**
+ * 
+ * @export
+ * @interface FrameValidateAnalyticsInputTextInputTextsInner
+ */
+export interface FrameValidateAnalyticsInputTextInputTextsInner {
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof FrameValidateAnalyticsInputTextInputTextsInner
+     */
+    'fid': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FrameValidateAnalyticsInputTextInputTextsInner
+     */
+    'username': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FrameValidateAnalyticsInputTextInputTextsInner
+     */
+    'input_text': string;
+}
+/**
+ * 
+ * @export
+ * @interface FrameValidateAnalyticsInteractionsPerCast
+ */
+export interface FrameValidateAnalyticsInteractionsPerCast {
+    /**
+     * 
+     * @type {Array<FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner>}
+     * @memberof FrameValidateAnalyticsInteractionsPerCast
+     */
+    'interactions_per_cast': Array<FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner>;
+}
+/**
+ * 
+ * @export
+ * @interface FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner
+ */
+export interface FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner
+     */
+    'start': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner
+     */
+    'stop': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner
+     */
+    'time': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner
+     */
+    'interaction_count': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner
+     */
+    'cast_url': string;
+}
+/**
+ * 
+ * @export
+ * @interface FrameValidateAnalyticsInteractors
+ */
+export interface FrameValidateAnalyticsInteractors {
+    /**
+     * 
+     * @type {Array<FrameValidateAnalyticsInteractorsInteractorsInner>}
+     * @memberof FrameValidateAnalyticsInteractors
+     */
+    'interactors': Array<FrameValidateAnalyticsInteractorsInteractorsInner>;
+}
+/**
+ * 
+ * @export
+ * @interface FrameValidateAnalyticsInteractorsInteractorsInner
+ */
+export interface FrameValidateAnalyticsInteractorsInteractorsInner {
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof FrameValidateAnalyticsInteractorsInteractorsInner
+     */
+    'fid': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FrameValidateAnalyticsInteractorsInteractorsInner
+     */
+    'username': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FrameValidateAnalyticsInteractorsInteractorsInner
+     */
+    'interaction_count': number;
+}
+/**
+ * @type FrameValidateAnalyticsResponse
+ * @export
+ */
+export type FrameValidateAnalyticsResponse = FrameValidateAnalyticsInputText | FrameValidateAnalyticsInteractionsPerCast | FrameValidateAnalyticsInteractors | FrameValidateAnalyticsTotalInteractors;
+
+/**
+ * 
+ * @export
+ * @interface FrameValidateAnalyticsTotalInteractors
+ */
+export interface FrameValidateAnalyticsTotalInteractors {
+    /**
+     * 
+     * @type {number}
+     * @memberof FrameValidateAnalyticsTotalInteractors
+     */
+    'total_interactors': number;
+}
+/**
+ * 
+ * @export
+ * @interface FrameValidateListResponse
+ */
+export interface FrameValidateListResponse {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof FrameValidateListResponse
+     */
+    'frames': Array<string>;
+}
+/**
+ * 
+ * @export
+ * @interface HydratedFollower
+ */
+export interface HydratedFollower {
+    /**
+     * 
+     * @type {string}
+     * @memberof HydratedFollower
+     */
+    'object'?: HydratedFollowerObjectEnum;
+    /**
+     * 
+     * @type {User}
+     * @memberof HydratedFollower
+     */
+    'user'?: User;
+}
+
+export const HydratedFollowerObjectEnum = {
+    Follow: 'follow'
+} as const;
+
+export type HydratedFollowerObjectEnum = typeof HydratedFollowerObjectEnum[keyof typeof HydratedFollowerObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface ImageObject
+ */
+export interface ImageObject {
+    /**
+     * 
+     * @type {string}
+     * @memberof ImageObject
+     */
+    'height'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImageObject
+     */
+    'type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImageObject
+     */
+    'url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImageObject
+     */
+    'width'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImageObject
+     */
+    'alt'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface IndividualHashObj
+ */
+export interface IndividualHashObj {
+    /**
+     * 
+     * @type {string}
+     * @memberof IndividualHashObj
+     */
+    'hash': string;
+}
+/**
+ * Coordinates and place names for a location
+ * @export
+ * @interface Location
+ */
+export interface Location {
+    /**
+     * 
+     * @type {number}
+     * @memberof Location
+     */
+    'latitude': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Location
+     */
+    'longitude': number;
+    /**
+     * 
+     * @type {LocationAddress}
+     * @memberof Location
+     */
+    'address'?: LocationAddress;
+}
+/**
+ * 
+ * @export
+ * @interface LocationAddress
+ */
+export interface LocationAddress {
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationAddress
+     */
+    'city': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationAddress
+     */
+    'state'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationAddress
+     */
+    'state_code'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationAddress
+     */
+    'country': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationAddress
+     */
+    'country_code'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface MarkNotificationsAsSeenReqBody
+ */
+export interface MarkNotificationsAsSeenReqBody {
+    /**
+     * The UUID of the signer. Signer should have atleast one write permission 
+     * @type {string}
+     * @memberof MarkNotificationsAsSeenReqBody
+     */
+    'signer_uuid': string;
+    /**
+     * 
+     * @type {NotificationType}
+     * @memberof MarkNotificationsAsSeenReqBody
+     */
+    'type'?: NotificationType;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface MuteListResponse
+ */
+export interface MuteListResponse {
+    /**
+     * 
+     * @type {Array<MuteRecord>}
+     * @memberof MuteListResponse
+     */
+    'mutes': Array<MuteRecord>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof MuteListResponse
+     */
+    'next': NextCursor;
+}
+/**
+ * 
+ * @export
+ * @interface MuteRecord
+ */
+export interface MuteRecord {
+    /**
+     * 
+     * @type {string}
+     * @memberof MuteRecord
+     */
+    'object': MuteRecordObjectEnum;
+    /**
+     * 
+     * @type {User}
+     * @memberof MuteRecord
+     */
+    'muted': User;
+    /**
+     * 
+     * @type {string}
+     * @memberof MuteRecord
+     */
+    'muted_at': string;
+}
+
+export const MuteRecordObjectEnum = {
+    Mute: 'mute'
+} as const;
+
+export type MuteRecordObjectEnum = typeof MuteRecordObjectEnum[keyof typeof MuteRecordObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface MuteReqBody
+ */
+export interface MuteReqBody {
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof MuteReqBody
+     */
+    'fid': number;
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof MuteReqBody
+     */
+    'muted_fid': number;
+}
+/**
+ * 
+ * @export
+ * @interface MuteResponse
+ */
+export interface MuteResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof MuteResponse
+     */
+    'success': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof MuteResponse
+     */
+    'message'?: string;
+}
+/**
+ * Returns next cursor
+ * @export
+ * @interface NextCursor
+ */
+export interface NextCursor {
+    /**
+     * 
+     * @type {string}
+     * @memberof NextCursor
+     */
+    'cursor': string | null;
+}
+/**
+ * 
+ * @export
+ * @interface NeynarFrame
+ */
+export interface NeynarFrame {
+    /**
+     * Unique identifier for the frame.
+     * @type {string}
+     * @memberof NeynarFrame
+     */
+    'uuid': string;
+    /**
+     * Name of the frame.
+     * @type {string}
+     * @memberof NeynarFrame
+     */
+    'name': string;
+    /**
+     * Generated link for the frame\'s first page.
+     * @type {string}
+     * @memberof NeynarFrame
+     */
+    'link': string;
+    /**
+     * 
+     * @type {Array<NeynarFramePage>}
+     * @memberof NeynarFrame
+     */
+    'pages': Array<NeynarFramePage>;
+    /**
+     * Indicates if the frame is valid.
+     * @type {boolean}
+     * @memberof NeynarFrame
+     */
+    'valid'?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface NeynarFrameCreationRequest
+ */
+export interface NeynarFrameCreationRequest {
+    /**
+     * The name of the frame.
+     * @type {string}
+     * @memberof NeynarFrameCreationRequest
+     */
+    'name': string;
+    /**
+     * 
+     * @type {Array<NeynarFramePage>}
+     * @memberof NeynarFrameCreationRequest
+     */
+    'pages': Array<NeynarFramePage>;
+}
+/**
+ * 
+ * @export
+ * @interface NeynarFramePage
+ */
+export interface NeynarFramePage {
+    /**
+     * Unique identifier for the page.
+     * @type {string}
+     * @memberof NeynarFramePage
+     */
+    'uuid': string;
+    /**
+     * The version of the page schema.
+     * @type {string}
+     * @memberof NeynarFramePage
+     */
+    'version': string;
+    /**
+     * The title of the page.
+     * @type {string}
+     * @memberof NeynarFramePage
+     */
+    'title': string;
+    /**
+     * 
+     * @type {NeynarPageImage}
+     * @memberof NeynarFramePage
+     */
+    'image': NeynarPageImage;
+    /**
+     * 
+     * @type {Array<NeynarPageButton>}
+     * @memberof NeynarFramePage
+     */
+    'buttons'?: Array<NeynarPageButton>;
+    /**
+     * 
+     * @type {NeynarPageInput}
+     * @memberof NeynarFramePage
+     */
+    'input'?: NeynarPageInput;
+}
+/**
+ * 
+ * @export
+ * @interface NeynarFrameUpdateRequest
+ */
+export interface NeynarFrameUpdateRequest {
+    /**
+     * The UUID of the frame to update.
+     * @type {string}
+     * @memberof NeynarFrameUpdateRequest
+     */
+    'uuid': string;
+    /**
+     * The name of the frame.
+     * @type {string}
+     * @memberof NeynarFrameUpdateRequest
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {Array<NeynarFramePage>}
+     * @memberof NeynarFrameUpdateRequest
+     */
+    'pages': Array<NeynarFramePage>;
+}
+/**
+ * 
+ * @export
+ * @interface NeynarNextFramePage
+ */
+export interface NeynarNextFramePage {
+    /**
+     * The UUID of the next page.
+     * @type {string}
+     * @memberof NeynarNextFramePage
+     */
+    'uuid': string;
+}
+/**
+ * 
+ * @export
+ * @interface NeynarNextFramePageMintUrl
+ */
+export interface NeynarNextFramePageMintUrl {
+    /**
+     * The URL for minting, specific to the mint action.
+     * @type {string}
+     * @memberof NeynarNextFramePageMintUrl
+     */
+    'mint_url': string;
+}
+/**
+ * 
+ * @export
+ * @interface NeynarNextFramePageRedirect
+ */
+export interface NeynarNextFramePageRedirect {
+    /**
+     * The URL to redirect to.
+     * @type {string}
+     * @memberof NeynarNextFramePageRedirect
+     */
+    'redirect_url': string;
+}
+/**
+ * 
+ * @export
+ * @interface NeynarPageButton
+ */
+export interface NeynarPageButton {
+    /**
+     * The title of the button.
+     * @type {string}
+     * @memberof NeynarPageButton
+     */
+    'title': string;
+    /**
+     * The index of the button, first button should have index 1 and so on.
+     * @type {number}
+     * @memberof NeynarPageButton
+     */
+    'index': number;
+    /**
+     * The type of action that the button performs.
+     * @type {string}
+     * @memberof NeynarPageButton
+     */
+    'action_type': NeynarPageButtonActionTypeEnum;
+    /**
+     * 
+     * @type {NeynarPageButtonNextPage}
+     * @memberof NeynarPageButton
+     */
+    'next_page'?: NeynarPageButtonNextPage;
+}
+
+export const NeynarPageButtonActionTypeEnum = {
+    Post: 'post',
+    PostRedirect: 'post_redirect',
+    Mint: 'mint',
+    Link: 'link'
+} as const;
+
+export type NeynarPageButtonActionTypeEnum = typeof NeynarPageButtonActionTypeEnum[keyof typeof NeynarPageButtonActionTypeEnum];
+
+/**
+ * @type NeynarPageButtonNextPage
+ * @export
+ */
+export type NeynarPageButtonNextPage = NeynarNextFramePage | NeynarNextFramePageMintUrl | NeynarNextFramePageRedirect;
+
+/**
+ * 
+ * @export
+ * @interface NeynarPageImage
+ */
+export interface NeynarPageImage {
+    /**
+     * The URL of the page\'s image.
+     * @type {string}
+     * @memberof NeynarPageImage
+     */
+    'url': string;
+    /**
+     * The aspect ratio of the image.
+     * @type {string}
+     * @memberof NeynarPageImage
+     */
+    'aspect_ratio': NeynarPageImageAspectRatioEnum;
+}
+
+export const NeynarPageImageAspectRatioEnum = {
+    _1911: '1.91:1',
+    _11: '1:1'
+} as const;
+
+export type NeynarPageImageAspectRatioEnum = typeof NeynarPageImageAspectRatioEnum[keyof typeof NeynarPageImageAspectRatioEnum];
+
+/**
+ * 
+ * @export
+ * @interface NeynarPageInput
+ */
+export interface NeynarPageInput {
+    /**
+     * 
+     * @type {NeynarPageInputText}
+     * @memberof NeynarPageInput
+     */
+    'text'?: NeynarPageInputText;
+}
+/**
+ * 
+ * @export
+ * @interface NeynarPageInputText
+ */
+export interface NeynarPageInputText {
+    /**
+     * Indicates if text input is enabled.
+     * @type {boolean}
+     * @memberof NeynarPageInputText
+     */
+    'enabled': boolean;
+    /**
+     * The placeholder text for the input.
+     * @type {string}
+     * @memberof NeynarPageInputText
+     */
+    'placeholder'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface Notification
+ */
+export interface Notification {
+    /**
+     * 
+     * @type {string}
+     * @memberof Notification
+     */
+    'object': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Notification
+     */
+    'most_recent_timestamp': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Notification
+     */
+    'type': NotificationTypeEnum;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Notification
+     */
+    'seen': boolean;
+    /**
+     * 
+     * @type {Array<Follow>}
+     * @memberof Notification
+     */
+    'follows'?: Array<Follow>;
+    /**
+     * 
+     * @type {CastWithInteractions}
+     * @memberof Notification
+     */
+    'cast'?: CastWithInteractions;
+    /**
+     * 
+     * @type {Array<ReactionWithUserInfo>}
+     * @memberof Notification
+     */
+    'reactions'?: Array<ReactionWithUserInfo>;
+    /**
+     * The number of notifications of this(follows, likes, recast) type bundled in a single notification.
+     * @type {number}
+     * @memberof Notification
+     */
+    'count'?: number;
+}
+
+export const NotificationTypeEnum = {
+    Follows: 'follows',
+    Recasts: 'recasts',
+    Likes: 'likes',
+    Mention: 'mention',
+    Reply: 'reply'
+} as const;
+
+export type NotificationTypeEnum = typeof NotificationTypeEnum[keyof typeof NotificationTypeEnum];
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const NotificationType = {
+    Follows: 'follows',
+    Recasts: 'recasts',
+    Likes: 'likes',
+    Mentions: 'mentions',
+    Replies: 'replies'
+} as const;
+
+export type NotificationType = typeof NotificationType[keyof typeof NotificationType];
+
+
+/**
+ * 
+ * @export
+ * @interface NotificationsResponse
+ */
+export interface NotificationsResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof NotificationsResponse
+     */
+    'unseen_notifications_count': number;
+    /**
+     * 
+     * @type {Array<Notification>}
+     * @memberof NotificationsResponse
+     */
+    'notifications': Array<Notification>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof NotificationsResponse
+     */
+    'next': NextCursor;
+}
+/**
+ * Basic data structure of every oembed response see https://oembed.com/
+ * @export
+ * @interface OembedData
+ */
+export interface OembedData {
+    /**
+     * 
+     * @type {string}
+     * @memberof OembedData
+     */
+    'type': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OembedData
+     */
+    'version': string | null;
+    /**
+     * A text title, describing the resource.
+     * @type {string}
+     * @memberof OembedData
+     */
+    'title'?: string | null;
+    /**
+     * The name of the author/owner of the resource.
+     * @type {string}
+     * @memberof OembedData
+     */
+    'author_name'?: string | null;
+    /**
+     * A URL for the author/owner of the resource.
+     * @type {string}
+     * @memberof OembedData
+     */
+    'author_url'?: string | null;
+    /**
+     * The name of the resource provider.
+     * @type {string}
+     * @memberof OembedData
+     */
+    'provider_name'?: string | null;
+    /**
+     * The url of the resource provider.
+     * @type {string}
+     * @memberof OembedData
+     */
+    'provider_url'?: string | null;
+    /**
+     * The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
+     * @type {string}
+     * @memberof OembedData
+     */
+    'cache_age'?: string | null;
+    /**
+     * A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
+     * @type {string}
+     * @memberof OembedData
+     */
+    'thumbnail_url'?: string | null;
+    /**
+     * The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
+     * @type {number}
+     * @memberof OembedData
+     */
+    'thumbnail_width'?: number | null;
+    /**
+     * The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
+     * @type {number}
+     * @memberof OembedData
+     */
+    'thumbnail_height'?: number | null;
+}
+/**
+ * 
+ * @export
+ * @interface OembedLinkData
+ */
+export interface OembedLinkData extends OembedData {
+    /**
+     * 
+     * @type {string}
+     * @memberof OembedLinkData
+     */
+    'type': OembedLinkDataTypeEnum;
+}
+
+export const OembedLinkDataTypeEnum = {
+    Link: 'link'
+} as const;
+
+export type OembedLinkDataTypeEnum = typeof OembedLinkDataTypeEnum[keyof typeof OembedLinkDataTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface OembedPhotoData
+ */
+export interface OembedPhotoData extends OembedData {
+    /**
+     * 
+     * @type {string}
+     * @memberof OembedPhotoData
+     */
+    'type': OembedPhotoDataTypeEnum;
+    /**
+     * The source URL of the image. Consumers should be able to insert this URL into an <img> element. Only HTTP and HTTPS URLs are valid.
+     * @type {string}
+     * @memberof OembedPhotoData
+     */
+    'url': string | null;
+    /**
+     * The width in pixels of the image specified in the url parameter.
+     * @type {number}
+     * @memberof OembedPhotoData
+     */
+    'width': number | null;
+    /**
+     * The height in pixels of the image specified in the url parameter.
+     * @type {number}
+     * @memberof OembedPhotoData
+     */
+    'height': number | null;
+}
+
+export const OembedPhotoDataTypeEnum = {
+    Photo: 'photo'
+} as const;
+
+export type OembedPhotoDataTypeEnum = typeof OembedPhotoDataTypeEnum[keyof typeof OembedPhotoDataTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface OembedRichData
+ */
+export interface OembedRichData extends OembedData {
+    /**
+     * 
+     * @type {string}
+     * @memberof OembedRichData
+     */
+    'type': OembedRichDataTypeEnum;
+    /**
+     * The HTML required to display the resource. The HTML should have no padding or margins. Consumers may wish to load the HTML in an off-domain iframe to avoid XSS vulnerabilities. The markup should be valid XHTML 1.0 Basic.
+     * @type {string}
+     * @memberof OembedRichData
+     */
+    'html': string | null;
+    /**
+     * The width in pixels required to display the HTML.
+     * @type {number}
+     * @memberof OembedRichData
+     */
+    'width': number | null;
+    /**
+     * The height in pixels required to display the HTML.
+     * @type {number}
+     * @memberof OembedRichData
+     */
+    'height': number | null;
+}
+
+export const OembedRichDataTypeEnum = {
+    Rich: 'rich'
+} as const;
+
+export type OembedRichDataTypeEnum = typeof OembedRichDataTypeEnum[keyof typeof OembedRichDataTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface OembedVideoData
+ */
+export interface OembedVideoData extends OembedData {
+    /**
+     * 
+     * @type {string}
+     * @memberof OembedVideoData
+     */
+    'type': OembedVideoDataTypeEnum;
+    /**
+     * The HTML required to embed a video player. The HTML should have no padding or margins. Consumers may wish to load the HTML in an off-domain iframe to avoid XSS vulnerabilities.
+     * @type {string}
+     * @memberof OembedVideoData
+     */
+    'html': string | null;
+    /**
+     * The width in pixels required to display the HTML.
+     * @type {number}
+     * @memberof OembedVideoData
+     */
+    'width': number | null;
+    /**
+     * The height in pixels required to display the HTML.
+     * @type {number}
+     * @memberof OembedVideoData
+     */
+    'height': number | null;
+}
+
+export const OembedVideoDataTypeEnum = {
+    Video: 'video'
+} as const;
+
+export type OembedVideoDataTypeEnum = typeof OembedVideoDataTypeEnum[keyof typeof OembedVideoDataTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface OgObject
+ */
+export interface OgObject {
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'favicon'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'modifiedTime'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogArticleAuthor'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogArticleExpirationTime'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogArticleModifiedTime'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogArticlePublishedTime'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogArticlePublisher'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogArticleSection'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogArticleTag'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogAudio'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogAudioSecureURL'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogAudioType'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogAudioURL'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogAvailability'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogDate'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogDescription'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogDeterminer'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogEpisode'?: string;
+    /**
+     * 
+     * @type {Array<ImageObject>}
+     * @memberof OgObject
+     */
+    'ogImage'?: Array<ImageObject>;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogLocale'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogLocaleAlternate'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogLogo'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogMovie'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogPriceAmount'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogPriceCurrency'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogProductAvailability'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogProductCondition'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogProductPriceAmount'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogProductPriceCurrency'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogProductRetailerItemId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogSiteName'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogTitle'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogType'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogUrl'?: string;
+    /**
+     * 
+     * @type {Array<VideoObject>}
+     * @memberof OgObject
+     */
+    'ogVideo'?: Array<VideoObject>;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogVideoActor'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogVideoActorId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogVideoActorRole'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogVideoDirector'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogVideoDuration'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogVideoOther'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogVideoReleaseDate'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogVideoSecureURL'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogVideoSeries'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogVideoTag'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogVideoTvShow'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogVideoWriter'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'ogWebsite'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgObject
+     */
+    'updatedTime'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface OperationResponse
+ */
+export interface OperationResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OperationResponse
+     */
+    'success'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof OperationResponse
+     */
+    'message'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PostCastReqBody
+ */
+export interface PostCastReqBody {
+    /**
+     * UUID of the signer
+     * @type {string}
+     * @memberof PostCastReqBody
+     */
+    'signer_uuid': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostCastReqBody
+     */
+    'text'?: string;
+    /**
+     * 
+     * @type {Array<PostCastReqBodyEmbeds>}
+     * @memberof PostCastReqBody
+     */
+    'embeds'?: Array<PostCastReqBodyEmbeds>;
+    /**
+     * parent_url of the channel the cast is in, or hash of the cast
+     * @type {string}
+     * @memberof PostCastReqBody
+     */
+    'parent'?: string;
+    /**
+     * Channel ID of the channel where the cast is to be posted. e.g. neynar, farcaster, warpcast
+     * @type {string}
+     * @memberof PostCastReqBody
+     */
+    'channel_id'?: string;
+    /**
+     * An Idempotency key is a unique identifier for the request. **Note:**  1) This is used to prevent duplicate requests. Use the same idem key on retry attempts. 2) This should be a unique identifier for each request. 3) Recommended format is a 16-character string generated by the developer at the time of making this request. 
+     * @type {string}
+     * @memberof PostCastReqBody
+     */
+    'idem'?: string;
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof PostCastReqBody
+     */
+    'parent_author_fid'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface PostCastReqBodyEmbeds
+ */
+export interface PostCastReqBodyEmbeds {
+    /**
+     * 
+     * @type {PostCastReqBodyEmbedsCastIdProperties}
+     * @memberof PostCastReqBodyEmbeds
+     */
+    'cast_id'?: PostCastReqBodyEmbedsCastIdProperties;
+    /**
+     * 
+     * @type {PostCastReqBodyEmbedsCastIdProperties}
+     * @memberof PostCastReqBodyEmbeds
+     */
+    'castId'?: PostCastReqBodyEmbedsCastIdProperties;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostCastReqBodyEmbeds
+     */
+    'url'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PostCastReqBodyEmbedsCastIdProperties
+ */
+export interface PostCastReqBodyEmbedsCastIdProperties {
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof PostCastReqBodyEmbedsCastIdProperties
+     */
+    'fid': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostCastReqBodyEmbedsCastIdProperties
+     */
+    'hash': string;
+}
+/**
+ * 
+ * @export
+ * @interface PostCastResponse
+ */
+export interface PostCastResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PostCastResponse
+     */
+    'success': boolean;
+    /**
+     * 
+     * @type {PostCastResponseCast}
+     * @memberof PostCastResponse
+     */
+    'cast': PostCastResponseCast;
+}
+/**
+ * 
+ * @export
+ * @interface PostCastResponseCast
+ */
+export interface PostCastResponseCast {
+    /**
+     * Cast Hash
+     * @type {string}
+     * @memberof PostCastResponseCast
+     */
+    'hash': string;
+    /**
+     * 
+     * @type {CastEmbeddedParentAuthor}
+     * @memberof PostCastResponseCast
+     */
+    'author': CastEmbeddedParentAuthor;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostCastResponseCast
+     */
+    'text': string;
+}
+/**
+ * 
+ * @export
+ * @interface ProfileUrl
+ */
+export interface ProfileUrl {
+    /**
+     * 
+     * @type {ProfileUrlPfp}
+     * @memberof ProfileUrl
+     */
+    'pfp': ProfileUrlPfp;
+}
+/**
+ * 
+ * @export
+ * @interface ProfileUrlPfp
+ */
+export interface ProfileUrlPfp {
+    /**
+     * 
+     * @type {string}
+     * @memberof ProfileUrlPfp
+     */
+    'url': string;
+}
+/**
+ * 
+ * @export
+ * @interface ReactionForCast
+ */
+export interface ReactionForCast {
+    /**
+     * 
+     * @type {string}
+     * @memberof ReactionForCast
+     */
+    'reaction_type': ReactionForCastReactionTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReactionForCast
+     */
+    'reaction_timestamp': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReactionForCast
+     */
+    'object': ReactionForCastObjectEnum;
+    /**
+     * 
+     * @type {User}
+     * @memberof ReactionForCast
+     */
+    'user': User;
+}
+
+export const ReactionForCastReactionTypeEnum = {
+    Like: 'like',
+    Recast: 'recast'
+} as const;
+
+export type ReactionForCastReactionTypeEnum = typeof ReactionForCastReactionTypeEnum[keyof typeof ReactionForCastReactionTypeEnum];
+export const ReactionForCastObjectEnum = {
+    Likes: 'likes',
+    Recasts: 'recasts'
+} as const;
+
+export type ReactionForCastObjectEnum = typeof ReactionForCastObjectEnum[keyof typeof ReactionForCastObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface ReactionLike
+ */
+export interface ReactionLike {
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof ReactionLike
+     */
+    'fid': number;
+}
+/**
+ * 
+ * @export
+ * @interface ReactionRecast
+ */
+export interface ReactionRecast {
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof ReactionRecast
+     */
+    'fid': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReactionRecast
+     */
+    'fname': string;
+}
+/**
+ * 
+ * @export
+ * @interface ReactionReqBody
+ */
+export interface ReactionReqBody {
+    /**
+     * UUID of the signer
+     * @type {string}
+     * @memberof ReactionReqBody
+     */
+    'signer_uuid': string;
+    /**
+     * 
+     * @type {ReactionType}
+     * @memberof ReactionReqBody
+     */
+    'reaction_type': ReactionType;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReactionReqBody
+     */
+    'target': string;
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof ReactionReqBody
+     */
+    'target_author_fid'?: number;
+    /**
+     * An Idempotency key is a unique identifier for the request. **Note:**  1) This is used to prevent duplicate requests. Use the same idem key on retry attempts. 2) This should be a unique identifier for each request. 3) Recommended format is a 16-character string generated by the developer at the time of making this request. 
+     * @type {string}
+     * @memberof ReactionReqBody
+     */
+    'idem'?: string;
+}
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const ReactionType = {
+    Like: 'like',
+    Recast: 'recast'
+} as const;
+
+export type ReactionType = typeof ReactionType[keyof typeof ReactionType];
+
+
+/**
+ * 
+ * @export
+ * @interface ReactionWithCastInfo
+ */
+export interface ReactionWithCastInfo {
+    /**
+     * 
+     * @type {string}
+     * @memberof ReactionWithCastInfo
+     */
+    'reaction_type': ReactionWithCastInfoReactionTypeEnum;
+    /**
+     * 
+     * @type {CastWithInteractions}
+     * @memberof ReactionWithCastInfo
+     */
+    'cast': CastWithInteractions;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReactionWithCastInfo
+     */
+    'reaction_timestamp': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReactionWithCastInfo
+     */
+    'object': ReactionWithCastInfoObjectEnum;
+    /**
+     * 
+     * @type {UserDehydrated}
+     * @memberof ReactionWithCastInfo
+     */
+    'user': UserDehydrated;
+}
+
+export const ReactionWithCastInfoReactionTypeEnum = {
+    Like: 'like',
+    Recast: 'recast'
+} as const;
+
+export type ReactionWithCastInfoReactionTypeEnum = typeof ReactionWithCastInfoReactionTypeEnum[keyof typeof ReactionWithCastInfoReactionTypeEnum];
+export const ReactionWithCastInfoObjectEnum = {
+    Likes: 'likes',
+    Recasts: 'recasts'
+} as const;
+
+export type ReactionWithCastInfoObjectEnum = typeof ReactionWithCastInfoObjectEnum[keyof typeof ReactionWithCastInfoObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface ReactionWithUserInfo
+ */
+export interface ReactionWithUserInfo {
+    /**
+     * 
+     * @type {string}
+     * @memberof ReactionWithUserInfo
+     */
+    'object': ReactionWithUserInfoObjectEnum;
+    /**
+     * 
+     * @type {CastDehydrated}
+     * @memberof ReactionWithUserInfo
+     */
+    'cast': CastDehydrated;
+    /**
+     * 
+     * @type {User}
+     * @memberof ReactionWithUserInfo
+     */
+    'user': User;
+}
+
+export const ReactionWithUserInfoObjectEnum = {
+    Likes: 'likes',
+    Recasts: 'recasts'
+} as const;
+
+export type ReactionWithUserInfoObjectEnum = typeof ReactionWithUserInfoObjectEnum[keyof typeof ReactionWithUserInfoObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface ReactionsCastResponse
+ */
+export interface ReactionsCastResponse {
+    /**
+     * 
+     * @type {Array<ReactionForCast>}
+     * @memberof ReactionsCastResponse
+     */
+    'reactions': Array<ReactionForCast>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof ReactionsCastResponse
+     */
+    'next': NextCursor;
+}
+/**
+ * 
+ * @export
+ * @interface ReactionsResponse
+ */
+export interface ReactionsResponse {
+    /**
+     * 
+     * @type {Array<ReactionWithCastInfo>}
+     * @memberof ReactionsResponse
+     */
+    'reactions': Array<ReactionWithCastInfo>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof ReactionsResponse
+     */
+    'next': NextCursor;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const ReactionsType = {
+    All: 'all',
+    Likes: 'likes',
+    Recasts: 'recasts'
+} as const;
+
+export type ReactionsType = typeof ReactionsType[keyof typeof ReactionsType];
+
+
+/**
+ * 
+ * @export
+ * @interface RegisterDeveloperManagedSignedKeyReqBody
+ */
+export interface RegisterDeveloperManagedSignedKeyReqBody {
+    /**
+     * Ed25519 public key
+     * @type {string}
+     * @memberof RegisterDeveloperManagedSignedKeyReqBody
+     */
+    'public_key': string;
+    /**
+     * Signature generated by the custody address of the app. Signed data includes app_fid, deadline, signer’s public key
+     * @type {string}
+     * @memberof RegisterDeveloperManagedSignedKeyReqBody
+     */
+    'signature': string;
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof RegisterDeveloperManagedSignedKeyReqBody
+     */
+    'app_fid': number;
+    /**
+     * unix timestamp in seconds that controls how long the signed key request is valid for. (24 hours from now is recommended)
+     * @type {number}
+     * @memberof RegisterDeveloperManagedSignedKeyReqBody
+     */
+    'deadline': number;
+    /**
+     * Url to redirect to after the signer is approved.  **Note** : This should only be used when requesting a signer from a native mobile application. 
+     * @type {string}
+     * @memberof RegisterDeveloperManagedSignedKeyReqBody
+     */
+    'redirect_url'?: string;
+    /**
+     * 
+     * @type {SignedKeyRequestSponsor}
+     * @memberof RegisterDeveloperManagedSignedKeyReqBody
+     */
+    'sponsor'?: SignedKeyRequestSponsor;
+}
+/**
+ * 
+ * @export
+ * @interface RegisterSignerKeyReqBody
+ */
+export interface RegisterSignerKeyReqBody {
+    /**
+     * UUID of the signer
+     * @type {string}
+     * @memberof RegisterSignerKeyReqBody
+     */
+    'signer_uuid': string;
+    /**
+     * Signature generated by the custody address of the app. Signed data includes app_fid, deadline, signer’s public key
+     * @type {string}
+     * @memberof RegisterSignerKeyReqBody
+     */
+    'signature': string;
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof RegisterSignerKeyReqBody
+     */
+    'app_fid': number;
+    /**
+     * unix timestamp in seconds that controls how long the signed key request is valid for. (24 hours from now is recommended)
+     * @type {number}
+     * @memberof RegisterSignerKeyReqBody
+     */
+    'deadline': number;
+    /**
+     * Url to redirect to after the signer is approved.  **Note** : This should only be used when requesting a signer from a native mobile application. 
+     * @type {string}
+     * @memberof RegisterSignerKeyReqBody
+     */
+    'redirect_url'?: string;
+    /**
+     * 
+     * @type {SignedKeyRequestSponsor}
+     * @memberof RegisterSignerKeyReqBody
+     */
+    'sponsor'?: SignedKeyRequestSponsor;
+}
+/**
+ * 
+ * @export
+ * @interface RegisterUserReqBody
+ */
+export interface RegisterUserReqBody {
+    /**
+     * 
+     * @type {string}
+     * @memberof RegisterUserReqBody
+     */
+    'signature': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RegisterUserReqBody
+     */
+    'fid': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RegisterUserReqBody
+     */
+    'requested_user_custody_address': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RegisterUserReqBody
+     */
+    'deadline': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RegisterUserReqBody
+     */
+    'fname'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface RegisterUserResponse
+ */
+export interface RegisterUserResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RegisterUserResponse
+     */
+    'success': RegisterUserResponseSuccessEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof RegisterUserResponse
+     */
+    'message': string;
+    /**
+     * 
+     * @type {Signer}
+     * @memberof RegisterUserResponse
+     */
+    'signer': Signer;
+}
+
+export const RegisterUserResponseSuccessEnum = {
+    True: true
+} as const;
+
+export type RegisterUserResponseSuccessEnum = typeof RegisterUserResponseSuccessEnum[keyof typeof RegisterUserResponseSuccessEnum];
+
+/**
+ * 
+ * @export
+ * @interface RelevantFollowersResponse
+ */
+export interface RelevantFollowersResponse {
+    /**
+     * 
+     * @type {Array<HydratedFollower>}
+     * @memberof RelevantFollowersResponse
+     */
+    'top_relevant_followers_hydrated': Array<HydratedFollower>;
+    /**
+     * 
+     * @type {Array<DehydratedFollower>}
+     * @memberof RelevantFollowersResponse
+     */
+    'all_relevant_followers_dehydrated': Array<DehydratedFollower>;
+}
+/**
+ * 
+ * @export
+ * @interface RemoveChannelMemberRequest
+ */
+export interface RemoveChannelMemberRequest {
+    /**
+     * UUID of the signer
+     * @type {string}
+     * @memberof RemoveChannelMemberRequest
+     */
+    'signer_uuid': string;
+    /**
+     * The unique identifier of a farcaster channel
+     * @type {string}
+     * @memberof RemoveChannelMemberRequest
+     */
+    'channel_id': string;
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof RemoveChannelMemberRequest
+     */
+    'fid': number;
+    /**
+     * 
+     * @type {ChannelMemberRole}
+     * @memberof RemoveChannelMemberRequest
+     */
+    'role': ChannelMemberRole;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface RemoveVerificationReqBody
+ */
+export interface RemoveVerificationReqBody {
+    /**
+     * UUID of the signer
+     * @type {string}
+     * @memberof RemoveVerificationReqBody
+     */
+    'signer_uuid': string;
+    /**
+     * Ethereum address
+     * @type {string}
+     * @memberof RemoveVerificationReqBody
+     */
+    'address': string;
+}
+/**
+ * 
+ * @export
+ * @interface RespondChannelInviteRequest
+ */
+export interface RespondChannelInviteRequest {
+    /**
+     * UUID of the signer
+     * @type {string}
+     * @memberof RespondChannelInviteRequest
+     */
+    'signer_uuid': string;
+    /**
+     * The unique identifier of a farcaster channel
+     * @type {string}
+     * @memberof RespondChannelInviteRequest
+     */
+    'channel_id': string;
+    /**
+     * 
+     * @type {ChannelMemberRole}
+     * @memberof RespondChannelInviteRequest
+     */
+    'role': ChannelMemberRole;
+    /**
+     * Accept or reject the invite
+     * @type {boolean}
+     * @memberof RespondChannelInviteRequest
+     */
+    'accept': boolean;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface SearchedUser
+ */
+export interface SearchedUser {
+    /**
+     * 
+     * @type {string}
+     * @memberof SearchedUser
+     */
+    'object': SearchedUserObjectEnum;
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof SearchedUser
+     */
+    'fid': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SearchedUser
+     */
+    'username': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SearchedUser
+     */
+    'display_name'?: string;
+    /**
+     * Ethereum address
+     * @type {string}
+     * @memberof SearchedUser
+     */
+    'custody_address': string;
+    /**
+     * The URL of the user\'s profile picture
+     * @type {string}
+     * @memberof SearchedUser
+     */
+    'pfp_url'?: string;
+    /**
+     * 
+     * @type {UserProfile}
+     * @memberof SearchedUser
+     */
+    'profile': UserProfile;
+    /**
+     * The number of followers the user has.
+     * @type {number}
+     * @memberof SearchedUser
+     */
+    'follower_count': number;
+    /**
+     * The number of users the user is following.
+     * @type {number}
+     * @memberof SearchedUser
+     */
+    'following_count': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SearchedUser
+     */
+    'verifications': Array<string>;
+    /**
+     * 
+     * @type {UserVerifiedAddresses}
+     * @memberof SearchedUser
+     */
+    'verified_addresses': UserVerifiedAddresses;
+    /**
+     * Verified accounts of the user on other platforms, currently only X is supported.
+     * @type {Array<UserVerifiedAccountsInner>}
+     * @memberof SearchedUser
+     */
+    'verified_accounts': Array<UserVerifiedAccountsInner>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SearchedUser
+     */
+    'power_badge': boolean;
+    /**
+     * 
+     * @type {UserViewerContext}
+     * @memberof SearchedUser
+     */
+    'viewer_context'?: UserViewerContext;
+    /**
+     * 
+     * @type {ProfileUrlPfp}
+     * @memberof SearchedUser
+     */
+    'pfp': ProfileUrlPfp;
+}
+
+export const SearchedUserObjectEnum = {
+    User: 'user'
+} as const;
+
+export type SearchedUserObjectEnum = typeof SearchedUserObjectEnum[keyof typeof SearchedUserObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface SignedKeyRequestSponsor
+ */
+export interface SignedKeyRequestSponsor {
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof SignedKeyRequestSponsor
+     */
+    'fid'?: number;
+    /**
+     * Signature generated by the fid of the sponsor and the signature generated from signKeyRequest for the app.
+     * @type {string}
+     * @memberof SignedKeyRequestSponsor
+     */
+    'signature'?: string;
+    /**
+     * Neynar will sponsor the signer if set to true. **Note: ** If sponsor.fid and sponsor.signature are provided along with sponsored_by_neynar set to true,  the sponsor.fid and sponsor.signature will be ignored.  Neynar will sponsor the signer on behalf of the user. The developer will get charged in compute units. 
+     * @type {boolean}
+     * @memberof SignedKeyRequestSponsor
+     */
+    'sponsored_by_neynar'?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface Signer
+ */
+export interface Signer {
+    /**
+     * UUID of the signer
+     * @type {string}
+     * @memberof Signer
+     */
+    'signer_uuid': string;
+    /**
+     * Ed25519 public key
+     * @type {string}
+     * @memberof Signer
+     */
+    'public_key': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Signer
+     */
+    'status': SignerStatusEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof Signer
+     */
+    'signer_approval_url'?: string;
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof Signer
+     */
+    'fid'?: number;
+}
+
+export const SignerStatusEnum = {
+    Generated: 'generated',
+    PendingApproval: 'pending_approval',
+    Approved: 'approved',
+    Revoked: 'revoked'
+} as const;
+
+export type SignerStatusEnum = typeof SignerStatusEnum[keyof typeof SignerStatusEnum];
+
+/**
+ * 
+ * @export
+ * @interface StorageAllocation
+ */
+export interface StorageAllocation {
+    /**
+     * 
+     * @type {string}
+     * @memberof StorageAllocation
+     */
+    'object'?: string;
+    /**
+     * 
+     * @type {UserDehydrated}
+     * @memberof StorageAllocation
+     */
+    'user'?: UserDehydrated;
+    /**
+     * 
+     * @type {number}
+     * @memberof StorageAllocation
+     */
+    'units'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StorageAllocation
+     */
+    'expiry'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StorageAllocation
+     */
+    'timestamp'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface StorageAllocationsResponse
+ */
+export interface StorageAllocationsResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof StorageAllocationsResponse
+     */
+    'total_active_units'?: number;
+    /**
+     * 
+     * @type {Array<StorageAllocation>}
+     * @memberof StorageAllocationsResponse
+     */
+    'allocations'?: Array<StorageAllocation>;
+}
+/**
+ * 
+ * @export
+ * @interface StorageObject
+ */
+export interface StorageObject {
+    /**
+     * 
+     * @type {string}
+     * @memberof StorageObject
+     */
+    'object'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof StorageObject
+     */
+    'used'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof StorageObject
+     */
+    'capacity'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface StorageUsageResponse
+ */
+export interface StorageUsageResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof StorageUsageResponse
+     */
+    'object'?: string;
+    /**
+     * 
+     * @type {UserDehydrated}
+     * @memberof StorageUsageResponse
+     */
+    'user'?: UserDehydrated;
+    /**
+     * 
+     * @type {StorageObject}
+     * @memberof StorageUsageResponse
+     */
+    'casts'?: StorageObject;
+    /**
+     * 
+     * @type {StorageObject}
+     * @memberof StorageUsageResponse
+     */
+    'reactions'?: StorageObject;
+    /**
+     * 
+     * @type {StorageObject}
+     * @memberof StorageUsageResponse
+     */
+    'links'?: StorageObject;
+    /**
+     * 
+     * @type {StorageObject}
+     * @memberof StorageUsageResponse
+     */
+    'verified_addresses'?: StorageObject;
+    /**
+     * 
+     * @type {StorageObject}
+     * @memberof StorageUsageResponse
+     */
+    'username_proofs'?: StorageObject;
+    /**
+     * 
+     * @type {StorageObject}
+     * @memberof StorageUsageResponse
+     */
+    'signers'?: StorageObject;
+    /**
+     * 
+     * @type {number}
+     * @memberof StorageUsageResponse
+     */
+    'total_active_units'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface SubscribedTo
+ */
+export interface SubscribedTo extends Subscription {
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscribedTo
+     */
+    'expires_at': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscribedTo
+     */
+    'subscribed_at': string;
+    /**
+     * 
+     * @type {SubscriptionTier}
+     * @memberof SubscribedTo
+     */
+    'tier': SubscriptionTier;
+    /**
+     * 
+     * @type {User}
+     * @memberof SubscribedTo
+     */
+    'creator': User;
+}
+/**
+ * 
+ * @export
+ * @interface SubscribedToObject
+ */
+export interface SubscribedToObject {
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscribedToObject
+     */
+    'object': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscribedToObject
+     */
+    'provider_name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscribedToObject
+     */
+    'contract_address'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscribedToObject
+     */
+    'protocol_version'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscribedToObject
+     */
+    'chain'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscribedToObject
+     */
+    'expires_at'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscribedToObject
+     */
+    'subscribed_at'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscribedToObject
+     */
+    'tier_id'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface SubscribedToResponse
+ */
+export interface SubscribedToResponse {
+    /**
+     * 
+     * @type {Array<SubscribedTo>}
+     * @memberof SubscribedToResponse
+     */
+    'subscribed_to'?: Array<SubscribedTo>;
+}
+/**
+ * 
+ * @export
+ * @interface Subscriber
+ */
+export interface Subscriber {
+    /**
+     * 
+     * @type {string}
+     * @memberof Subscriber
+     */
+    'object': string;
+    /**
+     * 
+     * @type {User}
+     * @memberof Subscriber
+     */
+    'user': User;
+    /**
+     * 
+     * @type {SubscribedToObject}
+     * @memberof Subscriber
+     */
+    'subscribed_to': SubscribedToObject;
+}
+/**
+ * 
+ * @export
+ * @interface SubscribersResponse
+ */
+export interface SubscribersResponse {
+    /**
+     * 
+     * @type {Array<Subscriber>}
+     * @memberof SubscribersResponse
+     */
+    'subscribers'?: Array<Subscriber>;
+}
+/**
+ * 
+ * @export
+ * @interface Subscription
+ */
+export interface Subscription {
+    /**
+     * 
+     * @type {string}
+     * @memberof Subscription
+     */
+    'object': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Subscription
+     */
+    'provider_name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Subscription
+     */
+    'contract_address': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Subscription
+     */
+    'chain': number;
+    /**
+     * 
+     * @type {SubscriptionMetadata}
+     * @memberof Subscription
+     */
+    'metadata': SubscriptionMetadata;
+    /**
+     * 
+     * @type {string}
+     * @memberof Subscription
+     */
+    'owner_address': string;
+    /**
+     * 
+     * @type {SubscriptionPrice}
+     * @memberof Subscription
+     */
+    'price': SubscriptionPrice;
+    /**
+     * 
+     * @type {Array<SubscriptionTier>}
+     * @memberof Subscription
+     */
+    'tiers'?: Array<SubscriptionTier>;
+    /**
+     * 
+     * @type {number}
+     * @memberof Subscription
+     */
+    'protocol_version': number;
+    /**
+     * 
+     * @type {SubscriptionToken}
+     * @memberof Subscription
+     */
+    'token': SubscriptionToken;
+}
+/**
+ * 
+ * @export
+ * @interface SubscriptionMetadata
+ */
+export interface SubscriptionMetadata {
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionMetadata
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionMetadata
+     */
+    'symbol': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionMetadata
+     */
+    'art_url': string;
+}
+/**
+ * 
+ * @export
+ * @interface SubscriptionPrice
+ */
+export interface SubscriptionPrice {
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionPrice
+     */
+    'period_duration_seconds': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionPrice
+     */
+    'tokens_per_period': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionPrice
+     */
+    'initial_mint_price': string;
+}
+/**
+ * The provider of the subscription. 
+ * @export
+ * @enum {string}
+ */
+
+export const SubscriptionProvider = {
+    FabricStp: 'fabric_stp'
+} as const;
+
+export type SubscriptionProvider = typeof SubscriptionProvider[keyof typeof SubscriptionProvider];
+
+
+/**
+ * The provider of the subscription. 
+ * @export
+ * @enum {string}
+ */
+
+export const SubscriptionProviders = {
+    FabricStp: 'fabric_stp',
+    Paragraph: 'paragraph'
+} as const;
+
+export type SubscriptionProviders = typeof SubscriptionProviders[keyof typeof SubscriptionProviders];
+
+
+/**
+ * 
+ * @export
+ * @interface SubscriptionStatus
+ */
+export interface SubscriptionStatus {
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionStatus
+     */
+    'object': SubscriptionStatusObjectEnum;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SubscriptionStatus
+     */
+    'status': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionStatus
+     */
+    'expires_at': number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionStatus
+     */
+    'subscribed_at': number | null;
+    /**
+     * 
+     * @type {SubscriptionTier}
+     * @memberof SubscriptionStatus
+     */
+    'tier': SubscriptionTier | null;
+}
+
+export const SubscriptionStatusObjectEnum = {
+    SubscribedToDehydrated: 'subscribed_to_dehydrated'
+} as const;
+
+export type SubscriptionStatusObjectEnum = typeof SubscriptionStatusObjectEnum[keyof typeof SubscriptionStatusObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface SubscriptionTier
+ */
+export interface SubscriptionTier {
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionTier
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {SubscriptionTierPrice}
+     * @memberof SubscriptionTier
+     */
+    'price'?: SubscriptionTierPrice;
+}
+/**
+ * 
+ * @export
+ * @interface SubscriptionTierPrice
+ */
+export interface SubscriptionTierPrice {
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionTierPrice
+     */
+    'period_duration_seconds'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionTierPrice
+     */
+    'tokens_per_period'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionTierPrice
+     */
+    'initial_mint_price'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface SubscriptionToken
+ */
+export interface SubscriptionToken {
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionToken
+     */
+    'symbol': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionToken
+     */
+    'address': string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionToken
+     */
+    'decimals': number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SubscriptionToken
+     */
+    'erc20': boolean;
+}
+/**
+ * 
+ * @export
+ * @interface Subscriptions
+ */
+export interface Subscriptions {
+    /**
+     * 
+     * @type {string}
+     * @memberof Subscriptions
+     */
+    'object': string;
+    /**
+     * 
+     * @type {Array<Subscription>}
+     * @memberof Subscriptions
+     */
+    'subscriptions_created': Array<Subscription>;
+}
+/**
+ * 
+ * @export
+ * @interface SubscriptionsResponse
+ */
+export interface SubscriptionsResponse {
+    /**
+     * 
+     * @type {Array<Subscriptions>}
+     * @memberof SubscriptionsResponse
+     */
+    'subscriptions_created'?: Array<Subscriptions>;
+}
+/**
+ * 
+ * @export
+ * @interface TrendingChannelResponse
+ */
+export interface TrendingChannelResponse {
+    /**
+     * 
+     * @type {Array<ChannelActivity>}
+     * @memberof TrendingChannelResponse
+     */
+    'channels': Array<ChannelActivity>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof TrendingChannelResponse
+     */
+    'next': NextCursor;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateUserReqBody
+ */
+export interface UpdateUserReqBody {
+    /**
+     * UUID of the signer
+     * @type {string}
+     * @memberof UpdateUserReqBody
+     */
+    'signer_uuid': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateUserReqBody
+     */
+    'bio'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateUserReqBody
+     */
+    'pfp_url'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateUserReqBody
+     */
+    'url'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateUserReqBody
+     */
+    'username'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateUserReqBody
+     */
+    'display_name'?: string;
+    /**
+     * 
+     * @type {UpdateUserReqBodyLocation}
+     * @memberof UpdateUserReqBody
+     */
+    'location'?: UpdateUserReqBodyLocation;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateUserReqBodyLocation
+ */
+export interface UpdateUserReqBodyLocation {
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateUserReqBodyLocation
+     */
+    'latitude': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateUserReqBodyLocation
+     */
+    'longitude': number;
+}
+/**
+ * 
+ * @export
+ * @interface User
+ */
+export interface User {
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'object': UserObjectEnum;
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof User
+     */
+    'fid': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'username': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'display_name'?: string;
+    /**
+     * Ethereum address
+     * @type {string}
+     * @memberof User
+     */
+    'custody_address': string;
+    /**
+     * The URL of the user\'s profile picture
+     * @type {string}
+     * @memberof User
+     */
+    'pfp_url'?: string;
+    /**
+     * 
+     * @type {UserProfile}
+     * @memberof User
+     */
+    'profile': UserProfile;
+    /**
+     * The number of followers the user has.
+     * @type {number}
+     * @memberof User
+     */
+    'follower_count': number;
+    /**
+     * The number of users the user is following.
+     * @type {number}
+     * @memberof User
+     */
+    'following_count': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof User
+     */
+    'verifications': Array<string>;
+    /**
+     * 
+     * @type {UserVerifiedAddresses}
+     * @memberof User
+     */
+    'verified_addresses': UserVerifiedAddresses;
+    /**
+     * Verified accounts of the user on other platforms, currently only X is supported.
+     * @type {Array<UserVerifiedAccountsInner>}
+     * @memberof User
+     */
+    'verified_accounts': Array<UserVerifiedAccountsInner>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof User
+     */
+    'power_badge': boolean;
+    /**
+     * 
+     * @type {UserViewerContext}
+     * @memberof User
+     */
+    'viewer_context'?: UserViewerContext;
+}
+
+export const UserObjectEnum = {
+    User: 'user'
+} as const;
+
+export type UserObjectEnum = typeof UserObjectEnum[keyof typeof UserObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface UserDehydrated
+ */
+export interface UserDehydrated {
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDehydrated
+     */
+    'object': UserDehydratedObjectEnum;
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof UserDehydrated
+     */
+    'fid': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDehydrated
+     */
+    'username'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDehydrated
+     */
+    'display_name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDehydrated
+     */
+    'pfp_url'?: string;
+}
+
+export const UserDehydratedObjectEnum = {
+    UserDehydrated: 'user_dehydrated'
+} as const;
+
+export type UserDehydratedObjectEnum = typeof UserDehydratedObjectEnum[keyof typeof UserDehydratedObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface UserFIDResponse
+ */
+export interface UserFIDResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof UserFIDResponse
+     */
+    'fid': number;
+}
+/**
+ * 
+ * @export
+ * @interface UserPowerLiteResponse
+ */
+export interface UserPowerLiteResponse {
+    /**
+     * 
+     * @type {UserPowerLiteResponseResult}
+     * @memberof UserPowerLiteResponse
+     */
+    'result': UserPowerLiteResponseResult;
+}
+/**
+ * 
+ * @export
+ * @interface UserPowerLiteResponseResult
+ */
+export interface UserPowerLiteResponseResult {
+    /**
+     * List of FIDs
+     * @type {Array<number>}
+     * @memberof UserPowerLiteResponseResult
+     */
+    'fids': Array<number>;
+}
+/**
+ * 
+ * @export
+ * @interface UserProfile
+ */
+export interface UserProfile {
+    /**
+     * 
+     * @type {UserProfileBio}
+     * @memberof UserProfile
+     */
+    'bio': UserProfileBio;
+    /**
+     * 
+     * @type {Location}
+     * @memberof UserProfile
+     */
+    'location'?: Location;
+}
+/**
+ * 
+ * @export
+ * @interface UserProfileBio
+ */
+export interface UserProfileBio {
+    /**
+     * 
+     * @type {string}
+     * @memberof UserProfileBio
+     */
+    'text': string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UserProfileBio
+     */
+    'mentioned_profiles': Array<string>;
+}
+/**
+ * 
+ * @export
+ * @interface UserResponse
+ */
+export interface UserResponse {
+    /**
+     * 
+     * @type {User}
+     * @memberof UserResponse
+     */
+    'user': User;
+}
+/**
+ * 
+ * @export
+ * @interface UserSearchResponse
+ */
+export interface UserSearchResponse {
+    /**
+     * 
+     * @type {UserSearchResponseResult}
+     * @memberof UserSearchResponse
+     */
+    'result': UserSearchResponseResult;
+}
+/**
+ * 
+ * @export
+ * @interface UserSearchResponseResult
+ */
+export interface UserSearchResponseResult {
+    /**
+     * 
+     * @type {Array<SearchedUser>}
+     * @memberof UserSearchResponseResult
+     */
+    'users': Array<SearchedUser>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof UserSearchResponseResult
+     */
+    'next'?: NextCursor;
+}
+/**
+ * 
+ * @export
+ * @interface UserVerifiedAccountsInner
+ */
+export interface UserVerifiedAccountsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof UserVerifiedAccountsInner
+     */
+    'platform'?: UserVerifiedAccountsInnerPlatformEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserVerifiedAccountsInner
+     */
+    'username'?: string;
+}
+
+export const UserVerifiedAccountsInnerPlatformEnum = {
+    X: 'x'
+} as const;
+
+export type UserVerifiedAccountsInnerPlatformEnum = typeof UserVerifiedAccountsInnerPlatformEnum[keyof typeof UserVerifiedAccountsInnerPlatformEnum];
+
+/**
+ * 
+ * @export
+ * @interface UserVerifiedAddresses
+ */
+export interface UserVerifiedAddresses {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UserVerifiedAddresses
+     */
+    'eth_addresses': Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UserVerifiedAddresses
+     */
+    'sol_addresses': Array<string>;
+}
+/**
+ * Adds context on the viewer\'s follow relationship with the user.
+ * @export
+ * @interface UserViewerContext
+ */
+export interface UserViewerContext {
+    /**
+     * Indicates if the viewer is following the user.
+     * @type {boolean}
+     * @memberof UserViewerContext
+     */
+    'following': boolean;
+    /**
+     * Indicates if the viewer is followed by the user.
+     * @type {boolean}
+     * @memberof UserViewerContext
+     */
+    'followed_by': boolean;
+    /**
+     * Indicates if the viewer is blocking the user.
+     * @type {boolean}
+     * @memberof UserViewerContext
+     */
+    'blocking': boolean;
+    /**
+     * Indicates if the viewer is blocked by the user.
+     * @type {boolean}
+     * @memberof UserViewerContext
+     */
+    'blocked_by': boolean;
+}
+/**
+ * 
+ * @export
+ * @interface UsersActiveChannelsResponse
+ */
+export interface UsersActiveChannelsResponse {
+    /**
+     * 
+     * @type {Array<Channel>}
+     * @memberof UsersActiveChannelsResponse
+     */
+    'channels'?: Array<Channel>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof UsersActiveChannelsResponse
+     */
+    'next'?: NextCursor;
+}
+/**
+ * 
+ * @export
+ * @interface UsersResponse
+ */
+export interface UsersResponse {
+    /**
+     * 
+     * @type {Array<User>}
+     * @memberof UsersResponse
+     */
+    'users': Array<User>;
+    /**
+     * 
+     * @type {NextCursor}
+     * @memberof UsersResponse
+     */
+    'next': NextCursor;
+}
+/**
+ * 
+ * @export
+ * @interface ValidateFrameActionResponse
+ */
+export interface ValidateFrameActionResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ValidateFrameActionResponse
+     */
+    'valid': boolean;
+    /**
+     * 
+     * @type {ValidatedFrameAction}
+     * @memberof ValidateFrameActionResponse
+     */
+    'action': ValidatedFrameAction;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const ValidateFrameAnalyticsType = {
+    TotalInteractors: 'total-interactors',
+    Interactors: 'interactors',
+    InteractionsPerCast: 'interactions-per-cast',
+    InputText: 'input-text'
+} as const;
+
+export type ValidateFrameAnalyticsType = typeof ValidateFrameAnalyticsType[keyof typeof ValidateFrameAnalyticsType];
+
+
+/**
+ * 
+ * @export
+ * @interface ValidateFrameRequest
+ */
+export interface ValidateFrameRequest {
+    /**
+     * Hexadecimal string of message bytes.
+     * @type {string}
+     * @memberof ValidateFrameRequest
+     */
+    'message_bytes_in_hex': string;
+    /**
+     * Adds viewer_context inside the cast object to indicate whether the interactor reacted to the cast housing the frame.
+     * @type {boolean}
+     * @memberof ValidateFrameRequest
+     */
+    'cast_reaction_context'?: boolean;
+    /**
+     * Adds viewer_context inside the user (interactor) object to indicate whether the interactor follows or is followed by the cast author.
+     * @type {boolean}
+     * @memberof ValidateFrameRequest
+     */
+    'follow_context'?: boolean;
+    /**
+     * Adds context about the app used by the user inside `frame.action`.
+     * @type {boolean}
+     * @memberof ValidateFrameRequest
+     */
+    'signer_context'?: boolean;
+    /**
+     * Adds context about the channel that the cast belongs to inside of the cast object.
+     * @type {boolean}
+     * @memberof ValidateFrameRequest
+     */
+    'channel_follow_context'?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface ValidatedFrameAction
+ */
+export interface ValidatedFrameAction {
+    /**
+     * 
+     * @type {string}
+     * @memberof ValidatedFrameAction
+     */
+    'object': ValidatedFrameActionObjectEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof ValidatedFrameAction
+     */
+    'url': string;
+    /**
+     * 
+     * @type {User}
+     * @memberof ValidatedFrameAction
+     */
+    'interactor': User;
+    /**
+     * 
+     * @type {ValidatedFrameActionTappedButton}
+     * @memberof ValidatedFrameAction
+     */
+    'tapped_button': ValidatedFrameActionTappedButton;
+    /**
+     * 
+     * @type {FrameInput}
+     * @memberof ValidatedFrameAction
+     */
+    'input'?: FrameInput;
+    /**
+     * 
+     * @type {FrameState}
+     * @memberof ValidatedFrameAction
+     */
+    'state': FrameState;
+    /**
+     * 
+     * @type {CastWithInteractions}
+     * @memberof ValidatedFrameAction
+     */
+    'cast': CastWithInteractions;
+    /**
+     * 
+     * @type {string}
+     * @memberof ValidatedFrameAction
+     */
+    'timestamp': string;
+    /**
+     * 
+     * @type {ValidatedFrameActionSigner}
+     * @memberof ValidatedFrameAction
+     */
+    'signer'?: ValidatedFrameActionSigner;
+    /**
+     * 
+     * @type {FrameTransaction}
+     * @memberof ValidatedFrameAction
+     */
+    'transaction'?: FrameTransaction;
+    /**
+     * The connected wallet address of the interacting user.
+     * @type {string}
+     * @memberof ValidatedFrameAction
+     */
+    'address'?: string;
+}
+
+export const ValidatedFrameActionObjectEnum = {
+    ValidatedFrameAction: 'validated_frame_action'
+} as const;
+
+export type ValidatedFrameActionObjectEnum = typeof ValidatedFrameActionObjectEnum[keyof typeof ValidatedFrameActionObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface ValidatedFrameActionSigner
+ */
+export interface ValidatedFrameActionSigner {
+    /**
+     * 
+     * @type {User}
+     * @memberof ValidatedFrameActionSigner
+     */
+    'client'?: User;
+}
+/**
+ * 
+ * @export
+ * @interface ValidatedFrameActionTappedButton
+ */
+export interface ValidatedFrameActionTappedButton {
+    /**
+     * 
+     * @type {number}
+     * @memberof ValidatedFrameActionTappedButton
+     */
+    'index': number;
+}
+/**
+ * Chain ID for farcaster verifications. 0 for EOA verifications, 1 or 10 for contract verifications
+ * @export
+ * @enum {number}
+ */
+
+export const VerificationChainId = {
+    NUMBER_0: 0,
+    NUMBER_1: 1,
+    NUMBER_10: 10
+} as const;
+
+export type VerificationChainId = typeof VerificationChainId[keyof typeof VerificationChainId];
+
+
+/**
+ * Type of verification. 0 = EOA, 1 = contract
+ * @export
+ * @enum {number}
+ */
+
+export const VerificationType = {
+    NUMBER_0: 0,
+    NUMBER_1: 1
+} as const;
+
+export type VerificationType = typeof VerificationType[keyof typeof VerificationType];
+
+
+/**
+ * 
+ * @export
+ * @interface VideoObject
+ */
+export interface VideoObject {
+    /**
+     * 
+     * @type {string}
+     * @memberof VideoObject
+     */
+    'height'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof VideoObject
+     */
+    'type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof VideoObject
+     */
+    'url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof VideoObject
+     */
+    'width'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface Webhook
+ */
+export interface Webhook {
+    /**
+     * 
+     * @type {string}
+     * @memberof Webhook
+     */
+    'object': WebhookObjectEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof Webhook
+     */
+    'webhook_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Webhook
+     */
+    'developer_uuid': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Webhook
+     */
+    'target_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Webhook
+     */
+    'title': string;
+    /**
+     * 
+     * @type {Array<WebhookSecret>}
+     * @memberof Webhook
+     */
+    'secrets': Array<WebhookSecret>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Webhook
+     */
+    'description': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Webhook
+     */
+    'http_timeout': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Webhook
+     */
+    'rate_limit': number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Webhook
+     */
+    'active': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof Webhook
+     */
+    'rate_limit_duration': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Webhook
+     */
+    'created_at': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Webhook
+     */
+    'updated_at': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Webhook
+     */
+    'deleted_at': string;
+    /**
+     * 
+     * @type {WebhookSubscription}
+     * @memberof Webhook
+     */
+    'subscription'?: WebhookSubscription;
+}
+
+export const WebhookObjectEnum = {
+    Webhook: 'webhook'
+} as const;
+
+export type WebhookObjectEnum = typeof WebhookObjectEnum[keyof typeof WebhookObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface WebhookDeleteReqBody
+ */
+export interface WebhookDeleteReqBody {
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookDeleteReqBody
+     */
+    'webhook_id': string;
+}
+/**
+ * 
+ * @export
+ * @interface WebhookListResponse
+ */
+export interface WebhookListResponse {
+    /**
+     * 
+     * @type {Array<Webhook>}
+     * @memberof WebhookListResponse
+     */
+    'webhooks': Array<Webhook>;
+}
+/**
+ * 
+ * @export
+ * @interface WebhookPatchReqBody
+ */
+export interface WebhookPatchReqBody {
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookPatchReqBody
+     */
+    'webhook_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookPatchReqBody
+     */
+    'active': WebhookPatchReqBodyActiveEnum;
+}
+
+export const WebhookPatchReqBodyActiveEnum = {
+    True: 'true',
+    False: 'false'
+} as const;
+
+export type WebhookPatchReqBodyActiveEnum = typeof WebhookPatchReqBodyActiveEnum[keyof typeof WebhookPatchReqBodyActiveEnum];
+
+/**
+ * 
+ * @export
+ * @interface WebhookPostReqBody
+ */
+export interface WebhookPostReqBody {
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookPostReqBody
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookPostReqBody
+     */
+    'url': string;
+    /**
+     * 
+     * @type {WebhookSubscriptionFilters}
+     * @memberof WebhookPostReqBody
+     */
+    'subscription'?: WebhookSubscriptionFilters;
+}
+/**
+ * 
+ * @export
+ * @interface WebhookPutReqBody
+ */
+export interface WebhookPutReqBody extends WebhookPostReqBody {
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookPutReqBody
+     */
+    'webhook_id': string;
+}
+/**
+ * 
+ * @export
+ * @interface WebhookResponse
+ */
+export interface WebhookResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookResponse
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof WebhookResponse
+     */
+    'success'?: boolean;
+    /**
+     * 
+     * @type {Webhook}
+     * @memberof WebhookResponse
+     */
+    'webhook'?: Webhook;
+}
+/**
+ * 
+ * @export
+ * @interface WebhookSecret
+ */
+export interface WebhookSecret {
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookSecret
+     */
+    'uid': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookSecret
+     */
+    'value': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookSecret
+     */
+    'expires_at': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookSecret
+     */
+    'created_at': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookSecret
+     */
+    'updated_at': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookSecret
+     */
+    'deleted_at': string;
+}
+/**
+ * 
+ * @export
+ * @interface WebhookSubscription
+ */
+export interface WebhookSubscription {
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookSubscription
+     */
+    'object': WebhookSubscriptionObjectEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookSubscription
+     */
+    'subscription_id': string;
+    /**
+     * 
+     * @type {WebhookSubscriptionFilters}
+     * @memberof WebhookSubscription
+     */
+    'filters': WebhookSubscriptionFilters;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookSubscription
+     */
+    'created_at': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookSubscription
+     */
+    'updated_at': string;
+}
+
+export const WebhookSubscriptionObjectEnum = {
+    WebhookSubscription: 'webhook_subscription'
+} as const;
+
+export type WebhookSubscriptionObjectEnum = typeof WebhookSubscriptionObjectEnum[keyof typeof WebhookSubscriptionObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface WebhookSubscriptionFilters
+ */
+export interface WebhookSubscriptionFilters {
+    /**
+     * 
+     * @type {WebhookSubscriptionFiltersCast}
+     * @memberof WebhookSubscriptionFilters
+     */
+    'cast.created'?: WebhookSubscriptionFiltersCast;
+    /**
+     * 
+     * @type {WebhookSubscriptionFiltersCast}
+     * @memberof WebhookSubscriptionFilters
+     */
+    'cast.deleted'?: WebhookSubscriptionFiltersCast;
+    /**
+     * 
+     * @type {object}
+     * @memberof WebhookSubscriptionFilters
+     */
+    'user.created'?: object;
+    /**
+     * 
+     * @type {WebhookSubscriptionFiltersUserUpdated}
+     * @memberof WebhookSubscriptionFilters
+     */
+    'user.updated'?: WebhookSubscriptionFiltersUserUpdated;
+    /**
+     * 
+     * @type {WebhookSubscriptionFiltersFollow}
+     * @memberof WebhookSubscriptionFilters
+     */
+    'follow.created'?: WebhookSubscriptionFiltersFollow;
+    /**
+     * 
+     * @type {WebhookSubscriptionFiltersFollow}
+     * @memberof WebhookSubscriptionFilters
+     */
+    'follow.deleted'?: WebhookSubscriptionFiltersFollow;
+    /**
+     * 
+     * @type {WebhookSubscriptionFiltersReaction}
+     * @memberof WebhookSubscriptionFilters
+     */
+    'reaction.created'?: WebhookSubscriptionFiltersReaction;
+    /**
+     * 
+     * @type {WebhookSubscriptionFiltersReaction}
+     * @memberof WebhookSubscriptionFilters
+     */
+    'reaction.deleted'?: WebhookSubscriptionFiltersReaction;
+}
+/**
+ * 
+ * @export
+ * @interface WebhookSubscriptionFiltersCast
+ */
+export interface WebhookSubscriptionFiltersCast {
+    /**
+     * Exclude casts that matches these authors. **Note:** This is applied as an AND operation against rest of the filters. Rest of the filters are bundled as an OR operation. 
+     * @type {Array<number>}
+     * @memberof WebhookSubscriptionFiltersCast
+     */
+    'exclude_author_fids'?: Array<number>;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof WebhookSubscriptionFiltersCast
+     */
+    'author_fids'?: Array<number>;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof WebhookSubscriptionFiltersCast
+     */
+    'mentioned_fids'?: Array<number>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof WebhookSubscriptionFiltersCast
+     */
+    'parent_urls'?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof WebhookSubscriptionFiltersCast
+     */
+    'root_parent_urls'?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof WebhookSubscriptionFiltersCast
+     */
+    'parent_hashes'?: Array<string>;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof WebhookSubscriptionFiltersCast
+     */
+    'parent_author_fids'?: Array<number>;
+    /**
+     * Regex pattern to match the text key of the cast. **Note:**  1) Regex must be parsed by Go\'s RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex) 2) Use backslashes to escape special characters. For example: (?i)\\\\$degen should be written as (?i)\\\\\\\\$degen 
+     * @type {string}
+     * @memberof WebhookSubscriptionFiltersCast
+     */
+    'text'?: string;
+    /**
+     * Regex pattern to match the embeded_url (key embeds) of the cast. **Note:**  1) Regex must be parsed by Go\'s RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex) 2) Use backslashes to escape special characters. For example: \\\\b(farcaster|neynar)\\\\b should be written as \\\\\\\\b(farcaster|neynar)\\\\\\\\b 
+     * @type {string}
+     * @memberof WebhookSubscriptionFiltersCast
+     */
+    'embeds'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface WebhookSubscriptionFiltersFollow
+ */
+export interface WebhookSubscriptionFiltersFollow {
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof WebhookSubscriptionFiltersFollow
+     */
+    'fids'?: Array<number>;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof WebhookSubscriptionFiltersFollow
+     */
+    'target_fids'?: Array<number>;
+}
+/**
+ * 
+ * @export
+ * @interface WebhookSubscriptionFiltersReaction
+ */
+export interface WebhookSubscriptionFiltersReaction {
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof WebhookSubscriptionFiltersReaction
+     */
+    'fids'?: Array<number>;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof WebhookSubscriptionFiltersReaction
+     */
+    'target_fids'?: Array<number>;
+}
+/**
+ * 
+ * @export
+ * @interface WebhookSubscriptionFiltersUserUpdated
+ */
+export interface WebhookSubscriptionFiltersUserUpdated {
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof WebhookSubscriptionFiltersUserUpdated
+     */
+    'fids'?: Array<number>;
+}
+/**
+ * 
+ * @export
+ * @interface ZodError
+ */
+export interface ZodError {
+    /**
+     * 
+     * @type {string}
+     * @memberof ZodError
+     */
+    'message': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ZodError
+     */
+    'code': string;
+    /**
+     * 
+     * @type {Array<ZodErrorErrorsInner>}
+     * @memberof ZodError
+     */
+    'errors': Array<ZodErrorErrorsInner>;
+}
+/**
+ * 
+ * @export
+ * @interface ZodErrorErrorsInner
+ */
+export interface ZodErrorErrorsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof ZodErrorErrorsInner
+     */
+    'code': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ZodErrorErrorsInner
+     */
+    'expected': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ZodErrorErrorsInner
+     */
+    'received': string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ZodErrorErrorsInner
+     */
+    'path': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ZodErrorErrorsInner
+     */
+    'message': string;
+}
+
+/**
+ * ActionApi - axios parameter creator
+ * @export
+ */
+export const ActionApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Securely communicate and perform actions on behalf of users across different apps. It enables an app to send data or trigger actions in another app on behalf of a mutual user by signing messages using the user\'s Farcaster signer.
+         * @summary User actions across apps
+         * @param {FarcasterActionReqBody} farcasterActionReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publishFarcasterAction: async (farcasterActionReqBody: FarcasterActionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'farcasterActionReqBody' is not null or undefined
+            assertParamExists('publishFarcasterAction', 'farcasterActionReqBody', farcasterActionReqBody)
+            const localVarPath = `/farcaster/action`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(farcasterActionReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ActionApi - functional programming interface
+ * @export
+ */
+export const ActionApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ActionApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Securely communicate and perform actions on behalf of users across different apps. It enables an app to send data or trigger actions in another app on behalf of a mutual user by signing messages using the user\'s Farcaster signer.
+         * @summary User actions across apps
+         * @param {FarcasterActionReqBody} farcasterActionReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publishFarcasterAction(farcasterActionReqBody: FarcasterActionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publishFarcasterAction(farcasterActionReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ActionApi.publishFarcasterAction']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * ActionApi - factory interface
+ * @export
+ */
+export const ActionApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ActionApiFp(configuration)
+    return {
+        /**
+         * Securely communicate and perform actions on behalf of users across different apps. It enables an app to send data or trigger actions in another app on behalf of a mutual user by signing messages using the user\'s Farcaster signer.
+         * @summary User actions across apps
+         * @param {FarcasterActionReqBody} farcasterActionReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publishFarcasterAction(farcasterActionReqBody: FarcasterActionReqBody, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: any; }> {
+            return localVarFp.publishFarcasterAction(farcasterActionReqBody, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ActionApi - object-oriented interface
+ * @export
+ * @class ActionApi
+ * @extends {BaseAPI}
+ */
+export class ActionApi extends BaseAPI {
+    /**
+     * Securely communicate and perform actions on behalf of users across different apps. It enables an app to send data or trigger actions in another app on behalf of a mutual user by signing messages using the user\'s Farcaster signer.
+     * @summary User actions across apps
+     * @param {FarcasterActionReqBody} farcasterActionReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ActionApi
+     */
+    public publishFarcasterAction(farcasterActionReqBody: FarcasterActionReqBody, options?: RawAxiosRequestConfig) {
+        return ActionApiFp(this.configuration).publishFarcasterAction(farcasterActionReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * BanApi - axios parameter creator
+ * @export
+ */
+export const BanApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
+         * @summary Ban FIDs from app
+         * @param {BanReqBody} banReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addBan: async (banReqBody: BanReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'banReqBody' is not null or undefined
+            assertParamExists('addBan', 'banReqBody', banReqBody)
+            const localVarPath = `/farcaster/ban`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(banReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetches all FIDs that your app has banned.
+         * @summary Banned FIDs of app
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        banList: async (limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/farcaster/ban/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Deletes a list of FIDs from the app associated with your API key.
+         * @summary Unban FIDs from app
+         * @param {BanReqBody} banReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteBan: async (banReqBody: BanReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'banReqBody' is not null or undefined
+            assertParamExists('deleteBan', 'banReqBody', banReqBody)
+            const localVarPath = `/farcaster/ban`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(banReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * BanApi - functional programming interface
+ * @export
+ */
+export const BanApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = BanApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
+         * @summary Ban FIDs from app
+         * @param {BanReqBody} banReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async addBan(banReqBody: BanReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.addBan(banReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BanApi.addBan']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetches all FIDs that your app has banned.
+         * @summary Banned FIDs of app
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async banList(limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.banList(limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BanApi.banList']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Deletes a list of FIDs from the app associated with your API key.
+         * @summary Unban FIDs from app
+         * @param {BanReqBody} banReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteBan(banReqBody: BanReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteBan(banReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BanApi.deleteBan']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * BanApi - factory interface
+ * @export
+ */
+export const BanApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = BanApiFp(configuration)
+    return {
+        /**
+         * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
+         * @summary Ban FIDs from app
+         * @param {BanReqBody} banReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addBan(banReqBody: BanReqBody, options?: RawAxiosRequestConfig): AxiosPromise<BanResponse> {
+            return localVarFp.addBan(banReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches all FIDs that your app has banned.
+         * @summary Banned FIDs of app
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        banList(limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<BanListResponse> {
+            return localVarFp.banList(limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Deletes a list of FIDs from the app associated with your API key.
+         * @summary Unban FIDs from app
+         * @param {BanReqBody} banReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteBan(banReqBody: BanReqBody, options?: RawAxiosRequestConfig): AxiosPromise<BanResponse> {
+            return localVarFp.deleteBan(banReqBody, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * BanApi - object-oriented interface
+ * @export
+ * @class BanApi
+ * @extends {BaseAPI}
+ */
+export class BanApi extends BaseAPI {
+    /**
+     * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
+     * @summary Ban FIDs from app
+     * @param {BanReqBody} banReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BanApi
+     */
+    public addBan(banReqBody: BanReqBody, options?: RawAxiosRequestConfig) {
+        return BanApiFp(this.configuration).addBan(banReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches all FIDs that your app has banned.
+     * @summary Banned FIDs of app
+     * @param {number} [limit] Number of results to fetch (default 20, max 100).
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BanApi
+     */
+    public banList(limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return BanApiFp(this.configuration).banList(limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Deletes a list of FIDs from the app associated with your API key.
+     * @summary Unban FIDs from app
+     * @param {BanReqBody} banReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BanApi
+     */
+    public deleteBan(banReqBody: BanReqBody, options?: RawAxiosRequestConfig) {
+        return BanApiFp(this.configuration).deleteBan(banReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * BlockApi - axios parameter creator
+ * @export
+ */
+export const BlockApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Fetches all FIDs that a user has blocked or has been blocked by
+         * @summary Blocked / Blocked by FIDs
+         * @param {number} [blockerFid] Providing this will return the users that this user has blocked
+         * @param {number} [blockedFid] Providing this will return the users that have blocked this user
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        blockList: async (blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/farcaster/block/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (blockerFid !== undefined) {
+                localVarQueryParameter['blocker_fid'] = blockerFid;
+            }
+
+            if (blockedFid !== undefined) {
+                localVarQueryParameter['blocked_fid'] = blockedFid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * BlockApi - functional programming interface
+ * @export
+ */
+export const BlockApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = BlockApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Fetches all FIDs that a user has blocked or has been blocked by
+         * @summary Blocked / Blocked by FIDs
+         * @param {number} [blockerFid] Providing this will return the users that this user has blocked
+         * @param {number} [blockedFid] Providing this will return the users that have blocked this user
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async blockList(blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BlockListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.blockList(blockerFid, blockedFid, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BlockApi.blockList']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * BlockApi - factory interface
+ * @export
+ */
+export const BlockApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = BlockApiFp(configuration)
+    return {
+        /**
+         * Fetches all FIDs that a user has blocked or has been blocked by
+         * @summary Blocked / Blocked by FIDs
+         * @param {number} [blockerFid] Providing this will return the users that this user has blocked
+         * @param {number} [blockedFid] Providing this will return the users that have blocked this user
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        blockList(blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<BlockListResponse> {
+            return localVarFp.blockList(blockerFid, blockedFid, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * BlockApi - object-oriented interface
+ * @export
+ * @class BlockApi
+ * @extends {BaseAPI}
+ */
+export class BlockApi extends BaseAPI {
+    /**
+     * Fetches all FIDs that a user has blocked or has been blocked by
+     * @summary Blocked / Blocked by FIDs
+     * @param {number} [blockerFid] Providing this will return the users that this user has blocked
+     * @param {number} [blockedFid] Providing this will return the users that have blocked this user
+     * @param {number} [limit] Number of results to fetch (default 20, max 100).
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BlockApi
+     */
+    public blockList(blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return BlockApiFp(this.configuration).blockList(blockerFid, blockedFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * CastApi - axios parameter creator
+ * @export
+ */
+export const CastApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
+         * @summary By hash or URL
+         * @param {string} identifier Cast identifier (Its either a url or a hash)
+         * @param {CastParamType} type 
+         * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cast: async (identifier: string, type: CastParamType, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'identifier' is not null or undefined
+            assertParamExists('cast', 'identifier', identifier)
+            // verify required parameter 'type' is not null or undefined
+            assertParamExists('cast', 'type', type)
+            const localVarPath = `/farcaster/cast`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (identifier !== undefined) {
+                localVarQueryParameter['identifier'] = identifier;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
+         * @summary Conversation for a cast
+         * @param {string} identifier Cast identifier (Its either a url or a hash)
+         * @param {CastParamType} type 
+         * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
+         * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
+         * @param {number} [viewerFid] Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;chron&#x60;
+         * @param {CastConversationFoldEnum} [fold] Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding.
+         * @param {number} [limit] Number of results to fetch (default 20, max 50)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        castConversation: async (identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, fold?: CastConversationFoldEnum, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'identifier' is not null or undefined
+            assertParamExists('castConversation', 'identifier', identifier)
+            // verify required parameter 'type' is not null or undefined
+            assertParamExists('castConversation', 'type', type)
+            const localVarPath = `/farcaster/cast/conversation`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (identifier !== undefined) {
+                localVarQueryParameter['identifier'] = identifier;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (replyDepth !== undefined) {
+                localVarQueryParameter['reply_depth'] = replyDepth;
+            }
+
+            if (includeChronologicalParentCasts !== undefined) {
+                localVarQueryParameter['include_chronological_parent_casts'] = includeChronologicalParentCasts;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (sortType !== undefined) {
+                localVarQueryParameter['sort_type'] = sortType;
+            }
+
+            if (fold !== undefined) {
+                localVarQueryParameter['fold'] = fold;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Search for casts based on a query string, with optional AND filters
+         * @summary Search for casts
+         * @param {string} q Query string to search for casts
+         * @param {number} [authorFid] Fid of the user whose casts you want to search
+         * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {string} [parentUrl] Parent URL of the casts you want to search
+         * @param {string} [channelId] Channel ID of the casts you want to search
+         * @param {boolean} [priorityMode] When true, only returns search results from power badge users and users that the viewer follows (if viewer_fid is provided).
+         * @param {number} [limit] 
+         * @param {string} [cursor] Pagination cursor
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        castSearch: async (q: string, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'q' is not null or undefined
+            assertParamExists('castSearch', 'q', q)
+            const localVarPath = `/farcaster/cast/search`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (q !== undefined) {
+                localVarQueryParameter['q'] = q;
+            }
+
+            if (authorFid !== undefined) {
+                localVarQueryParameter['author_fid'] = authorFid;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (parentUrl !== undefined) {
+                localVarQueryParameter['parent_url'] = parentUrl;
+            }
+
+            if (channelId !== undefined) {
+                localVarQueryParameter['channel_id'] = channelId;
+            }
+
+            if (priorityMode !== undefined) {
+                localVarQueryParameter['priority_mode'] = priorityMode;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch multiple casts using their respective hashes.
+         * @summary Bulk fetch casts
+         * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces)
+         * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
+         * @param {CastsSortTypeEnum} [sortType] Optional parameter to sort the casts based on different criteria
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        casts: async (casts: string, viewerFid?: number, sortType?: CastsSortTypeEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'casts' is not null or undefined
+            assertParamExists('casts', 'casts', casts)
+            const localVarPath = `/farcaster/casts`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (casts !== undefined) {
+                localVarQueryParameter['casts'] = casts;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (sortType !== undefined) {
+                localVarQueryParameter['sort_type'] = sortType;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetches all composer actions on Warpcast. You can filter by top or featured.
+         * @summary Fetch composer actions
+         * @param {CastComposerType} list Type of list to fetch.
+         * @param {number} [limit] Number of results to fetch (default 25, max 25).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        composerList: async (list: CastComposerType, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'list' is not null or undefined
+            assertParamExists('composerList', 'list', list)
+            const localVarPath = `/farcaster/cast/composer_actions/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (list !== undefined) {
+                localVarQueryParameter['list'] = list;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved) 
+         * @summary Delete a cast
+         * @param {DeleteCastReqBody} deleteCastReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCast: async (deleteCastReqBody: DeleteCastReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deleteCastReqBody' is not null or undefined
+            assertParamExists('deleteCast', 'deleteCastReqBody', deleteCastReqBody)
+            const localVarPath = `/farcaster/cast`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(deleteCastReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Posts a cast or cast reply. Works with mentions and embeds.   (In order to post a cast `signer_uuid` must be approved) 
+         * @summary Post a cast
+         * @param {PostCastReqBody} postCastReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postCast: async (postCastReqBody: PostCastReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'postCastReqBody' is not null or undefined
+            assertParamExists('postCast', 'postCastReqBody', postCastReqBody)
+            const localVarPath = `/farcaster/cast`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(postCastReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * CastApi - functional programming interface
+ * @export
+ */
+export const CastApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = CastApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
+         * @summary By hash or URL
+         * @param {string} identifier Cast identifier (Its either a url or a hash)
+         * @param {CastParamType} type 
+         * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cast(identifier: string, type: CastParamType, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cast(identifier, type, viewerFid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CastApi.cast']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
+         * @summary Conversation for a cast
+         * @param {string} identifier Cast identifier (Its either a url or a hash)
+         * @param {CastParamType} type 
+         * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
+         * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
+         * @param {number} [viewerFid] Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;chron&#x60;
+         * @param {CastConversationFoldEnum} [fold] Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding.
+         * @param {number} [limit] Number of results to fetch (default 20, max 50)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async castConversation(identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, fold?: CastConversationFoldEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Conversation>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.castConversation(identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, sortType, fold, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CastApi.castConversation']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Search for casts based on a query string, with optional AND filters
+         * @summary Search for casts
+         * @param {string} q Query string to search for casts
+         * @param {number} [authorFid] Fid of the user whose casts you want to search
+         * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {string} [parentUrl] Parent URL of the casts you want to search
+         * @param {string} [channelId] Channel ID of the casts you want to search
+         * @param {boolean} [priorityMode] When true, only returns search results from power badge users and users that the viewer follows (if viewer_fid is provided).
+         * @param {number} [limit] 
+         * @param {string} [cursor] Pagination cursor
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async castSearch(q: string, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.castSearch(q, authorFid, viewerFid, parentUrl, channelId, priorityMode, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CastApi.castSearch']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch multiple casts using their respective hashes.
+         * @summary Bulk fetch casts
+         * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces)
+         * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
+         * @param {CastsSortTypeEnum} [sortType] Optional parameter to sort the casts based on different criteria
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async casts(casts: string, viewerFid?: number, sortType?: CastsSortTypeEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.casts(casts, viewerFid, sortType, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CastApi.casts']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetches all composer actions on Warpcast. You can filter by top or featured.
+         * @summary Fetch composer actions
+         * @param {CastComposerType} list Type of list to fetch.
+         * @param {number} [limit] Number of results to fetch (default 25, max 25).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async composerList(list: CastComposerType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastComposerActionsListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.composerList(list, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CastApi.composerList']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved) 
+         * @summary Delete a cast
+         * @param {DeleteCastReqBody} deleteCastReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteCast(deleteCastReqBody: DeleteCastReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteCast(deleteCastReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CastApi.deleteCast']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Posts a cast or cast reply. Works with mentions and embeds.   (In order to post a cast `signer_uuid` must be approved) 
+         * @summary Post a cast
+         * @param {PostCastReqBody} postCastReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async postCast(postCastReqBody: PostCastReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PostCastResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postCast(postCastReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CastApi.postCast']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * CastApi - factory interface
+ * @export
+ */
+export const CastApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = CastApiFp(configuration)
+    return {
+        /**
+         * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
+         * @summary By hash or URL
+         * @param {string} identifier Cast identifier (Its either a url or a hash)
+         * @param {CastParamType} type 
+         * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cast(identifier: string, type: CastParamType, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<CastResponse> {
+            return localVarFp.cast(identifier, type, viewerFid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
+         * @summary Conversation for a cast
+         * @param {string} identifier Cast identifier (Its either a url or a hash)
+         * @param {CastParamType} type 
+         * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
+         * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
+         * @param {number} [viewerFid] Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;chron&#x60;
+         * @param {CastConversationFoldEnum} [fold] Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding.
+         * @param {number} [limit] Number of results to fetch (default 20, max 50)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        castConversation(identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, fold?: CastConversationFoldEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<Conversation> {
+            return localVarFp.castConversation(identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, sortType, fold, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Search for casts based on a query string, with optional AND filters
+         * @summary Search for casts
+         * @param {string} q Query string to search for casts
+         * @param {number} [authorFid] Fid of the user whose casts you want to search
+         * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {string} [parentUrl] Parent URL of the casts you want to search
+         * @param {string} [channelId] Channel ID of the casts you want to search
+         * @param {boolean} [priorityMode] When true, only returns search results from power badge users and users that the viewer follows (if viewer_fid is provided).
+         * @param {number} [limit] 
+         * @param {string} [cursor] Pagination cursor
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        castSearch(q: string, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<CastsSearchResponse> {
+            return localVarFp.castSearch(q, authorFid, viewerFid, parentUrl, channelId, priorityMode, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch multiple casts using their respective hashes.
+         * @summary Bulk fetch casts
+         * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces)
+         * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
+         * @param {CastsSortTypeEnum} [sortType] Optional parameter to sort the casts based on different criteria
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        casts(casts: string, viewerFid?: number, sortType?: CastsSortTypeEnum, options?: RawAxiosRequestConfig): AxiosPromise<CastsResponse> {
+            return localVarFp.casts(casts, viewerFid, sortType, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches all composer actions on Warpcast. You can filter by top or featured.
+         * @summary Fetch composer actions
+         * @param {CastComposerType} list Type of list to fetch.
+         * @param {number} [limit] Number of results to fetch (default 25, max 25).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        composerList(list: CastComposerType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<CastComposerActionsListResponse> {
+            return localVarFp.composerList(list, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved) 
+         * @summary Delete a cast
+         * @param {DeleteCastReqBody} deleteCastReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCast(deleteCastReqBody: DeleteCastReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.deleteCast(deleteCastReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Posts a cast or cast reply. Works with mentions and embeds.   (In order to post a cast `signer_uuid` must be approved) 
+         * @summary Post a cast
+         * @param {PostCastReqBody} postCastReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postCast(postCastReqBody: PostCastReqBody, options?: RawAxiosRequestConfig): AxiosPromise<PostCastResponse> {
+            return localVarFp.postCast(postCastReqBody, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * CastApi - object-oriented interface
+ * @export
+ * @class CastApi
+ * @extends {BaseAPI}
+ */
+export class CastApi extends BaseAPI {
+    /**
+     * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
+     * @summary By hash or URL
+     * @param {string} identifier Cast identifier (Its either a url or a hash)
+     * @param {CastParamType} type 
+     * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CastApi
+     */
+    public cast(identifier: string, type: CastParamType, viewerFid?: number, options?: RawAxiosRequestConfig) {
+        return CastApiFp(this.configuration).cast(identifier, type, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
+     * @summary Conversation for a cast
+     * @param {string} identifier Cast identifier (Its either a url or a hash)
+     * @param {CastParamType} type 
+     * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2)
+     * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order
+     * @param {number} [viewerFid] Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;chron&#x60;
+     * @param {CastConversationFoldEnum} [fold] Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding.
+     * @param {number} [limit] Number of results to fetch (default 20, max 50)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CastApi
+     */
+    public castConversation(identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, fold?: CastConversationFoldEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return CastApiFp(this.configuration).castConversation(identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, sortType, fold, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Search for casts based on a query string, with optional AND filters
+     * @summary Search for casts
+     * @param {string} q Query string to search for casts
+     * @param {number} [authorFid] Fid of the user whose casts you want to search
+     * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {string} [parentUrl] Parent URL of the casts you want to search
+     * @param {string} [channelId] Channel ID of the casts you want to search
+     * @param {boolean} [priorityMode] When true, only returns search results from power badge users and users that the viewer follows (if viewer_fid is provided).
+     * @param {number} [limit] 
+     * @param {string} [cursor] Pagination cursor
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CastApi
+     */
+    public castSearch(q: string, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return CastApiFp(this.configuration).castSearch(q, authorFid, viewerFid, parentUrl, channelId, priorityMode, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch multiple casts using their respective hashes.
+     * @summary Bulk fetch casts
+     * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces)
+     * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
+     * @param {CastsSortTypeEnum} [sortType] Optional parameter to sort the casts based on different criteria
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CastApi
+     */
+    public casts(casts: string, viewerFid?: number, sortType?: CastsSortTypeEnum, options?: RawAxiosRequestConfig) {
+        return CastApiFp(this.configuration).casts(casts, viewerFid, sortType, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches all composer actions on Warpcast. You can filter by top or featured.
+     * @summary Fetch composer actions
+     * @param {CastComposerType} list Type of list to fetch.
+     * @param {number} [limit] Number of results to fetch (default 25, max 25).
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CastApi
+     */
+    public composerList(list: CastComposerType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return CastApiFp(this.configuration).composerList(list, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved) 
+     * @summary Delete a cast
+     * @param {DeleteCastReqBody} deleteCastReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CastApi
+     */
+    public deleteCast(deleteCastReqBody: DeleteCastReqBody, options?: RawAxiosRequestConfig) {
+        return CastApiFp(this.configuration).deleteCast(deleteCastReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Posts a cast or cast reply. Works with mentions and embeds.   (In order to post a cast `signer_uuid` must be approved) 
+     * @summary Post a cast
+     * @param {PostCastReqBody} postCastReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CastApi
+     */
+    public postCast(postCastReqBody: PostCastReqBody, options?: RawAxiosRequestConfig) {
+        return CastApiFp(this.configuration).postCast(postCastReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+/**
+ * @export
+ */
+export const CastConversationFoldEnum = {
+    Above: 'above',
+    Below: 'below'
+} as const;
+export type CastConversationFoldEnum = typeof CastConversationFoldEnum[keyof typeof CastConversationFoldEnum];
+/**
+ * @export
+ */
+export const CastsSortTypeEnum = {
+    Trending: 'trending',
+    Likes: 'likes',
+    Recasts: 'recasts',
+    Replies: 'replies',
+    Recent: 'recent'
+} as const;
+export type CastsSortTypeEnum = typeof CastsSortTypeEnum[keyof typeof CastsSortTypeEnum];
+
+
+/**
+ * ChannelApi - axios parameter creator
+ * @export
+ */
+export const ChannelApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Fetches all channels that a user has casted in, in reverse chronological order.
+         * @summary Fetch channels that user is active in
+         * @param {number} fid The user\&#39;s FID (identifier)
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        activeChannels: async (fid: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('activeChannels', 'fid', fid)
+            const localVarPath = `/farcaster/channel/user`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns details of a channel
+         * @summary By ID or parent_url
+         * @param {string} id Channel ID for the channel being queried
+         * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to ID.
+         * @param {number} [viewerFid] FID of the user viewing the channel.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelDetails: async (id: string, type?: ChannelType, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('channelDetails', 'id', id)
+            const localVarPath = `/farcaster/channel`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns details of multiple channels
+         * @summary Bulk fetch
+         * @param {string} ids Comma separated list of channel IDs or parent_urls, up to 100 at a time
+         * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to ID.
+         * @param {number} [viewerFid] FID of the user viewing the channels.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelDetailsBulk: async (ids: string, type?: ChannelType, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'ids' is not null or undefined
+            assertParamExists('channelDetailsBulk', 'ids', ids)
+            const localVarPath = `/farcaster/channel/bulk`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (ids !== undefined) {
+                localVarQueryParameter['ids'] = ids;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
+         * @summary For channel
+         * @param {string} id Channel ID for the channel being queried
+         * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [limit] Number of followers to fetch (default 25, max 1000)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelFollowers: async (id: string, viewerFid?: number, cursor?: string, limit?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('channelFollowers', 'id', id)
+            const localVarPath = `/farcaster/channel/followers`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of users who are active in a given channel, ordered by ascending FIDs
+         * @summary Fetch users who are active in a channel
+         * @param {string} id Channel ID for the channel being queried
+         * @param {boolean} hasRootCastAuthors Include users who posted the root cast in the channel
+         * @param {boolean} [hasCastLikers] Include users who liked a cast in the channel
+         * @param {boolean} [hasCastRecasters] Include users who recasted a cast in the channel
+         * @param {boolean} [hasReplyAuthors] Include users who replied to a cast in the channel
+         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelUsers: async (id: string, hasRootCastAuthors: boolean, hasCastLikers?: boolean, hasCastRecasters?: boolean, hasReplyAuthors?: boolean, cursor?: string, limit?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('channelUsers', 'id', id)
+            // verify required parameter 'hasRootCastAuthors' is not null or undefined
+            assertParamExists('channelUsers', 'hasRootCastAuthors', hasRootCastAuthors)
+            const localVarPath = `/farcaster/channel/users`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
+            }
+
+            if (hasRootCastAuthors !== undefined) {
+                localVarQueryParameter['has_root_cast_authors'] = hasRootCastAuthors;
+            }
+
+            if (hasCastLikers !== undefined) {
+                localVarQueryParameter['has_cast_likers'] = hasCastLikers;
+            }
+
+            if (hasCastRecasters !== undefined) {
+                localVarQueryParameter['has_cast_recasters'] = hasCastRecasters;
+            }
+
+            if (hasReplyAuthors !== undefined) {
+                localVarQueryParameter['has_reply_authors'] = hasReplyAuthors;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Follow a channel
+         * @summary Follow a channel
+         * @param {ChannelFollowReqBody} channelFollowReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        followChannel: async (channelFollowReqBody: ChannelFollowReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'channelFollowReqBody' is not null or undefined
+            assertParamExists('followChannel', 'channelFollowReqBody', channelFollowReqBody)
+            const localVarPath = `/farcaster/channel/follow`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(channelFollowReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Invite a user to a channel
+         * @summary Invite
+         * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        inviteChannelMember: async (removeChannelMemberRequest: RemoveChannelMemberRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'removeChannelMemberRequest' is not null or undefined
+            assertParamExists('inviteChannelMember', 'removeChannelMemberRequest', removeChannelMemberRequest)
+            const localVarPath = `/farcaster/channel/member/invite`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(removeChannelMemberRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of all channels with their details
+         * @summary Fetch all channels with their details
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listAllChannels: async (limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/farcaster/channel/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.
+         * @summary Open invites
+         * @param {string} [channelId] Channel ID for the channel being queried
+         * @param {number} [invitedFid] FID of the user being invited
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listChannelInvites: async (channelId?: string, invitedFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/farcaster/channel/member/invite/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (channelId !== undefined) {
+                localVarQueryParameter['channel_id'] = channelId;
+            }
+
+            if (invitedFid !== undefined) {
+                localVarQueryParameter['invited_fid'] = invitedFid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch a list of members in a channel
+         * @summary Fetch members
+         * @param {string} channelId Channel ID for the channel being queried
+         * @param {number} [fid] FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members.
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listChannelMembers: async (channelId: string, fid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'channelId' is not null or undefined
+            assertParamExists('listChannelMembers', 'channelId', channelId)
+            const localVarPath = `/farcaster/channel/member/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (channelId !== undefined) {
+                localVarQueryParameter['channel_id'] = channelId;
+            }
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
+         * @summary Relevant followers
+         * @param {string} id Channel ID being queried
+         * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        relevantChannelFollowers: async (id: string, viewerFid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('relevantChannelFollowers', 'id', id)
+            // verify required parameter 'viewerFid' is not null or undefined
+            assertParamExists('relevantChannelFollowers', 'viewerFid', viewerFid)
+            const localVarPath = `/farcaster/channel/followers/relevant`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Remove a user from a channel or a user\'s invite to a channel role
+         * @summary Remove user
+         * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        removeChannelMember: async (removeChannelMemberRequest: RemoveChannelMemberRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'removeChannelMemberRequest' is not null or undefined
+            assertParamExists('removeChannelMember', 'removeChannelMemberRequest', removeChannelMemberRequest)
+            const localVarPath = `/farcaster/channel/member`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(removeChannelMemberRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Accept or reject a channel invite
+         * @summary Accept or reject an invite
+         * @param {RespondChannelInviteRequest} respondChannelInviteRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        respondChannelInvite: async (respondChannelInviteRequest: RespondChannelInviteRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'respondChannelInviteRequest' is not null or undefined
+            assertParamExists('respondChannelInvite', 'respondChannelInviteRequest', respondChannelInviteRequest)
+            const localVarPath = `/farcaster/channel/member/invite`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(respondChannelInviteRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of channels based on ID or name
+         * @summary Search by ID or name
+         * @param {string} q Channel ID or name for the channel being queried
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchChannels: async (q: string, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'q' is not null or undefined
+            assertParamExists('searchChannels', 'q', q)
+            const localVarPath = `/farcaster/channel/search`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (q !== undefined) {
+                localVarQueryParameter['q'] = q;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of trending channels based on activity
+         * @summary Channels by activity
+         * @param {TrendingChannelsTimeWindowEnum} [timeWindow] 
+         * @param {number} [limit] Number of results to fetch (default 10, max 25)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        trendingChannels: async (timeWindow?: TrendingChannelsTimeWindowEnum, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/farcaster/channel/trending`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (timeWindow !== undefined) {
+                localVarQueryParameter['time_window'] = timeWindow;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Unfollow a channel
+         * @summary Unfollow a channel
+         * @param {ChannelFollowReqBody} channelFollowReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unfollowChannel: async (channelFollowReqBody: ChannelFollowReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'channelFollowReqBody' is not null or undefined
+            assertParamExists('unfollowChannel', 'channelFollowReqBody', channelFollowReqBody)
+            const localVarPath = `/farcaster/channel/follow`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(channelFollowReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour.
+         * @summary Member of
+         * @param {number} fid The FID of the user.
+         * @param {number} [limit] Number of results to fetch (default 20, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userChannelMemberships: async (fid: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('userChannelMemberships', 'fid', fid)
+            const localVarPath = `/farcaster/user/memberships/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of all channels with their details that a FID follows.
+         * @summary Following
+         * @param {number} fid The FID of the user.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userChannels: async (fid: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('userChannels', 'fid', fid)
+            const localVarPath = `/farcaster/user/channels`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ChannelApi - functional programming interface
+ * @export
+ */
+export const ChannelApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ChannelApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Fetches all channels that a user has casted in, in reverse chronological order.
+         * @summary Fetch channels that user is active in
+         * @param {number} fid The user\&#39;s FID (identifier)
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async activeChannels(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersActiveChannelsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.activeChannels(fid, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.activeChannels']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Returns details of a channel
+         * @summary By ID or parent_url
+         * @param {string} id Channel ID for the channel being queried
+         * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to ID.
+         * @param {number} [viewerFid] FID of the user viewing the channel.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async channelDetails(id: string, type?: ChannelType, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.channelDetails(id, type, viewerFid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.channelDetails']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Returns details of multiple channels
+         * @summary Bulk fetch
+         * @param {string} ids Comma separated list of channel IDs or parent_urls, up to 100 at a time
+         * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to ID.
+         * @param {number} [viewerFid] FID of the user viewing the channels.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async channelDetailsBulk(ids: string, type?: ChannelType, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelResponseBulk>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.channelDetailsBulk(ids, type, viewerFid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.channelDetailsBulk']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
+         * @summary For channel
+         * @param {string} id Channel ID for the channel being queried
+         * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [limit] Number of followers to fetch (default 25, max 1000)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async channelFollowers(id: string, viewerFid?: number, cursor?: string, limit?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.channelFollowers(id, viewerFid, cursor, limit, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.channelFollowers']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Returns a list of users who are active in a given channel, ordered by ascending FIDs
+         * @summary Fetch users who are active in a channel
+         * @param {string} id Channel ID for the channel being queried
+         * @param {boolean} hasRootCastAuthors Include users who posted the root cast in the channel
+         * @param {boolean} [hasCastLikers] Include users who liked a cast in the channel
+         * @param {boolean} [hasCastRecasters] Include users who recasted a cast in the channel
+         * @param {boolean} [hasReplyAuthors] Include users who replied to a cast in the channel
+         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async channelUsers(id: string, hasRootCastAuthors: boolean, hasCastLikers?: boolean, hasCastRecasters?: boolean, hasReplyAuthors?: boolean, cursor?: string, limit?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.channelUsers(id, hasRootCastAuthors, hasCastLikers, hasCastRecasters, hasReplyAuthors, cursor, limit, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.channelUsers']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Follow a channel
+         * @summary Follow a channel
+         * @param {ChannelFollowReqBody} channelFollowReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async followChannel(channelFollowReqBody: ChannelFollowReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.followChannel(channelFollowReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.followChannel']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Invite a user to a channel
+         * @summary Invite
+         * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async inviteChannelMember(removeChannelMemberRequest: RemoveChannelMemberRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.inviteChannelMember(removeChannelMemberRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.inviteChannelMember']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Returns a list of all channels with their details
+         * @summary Fetch all channels with their details
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listAllChannels(limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listAllChannels(limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.listAllChannels']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.
+         * @summary Open invites
+         * @param {string} [channelId] Channel ID for the channel being queried
+         * @param {number} [invitedFid] FID of the user being invited
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listChannelInvites(channelId?: string, invitedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelMemberInviteListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listChannelInvites(channelId, invitedFid, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.listChannelInvites']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch a list of members in a channel
+         * @summary Fetch members
+         * @param {string} channelId Channel ID for the channel being queried
+         * @param {number} [fid] FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members.
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listChannelMembers(channelId: string, fid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelMemberListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listChannelMembers(channelId, fid, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.listChannelMembers']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
+         * @summary Relevant followers
+         * @param {string} id Channel ID being queried
+         * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async relevantChannelFollowers(id: string, viewerFid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RelevantFollowersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.relevantChannelFollowers(id, viewerFid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.relevantChannelFollowers']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Remove a user from a channel or a user\'s invite to a channel role
+         * @summary Remove user
+         * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async removeChannelMember(removeChannelMemberRequest: RemoveChannelMemberRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.removeChannelMember(removeChannelMemberRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.removeChannelMember']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Accept or reject a channel invite
+         * @summary Accept or reject an invite
+         * @param {RespondChannelInviteRequest} respondChannelInviteRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async respondChannelInvite(respondChannelInviteRequest: RespondChannelInviteRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.respondChannelInvite(respondChannelInviteRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.respondChannelInvite']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Returns a list of channels based on ID or name
+         * @summary Search by ID or name
+         * @param {string} q Channel ID or name for the channel being queried
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async searchChannels(q: string, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.searchChannels(q, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.searchChannels']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Returns a list of trending channels based on activity
+         * @summary Channels by activity
+         * @param {TrendingChannelsTimeWindowEnum} [timeWindow] 
+         * @param {number} [limit] Number of results to fetch (default 10, max 25)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async trendingChannels(timeWindow?: TrendingChannelsTimeWindowEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TrendingChannelResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.trendingChannels(timeWindow, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.trendingChannels']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Unfollow a channel
+         * @summary Unfollow a channel
+         * @param {ChannelFollowReqBody} channelFollowReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async unfollowChannel(channelFollowReqBody: ChannelFollowReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.unfollowChannel(channelFollowReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.unfollowChannel']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour.
+         * @summary Member of
+         * @param {number} fid The FID of the user.
+         * @param {number} [limit] Number of results to fetch (default 20, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async userChannelMemberships(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelMemberListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userChannelMemberships(fid, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.userChannelMemberships']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Returns a list of all channels with their details that a FID follows.
+         * @summary Following
+         * @param {number} fid The FID of the user.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async userChannels(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userChannels(fid, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.userChannels']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * ChannelApi - factory interface
+ * @export
+ */
+export const ChannelApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ChannelApiFp(configuration)
+    return {
+        /**
+         * Fetches all channels that a user has casted in, in reverse chronological order.
+         * @summary Fetch channels that user is active in
+         * @param {number} fid The user\&#39;s FID (identifier)
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        activeChannels(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<UsersActiveChannelsResponse> {
+            return localVarFp.activeChannels(fid, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns details of a channel
+         * @summary By ID or parent_url
+         * @param {string} id Channel ID for the channel being queried
+         * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to ID.
+         * @param {number} [viewerFid] FID of the user viewing the channel.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelDetails(id: string, type?: ChannelType, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<ChannelResponse> {
+            return localVarFp.channelDetails(id, type, viewerFid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns details of multiple channels
+         * @summary Bulk fetch
+         * @param {string} ids Comma separated list of channel IDs or parent_urls, up to 100 at a time
+         * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to ID.
+         * @param {number} [viewerFid] FID of the user viewing the channels.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelDetailsBulk(ids: string, type?: ChannelType, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<ChannelResponseBulk> {
+            return localVarFp.channelDetailsBulk(ids, type, viewerFid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
+         * @summary For channel
+         * @param {string} id Channel ID for the channel being queried
+         * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [limit] Number of followers to fetch (default 25, max 1000)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelFollowers(id: string, viewerFid?: number, cursor?: string, limit?: number, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
+            return localVarFp.channelFollowers(id, viewerFid, cursor, limit, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of users who are active in a given channel, ordered by ascending FIDs
+         * @summary Fetch users who are active in a channel
+         * @param {string} id Channel ID for the channel being queried
+         * @param {boolean} hasRootCastAuthors Include users who posted the root cast in the channel
+         * @param {boolean} [hasCastLikers] Include users who liked a cast in the channel
+         * @param {boolean} [hasCastRecasters] Include users who recasted a cast in the channel
+         * @param {boolean} [hasReplyAuthors] Include users who replied to a cast in the channel
+         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelUsers(id: string, hasRootCastAuthors: boolean, hasCastLikers?: boolean, hasCastRecasters?: boolean, hasReplyAuthors?: boolean, cursor?: string, limit?: number, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
+            return localVarFp.channelUsers(id, hasRootCastAuthors, hasCastLikers, hasCastRecasters, hasReplyAuthors, cursor, limit, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Follow a channel
+         * @summary Follow a channel
+         * @param {ChannelFollowReqBody} channelFollowReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        followChannel(channelFollowReqBody: ChannelFollowReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.followChannel(channelFollowReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Invite a user to a channel
+         * @summary Invite
+         * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        inviteChannelMember(removeChannelMemberRequest: RemoveChannelMemberRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.inviteChannelMember(removeChannelMemberRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of all channels with their details
+         * @summary Fetch all channels with their details
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listAllChannels(limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChannelListResponse> {
+            return localVarFp.listAllChannels(limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.
+         * @summary Open invites
+         * @param {string} [channelId] Channel ID for the channel being queried
+         * @param {number} [invitedFid] FID of the user being invited
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listChannelInvites(channelId?: string, invitedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChannelMemberInviteListResponse> {
+            return localVarFp.listChannelInvites(channelId, invitedFid, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch a list of members in a channel
+         * @summary Fetch members
+         * @param {string} channelId Channel ID for the channel being queried
+         * @param {number} [fid] FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members.
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listChannelMembers(channelId: string, fid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChannelMemberListResponse> {
+            return localVarFp.listChannelMembers(channelId, fid, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
+         * @summary Relevant followers
+         * @param {string} id Channel ID being queried
+         * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        relevantChannelFollowers(id: string, viewerFid: number, options?: RawAxiosRequestConfig): AxiosPromise<RelevantFollowersResponse> {
+            return localVarFp.relevantChannelFollowers(id, viewerFid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Remove a user from a channel or a user\'s invite to a channel role
+         * @summary Remove user
+         * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        removeChannelMember(removeChannelMemberRequest: RemoveChannelMemberRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.removeChannelMember(removeChannelMemberRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Accept or reject a channel invite
+         * @summary Accept or reject an invite
+         * @param {RespondChannelInviteRequest} respondChannelInviteRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        respondChannelInvite(respondChannelInviteRequest: RespondChannelInviteRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.respondChannelInvite(respondChannelInviteRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of channels based on ID or name
+         * @summary Search by ID or name
+         * @param {string} q Channel ID or name for the channel being queried
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchChannels(q: string, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChannelSearchResponse> {
+            return localVarFp.searchChannels(q, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of trending channels based on activity
+         * @summary Channels by activity
+         * @param {TrendingChannelsTimeWindowEnum} [timeWindow] 
+         * @param {number} [limit] Number of results to fetch (default 10, max 25)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        trendingChannels(timeWindow?: TrendingChannelsTimeWindowEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<TrendingChannelResponse> {
+            return localVarFp.trendingChannels(timeWindow, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Unfollow a channel
+         * @summary Unfollow a channel
+         * @param {ChannelFollowReqBody} channelFollowReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unfollowChannel(channelFollowReqBody: ChannelFollowReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.unfollowChannel(channelFollowReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour.
+         * @summary Member of
+         * @param {number} fid The FID of the user.
+         * @param {number} [limit] Number of results to fetch (default 20, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userChannelMemberships(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChannelMemberListResponse> {
+            return localVarFp.userChannelMemberships(fid, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of all channels with their details that a FID follows.
+         * @summary Following
+         * @param {number} fid The FID of the user.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userChannels(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChannelListResponse> {
+            return localVarFp.userChannels(fid, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ChannelApi - object-oriented interface
+ * @export
+ * @class ChannelApi
+ * @extends {BaseAPI}
+ */
+export class ChannelApi extends BaseAPI {
+    /**
+     * Fetches all channels that a user has casted in, in reverse chronological order.
+     * @summary Fetch channels that user is active in
+     * @param {number} fid The user\&#39;s FID (identifier)
+     * @param {number} [limit] Number of results to fetch (default 20, max 100).
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public activeChannels(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).activeChannels(fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns details of a channel
+     * @summary By ID or parent_url
+     * @param {string} id Channel ID for the channel being queried
+     * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to ID.
+     * @param {number} [viewerFid] FID of the user viewing the channel.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public channelDetails(id: string, type?: ChannelType, viewerFid?: number, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).channelDetails(id, type, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns details of multiple channels
+     * @summary Bulk fetch
+     * @param {string} ids Comma separated list of channel IDs or parent_urls, up to 100 at a time
+     * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to ID.
+     * @param {number} [viewerFid] FID of the user viewing the channels.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public channelDetailsBulk(ids: string, type?: ChannelType, viewerFid?: number, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).channelDetailsBulk(ids, type, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
+     * @summary For channel
+     * @param {string} id Channel ID for the channel being queried
+     * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {string} [cursor] Pagination cursor.
+     * @param {number} [limit] Number of followers to fetch (default 25, max 1000)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public channelFollowers(id: string, viewerFid?: number, cursor?: string, limit?: number, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).channelFollowers(id, viewerFid, cursor, limit, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of users who are active in a given channel, ordered by ascending FIDs
+     * @summary Fetch users who are active in a channel
+     * @param {string} id Channel ID for the channel being queried
+     * @param {boolean} hasRootCastAuthors Include users who posted the root cast in the channel
+     * @param {boolean} [hasCastLikers] Include users who liked a cast in the channel
+     * @param {boolean} [hasCastRecasters] Include users who recasted a cast in the channel
+     * @param {boolean} [hasReplyAuthors] Include users who replied to a cast in the channel
+     * @param {string} [cursor] Pagination cursor.
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public channelUsers(id: string, hasRootCastAuthors: boolean, hasCastLikers?: boolean, hasCastRecasters?: boolean, hasReplyAuthors?: boolean, cursor?: string, limit?: number, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).channelUsers(id, hasRootCastAuthors, hasCastLikers, hasCastRecasters, hasReplyAuthors, cursor, limit, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Follow a channel
+     * @summary Follow a channel
+     * @param {ChannelFollowReqBody} channelFollowReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public followChannel(channelFollowReqBody: ChannelFollowReqBody, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).followChannel(channelFollowReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Invite a user to a channel
+     * @summary Invite
+     * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public inviteChannelMember(removeChannelMemberRequest: RemoveChannelMemberRequest, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).inviteChannelMember(removeChannelMemberRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of all channels with their details
+     * @summary Fetch all channels with their details
+     * @param {number} [limit] Number of results to fetch
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public listAllChannels(limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).listAllChannels(limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.
+     * @summary Open invites
+     * @param {string} [channelId] Channel ID for the channel being queried
+     * @param {number} [invitedFid] FID of the user being invited
+     * @param {number} [limit] Number of results to fetch
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public listChannelInvites(channelId?: string, invitedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).listChannelInvites(channelId, invitedFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch a list of members in a channel
+     * @summary Fetch members
+     * @param {string} channelId Channel ID for the channel being queried
+     * @param {number} [fid] FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members.
+     * @param {number} [limit] Number of results to fetch
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public listChannelMembers(channelId: string, fid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).listChannelMembers(channelId, fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
+     * @summary Relevant followers
+     * @param {string} id Channel ID being queried
+     * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public relevantChannelFollowers(id: string, viewerFid: number, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).relevantChannelFollowers(id, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Remove a user from a channel or a user\'s invite to a channel role
+     * @summary Remove user
+     * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public removeChannelMember(removeChannelMemberRequest: RemoveChannelMemberRequest, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).removeChannelMember(removeChannelMemberRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Accept or reject a channel invite
+     * @summary Accept or reject an invite
+     * @param {RespondChannelInviteRequest} respondChannelInviteRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public respondChannelInvite(respondChannelInviteRequest: RespondChannelInviteRequest, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).respondChannelInvite(respondChannelInviteRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of channels based on ID or name
+     * @summary Search by ID or name
+     * @param {string} q Channel ID or name for the channel being queried
+     * @param {number} [limit] Number of results to fetch
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public searchChannels(q: string, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).searchChannels(q, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of trending channels based on activity
+     * @summary Channels by activity
+     * @param {TrendingChannelsTimeWindowEnum} [timeWindow] 
+     * @param {number} [limit] Number of results to fetch (default 10, max 25)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public trendingChannels(timeWindow?: TrendingChannelsTimeWindowEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).trendingChannels(timeWindow, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Unfollow a channel
+     * @summary Unfollow a channel
+     * @param {ChannelFollowReqBody} channelFollowReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public unfollowChannel(channelFollowReqBody: ChannelFollowReqBody, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).unfollowChannel(channelFollowReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour.
+     * @summary Member of
+     * @param {number} fid The FID of the user.
+     * @param {number} [limit] Number of results to fetch (default 20, max 100)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public userChannelMemberships(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).userChannelMemberships(fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of all channels with their details that a FID follows.
+     * @summary Following
+     * @param {number} fid The FID of the user.
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     */
+    public userChannels(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).userChannels(fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+/**
+ * @export
+ */
+export const TrendingChannelsTimeWindowEnum = {
+    _1d: '1d',
+    _7d: '7d',
+    _30d: '30d'
+} as const;
+export type TrendingChannelsTimeWindowEnum = typeof TrendingChannelsTimeWindowEnum[keyof typeof TrendingChannelsTimeWindowEnum];
+
+
+/**
+ * FeedApi - axios parameter creator
+ * @export
+ */
+export const FeedApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Fetch casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type.
+         * @summary By filters
+         * @param {FeedType} feedType Defaults to following (requires FID or address). If set to filter (requires filter_type)
+         * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to FIDs (requires FIDs) or parent_url (requires parent_url) or channel_id (requires channel_id)
+         * @param {number} [fid] (Optional) FID of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
+         * @param {string} [fids] Used when filter_type&#x3D;FIDs . Create a feed based on a list of FIDs. Max array size is 250. Requires feed_type and filter_type.
+         * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
+         * @param {string} [channelId] Used when filter_type&#x3D;channel_id can be used to fetch casts under a channel. Requires feed_type and filter_type.
+         * @param {boolean} [membersOnly] Used when filter_type&#x3D;channel_id. Only include casts from members of the channel. True by default.
+         * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
+         * @param {Array<EmbedType>} [embedTypes] Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feed: async (feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, membersOnly?: boolean, embedUrl?: string, embedTypes?: Array<EmbedType>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'feedType' is not null or undefined
+            assertParamExists('feed', 'feedType', feedType)
+            const localVarPath = `/farcaster/feed`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (feedType !== undefined) {
+                localVarQueryParameter['feed_type'] = feedType;
+            }
+
+            if (filterType !== undefined) {
+                localVarQueryParameter['filter_type'] = filterType;
+            }
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (fids !== undefined) {
+                localVarQueryParameter['fids'] = fids;
+            }
+
+            if (parentUrl !== undefined) {
+                localVarQueryParameter['parent_url'] = parentUrl;
+            }
+
+            if (channelId !== undefined) {
+                localVarQueryParameter['channel_id'] = channelId;
+            }
+
+            if (membersOnly !== undefined) {
+                localVarQueryParameter['members_only'] = membersOnly;
+            }
+
+            if (embedUrl !== undefined) {
+                localVarQueryParameter['embed_url'] = embedUrl;
+            }
+
+            if (embedTypes) {
+                localVarQueryParameter['embed_types'] = embedTypes.join(COLLECTION_FORMATS.csv);
+            }
+
+            if (withRecasts !== undefined) {
+                localVarQueryParameter['with_recasts'] = withRecasts;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch feed based on channel IDs
+         * @summary By channel IDs
+         * @param {string} channelIds Comma separated list of channel IDs e.g. neynar,farcaster
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {boolean} [withReplies] Include replies in the response, false by default
+         * @param {boolean} [membersOnly] Only include casts from members of the channel. True by default.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {boolean} [shouldModerate] If true, only casts that have been liked by the moderator (if one exists) will be returned.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedChannels: async (channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, membersOnly?: boolean, limit?: number, cursor?: string, shouldModerate?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'channelIds' is not null or undefined
+            assertParamExists('feedChannels', 'channelIds', channelIds)
+            const localVarPath = `/farcaster/feed/channels`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (channelIds !== undefined) {
+                localVarQueryParameter['channel_ids'] = channelIds;
+            }
+
+            if (withRecasts !== undefined) {
+                localVarQueryParameter['with_recasts'] = withRecasts;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (withReplies !== undefined) {
+                localVarQueryParameter['with_replies'] = withReplies;
+            }
+
+            if (membersOnly !== undefined) {
+                localVarQueryParameter['members_only'] = membersOnly;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (shouldModerate !== undefined) {
+                localVarQueryParameter['should_moderate'] = shouldModerate;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch feed based on who a user is following
+         * @summary Following
+         * @param {number} fid FID of user whose feed you want to create
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedFollowing: async (fid: number, viewerFid?: number, withRecasts?: boolean, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('feedFollowing', 'fid', fid)
+            const localVarPath = `/farcaster/feed/following`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (withRecasts !== undefined) {
+                localVarQueryParameter['with_recasts'] = withRecasts;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch a personalized For You feed for a user
+         * @summary For you
+         * @param {number} fid FID of user whose feed you want to create
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {ForYouProvider} [provider] 
+         * @param {number} [limit] Number of results to fetch (default 25, max 50)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedForYou: async (fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, providerMetadata?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('feedForYou', 'fid', fid)
+            const localVarPath = `/farcaster/feed/for_you`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (provider !== undefined) {
+                localVarQueryParameter['provider'] = provider;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (providerMetadata !== undefined) {
+                localVarQueryParameter['provider_metadata'] = providerMetadata;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch feed of casts with Frames, reverse chronological order
+         * @summary Casts with Frames
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedFrames: async (limit?: number, viewerFid?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/farcaster/feed/frames`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch feed based on parent URLs
+         * @summary By parent URLs
+         * @param {string} parentUrls Comma separated list of parent_urls
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {boolean} [withReplies] Include replies in the response, false by default
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedParentUrls: async (parentUrls: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'parentUrls' is not null or undefined
+            assertParamExists('feedParentUrls', 'parentUrls', parentUrls)
+            const localVarPath = `/farcaster/feed/parent_urls`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (parentUrls !== undefined) {
+                localVarQueryParameter['parent_urls'] = parentUrls;
+            }
+
+            if (withRecasts !== undefined) {
+                localVarQueryParameter['with_recasts'] = withRecasts;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (withReplies !== undefined) {
+                localVarQueryParameter['with_replies'] = withReplies;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
+         * @summary Trending casts
+         * @param {number} [limit] Number of results to fetch (max 10)
+         * @param {string} [cursor] Pagination cursor
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {FeedTrendingTimeWindowEnum} [timeWindow] Time window for trending casts (7d window for channel feeds only)
+         * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
+         * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed.
+         * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedTrending: async (limit?: number, cursor?: string, viewerFid?: number, timeWindow?: FeedTrendingTimeWindowEnum, channelId?: string, provider?: FeedTrendingProvider, providerMetadata?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/farcaster/feed/trending`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (timeWindow !== undefined) {
+                localVarQueryParameter['time_window'] = timeWindow;
+            }
+
+            if (channelId !== undefined) {
+                localVarQueryParameter['channel_id'] = channelId;
+            }
+
+            if (provider !== undefined) {
+                localVarQueryParameter['provider'] = provider;
+            }
+
+            if (providerMetadata !== undefined) {
+                localVarQueryParameter['provider_metadata'] = providerMetadata;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel
+         * @summary Chronologically
+         * @param {number} fid FID of user whose recent casts you want to fetch
+         * @param {number} [viewerFid] FID of the user viewing the feed
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor
+         * @param {boolean} [includeReplies] Include reply casts by the author in the response, true by default
+         * @param {string} [parentUrl] Parent URL to filter the feed; mutually exclusive with channel_id
+         * @param {string} [channelId] Channel ID to filter the feed; mutually exclusive with parent_url
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedUserCasts: async (fid: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('feedUserCasts', 'fid', fid)
+            const localVarPath = `/farcaster/feed/user/casts`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (includeReplies !== undefined) {
+                localVarQueryParameter['include_replies'] = includeReplies;
+            }
+
+            if (parentUrl !== undefined) {
+                localVarQueryParameter['parent_url'] = parentUrl;
+            }
+
+            if (channelId !== undefined) {
+                localVarQueryParameter['channel_id'] = channelId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
+         * @summary 10 most popular casts
+         * @param {number} fid FID of user whose feed you want to create
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedUserPopular: async (fid: number, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('feedUserPopular', 'fid', fid)
+            const localVarPath = `/farcaster/feed/user/popular`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch recent replies and recasts for a given user FID; sorted by most recent first
+         * @summary Replies and recasts
+         * @param {number} fid FID of user whose replies and recasts you want to fetch
+         * @param {FeedUserRepliesRecastsFilterEnum} [filter] filter to fetch only replies or recasts
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedUserRepliesRecasts: async (fid: number, filter?: FeedUserRepliesRecastsFilterEnum, limit?: number, cursor?: string, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('feedUserRepliesRecasts', 'fid', fid)
+            const localVarPath = `/farcaster/feed/user/replies_and_recasts`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (filter !== undefined) {
+                localVarQueryParameter['filter'] = filter;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * FeedApi - functional programming interface
+ * @export
+ */
+export const FeedApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = FeedApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Fetch casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type.
+         * @summary By filters
+         * @param {FeedType} feedType Defaults to following (requires FID or address). If set to filter (requires filter_type)
+         * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to FIDs (requires FIDs) or parent_url (requires parent_url) or channel_id (requires channel_id)
+         * @param {number} [fid] (Optional) FID of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
+         * @param {string} [fids] Used when filter_type&#x3D;FIDs . Create a feed based on a list of FIDs. Max array size is 250. Requires feed_type and filter_type.
+         * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
+         * @param {string} [channelId] Used when filter_type&#x3D;channel_id can be used to fetch casts under a channel. Requires feed_type and filter_type.
+         * @param {boolean} [membersOnly] Used when filter_type&#x3D;channel_id. Only include casts from members of the channel. True by default.
+         * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
+         * @param {Array<EmbedType>} [embedTypes] Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async feed(feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, membersOnly?: boolean, embedUrl?: string, embedTypes?: Array<EmbedType>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feed(feedType, filterType, fid, fids, parentUrl, channelId, membersOnly, embedUrl, embedTypes, withRecasts, limit, cursor, viewerFid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeedApi.feed']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch feed based on channel IDs
+         * @summary By channel IDs
+         * @param {string} channelIds Comma separated list of channel IDs e.g. neynar,farcaster
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {boolean} [withReplies] Include replies in the response, false by default
+         * @param {boolean} [membersOnly] Only include casts from members of the channel. True by default.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {boolean} [shouldModerate] If true, only casts that have been liked by the moderator (if one exists) will be returned.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async feedChannels(channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, membersOnly?: boolean, limit?: number, cursor?: string, shouldModerate?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedChannels(channelIds, withRecasts, viewerFid, withReplies, membersOnly, limit, cursor, shouldModerate, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeedApi.feedChannels']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch feed based on who a user is following
+         * @summary Following
+         * @param {number} fid FID of user whose feed you want to create
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async feedFollowing(fid: number, viewerFid?: number, withRecasts?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedFollowing(fid, viewerFid, withRecasts, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeedApi.feedFollowing']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch a personalized For You feed for a user
+         * @summary For you
+         * @param {number} fid FID of user whose feed you want to create
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {ForYouProvider} [provider] 
+         * @param {number} [limit] Number of results to fetch (default 25, max 50)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async feedForYou(fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, providerMetadata?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedForYou(fid, viewerFid, provider, limit, cursor, providerMetadata, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeedApi.feedForYou']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch feed of casts with Frames, reverse chronological order
+         * @summary Casts with Frames
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async feedFrames(limit?: number, viewerFid?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedFrames(limit, viewerFid, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeedApi.feedFrames']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch feed based on parent URLs
+         * @summary By parent URLs
+         * @param {string} parentUrls Comma separated list of parent_urls
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {boolean} [withReplies] Include replies in the response, false by default
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async feedParentUrls(parentUrls: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedParentUrls(parentUrls, withRecasts, viewerFid, withReplies, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeedApi.feedParentUrls']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
+         * @summary Trending casts
+         * @param {number} [limit] Number of results to fetch (max 10)
+         * @param {string} [cursor] Pagination cursor
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {FeedTrendingTimeWindowEnum} [timeWindow] Time window for trending casts (7d window for channel feeds only)
+         * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
+         * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed.
+         * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async feedTrending(limit?: number, cursor?: string, viewerFid?: number, timeWindow?: FeedTrendingTimeWindowEnum, channelId?: string, provider?: FeedTrendingProvider, providerMetadata?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedTrending(limit, cursor, viewerFid, timeWindow, channelId, provider, providerMetadata, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeedApi.feedTrending']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel
+         * @summary Chronologically
+         * @param {number} fid FID of user whose recent casts you want to fetch
+         * @param {number} [viewerFid] FID of the user viewing the feed
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor
+         * @param {boolean} [includeReplies] Include reply casts by the author in the response, true by default
+         * @param {string} [parentUrl] Parent URL to filter the feed; mutually exclusive with channel_id
+         * @param {string} [channelId] Channel ID to filter the feed; mutually exclusive with parent_url
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async feedUserCasts(fid: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedUserCasts(fid, viewerFid, limit, cursor, includeReplies, parentUrl, channelId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeedApi.feedUserCasts']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
+         * @summary 10 most popular casts
+         * @param {number} fid FID of user whose feed you want to create
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async feedUserPopular(fid: number, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkCastsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedUserPopular(fid, viewerFid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeedApi.feedUserPopular']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch recent replies and recasts for a given user FID; sorted by most recent first
+         * @summary Replies and recasts
+         * @param {number} fid FID of user whose replies and recasts you want to fetch
+         * @param {FeedUserRepliesRecastsFilterEnum} [filter] filter to fetch only replies or recasts
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async feedUserRepliesRecasts(fid: number, filter?: FeedUserRepliesRecastsFilterEnum, limit?: number, cursor?: string, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.feedUserRepliesRecasts(fid, filter, limit, cursor, viewerFid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeedApi.feedUserRepliesRecasts']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * FeedApi - factory interface
+ * @export
+ */
+export const FeedApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = FeedApiFp(configuration)
+    return {
+        /**
+         * Fetch casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type.
+         * @summary By filters
+         * @param {FeedType} feedType Defaults to following (requires FID or address). If set to filter (requires filter_type)
+         * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to FIDs (requires FIDs) or parent_url (requires parent_url) or channel_id (requires channel_id)
+         * @param {number} [fid] (Optional) FID of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
+         * @param {string} [fids] Used when filter_type&#x3D;FIDs . Create a feed based on a list of FIDs. Max array size is 250. Requires feed_type and filter_type.
+         * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
+         * @param {string} [channelId] Used when filter_type&#x3D;channel_id can be used to fetch casts under a channel. Requires feed_type and filter_type.
+         * @param {boolean} [membersOnly] Used when filter_type&#x3D;channel_id. Only include casts from members of the channel. True by default.
+         * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
+         * @param {Array<EmbedType>} [embedTypes] Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feed(feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, membersOnly?: boolean, embedUrl?: string, embedTypes?: Array<EmbedType>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
+            return localVarFp.feed(feedType, filterType, fid, fids, parentUrl, channelId, membersOnly, embedUrl, embedTypes, withRecasts, limit, cursor, viewerFid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch feed based on channel IDs
+         * @summary By channel IDs
+         * @param {string} channelIds Comma separated list of channel IDs e.g. neynar,farcaster
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {boolean} [withReplies] Include replies in the response, false by default
+         * @param {boolean} [membersOnly] Only include casts from members of the channel. True by default.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {boolean} [shouldModerate] If true, only casts that have been liked by the moderator (if one exists) will be returned.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedChannels(channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, membersOnly?: boolean, limit?: number, cursor?: string, shouldModerate?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
+            return localVarFp.feedChannels(channelIds, withRecasts, viewerFid, withReplies, membersOnly, limit, cursor, shouldModerate, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch feed based on who a user is following
+         * @summary Following
+         * @param {number} fid FID of user whose feed you want to create
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedFollowing(fid: number, viewerFid?: number, withRecasts?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
+            return localVarFp.feedFollowing(fid, viewerFid, withRecasts, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch a personalized For You feed for a user
+         * @summary For you
+         * @param {number} fid FID of user whose feed you want to create
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {ForYouProvider} [provider] 
+         * @param {number} [limit] Number of results to fetch (default 25, max 50)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedForYou(fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, providerMetadata?: string, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
+            return localVarFp.feedForYou(fid, viewerFid, provider, limit, cursor, providerMetadata, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch feed of casts with Frames, reverse chronological order
+         * @summary Casts with Frames
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedFrames(limit?: number, viewerFid?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
+            return localVarFp.feedFrames(limit, viewerFid, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch feed based on parent URLs
+         * @summary By parent URLs
+         * @param {string} parentUrls Comma separated list of parent_urls
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {boolean} [withReplies] Include replies in the response, false by default
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedParentUrls(parentUrls: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
+            return localVarFp.feedParentUrls(parentUrls, withRecasts, viewerFid, withReplies, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
+         * @summary Trending casts
+         * @param {number} [limit] Number of results to fetch (max 10)
+         * @param {string} [cursor] Pagination cursor
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {FeedTrendingTimeWindowEnum} [timeWindow] Time window for trending casts (7d window for channel feeds only)
+         * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
+         * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed.
+         * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedTrending(limit?: number, cursor?: string, viewerFid?: number, timeWindow?: FeedTrendingTimeWindowEnum, channelId?: string, provider?: FeedTrendingProvider, providerMetadata?: string, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
+            return localVarFp.feedTrending(limit, cursor, viewerFid, timeWindow, channelId, provider, providerMetadata, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel
+         * @summary Chronologically
+         * @param {number} fid FID of user whose recent casts you want to fetch
+         * @param {number} [viewerFid] FID of the user viewing the feed
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor
+         * @param {boolean} [includeReplies] Include reply casts by the author in the response, true by default
+         * @param {string} [parentUrl] Parent URL to filter the feed; mutually exclusive with channel_id
+         * @param {string} [channelId] Channel ID to filter the feed; mutually exclusive with parent_url
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedUserCasts(fid: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
+            return localVarFp.feedUserCasts(fid, viewerFid, limit, cursor, includeReplies, parentUrl, channelId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
+         * @summary 10 most popular casts
+         * @param {number} fid FID of user whose feed you want to create
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedUserPopular(fid: number, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<BulkCastsResponse> {
+            return localVarFp.feedUserPopular(fid, viewerFid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch recent replies and recasts for a given user FID; sorted by most recent first
+         * @summary Replies and recasts
+         * @param {number} fid FID of user whose replies and recasts you want to fetch
+         * @param {FeedUserRepliesRecastsFilterEnum} [filter] filter to fetch only replies or recasts
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        feedUserRepliesRecasts(fid: number, filter?: FeedUserRepliesRecastsFilterEnum, limit?: number, cursor?: string, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
+            return localVarFp.feedUserRepliesRecasts(fid, filter, limit, cursor, viewerFid, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * FeedApi - object-oriented interface
+ * @export
+ * @class FeedApi
+ * @extends {BaseAPI}
+ */
+export class FeedApi extends BaseAPI {
+    /**
+     * Fetch casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type.
+     * @summary By filters
+     * @param {FeedType} feedType Defaults to following (requires FID or address). If set to filter (requires filter_type)
+     * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to FIDs (requires FIDs) or parent_url (requires parent_url) or channel_id (requires channel_id)
+     * @param {number} [fid] (Optional) FID of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
+     * @param {string} [fids] Used when filter_type&#x3D;FIDs . Create a feed based on a list of FIDs. Max array size is 250. Requires feed_type and filter_type.
+     * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type
+     * @param {string} [channelId] Used when filter_type&#x3D;channel_id can be used to fetch casts under a channel. Requires feed_type and filter_type.
+     * @param {boolean} [membersOnly] Used when filter_type&#x3D;channel_id. Only include casts from members of the channel. True by default.
+     * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
+     * @param {Array<EmbedType>} [embedTypes] Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type
+     * @param {boolean} [withRecasts] Include recasts in the response, true by default
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FeedApi
+     */
+    public feed(feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, membersOnly?: boolean, embedUrl?: string, embedTypes?: Array<EmbedType>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options?: RawAxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feed(feedType, filterType, fid, fids, parentUrl, channelId, membersOnly, embedUrl, embedTypes, withRecasts, limit, cursor, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch feed based on channel IDs
+     * @summary By channel IDs
+     * @param {string} channelIds Comma separated list of channel IDs e.g. neynar,farcaster
+     * @param {boolean} [withRecasts] Include recasts in the response, true by default
+     * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {boolean} [withReplies] Include replies in the response, false by default
+     * @param {boolean} [membersOnly] Only include casts from members of the channel. True by default.
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {boolean} [shouldModerate] If true, only casts that have been liked by the moderator (if one exists) will be returned.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FeedApi
+     */
+    public feedChannels(channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, membersOnly?: boolean, limit?: number, cursor?: string, shouldModerate?: boolean, options?: RawAxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedChannels(channelIds, withRecasts, viewerFid, withReplies, membersOnly, limit, cursor, shouldModerate, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch feed based on who a user is following
+     * @summary Following
+     * @param {number} fid FID of user whose feed you want to create
+     * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {boolean} [withRecasts] Include recasts in the response, true by default
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FeedApi
+     */
+    public feedFollowing(fid: number, viewerFid?: number, withRecasts?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedFollowing(fid, viewerFid, withRecasts, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch a personalized For You feed for a user
+     * @summary For you
+     * @param {number} fid FID of user whose feed you want to create
+     * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {ForYouProvider} [provider] 
+     * @param {number} [limit] Number of results to fetch (default 25, max 50)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FeedApi
+     */
+    public feedForYou(fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, providerMetadata?: string, options?: RawAxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedForYou(fid, viewerFid, provider, limit, cursor, providerMetadata, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch feed of casts with Frames, reverse chronological order
+     * @summary Casts with Frames
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
+     * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FeedApi
+     */
+    public feedFrames(limit?: number, viewerFid?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedFrames(limit, viewerFid, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch feed based on parent URLs
+     * @summary By parent URLs
+     * @param {string} parentUrls Comma separated list of parent_urls
+     * @param {boolean} [withRecasts] Include recasts in the response, true by default
+     * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {boolean} [withReplies] Include replies in the response, false by default
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FeedApi
+     */
+    public feedParentUrls(parentUrls: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedParentUrls(parentUrls, withRecasts, viewerFid, withReplies, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
+     * @summary Trending casts
+     * @param {number} [limit] Number of results to fetch (max 10)
+     * @param {string} [cursor] Pagination cursor
+     * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {FeedTrendingTimeWindowEnum} [timeWindow] Time window for trending casts (7d window for channel feeds only)
+     * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
+     * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed.
+     * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FeedApi
+     */
+    public feedTrending(limit?: number, cursor?: string, viewerFid?: number, timeWindow?: FeedTrendingTimeWindowEnum, channelId?: string, provider?: FeedTrendingProvider, providerMetadata?: string, options?: RawAxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedTrending(limit, cursor, viewerFid, timeWindow, channelId, provider, providerMetadata, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel
+     * @summary Chronologically
+     * @param {number} fid FID of user whose recent casts you want to fetch
+     * @param {number} [viewerFid] FID of the user viewing the feed
+     * @param {number} [limit] Number of results to fetch
+     * @param {string} [cursor] Pagination cursor
+     * @param {boolean} [includeReplies] Include reply casts by the author in the response, true by default
+     * @param {string} [parentUrl] Parent URL to filter the feed; mutually exclusive with channel_id
+     * @param {string} [channelId] Channel ID to filter the feed; mutually exclusive with parent_url
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FeedApi
+     */
+    public feedUserCasts(fid: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string, options?: RawAxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedUserCasts(fid, viewerFid, limit, cursor, includeReplies, parentUrl, channelId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
+     * @summary 10 most popular casts
+     * @param {number} fid FID of user whose feed you want to create
+     * @param {number} [viewerFid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FeedApi
+     */
+    public feedUserPopular(fid: number, viewerFid?: number, options?: RawAxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedUserPopular(fid, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch recent replies and recasts for a given user FID; sorted by most recent first
+     * @summary Replies and recasts
+     * @param {number} fid FID of user whose replies and recasts you want to fetch
+     * @param {FeedUserRepliesRecastsFilterEnum} [filter] filter to fetch only replies or recasts
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FeedApi
+     */
+    public feedUserRepliesRecasts(fid: number, filter?: FeedUserRepliesRecastsFilterEnum, limit?: number, cursor?: string, viewerFid?: number, options?: RawAxiosRequestConfig) {
+        return FeedApiFp(this.configuration).feedUserRepliesRecasts(fid, filter, limit, cursor, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+/**
+ * @export
+ */
+export const FeedTrendingTimeWindowEnum = {
+    _1h: '1h',
+    _6h: '6h',
+    _12h: '12h',
+    _24h: '24h',
+    _7d: '7d'
+} as const;
+export type FeedTrendingTimeWindowEnum = typeof FeedTrendingTimeWindowEnum[keyof typeof FeedTrendingTimeWindowEnum];
+/**
+ * @export
+ */
+export const FeedUserRepliesRecastsFilterEnum = {
+    Replies: 'replies',
+    Recasts: 'recasts',
+    All: 'all'
+} as const;
+export type FeedUserRepliesRecastsFilterEnum = typeof FeedUserRepliesRecastsFilterEnum[keyof typeof FeedUserRepliesRecastsFilterEnum];
+
+
+/**
+ * FnameApi - axios parameter creator
+ * @export
+ */
+export const FnameApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Check if a given fname is available
+         * @summary Check fname availability
+         * @param {string} fname 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        fnameAvailability: async (fname: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fname' is not null or undefined
+            assertParamExists('fnameAvailability', 'fname', fname)
+            const localVarPath = `/farcaster/fname/availability`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fname !== undefined) {
+                localVarQueryParameter['fname'] = fname;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * FnameApi - functional programming interface
+ * @export
+ */
+export const FnameApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = FnameApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Check if a given fname is available
+         * @summary Check fname availability
+         * @param {string} fname 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async fnameAvailability(fname: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FnameAvailabilityResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fnameAvailability(fname, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FnameApi.fnameAvailability']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * FnameApi - factory interface
+ * @export
+ */
+export const FnameApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = FnameApiFp(configuration)
+    return {
+        /**
+         * Check if a given fname is available
+         * @summary Check fname availability
+         * @param {string} fname 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        fnameAvailability(fname: string, options?: RawAxiosRequestConfig): AxiosPromise<FnameAvailabilityResponse> {
+            return localVarFp.fnameAvailability(fname, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * FnameApi - object-oriented interface
+ * @export
+ * @class FnameApi
+ * @extends {BaseAPI}
+ */
+export class FnameApi extends BaseAPI {
+    /**
+     * Check if a given fname is available
+     * @summary Check fname availability
+     * @param {string} fname 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FnameApi
+     */
+    public fnameAvailability(fname: string, options?: RawAxiosRequestConfig) {
+        return FnameApiFp(this.configuration).fnameAvailability(fname, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * FollowsApi - axios parameter creator
+ * @export
+ */
+export const FollowsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Returns a list of followers for a specific FID.
+         * @summary Followers
+         * @param {number} fid User who\&#39;s profile you are looking at
+         * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {FollowSortType} [sortType] Sort type for fetch followers. Default is &#x60;desc_chron&#x60;
+         * @param {number} [limit] Number of results to fetch (default 20, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        followersV2: async (fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('followersV2', 'fid', fid)
+            const localVarPath = `/farcaster/followers`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (sortType !== undefined) {
+                localVarQueryParameter['sort_type'] = sortType;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
+         * @summary Followed by
+         * @param {number} fid FID of the user whose following you want to fetch.
+         * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {FollowSortType} [sortType] Optional parameter to sort the users based on different criteria.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        followingV2: async (fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('followingV2', 'fid', fid)
+            const localVarPath = `/farcaster/following`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (sortType !== undefined) {
+                localVarQueryParameter['sort_type'] = sortType;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
+         * @summary Relevant followers
+         * @param {number} targetFid User who\&#39;s profile you are looking at
+         * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        relevantFollowers: async (targetFid: number, viewerFid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'targetFid' is not null or undefined
+            assertParamExists('relevantFollowers', 'targetFid', targetFid)
+            // verify required parameter 'viewerFid' is not null or undefined
+            assertParamExists('relevantFollowers', 'viewerFid', viewerFid)
+            const localVarPath = `/farcaster/followers/relevant`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (targetFid !== undefined) {
+                localVarQueryParameter['target_fid'] = targetFid;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch a list of suggested users to follow. Used to help users discover new users to follow
+         * @summary Suggest Follows
+         * @param {number} fid FID of the user whose following you want to fetch.
+         * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        suggestedFollows: async (fid: number, viewerFid?: number, limit?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('suggestedFollows', 'fid', fid)
+            const localVarPath = `/farcaster/following/suggested`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * FollowsApi - functional programming interface
+ * @export
+ */
+export const FollowsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = FollowsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Returns a list of followers for a specific FID.
+         * @summary Followers
+         * @param {number} fid User who\&#39;s profile you are looking at
+         * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {FollowSortType} [sortType] Sort type for fetch followers. Default is &#x60;desc_chron&#x60;
+         * @param {number} [limit] Number of results to fetch (default 20, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async followersV2(fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FollowersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.followersV2(fid, viewerFid, sortType, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FollowsApi.followersV2']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
+         * @summary Followed by
+         * @param {number} fid FID of the user whose following you want to fetch.
+         * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {FollowSortType} [sortType] Optional parameter to sort the users based on different criteria.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async followingV2(fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FollowersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.followingV2(fid, viewerFid, sortType, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FollowsApi.followingV2']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
+         * @summary Relevant followers
+         * @param {number} targetFid User who\&#39;s profile you are looking at
+         * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async relevantFollowers(targetFid: number, viewerFid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RelevantFollowersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.relevantFollowers(targetFid, viewerFid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FollowsApi.relevantFollowers']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch a list of suggested users to follow. Used to help users discover new users to follow
+         * @summary Suggest Follows
+         * @param {number} fid FID of the user whose following you want to fetch.
+         * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async suggestedFollows(fid: number, viewerFid?: number, limit?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.suggestedFollows(fid, viewerFid, limit, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FollowsApi.suggestedFollows']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * FollowsApi - factory interface
+ * @export
+ */
+export const FollowsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = FollowsApiFp(configuration)
+    return {
+        /**
+         * Returns a list of followers for a specific FID.
+         * @summary Followers
+         * @param {number} fid User who\&#39;s profile you are looking at
+         * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {FollowSortType} [sortType] Sort type for fetch followers. Default is &#x60;desc_chron&#x60;
+         * @param {number} [limit] Number of results to fetch (default 20, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        followersV2(fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<FollowersResponse> {
+            return localVarFp.followersV2(fid, viewerFid, sortType, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
+         * @summary Followed by
+         * @param {number} fid FID of the user whose following you want to fetch.
+         * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {FollowSortType} [sortType] Optional parameter to sort the users based on different criteria.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        followingV2(fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<FollowersResponse> {
+            return localVarFp.followingV2(fid, viewerFid, sortType, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
+         * @summary Relevant followers
+         * @param {number} targetFid User who\&#39;s profile you are looking at
+         * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        relevantFollowers(targetFid: number, viewerFid: number, options?: RawAxiosRequestConfig): AxiosPromise<RelevantFollowersResponse> {
+            return localVarFp.relevantFollowers(targetFid, viewerFid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch a list of suggested users to follow. Used to help users discover new users to follow
+         * @summary Suggest Follows
+         * @param {number} fid FID of the user whose following you want to fetch.
+         * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        suggestedFollows(fid: number, viewerFid?: number, limit?: number, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
+            return localVarFp.suggestedFollows(fid, viewerFid, limit, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * FollowsApi - object-oriented interface
+ * @export
+ * @class FollowsApi
+ * @extends {BaseAPI}
+ */
+export class FollowsApi extends BaseAPI {
+    /**
+     * Returns a list of followers for a specific FID.
+     * @summary Followers
+     * @param {number} fid User who\&#39;s profile you are looking at
+     * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {FollowSortType} [sortType] Sort type for fetch followers. Default is &#x60;desc_chron&#x60;
+     * @param {number} [limit] Number of results to fetch (default 20, max 100)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FollowsApi
+     */
+    public followersV2(fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return FollowsApiFp(this.configuration).followersV2(fid, viewerFid, sortType, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
+     * @summary Followed by
+     * @param {number} fid FID of the user whose following you want to fetch.
+     * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {FollowSortType} [sortType] Optional parameter to sort the users based on different criteria.
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FollowsApi
+     */
+    public followingV2(fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return FollowsApiFp(this.configuration).followingV2(fid, viewerFid, sortType, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
+     * @summary Relevant followers
+     * @param {number} targetFid User who\&#39;s profile you are looking at
+     * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FollowsApi
+     */
+    public relevantFollowers(targetFid: number, viewerFid: number, options?: RawAxiosRequestConfig) {
+        return FollowsApiFp(this.configuration).relevantFollowers(targetFid, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch a list of suggested users to follow. Used to help users discover new users to follow
+     * @summary Suggest Follows
+     * @param {number} fid FID of the user whose following you want to fetch.
+     * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FollowsApi
+     */
+    public suggestedFollows(fid: number, viewerFid?: number, limit?: number, options?: RawAxiosRequestConfig) {
+        return FollowsApiFp(this.configuration).suggestedFollows(fid, viewerFid, limit, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * FrameApi - axios parameter creator
+ * @export
+ */
+export const FrameApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Delete an existing frame, if it was made by the developer (identified by API key)
+         * @summary Delete frame
+         * @param {DeleteNeynarFrameRequest} deleteNeynarFrameRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteNeynarFrame: async (deleteNeynarFrameRequest: DeleteNeynarFrameRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deleteNeynarFrameRequest' is not null or undefined
+            assertParamExists('deleteNeynarFrame', 'deleteNeynarFrameRequest', deleteNeynarFrameRequest)
+            const localVarPath = `/farcaster/frame`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(deleteNeynarFrameRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch a list of frames made by the developer (identified by API key)
+         * @summary List of frames
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        fetchNeynarFrames: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/farcaster/frame/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetches the frame meta tags from the URL
+         * @summary Meta tags from URL
+         * @param {string} url The frame URL to crawl
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        frameFromUrl: async (url: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'url' is not null or undefined
+            assertParamExists('frameFromUrl', 'url', url)
+            const localVarPath = `/farcaster/frame/crawl`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (url !== undefined) {
+                localVarQueryParameter['url'] = url;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch a frame either by UUID or Neynar URL
+         * @summary Frame by UUID or URL
+         * @param {FrameType} type 
+         * @param {string} [uuid] UUID of the frame to fetch
+         * @param {string} [url] URL of the Neynar frame to fetch
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        lookupNeynarFrame: async (type: FrameType, uuid?: string, url?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'type' is not null or undefined
+            assertParamExists('lookupNeynarFrame', 'type', type)
+            const localVarPath = `/farcaster/frame`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (uuid !== undefined) {
+                localVarQueryParameter['uuid'] = uuid;
+            }
+
+            if (url !== undefined) {
+                localVarQueryParameter['url'] = url;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Post frame actions, cast actions or cast composer actions to the server  \\ (In order to post any of these actions, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds for frames. 
+         * @summary Post a frame action, cast action or a cast composer action
+         * @param {FrameActionReqBody} frameActionReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postFrameAction: async (frameActionReqBody: FrameActionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'frameActionReqBody' is not null or undefined
+            assertParamExists('postFrameAction', 'frameActionReqBody', frameActionReqBody)
+            const localVarPath = `/farcaster/frame/action`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(frameActionReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Post a frame action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds. 
+         * @summary Signature packet
+         * @param {FrameDeveloperManagedActionReqBody} frameDeveloperManagedActionReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postFrameDeveloperManagedAction: async (frameDeveloperManagedActionReqBody: FrameDeveloperManagedActionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'frameDeveloperManagedActionReqBody' is not null or undefined
+            assertParamExists('postFrameDeveloperManagedAction', 'frameDeveloperManagedActionReqBody', frameDeveloperManagedActionReqBody)
+            const localVarPath = `/farcaster/frame/developer_managed/action`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(frameDeveloperManagedActionReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Create a new frame with a list of pages.
+         * @summary Create frame
+         * @param {NeynarFrameCreationRequest} neynarFrameCreationRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publishNeynarFrame: async (neynarFrameCreationRequest: NeynarFrameCreationRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'neynarFrameCreationRequest' is not null or undefined
+            assertParamExists('publishNeynarFrame', 'neynarFrameCreationRequest', neynarFrameCreationRequest)
+            const localVarPath = `/farcaster/frame`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(neynarFrameCreationRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update an existing frame with a list of pages, if it was made by the developer (identified by API key)
+         * @summary Update frame
+         * @param {NeynarFrameUpdateRequest} neynarFrameUpdateRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateNeynarFrame: async (neynarFrameUpdateRequest: NeynarFrameUpdateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'neynarFrameUpdateRequest' is not null or undefined
+            assertParamExists('updateNeynarFrame', 'neynarFrameUpdateRequest', neynarFrameUpdateRequest)
+            const localVarPath = `/farcaster/frame`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(neynarFrameUpdateRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Validates a frame against by an interacting user against a Farcaster Hub \\ (In order to validate a frame, message bytes from Frame Action must be provided in hex) 
+         * @summary Validate frame action
+         * @param {ValidateFrameRequest} validateFrameRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateFrame: async (validateFrameRequest: ValidateFrameRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'validateFrameRequest' is not null or undefined
+            assertParamExists('validateFrame', 'validateFrameRequest', validateFrameRequest)
+            const localVarPath = `/farcaster/frame/validate`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(validateFrameRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch analytics for total-interactors, interactors, nteractions-per-cast and input-text.
+         * @summary Analytics for the frame
+         * @param {string} frameUrl 
+         * @param {ValidateFrameAnalyticsType} analyticsType 
+         * @param {string} start 
+         * @param {string} stop 
+         * @param {ValidateFrameAnalyticsAggregateWindowEnum} [aggregateWindow] Required for &#x60;analytics_type&#x3D;interactions-per-cast&#x60;
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateFrameAnalytics: async (frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: ValidateFrameAnalyticsAggregateWindowEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'frameUrl' is not null or undefined
+            assertParamExists('validateFrameAnalytics', 'frameUrl', frameUrl)
+            // verify required parameter 'analyticsType' is not null or undefined
+            assertParamExists('validateFrameAnalytics', 'analyticsType', analyticsType)
+            // verify required parameter 'start' is not null or undefined
+            assertParamExists('validateFrameAnalytics', 'start', start)
+            // verify required parameter 'stop' is not null or undefined
+            assertParamExists('validateFrameAnalytics', 'stop', stop)
+            const localVarPath = `/farcaster/frame/validate/analytics`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (frameUrl !== undefined) {
+                localVarQueryParameter['frame_url'] = frameUrl;
+            }
+
+            if (analyticsType !== undefined) {
+                localVarQueryParameter['analytics_type'] = analyticsType;
+            }
+
+            if (start !== undefined) {
+                localVarQueryParameter['start'] = (start as any instanceof Date) ?
+                    (start as any).toISOString() :
+                    start;
+            }
+
+            if (stop !== undefined) {
+                localVarQueryParameter['stop'] = (stop as any instanceof Date) ?
+                    (stop as any).toISOString() :
+                    stop;
+            }
+
+            if (aggregateWindow !== undefined) {
+                localVarQueryParameter['aggregate_window'] = aggregateWindow;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch a list of all the frames validated by a user
+         * @summary All frames validated by user
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateFrameList: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/farcaster/frame/validate/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * FrameApi - functional programming interface
+ * @export
+ */
+export const FrameApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = FrameApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Delete an existing frame, if it was made by the developer (identified by API key)
+         * @summary Delete frame
+         * @param {DeleteNeynarFrameRequest} deleteNeynarFrameRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteNeynarFrame(deleteNeynarFrameRequest: DeleteNeynarFrameRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteFrameResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteNeynarFrame(deleteNeynarFrameRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FrameApi.deleteNeynarFrame']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch a list of frames made by the developer (identified by API key)
+         * @summary List of frames
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async fetchNeynarFrames(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<NeynarFrame>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchNeynarFrames(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FrameApi.fetchNeynarFrames']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetches the frame meta tags from the URL
+         * @summary Meta tags from URL
+         * @param {string} url The frame URL to crawl
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async frameFromUrl(url: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FrameFromUrl200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.frameFromUrl(url, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FrameApi.frameFromUrl']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch a frame either by UUID or Neynar URL
+         * @summary Frame by UUID or URL
+         * @param {FrameType} type 
+         * @param {string} [uuid] UUID of the frame to fetch
+         * @param {string} [url] URL of the Neynar frame to fetch
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async lookupNeynarFrame(type: FrameType, uuid?: string, url?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NeynarFrame>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupNeynarFrame(type, uuid, url, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FrameApi.lookupNeynarFrame']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Post frame actions, cast actions or cast composer actions to the server  \\ (In order to post any of these actions, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds for frames. 
+         * @summary Post a frame action, cast action or a cast composer action
+         * @param {FrameActionReqBody} frameActionReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async postFrameAction(frameActionReqBody: FrameActionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Frame>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postFrameAction(frameActionReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FrameApi.postFrameAction']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Post a frame action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds. 
+         * @summary Signature packet
+         * @param {FrameDeveloperManagedActionReqBody} frameDeveloperManagedActionReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async postFrameDeveloperManagedAction(frameDeveloperManagedActionReqBody: FrameDeveloperManagedActionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Frame>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postFrameDeveloperManagedAction(frameDeveloperManagedActionReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FrameApi.postFrameDeveloperManagedAction']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Create a new frame with a list of pages.
+         * @summary Create frame
+         * @param {NeynarFrameCreationRequest} neynarFrameCreationRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publishNeynarFrame(neynarFrameCreationRequest: NeynarFrameCreationRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NeynarFrame>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publishNeynarFrame(neynarFrameCreationRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FrameApi.publishNeynarFrame']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Update an existing frame with a list of pages, if it was made by the developer (identified by API key)
+         * @summary Update frame
+         * @param {NeynarFrameUpdateRequest} neynarFrameUpdateRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateNeynarFrame(neynarFrameUpdateRequest: NeynarFrameUpdateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NeynarFrame>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateNeynarFrame(neynarFrameUpdateRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FrameApi.updateNeynarFrame']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Validates a frame against by an interacting user against a Farcaster Hub \\ (In order to validate a frame, message bytes from Frame Action must be provided in hex) 
+         * @summary Validate frame action
+         * @param {ValidateFrameRequest} validateFrameRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async validateFrame(validateFrameRequest: ValidateFrameRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ValidateFrameActionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.validateFrame(validateFrameRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FrameApi.validateFrame']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch analytics for total-interactors, interactors, nteractions-per-cast and input-text.
+         * @summary Analytics for the frame
+         * @param {string} frameUrl 
+         * @param {ValidateFrameAnalyticsType} analyticsType 
+         * @param {string} start 
+         * @param {string} stop 
+         * @param {ValidateFrameAnalyticsAggregateWindowEnum} [aggregateWindow] Required for &#x60;analytics_type&#x3D;interactions-per-cast&#x60;
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async validateFrameAnalytics(frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: ValidateFrameAnalyticsAggregateWindowEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FrameValidateAnalyticsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.validateFrameAnalytics(frameUrl, analyticsType, start, stop, aggregateWindow, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FrameApi.validateFrameAnalytics']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch a list of all the frames validated by a user
+         * @summary All frames validated by user
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async validateFrameList(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FrameValidateListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.validateFrameList(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FrameApi.validateFrameList']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * FrameApi - factory interface
+ * @export
+ */
+export const FrameApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = FrameApiFp(configuration)
+    return {
+        /**
+         * Delete an existing frame, if it was made by the developer (identified by API key)
+         * @summary Delete frame
+         * @param {DeleteNeynarFrameRequest} deleteNeynarFrameRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteNeynarFrame(deleteNeynarFrameRequest: DeleteNeynarFrameRequest, options?: RawAxiosRequestConfig): AxiosPromise<DeleteFrameResponse> {
+            return localVarFp.deleteNeynarFrame(deleteNeynarFrameRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch a list of frames made by the developer (identified by API key)
+         * @summary List of frames
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        fetchNeynarFrames(options?: RawAxiosRequestConfig): AxiosPromise<Array<NeynarFrame>> {
+            return localVarFp.fetchNeynarFrames(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches the frame meta tags from the URL
+         * @summary Meta tags from URL
+         * @param {string} url The frame URL to crawl
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        frameFromUrl(url: string, options?: RawAxiosRequestConfig): AxiosPromise<FrameFromUrl200Response> {
+            return localVarFp.frameFromUrl(url, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch a frame either by UUID or Neynar URL
+         * @summary Frame by UUID or URL
+         * @param {FrameType} type 
+         * @param {string} [uuid] UUID of the frame to fetch
+         * @param {string} [url] URL of the Neynar frame to fetch
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        lookupNeynarFrame(type: FrameType, uuid?: string, url?: string, options?: RawAxiosRequestConfig): AxiosPromise<NeynarFrame> {
+            return localVarFp.lookupNeynarFrame(type, uuid, url, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Post frame actions, cast actions or cast composer actions to the server  \\ (In order to post any of these actions, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds for frames. 
+         * @summary Post a frame action, cast action or a cast composer action
+         * @param {FrameActionReqBody} frameActionReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postFrameAction(frameActionReqBody: FrameActionReqBody, options?: RawAxiosRequestConfig): AxiosPromise<Frame> {
+            return localVarFp.postFrameAction(frameActionReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Post a frame action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds. 
+         * @summary Signature packet
+         * @param {FrameDeveloperManagedActionReqBody} frameDeveloperManagedActionReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postFrameDeveloperManagedAction(frameDeveloperManagedActionReqBody: FrameDeveloperManagedActionReqBody, options?: RawAxiosRequestConfig): AxiosPromise<Frame> {
+            return localVarFp.postFrameDeveloperManagedAction(frameDeveloperManagedActionReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Create a new frame with a list of pages.
+         * @summary Create frame
+         * @param {NeynarFrameCreationRequest} neynarFrameCreationRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publishNeynarFrame(neynarFrameCreationRequest: NeynarFrameCreationRequest, options?: RawAxiosRequestConfig): AxiosPromise<NeynarFrame> {
+            return localVarFp.publishNeynarFrame(neynarFrameCreationRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Update an existing frame with a list of pages, if it was made by the developer (identified by API key)
+         * @summary Update frame
+         * @param {NeynarFrameUpdateRequest} neynarFrameUpdateRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateNeynarFrame(neynarFrameUpdateRequest: NeynarFrameUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<NeynarFrame> {
+            return localVarFp.updateNeynarFrame(neynarFrameUpdateRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Validates a frame against by an interacting user against a Farcaster Hub \\ (In order to validate a frame, message bytes from Frame Action must be provided in hex) 
+         * @summary Validate frame action
+         * @param {ValidateFrameRequest} validateFrameRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateFrame(validateFrameRequest: ValidateFrameRequest, options?: RawAxiosRequestConfig): AxiosPromise<ValidateFrameActionResponse> {
+            return localVarFp.validateFrame(validateFrameRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch analytics for total-interactors, interactors, nteractions-per-cast and input-text.
+         * @summary Analytics for the frame
+         * @param {string} frameUrl 
+         * @param {ValidateFrameAnalyticsType} analyticsType 
+         * @param {string} start 
+         * @param {string} stop 
+         * @param {ValidateFrameAnalyticsAggregateWindowEnum} [aggregateWindow] Required for &#x60;analytics_type&#x3D;interactions-per-cast&#x60;
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateFrameAnalytics(frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: ValidateFrameAnalyticsAggregateWindowEnum, options?: RawAxiosRequestConfig): AxiosPromise<FrameValidateAnalyticsResponse> {
+            return localVarFp.validateFrameAnalytics(frameUrl, analyticsType, start, stop, aggregateWindow, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch a list of all the frames validated by a user
+         * @summary All frames validated by user
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateFrameList(options?: RawAxiosRequestConfig): AxiosPromise<FrameValidateListResponse> {
+            return localVarFp.validateFrameList(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * FrameApi - object-oriented interface
+ * @export
+ * @class FrameApi
+ * @extends {BaseAPI}
+ */
+export class FrameApi extends BaseAPI {
+    /**
+     * Delete an existing frame, if it was made by the developer (identified by API key)
+     * @summary Delete frame
+     * @param {DeleteNeynarFrameRequest} deleteNeynarFrameRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FrameApi
+     */
+    public deleteNeynarFrame(deleteNeynarFrameRequest: DeleteNeynarFrameRequest, options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).deleteNeynarFrame(deleteNeynarFrameRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch a list of frames made by the developer (identified by API key)
+     * @summary List of frames
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FrameApi
+     */
+    public fetchNeynarFrames(options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).fetchNeynarFrames(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches the frame meta tags from the URL
+     * @summary Meta tags from URL
+     * @param {string} url The frame URL to crawl
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FrameApi
+     */
+    public frameFromUrl(url: string, options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).frameFromUrl(url, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch a frame either by UUID or Neynar URL
+     * @summary Frame by UUID or URL
+     * @param {FrameType} type 
+     * @param {string} [uuid] UUID of the frame to fetch
+     * @param {string} [url] URL of the Neynar frame to fetch
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FrameApi
+     */
+    public lookupNeynarFrame(type: FrameType, uuid?: string, url?: string, options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).lookupNeynarFrame(type, uuid, url, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Post frame actions, cast actions or cast composer actions to the server  \\ (In order to post any of these actions, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds for frames. 
+     * @summary Post a frame action, cast action or a cast composer action
+     * @param {FrameActionReqBody} frameActionReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FrameApi
+     */
+    public postFrameAction(frameActionReqBody: FrameActionReqBody, options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).postFrameAction(frameActionReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Post a frame action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds. 
+     * @summary Signature packet
+     * @param {FrameDeveloperManagedActionReqBody} frameDeveloperManagedActionReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FrameApi
+     */
+    public postFrameDeveloperManagedAction(frameDeveloperManagedActionReqBody: FrameDeveloperManagedActionReqBody, options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).postFrameDeveloperManagedAction(frameDeveloperManagedActionReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Create a new frame with a list of pages.
+     * @summary Create frame
+     * @param {NeynarFrameCreationRequest} neynarFrameCreationRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FrameApi
+     */
+    public publishNeynarFrame(neynarFrameCreationRequest: NeynarFrameCreationRequest, options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).publishNeynarFrame(neynarFrameCreationRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Update an existing frame with a list of pages, if it was made by the developer (identified by API key)
+     * @summary Update frame
+     * @param {NeynarFrameUpdateRequest} neynarFrameUpdateRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FrameApi
+     */
+    public updateNeynarFrame(neynarFrameUpdateRequest: NeynarFrameUpdateRequest, options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).updateNeynarFrame(neynarFrameUpdateRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Validates a frame against by an interacting user against a Farcaster Hub \\ (In order to validate a frame, message bytes from Frame Action must be provided in hex) 
+     * @summary Validate frame action
+     * @param {ValidateFrameRequest} validateFrameRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FrameApi
+     */
+    public validateFrame(validateFrameRequest: ValidateFrameRequest, options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).validateFrame(validateFrameRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch analytics for total-interactors, interactors, nteractions-per-cast and input-text.
+     * @summary Analytics for the frame
+     * @param {string} frameUrl 
+     * @param {ValidateFrameAnalyticsType} analyticsType 
+     * @param {string} start 
+     * @param {string} stop 
+     * @param {ValidateFrameAnalyticsAggregateWindowEnum} [aggregateWindow] Required for &#x60;analytics_type&#x3D;interactions-per-cast&#x60;
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FrameApi
+     */
+    public validateFrameAnalytics(frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: ValidateFrameAnalyticsAggregateWindowEnum, options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).validateFrameAnalytics(frameUrl, analyticsType, start, stop, aggregateWindow, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch a list of all the frames validated by a user
+     * @summary All frames validated by user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FrameApi
+     */
+    public validateFrameList(options?: RawAxiosRequestConfig) {
+        return FrameApiFp(this.configuration).validateFrameList(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+/**
+ * @export
+ */
+export const ValidateFrameAnalyticsAggregateWindowEnum = {
+    _10s: '10s',
+    _1m: '1m',
+    _2m: '2m',
+    _5m: '5m',
+    _10m: '10m',
+    _20m: '20m',
+    _30m: '30m',
+    _2h: '2h',
+    _12h: '12h',
+    _1d: '1d',
+    _7d: '7d'
+} as const;
+export type ValidateFrameAnalyticsAggregateWindowEnum = typeof ValidateFrameAnalyticsAggregateWindowEnum[keyof typeof ValidateFrameAnalyticsAggregateWindowEnum];
+
+
+/**
+ * MuteApi - axios parameter creator
+ * @export
+ */
+export const MuteApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Adds a mute for a given FID. This is a whitelisted API, reach out if you want access.
+         * @summary Mute FID
+         * @param {MuteReqBody} muteReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addMute: async (muteReqBody: MuteReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'muteReqBody' is not null or undefined
+            assertParamExists('addMute', 'muteReqBody', muteReqBody)
+            const localVarPath = `/farcaster/mute`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(muteReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Deletes a mute for a given FID. This is a whitelisted API, reach out if you want access.
+         * @summary Unmute FID
+         * @param {MuteReqBody} muteReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteMute: async (muteReqBody: MuteReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'muteReqBody' is not null or undefined
+            assertParamExists('deleteMute', 'muteReqBody', muteReqBody)
+            const localVarPath = `/farcaster/mute`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(muteReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetches all FIDs that a user has muted.
+         * @summary Muted FIDs of user
+         * @param {number} fid The user\&#39;s FID (identifier)
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        muteList: async (fid: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('muteList', 'fid', fid)
+            const localVarPath = `/farcaster/mute/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * MuteApi - functional programming interface
+ * @export
+ */
+export const MuteApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = MuteApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Adds a mute for a given FID. This is a whitelisted API, reach out if you want access.
+         * @summary Mute FID
+         * @param {MuteReqBody} muteReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async addMute(muteReqBody: MuteReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MuteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.addMute(muteReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MuteApi.addMute']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Deletes a mute for a given FID. This is a whitelisted API, reach out if you want access.
+         * @summary Unmute FID
+         * @param {MuteReqBody} muteReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteMute(muteReqBody: MuteReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MuteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteMute(muteReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MuteApi.deleteMute']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetches all FIDs that a user has muted.
+         * @summary Muted FIDs of user
+         * @param {number} fid The user\&#39;s FID (identifier)
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async muteList(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MuteListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.muteList(fid, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MuteApi.muteList']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * MuteApi - factory interface
+ * @export
+ */
+export const MuteApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = MuteApiFp(configuration)
+    return {
+        /**
+         * Adds a mute for a given FID. This is a whitelisted API, reach out if you want access.
+         * @summary Mute FID
+         * @param {MuteReqBody} muteReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addMute(muteReqBody: MuteReqBody, options?: RawAxiosRequestConfig): AxiosPromise<MuteResponse> {
+            return localVarFp.addMute(muteReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Deletes a mute for a given FID. This is a whitelisted API, reach out if you want access.
+         * @summary Unmute FID
+         * @param {MuteReqBody} muteReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteMute(muteReqBody: MuteReqBody, options?: RawAxiosRequestConfig): AxiosPromise<MuteResponse> {
+            return localVarFp.deleteMute(muteReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches all FIDs that a user has muted.
+         * @summary Muted FIDs of user
+         * @param {number} fid The user\&#39;s FID (identifier)
+         * @param {number} [limit] Number of results to fetch (default 20, max 100).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        muteList(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<MuteListResponse> {
+            return localVarFp.muteList(fid, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * MuteApi - object-oriented interface
+ * @export
+ * @class MuteApi
+ * @extends {BaseAPI}
+ */
+export class MuteApi extends BaseAPI {
+    /**
+     * Adds a mute for a given FID. This is a whitelisted API, reach out if you want access.
+     * @summary Mute FID
+     * @param {MuteReqBody} muteReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MuteApi
+     */
+    public addMute(muteReqBody: MuteReqBody, options?: RawAxiosRequestConfig) {
+        return MuteApiFp(this.configuration).addMute(muteReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Deletes a mute for a given FID. This is a whitelisted API, reach out if you want access.
+     * @summary Unmute FID
+     * @param {MuteReqBody} muteReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MuteApi
+     */
+    public deleteMute(muteReqBody: MuteReqBody, options?: RawAxiosRequestConfig) {
+        return MuteApiFp(this.configuration).deleteMute(muteReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches all FIDs that a user has muted.
+     * @summary Muted FIDs of user
+     * @param {number} fid The user\&#39;s FID (identifier)
+     * @param {number} [limit] Number of results to fetch (default 20, max 100).
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MuteApi
+     */
+    public muteList(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return MuteApiFp(this.configuration).muteList(fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * NotificationsApi - axios parameter creator
+ * @export
+ */
+export const NotificationsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Mark notifications as seen
+         * @summary Mark as seen
+         * @param {MarkNotificationsAsSeenReqBody} markNotificationsAsSeenReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        markNotificationsAsSeen: async (markNotificationsAsSeenReqBody: MarkNotificationsAsSeenReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'markNotificationsAsSeenReqBody' is not null or undefined
+            assertParamExists('markNotificationsAsSeen', 'markNotificationsAsSeenReqBody', markNotificationsAsSeenReqBody)
+            const localVarPath = `/farcaster/notifications/seen`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(markNotificationsAsSeenReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of notifications for a specific FID.
+         * @summary For user
+         * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
+         * @param {NotificationType} [type] Notification type to fetch.
+         * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notifications: async (fid: number, type?: NotificationType, priorityMode?: boolean, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('notifications', 'fid', fid)
+            const localVarPath = `/farcaster/notifications`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (priorityMode !== undefined) {
+                localVarQueryParameter['priority_mode'] = priorityMode;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of notifications for a user in specific channels
+         * @summary For user by channel
+         * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
+         * @param {string} channelIds Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
+         * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notificationsChannel: async (fid: number, channelIds: string, priorityMode?: boolean, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('notificationsChannel', 'fid', fid)
+            // verify required parameter 'channelIds' is not null or undefined
+            assertParamExists('notificationsChannel', 'channelIds', channelIds)
+            const localVarPath = `/farcaster/notifications/channel`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (channelIds !== undefined) {
+                localVarQueryParameter['channel_ids'] = channelIds;
+            }
+
+            if (priorityMode !== undefined) {
+                localVarQueryParameter['priority_mode'] = priorityMode;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of notifications for a user in specific parent_urls
+         * @summary For user by parent_urls
+         * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
+         * @param {string} parentUrls Comma separated parent_urls
+         * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notificationsParentUrl: async (fid: number, parentUrls: string, priorityMode?: boolean, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('notificationsParentUrl', 'fid', fid)
+            // verify required parameter 'parentUrls' is not null or undefined
+            assertParamExists('notificationsParentUrl', 'parentUrls', parentUrls)
+            const localVarPath = `/farcaster/notifications/parent_url`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (parentUrls !== undefined) {
+                localVarQueryParameter['parent_urls'] = parentUrls;
+            }
+
+            if (priorityMode !== undefined) {
+                localVarQueryParameter['priority_mode'] = priorityMode;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * NotificationsApi - functional programming interface
+ * @export
+ */
+export const NotificationsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = NotificationsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Mark notifications as seen
+         * @summary Mark as seen
+         * @param {MarkNotificationsAsSeenReqBody} markNotificationsAsSeenReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async markNotificationsAsSeen(markNotificationsAsSeenReqBody: MarkNotificationsAsSeenReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.markNotificationsAsSeen(markNotificationsAsSeenReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['NotificationsApi.markNotificationsAsSeen']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Returns a list of notifications for a specific FID.
+         * @summary For user
+         * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
+         * @param {NotificationType} [type] Notification type to fetch.
+         * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notifications(fid: number, type?: NotificationType, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notifications(fid, type, priorityMode, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['NotificationsApi.notifications']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Returns a list of notifications for a user in specific channels
+         * @summary For user by channel
+         * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
+         * @param {string} channelIds Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
+         * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notificationsChannel(fid: number, channelIds: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notificationsChannel(fid, channelIds, priorityMode, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['NotificationsApi.notificationsChannel']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Returns a list of notifications for a user in specific parent_urls
+         * @summary For user by parent_urls
+         * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
+         * @param {string} parentUrls Comma separated parent_urls
+         * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notificationsParentUrl(fid: number, parentUrls: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notificationsParentUrl(fid, parentUrls, priorityMode, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['NotificationsApi.notificationsParentUrl']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * NotificationsApi - factory interface
+ * @export
+ */
+export const NotificationsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = NotificationsApiFp(configuration)
+    return {
+        /**
+         * Mark notifications as seen
+         * @summary Mark as seen
+         * @param {MarkNotificationsAsSeenReqBody} markNotificationsAsSeenReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        markNotificationsAsSeen(markNotificationsAsSeenReqBody: MarkNotificationsAsSeenReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.markNotificationsAsSeen(markNotificationsAsSeenReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of notifications for a specific FID.
+         * @summary For user
+         * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
+         * @param {NotificationType} [type] Notification type to fetch.
+         * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notifications(fid: number, type?: NotificationType, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<NotificationsResponse> {
+            return localVarFp.notifications(fid, type, priorityMode, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of notifications for a user in specific channels
+         * @summary For user by channel
+         * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
+         * @param {string} channelIds Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
+         * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notificationsChannel(fid: number, channelIds: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<NotificationsResponse> {
+            return localVarFp.notificationsChannel(fid, channelIds, priorityMode, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of notifications for a user in specific parent_urls
+         * @summary For user by parent_urls
+         * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
+         * @param {string} parentUrls Comma separated parent_urls
+         * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notificationsParentUrl(fid: number, parentUrls: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<NotificationsResponse> {
+            return localVarFp.notificationsParentUrl(fid, parentUrls, priorityMode, cursor, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * NotificationsApi - object-oriented interface
+ * @export
+ * @class NotificationsApi
+ * @extends {BaseAPI}
+ */
+export class NotificationsApi extends BaseAPI {
+    /**
+     * Mark notifications as seen
+     * @summary Mark as seen
+     * @param {MarkNotificationsAsSeenReqBody} markNotificationsAsSeenReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NotificationsApi
+     */
+    public markNotificationsAsSeen(markNotificationsAsSeenReqBody: MarkNotificationsAsSeenReqBody, options?: RawAxiosRequestConfig) {
+        return NotificationsApiFp(this.configuration).markNotificationsAsSeen(markNotificationsAsSeenReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of notifications for a specific FID.
+     * @summary For user
+     * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
+     * @param {NotificationType} [type] Notification type to fetch.
+     * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NotificationsApi
+     */
+    public notifications(fid: number, type?: NotificationType, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig) {
+        return NotificationsApiFp(this.configuration).notifications(fid, type, priorityMode, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of notifications for a user in specific channels
+     * @summary For user by channel
+     * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
+     * @param {string} channelIds Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
+     * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NotificationsApi
+     */
+    public notificationsChannel(fid: number, channelIds: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig) {
+        return NotificationsApiFp(this.configuration).notificationsChannel(fid, channelIds, priorityMode, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of notifications for a user in specific parent_urls
+     * @summary For user by parent_urls
+     * @param {number} fid FID of the user you you want to fetch notifications for. The response will respect this user\&#39;s mutes and blocks.
+     * @param {string} parentUrls Comma separated parent_urls
+     * @param {boolean} [priorityMode] When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NotificationsApi
+     */
+    public notificationsParentUrl(fid: number, parentUrls: string, priorityMode?: boolean, cursor?: string, options?: RawAxiosRequestConfig) {
+        return NotificationsApiFp(this.configuration).notificationsParentUrl(fid, parentUrls, priorityMode, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * ReactionApi - axios parameter creator
+ * @export
+ */
+export const ReactionApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Delete a reaction (like or recast) to a cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
+         * @summary Delete reaction
+         * @param {ReactionReqBody} reactionReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteReaction: async (reactionReqBody: ReactionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'reactionReqBody' is not null or undefined
+            assertParamExists('deleteReaction', 'reactionReqBody', reactionReqBody)
+            const localVarPath = `/farcaster/reaction`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(reactionReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
+         * @summary Post a reaction
+         * @param {ReactionReqBody} reactionReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postReaction: async (reactionReqBody: ReactionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'reactionReqBody' is not null or undefined
+            assertParamExists('postReaction', 'reactionReqBody', reactionReqBody)
+            const localVarPath = `/farcaster/reaction`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(reactionReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetches reactions for a given cast
+         * @summary Reactions for cast
+         * @param {string} hash 
+         * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
+         * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        reactionsCast: async (hash: string, types: string, viewerFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'hash' is not null or undefined
+            assertParamExists('reactionsCast', 'hash', hash)
+            // verify required parameter 'types' is not null or undefined
+            assertParamExists('reactionsCast', 'types', types)
+            const localVarPath = `/farcaster/reactions/cast`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (hash !== undefined) {
+                localVarQueryParameter['hash'] = hash;
+            }
+
+            if (types !== undefined) {
+                localVarQueryParameter['types'] = types;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetches reactions for a given user
+         * @summary Reactions for user
+         * @param {number} fid 
+         * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
+         * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        reactionsUser: async (fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('reactionsUser', 'fid', fid)
+            // verify required parameter 'type' is not null or undefined
+            assertParamExists('reactionsUser', 'type', type)
+            const localVarPath = `/farcaster/reactions/user`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ReactionApi - functional programming interface
+ * @export
+ */
+export const ReactionApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ReactionApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Delete a reaction (like or recast) to a cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
+         * @summary Delete reaction
+         * @param {ReactionReqBody} reactionReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteReaction(reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteReaction(reactionReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ReactionApi.deleteReaction']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
+         * @summary Post a reaction
+         * @param {ReactionReqBody} reactionReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async postReaction(reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postReaction(reactionReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ReactionApi.postReaction']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetches reactions for a given cast
+         * @summary Reactions for cast
+         * @param {string} hash 
+         * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
+         * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async reactionsCast(hash: string, types: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsCastResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.reactionsCast(hash, types, viewerFid, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ReactionApi.reactionsCast']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetches reactions for a given user
+         * @summary Reactions for user
+         * @param {number} fid 
+         * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
+         * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async reactionsUser(fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.reactionsUser(fid, type, viewerFid, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ReactionApi.reactionsUser']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * ReactionApi - factory interface
+ * @export
+ */
+export const ReactionApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ReactionApiFp(configuration)
+    return {
+        /**
+         * Delete a reaction (like or recast) to a cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
+         * @summary Delete reaction
+         * @param {ReactionReqBody} reactionReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteReaction(reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.deleteReaction(reactionReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
+         * @summary Post a reaction
+         * @param {ReactionReqBody} reactionReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postReaction(reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.postReaction(reactionReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches reactions for a given cast
+         * @summary Reactions for cast
+         * @param {string} hash 
+         * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
+         * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        reactionsCast(hash: string, types: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ReactionsCastResponse> {
+            return localVarFp.reactionsCast(hash, types, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches reactions for a given user
+         * @summary Reactions for user
+         * @param {number} fid 
+         * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
+         * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        reactionsUser(fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ReactionsResponse> {
+            return localVarFp.reactionsUser(fid, type, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ReactionApi - object-oriented interface
+ * @export
+ * @class ReactionApi
+ * @extends {BaseAPI}
+ */
+export class ReactionApi extends BaseAPI {
+    /**
+     * Delete a reaction (like or recast) to a cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
+     * @summary Delete reaction
+     * @param {ReactionReqBody} reactionReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReactionApi
+     */
+    public deleteReaction(reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig) {
+        return ReactionApiFp(this.configuration).deleteReaction(reactionReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
+     * @summary Post a reaction
+     * @param {ReactionReqBody} reactionReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReactionApi
+     */
+    public postReaction(reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig) {
+        return ReactionApiFp(this.configuration).postReaction(reactionReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches reactions for a given cast
+     * @summary Reactions for cast
+     * @param {string} hash 
+     * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
+     * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReactionApi
+     */
+    public reactionsCast(hash: string, types: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return ReactionApiFp(this.configuration).reactionsCast(hash, types, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches reactions for a given user
+     * @summary Reactions for user
+     * @param {number} fid 
+     * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
+     * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {number} [limit] Number of results to fetch (default 25, max 100)
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReactionApi
+     */
+    public reactionsUser(fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return ReactionApiFp(this.configuration).reactionsUser(fid, type, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * SignerApi - axios parameter creator
+ * @export
+ */
+export const SignerApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Creates a signer and returns the signer status. \\ **Note**: While tesing please reuse the signer, it costs money to approve a signer. 
+         * @summary Create signer
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createSigner: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/farcaster/signer`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetches the status of a developer managed signer by public key
+         * @summary Status by public key
+         * @param {string} publicKey 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        developerManagedSigner: async (publicKey: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'publicKey' is not null or undefined
+            assertParamExists('developerManagedSigner', 'publicKey', publicKey)
+            const localVarPath = `/farcaster/signer/developer_managed`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (publicKey !== undefined) {
+                localVarQueryParameter['public_key'] = publicKey;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
+         * @summary Fetch authorization url
+         * @param {string} clientId 
+         * @param {AuthorizationUrlResponseType} responseType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        fetchAuthorizationUrl: async (clientId: string, responseType: AuthorizationUrlResponseType, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'clientId' is not null or undefined
+            assertParamExists('fetchAuthorizationUrl', 'clientId', clientId)
+            // verify required parameter 'responseType' is not null or undefined
+            assertParamExists('fetchAuthorizationUrl', 'responseType', responseType)
+            const localVarPath = `/farcaster/login/authorize`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (clientId !== undefined) {
+                localVarQueryParameter['client_id'] = clientId;
+            }
+
+            if (responseType !== undefined) {
+                localVarQueryParameter['response_type'] = responseType;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Publish a message to farcaster. The message must be signed by a signer managed by the developer. Use the @farcaster/core library to construct and sign the message. Use the Message.toJSON method on the signed message and pass the JSON in the body of this POST request.
+         * @summary Publish message
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publishMessage: async (body: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('publishMessage', 'body', body)
+            const localVarPath = `/farcaster/message`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Registers an app FID, deadline and a signature. Returns the signer status with an approval url.
+         * @summary Register Signed Key
+         * @param {RegisterSignerKeyReqBody} registerSignerKeyReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        registerSignedKey: async (registerSignerKeyReqBody: RegisterSignerKeyReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'registerSignerKeyReqBody' is not null or undefined
+            assertParamExists('registerSignedKey', 'registerSignerKeyReqBody', registerSignerKeyReqBody)
+            const localVarPath = `/farcaster/signer/signed_key`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(registerSignerKeyReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Registers an signed key and returns the developer managed signer status with an approval url.
+         * @summary Register Signed Key
+         * @param {RegisterDeveloperManagedSignedKeyReqBody} registerDeveloperManagedSignedKeyReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        registerSignedKeyForDeveloperManagedSigner: async (registerDeveloperManagedSignedKeyReqBody: RegisterDeveloperManagedSignedKeyReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'registerDeveloperManagedSignedKeyReqBody' is not null or undefined
+            assertParamExists('registerSignedKeyForDeveloperManagedSigner', 'registerDeveloperManagedSignedKeyReqBody', registerDeveloperManagedSignedKeyReqBody)
+            const localVarPath = `/farcaster/signer/developer_managed/signed_key`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(registerDeveloperManagedSignedKeyReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
+         * @summary Status
+         * @param {string} signerUuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        signer: async (signerUuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'signerUuid' is not null or undefined
+            assertParamExists('signer', 'signerUuid', signerUuid)
+            const localVarPath = `/farcaster/signer`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (signerUuid !== undefined) {
+                localVarQueryParameter['signer_uuid'] = signerUuid;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * SignerApi - functional programming interface
+ * @export
+ */
+export const SignerApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = SignerApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Creates a signer and returns the signer status. \\ **Note**: While tesing please reuse the signer, it costs money to approve a signer. 
+         * @summary Create signer
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createSigner(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signer>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createSigner(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SignerApi.createSigner']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetches the status of a developer managed signer by public key
+         * @summary Status by public key
+         * @param {string} publicKey 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async developerManagedSigner(publicKey: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeveloperManagedSigner>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.developerManagedSigner(publicKey, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SignerApi.developerManagedSigner']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
+         * @summary Fetch authorization url
+         * @param {string} clientId 
+         * @param {AuthorizationUrlResponseType} responseType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async fetchAuthorizationUrl(clientId: string, responseType: AuthorizationUrlResponseType, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthorizationUrlResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchAuthorizationUrl(clientId, responseType, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SignerApi.fetchAuthorizationUrl']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Publish a message to farcaster. The message must be signed by a signer managed by the developer. Use the @farcaster/core library to construct and sign the message. Use the Message.toJSON method on the signed message and pass the JSON in the body of this POST request.
+         * @summary Publish message
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publishMessage(body: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publishMessage(body, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SignerApi.publishMessage']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Registers an app FID, deadline and a signature. Returns the signer status with an approval url.
+         * @summary Register Signed Key
+         * @param {RegisterSignerKeyReqBody} registerSignerKeyReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async registerSignedKey(registerSignerKeyReqBody: RegisterSignerKeyReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signer>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.registerSignedKey(registerSignerKeyReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SignerApi.registerSignedKey']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Registers an signed key and returns the developer managed signer status with an approval url.
+         * @summary Register Signed Key
+         * @param {RegisterDeveloperManagedSignedKeyReqBody} registerDeveloperManagedSignedKeyReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async registerSignedKeyForDeveloperManagedSigner(registerDeveloperManagedSignedKeyReqBody: RegisterDeveloperManagedSignedKeyReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeveloperManagedSigner>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.registerSignedKeyForDeveloperManagedSigner(registerDeveloperManagedSignedKeyReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SignerApi.registerSignedKeyForDeveloperManagedSigner']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
+         * @summary Status
+         * @param {string} signerUuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async signer(signerUuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signer>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.signer(signerUuid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SignerApi.signer']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * SignerApi - factory interface
+ * @export
+ */
+export const SignerApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = SignerApiFp(configuration)
+    return {
+        /**
+         * Creates a signer and returns the signer status. \\ **Note**: While tesing please reuse the signer, it costs money to approve a signer. 
+         * @summary Create signer
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createSigner(options?: RawAxiosRequestConfig): AxiosPromise<Signer> {
+            return localVarFp.createSigner(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches the status of a developer managed signer by public key
+         * @summary Status by public key
+         * @param {string} publicKey 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        developerManagedSigner(publicKey: string, options?: RawAxiosRequestConfig): AxiosPromise<DeveloperManagedSigner> {
+            return localVarFp.developerManagedSigner(publicKey, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
+         * @summary Fetch authorization url
+         * @param {string} clientId 
+         * @param {AuthorizationUrlResponseType} responseType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        fetchAuthorizationUrl(clientId: string, responseType: AuthorizationUrlResponseType, options?: RawAxiosRequestConfig): AxiosPromise<AuthorizationUrlResponse> {
+            return localVarFp.fetchAuthorizationUrl(clientId, responseType, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Publish a message to farcaster. The message must be signed by a signer managed by the developer. Use the @farcaster/core library to construct and sign the message. Use the Message.toJSON method on the signed message and pass the JSON in the body of this POST request.
+         * @summary Publish message
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publishMessage(body: object, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.publishMessage(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Registers an app FID, deadline and a signature. Returns the signer status with an approval url.
+         * @summary Register Signed Key
+         * @param {RegisterSignerKeyReqBody} registerSignerKeyReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        registerSignedKey(registerSignerKeyReqBody: RegisterSignerKeyReqBody, options?: RawAxiosRequestConfig): AxiosPromise<Signer> {
+            return localVarFp.registerSignedKey(registerSignerKeyReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Registers an signed key and returns the developer managed signer status with an approval url.
+         * @summary Register Signed Key
+         * @param {RegisterDeveloperManagedSignedKeyReqBody} registerDeveloperManagedSignedKeyReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        registerSignedKeyForDeveloperManagedSigner(registerDeveloperManagedSignedKeyReqBody: RegisterDeveloperManagedSignedKeyReqBody, options?: RawAxiosRequestConfig): AxiosPromise<DeveloperManagedSigner> {
+            return localVarFp.registerSignedKeyForDeveloperManagedSigner(registerDeveloperManagedSignedKeyReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
+         * @summary Status
+         * @param {string} signerUuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        signer(signerUuid: string, options?: RawAxiosRequestConfig): AxiosPromise<Signer> {
+            return localVarFp.signer(signerUuid, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * SignerApi - object-oriented interface
+ * @export
+ * @class SignerApi
+ * @extends {BaseAPI}
+ */
+export class SignerApi extends BaseAPI {
+    /**
+     * Creates a signer and returns the signer status. \\ **Note**: While tesing please reuse the signer, it costs money to approve a signer. 
+     * @summary Create signer
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SignerApi
+     */
+    public createSigner(options?: RawAxiosRequestConfig) {
+        return SignerApiFp(this.configuration).createSigner(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches the status of a developer managed signer by public key
+     * @summary Status by public key
+     * @param {string} publicKey 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SignerApi
+     */
+    public developerManagedSigner(publicKey: string, options?: RawAxiosRequestConfig) {
+        return SignerApiFp(this.configuration).developerManagedSigner(publicKey, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
+     * @summary Fetch authorization url
+     * @param {string} clientId 
+     * @param {AuthorizationUrlResponseType} responseType 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SignerApi
+     */
+    public fetchAuthorizationUrl(clientId: string, responseType: AuthorizationUrlResponseType, options?: RawAxiosRequestConfig) {
+        return SignerApiFp(this.configuration).fetchAuthorizationUrl(clientId, responseType, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Publish a message to farcaster. The message must be signed by a signer managed by the developer. Use the @farcaster/core library to construct and sign the message. Use the Message.toJSON method on the signed message and pass the JSON in the body of this POST request.
+     * @summary Publish message
+     * @param {object} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SignerApi
+     */
+    public publishMessage(body: object, options?: RawAxiosRequestConfig) {
+        return SignerApiFp(this.configuration).publishMessage(body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Registers an app FID, deadline and a signature. Returns the signer status with an approval url.
+     * @summary Register Signed Key
+     * @param {RegisterSignerKeyReqBody} registerSignerKeyReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SignerApi
+     */
+    public registerSignedKey(registerSignerKeyReqBody: RegisterSignerKeyReqBody, options?: RawAxiosRequestConfig) {
+        return SignerApiFp(this.configuration).registerSignedKey(registerSignerKeyReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Registers an signed key and returns the developer managed signer status with an approval url.
+     * @summary Register Signed Key
+     * @param {RegisterDeveloperManagedSignedKeyReqBody} registerDeveloperManagedSignedKeyReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SignerApi
+     */
+    public registerSignedKeyForDeveloperManagedSigner(registerDeveloperManagedSignedKeyReqBody: RegisterDeveloperManagedSignedKeyReqBody, options?: RawAxiosRequestConfig) {
+        return SignerApiFp(this.configuration).registerSignedKeyForDeveloperManagedSigner(registerDeveloperManagedSignedKeyReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
+     * @summary Status
+     * @param {string} signerUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SignerApi
+     */
+    public signer(signerUuid: string, options?: RawAxiosRequestConfig) {
+        return SignerApiFp(this.configuration).signer(signerUuid, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * StorageApi - axios parameter creator
+ * @export
+ */
+export const StorageApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * This api will help you rent units of storage for an year for a specific FID. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
+         * @summary Buy storage
+         * @param {BuyStorageReqBody} buyStorageReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        buyStorage: async (buyStorageReqBody: BuyStorageReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'buyStorageReqBody' is not null or undefined
+            assertParamExists('buyStorage', 'buyStorageReqBody', buyStorageReqBody)
+            const localVarPath = `/farcaster/storage/buy`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(buyStorageReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetches storage allocations for a given user
+         * @summary Allocation of user
+         * @param {number} fid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        storageAllocations: async (fid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('storageAllocations', 'fid', fid)
+            const localVarPath = `/farcaster/storage/allocations`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetches storage usage for a given user
+         * @summary Usage of user
+         * @param {number} fid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        storageUsage: async (fid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('storageUsage', 'fid', fid)
+            const localVarPath = `/farcaster/storage/usage`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * StorageApi - functional programming interface
+ * @export
+ */
+export const StorageApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = StorageApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * This api will help you rent units of storage for an year for a specific FID. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
+         * @summary Buy storage
+         * @param {BuyStorageReqBody} buyStorageReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async buyStorage(buyStorageReqBody: BuyStorageReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageAllocationsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.buyStorage(buyStorageReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StorageApi.buyStorage']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetches storage allocations for a given user
+         * @summary Allocation of user
+         * @param {number} fid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async storageAllocations(fid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageAllocationsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.storageAllocations(fid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StorageApi.storageAllocations']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetches storage usage for a given user
+         * @summary Usage of user
+         * @param {number} fid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async storageUsage(fid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageUsageResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.storageUsage(fid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StorageApi.storageUsage']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * StorageApi - factory interface
+ * @export
+ */
+export const StorageApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = StorageApiFp(configuration)
+    return {
+        /**
+         * This api will help you rent units of storage for an year for a specific FID. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
+         * @summary Buy storage
+         * @param {BuyStorageReqBody} buyStorageReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        buyStorage(buyStorageReqBody: BuyStorageReqBody, options?: RawAxiosRequestConfig): AxiosPromise<StorageAllocationsResponse> {
+            return localVarFp.buyStorage(buyStorageReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches storage allocations for a given user
+         * @summary Allocation of user
+         * @param {number} fid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        storageAllocations(fid: number, options?: RawAxiosRequestConfig): AxiosPromise<StorageAllocationsResponse> {
+            return localVarFp.storageAllocations(fid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches storage usage for a given user
+         * @summary Usage of user
+         * @param {number} fid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        storageUsage(fid: number, options?: RawAxiosRequestConfig): AxiosPromise<StorageUsageResponse> {
+            return localVarFp.storageUsage(fid, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * StorageApi - object-oriented interface
+ * @export
+ * @class StorageApi
+ * @extends {BaseAPI}
+ */
+export class StorageApi extends BaseAPI {
+    /**
+     * This api will help you rent units of storage for an year for a specific FID. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
+     * @summary Buy storage
+     * @param {BuyStorageReqBody} buyStorageReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorageApi
+     */
+    public buyStorage(buyStorageReqBody: BuyStorageReqBody, options?: RawAxiosRequestConfig) {
+        return StorageApiFp(this.configuration).buyStorage(buyStorageReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches storage allocations for a given user
+     * @summary Allocation of user
+     * @param {number} fid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorageApi
+     */
+    public storageAllocations(fid: number, options?: RawAxiosRequestConfig) {
+        return StorageApiFp(this.configuration).storageAllocations(fid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches storage usage for a given user
+     * @summary Usage of user
+     * @param {number} fid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorageApi
+     */
+    public storageUsage(fid: number, options?: RawAxiosRequestConfig) {
+        return StorageApiFp(this.configuration).storageUsage(fid, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * SubscribersApi - axios parameter creator
+ * @export
+ */
+export const SubscribersApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Fetch what FIDs and contracts a FID is subscribed to.
+         * @summary Subscribed to
+         * @param {number} fid 
+         * @param {SubscriptionProvider} subscriptionProvider 
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        subscribedTo: async (fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('subscribedTo', 'fid', fid)
+            // verify required parameter 'subscriptionProvider' is not null or undefined
+            assertParamExists('subscribedTo', 'subscriptionProvider', subscriptionProvider)
+            const localVarPath = `/farcaster/user/subscribed_to`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (subscriptionProvider !== undefined) {
+                localVarQueryParameter['subscription_provider'] = subscriptionProvider;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch subscribers for a given FID\'s contracts. Doesn\'t return addresses that don\'t have an FID.
+         * @summary Subscribers of a user
+         * @param {number} fid 
+         * @param {SubscriptionProviders} subscriptionProvider 
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        subscribers: async (fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('subscribers', 'fid', fid)
+            // verify required parameter 'subscriptionProvider' is not null or undefined
+            assertParamExists('subscribers', 'subscriptionProvider', subscriptionProvider)
+            const localVarPath = `/farcaster/user/subscribers`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (subscriptionProvider !== undefined) {
+                localVarQueryParameter['subscription_provider'] = subscriptionProvider;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch created subscriptions for a given FID\'s.
+         * @summary Subscriptions created by FID
+         * @param {number} fid 
+         * @param {SubscriptionProvider} subscriptionProvider 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        subscriptionsCreated: async (fid: number, subscriptionProvider: SubscriptionProvider, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('subscriptionsCreated', 'fid', fid)
+            // verify required parameter 'subscriptionProvider' is not null or undefined
+            assertParamExists('subscriptionsCreated', 'subscriptionProvider', subscriptionProvider)
+            const localVarPath = `/farcaster/user/subscriptions_created`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (subscriptionProvider !== undefined) {
+                localVarQueryParameter['subscription_provider'] = subscriptionProvider;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * SubscribersApi - functional programming interface
+ * @export
+ */
+export const SubscribersApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = SubscribersApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Fetch what FIDs and contracts a FID is subscribed to.
+         * @summary Subscribed to
+         * @param {number} fid 
+         * @param {SubscriptionProvider} subscriptionProvider 
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async subscribedTo(fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscribedToResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.subscribedTo(fid, subscriptionProvider, viewerFid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscribersApi.subscribedTo']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch subscribers for a given FID\'s contracts. Doesn\'t return addresses that don\'t have an FID.
+         * @summary Subscribers of a user
+         * @param {number} fid 
+         * @param {SubscriptionProviders} subscriptionProvider 
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async subscribers(fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscribersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.subscribers(fid, subscriptionProvider, viewerFid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscribersApi.subscribers']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch created subscriptions for a given FID\'s.
+         * @summary Subscriptions created by FID
+         * @param {number} fid 
+         * @param {SubscriptionProvider} subscriptionProvider 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async subscriptionsCreated(fid: number, subscriptionProvider: SubscriptionProvider, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.subscriptionsCreated(fid, subscriptionProvider, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscribersApi.subscriptionsCreated']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * SubscribersApi - factory interface
+ * @export
+ */
+export const SubscribersApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = SubscribersApiFp(configuration)
+    return {
+        /**
+         * Fetch what FIDs and contracts a FID is subscribed to.
+         * @summary Subscribed to
+         * @param {number} fid 
+         * @param {SubscriptionProvider} subscriptionProvider 
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        subscribedTo(fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<SubscribedToResponse> {
+            return localVarFp.subscribedTo(fid, subscriptionProvider, viewerFid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch subscribers for a given FID\'s contracts. Doesn\'t return addresses that don\'t have an FID.
+         * @summary Subscribers of a user
+         * @param {number} fid 
+         * @param {SubscriptionProviders} subscriptionProvider 
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        subscribers(fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<SubscribersResponse> {
+            return localVarFp.subscribers(fid, subscriptionProvider, viewerFid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch created subscriptions for a given FID\'s.
+         * @summary Subscriptions created by FID
+         * @param {number} fid 
+         * @param {SubscriptionProvider} subscriptionProvider 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        subscriptionsCreated(fid: number, subscriptionProvider: SubscriptionProvider, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionsResponse> {
+            return localVarFp.subscriptionsCreated(fid, subscriptionProvider, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * SubscribersApi - object-oriented interface
+ * @export
+ * @class SubscribersApi
+ * @extends {BaseAPI}
+ */
+export class SubscribersApi extends BaseAPI {
+    /**
+     * Fetch what FIDs and contracts a FID is subscribed to.
+     * @summary Subscribed to
+     * @param {number} fid 
+     * @param {SubscriptionProvider} subscriptionProvider 
+     * @param {number} [viewerFid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubscribersApi
+     */
+    public subscribedTo(fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: RawAxiosRequestConfig) {
+        return SubscribersApiFp(this.configuration).subscribedTo(fid, subscriptionProvider, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch subscribers for a given FID\'s contracts. Doesn\'t return addresses that don\'t have an FID.
+     * @summary Subscribers of a user
+     * @param {number} fid 
+     * @param {SubscriptionProviders} subscriptionProvider 
+     * @param {number} [viewerFid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubscribersApi
+     */
+    public subscribers(fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: RawAxiosRequestConfig) {
+        return SubscribersApiFp(this.configuration).subscribers(fid, subscriptionProvider, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch created subscriptions for a given FID\'s.
+     * @summary Subscriptions created by FID
+     * @param {number} fid 
+     * @param {SubscriptionProvider} subscriptionProvider 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubscribersApi
+     */
+    public subscriptionsCreated(fid: number, subscriptionProvider: SubscriptionProvider, options?: RawAxiosRequestConfig) {
+        return SubscribersApiFp(this.configuration).subscriptionsCreated(fid, subscriptionProvider, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * UserApi - axios parameter creator
+ * @export
+ */
+export const UserApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Warpcast has deprecated the active badge. Use user/power endpoint instead.
+         * @summary Fetch active users
+         * @param {number} [limit] 
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @deprecated
+         * @throws {RequiredError}
+         */
+        activeUsers: async (limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/farcaster/user/active`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
+         * @summary Delete verification
+         * @param {RemoveVerificationReqBody} removeVerificationReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        farcasterUserVerificationDelete: async (removeVerificationReqBody: RemoveVerificationReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'removeVerificationReqBody' is not null or undefined
+            assertParamExists('farcasterUserVerificationDelete', 'removeVerificationReqBody', removeVerificationReqBody)
+            const localVarPath = `/farcaster/user/verification`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(removeVerificationReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Adds verification for an eth address or contract for the user \\ (In order to add verification `signer_uuid` must be approved) 
+         * @summary Add verification
+         * @param {AddVerificationReqBody} addVerificationReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        farcasterUserVerificationPost: async (addVerificationReqBody: AddVerificationReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'addVerificationReqBody' is not null or undefined
+            assertParamExists('farcasterUserVerificationPost', 'addVerificationReqBody', addVerificationReqBody)
+            const localVarPath = `/farcaster/user/verification`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(addVerificationReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
+         * @summary Follow user
+         * @param {FollowReqBody} followReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        followUser: async (followReqBody: FollowReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'followReqBody' is not null or undefined
+            assertParamExists('followUser', 'followReqBody', followReqBody)
+            const localVarPath = `/farcaster/user/follow`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(followReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
+         * @summary Fetch fresh FID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFreshFid: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/farcaster/user/fid`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Lookup a user by custody-address
+         * @summary By custody-address
+         * @param {string} custodyAddress Custody Address associated with mnemonic
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        lookupUserByCustodyAddress: async (custodyAddress: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'custodyAddress' is not null or undefined
+            assertParamExists('lookupUserByCustodyAddress', 'custodyAddress', custodyAddress)
+            const localVarPath = `/farcaster/user/custody-address`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (custodyAddress !== undefined) {
+                localVarQueryParameter['custody_address'] = custodyAddress;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetches power users based on Warpcast power badges. Information is updated once a day.
+         * @summary Power users
+         * @param {number} [viewerFid] 
+         * @param {number} [limit] Number of power users to fetch, max 100
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        powerUsers: async (viewerFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/farcaster/user/power`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user. 
+         * @summary Register new account
+         * @param {RegisterUserReqBody} registerUserReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        registerUser: async (registerUserReqBody: RegisterUserReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'registerUserReqBody' is not null or undefined
+            assertParamExists('registerUser', 'registerUserReqBody', registerUserReqBody)
+            const localVarPath = `/farcaster/user`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(registerUserReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved) 
+         * @summary Unfollow user
+         * @param {FollowReqBody} followReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unfollowUser: async (followReqBody: FollowReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'followReqBody' is not null or undefined
+            assertParamExists('unfollowUser', 'followReqBody', followReqBody)
+            const localVarPath = `/farcaster/user/follow`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(followReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update user profile \\ (In order to update user\'s profile `signer_uuid` must be approved) 
+         * @summary Update user profile
+         * @param {UpdateUserReqBody} updateUserReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateUser: async (updateUserReqBody: UpdateUserReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'updateUserReqBody' is not null or undefined
+            assertParamExists('updateUser', 'updateUserReqBody', updateUserReqBody)
+            const localVarPath = `/farcaster/user`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(updateUserReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetches information about multiple users based on FIDs
+         * @summary By FIDs
+         * @param {string} fids Comma separated list of FIDs, up to 100 at a time
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userBulk: async (fids: string, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fids' is not null or undefined
+            assertParamExists('userBulk', 'fids', fids)
+            const localVarPath = `/farcaster/user/bulk`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fids !== undefined) {
+                localVarQueryParameter['fids'] = fids;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
+         * @summary By Eth or Sol addresses
+         * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
+         * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userBulkByAddress: async (addresses: string, addressTypes?: string, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'addresses' is not null or undefined
+            assertParamExists('userBulkByAddress', 'addresses', addresses)
+            const localVarPath = `/farcaster/user/bulk-by-address`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (addresses !== undefined) {
+                localVarQueryParameter['addresses'] = addresses;
+            }
+
+            if (addressTypes !== undefined) {
+                localVarQueryParameter['address_types'] = addressTypes;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetches a single hydrated user object given a username
+         * @summary By username
+         * @param {string} username Username of the user to fetch
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userByUsernameV2: async (username: string, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'username' is not null or undefined
+            assertParamExists('userByUsernameV2', 'username', username)
+            const localVarPath = `/farcaster/user/by_username`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (username !== undefined) {
+                localVarQueryParameter['username'] = username;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
+         * @summary Power user FIDs
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userPowerLite: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/farcaster/user/power_lite`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Search for Usernames
+         * @summary Search for Usernames
+         * @param {string} q 
+         * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {number} [limit] 
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userSearch: async (q: string, viewerFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'q' is not null or undefined
+            assertParamExists('userSearch', 'q', q)
+            const localVarPath = `/farcaster/user/search`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (q !== undefined) {
+                localVarQueryParameter['q'] = q;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * UserApi - functional programming interface
+ * @export
+ */
+export const UserApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = UserApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Warpcast has deprecated the active badge. Use user/power endpoint instead.
+         * @summary Fetch active users
+         * @param {number} [limit] 
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @deprecated
+         * @throws {RequiredError}
+         */
+        async activeUsers(limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.activeUsers(limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.activeUsers']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
+         * @summary Delete verification
+         * @param {RemoveVerificationReqBody} removeVerificationReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async farcasterUserVerificationDelete(removeVerificationReqBody: RemoveVerificationReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.farcasterUserVerificationDelete(removeVerificationReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.farcasterUserVerificationDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Adds verification for an eth address or contract for the user \\ (In order to add verification `signer_uuid` must be approved) 
+         * @summary Add verification
+         * @param {AddVerificationReqBody} addVerificationReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async farcasterUserVerificationPost(addVerificationReqBody: AddVerificationReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.farcasterUserVerificationPost(addVerificationReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.farcasterUserVerificationPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
+         * @summary Follow user
+         * @param {FollowReqBody} followReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async followUser(followReqBody: FollowReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkFollowResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.followUser(followReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.followUser']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
+         * @summary Fetch fresh FID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getFreshFid(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserFIDResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getFreshFid(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.getFreshFid']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Lookup a user by custody-address
+         * @summary By custody-address
+         * @param {string} custodyAddress Custody Address associated with mnemonic
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async lookupUserByCustodyAddress(custodyAddress: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupUserByCustodyAddress(custodyAddress, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.lookupUserByCustodyAddress']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetches power users based on Warpcast power badges. Information is updated once a day.
+         * @summary Power users
+         * @param {number} [viewerFid] 
+         * @param {number} [limit] Number of power users to fetch, max 100
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async powerUsers(viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.powerUsers(viewerFid, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.powerUsers']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user. 
+         * @summary Register new account
+         * @param {RegisterUserReqBody} registerUserReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async registerUser(registerUserReqBody: RegisterUserReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RegisterUserResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.registerUser(registerUserReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.registerUser']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved) 
+         * @summary Unfollow user
+         * @param {FollowReqBody} followReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async unfollowUser(followReqBody: FollowReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkFollowResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.unfollowUser(followReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.unfollowUser']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Update user profile \\ (In order to update user\'s profile `signer_uuid` must be approved) 
+         * @summary Update user profile
+         * @param {UpdateUserReqBody} updateUserReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateUser(updateUserReqBody: UpdateUserReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateUser(updateUserReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.updateUser']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetches information about multiple users based on FIDs
+         * @summary By FIDs
+         * @param {string} fids Comma separated list of FIDs, up to 100 at a time
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async userBulk(fids: string, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkUsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userBulk(fids, viewerFid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.userBulk']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
+         * @summary By Eth or Sol addresses
+         * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
+         * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async userBulkByAddress(addresses: string, addressTypes?: string, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: Array<User>; }>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userBulkByAddress(addresses, addressTypes, viewerFid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.userBulkByAddress']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetches a single hydrated user object given a username
+         * @summary By username
+         * @param {string} username Username of the user to fetch
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async userByUsernameV2(username: string, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userByUsernameV2(username, viewerFid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.userByUsernameV2']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
+         * @summary Power user FIDs
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async userPowerLite(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserPowerLiteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userPowerLite(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.userPowerLite']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Search for Usernames
+         * @summary Search for Usernames
+         * @param {string} q 
+         * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {number} [limit] 
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async userSearch(q: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userSearch(q, viewerFid, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.userSearch']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * UserApi - factory interface
+ * @export
+ */
+export const UserApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = UserApiFp(configuration)
+    return {
+        /**
+         * Warpcast has deprecated the active badge. Use user/power endpoint instead.
+         * @summary Fetch active users
+         * @param {number} [limit] 
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @deprecated
+         * @throws {RequiredError}
+         */
+        activeUsers(limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
+            return localVarFp.activeUsers(limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
+         * @summary Delete verification
+         * @param {RemoveVerificationReqBody} removeVerificationReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        farcasterUserVerificationDelete(removeVerificationReqBody: RemoveVerificationReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.farcasterUserVerificationDelete(removeVerificationReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Adds verification for an eth address or contract for the user \\ (In order to add verification `signer_uuid` must be approved) 
+         * @summary Add verification
+         * @param {AddVerificationReqBody} addVerificationReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        farcasterUserVerificationPost(addVerificationReqBody: AddVerificationReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.farcasterUserVerificationPost(addVerificationReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
+         * @summary Follow user
+         * @param {FollowReqBody} followReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        followUser(followReqBody: FollowReqBody, options?: RawAxiosRequestConfig): AxiosPromise<BulkFollowResponse> {
+            return localVarFp.followUser(followReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
+         * @summary Fetch fresh FID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFreshFid(options?: RawAxiosRequestConfig): AxiosPromise<UserFIDResponse> {
+            return localVarFp.getFreshFid(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Lookup a user by custody-address
+         * @summary By custody-address
+         * @param {string} custodyAddress Custody Address associated with mnemonic
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        lookupUserByCustodyAddress(custodyAddress: string, options?: RawAxiosRequestConfig): AxiosPromise<UserResponse> {
+            return localVarFp.lookupUserByCustodyAddress(custodyAddress, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches power users based on Warpcast power badges. Information is updated once a day.
+         * @summary Power users
+         * @param {number} [viewerFid] 
+         * @param {number} [limit] Number of power users to fetch, max 100
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        powerUsers(viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
+            return localVarFp.powerUsers(viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user. 
+         * @summary Register new account
+         * @param {RegisterUserReqBody} registerUserReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        registerUser(registerUserReqBody: RegisterUserReqBody, options?: RawAxiosRequestConfig): AxiosPromise<RegisterUserResponse> {
+            return localVarFp.registerUser(registerUserReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved) 
+         * @summary Unfollow user
+         * @param {FollowReqBody} followReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unfollowUser(followReqBody: FollowReqBody, options?: RawAxiosRequestConfig): AxiosPromise<BulkFollowResponse> {
+            return localVarFp.unfollowUser(followReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Update user profile \\ (In order to update user\'s profile `signer_uuid` must be approved) 
+         * @summary Update user profile
+         * @param {UpdateUserReqBody} updateUserReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateUser(updateUserReqBody: UpdateUserReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.updateUser(updateUserReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches information about multiple users based on FIDs
+         * @summary By FIDs
+         * @param {string} fids Comma separated list of FIDs, up to 100 at a time
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userBulk(fids: string, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<BulkUsersResponse> {
+            return localVarFp.userBulk(fids, viewerFid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
+         * @summary By Eth or Sol addresses
+         * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
+         * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userBulkByAddress(addresses: string, addressTypes?: string, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: Array<User>; }> {
+            return localVarFp.userBulkByAddress(addresses, addressTypes, viewerFid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches a single hydrated user object given a username
+         * @summary By username
+         * @param {string} username Username of the user to fetch
+         * @param {number} [viewerFid] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userByUsernameV2(username: string, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<UserResponse> {
+            return localVarFp.userByUsernameV2(username, viewerFid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
+         * @summary Power user FIDs
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userPowerLite(options?: RawAxiosRequestConfig): AxiosPromise<UserPowerLiteResponse> {
+            return localVarFp.userPowerLite(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Search for Usernames
+         * @summary Search for Usernames
+         * @param {string} q 
+         * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {number} [limit] 
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userSearch(q: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<UserSearchResponse> {
+            return localVarFp.userSearch(q, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * UserApi - object-oriented interface
+ * @export
+ * @class UserApi
+ * @extends {BaseAPI}
+ */
+export class UserApi extends BaseAPI {
+    /**
+     * Warpcast has deprecated the active badge. Use user/power endpoint instead.
+     * @summary Fetch active users
+     * @param {number} [limit] 
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public activeUsers(limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).activeUsers(limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
+     * @summary Delete verification
+     * @param {RemoveVerificationReqBody} removeVerificationReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public farcasterUserVerificationDelete(removeVerificationReqBody: RemoveVerificationReqBody, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).farcasterUserVerificationDelete(removeVerificationReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Adds verification for an eth address or contract for the user \\ (In order to add verification `signer_uuid` must be approved) 
+     * @summary Add verification
+     * @param {AddVerificationReqBody} addVerificationReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public farcasterUserVerificationPost(addVerificationReqBody: AddVerificationReqBody, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).farcasterUserVerificationPost(addVerificationReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
+     * @summary Follow user
+     * @param {FollowReqBody} followReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public followUser(followReqBody: FollowReqBody, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).followUser(followReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
+     * @summary Fetch fresh FID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public getFreshFid(options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).getFreshFid(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Lookup a user by custody-address
+     * @summary By custody-address
+     * @param {string} custodyAddress Custody Address associated with mnemonic
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public lookupUserByCustodyAddress(custodyAddress: string, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).lookupUserByCustodyAddress(custodyAddress, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches power users based on Warpcast power badges. Information is updated once a day.
+     * @summary Power users
+     * @param {number} [viewerFid] 
+     * @param {number} [limit] Number of power users to fetch, max 100
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public powerUsers(viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).powerUsers(viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user. 
+     * @summary Register new account
+     * @param {RegisterUserReqBody} registerUserReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public registerUser(registerUserReqBody: RegisterUserReqBody, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).registerUser(registerUserReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved) 
+     * @summary Unfollow user
+     * @param {FollowReqBody} followReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public unfollowUser(followReqBody: FollowReqBody, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).unfollowUser(followReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Update user profile \\ (In order to update user\'s profile `signer_uuid` must be approved) 
+     * @summary Update user profile
+     * @param {UpdateUserReqBody} updateUserReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public updateUser(updateUserReqBody: UpdateUserReqBody, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).updateUser(updateUserReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches information about multiple users based on FIDs
+     * @summary By FIDs
+     * @param {string} fids Comma separated list of FIDs, up to 100 at a time
+     * @param {number} [viewerFid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public userBulk(fids: string, viewerFid?: number, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).userBulk(fids, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
+     * @summary By Eth or Sol addresses
+     * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
+     * @param {string} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
+     * @param {number} [viewerFid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public userBulkByAddress(addresses: string, addressTypes?: string, viewerFid?: number, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).userBulkByAddress(addresses, addressTypes, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches a single hydrated user object given a username
+     * @summary By username
+     * @param {string} username Username of the user to fetch
+     * @param {number} [viewerFid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public userByUsernameV2(username: string, viewerFid?: number, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).userByUsernameV2(username, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
+     * @summary Power user FIDs
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public userPowerLite(options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).userPowerLite(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Search for Usernames
+     * @summary Search for Usernames
+     * @param {string} q 
+     * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {number} [limit] 
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public userSearch(q: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).userSearch(q, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * WebhookApi - axios parameter creator
+ * @export
+ */
+export const WebhookApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Delete a webhook
+         * @summary Delete a webhook
+         * @param {WebhookDeleteReqBody} webhookDeleteReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteWebhook: async (webhookDeleteReqBody: WebhookDeleteReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'webhookDeleteReqBody' is not null or undefined
+            assertParamExists('deleteWebhook', 'webhookDeleteReqBody', webhookDeleteReqBody)
+            const localVarPath = `/farcaster/webhook`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(webhookDeleteReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch a list of webhooks associated to a user
+         * @summary Associated webhooks of user
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        fetchWebhooks: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/farcaster/webhook/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch a webhook
+         * @summary Fetch a webhook
+         * @param {string} webhookId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        lookupWebhook: async (webhookId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'webhookId' is not null or undefined
+            assertParamExists('lookupWebhook', 'webhookId', webhookId)
+            const localVarPath = `/farcaster/webhook`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (webhookId !== undefined) {
+                localVarQueryParameter['webhook_id'] = webhookId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Create a webhook
+         * @summary Create a webhook
+         * @param {WebhookPostReqBody} webhookPostReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publishWebhook: async (webhookPostReqBody: WebhookPostReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'webhookPostReqBody' is not null or undefined
+            assertParamExists('publishWebhook', 'webhookPostReqBody', webhookPostReqBody)
+            const localVarPath = `/farcaster/webhook`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(webhookPostReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update a webhook
+         * @summary Update a webhook
+         * @param {WebhookPutReqBody} webhookPutReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateWebhook: async (webhookPutReqBody: WebhookPutReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'webhookPutReqBody' is not null or undefined
+            assertParamExists('updateWebhook', 'webhookPutReqBody', webhookPutReqBody)
+            const localVarPath = `/farcaster/webhook`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(webhookPutReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update webhook active status
+         * @summary Update webhook status
+         * @param {WebhookPatchReqBody} webhookPatchReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateWebhookActiveStatus: async (webhookPatchReqBody: WebhookPatchReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'webhookPatchReqBody' is not null or undefined
+            assertParamExists('updateWebhookActiveStatus', 'webhookPatchReqBody', webhookPatchReqBody)
+            const localVarPath = `/farcaster/webhook`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(webhookPatchReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * WebhookApi - functional programming interface
+ * @export
+ */
+export const WebhookApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = WebhookApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Delete a webhook
+         * @summary Delete a webhook
+         * @param {WebhookDeleteReqBody} webhookDeleteReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteWebhook(webhookDeleteReqBody: WebhookDeleteReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteWebhook(webhookDeleteReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookApi.deleteWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch a list of webhooks associated to a user
+         * @summary Associated webhooks of user
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async fetchWebhooks(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchWebhooks(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookApi.fetchWebhooks']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch a webhook
+         * @summary Fetch a webhook
+         * @param {string} webhookId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async lookupWebhook(webhookId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupWebhook(webhookId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookApi.lookupWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Create a webhook
+         * @summary Create a webhook
+         * @param {WebhookPostReqBody} webhookPostReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publishWebhook(webhookPostReqBody: WebhookPostReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publishWebhook(webhookPostReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookApi.publishWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Update a webhook
+         * @summary Update a webhook
+         * @param {WebhookPutReqBody} webhookPutReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateWebhook(webhookPutReqBody: WebhookPutReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateWebhook(webhookPutReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookApi.updateWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Update webhook active status
+         * @summary Update webhook status
+         * @param {WebhookPatchReqBody} webhookPatchReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateWebhookActiveStatus(webhookPatchReqBody: WebhookPatchReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateWebhookActiveStatus(webhookPatchReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookApi.updateWebhookActiveStatus']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * WebhookApi - factory interface
+ * @export
+ */
+export const WebhookApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = WebhookApiFp(configuration)
+    return {
+        /**
+         * Delete a webhook
+         * @summary Delete a webhook
+         * @param {WebhookDeleteReqBody} webhookDeleteReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteWebhook(webhookDeleteReqBody: WebhookDeleteReqBody, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse> {
+            return localVarFp.deleteWebhook(webhookDeleteReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch a list of webhooks associated to a user
+         * @summary Associated webhooks of user
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        fetchWebhooks(options?: RawAxiosRequestConfig): AxiosPromise<WebhookListResponse> {
+            return localVarFp.fetchWebhooks(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch a webhook
+         * @summary Fetch a webhook
+         * @param {string} webhookId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        lookupWebhook(webhookId: string, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse> {
+            return localVarFp.lookupWebhook(webhookId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Create a webhook
+         * @summary Create a webhook
+         * @param {WebhookPostReqBody} webhookPostReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publishWebhook(webhookPostReqBody: WebhookPostReqBody, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse> {
+            return localVarFp.publishWebhook(webhookPostReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Update a webhook
+         * @summary Update a webhook
+         * @param {WebhookPutReqBody} webhookPutReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateWebhook(webhookPutReqBody: WebhookPutReqBody, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse> {
+            return localVarFp.updateWebhook(webhookPutReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Update webhook active status
+         * @summary Update webhook status
+         * @param {WebhookPatchReqBody} webhookPatchReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateWebhookActiveStatus(webhookPatchReqBody: WebhookPatchReqBody, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse> {
+            return localVarFp.updateWebhookActiveStatus(webhookPatchReqBody, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * WebhookApi - object-oriented interface
+ * @export
+ * @class WebhookApi
+ * @extends {BaseAPI}
+ */
+export class WebhookApi extends BaseAPI {
+    /**
+     * Delete a webhook
+     * @summary Delete a webhook
+     * @param {WebhookDeleteReqBody} webhookDeleteReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebhookApi
+     */
+    public deleteWebhook(webhookDeleteReqBody: WebhookDeleteReqBody, options?: RawAxiosRequestConfig) {
+        return WebhookApiFp(this.configuration).deleteWebhook(webhookDeleteReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch a list of webhooks associated to a user
+     * @summary Associated webhooks of user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebhookApi
+     */
+    public fetchWebhooks(options?: RawAxiosRequestConfig) {
+        return WebhookApiFp(this.configuration).fetchWebhooks(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch a webhook
+     * @summary Fetch a webhook
+     * @param {string} webhookId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebhookApi
+     */
+    public lookupWebhook(webhookId: string, options?: RawAxiosRequestConfig) {
+        return WebhookApiFp(this.configuration).lookupWebhook(webhookId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Create a webhook
+     * @summary Create a webhook
+     * @param {WebhookPostReqBody} webhookPostReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebhookApi
+     */
+    public publishWebhook(webhookPostReqBody: WebhookPostReqBody, options?: RawAxiosRequestConfig) {
+        return WebhookApiFp(this.configuration).publishWebhook(webhookPostReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Update a webhook
+     * @summary Update a webhook
+     * @param {WebhookPutReqBody} webhookPutReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebhookApi
+     */
+    public updateWebhook(webhookPutReqBody: WebhookPutReqBody, options?: RawAxiosRequestConfig) {
+        return WebhookApiFp(this.configuration).updateWebhook(webhookPutReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Update webhook active status
+     * @summary Update webhook status
+     * @param {WebhookPatchReqBody} webhookPatchReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebhookApi
+     */
+    public updateWebhookActiveStatus(webhookPatchReqBody: WebhookPatchReqBody, options?: RawAxiosRequestConfig) {
+        return WebhookApiFp(this.configuration).updateWebhookActiveStatus(webhookPatchReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
 
