@@ -184,6 +184,68 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
+         * Fetches a list of users given a location
+         * @summary By location
+         * @param {number} latitude Latitude of the location
+         * @param {number} longitude Longitude of the location
+         * @param {number} [viewerFid] FID of the user viewing the feed. Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        fetchUsersByLocation: async (latitude: number, longitude: number, viewerFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'latitude' is not null or undefined
+            assertParamExists('fetchUsersByLocation', 'latitude', latitude)
+            // verify required parameter 'longitude' is not null or undefined
+            assertParamExists('fetchUsersByLocation', 'longitude', longitude)
+            const localVarPath = `/farcaster/user/by_location`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (latitude !== undefined) {
+                localVarQueryParameter['latitude'] = latitude;
+            }
+
+            if (longitude !== undefined) {
+                localVarQueryParameter['longitude'] = longitude;
+            }
+
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
          * @summary Follow user
          * @param {FollowReqBody} followReqBody 
@@ -542,65 +604,8 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (viewerFid !== undefined) {
                 localVarQueryParameter['viewer_fid'] = viewerFid;
-            }            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Fetches a list of users given a location
-         * @summary By location
-         * @param {number} latitude Latitude of the location
-         * @param {number} longitude Longitude of the location
-         * @param {number} [viewerFid] FID of the user viewing the feed. Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        userByLocation: async (latitude: number, longitude: number, viewerFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'latitude' is not null or undefined
-            assertParamExists('userByLocation', 'latitude', latitude)
-            // verify required parameter 'longitude' is not null or undefined
-            assertParamExists('userByLocation', 'longitude', longitude)
-            const localVarPath = `/farcaster/user/by_location`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (latitude !== undefined) {
-                localVarQueryParameter['latitude'] = latitude;
-            }
-
-            if (longitude !== undefined) {
-                localVarQueryParameter['longitude'] = longitude;
-            }
-
-            if (viewerFid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewerFid;
-            }
-
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-            if (cursor !== undefined) {
-                localVarQueryParameter['cursor'] = cursor;
-            }
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -797,6 +802,23 @@ export const UserApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Fetches a list of users given a location
+         * @summary By location
+         * @param {number} latitude Latitude of the location
+         * @param {number} longitude Longitude of the location
+         * @param {number} [viewerFid] FID of the user viewing the feed. Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async fetchUsersByLocation(latitude: number, longitude: number, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUsersByLocation(latitude, longitude, viewerFid, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.fetchUsersByLocation']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
          * @summary Follow user
          * @param {FollowReqBody} followReqBody 
@@ -918,23 +940,6 @@ export const UserApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Fetches a list of users given a location
-         * @summary By location
-         * @param {number} latitude Latitude of the location
-         * @param {number} longitude Longitude of the location
-         * @param {number} [viewerFid] FID of the user viewing the feed. Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async userByLocation(latitude: number, longitude: number, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userByLocation(latitude, longitude, viewerFid, limit, cursor, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UserApi.userByLocation']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Fetches a single hydrated user object given a username
          * @summary By username
          * @param {string} username Username of the user to fetch
@@ -1017,6 +1022,20 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          */
         farcasterUserVerificationPost(addVerificationReqBody: AddVerificationReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
             return localVarFp.farcasterUserVerificationPost(addVerificationReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches a list of users given a location
+         * @summary By location
+         * @param {number} latitude Latitude of the location
+         * @param {number} longitude Longitude of the location
+         * @param {number} [viewerFid] FID of the user viewing the feed. Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        fetchUsersByLocation(latitude: number, longitude: number, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
+            return localVarFp.fetchUsersByLocation(latitude, longitude, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
@@ -1113,20 +1132,6 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.userBulkByAddress(addresses, addressTypes, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
-         * Fetches a list of users given a location
-         * @summary By location
-         * @param {number} latitude Latitude of the location
-         * @param {number} longitude Longitude of the location
-         * @param {number} [viewerFid] FID of the user viewing the feed. Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        userByLocation(latitude: number, longitude: number, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
-            return localVarFp.userByLocation(latitude, longitude, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Fetches a single hydrated user object given a username
          * @summary By username
          * @param {string} username Username of the user to fetch
@@ -1205,6 +1210,22 @@ export class UserApi extends BaseAPI {
      */
     public farcasterUserVerificationPost(addVerificationReqBody: AddVerificationReqBody, options?: RawAxiosRequestConfig) {
         return UserApiFp(this.configuration).farcasterUserVerificationPost(addVerificationReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches a list of users given a location
+     * @summary By location
+     * @param {number} latitude Latitude of the location
+     * @param {number} longitude Longitude of the location
+     * @param {number} [viewerFid] FID of the user viewing the feed. Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {number} [limit] Number of results to fetch
+     * @param {string} [cursor] Pagination cursor
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public fetchUsersByLocation(latitude: number, longitude: number, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).fetchUsersByLocation(latitude, longitude, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1317,22 +1338,6 @@ export class UserApi extends BaseAPI {
      */
     public userBulkByAddress(addresses: string, addressTypes?: string, viewerFid?: number, options?: RawAxiosRequestConfig) {
         return UserApiFp(this.configuration).userBulkByAddress(addresses, addressTypes, viewerFid, options).then((request) => request(this.axios, this.basePath));
-    }
-    
-    /**
-    * Fetches a list of users given a location
-    * @summary By location
-    * @param {number} latitude Latitude of the location
-    * @param {number} longitude Longitude of the location
-    * @param {number} [viewerFid] FID of the user viewing the feed. Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-    * @param {number} [limit] Number of results to fetch
-    * @param {string} [cursor] Pagination cursor
-    * @param {*} [options] Override http request option.
-    * @throws {RequiredError}
-    * @memberof UserApi
-    */
-    public userByLocation(latitude: number, longitude: number, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).userByLocation(latitude, longitude, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
