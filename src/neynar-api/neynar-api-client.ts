@@ -1525,6 +1525,39 @@ export class NeynarAPIClient {
     return await this.clients.v2.lookupUserByUsernameV2(username, options);
   }
 
+    /**
+   * Retrieves users by their location, specified by latitude and longitude coordinates.
+   * 
+   * @param {number} latitude - The latitude coordinate of the location.
+   * @param {number} longitude - The longitude coordinate of the location.
+   * @param {Object} [options] - Optional parameters to tailor the request.
+   * @param {number} [options.viewerFid] - The FID of the user viewing this information, used for providing contextual data specific to the viewer.
+   * @param {number} [options.limit] - The number of users to fetch per request. Defaults to 25 with a maximum of 100.
+   * @param {string} [options.cursor] - Pagination cursor for fetching specific subsets of results.
+   * 
+   * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object, 
+   *   containing information about the users at the specified location.
+   * 
+   * @example
+   * // Example: Fetch users by location with viewer fid
+   * client.fetchUsersByLocation(37.7749, -122.4194, {viewerFid: 3}).then(response => {
+   *  console.log('Users by Location:', response);
+   * });
+   * 
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-by-location).
+   */
+  public async fetchUsersByLocation(
+    latitude: number,
+    longitude: number,
+    options?: {
+      viewerFid?: number;
+      limit?: number;
+      cursor?: string;
+    }
+  ): Promise<UsersResponse> {
+    return await this.clients.v2.fetchUsersByLocation(latitude, longitude, options);
+  }
+
   // ------------ Cast ------------
 
   /**
