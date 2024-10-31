@@ -33,6 +33,7 @@ models/ban-req-body.ts
 models/ban-response.ts
 models/block-list-response.ts
 models/block-record.ts
+models/block-req-body.ts
 models/bulk-casts-response.ts
 models/bulk-follow-response.ts
 models/bulk-users-response.ts

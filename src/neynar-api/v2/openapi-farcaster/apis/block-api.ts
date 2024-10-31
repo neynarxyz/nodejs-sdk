@@ -24,13 +24,56 @@ import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError
 // @ts-ignore
 import type { BlockListResponse } from '../models';
 // @ts-ignore
+import type { BlockReqBody } from '../models';
+// @ts-ignore
 import type { ErrorRes } from '../models';
+// @ts-ignore
+import type { OperationResponse } from '../models';
 /**
  * BlockApi - axios parameter creator
  * @export
  */
 export const BlockApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * Adds a block for a given FID.
+         * @summary Block FID
+         * @param {BlockReqBody} blockReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addBlock: async (blockReqBody: BlockReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'blockReqBody' is not null or undefined
+            assertParamExists('addBlock', 'blockReqBody', blockReqBody)
+            const localVarPath = `/farcaster/block`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(blockReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * Fetches all FIDs that a user has blocked or has been blocked by
          * @summary Blocked / Blocked by FIDs
@@ -84,6 +127,45 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Deletes a block for a given FID.
+         * @summary Unblock FID
+         * @param {BlockReqBody} blockReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteBlock: async (blockReqBody: BlockReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'blockReqBody' is not null or undefined
+            assertParamExists('deleteBlock', 'blockReqBody', blockReqBody)
+            const localVarPath = `/farcaster/block`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(blockReqBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -94,6 +176,19 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
 export const BlockApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = BlockApiAxiosParamCreator(configuration)
     return {
+        /**
+         * Adds a block for a given FID.
+         * @summary Block FID
+         * @param {BlockReqBody} blockReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async addBlock(blockReqBody: BlockReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.addBlock(blockReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BlockApi.addBlock']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
         /**
          * Fetches all FIDs that a user has blocked or has been blocked by
          * @summary Blocked / Blocked by FIDs
@@ -110,6 +205,19 @@ export const BlockApiFp = function(configuration?: Configuration) {
             const localVarOperationServerBasePath = operationServerMap['BlockApi.blockList']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
+        /**
+         * Deletes a block for a given FID.
+         * @summary Unblock FID
+         * @param {BlockReqBody} blockReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteBlock(blockReqBody: BlockReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteBlock(blockReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BlockApi.deleteBlock']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
     }
 };
 
@@ -120,6 +228,16 @@ export const BlockApiFp = function(configuration?: Configuration) {
 export const BlockApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = BlockApiFp(configuration)
     return {
+        /**
+         * Adds a block for a given FID.
+         * @summary Block FID
+         * @param {BlockReqBody} blockReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addBlock(blockReqBody: BlockReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.addBlock(blockReqBody, options).then((request) => request(axios, basePath));
+        },
         /**
          * Fetches all FIDs that a user has blocked or has been blocked by
          * @summary Blocked / Blocked by FIDs
@@ -133,6 +251,16 @@ export const BlockApiFactory = function (configuration?: Configuration, basePath
         blockList(blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<BlockListResponse> {
             return localVarFp.blockList(blockerFid, blockedFid, limit, cursor, options).then((request) => request(axios, basePath));
         },
+        /**
+         * Deletes a block for a given FID.
+         * @summary Unblock FID
+         * @param {BlockReqBody} blockReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteBlock(blockReqBody: BlockReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.deleteBlock(blockReqBody, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -143,6 +271,18 @@ export const BlockApiFactory = function (configuration?: Configuration, basePath
  * @extends {BaseAPI}
  */
 export class BlockApi extends BaseAPI {
+    /**
+     * Adds a block for a given FID.
+     * @summary Block FID
+     * @param {BlockReqBody} blockReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BlockApi
+     */
+    public addBlock(blockReqBody: BlockReqBody, options?: RawAxiosRequestConfig) {
+        return BlockApiFp(this.configuration).addBlock(blockReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Fetches all FIDs that a user has blocked or has been blocked by
      * @summary Blocked / Blocked by FIDs
@@ -156,6 +296,18 @@ export class BlockApi extends BaseAPI {
      */
     public blockList(blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
         return BlockApiFp(this.configuration).blockList(blockerFid, blockedFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Deletes a block for a given FID.
+     * @summary Unblock FID
+     * @param {BlockReqBody} blockReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BlockApi
+     */
+    public deleteBlock(blockReqBody: BlockReqBody, options?: RawAxiosRequestConfig) {
+        return BlockApiFp(this.configuration).deleteBlock(blockReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
