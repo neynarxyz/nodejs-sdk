@@ -3884,7 +3884,7 @@ export class NeynarV2APIClient {
     limit?: number;
     cursor: string;
   }): Promise<BlockListResponse> {
-    const response = await this.apis.block.blockList(
+    const response = await this.apis.block.fetchBlockList(
       options?.blockerFid,
       options?.blockedFid,
       options?.limit,
@@ -3916,7 +3916,7 @@ export class NeynarV2APIClient {
       signer_uuid: signerUuid,
       blocked_fid: blockedFid,
     };
-    const response = await this.apis.block.addBlock(addBlockBody);
+    const response = await this.apis.block.publishBlock(addBlockBody);
     return response.data;
   }
 
