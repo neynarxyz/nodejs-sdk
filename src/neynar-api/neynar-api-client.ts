@@ -3834,7 +3834,7 @@ export class NeynarAPIClient {
    *  console.log('Blocked Fids:', response);
    * });
    *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/block-list).
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/fetch-block-list).
    */
   public async fetchBlockList(options?: {
     blockerFid: number;
@@ -3859,7 +3859,7 @@ export class NeynarAPIClient {
    * console.log('Block Response:', response);
    * });
    *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/add-block).
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/publish-block).
    *
    */
   public async publishBlock(
