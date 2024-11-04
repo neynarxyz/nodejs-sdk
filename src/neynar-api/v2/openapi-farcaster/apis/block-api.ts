@@ -36,15 +36,15 @@ import type { OperationResponse } from '../models';
 export const BlockApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Adds a block for a given FID.
-         * @summary Block FID
+         * Deletes a block for a given FID.
+         * @summary Unblock FID
          * @param {BlockReqBody} blockReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addBlock: async (blockReqBody: BlockReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteBlock: async (blockReqBody: BlockReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'blockReqBody' is not null or undefined
-            assertParamExists('addBlock', 'blockReqBody', blockReqBody)
+            assertParamExists('deleteBlock', 'blockReqBody', blockReqBody)
             const localVarPath = `/farcaster/block`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -53,7 +53,7 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -79,12 +79,12 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
          * @summary Blocked / Blocked by FIDs
          * @param {number} [blockerFid] Providing this will return the users that this user has blocked
          * @param {number} [blockedFid] Providing this will return the users that have blocked this user
-         * @param {number} [limit] Number of results to fetch (default 20, max 100).
+         * @param {number} [limit] Number of results to fetch
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        blockList: async (blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchBlockList: async (blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/farcaster/block/list`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -128,15 +128,15 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
-         * Deletes a block for a given FID.
-         * @summary Unblock FID
+         * Adds a block for a given FID.
+         * @summary Block FID
          * @param {BlockReqBody} blockReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteBlock: async (blockReqBody: BlockReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        publishBlock: async (blockReqBody: BlockReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'blockReqBody' is not null or undefined
-            assertParamExists('deleteBlock', 'blockReqBody', blockReqBody)
+            assertParamExists('publishBlock', 'blockReqBody', blockReqBody)
             const localVarPath = `/farcaster/block`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -145,7 +145,7 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -177,35 +177,6 @@ export const BlockApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = BlockApiAxiosParamCreator(configuration)
     return {
         /**
-         * Adds a block for a given FID.
-         * @summary Block FID
-         * @param {BlockReqBody} blockReqBody 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async addBlock(blockReqBody: BlockReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.addBlock(blockReqBody, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['BlockApi.addBlock']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Fetches all FIDs that a user has blocked or has been blocked by
-         * @summary Blocked / Blocked by FIDs
-         * @param {number} [blockerFid] Providing this will return the users that this user has blocked
-         * @param {number} [blockedFid] Providing this will return the users that have blocked this user
-         * @param {number} [limit] Number of results to fetch (default 20, max 100).
-         * @param {string} [cursor] Pagination cursor.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async blockList(blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BlockListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.blockList(blockerFid, blockedFid, limit, cursor, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['BlockApi.blockList']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Deletes a block for a given FID.
          * @summary Unblock FID
          * @param {BlockReqBody} blockReqBody 
@@ -216,6 +187,35 @@ export const BlockApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteBlock(blockReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['BlockApi.deleteBlock']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetches all FIDs that a user has blocked or has been blocked by
+         * @summary Blocked / Blocked by FIDs
+         * @param {number} [blockerFid] Providing this will return the users that this user has blocked
+         * @param {number} [blockedFid] Providing this will return the users that have blocked this user
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async fetchBlockList(blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BlockListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchBlockList(blockerFid, blockedFid, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BlockApi.fetchBlockList']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Adds a block for a given FID.
+         * @summary Block FID
+         * @param {BlockReqBody} blockReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publishBlock(blockReqBody: BlockReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publishBlock(blockReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BlockApi.publishBlock']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -229,29 +229,6 @@ export const BlockApiFactory = function (configuration?: Configuration, basePath
     const localVarFp = BlockApiFp(configuration)
     return {
         /**
-         * Adds a block for a given FID.
-         * @summary Block FID
-         * @param {BlockReqBody} blockReqBody 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        addBlock(blockReqBody: BlockReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.addBlock(blockReqBody, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Fetches all FIDs that a user has blocked or has been blocked by
-         * @summary Blocked / Blocked by FIDs
-         * @param {number} [blockerFid] Providing this will return the users that this user has blocked
-         * @param {number} [blockedFid] Providing this will return the users that have blocked this user
-         * @param {number} [limit] Number of results to fetch (default 20, max 100).
-         * @param {string} [cursor] Pagination cursor.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        blockList(blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<BlockListResponse> {
-            return localVarFp.blockList(blockerFid, blockedFid, limit, cursor, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Deletes a block for a given FID.
          * @summary Unblock FID
          * @param {BlockReqBody} blockReqBody 
@@ -260,6 +237,29 @@ export const BlockApiFactory = function (configuration?: Configuration, basePath
          */
         deleteBlock(blockReqBody: BlockReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
             return localVarFp.deleteBlock(blockReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches all FIDs that a user has blocked or has been blocked by
+         * @summary Blocked / Blocked by FIDs
+         * @param {number} [blockerFid] Providing this will return the users that this user has blocked
+         * @param {number} [blockedFid] Providing this will return the users that have blocked this user
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        fetchBlockList(blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<BlockListResponse> {
+            return localVarFp.fetchBlockList(blockerFid, blockedFid, limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Adds a block for a given FID.
+         * @summary Block FID
+         * @param {BlockReqBody} blockReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publishBlock(blockReqBody: BlockReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.publishBlock(blockReqBody, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -272,33 +272,6 @@ export const BlockApiFactory = function (configuration?: Configuration, basePath
  */
 export class BlockApi extends BaseAPI {
     /**
-     * Adds a block for a given FID.
-     * @summary Block FID
-     * @param {BlockReqBody} blockReqBody 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BlockApi
-     */
-    public addBlock(blockReqBody: BlockReqBody, options?: RawAxiosRequestConfig) {
-        return BlockApiFp(this.configuration).addBlock(blockReqBody, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Fetches all FIDs that a user has blocked or has been blocked by
-     * @summary Blocked / Blocked by FIDs
-     * @param {number} [blockerFid] Providing this will return the users that this user has blocked
-     * @param {number} [blockedFid] Providing this will return the users that have blocked this user
-     * @param {number} [limit] Number of results to fetch (default 20, max 100).
-     * @param {string} [cursor] Pagination cursor.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BlockApi
-     */
-    public blockList(blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return BlockApiFp(this.configuration).blockList(blockerFid, blockedFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * Deletes a block for a given FID.
      * @summary Unblock FID
      * @param {BlockReqBody} blockReqBody 
@@ -308,6 +281,33 @@ export class BlockApi extends BaseAPI {
      */
     public deleteBlock(blockReqBody: BlockReqBody, options?: RawAxiosRequestConfig) {
         return BlockApiFp(this.configuration).deleteBlock(blockReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches all FIDs that a user has blocked or has been blocked by
+     * @summary Blocked / Blocked by FIDs
+     * @param {number} [blockerFid] Providing this will return the users that this user has blocked
+     * @param {number} [blockedFid] Providing this will return the users that have blocked this user
+     * @param {number} [limit] Number of results to fetch
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BlockApi
+     */
+    public fetchBlockList(blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return BlockApiFp(this.configuration).fetchBlockList(blockerFid, blockedFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Adds a block for a given FID.
+     * @summary Block FID
+     * @param {BlockReqBody} blockReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BlockApi
+     */
+    public publishBlock(blockReqBody: BlockReqBody, options?: RawAxiosRequestConfig) {
+        return BlockApiFp(this.configuration).publishBlock(blockReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
