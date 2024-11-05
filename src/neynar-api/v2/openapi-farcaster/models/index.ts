@@ -7,6 +7,7 @@ export * from './ban-req-body';
 export * from './ban-response';
 export * from './block-list-response';
 export * from './block-record';
+export * from './block-req-body';
 export * from './bulk-casts-response';
 export * from './bulk-follow-response';
 export * from './bulk-users-response';

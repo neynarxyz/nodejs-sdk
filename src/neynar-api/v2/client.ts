@@ -3876,7 +3876,7 @@ export class NeynarV2APIClient {
    *  console.log('Blocked Fids:', response);
    * });
    *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/block-list).
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/fetch-block-list).
    */
   public async fetchBlockList(options?: {
     blockerFid: number;
@@ -3884,12 +3884,67 @@ export class NeynarV2APIClient {
     limit?: number;
     cursor: string;
   }): Promise<BlockListResponse> {
-    const response = await this.apis.block.blockList(
+    const response = await this.apis.block.fetchBlockList(
       options?.blockerFid,
       options?.blockedFid,
       options?.limit,
       options?.cursor
     );
+    return response.data;
+  }
+
+  /**
+   * Adds a block for a given fid.
+   * @summary Adds a block for a fid.
+   * @param {string} signerUuid - A signer uuid for the user blocking another user.
+   * @param {number} blockedFid - The fid of the user being blocked.
+   *
+   * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
+   *
+   * @example
+   * // Example: Block a user
+   * client.publishBlock('aaa-aaa-aaa', 19960).then(response => {
+   * console.log('Block Response:', response);
+   * });
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/publish-block).
+   */
+  public async publishBlock(
+    signerUuid: string,
+    blockedFid: number
+  ): Promise<OperationResponse> {
+    const addBlockBody = {
+      signer_uuid: signerUuid,
+      blocked_fid: blockedFid,
+    };
+    const response = await this.apis.block.publishBlock(addBlockBody);
+    return response.data;
+  }
+
+  /**
+   * Deletes a block for a given fid.
+   * @summary Deletes a block for a fid.
+   * @param {string} signerUuid - A signer uuid for the user unblocking another user.
+   * @param {number} blockedFid - The fid of the user being unblocked.
+   *
+   * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
+   *
+   * @example
+   * // Example: Unblock a user
+   * client.deleteBlock('aaa-aaa-aaa', 19960).then(response => {
+   * console.log('Block Response:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/delete-block).
+   */
+  public async deleteBlock(
+    signerUuid: string,
+    blockedFid: number
+  ): Promise<OperationResponse> {
+    const deleteBlockBody = {
+      signer_uuid: signerUuid,
+      blocked_fid: blockedFid,
+    };
+    const response = await this.apis.block.deleteBlock(deleteBlockBody);
     return response.data;
   }
 

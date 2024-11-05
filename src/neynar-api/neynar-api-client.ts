@@ -3834,7 +3834,7 @@ export class NeynarAPIClient {
    *  console.log('Blocked Fids:', response);
    * });
    *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/block-list).
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/fetch-block-list).
    */
   public async fetchBlockList(options?: {
     blockerFid: number;
@@ -3843,6 +3843,53 @@ export class NeynarAPIClient {
     cursor: string;
   }): Promise<BlockListResponse> {
     return await this.clients.v2.fetchBlockList(options);
+  }
+
+  /**
+   * Adds a block for a given fid.
+   * @summary Adds a block for a fid.
+   * @param {string} signerUuid - UUID of the signer who is performing the action.
+   * @param {number} blockedFid The fid of the user being blocked.
+   *
+   * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
+   *
+   * @example
+   * // Example: Block a user
+   * client.publishBlock(3, 19960).then(response => {
+   * console.log('Block Response:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/publish-block).
+   *
+   */
+  public async publishBlock(
+    signerUuid: string,
+    blockedFid: number
+  ): Promise<OperationResponse> {
+    return await this.clients.v2.publishBlock(signerUuid, blockedFid);
+  }
+
+  /**
+   * Deletes a block for a given fid.
+   * @summary Deletes a block for a fid.
+   * @param {string} signerUuid - UUID of the signer who is performing the action.
+   * @param {number} blockedFid The fid of the user being unblocked.
+   *
+   * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
+   *
+   * @example
+   * // Example: Unblock a user
+   * client.deleteBlock(3, 19960).then(response => {
+   * console.log('Block Response:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/delete-block).
+   */
+  public async deleteBlock(
+    signerUuid: string,
+    blockedFid: number
+  ): Promise<OperationResponse> {
+    return await this.clients.v2.deleteBlock(signerUuid, blockedFid);
   }
 
   // ------------ Ban ------------
