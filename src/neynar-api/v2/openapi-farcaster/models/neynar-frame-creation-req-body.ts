@@ -20,19 +20,19 @@ import type { NeynarFramePage } from './neynar-frame-page';
 /**
  * 
  * @export
- * @interface NeynarFrameCreationRequest
+ * @interface NeynarFrameCreationReqBody
  */
-export interface NeynarFrameCreationRequest {
+export interface NeynarFrameCreationReqBody {
     /**
      * The name of the frame.
      * @type {string}
-     * @memberof NeynarFrameCreationRequest
+     * @memberof NeynarFrameCreationReqBody
      */
     'name': string;
     /**
      * 
      * @type {Array<NeynarFramePage>}
-     * @memberof NeynarFrameCreationRequest
+     * @memberof NeynarFrameCreationReqBody
      */
     'pages': Array<NeynarFramePage>;
 }

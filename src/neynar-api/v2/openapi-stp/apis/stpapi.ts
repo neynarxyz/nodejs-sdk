@@ -40,13 +40,13 @@ export const STPApiAxiosParamCreator = function (configuration?: Configuration) 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscriptionCheck: async (addresses: string, contractAddress: string, chainId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchSubscriptionCheck: async (addresses: string, contractAddress: string, chainId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'addresses' is not null or undefined
-            assertParamExists('subscriptionCheck', 'addresses', addresses)
+            assertParamExists('fetchSubscriptionCheck', 'addresses', addresses)
             // verify required parameter 'contractAddress' is not null or undefined
-            assertParamExists('subscriptionCheck', 'contractAddress', contractAddress)
+            assertParamExists('fetchSubscriptionCheck', 'contractAddress', contractAddress)
             // verify required parameter 'chainId' is not null or undefined
-            assertParamExists('subscriptionCheck', 'chainId', chainId)
+            assertParamExists('fetchSubscriptionCheck', 'chainId', chainId)
             const localVarPath = `/stp/subscription_check`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -104,10 +104,10 @@ export const STPApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async subscriptionCheck(addresses: string, contractAddress: string, chainId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: SubscriptionStatus; }>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.subscriptionCheck(addresses, contractAddress, chainId, options);
+        async fetchSubscriptionCheck(addresses: string, contractAddress: string, chainId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: SubscriptionStatus; }>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchSubscriptionCheck(addresses, contractAddress, chainId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['STPApi.subscriptionCheck']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['STPApi.fetchSubscriptionCheck']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -129,8 +129,8 @@ export const STPApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscriptionCheck(addresses: string, contractAddress: string, chainId: string, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: SubscriptionStatus; }> {
-            return localVarFp.subscriptionCheck(addresses, contractAddress, chainId, options).then((request) => request(axios, basePath));
+        fetchSubscriptionCheck(addresses: string, contractAddress: string, chainId: string, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: SubscriptionStatus; }> {
+            return localVarFp.fetchSubscriptionCheck(addresses, contractAddress, chainId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -152,8 +152,8 @@ export class STPApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof STPApi
      */
-    public subscriptionCheck(addresses: string, contractAddress: string, chainId: string, options?: RawAxiosRequestConfig) {
-        return STPApiFp(this.configuration).subscriptionCheck(addresses, contractAddress, chainId, options).then((request) => request(this.axios, this.basePath));
+    public fetchSubscriptionCheck(addresses: string, contractAddress: string, chainId: string, options?: RawAxiosRequestConfig) {
+        return STPApiFp(this.configuration).fetchSubscriptionCheck(addresses, contractAddress, chainId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

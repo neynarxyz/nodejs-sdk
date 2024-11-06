@@ -85,9 +85,9 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storageAllocations: async (fid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        lookupUserStorageAllocations: async (fid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
-            assertParamExists('storageAllocations', 'fid', fid)
+            assertParamExists('lookupUserStorageAllocations', 'fid', fid)
             const localVarPath = `/farcaster/storage/allocations`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -125,9 +125,9 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storageUsage: async (fid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        lookupUserStorageUsage: async (fid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
-            assertParamExists('storageUsage', 'fid', fid)
+            assertParamExists('lookupUserStorageUsage', 'fid', fid)
             const localVarPath = `/farcaster/storage/usage`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -188,10 +188,10 @@ export const StorageApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async storageAllocations(fid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageAllocationsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.storageAllocations(fid, options);
+        async lookupUserStorageAllocations(fid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageAllocationsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupUserStorageAllocations(fid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['StorageApi.storageAllocations']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['StorageApi.lookupUserStorageAllocations']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -201,10 +201,10 @@ export const StorageApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async storageUsage(fid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageUsageResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.storageUsage(fid, options);
+        async lookupUserStorageUsage(fid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageUsageResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupUserStorageUsage(fid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['StorageApi.storageUsage']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['StorageApi.lookupUserStorageUsage']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -234,8 +234,8 @@ export const StorageApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storageAllocations(fid: number, options?: RawAxiosRequestConfig): AxiosPromise<StorageAllocationsResponse> {
-            return localVarFp.storageAllocations(fid, options).then((request) => request(axios, basePath));
+        lookupUserStorageAllocations(fid: number, options?: RawAxiosRequestConfig): AxiosPromise<StorageAllocationsResponse> {
+            return localVarFp.lookupUserStorageAllocations(fid, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches storage usage for a given user
@@ -244,8 +244,8 @@ export const StorageApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storageUsage(fid: number, options?: RawAxiosRequestConfig): AxiosPromise<StorageUsageResponse> {
-            return localVarFp.storageUsage(fid, options).then((request) => request(axios, basePath));
+        lookupUserStorageUsage(fid: number, options?: RawAxiosRequestConfig): AxiosPromise<StorageUsageResponse> {
+            return localVarFp.lookupUserStorageUsage(fid, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -277,8 +277,8 @@ export class StorageApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof StorageApi
      */
-    public storageAllocations(fid: number, options?: RawAxiosRequestConfig) {
-        return StorageApiFp(this.configuration).storageAllocations(fid, options).then((request) => request(this.axios, this.basePath));
+    public lookupUserStorageAllocations(fid: number, options?: RawAxiosRequestConfig) {
+        return StorageApiFp(this.configuration).lookupUserStorageAllocations(fid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -289,8 +289,8 @@ export class StorageApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof StorageApi
      */
-    public storageUsage(fid: number, options?: RawAxiosRequestConfig) {
-        return StorageApiFp(this.configuration).storageUsage(fid, options).then((request) => request(this.axios, this.basePath));
+    public lookupUserStorageUsage(fid: number, options?: RawAxiosRequestConfig) {
+        return StorageApiFp(this.configuration).lookupUserStorageUsage(fid, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

@@ -75,46 +75,6 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * Fetches the status of a developer managed signer by public key
-         * @summary Status by public key
-         * @param {string} publicKey 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        developerManagedSigner: async (publicKey: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'publicKey' is not null or undefined
-            assertParamExists('developerManagedSigner', 'publicKey', publicKey)
-            const localVarPath = `/farcaster/signer/developer_managed`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (publicKey !== undefined) {
-                localVarQueryParameter['public_key'] = publicKey;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
          * @summary Fetch authorization url
          * @param {string} clientId 
@@ -162,15 +122,95 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
+         * Fetches the status of a developer managed signer by public key
+         * @summary Status by public key
+         * @param {string} publicKey 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        lookupDeveloperManagedSigner: async (publicKey: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'publicKey' is not null or undefined
+            assertParamExists('lookupDeveloperManagedSigner', 'publicKey', publicKey)
+            const localVarPath = `/farcaster/signer/developer_managed`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (publicKey !== undefined) {
+                localVarQueryParameter['public_key'] = publicKey;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
+         * @summary Status
+         * @param {string} signerUuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        lookupSigner: async (signerUuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'signerUuid' is not null or undefined
+            assertParamExists('lookupSigner', 'signerUuid', signerUuid)
+            const localVarPath = `/farcaster/signer`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (signerUuid !== undefined) {
+                localVarQueryParameter['signer_uuid'] = signerUuid;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Publish a message to farcaster. The message must be signed by a signer managed by the developer. Use the @farcaster/core library to construct and sign the message. Use the Message.toJSON method on the signed message and pass the JSON in the body of this POST request.
          * @summary Publish message
          * @param {object} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publishMessage: async (body: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        publishMessageToFarcaster: async (body: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
-            assertParamExists('publishMessage', 'body', body)
+            assertParamExists('publishMessageToFarcaster', 'body', body)
             const localVarPath = `/farcaster/message`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -278,46 +318,6 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
-        /**
-         * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
-         * @summary Status
-         * @param {string} signerUuid 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        signer: async (signerUuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'signerUuid' is not null or undefined
-            assertParamExists('signer', 'signerUuid', signerUuid)
-            const localVarPath = `/farcaster/signer`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (signerUuid !== undefined) {
-                localVarQueryParameter['signer_uuid'] = signerUuid;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
     }
 };
 
@@ -341,19 +341,6 @@ export const SignerApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Fetches the status of a developer managed signer by public key
-         * @summary Status by public key
-         * @param {string} publicKey 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async developerManagedSigner(publicKey: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeveloperManagedSigner>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.developerManagedSigner(publicKey, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['SignerApi.developerManagedSigner']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
          * @summary Fetch authorization url
          * @param {string} clientId 
@@ -368,16 +355,42 @@ export const SignerApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Fetches the status of a developer managed signer by public key
+         * @summary Status by public key
+         * @param {string} publicKey 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async lookupDeveloperManagedSigner(publicKey: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeveloperManagedSigner>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupDeveloperManagedSigner(publicKey, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SignerApi.lookupDeveloperManagedSigner']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
+         * @summary Status
+         * @param {string} signerUuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async lookupSigner(signerUuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signer>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupSigner(signerUuid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SignerApi.lookupSigner']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Publish a message to farcaster. The message must be signed by a signer managed by the developer. Use the @farcaster/core library to construct and sign the message. Use the Message.toJSON method on the signed message and pass the JSON in the body of this POST request.
          * @summary Publish message
          * @param {object} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async publishMessage(body: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.publishMessage(body, options);
+        async publishMessageToFarcaster(body: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publishMessageToFarcaster(body, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['SignerApi.publishMessage']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['SignerApi.publishMessageToFarcaster']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -406,19 +419,6 @@ export const SignerApiFp = function(configuration?: Configuration) {
             const localVarOperationServerBasePath = operationServerMap['SignerApi.registerSignedKeyForDeveloperManagedSigner']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
-        /**
-         * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
-         * @summary Status
-         * @param {string} signerUuid 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async signer(signerUuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signer>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.signer(signerUuid, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['SignerApi.signer']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
     }
 };
 
@@ -439,16 +439,6 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
             return localVarFp.createSigner(options).then((request) => request(axios, basePath));
         },
         /**
-         * Fetches the status of a developer managed signer by public key
-         * @summary Status by public key
-         * @param {string} publicKey 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        developerManagedSigner(publicKey: string, options?: RawAxiosRequestConfig): AxiosPromise<DeveloperManagedSigner> {
-            return localVarFp.developerManagedSigner(publicKey, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
          * @summary Fetch authorization url
          * @param {string} clientId 
@@ -460,14 +450,34 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
             return localVarFp.fetchAuthorizationUrl(clientId, responseType, options).then((request) => request(axios, basePath));
         },
         /**
+         * Fetches the status of a developer managed signer by public key
+         * @summary Status by public key
+         * @param {string} publicKey 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        lookupDeveloperManagedSigner(publicKey: string, options?: RawAxiosRequestConfig): AxiosPromise<DeveloperManagedSigner> {
+            return localVarFp.lookupDeveloperManagedSigner(publicKey, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
+         * @summary Status
+         * @param {string} signerUuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        lookupSigner(signerUuid: string, options?: RawAxiosRequestConfig): AxiosPromise<Signer> {
+            return localVarFp.lookupSigner(signerUuid, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Publish a message to farcaster. The message must be signed by a signer managed by the developer. Use the @farcaster/core library to construct and sign the message. Use the Message.toJSON method on the signed message and pass the JSON in the body of this POST request.
          * @summary Publish message
          * @param {object} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publishMessage(body: object, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.publishMessage(body, options).then((request) => request(axios, basePath));
+        publishMessageToFarcaster(body: object, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.publishMessageToFarcaster(body, options).then((request) => request(axios, basePath));
         },
         /**
          * Registers an app FID, deadline and a signature. Returns the signer status with an approval url.
@@ -488,16 +498,6 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
          */
         registerSignedKeyForDeveloperManagedSigner(registerDeveloperManagedSignedKeyReqBody: RegisterDeveloperManagedSignedKeyReqBody, options?: RawAxiosRequestConfig): AxiosPromise<DeveloperManagedSigner> {
             return localVarFp.registerSignedKeyForDeveloperManagedSigner(registerDeveloperManagedSignedKeyReqBody, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
-         * @summary Status
-         * @param {string} signerUuid 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        signer(signerUuid: string, options?: RawAxiosRequestConfig): AxiosPromise<Signer> {
-            return localVarFp.signer(signerUuid, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -521,18 +521,6 @@ export class SignerApi extends BaseAPI {
     }
 
     /**
-     * Fetches the status of a developer managed signer by public key
-     * @summary Status by public key
-     * @param {string} publicKey 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SignerApi
-     */
-    public developerManagedSigner(publicKey: string, options?: RawAxiosRequestConfig) {
-        return SignerApiFp(this.configuration).developerManagedSigner(publicKey, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
      * @summary Fetch authorization url
      * @param {string} clientId 
@@ -546,6 +534,30 @@ export class SignerApi extends BaseAPI {
     }
 
     /**
+     * Fetches the status of a developer managed signer by public key
+     * @summary Status by public key
+     * @param {string} publicKey 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SignerApi
+     */
+    public lookupDeveloperManagedSigner(publicKey: string, options?: RawAxiosRequestConfig) {
+        return SignerApiFp(this.configuration).lookupDeveloperManagedSigner(publicKey, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
+     * @summary Status
+     * @param {string} signerUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SignerApi
+     */
+    public lookupSigner(signerUuid: string, options?: RawAxiosRequestConfig) {
+        return SignerApiFp(this.configuration).lookupSigner(signerUuid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Publish a message to farcaster. The message must be signed by a signer managed by the developer. Use the @farcaster/core library to construct and sign the message. Use the Message.toJSON method on the signed message and pass the JSON in the body of this POST request.
      * @summary Publish message
      * @param {object} body 
@@ -553,8 +565,8 @@ export class SignerApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SignerApi
      */
-    public publishMessage(body: object, options?: RawAxiosRequestConfig) {
-        return SignerApiFp(this.configuration).publishMessage(body, options).then((request) => request(this.axios, this.basePath));
+    public publishMessageToFarcaster(body: object, options?: RawAxiosRequestConfig) {
+        return SignerApiFp(this.configuration).publishMessageToFarcaster(body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -579,18 +591,6 @@ export class SignerApi extends BaseAPI {
      */
     public registerSignedKeyForDeveloperManagedSigner(registerDeveloperManagedSignedKeyReqBody: RegisterDeveloperManagedSignedKeyReqBody, options?: RawAxiosRequestConfig) {
         return SignerApiFp(this.configuration).registerSignedKeyForDeveloperManagedSigner(registerDeveloperManagedSignedKeyReqBody, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
-     * @summary Status
-     * @param {string} signerUuid 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SignerApi
-     */
-    public signer(signerUuid: string, options?: RawAxiosRequestConfig) {
-        return SignerApiFp(this.configuration).signer(signerUuid, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

@@ -20,13 +20,13 @@ import type { Frame } from './frame';
 /**
  * The frame object containing the meta tags
  * @export
- * @interface FrameFromUrl200Response
+ * @interface FetchFrameMetaTagsFromUrl200Response
  */
-export interface FrameFromUrl200Response {
+export interface FetchFrameMetaTagsFromUrl200Response {
     /**
      * 
      * @type {Frame}
-     * @memberof FrameFromUrl200Response
+     * @memberof FetchFrameMetaTagsFromUrl200Response
      */
     'frame': Frame;
 }

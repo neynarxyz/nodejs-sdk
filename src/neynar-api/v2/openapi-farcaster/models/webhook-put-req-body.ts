@@ -15,18 +15,37 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { WebhookPostReqBody } from './webhook-post-req-body';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { WebhookPutReqBodyAllOf } from './webhook-put-req-body-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import type { WebhookSubscriptionFilters } from './webhook-subscription-filters';
 
 /**
- * @type WebhookPutReqBody
+ * 
  * @export
+ * @interface WebhookPutReqBody
  */
-export type WebhookPutReqBody = WebhookPostReqBody & WebhookPutReqBodyAllOf;
-
+export interface WebhookPutReqBody {
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookPutReqBody
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookPutReqBody
+     */
+    'url': string;
+    /**
+     * 
+     * @type {WebhookSubscriptionFilters}
+     * @memberof WebhookPutReqBody
+     */
+    'subscription'?: WebhookSubscriptionFilters;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookPutReqBody
+     */
+    'webhook_id': string;
+}
 

@@ -24,9 +24,9 @@ import type { ZodError } from './zod-error';
 import type { ZodErrorErrorsInner } from './zod-error-errors-inner';
 
 /**
- * @type FeedForYou400Response
+ * @type FetchFeedForYou400Response
  * @export
  */
-export type FeedForYou400Response = ErrorRes | ZodError;
+export type FetchFeedForYou400Response = ErrorRes | ZodError;
 
 

@@ -36,15 +36,15 @@ import type { ErrorRes } from '../models';
 export const BanApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
-         * @summary Ban FIDs from app
+         * Deletes a list of FIDs from the app associated with your API key.
+         * @summary Unban FIDs from app
          * @param {BanReqBody} banReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addBan: async (banReqBody: BanReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteBans: async (banReqBody: BanReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'banReqBody' is not null or undefined
-            assertParamExists('addBan', 'banReqBody', banReqBody)
+            assertParamExists('deleteBans', 'banReqBody', banReqBody)
             const localVarPath = `/farcaster/ban`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -53,7 +53,7 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -77,12 +77,12 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
         /**
          * Fetches all FIDs that your app has banned.
          * @summary Banned FIDs of app
-         * @param {number} [limit] Number of results to fetch (default 20, max 100).
+         * @param {number} [limit] Number of results to fetch
          * @param {string} [cursor] Pagination cursor.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        banList: async (limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchBanList: async (limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/farcaster/ban/list`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -118,15 +118,15 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
             };
         },
         /**
-         * Deletes a list of FIDs from the app associated with your API key.
-         * @summary Unban FIDs from app
+         * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
+         * @summary Ban FIDs from app
          * @param {BanReqBody} banReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteBan: async (banReqBody: BanReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        publishBans: async (banReqBody: BanReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'banReqBody' is not null or undefined
-            assertParamExists('deleteBan', 'banReqBody', banReqBody)
+            assertParamExists('publishBans', 'banReqBody', banReqBody)
             const localVarPath = `/farcaster/ban`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -135,7 +135,7 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -167,43 +167,43 @@ export const BanApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = BanApiAxiosParamCreator(configuration)
     return {
         /**
-         * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
-         * @summary Ban FIDs from app
-         * @param {BanReqBody} banReqBody 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async addBan(banReqBody: BanReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.addBan(banReqBody, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['BanApi.addBan']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Fetches all FIDs that your app has banned.
-         * @summary Banned FIDs of app
-         * @param {number} [limit] Number of results to fetch (default 20, max 100).
-         * @param {string} [cursor] Pagination cursor.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async banList(limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.banList(limit, cursor, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['BanApi.banList']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Deletes a list of FIDs from the app associated with your API key.
          * @summary Unban FIDs from app
          * @param {BanReqBody} banReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteBan(banReqBody: BanReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteBan(banReqBody, options);
+        async deleteBans(banReqBody: BanReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteBans(banReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['BanApi.deleteBan']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['BanApi.deleteBans']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetches all FIDs that your app has banned.
+         * @summary Banned FIDs of app
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async fetchBanList(limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchBanList(limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BanApi.fetchBanList']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
+         * @summary Ban FIDs from app
+         * @param {BanReqBody} banReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publishBans(banReqBody: BanReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publishBans(banReqBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BanApi.publishBans']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -217,35 +217,35 @@ export const BanApiFactory = function (configuration?: Configuration, basePath?:
     const localVarFp = BanApiFp(configuration)
     return {
         /**
-         * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
-         * @summary Ban FIDs from app
-         * @param {BanReqBody} banReqBody 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        addBan(banReqBody: BanReqBody, options?: RawAxiosRequestConfig): AxiosPromise<BanResponse> {
-            return localVarFp.addBan(banReqBody, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Fetches all FIDs that your app has banned.
-         * @summary Banned FIDs of app
-         * @param {number} [limit] Number of results to fetch (default 20, max 100).
-         * @param {string} [cursor] Pagination cursor.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        banList(limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<BanListResponse> {
-            return localVarFp.banList(limit, cursor, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Deletes a list of FIDs from the app associated with your API key.
          * @summary Unban FIDs from app
          * @param {BanReqBody} banReqBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteBan(banReqBody: BanReqBody, options?: RawAxiosRequestConfig): AxiosPromise<BanResponse> {
-            return localVarFp.deleteBan(banReqBody, options).then((request) => request(axios, basePath));
+        deleteBans(banReqBody: BanReqBody, options?: RawAxiosRequestConfig): AxiosPromise<BanResponse> {
+            return localVarFp.deleteBans(banReqBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches all FIDs that your app has banned.
+         * @summary Banned FIDs of app
+         * @param {number} [limit] Number of results to fetch
+         * @param {string} [cursor] Pagination cursor.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        fetchBanList(limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<BanListResponse> {
+            return localVarFp.fetchBanList(limit, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
+         * @summary Ban FIDs from app
+         * @param {BanReqBody} banReqBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publishBans(banReqBody: BanReqBody, options?: RawAxiosRequestConfig): AxiosPromise<BanResponse> {
+            return localVarFp.publishBans(banReqBody, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -258,31 +258,6 @@ export const BanApiFactory = function (configuration?: Configuration, basePath?:
  */
 export class BanApi extends BaseAPI {
     /**
-     * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
-     * @summary Ban FIDs from app
-     * @param {BanReqBody} banReqBody 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BanApi
-     */
-    public addBan(banReqBody: BanReqBody, options?: RawAxiosRequestConfig) {
-        return BanApiFp(this.configuration).addBan(banReqBody, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Fetches all FIDs that your app has banned.
-     * @summary Banned FIDs of app
-     * @param {number} [limit] Number of results to fetch (default 20, max 100).
-     * @param {string} [cursor] Pagination cursor.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BanApi
-     */
-    public banList(limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return BanApiFp(this.configuration).banList(limit, cursor, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * Deletes a list of FIDs from the app associated with your API key.
      * @summary Unban FIDs from app
      * @param {BanReqBody} banReqBody 
@@ -290,8 +265,33 @@ export class BanApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof BanApi
      */
-    public deleteBan(banReqBody: BanReqBody, options?: RawAxiosRequestConfig) {
-        return BanApiFp(this.configuration).deleteBan(banReqBody, options).then((request) => request(this.axios, this.basePath));
+    public deleteBans(banReqBody: BanReqBody, options?: RawAxiosRequestConfig) {
+        return BanApiFp(this.configuration).deleteBans(banReqBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches all FIDs that your app has banned.
+     * @summary Banned FIDs of app
+     * @param {number} [limit] Number of results to fetch
+     * @param {string} [cursor] Pagination cursor.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BanApi
+     */
+    public fetchBanList(limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
+        return BanApiFp(this.configuration).fetchBanList(limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
+     * @summary Ban FIDs from app
+     * @param {BanReqBody} banReqBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BanApi
+     */
+    public publishBans(banReqBody: BanReqBody, options?: RawAxiosRequestConfig) {
+        return BanApiFp(this.configuration).publishBans(banReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

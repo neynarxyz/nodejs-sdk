@@ -38,9 +38,9 @@ export const FnameApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fnameAvailability: async (fname: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        isFnameAvailable: async (fname: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fname' is not null or undefined
-            assertParamExists('fnameAvailability', 'fname', fname)
+            assertParamExists('isFnameAvailable', 'fname', fname)
             const localVarPath = `/farcaster/fname/availability`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -88,10 +88,10 @@ export const FnameApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async fnameAvailability(fname: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FnameAvailabilityResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fnameAvailability(fname, options);
+        async isFnameAvailable(fname: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FnameAvailabilityResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.isFnameAvailable(fname, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['FnameApi.fnameAvailability']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['FnameApi.isFnameAvailable']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -111,8 +111,8 @@ export const FnameApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fnameAvailability(fname: string, options?: RawAxiosRequestConfig): AxiosPromise<FnameAvailabilityResponse> {
-            return localVarFp.fnameAvailability(fname, options).then((request) => request(axios, basePath));
+        isFnameAvailable(fname: string, options?: RawAxiosRequestConfig): AxiosPromise<FnameAvailabilityResponse> {
+            return localVarFp.isFnameAvailable(fname, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -132,8 +132,8 @@ export class FnameApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FnameApi
      */
-    public fnameAvailability(fname: string, options?: RawAxiosRequestConfig) {
-        return FnameApiFp(this.configuration).fnameAvailability(fname, options).then((request) => request(this.axios, this.basePath));
+    public isFnameAvailable(fname: string, options?: RawAxiosRequestConfig) {
+        return FnameApiFp(this.configuration).isFnameAvailable(fname, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

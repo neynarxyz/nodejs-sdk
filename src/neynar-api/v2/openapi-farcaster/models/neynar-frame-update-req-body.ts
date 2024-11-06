@@ -20,25 +20,25 @@ import type { NeynarFramePage } from './neynar-frame-page';
 /**
  * 
  * @export
- * @interface NeynarFrameUpdateRequest
+ * @interface NeynarFrameUpdateReqBody
  */
-export interface NeynarFrameUpdateRequest {
+export interface NeynarFrameUpdateReqBody {
     /**
      * The UUID of the frame to update.
      * @type {string}
-     * @memberof NeynarFrameUpdateRequest
+     * @memberof NeynarFrameUpdateReqBody
      */
     'uuid': string;
     /**
      * The name of the frame.
      * @type {string}
-     * @memberof NeynarFrameUpdateRequest
+     * @memberof NeynarFrameUpdateReqBody
      */
     'name'?: string;
     /**
      * 
      * @type {Array<NeynarFramePage>}
-     * @memberof NeynarFrameUpdateRequest
+     * @memberof NeynarFrameUpdateReqBody
      */
     'pages': Array<NeynarFramePage>;
 }

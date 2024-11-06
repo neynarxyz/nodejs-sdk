@@ -48,11 +48,11 @@ export const SubscribersApiAxiosParamCreator = function (configuration?: Configu
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscribedTo: async (fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchSubscribedToForFid: async (fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
-            assertParamExists('subscribedTo', 'fid', fid)
+            assertParamExists('fetchSubscribedToForFid', 'fid', fid)
             // verify required parameter 'subscriptionProvider' is not null or undefined
-            assertParamExists('subscribedTo', 'subscriptionProvider', subscriptionProvider)
+            assertParamExists('fetchSubscribedToForFid', 'subscriptionProvider', subscriptionProvider)
             const localVarPath = `/farcaster/user/subscribed_to`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -100,11 +100,11 @@ export const SubscribersApiAxiosParamCreator = function (configuration?: Configu
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscribers: async (fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchSubscribersForFid: async (fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
-            assertParamExists('subscribers', 'fid', fid)
+            assertParamExists('fetchSubscribersForFid', 'fid', fid)
             // verify required parameter 'subscriptionProvider' is not null or undefined
-            assertParamExists('subscribers', 'subscriptionProvider', subscriptionProvider)
+            assertParamExists('fetchSubscribersForFid', 'subscriptionProvider', subscriptionProvider)
             const localVarPath = `/farcaster/user/subscribers`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -151,11 +151,11 @@ export const SubscribersApiAxiosParamCreator = function (configuration?: Configu
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscriptionsCreated: async (fid: number, subscriptionProvider: SubscriptionProvider, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchSubscriptionsForFid: async (fid: number, subscriptionProvider: SubscriptionProvider, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
-            assertParamExists('subscriptionsCreated', 'fid', fid)
+            assertParamExists('fetchSubscriptionsForFid', 'fid', fid)
             // verify required parameter 'subscriptionProvider' is not null or undefined
-            assertParamExists('subscriptionsCreated', 'subscriptionProvider', subscriptionProvider)
+            assertParamExists('fetchSubscriptionsForFid', 'subscriptionProvider', subscriptionProvider)
             const localVarPath = `/farcaster/user/subscriptions_created`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -209,10 +209,10 @@ export const SubscribersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async subscribedTo(fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscribedToResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.subscribedTo(fid, subscriptionProvider, viewerFid, options);
+        async fetchSubscribedToForFid(fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscribedToResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchSubscribedToForFid(fid, subscriptionProvider, viewerFid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['SubscribersApi.subscribedTo']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['SubscribersApi.fetchSubscribedToForFid']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -224,10 +224,10 @@ export const SubscribersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async subscribers(fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscribersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.subscribers(fid, subscriptionProvider, viewerFid, options);
+        async fetchSubscribersForFid(fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscribersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchSubscribersForFid(fid, subscriptionProvider, viewerFid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['SubscribersApi.subscribers']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['SubscribersApi.fetchSubscribersForFid']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -238,10 +238,10 @@ export const SubscribersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async subscriptionsCreated(fid: number, subscriptionProvider: SubscriptionProvider, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.subscriptionsCreated(fid, subscriptionProvider, options);
+        async fetchSubscriptionsForFid(fid: number, subscriptionProvider: SubscriptionProvider, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchSubscriptionsForFid(fid, subscriptionProvider, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['SubscribersApi.subscriptionsCreated']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['SubscribersApi.fetchSubscriptionsForFid']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -263,8 +263,8 @@ export const SubscribersApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscribedTo(fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<SubscribedToResponse> {
-            return localVarFp.subscribedTo(fid, subscriptionProvider, viewerFid, options).then((request) => request(axios, basePath));
+        fetchSubscribedToForFid(fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<SubscribedToResponse> {
+            return localVarFp.fetchSubscribedToForFid(fid, subscriptionProvider, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch subscribers for a given FID\'s contracts. Doesn\'t return addresses that don\'t have an FID.
@@ -275,8 +275,8 @@ export const SubscribersApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscribers(fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<SubscribersResponse> {
-            return localVarFp.subscribers(fid, subscriptionProvider, viewerFid, options).then((request) => request(axios, basePath));
+        fetchSubscribersForFid(fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<SubscribersResponse> {
+            return localVarFp.fetchSubscribersForFid(fid, subscriptionProvider, viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch created subscriptions for a given FID\'s.
@@ -286,8 +286,8 @@ export const SubscribersApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscriptionsCreated(fid: number, subscriptionProvider: SubscriptionProvider, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionsResponse> {
-            return localVarFp.subscriptionsCreated(fid, subscriptionProvider, options).then((request) => request(axios, basePath));
+        fetchSubscriptionsForFid(fid: number, subscriptionProvider: SubscriptionProvider, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionsResponse> {
+            return localVarFp.fetchSubscriptionsForFid(fid, subscriptionProvider, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -309,8 +309,8 @@ export class SubscribersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SubscribersApi
      */
-    public subscribedTo(fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: RawAxiosRequestConfig) {
-        return SubscribersApiFp(this.configuration).subscribedTo(fid, subscriptionProvider, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    public fetchSubscribedToForFid(fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: RawAxiosRequestConfig) {
+        return SubscribersApiFp(this.configuration).fetchSubscribedToForFid(fid, subscriptionProvider, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -323,8 +323,8 @@ export class SubscribersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SubscribersApi
      */
-    public subscribers(fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: RawAxiosRequestConfig) {
-        return SubscribersApiFp(this.configuration).subscribers(fid, subscriptionProvider, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    public fetchSubscribersForFid(fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: RawAxiosRequestConfig) {
+        return SubscribersApiFp(this.configuration).fetchSubscribersForFid(fid, subscriptionProvider, viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -336,8 +336,8 @@ export class SubscribersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SubscribersApi
      */
-    public subscriptionsCreated(fid: number, subscriptionProvider: SubscriptionProvider, options?: RawAxiosRequestConfig) {
-        return SubscribersApiFp(this.configuration).subscriptionsCreated(fid, subscriptionProvider, options).then((request) => request(this.axios, this.basePath));
+    public fetchSubscriptionsForFid(fid: number, subscriptionProvider: SubscriptionProvider, options?: RawAxiosRequestConfig) {
+        return SubscribersApiFp(this.configuration).fetchSubscriptionsForFid(fid, subscriptionProvider, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

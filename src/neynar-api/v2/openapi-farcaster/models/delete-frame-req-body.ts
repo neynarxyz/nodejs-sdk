@@ -17,14 +17,14 @@
 /**
  * 
  * @export
- * @interface WebhookPutReqBodyAllOf
+ * @interface DeleteFrameReqBody
  */
-export interface WebhookPutReqBodyAllOf {
+export interface DeleteFrameReqBody {
     /**
      * 
      * @type {string}
-     * @memberof WebhookPutReqBodyAllOf
+     * @memberof DeleteFrameReqBody
      */
-    'webhook_id': string;
+    'uuid'?: string;
 }
 
