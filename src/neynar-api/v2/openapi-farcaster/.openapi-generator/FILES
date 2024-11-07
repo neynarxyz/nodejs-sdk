@@ -36,6 +36,7 @@ models/block-record.ts
 models/block-req-body.ts
 models/bulk-casts-response.ts
 models/bulk-follow-response.ts
+models/bulk-users-by-address-response.ts
 models/bulk-users-response.ts
 models/buy-storage-req-body.ts
 models/cast-composer-actions-list-response-actions-inner-action.ts
@@ -113,6 +114,7 @@ models/feed-trending-provider.ts
 models/feed-type.ts
 models/fetch-feed-for-you400-response.ts
 models/fetch-frame-meta-tags-from-url200-response.ts
+models/fids.ts
 models/filter-type.ts
 models/fname-availability-response.ts
 models/follow-req-body.ts

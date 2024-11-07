@@ -42,13 +42,17 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * This api will help you rent units of storage for an year for a specific FID. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
          * @summary Buy storage
-         * @param {BuyStorageReqBody} buyStorageReqBody 
+         * @param {BuyStorageReqBody} buy_storage_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<StorageAllocationsResponse>} A promise that resolves to a `StorageAllocationsResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/buy-storage)
+         * 
          */
-        buyStorage: async (buyStorageReqBody: BuyStorageReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'buyStorageReqBody' is not null or undefined
-            assertParamExists('buyStorage', 'buyStorageReqBody', buyStorageReqBody)
+        buyStorage: async (buy_storage_req_body: BuyStorageReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'buy_storage_req_body' is not null or undefined
+            assertParamExists('buyStorage', 'buy_storage_req_body', buy_storage_req_body)
             const localVarPath = `/farcaster/storage/buy`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -71,7 +75,7 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(buyStorageReqBody, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(buy_storage_req_body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -81,9 +85,13 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Fetches storage allocations for a given user
          * @summary Allocation of user
-         * @param {number} fid 
+         * @param {number} fid  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<StorageAllocationsResponse>} A promise that resolves to a `StorageAllocationsResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-user-storage-allocations)
+         * 
          */
         lookupUserStorageAllocations: async (fid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
@@ -121,9 +129,13 @@ export const StorageApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Fetches storage usage for a given user
          * @summary Usage of user
-         * @param {number} fid 
+         * @param {number} fid  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<StorageUsageResponse>} A promise that resolves to a `StorageUsageResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-user-storage-usage)
+         * 
          */
         lookupUserStorageUsage: async (fid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
@@ -171,12 +183,16 @@ export const StorageApiFp = function(configuration?: Configuration) {
         /**
          * This api will help you rent units of storage for an year for a specific FID. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
          * @summary Buy storage
-         * @param {BuyStorageReqBody} buyStorageReqBody 
+         * @param {BuyStorageReqBody} buy_storage_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<StorageAllocationsResponse>} A promise that resolves to a `StorageAllocationsResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/buy-storage)
+         * 
          */
-        async buyStorage(buyStorageReqBody: BuyStorageReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageAllocationsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.buyStorage(buyStorageReqBody, options);
+        async buyStorage(buy_storage_req_body: BuyStorageReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageAllocationsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.buyStorage(buy_storage_req_body, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['StorageApi.buyStorage']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -184,9 +200,13 @@ export const StorageApiFp = function(configuration?: Configuration) {
         /**
          * Fetches storage allocations for a given user
          * @summary Allocation of user
-         * @param {number} fid 
+         * @param {number} fid  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<StorageAllocationsResponse>} A promise that resolves to a `StorageAllocationsResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-user-storage-allocations)
+         * 
          */
         async lookupUserStorageAllocations(fid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageAllocationsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.lookupUserStorageAllocations(fid, options);
@@ -197,9 +217,13 @@ export const StorageApiFp = function(configuration?: Configuration) {
         /**
          * Fetches storage usage for a given user
          * @summary Usage of user
-         * @param {number} fid 
+         * @param {number} fid  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<StorageUsageResponse>} A promise that resolves to a `StorageUsageResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-user-storage-usage)
+         * 
          */
         async lookupUserStorageUsage(fid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StorageUsageResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.lookupUserStorageUsage(fid, options);
@@ -220,35 +244,145 @@ export const StorageApiFactory = function (configuration?: Configuration, basePa
         /**
          * This api will help you rent units of storage for an year for a specific FID. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
          * @summary Buy storage
-         * @param {BuyStorageReqBody} buyStorageReqBody 
+         * @param {StorageApiBuyStorageRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<StorageAllocationsResponse>} A promise that resolves to a `StorageAllocationsResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/buy-storage)
+         * 
          */
-        buyStorage(buyStorageReqBody: BuyStorageReqBody, options?: RawAxiosRequestConfig): AxiosPromise<StorageAllocationsResponse> {
-            return localVarFp.buyStorage(buyStorageReqBody, options).then((request) => request(axios, basePath));
+        buyStorage(requestParameters: StorageApiBuyStorageRequest, options?: RawAxiosRequestConfig): AxiosPromise<StorageAllocationsResponse> {
+            return localVarFp.buyStorage(requestParameters.buy_storage_req_body, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches storage allocations for a given user
          * @summary Allocation of user
-         * @param {number} fid 
+         * @param {StorageApiLookupUserStorageAllocationsRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<StorageAllocationsResponse>} A promise that resolves to a `StorageAllocationsResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-user-storage-allocations)
+         * 
          */
-        lookupUserStorageAllocations(fid: number, options?: RawAxiosRequestConfig): AxiosPromise<StorageAllocationsResponse> {
-            return localVarFp.lookupUserStorageAllocations(fid, options).then((request) => request(axios, basePath));
+        lookupUserStorageAllocations(requestParameters: StorageApiLookupUserStorageAllocationsRequest, options?: RawAxiosRequestConfig): AxiosPromise<StorageAllocationsResponse> {
+            return localVarFp.lookupUserStorageAllocations(requestParameters.fid, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches storage usage for a given user
          * @summary Usage of user
-         * @param {number} fid 
+         * @param {StorageApiLookupUserStorageUsageRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<StorageUsageResponse>} A promise that resolves to a `StorageUsageResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-user-storage-usage)
+         * 
          */
-        lookupUserStorageUsage(fid: number, options?: RawAxiosRequestConfig): AxiosPromise<StorageUsageResponse> {
-            return localVarFp.lookupUserStorageUsage(fid, options).then((request) => request(axios, basePath));
+        lookupUserStorageUsage(requestParameters: StorageApiLookupUserStorageUsageRequest, options?: RawAxiosRequestConfig): AxiosPromise<StorageUsageResponse> {
+            return localVarFp.lookupUserStorageUsage(requestParameters.fid, options).then((request) => request(axios, basePath));
         },
     };
 };
+
+/**
+ * StorageApi - interface
+ * @export
+ * @interface StorageApi
+ */
+export interface StorageApiInterface {
+    /**
+     * This api will help you rent units of storage for an year for a specific FID. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
+     * @summary Buy storage
+     * @param {StorageApiBuyStorageRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorageApiInterface
+     * @returns {Promise<StorageAllocationsResponse>} A promise that resolves to a `StorageAllocationsResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/buy-storage)
+     * 
+     */
+    buyStorage(requestParameters: StorageApiBuyStorageRequest, options?: RawAxiosRequestConfig): AxiosPromise<StorageAllocationsResponse>;
+
+    /**
+     * Fetches storage allocations for a given user
+     * @summary Allocation of user
+     * @param {StorageApiLookupUserStorageAllocationsRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorageApiInterface
+     * @returns {Promise<StorageAllocationsResponse>} A promise that resolves to a `StorageAllocationsResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-user-storage-allocations)
+     * 
+     */
+    lookupUserStorageAllocations(requestParameters: StorageApiLookupUserStorageAllocationsRequest, options?: RawAxiosRequestConfig): AxiosPromise<StorageAllocationsResponse>;
+
+    /**
+     * Fetches storage usage for a given user
+     * @summary Usage of user
+     * @param {StorageApiLookupUserStorageUsageRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorageApiInterface
+     * @returns {Promise<StorageUsageResponse>} A promise that resolves to a `StorageUsageResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-user-storage-usage)
+     * 
+     */
+    lookupUserStorageUsage(requestParameters: StorageApiLookupUserStorageUsageRequest, options?: RawAxiosRequestConfig): AxiosPromise<StorageUsageResponse>;
+
+}
+
+/**
+ * Request parameters for buyStorage operation in StorageApi.
+ * @export
+ * @interface StorageApiBuyStorageRequest
+ */
+export interface StorageApiBuyStorageRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {BuyStorageReqBody}
+     * @memberof StorageApiBuyStorage
+     */
+    readonly buy_storage_req_body: BuyStorageReqBody
+}
+
+/**
+ * Request parameters for lookupUserStorageAllocations operation in StorageApi.
+ * @export
+ * @interface StorageApiLookupUserStorageAllocationsRequest
+ */
+export interface StorageApiLookupUserStorageAllocationsRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {number}
+     * @memberof StorageApiLookupUserStorageAllocations
+     */
+    readonly fid: number
+}
+
+/**
+ * Request parameters for lookupUserStorageUsage operation in StorageApi.
+ * @export
+ * @interface StorageApiLookupUserStorageUsageRequest
+ */
+export interface StorageApiLookupUserStorageUsageRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {number}
+     * @memberof StorageApiLookupUserStorageUsage
+     */
+    readonly fid: number
+}
 
 /**
  * StorageApi - object-oriented interface
@@ -256,41 +390,53 @@ export const StorageApiFactory = function (configuration?: Configuration, basePa
  * @class StorageApi
  * @extends {BaseAPI}
  */
-export class StorageApi extends BaseAPI {
+export class StorageApi extends BaseAPI implements StorageApiInterface {
     /**
      * This api will help you rent units of storage for an year for a specific FID. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
      * @summary Buy storage
-     * @param {BuyStorageReqBody} buyStorageReqBody 
+     * @param {StorageApiBuyStorageRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StorageApi
+     * @returns {Promise<StorageAllocationsResponse>} A promise that resolves to a `StorageAllocationsResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/buy-storage)
+     * 
      */
-    public buyStorage(buyStorageReqBody: BuyStorageReqBody, options?: RawAxiosRequestConfig) {
-        return StorageApiFp(this.configuration).buyStorage(buyStorageReqBody, options).then((request) => request(this.axios, this.basePath));
+    public buyStorage(requestParameters: StorageApiBuyStorageRequest, options?: RawAxiosRequestConfig) {
+        return StorageApiFp(this.configuration).buyStorage(requestParameters.buy_storage_req_body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetches storage allocations for a given user
      * @summary Allocation of user
-     * @param {number} fid 
+     * @param {StorageApiLookupUserStorageAllocationsRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StorageApi
+     * @returns {Promise<StorageAllocationsResponse>} A promise that resolves to a `StorageAllocationsResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-user-storage-allocations)
+     * 
      */
-    public lookupUserStorageAllocations(fid: number, options?: RawAxiosRequestConfig) {
-        return StorageApiFp(this.configuration).lookupUserStorageAllocations(fid, options).then((request) => request(this.axios, this.basePath));
+    public lookupUserStorageAllocations(requestParameters: StorageApiLookupUserStorageAllocationsRequest, options?: RawAxiosRequestConfig) {
+        return StorageApiFp(this.configuration).lookupUserStorageAllocations(requestParameters.fid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetches storage usage for a given user
      * @summary Usage of user
-     * @param {number} fid 
+     * @param {StorageApiLookupUserStorageUsageRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StorageApi
+     * @returns {Promise<StorageUsageResponse>} A promise that resolves to a `StorageUsageResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-user-storage-usage)
+     * 
      */
-    public lookupUserStorageUsage(fid: number, options?: RawAxiosRequestConfig) {
-        return StorageApiFp(this.configuration).lookupUserStorageUsage(fid, options).then((request) => request(this.axios, this.basePath));
+    public lookupUserStorageUsage(requestParameters: StorageApiLookupUserStorageUsageRequest, options?: RawAxiosRequestConfig) {
+        return StorageApiFp(this.configuration).lookupUserStorageUsage(requestParameters.fid, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

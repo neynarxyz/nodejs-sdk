@@ -38,13 +38,17 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Deletes a block for a given FID.
          * @summary Unblock FID
-         * @param {BlockReqBody} blockReqBody 
+         * @param {BlockReqBody} block_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-block)
+         * 
          */
-        deleteBlock: async (blockReqBody: BlockReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'blockReqBody' is not null or undefined
-            assertParamExists('deleteBlock', 'blockReqBody', blockReqBody)
+        deleteBlock: async (block_req_body: BlockReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'block_req_body' is not null or undefined
+            assertParamExists('deleteBlock', 'block_req_body', block_req_body)
             const localVarPath = `/farcaster/block`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -67,7 +71,7 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(blockReqBody, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(block_req_body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -77,14 +81,18 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Fetches all FIDs that a user has blocked or has been blocked by
          * @summary Blocked / Blocked by FIDs
-         * @param {number} [blockerFid] Providing this will return the users that this user has blocked
-         * @param {number} [blockedFid] Providing this will return the users that have blocked this user
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [blocker_fid] Providing this will return the users that this user has blocked 
+         * @param {number} [blocked_fid] Providing this will return the users that have blocked this user 
+         * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
+         * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<BlockListResponse>} A promise that resolves to a `BlockListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-block-list)
+         * 
          */
-        fetchBlockList: async (blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchBlockList: async (blocker_fid?: number, blocked_fid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/farcaster/block/list`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -100,12 +108,12 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (blockerFid !== undefined) {
-                localVarQueryParameter['blocker_fid'] = blockerFid;
+            if (blocker_fid !== undefined) {
+                localVarQueryParameter['blocker_fid'] = blocker_fid;
             }
 
-            if (blockedFid !== undefined) {
-                localVarQueryParameter['blocked_fid'] = blockedFid;
+            if (blocked_fid !== undefined) {
+                localVarQueryParameter['blocked_fid'] = blocked_fid;
             }
 
             if (limit !== undefined) {
@@ -130,13 +138,17 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Adds a block for a given FID.
          * @summary Block FID
-         * @param {BlockReqBody} blockReqBody 
+         * @param {BlockReqBody} block_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-block)
+         * 
          */
-        publishBlock: async (blockReqBody: BlockReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'blockReqBody' is not null or undefined
-            assertParamExists('publishBlock', 'blockReqBody', blockReqBody)
+        publishBlock: async (block_req_body: BlockReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'block_req_body' is not null or undefined
+            assertParamExists('publishBlock', 'block_req_body', block_req_body)
             const localVarPath = `/farcaster/block`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -159,7 +171,7 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(blockReqBody, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(block_req_body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -179,12 +191,16 @@ export const BlockApiFp = function(configuration?: Configuration) {
         /**
          * Deletes a block for a given FID.
          * @summary Unblock FID
-         * @param {BlockReqBody} blockReqBody 
+         * @param {BlockReqBody} block_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-block)
+         * 
          */
-        async deleteBlock(blockReqBody: BlockReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteBlock(blockReqBody, options);
+        async deleteBlock(block_req_body: BlockReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteBlock(block_req_body, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['BlockApi.deleteBlock']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -192,15 +208,19 @@ export const BlockApiFp = function(configuration?: Configuration) {
         /**
          * Fetches all FIDs that a user has blocked or has been blocked by
          * @summary Blocked / Blocked by FIDs
-         * @param {number} [blockerFid] Providing this will return the users that this user has blocked
-         * @param {number} [blockedFid] Providing this will return the users that have blocked this user
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [blocker_fid] Providing this will return the users that this user has blocked 
+         * @param {number} [blocked_fid] Providing this will return the users that have blocked this user 
+         * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
+         * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<BlockListResponse>} A promise that resolves to a `BlockListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-block-list)
+         * 
          */
-        async fetchBlockList(blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BlockListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchBlockList(blockerFid, blockedFid, limit, cursor, options);
+        async fetchBlockList(blocker_fid?: number, blocked_fid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BlockListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchBlockList(blocker_fid, blocked_fid, limit, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['BlockApi.fetchBlockList']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -208,12 +228,16 @@ export const BlockApiFp = function(configuration?: Configuration) {
         /**
          * Adds a block for a given FID.
          * @summary Block FID
-         * @param {BlockReqBody} blockReqBody 
+         * @param {BlockReqBody} block_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-block)
+         * 
          */
-        async publishBlock(blockReqBody: BlockReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.publishBlock(blockReqBody, options);
+        async publishBlock(block_req_body: BlockReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publishBlock(block_req_body, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['BlockApi.publishBlock']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -231,38 +255,172 @@ export const BlockApiFactory = function (configuration?: Configuration, basePath
         /**
          * Deletes a block for a given FID.
          * @summary Unblock FID
-         * @param {BlockReqBody} blockReqBody 
+         * @param {BlockApiDeleteBlockRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-block)
+         * 
          */
-        deleteBlock(blockReqBody: BlockReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.deleteBlock(blockReqBody, options).then((request) => request(axios, basePath));
+        deleteBlock(requestParameters: BlockApiDeleteBlockRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.deleteBlock(requestParameters.block_req_body, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches all FIDs that a user has blocked or has been blocked by
          * @summary Blocked / Blocked by FIDs
-         * @param {number} [blockerFid] Providing this will return the users that this user has blocked
-         * @param {number} [blockedFid] Providing this will return the users that have blocked this user
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor.
+         * @param {BlockApiFetchBlockListRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<BlockListResponse>} A promise that resolves to a `BlockListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-block-list)
+         * 
          */
-        fetchBlockList(blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<BlockListResponse> {
-            return localVarFp.fetchBlockList(blockerFid, blockedFid, limit, cursor, options).then((request) => request(axios, basePath));
+        fetchBlockList(requestParameters: BlockApiFetchBlockListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<BlockListResponse> {
+            return localVarFp.fetchBlockList(requestParameters.blocker_fid, requestParameters.blocked_fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Adds a block for a given FID.
          * @summary Block FID
-         * @param {BlockReqBody} blockReqBody 
+         * @param {BlockApiPublishBlockRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-block)
+         * 
          */
-        publishBlock(blockReqBody: BlockReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.publishBlock(blockReqBody, options).then((request) => request(axios, basePath));
+        publishBlock(requestParameters: BlockApiPublishBlockRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.publishBlock(requestParameters.block_req_body, options).then((request) => request(axios, basePath));
         },
     };
 };
+
+/**
+ * BlockApi - interface
+ * @export
+ * @interface BlockApi
+ */
+export interface BlockApiInterface {
+    /**
+     * Deletes a block for a given FID.
+     * @summary Unblock FID
+     * @param {BlockApiDeleteBlockRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BlockApiInterface
+     * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-block)
+     * 
+     */
+    deleteBlock(requestParameters: BlockApiDeleteBlockRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse>;
+
+    /**
+     * Fetches all FIDs that a user has blocked or has been blocked by
+     * @summary Blocked / Blocked by FIDs
+     * @param {BlockApiFetchBlockListRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BlockApiInterface
+     * @returns {Promise<BlockListResponse>} A promise that resolves to a `BlockListResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-block-list)
+     * 
+     */
+    fetchBlockList(requestParameters?: BlockApiFetchBlockListRequest, options?: RawAxiosRequestConfig): AxiosPromise<BlockListResponse>;
+
+    /**
+     * Adds a block for a given FID.
+     * @summary Block FID
+     * @param {BlockApiPublishBlockRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BlockApiInterface
+     * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-block)
+     * 
+     */
+    publishBlock(requestParameters: BlockApiPublishBlockRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse>;
+
+}
+
+/**
+ * Request parameters for deleteBlock operation in BlockApi.
+ * @export
+ * @interface BlockApiDeleteBlockRequest
+ */
+export interface BlockApiDeleteBlockRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {BlockReqBody}
+     * @memberof BlockApiDeleteBlock
+     */
+    readonly block_req_body: BlockReqBody
+}
+
+/**
+ * Request parameters for fetchBlockList operation in BlockApi.
+ * @export
+ * @interface BlockApiFetchBlockListRequest
+ */
+export interface BlockApiFetchBlockListRequest {
+    /**
+     * Providing this will return the users that this user has blocked
+     * 
+     * 
+     * @type {number}
+     * @memberof BlockApiFetchBlockList
+     */
+    readonly blocker_fid?: number
+
+    /**
+     * Providing this will return the users that have blocked this user
+     * 
+     * 
+     * @type {number}
+     * @memberof BlockApiFetchBlockList
+     */
+    readonly blocked_fid?: number
+
+    /**
+     * Number of results to fetch (Default: 20, Maximum: 100)
+     * 
+     * 
+     * @type {number}
+     * @memberof BlockApiFetchBlockList
+     */
+    readonly limit?: number
+
+    /**
+     * Pagination cursor.
+     * 
+     * 
+     * @type {string}
+     * @memberof BlockApiFetchBlockList
+     */
+    readonly cursor?: string
+}
+
+/**
+ * Request parameters for publishBlock operation in BlockApi.
+ * @export
+ * @interface BlockApiPublishBlockRequest
+ */
+export interface BlockApiPublishBlockRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {BlockReqBody}
+     * @memberof BlockApiPublishBlock
+     */
+    readonly block_req_body: BlockReqBody
+}
 
 /**
  * BlockApi - object-oriented interface
@@ -270,44 +428,53 @@ export const BlockApiFactory = function (configuration?: Configuration, basePath
  * @class BlockApi
  * @extends {BaseAPI}
  */
-export class BlockApi extends BaseAPI {
+export class BlockApi extends BaseAPI implements BlockApiInterface {
     /**
      * Deletes a block for a given FID.
      * @summary Unblock FID
-     * @param {BlockReqBody} blockReqBody 
+     * @param {BlockApiDeleteBlockRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BlockApi
+     * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-block)
+     * 
      */
-    public deleteBlock(blockReqBody: BlockReqBody, options?: RawAxiosRequestConfig) {
-        return BlockApiFp(this.configuration).deleteBlock(blockReqBody, options).then((request) => request(this.axios, this.basePath));
+    public deleteBlock(requestParameters: BlockApiDeleteBlockRequest, options?: RawAxiosRequestConfig) {
+        return BlockApiFp(this.configuration).deleteBlock(requestParameters.block_req_body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetches all FIDs that a user has blocked or has been blocked by
      * @summary Blocked / Blocked by FIDs
-     * @param {number} [blockerFid] Providing this will return the users that this user has blocked
-     * @param {number} [blockedFid] Providing this will return the users that have blocked this user
-     * @param {number} [limit] Number of results to fetch
-     * @param {string} [cursor] Pagination cursor.
+     * @param {BlockApiFetchBlockListRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BlockApi
+     * @returns {Promise<BlockListResponse>} A promise that resolves to a `BlockListResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-block-list)
+     * 
      */
-    public fetchBlockList(blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return BlockApiFp(this.configuration).fetchBlockList(blockerFid, blockedFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public fetchBlockList(requestParameters: BlockApiFetchBlockListRequest = {}, options?: RawAxiosRequestConfig) {
+        return BlockApiFp(this.configuration).fetchBlockList(requestParameters.blocker_fid, requestParameters.blocked_fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Adds a block for a given FID.
      * @summary Block FID
-     * @param {BlockReqBody} blockReqBody 
+     * @param {BlockApiPublishBlockRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BlockApi
+     * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-block)
+     * 
      */
-    public publishBlock(blockReqBody: BlockReqBody, options?: RawAxiosRequestConfig) {
-        return BlockApiFp(this.configuration).publishBlock(blockReqBody, options).then((request) => request(this.axios, this.basePath));
+    public publishBlock(requestParameters: BlockApiPublishBlockRequest, options?: RawAxiosRequestConfig) {
+        return BlockApiFp(this.configuration).publishBlock(requestParameters.block_req_body, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

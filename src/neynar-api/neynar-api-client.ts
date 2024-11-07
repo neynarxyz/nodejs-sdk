@@ -2462,54 +2462,6 @@ export class NeynarAPIClient {
   }
 
   /**
-   * Retrieves a list of users who are active in a given channel, ordered by ascending FIDs
-   *
-   * @param {string} id - Channel ID for the channel being queried
-   * @param {boolean} hasRootCastAuthors - Include users who posted the root cast in the channel
-   * @param {Object} [options] - Optional parameters for the request
-   * @param {boolean} [options.hasCastLikers] - Include users who liked a cast in the channel
-   * @param {boolean} [options.hasCastRecasters] - Include users who recasted a cast in the channel
-   * @param {boolean} [options.hasReplyAuthors] - Include users who replied to a cast in the channel
-   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
-   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
-   *   omit this parameter for the initial request.
-   *
-   * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
-   *  containing the users active in the specified channel.
-   *
-   * @example
-   * // Example: Retrieve active users in a channel
-   * client.fetchActiveUsersInSingleChannel('neynar', true, {
-   *  hasCastLikers: true,
-   *  hasCastRecasters: true,
-   *  hasReplyAuthors: true,
-   *  limit: 10
-   *  // cursor: "nextPageCursor" // Omit this parameter for the initial request.
-   * }).then(response => {
-   *  console.log('Active Users:', response);
-   * });
-   *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/channel-users).
-   */
-  public async fetchActiveUsersInSingleChannel(
-    id: string,
-    hasRootCastAuthors: boolean,
-    options?: {
-      hasCastLikers?: boolean;
-      hasCastRecasters?: boolean;
-      hasReplyAuthors?: boolean;
-      limit?: number;
-      cursor?: string;
-    }
-  ): Promise<UsersResponse> {
-    return await this.clients.v2.fetchActiveUsersInSingleChannel(
-      id,
-      hasRootCastAuthors,
-      options
-    );
-  }
-
-  /**
    * Follow a channel.
    *
    * @param {string} signerUuid - UUID of the signer who is following the channel.

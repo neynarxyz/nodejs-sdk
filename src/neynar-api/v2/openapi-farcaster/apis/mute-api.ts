@@ -38,13 +38,17 @@ export const MuteApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Deletes a mute for a given FID. This is a whitelisted API, reach out if you want access.
          * @summary Unmute FID
-         * @param {MuteReqBody} muteReqBody 
+         * @param {MuteReqBody} mute_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<MuteResponse>} A promise that resolves to a `MuteResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-mute)
+         * 
          */
-        deleteMute: async (muteReqBody: MuteReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'muteReqBody' is not null or undefined
-            assertParamExists('deleteMute', 'muteReqBody', muteReqBody)
+        deleteMute: async (mute_req_body: MuteReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mute_req_body' is not null or undefined
+            assertParamExists('deleteMute', 'mute_req_body', mute_req_body)
             const localVarPath = `/farcaster/mute`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -67,7 +71,7 @@ export const MuteApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(muteReqBody, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(mute_req_body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -77,11 +81,15 @@ export const MuteApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Fetches all FIDs that a user has muted.
          * @summary Muted FIDs of user
-         * @param {number} fid The user\&#39;s FID (identifier)
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor.
+         * @param {number} fid The user\&#39;s FID (identifier) 
+         * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
+         * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<MuteListResponse>} A promise that resolves to a `MuteListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-mute-list)
+         * 
          */
         fetchMuteList: async (fid: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
@@ -127,13 +135,17 @@ export const MuteApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Adds a mute for a given FID. This is a whitelisted API, reach out if you want access.
          * @summary Mute FID
-         * @param {MuteReqBody} muteReqBody 
+         * @param {MuteReqBody} mute_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<MuteResponse>} A promise that resolves to a `MuteResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-mute)
+         * 
          */
-        publishMute: async (muteReqBody: MuteReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'muteReqBody' is not null or undefined
-            assertParamExists('publishMute', 'muteReqBody', muteReqBody)
+        publishMute: async (mute_req_body: MuteReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mute_req_body' is not null or undefined
+            assertParamExists('publishMute', 'mute_req_body', mute_req_body)
             const localVarPath = `/farcaster/mute`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -156,7 +168,7 @@ export const MuteApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(muteReqBody, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(mute_req_body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -176,12 +188,16 @@ export const MuteApiFp = function(configuration?: Configuration) {
         /**
          * Deletes a mute for a given FID. This is a whitelisted API, reach out if you want access.
          * @summary Unmute FID
-         * @param {MuteReqBody} muteReqBody 
+         * @param {MuteReqBody} mute_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<MuteResponse>} A promise that resolves to a `MuteResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-mute)
+         * 
          */
-        async deleteMute(muteReqBody: MuteReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MuteResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteMute(muteReqBody, options);
+        async deleteMute(mute_req_body: MuteReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MuteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteMute(mute_req_body, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['MuteApi.deleteMute']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -189,11 +205,15 @@ export const MuteApiFp = function(configuration?: Configuration) {
         /**
          * Fetches all FIDs that a user has muted.
          * @summary Muted FIDs of user
-         * @param {number} fid The user\&#39;s FID (identifier)
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor.
+         * @param {number} fid The user\&#39;s FID (identifier) 
+         * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
+         * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<MuteListResponse>} A promise that resolves to a `MuteListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-mute-list)
+         * 
          */
         async fetchMuteList(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MuteListResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.fetchMuteList(fid, limit, cursor, options);
@@ -204,12 +224,16 @@ export const MuteApiFp = function(configuration?: Configuration) {
         /**
          * Adds a mute for a given FID. This is a whitelisted API, reach out if you want access.
          * @summary Mute FID
-         * @param {MuteReqBody} muteReqBody 
+         * @param {MuteReqBody} mute_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<MuteResponse>} A promise that resolves to a `MuteResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-mute)
+         * 
          */
-        async publishMute(muteReqBody: MuteReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MuteResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.publishMute(muteReqBody, options);
+        async publishMute(mute_req_body: MuteReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MuteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publishMute(mute_req_body, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['MuteApi.publishMute']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -227,37 +251,163 @@ export const MuteApiFactory = function (configuration?: Configuration, basePath?
         /**
          * Deletes a mute for a given FID. This is a whitelisted API, reach out if you want access.
          * @summary Unmute FID
-         * @param {MuteReqBody} muteReqBody 
+         * @param {MuteApiDeleteMuteRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<MuteResponse>} A promise that resolves to a `MuteResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-mute)
+         * 
          */
-        deleteMute(muteReqBody: MuteReqBody, options?: RawAxiosRequestConfig): AxiosPromise<MuteResponse> {
-            return localVarFp.deleteMute(muteReqBody, options).then((request) => request(axios, basePath));
+        deleteMute(requestParameters: MuteApiDeleteMuteRequest, options?: RawAxiosRequestConfig): AxiosPromise<MuteResponse> {
+            return localVarFp.deleteMute(requestParameters.mute_req_body, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches all FIDs that a user has muted.
          * @summary Muted FIDs of user
-         * @param {number} fid The user\&#39;s FID (identifier)
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor.
+         * @param {MuteApiFetchMuteListRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<MuteListResponse>} A promise that resolves to a `MuteListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-mute-list)
+         * 
          */
-        fetchMuteList(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<MuteListResponse> {
-            return localVarFp.fetchMuteList(fid, limit, cursor, options).then((request) => request(axios, basePath));
+        fetchMuteList(requestParameters: MuteApiFetchMuteListRequest, options?: RawAxiosRequestConfig): AxiosPromise<MuteListResponse> {
+            return localVarFp.fetchMuteList(requestParameters.fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Adds a mute for a given FID. This is a whitelisted API, reach out if you want access.
          * @summary Mute FID
-         * @param {MuteReqBody} muteReqBody 
+         * @param {MuteApiPublishMuteRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<MuteResponse>} A promise that resolves to a `MuteResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-mute)
+         * 
          */
-        publishMute(muteReqBody: MuteReqBody, options?: RawAxiosRequestConfig): AxiosPromise<MuteResponse> {
-            return localVarFp.publishMute(muteReqBody, options).then((request) => request(axios, basePath));
+        publishMute(requestParameters: MuteApiPublishMuteRequest, options?: RawAxiosRequestConfig): AxiosPromise<MuteResponse> {
+            return localVarFp.publishMute(requestParameters.mute_req_body, options).then((request) => request(axios, basePath));
         },
     };
 };
+
+/**
+ * MuteApi - interface
+ * @export
+ * @interface MuteApi
+ */
+export interface MuteApiInterface {
+    /**
+     * Deletes a mute for a given FID. This is a whitelisted API, reach out if you want access.
+     * @summary Unmute FID
+     * @param {MuteApiDeleteMuteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MuteApiInterface
+     * @returns {Promise<MuteResponse>} A promise that resolves to a `MuteResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-mute)
+     * 
+     */
+    deleteMute(requestParameters: MuteApiDeleteMuteRequest, options?: RawAxiosRequestConfig): AxiosPromise<MuteResponse>;
+
+    /**
+     * Fetches all FIDs that a user has muted.
+     * @summary Muted FIDs of user
+     * @param {MuteApiFetchMuteListRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MuteApiInterface
+     * @returns {Promise<MuteListResponse>} A promise that resolves to a `MuteListResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-mute-list)
+     * 
+     */
+    fetchMuteList(requestParameters: MuteApiFetchMuteListRequest, options?: RawAxiosRequestConfig): AxiosPromise<MuteListResponse>;
+
+    /**
+     * Adds a mute for a given FID. This is a whitelisted API, reach out if you want access.
+     * @summary Mute FID
+     * @param {MuteApiPublishMuteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MuteApiInterface
+     * @returns {Promise<MuteResponse>} A promise that resolves to a `MuteResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-mute)
+     * 
+     */
+    publishMute(requestParameters: MuteApiPublishMuteRequest, options?: RawAxiosRequestConfig): AxiosPromise<MuteResponse>;
+
+}
+
+/**
+ * Request parameters for deleteMute operation in MuteApi.
+ * @export
+ * @interface MuteApiDeleteMuteRequest
+ */
+export interface MuteApiDeleteMuteRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {MuteReqBody}
+     * @memberof MuteApiDeleteMute
+     */
+    readonly mute_req_body: MuteReqBody
+}
+
+/**
+ * Request parameters for fetchMuteList operation in MuteApi.
+ * @export
+ * @interface MuteApiFetchMuteListRequest
+ */
+export interface MuteApiFetchMuteListRequest {
+    /**
+     * The user\&#39;s FID (identifier)
+     * 
+     * 
+     * @type {number}
+     * @memberof MuteApiFetchMuteList
+     */
+    readonly fid: number
+
+    /**
+     * Number of results to fetch (Default: 20, Maximum: 100)
+     * 
+     * 
+     * @type {number}
+     * @memberof MuteApiFetchMuteList
+     */
+    readonly limit?: number
+
+    /**
+     * Pagination cursor.
+     * 
+     * 
+     * @type {string}
+     * @memberof MuteApiFetchMuteList
+     */
+    readonly cursor?: string
+}
+
+/**
+ * Request parameters for publishMute operation in MuteApi.
+ * @export
+ * @interface MuteApiPublishMuteRequest
+ */
+export interface MuteApiPublishMuteRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {MuteReqBody}
+     * @memberof MuteApiPublishMute
+     */
+    readonly mute_req_body: MuteReqBody
+}
 
 /**
  * MuteApi - object-oriented interface
@@ -265,43 +415,53 @@ export const MuteApiFactory = function (configuration?: Configuration, basePath?
  * @class MuteApi
  * @extends {BaseAPI}
  */
-export class MuteApi extends BaseAPI {
+export class MuteApi extends BaseAPI implements MuteApiInterface {
     /**
      * Deletes a mute for a given FID. This is a whitelisted API, reach out if you want access.
      * @summary Unmute FID
-     * @param {MuteReqBody} muteReqBody 
+     * @param {MuteApiDeleteMuteRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MuteApi
+     * @returns {Promise<MuteResponse>} A promise that resolves to a `MuteResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-mute)
+     * 
      */
-    public deleteMute(muteReqBody: MuteReqBody, options?: RawAxiosRequestConfig) {
-        return MuteApiFp(this.configuration).deleteMute(muteReqBody, options).then((request) => request(this.axios, this.basePath));
+    public deleteMute(requestParameters: MuteApiDeleteMuteRequest, options?: RawAxiosRequestConfig) {
+        return MuteApiFp(this.configuration).deleteMute(requestParameters.mute_req_body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetches all FIDs that a user has muted.
      * @summary Muted FIDs of user
-     * @param {number} fid The user\&#39;s FID (identifier)
-     * @param {number} [limit] Number of results to fetch
-     * @param {string} [cursor] Pagination cursor.
+     * @param {MuteApiFetchMuteListRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MuteApi
+     * @returns {Promise<MuteListResponse>} A promise that resolves to a `MuteListResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-mute-list)
+     * 
      */
-    public fetchMuteList(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return MuteApiFp(this.configuration).fetchMuteList(fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public fetchMuteList(requestParameters: MuteApiFetchMuteListRequest, options?: RawAxiosRequestConfig) {
+        return MuteApiFp(this.configuration).fetchMuteList(requestParameters.fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Adds a mute for a given FID. This is a whitelisted API, reach out if you want access.
      * @summary Mute FID
-     * @param {MuteReqBody} muteReqBody 
+     * @param {MuteApiPublishMuteRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MuteApi
+     * @returns {Promise<MuteResponse>} A promise that resolves to a `MuteResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-mute)
+     * 
      */
-    public publishMute(muteReqBody: MuteReqBody, options?: RawAxiosRequestConfig) {
-        return MuteApiFp(this.configuration).publishMute(muteReqBody, options).then((request) => request(this.axios, this.basePath));
+    public publishMute(requestParameters: MuteApiPublishMuteRequest, options?: RawAxiosRequestConfig) {
+        return MuteApiFp(this.configuration).publishMute(requestParameters.mute_req_body, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

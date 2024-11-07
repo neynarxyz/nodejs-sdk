@@ -24,7 +24,7 @@ import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError
 // @ts-ignore
 import type { ErrorRes } from '../models';
 // @ts-ignore
-import type { SubscriptionStatus } from '../models';
+import type { SubscriptionCheckResponse } from '../models';
 /**
  * STPApi - axios parameter creator
  * @export
@@ -34,19 +34,23 @@ export const STPApiAxiosParamCreator = function (configuration?: Configuration) 
         /**
          * Check if a wallet address is subscribed to a given STP contract.
          * @summary Subscription check by wallet address
-         * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
-         * @param {string} contractAddress Ethereum address of the STP contract
-         * @param {string} chainId Chain ID of the STP contract
+         * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time 
+         * @param {string} contract_address Ethereum address of the STP contract 
+         * @param {string} chain_id Chain ID of the STP contract 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<SubscriptionCheckResponse>} A promise that resolves to a `SubscriptionCheckResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscription-check)
+         * 
          */
-        fetchSubscriptionCheck: async (addresses: string, contractAddress: string, chainId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchSubscriptionCheck: async (addresses: string, contract_address: string, chain_id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'addresses' is not null or undefined
             assertParamExists('fetchSubscriptionCheck', 'addresses', addresses)
-            // verify required parameter 'contractAddress' is not null or undefined
-            assertParamExists('fetchSubscriptionCheck', 'contractAddress', contractAddress)
-            // verify required parameter 'chainId' is not null or undefined
-            assertParamExists('fetchSubscriptionCheck', 'chainId', chainId)
+            // verify required parameter 'contract_address' is not null or undefined
+            assertParamExists('fetchSubscriptionCheck', 'contract_address', contract_address)
+            // verify required parameter 'chain_id' is not null or undefined
+            assertParamExists('fetchSubscriptionCheck', 'chain_id', chain_id)
             const localVarPath = `/stp/subscription_check`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -66,12 +70,12 @@ export const STPApiAxiosParamCreator = function (configuration?: Configuration) 
                 localVarQueryParameter['addresses'] = addresses;
             }
 
-            if (contractAddress !== undefined) {
-                localVarQueryParameter['contract_address'] = contractAddress;
+            if (contract_address !== undefined) {
+                localVarQueryParameter['contract_address'] = contract_address;
             }
 
-            if (chainId !== undefined) {
-                localVarQueryParameter['chain_id'] = chainId;
+            if (chain_id !== undefined) {
+                localVarQueryParameter['chain_id'] = chain_id;
             }
 
 
@@ -98,14 +102,18 @@ export const STPApiFp = function(configuration?: Configuration) {
         /**
          * Check if a wallet address is subscribed to a given STP contract.
          * @summary Subscription check by wallet address
-         * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
-         * @param {string} contractAddress Ethereum address of the STP contract
-         * @param {string} chainId Chain ID of the STP contract
+         * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time 
+         * @param {string} contract_address Ethereum address of the STP contract 
+         * @param {string} chain_id Chain ID of the STP contract 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<SubscriptionCheckResponse>} A promise that resolves to a `SubscriptionCheckResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscription-check)
+         * 
          */
-        async fetchSubscriptionCheck(addresses: string, contractAddress: string, chainId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: SubscriptionStatus; }>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchSubscriptionCheck(addresses, contractAddress, chainId, options);
+        async fetchSubscriptionCheck(addresses: string, contract_address: string, chain_id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionCheckResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchSubscriptionCheck(addresses, contract_address, chain_id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['STPApi.fetchSubscriptionCheck']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -123,17 +131,75 @@ export const STPApiFactory = function (configuration?: Configuration, basePath?:
         /**
          * Check if a wallet address is subscribed to a given STP contract.
          * @summary Subscription check by wallet address
-         * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
-         * @param {string} contractAddress Ethereum address of the STP contract
-         * @param {string} chainId Chain ID of the STP contract
+         * @param {STPApiFetchSubscriptionCheckRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<SubscriptionCheckResponse>} A promise that resolves to a `SubscriptionCheckResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscription-check)
+         * 
          */
-        fetchSubscriptionCheck(addresses: string, contractAddress: string, chainId: string, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: SubscriptionStatus; }> {
-            return localVarFp.fetchSubscriptionCheck(addresses, contractAddress, chainId, options).then((request) => request(axios, basePath));
+        fetchSubscriptionCheck(requestParameters: STPApiFetchSubscriptionCheckRequest, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionCheckResponse> {
+            return localVarFp.fetchSubscriptionCheck(requestParameters.addresses, requestParameters.contract_address, requestParameters.chain_id, options).then((request) => request(axios, basePath));
         },
     };
 };
+
+/**
+ * STPApi - interface
+ * @export
+ * @interface STPApi
+ */
+export interface STPApiInterface {
+    /**
+     * Check if a wallet address is subscribed to a given STP contract.
+     * @summary Subscription check by wallet address
+     * @param {STPApiFetchSubscriptionCheckRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof STPApiInterface
+     * @returns {Promise<SubscriptionCheckResponse>} A promise that resolves to a `SubscriptionCheckResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscription-check)
+     * 
+     */
+    fetchSubscriptionCheck(requestParameters: STPApiFetchSubscriptionCheckRequest, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionCheckResponse>;
+
+}
+
+/**
+ * Request parameters for fetchSubscriptionCheck operation in STPApi.
+ * @export
+ * @interface STPApiFetchSubscriptionCheckRequest
+ */
+export interface STPApiFetchSubscriptionCheckRequest {
+    /**
+     * Comma separated list of Ethereum addresses, up to 350 at a time
+     * 
+     * 
+     * @type {string}
+     * @memberof STPApiFetchSubscriptionCheck
+     */
+    readonly addresses: string
+
+    /**
+     * Ethereum address of the STP contract
+     * 
+     * 
+     * @type {string}
+     * @memberof STPApiFetchSubscriptionCheck
+     */
+    readonly contract_address: string
+
+    /**
+     * Chain ID of the STP contract
+     * 
+     * 
+     * @type {string}
+     * @memberof STPApiFetchSubscriptionCheck
+     */
+    readonly chain_id: string
+}
 
 /**
  * STPApi - object-oriented interface
@@ -141,19 +207,21 @@ export const STPApiFactory = function (configuration?: Configuration, basePath?:
  * @class STPApi
  * @extends {BaseAPI}
  */
-export class STPApi extends BaseAPI {
+export class STPApi extends BaseAPI implements STPApiInterface {
     /**
      * Check if a wallet address is subscribed to a given STP contract.
      * @summary Subscription check by wallet address
-     * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time
-     * @param {string} contractAddress Ethereum address of the STP contract
-     * @param {string} chainId Chain ID of the STP contract
+     * @param {STPApiFetchSubscriptionCheckRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof STPApi
+     * @returns {Promise<SubscriptionCheckResponse>} A promise that resolves to a `SubscriptionCheckResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscription-check)
+     * 
      */
-    public fetchSubscriptionCheck(addresses: string, contractAddress: string, chainId: string, options?: RawAxiosRequestConfig) {
-        return STPApiFp(this.configuration).fetchSubscriptionCheck(addresses, contractAddress, chainId, options).then((request) => request(this.axios, this.basePath));
+    public fetchSubscriptionCheck(requestParameters: STPApiFetchSubscriptionCheckRequest, options?: RawAxiosRequestConfig) {
+        return STPApiFp(this.configuration).fetchSubscriptionCheck(requestParameters.addresses, requestParameters.contract_address, requestParameters.chain_id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

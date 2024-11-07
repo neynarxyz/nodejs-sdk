@@ -15,19 +15,15 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { Fids } from './fids';
+import type { User } from './user';
 
 /**
  * 
  * @export
- * @interface UserPowerLiteResponseResult
+ * @interface BulkUsersByAddressResponse
  */
-export interface UserPowerLiteResponseResult {
-    /**
-     * 
-     * @type {Fids}
-     * @memberof UserPowerLiteResponseResult
-     */
-    'fids': Fids;
+export interface BulkUsersByAddressResponse {
+    [key: string]: Array<User>;
+
 }
 

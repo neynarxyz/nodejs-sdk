@@ -290,9 +290,9 @@ export class NeynarV2APIClient {
       action: action,
     };
 
-    const response = await this.apis.action.publishFarcasterAction(
-      farcasterActionReqBody
-    );
+    const response = await this.apis.action.publishFarcasterAction({
+      farcaster_action_req_body: farcasterActionReqBody,
+    });
     return response.data;
   }
 
@@ -320,10 +320,10 @@ export class NeynarV2APIClient {
     client_id: string,
     code: AuthorizationUrlResponseType
   ): Promise<AuthorizationUrlResponse> {
-    const response = await this.apis.signer.fetchAuthorizationUrl(
+    const response = await this.apis.signer.fetchAuthorizationUrl({
       client_id,
-      code
-    );
+      response_type: code,
+    });
     return response.data;
   }
 
@@ -364,7 +364,9 @@ export class NeynarV2APIClient {
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/lookup-signer).
    */
   public async lookupSigner(signerUuid: string): Promise<Signer> {
-    const response = await this.apis.signer.lookupSigner(signerUuid);
+    const response = await this.apis.signer.lookupSigner({
+      signer_uuid: signerUuid,
+    });
     return response.data;
   }
 
@@ -430,9 +432,9 @@ export class NeynarV2APIClient {
           }
         : {}),
     };
-    const response = await this.apis.signer.registerSignedKey(
-      registerSignerKeyReqBody
-    );
+    const response = await this.apis.signer.registerSignedKey({
+      register_signer_key_req_body: registerSignerKeyReqBody,
+    });
     return response.data;
   }
 
@@ -458,9 +460,9 @@ export class NeynarV2APIClient {
   public async lookupDeveloperManagedSigner(
     publicKey: string
   ): Promise<DeveloperManagedSigner> {
-    const response = await this.apis.signer.lookupDeveloperManagedSigner(
-      publicKey
-    );
+    const response = await this.apis.signer.lookupDeveloperManagedSigner({
+      public_key: publicKey,
+    });
     return response.data;
   }
 
@@ -521,9 +523,10 @@ export class NeynarV2APIClient {
         : {}),
     };
     const response =
-      await this.apis.signer.registerSignedKeyForDeveloperManagedSigner(
-        registerSignerKeyReqBody
-      );
+      await this.apis.signer.registerSignedKeyForDeveloperManagedSigner({
+        register_developer_managed_signed_key_req_body:
+          registerSignerKeyReqBody,
+      });
     return response.data;
   }
 
@@ -548,7 +551,9 @@ export class NeynarV2APIClient {
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/publish-message-to-farcaster).
    */
   public async publishMessageToFarcaster(message: object) {
-    const response = await this.apis.signer.publishMessageToFarcaster(message);
+    const response = await this.apis.signer.publishMessageToFarcaster({
+      body: message,
+    });
     return response.data;
   }
 
@@ -612,7 +617,9 @@ export class NeynarV2APIClient {
       deadline,
       fname: options?.fname,
     };
-    const response = await this.apis.user.registerAccount(registerUserReqBody);
+    const response = await this.apis.user.registerAccount({
+      register_user_req_body: registerUserReqBody,
+    });
     return response.data;
   }
 
@@ -642,11 +649,11 @@ export class NeynarV2APIClient {
     cursor?: string;
     viewerFid?: number;
   }): Promise<UsersResponse> {
-    const response = await this.apis.user.fetchPowerUsers(
-      options?.viewerFid,
-      options?.limit,
-      options?.cursor
-    );
+    const response = await this.apis.user.fetchPowerUsers({
+      cursor: options?.cursor,
+      limit: options?.limit,
+      viewer_fid: options?.viewerFid,
+    });
     return response.data;
   }
 
@@ -698,9 +705,9 @@ export class NeynarV2APIClient {
       address,
     };
 
-    const response = await this.apis.user.deleteVerification(
-      removeVerificationReqBody
-    );
+    const response = await this.apis.user.deleteVerification({
+      remove_verification_req_body: removeVerificationReqBody,
+    });
     return response.data;
   }
 
@@ -737,9 +744,9 @@ export class NeynarV2APIClient {
       eth_signature: ethSignature,
     };
 
-    const response = await this.apis.user.publishVerification(
-      addVerificationReqBody
-    );
+    const response = await this.apis.user.publishVerification({
+      add_verification_req_body: addVerificationReqBody,
+    });
     return response.data;
   }
 
@@ -771,7 +778,9 @@ export class NeynarV2APIClient {
       target_fids: targetFids,
     };
 
-    const response = await this.apis.user.followUser(followReqBody);
+    const response = await this.apis.user.followUser({
+      follow_req_body: followReqBody,
+    });
     return response.data;
   }
 
@@ -802,7 +811,9 @@ export class NeynarV2APIClient {
       signer_uuid: signerUuid,
       target_fids: targetFids,
     };
-    const response = await this.apis.user.unfollowUser(followReqBody);
+    const response = await this.apis.user.unfollowUser({
+      follow_req_body: followReqBody,
+    });
     return response.data;
   }
 
@@ -855,7 +866,9 @@ export class NeynarV2APIClient {
       display_name: options?.displayName,
       location: options?.location,
     };
-    const response = await this.apis.user.updateUser(updateUserReqBody);
+    const response = await this.apis.user.updateUser({
+      update_user_req_body: updateUserReqBody,
+    });
     return response.data;
   }
 
@@ -887,10 +900,10 @@ export class NeynarV2APIClient {
     if (fids.length > 100)
       throw new Error("Maximum number of fids allowed is 100");
     const _fids = fids.join(",");
-    const response = await this.apis.user.fetchBulkUsers(
-      _fids,
-      options?.viewerFid
-    );
+    const response = await this.apis.user.fetchBulkUsers({
+      fids: _fids,
+      viewer_fid: options?.viewerFid,
+    });
     return response.data;
   }
 
@@ -937,11 +950,11 @@ export class NeynarV2APIClient {
     const _addresses = addresses.join(",");
     const _addressTypes =
       options?.addressTypes && options?.addressTypes.join(",");
-    const response = await this.apis.user.fetchBulkUsersByEthereumAddress(
-      _addresses,
-      _addressTypes,
-      options?.viewerFid
-    );
+    const response = await this.apis.user.fetchBulkUsersByEthereumAddress({
+      addresses: _addresses,
+      address_types: _addressTypes,
+      viewer_fid: options?.viewerFid,
+    });
     return response.data;
   }
 
@@ -971,12 +984,12 @@ export class NeynarV2APIClient {
       cursor?: string;
     }
   ): Promise<UserSearchResponse> {
-    const response = await this.apis.user.searchUser(
+    const response = await this.apis.user.searchUser({
       q,
-      viewerFid,
-      options?.limit,
-      options?.cursor
-    );
+      viewer_fid: viewerFid,
+      cursor: options?.cursor,
+      limit: options?.limit,
+    });
     return response.data;
   }
 
@@ -999,9 +1012,9 @@ export class NeynarV2APIClient {
   public async lookupUserByCustodyAddress(
     custodyAddress: string
   ): Promise<UserResponse> {
-    const response = await this.apis.user.lookupUserByCustodyAddress(
-      custodyAddress
-    );
+    const response = await this.apis.user.lookupUserByCustodyAddress({
+      custody_address: custodyAddress,
+    });
     return response.data;
   }
 
@@ -1029,10 +1042,10 @@ export class NeynarV2APIClient {
       viewerFid?: number;
     }
   ): Promise<UserResponse> {
-    const response = await this.apis.user.lookupUserByUsername(
+    const response = await this.apis.user.lookupUserByUsername({
       username,
-      options?.viewerFid
-    );
+      viewer_fid: options?.viewerFid,
+    });
     return response.data;
   }
 
@@ -1066,13 +1079,13 @@ export class NeynarV2APIClient {
       cursor?: string;
     }
   ): Promise<UsersResponse> {
-    const response = await this.apis.user.fetchUsersByLocation(
+    const response = await this.apis.user.fetchUsersByLocation({
       latitude,
       longitude,
-      options?.viewerFid,
-      options?.limit,
-      options?.cursor
-    );
+      viewer_fid: options?.viewerFid,
+      limit: options?.limit,
+      cursor: options?.cursor,
+    });
     return response.data;
   }
 
@@ -1111,11 +1124,11 @@ export class NeynarV2APIClient {
       viewerFid?: number;
     }
   ): Promise<CastResponse> {
-    const response = await this.apis.cast.lookupCastByHashOrWarpcastUrl(
-      castHashOrUrl,
+    const response = await this.apis.cast.lookupCastByHashOrWarpcastUrl({
+      identifier: castHashOrUrl,
       type,
-      options?.viewerFid
-    );
+      viewer_fid: options?.viewerFid,
+    });
     return response.data;
   }
 
@@ -1156,11 +1169,11 @@ export class NeynarV2APIClient {
     }
   ): Promise<CastsResponse> {
     const _castsHashes = castsHashes.join(",");
-    const response = await this.apis.cast.fetchBulkCasts(
-      _castsHashes,
-      options?.viewerFid,
-      options?.sortType
-    );
+    const response = await this.apis.cast.fetchBulkCasts({
+      casts: _castsHashes,
+      viewer_fid: options?.viewerFid,
+      sort_type: options?.sortType,
+    });
     return response.data;
   }
 
@@ -1253,17 +1266,18 @@ export class NeynarV2APIClient {
       cursor?: string;
     }
   ): Promise<Conversation> {
-    const response = await this.apis.cast.lookupCastConversation(
-      castHashOrUrl,
+    const response = await this.apis.cast.lookupCastConversation({
+      identifier: castHashOrUrl,
       type,
-      options?.replyDepth,
-      options?.includeChronologicalParentCasts,
-      options?.viewerFid,
-      options?.sortType,
-      options?.fold,
-      options?.limit,
-      options?.cursor
-    );
+      viewer_fid: options?.viewerFid,
+      reply_depth: options?.replyDepth,
+      include_chronological_parent_casts:
+        options?.includeChronologicalParentCasts,
+      sort_type: options?.sortType,
+      fold: options?.fold,
+      limit: options?.limit,
+      cursor: options?.cursor,
+    });
     return response.data;
   }
 
@@ -1304,16 +1318,16 @@ export class NeynarV2APIClient {
       cursor?: string;
     }
   ): Promise<CastsSearchResponse> {
-    const response = await this.apis.cast.searchCasts(
+    const response = await this.apis.cast.searchCasts({
       q,
-      options?.authorFid,
-      options?.viewerFid,
-      options?.parentUrl,
-      options?.channelId,
-      options?.priorityMode,
-      options?.limit,
-      options?.cursor
-    );
+      author_fid: options?.authorFid,
+      viewer_fid: options?.viewerFid,
+      parent_url: options?.parentUrl,
+      channel_id: options?.channelId,
+      priority_mode: options?.priorityMode,
+      limit: options?.limit,
+      cursor: options?.cursor,
+    });
     return response.data;
   }
 
@@ -1368,7 +1382,9 @@ export class NeynarV2APIClient {
       idem: options?.idem,
       parent_author_fid: options?.parent_author_fid,
     };
-    const response = await this.apis.cast.publishCast(postCastReqBody);
+    const response = await this.apis.cast.publishCast({
+      post_cast_req_body: postCastReqBody,
+    });
     return response.data.cast;
   }
 
@@ -1405,7 +1421,9 @@ export class NeynarV2APIClient {
       signer_uuid: signerUuid,
       target_hash: castHash,
     };
-    const response = await this.apis.cast.deleteCast(deleteCastReqBody);
+    const response = await this.apis.cast.deleteCast({
+      delete_cast_req_body: deleteCastReqBody,
+    });
     return response.data;
   }
 
@@ -1433,11 +1451,11 @@ export class NeynarV2APIClient {
       cursor?: string;
     }
   ): Promise<CastComposerActionsListResponse> {
-    const response = await this.apis.cast.fetchComposerActions(
+    const response = await this.apis.cast.fetchComposerActions({
       list,
-      options?.limit,
-      options?.cursor
-    );
+      limit: options?.limit,
+      cursor: options?.cursor,
+    });
     return response.data;
   }
 
@@ -1493,21 +1511,21 @@ export class NeynarV2APIClient {
   ): Promise<FeedResponse> {
     const _fids = options?.fids?.join(",");
 
-    const response = await this.apis.feed.fetchFeed(
-      feedType,
-      options?.filterType,
-      options?.fid,
-      _fids,
-      options?.parentUrl,
-      options?.channelId,
-      options?.membersOnly,
-      options?.embedUrl,
-      options?.embedTypes,
-      options?.withRecasts,
-      options?.limit,
-      options?.cursor,
-      options?.viewerFid
-    );
+    const response = await this.apis.feed.fetchFeed({
+      feed_type: feedType,
+      filter_type: options?.filterType,
+      fid: options?.fid,
+      fids: _fids,
+      parent_url: options?.parentUrl,
+      channel_id: options?.channelId,
+      members_only: options?.membersOnly,
+      embed_url: options?.embedUrl,
+      embed_types: options?.embedTypes,
+      with_recasts: options?.withRecasts,
+      limit: options?.limit,
+      cursor: options?.cursor,
+      viewer_fid: options?.viewerFid,
+    });
     return response.data;
   }
 
@@ -1549,16 +1567,16 @@ export class NeynarV2APIClient {
     }
   ): Promise<FeedResponse> {
     const _channelIds = channelIds.join(",");
-    const response = await this.apis.feed.fetchFeedByChannelIds(
-      _channelIds,
-      options?.withRecasts,
-      options?.viewerFid,
-      options?.withReplies,
-      options?.membersOnly,
-      options?.limit,
-      options?.cursor,
-      options?.shouldModerate
-    );
+    const response = await this.apis.feed.fetchFeedByChannelIds({
+      channel_ids: _channelIds,
+      with_recasts: options?.withRecasts,
+      with_replies: options?.withReplies,
+      members_only: options?.membersOnly,
+      limit: options?.limit,
+      cursor: options?.cursor,
+      viewer_fid: options?.viewerFid,
+      should_moderate: options?.shouldModerate,
+    });
     return response.data;
   }
 
@@ -1595,14 +1613,14 @@ export class NeynarV2APIClient {
     }
   ): Promise<FeedResponse> {
     const _parentUrls = parentUrls.join(",");
-    const response = await this.apis.feed.fetchFeedByParentUrls(
-      _parentUrls,
-      options?.withRecasts,
-      options?.viewerFid,
-      options?.withReplies,
-      options?.limit,
-      options?.cursor
-    );
+    const response = await this.apis.feed.fetchFeedByParentUrls({
+      parent_urls: _parentUrls,
+      with_recasts: options?.withRecasts,
+      with_replies: options?.withReplies,
+      limit: options?.limit,
+      cursor: options?.cursor,
+      viewer_fid: options?.viewerFid,
+    });
     return response.data;
   }
 
@@ -1641,13 +1659,13 @@ export class NeynarV2APIClient {
       viewerFid?: number;
     }
   ): Promise<FeedResponse> {
-    const response = await this.apis.feed.fetchUserFollowingFeed(
+    const response = await this.apis.feed.fetchUserFollowingFeed({
       fid,
-      options?.viewerFid,
-      options?.withRecasts,
-      options?.limit,
-      options?.cursor
-    );
+      with_recasts: options?.withRecasts,
+      limit: options?.limit,
+      cursor: options?.cursor,
+      viewer_fid: options?.viewerFid,
+    });
     return response.data;
   }
 
@@ -1699,14 +1717,14 @@ export class NeynarV2APIClient {
       providerMetadata?: string;
     }
   ): Promise<FeedResponse> {
-    const response = await this.apis.feed.fetchFeedForYou(
+    const response = await this.apis.feed.fetchFeedForYou({
       fid,
-      options?.viewerFid,
-      options?.provider,
-      options?.limit,
-      options?.cursor,
-      options?.providerMetadata
-    );
+      viewer_fid: options?.viewerFid,
+      limit: options?.limit,
+      cursor: options?.cursor,
+      provider: options?.provider,
+      provider_metadata: options?.providerMetadata,
+    });
     return response.data;
   }
 
@@ -1736,10 +1754,10 @@ export class NeynarV2APIClient {
       viewerFid?: number;
     }
   ): Promise<BulkCastsResponse> {
-    const response = await this.apis.feed.fetchPopularCastsByUser(
+    const response = await this.apis.feed.fetchPopularCastsByUser({
       fid,
-      options?.viewerFid
-    );
+      viewer_fid: options?.viewerFid,
+    });
     return response.data;
   }
 
@@ -1786,15 +1804,15 @@ export class NeynarV2APIClient {
       channelId?: string;
     }
   ): Promise<FeedResponse> {
-    const response = await this.apis.feed.fetchCastsForUser(
+    const response = await this.apis.feed.fetchCastsForUser({
       fid,
-      options?.viewerFid,
-      options?.limit,
-      options?.cursor,
-      options?.includeReplies,
-      options?.parentUrl,
-      options?.channelId
-    );
+      viewer_fid: options?.viewerFid,
+      limit: options?.limit,
+      cursor: options?.cursor,
+      include_replies: options?.includeReplies,
+      parent_url: options?.parentUrl,
+      channel_id: options?.channelId,
+    });
     return response.data;
   }
 
@@ -1829,13 +1847,13 @@ export class NeynarV2APIClient {
       viewerFid?: number;
     }
   ): Promise<FeedResponse> {
-    const response = await this.apis.feed.fetchRepliesAndRecastsForUser(
+    const response = await this.apis.feed.fetchRepliesAndRecastsForUser({
       fid,
-      options?.filter,
-      options?.limit,
-      options?.cursor,
-      options?.viewerFid
-    );
+      filter: options?.filter,
+      limit: options?.limit,
+      cursor: options?.cursor,
+      viewer_fid: options?.viewerFid,
+    });
     return response.data;
   }
 
@@ -1865,11 +1883,11 @@ export class NeynarV2APIClient {
     cursor?: string;
     viewerFid?: number;
   }) {
-    const response = await this.apis.feed.fetchFramesOnlyFeed(
-      options?.limit,
-      options?.viewerFid,
-      options?.cursor
-    );
+    const response = await this.apis.feed.fetchFramesOnlyFeed({
+      cursor: options?.cursor,
+      limit: options?.limit,
+      viewer_fid: options?.viewerFid,
+    });
     return response.data;
   }
 
@@ -1916,15 +1934,15 @@ export class NeynarV2APIClient {
     provider?: FeedTrendingProvider;
     providerMetadata?: string;
   }) {
-    const response = await this.apis.feed.fetchTrendingFeed(
-      options?.limit,
-      options?.cursor,
-      options?.viewerFid,
-      options?.timeWindow,
-      options?.channelId,
-      options?.provider,
-      options?.providerMetadata
-    );
+    const response = await this.apis.feed.fetchTrendingFeed({
+      channel_id: options?.channelId,
+      cursor: options?.cursor,
+      limit: options?.limit,
+      time_window: options?.timeWindow,
+      viewer_fid: options?.viewerFid,
+      provider: options?.provider,
+      provider_metadata: options?.providerMetadata,
+    });
     return response.data;
   }
 
@@ -1972,7 +1990,9 @@ export class NeynarV2APIClient {
       target: castHash,
       idem: options?.idem,
     };
-    const response = await this.apis.reaction.publishReaction(body);
+    const response = await this.apis.reaction.publishReaction({
+      reaction_req_body: body,
+    });
     return response.data;
   }
 
@@ -2015,7 +2035,9 @@ export class NeynarV2APIClient {
       reaction_type: reaction,
       target: castHash,
     };
-    const response = await this.apis.reaction.deleteReaction(body);
+    const response = await this.apis.reaction.deleteReaction({
+      reaction_req_body: body,
+    });
     return response.data;
   }
 
@@ -2053,13 +2075,13 @@ export class NeynarV2APIClient {
     type: ReactionsType,
     options?: { limit?: number; cursor?: string; viewerFid?: number }
   ): Promise<ReactionsResponse> {
-    const response = await this.apis.reaction.fetchUserReactions(
+    const response = await this.apis.reaction.fetchUserReactions({
       fid,
       type,
-      options?.viewerFid,
-      options?.limit,
-      options?.cursor
-    );
+      limit: options?.limit,
+      cursor: options?.cursor,
+      viewer_fid: options?.viewerFid,
+    });
     return response.data;
   }
 
@@ -2097,13 +2119,13 @@ export class NeynarV2APIClient {
     types: ReactionsType,
     options?: { limit?: number; cursor?: string; viewerFid?: number }
   ): Promise<ReactionsCastResponse> {
-    const response = await this.apis.reaction.fetchCastReactions(
+    const response = await this.apis.reaction.fetchCastReactions({
       hash,
       types,
-      options?.viewerFid,
-      options?.limit,
-      options?.cursor
-    );
+      limit: options?.limit,
+      cursor: options?.cursor,
+      viewer_fid: options?.viewerFid,
+    });
     return response.data;
   }
 
@@ -2141,12 +2163,12 @@ export class NeynarV2APIClient {
       cursor?: string;
     }
   ): Promise<NotificationsResponse> {
-    const response = await this.apis.notifications.fetchAllNotifications(
+    const response = await this.apis.notifications.fetchAllNotifications({
       fid,
-      options?.type,
-      options?.priorityMode,
-      options?.cursor
-    );
+      type: options?.type,
+      priority_mode: options?.priorityMode,
+      cursor: options?.cursor,
+    });
     return response.data;
   }
 
@@ -2184,12 +2206,12 @@ export class NeynarV2APIClient {
   ): Promise<NotificationsResponse> {
     const _channelIds = channelIds.join(",");
     const response =
-      await this.apis.notifications.fetchChannelNotificationsForUser(
+      await this.apis.notifications.fetchChannelNotificationsForUser({
         fid,
-        _channelIds,
-        options?.priorityMode,
-        options?.cursor
-      );
+        channel_ids: _channelIds,
+        priority_mode: options?.priorityMode,
+        cursor: options?.cursor,
+      });
     return response.data;
   }
 
@@ -2223,12 +2245,12 @@ export class NeynarV2APIClient {
   ) {
     const _parentUrls = parentUrls.join(",");
     const response =
-      await this.apis.notifications.fetchNotificationsByParentUrlForUser(
+      await this.apis.notifications.fetchNotificationsByParentUrlForUser({
         fid,
-        _parentUrls,
-        options?.priorityMode,
-        options?.cursor
-      );
+        parent_urls: _parentUrls,
+        priority_mode: options?.priorityMode,
+        cursor: options?.cursor,
+      });
     return response.data;
   }
 
@@ -2259,9 +2281,9 @@ export class NeynarV2APIClient {
       signer_uuid: signerUuid,
       ...(options?.type && { type: options.type }),
     };
-    const response = await this.apis.notifications.markNotificationsAsSeen(
-      reqBody
-    );
+    const response = await this.apis.notifications.markNotificationsAsSeen({
+      mark_notifications_as_seen_req_body: reqBody,
+    });
     return response.data;
   }
 
@@ -2294,11 +2316,11 @@ export class NeynarV2APIClient {
       cursor?: string;
     }
   ): Promise<ChannelListResponse> {
-    const response = await this.apis.channel.fetchUserChannels(
+    const response = await this.apis.channel.fetchUserChannels({
       fid,
-      options?.limit,
-      options?.cursor
-    );
+      limit: options?.limit,
+      cursor: options?.cursor,
+    });
     return response.data;
   }
 
@@ -2330,11 +2352,11 @@ export class NeynarV2APIClient {
     }
   ): Promise<ChannelResponseBulk> {
     const _ids = ids.join(",");
-    const response = await this.apis.channel.fetchBulkChannels(
-      _ids,
-      options?.type,
-      options?.viewerFid
-    );
+    const response = await this.apis.channel.fetchBulkChannels({
+      ids: _ids,
+      type: options?.type,
+      viewer_fid: options?.viewerFid,
+    });
     return response.data;
   }
 
@@ -2367,11 +2389,11 @@ export class NeynarV2APIClient {
       type?: ChannelType;
     }
   ): Promise<ChannelResponse> {
-    const response = await this.apis.channel.lookupChannel(
+    const response = await this.apis.channel.lookupChannel({
       id,
-      options?.type,
-      options?.viewerFid
-    );
+      type: options?.type,
+      viewer_fid: options?.viewerFid,
+    });
     return response.data;
   }
 
@@ -2401,64 +2423,11 @@ export class NeynarV2APIClient {
       cursor?: string;
     }
   ) {
-    const response = await this.apis.channel.fetchUsersActiveChannels(
+    const response = await this.apis.channel.fetchUsersActiveChannels({
       fid,
-      options?.limit,
-      options?.cursor
-    );
-    return response.data;
-  }
-
-  /**
-   * Retrieves a list of users who are active in a given channel, ordered by ascending FIDs
-   *
-   * @param {string} id - Channel ID for the channel being queried
-   * @param {boolean} hasRootCastAuthors - Include users who posted the root cast in the channel
-   * @param {Object} [options] - Optional parameters for the request
-   * @param {boolean} [options.hasCastLikers] - Include users who liked a cast in the channel
-   * @param {boolean} [options.hasCastRecasters] - Include users who recasted a cast in the channel
-   * @param {boolean} [options.hasReplyAuthors] - Include users who replied to a cast in the channel
-   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
-   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
-   *   omit this parameter for the initial request.
-   *
-   * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
-   *  containing the users active in the specified channel.
-   *
-   * @example
-   * // Example: Retrieve active users in a channel
-   * client.fetchActiveUsersInSingleChannel('neynar', true, {
-   *  hasCastLikers: true,
-   *  hasCastRecasters: true,
-   *  hasReplyAuthors: true,
-   *  limit: 10
-   *  // cursor: "nextPageCursor" // Omit this parameter for the initial request.
-   * }).then(response => {
-   *  console.log('Active Users:', response);
-   * });
-   *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/channel-users).
-   */
-  public async fetchActiveUsersInSingleChannel(
-    id: string,
-    hasRootCastAuthors: boolean,
-    options?: {
-      hasCastLikers?: boolean;
-      hasCastRecasters?: boolean;
-      hasReplyAuthors?: boolean;
-      cursor?: string;
-      limit?: number;
-    }
-  ): Promise<UsersResponse> {
-    const response = await this.apis.channel.fetchActiveUsersInSingleChannel(
-      id,
-      hasRootCastAuthors,
-      options?.hasCastLikers,
-      options?.hasCastRecasters,
-      options?.hasReplyAuthors,
-      options?.cursor,
-      options?.limit
-    );
+      limit: options?.limit,
+      cursor: options?.cursor,
+    });
     return response.data;
   }
 
@@ -2492,7 +2461,9 @@ export class NeynarV2APIClient {
       signer_uuid: signerUuid,
       channel_id: channelId,
     };
-    const response = await this.apis.channel.followChannel(reqBody);
+    const response = await this.apis.channel.followChannel({
+      channel_follow_req_body: reqBody,
+    });
     return response.data;
   }
 
@@ -2526,7 +2497,9 @@ export class NeynarV2APIClient {
       signer_uuid: signerUuid,
       channel_id: channelId,
     };
-    const response = await this.apis.channel.unfollowChannel(reqBody);
+    const response = await this.apis.channel.unfollowChannel({
+      channel_follow_req_body: reqBody,
+    });
     return response.data;
   }
 
@@ -2553,10 +2526,10 @@ export class NeynarV2APIClient {
     limit?: number;
     cursor?: string;
   }): Promise<ChannelListResponse> {
-    const response = await this.apis.channel.fetchAllChannels(
-      options?.limit,
-      options?.cursor
-    );
+    const response = await this.apis.channel.fetchAllChannels({
+      cursor: options?.cursor,
+      limit: options?.limit,
+    });
     return response.data;
   }
 
@@ -2589,12 +2562,12 @@ export class NeynarV2APIClient {
     limit?: number;
     cursor?: string;
   }) {
-    const response = await this.apis.channel.fetchChannelInvites(
-      options?.channelId,
-      options?.invitedFid,
-      options?.limit,
-      options?.cursor
-    );
+    const response = await this.apis.channel.fetchChannelInvites({
+      channel_id: options?.channelId,
+      invited_fid: options?.invitedFid,
+      limit: options?.limit,
+      cursor: options?.cursor,
+    });
     return response.data;
   }
 
@@ -2633,12 +2606,12 @@ export class NeynarV2APIClient {
       cursor?: string;
     }
   ): Promise<ChannelMemberListResponse> {
-    const response = await this.apis.channel.fetchChannelMembers(
-      channelId,
-      options?.fid,
-      options?.limit,
-      options?.cursor
-    );
+    const response = await this.apis.channel.fetchChannelMembers({
+      channel_id: channelId,
+      fid: options?.fid,
+      limit: options?.limit,
+      cursor: options?.cursor,
+    });
     return response.data;
   }
 
@@ -2666,11 +2639,12 @@ export class NeynarV2APIClient {
     q: string,
     options?: { limit?: number; cursor?: string }
   ): Promise<ChannelSearchResponse> {
-    const response = await this.apis.channel.searchChannels(
+    const response = await this.apis.channel.searchChannels({
       q,
-      options?.limit,
-      options?.cursor
-    );
+      limit: options?.limit,
+      cursor: options?.cursor,
+    });
+
     return response.data;
   }
 
@@ -2705,11 +2679,11 @@ export class NeynarV2APIClient {
       cursor?: string;
     }
   ): Promise<TrendingChannelResponse> {
-    const response = await this.apis.channel.fetchTrendingChannels(
-      timeWindow,
-      options?.limit,
-      options?.cursor
-    );
+    const response = await this.apis.channel.fetchTrendingChannels({
+      time_window: timeWindow,
+      limit: options?.limit,
+      cursor: options?.cursor,
+    });
     return response.data;
   }
 
@@ -2743,12 +2717,12 @@ export class NeynarV2APIClient {
       cursor?: string;
     }
   ): Promise<UsersResponse> {
-    const response = await this.apis.channel.fetchFollowersForAChannel(
+    const response = await this.apis.channel.fetchFollowersForAChannel({
       id,
-      options?.viewerFid,
-      options?.cursor,
-      options?.limit
-    );
+      viewer_fid: options?.viewerFid,
+      limit: options?.limit,
+      cursor: options?.cursor,
+    });
     return response.data;
   }
 
@@ -2775,10 +2749,10 @@ export class NeynarV2APIClient {
     id: string,
     viewerFid: number
   ): Promise<RelevantFollowersResponse> {
-    const response = await this.apis.channel.fetchRelevantFollowersForAChannel(
+    const response = await this.apis.channel.fetchRelevantFollowersForAChannel({
       id,
-      viewerFid
-    );
+      viewer_fid: viewerFid,
+    });
     return response.data;
   }
 
@@ -2823,9 +2797,9 @@ export class NeynarV2APIClient {
       role: role,
     };
 
-    const response = await this.apis.channel.inviteChannelMember(
-      inviteChannelMemberRequest
-    );
+    const response = await this.apis.channel.inviteChannelMember({
+      invite_channel_member_req_body: inviteChannelMemberRequest,
+    });
     return response.data;
   }
 
@@ -2868,9 +2842,9 @@ export class NeynarV2APIClient {
       role: role,
     };
 
-    const response = await this.apis.channel.removeChannelMember(
-      inviteChannelMemberRequest
-    );
+    const response = await this.apis.channel.removeChannelMember({
+      remove_channel_member_req_body: inviteChannelMemberRequest,
+    });
     return response.data;
   }
 
@@ -2914,9 +2888,9 @@ export class NeynarV2APIClient {
       accept: accept,
     };
 
-    const response = await this.apis.channel.respondChannelInvite(
-      respondChannelInviteRequest
-    );
+    const response = await this.apis.channel.respondChannelInvite({
+      respond_channel_invite_req_body: respondChannelInviteRequest,
+    });
     return response.data;
   }
 
@@ -2943,10 +2917,10 @@ export class NeynarV2APIClient {
     targetFid: number,
     viewerFid: number
   ): Promise<RelevantFollowersResponse> {
-    const response = await this.apis.follows.fetchRelevantFollowers(
-      targetFid,
-      viewerFid
-    );
+    const response = await this.apis.follows.fetchRelevantFollowers({
+      target_fid: targetFid,
+      viewer_fid: viewerFid,
+    });
     return response.data;
   }
   /**
@@ -2980,13 +2954,13 @@ export class NeynarV2APIClient {
       sortType?: FollowSortType;
     }
   ): Promise<FollowersResponse> {
-    const response = await this.apis.follows.fetchUserFollowers(
-      fid,
-      options?.viewerFid,
-      options?.sortType,
-      options?.limit,
-      options?.cursor
-    );
+    const response = await this.apis.follows.fetchUserFollowers({
+      fid: fid,
+      cursor: options?.cursor,
+      limit: options?.limit,
+      sort_type: options?.sortType,
+      viewer_fid: options?.viewerFid,
+    });
     return response.data;
   }
 
@@ -3022,13 +2996,13 @@ export class NeynarV2APIClient {
       sortType?: FollowSortType;
     }
   ): Promise<FollowersResponse> {
-    const response = await this.apis.follows.fetchUserFollowing(
+    const response = await this.apis.follows.fetchUserFollowing({
       fid,
-      options?.viewerFid,
-      options?.sortType,
-      options?.limit,
-      options?.cursor
-    );
+      cursor: options?.cursor,
+      limit: options?.limit,
+      sort_type: options?.sortType,
+      viewer_fid: options?.viewerFid,
+    });
     return response.data;
   }
 
@@ -3066,11 +3040,11 @@ export class NeynarV2APIClient {
       cursor?: string;
     }
   ): Promise<ChannelMemberListResponse> {
-    const response = await this.apis.channel.fetchUserChannelMemberships(
+    const response = await this.apis.channel.fetchUserChannelMemberships({
       fid,
-      options?.limit,
-      options?.cursor
-    );
+      limit: options?.limit,
+      cursor: options?.cursor,
+    });
     return response.data;
   }
 
@@ -3095,7 +3069,9 @@ export class NeynarV2APIClient {
   public async lookupUserStorageAllocations(
     fid: number
   ): Promise<StorageAllocationsResponse> {
-    const response = await this.apis.storage.lookupUserStorageAllocations(fid);
+    const response = await this.apis.storage.lookupUserStorageAllocations({
+      fid,
+    });
     return response.data;
   }
 
@@ -3118,7 +3094,7 @@ export class NeynarV2APIClient {
   public async lookupUserStorageUsage(
     fid: number
   ): Promise<StorageUsageResponse> {
-    const response = await this.apis.storage.lookupUserStorageUsage(fid);
+    const response = await this.apis.storage.lookupUserStorageUsage({ fid });
     return response.data;
   }
 
@@ -3156,7 +3132,9 @@ export class NeynarV2APIClient {
       ...(typeof options?.units !== "undefined" && { units: options.units }),
       ...(typeof options?.idem !== "undefined" && { idem: options.idem }),
     };
-    const response = await this.apis.storage.buyStorage(buyStorageReqBody);
+    const response = await this.apis.storage.buyStorage({
+      buy_storage_req_body: buyStorageReqBody,
+    });
     return response.data;
   }
 
@@ -3181,7 +3159,7 @@ export class NeynarV2APIClient {
   public async isFnameAvailable(
     fname: string
   ): Promise<FnameAvailabilityResponse> {
-    const response = await this.apis.fname.isFnameAvailable(fname);
+    const response = await this.apis.fname.isFnameAvailable({ fname });
     return response.data;
   }
 
@@ -3211,11 +3189,11 @@ export class NeynarV2APIClient {
     options?: { type?: FrameType }
   ) {
     const type = options?.type || FrameType.Uuid;
-    const response = await this.apis.frame.lookupNeynarFrame(
+    const response = await this.apis.frame.lookupNeynarFrame({
       type,
-      type === FrameType.Uuid ? identifier : undefined,
-      type === FrameType.Url ? identifier : undefined
-    );
+      uuid: type === FrameType.Uuid ? identifier : undefined,
+      url: type === FrameType.Url ? identifier : undefined,
+    });
     return response.data;
   }
 
@@ -3242,9 +3220,9 @@ export class NeynarV2APIClient {
   public async publishNeynarFrame(
     neynarFrameCreationRequest: NeynarFrameCreationReqBody
   ) {
-    const response = await this.apis.frame.publishNeynarFrame(
-      neynarFrameCreationRequest
-    );
+    const response = await this.apis.frame.publishNeynarFrame({
+      neynar_frame_creation_req_body: neynarFrameCreationRequest,
+    });
     return response.data;
   }
 
@@ -3272,9 +3250,9 @@ export class NeynarV2APIClient {
   public async updateNeynarFrame(
     neynarFrameUpdateRequest: NeynarFrameUpdateReqBody
   ) {
-    const response = await this.apis.frame.updateNeynarFrame(
-      neynarFrameUpdateRequest
-    );
+    const response = await this.apis.frame.updateNeynarFrame({
+      neynar_frame_update_req_body: neynarFrameUpdateRequest,
+    });
     return response.data;
   }
 
@@ -3300,9 +3278,9 @@ export class NeynarV2APIClient {
     const deleteNeynarFrameRequest: DeleteFrameReqBody = {
       uuid,
     };
-    const response = await this.apis.frame.deleteNeynarFrame(
-      deleteNeynarFrameRequest
-    );
+    const response = await this.apis.frame.deleteNeynarFrame({
+      delete_frame_req_body: deleteNeynarFrameRequest,
+    });
     return response.data;
   }
 
@@ -3366,7 +3344,9 @@ export class NeynarV2APIClient {
       action,
       ...(typeof castHash !== "undefined" && { cast_hash: castHash }),
     };
-    const response = await this.apis.frame.postFrameAction(body);
+    const response = await this.apis.frame.postFrameAction({
+      frame_action_req_body: body,
+    });
     return response.data;
   }
 
@@ -3409,9 +3389,9 @@ export class NeynarV2APIClient {
       }),
     };
 
-    const response = await this.apis.frame.postFrameActionDeveloperManaged(
-      body
-    );
+    const response = await this.apis.frame.postFrameActionDeveloperManaged({
+      frame_developer_managed_action_req_body: body,
+    });
     return response.data;
   }
 
@@ -3464,7 +3444,9 @@ export class NeynarV2APIClient {
       }),
     };
 
-    const response = await this.apis.frame.validateFrameAction(reqBody);
+    const response = await this.apis.frame.validateFrameAction({
+      validate_frame_action_req_body: reqBody,
+    });
     return response.data;
   }
 
@@ -3524,13 +3506,13 @@ export class NeynarV2APIClient {
     stop: string,
     options?: { aggregateWindow?: ValidateFrameAggregateWindow }
   ): Promise<FrameValidateAnalyticsResponse> {
-    const response = await this.apis.frame.fetchValidateFrameAnalytics(
-      frameUrl,
-      analyticsType,
+    const response = await this.apis.frame.fetchValidateFrameAnalytics({
+      analytics_type: analyticsType,
+      frame_url: frameUrl,
       start,
       stop,
-      options?.aggregateWindow
-    );
+      aggregate_window: options?.aggregateWindow,
+    });
     return response.data;
   }
 
@@ -3554,7 +3536,9 @@ export class NeynarV2APIClient {
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/lookup-webhook).
    */
   public async lookupWebhook(webhookId: string): Promise<WebhookResponse> {
-    const response = await this.apis.webhook.lookupWebhook(webhookId);
+    const response = await this.apis.webhook.lookupWebhook({
+      webhook_id: webhookId,
+    });
     return response.data;
   }
 
@@ -3607,7 +3591,9 @@ export class NeynarV2APIClient {
       }),
     };
 
-    const response = await this.apis.webhook.publishWebhook(webhookPostReqBody);
+    const response = await this.apis.webhook.publishWebhook({
+      webhook_post_req_body: webhookPostReqBody,
+    });
     return response.data;
   }
 
@@ -3642,9 +3628,9 @@ export class NeynarV2APIClient {
       active: active.toString() as WebhookPatchReqBodyActiveEnum,
     };
 
-    const response = await this.apis.webhook.updateWebhookActiveStatus(
-      webhookPatchReqBody
-    );
+    const response = await this.apis.webhook.updateWebhookActiveStatus({
+      webhook_patch_req_body: webhookPatchReqBody,
+    });
     return response.data;
   }
 
@@ -3696,7 +3682,9 @@ export class NeynarV2APIClient {
         subscription: options?.subscription,
       }),
     };
-    const response = await this.apis.webhook.updateWebhook(webhookPutReqBody);
+    const response = await this.apis.webhook.updateWebhook({
+      webhook_put_req_body: webhookPutReqBody,
+    });
     return response.data;
   }
 
@@ -3718,7 +3706,9 @@ export class NeynarV2APIClient {
    */
   public async deleteWebhook(webhookId: string): Promise<WebhookResponse> {
     const response = await this.apis.webhook.deleteWebhook({
-      webhook_id: webhookId,
+      webhook_delete_req_body: {
+        webhook_id: webhookId,
+      },
     });
     return response.data;
   }
@@ -3765,11 +3755,11 @@ export class NeynarV2APIClient {
     fid: number,
     options?: { limit?: number; cursor: string }
   ): Promise<MuteListResponse> {
-    const response = await this.apis.mute.fetchMuteList(
+    const response = await this.apis.mute.fetchMuteList({
       fid,
-      options?.limit,
-      options?.cursor
-    );
+      limit: options?.limit,
+      cursor: options?.cursor,
+    });
     return response.data;
   }
 
@@ -3798,7 +3788,9 @@ export class NeynarV2APIClient {
       fid,
       muted_fid: mutedFid,
     };
-    const response = await this.apis.mute.publishMute(addMuteBody);
+    const response = await this.apis.mute.publishMute({
+      mute_req_body: addMuteBody,
+    });
     return response.data;
   }
 
@@ -3826,7 +3818,9 @@ export class NeynarV2APIClient {
       fid,
       muted_fid: mutedFid,
     };
-    const response = await this.apis.mute.deleteMute(deleteMuteBody);
+    const response = await this.apis.mute.deleteMute({
+      mute_req_body: deleteMuteBody,
+    });
     return response.data;
   }
 
@@ -3857,12 +3851,12 @@ export class NeynarV2APIClient {
     limit?: number;
     cursor: string;
   }): Promise<BlockListResponse> {
-    const response = await this.apis.block.fetchBlockList(
-      options?.blockerFid,
-      options?.blockedFid,
-      options?.limit,
-      options?.cursor
-    );
+    const response = await this.apis.block.fetchBlockList({
+      blocked_fid: options?.blockedFid,
+      blocker_fid: options?.blockerFid,
+      limit: options?.limit,
+      cursor: options?.cursor,
+    });
     return response.data;
   }
 
@@ -3889,7 +3883,9 @@ export class NeynarV2APIClient {
       signer_uuid: signerUuid,
       blocked_fid: blockedFid,
     };
-    const response = await this.apis.block.publishBlock(addBlockBody);
+    const response = await this.apis.block.publishBlock({
+      block_req_body: addBlockBody,
+    });
     return response.data;
   }
 
@@ -3917,7 +3913,9 @@ export class NeynarV2APIClient {
       signer_uuid: signerUuid,
       blocked_fid: blockedFid,
     };
-    const response = await this.apis.block.deleteBlock(deleteBlockBody);
+    const response = await this.apis.block.deleteBlock({
+      block_req_body: deleteBlockBody,
+    });
     return response.data;
   }
 
@@ -3944,10 +3942,10 @@ export class NeynarV2APIClient {
     limit?: number;
     cursor: string;
   }): Promise<BanListResponse> {
-    const response = await this.apis.ban.fetchBanList(
-      options?.limit,
-      options?.cursor
-    );
+    const response = await this.apis.ban.fetchBanList({
+      cursor: options?.cursor,
+      limit: options?.limit,
+    });
     return response.data;
   }
 
@@ -3971,7 +3969,9 @@ export class NeynarV2APIClient {
     const addBanBody = {
       fids,
     };
-    const response = await this.apis.ban.publishBans(addBanBody);
+    const response = await this.apis.ban.publishBans({
+      ban_req_body: addBanBody,
+    });
     return response.data;
   }
 
@@ -3994,7 +3994,9 @@ export class NeynarV2APIClient {
     const deleteBanBody = {
       fids,
     };
-    const response = await this.apis.ban.deleteBans(deleteBanBody);
+    const response = await this.apis.ban.deleteBans({
+      ban_req_body: deleteBanBody,
+    });
     return response.data;
   }
 
@@ -4025,11 +4027,11 @@ export class NeynarV2APIClient {
       viewerFid?: number;
     }
   ): Promise<SubscribersResponse> {
-    const response = await this.apis.subscribers.fetchSubscribersForFid(
+    const response = await this.apis.subscribers.fetchSubscribersForFid({
       fid,
-      subscriptionProvider,
-      options?.viewerFid
-    );
+      subscription_provider: subscriptionProvider,
+      viewer_fid: options?.viewerFid,
+    });
     return response.data;
   }
 
@@ -4058,11 +4060,11 @@ export class NeynarV2APIClient {
       viewerFid?: number;
     }
   ): Promise<SubscribedToResponse> {
-    const response = await this.apis.subscribers.fetchSubscribedToForFid(
+    const response = await this.apis.subscribers.fetchSubscribedToForFid({
       fid,
-      subscriptionProvider,
-      options?.viewerFid
-    );
+      subscription_provider: subscriptionProvider,
+      viewer_fid: options?.viewerFid,
+    });
     return response.data;
   }
 
@@ -4087,10 +4089,10 @@ export class NeynarV2APIClient {
     fid: number,
     subscriptionProvider: SubscriptionProvider
   ): Promise<SubscriptionsResponse> {
-    const response = await this.apis.subscribers.fetchSubscriptionsForFid(
+    const response = await this.apis.subscribers.fetchSubscriptionsForFid({
       fid,
-      subscriptionProvider
-    );
+      subscription_provider: subscriptionProvider,
+    });
     return response.data;
   }
 
@@ -4120,11 +4122,11 @@ export class NeynarV2APIClient {
   ): Promise<{ [key: string]: SubscriptionStatus }> {
     const finishedAddresses = addresses.join(",");
 
-    const response = await this.apis.stp.fetchSubscriptionCheck(
-      finishedAddresses,
-      contractAddress,
-      chainId
-    );
+    const response = await this.apis.stp.fetchSubscriptionCheck({
+      addresses: finishedAddresses,
+      contract_address: contractAddress,
+      chain_id: chainId,
+    });
     return response.data;
   }
 }
