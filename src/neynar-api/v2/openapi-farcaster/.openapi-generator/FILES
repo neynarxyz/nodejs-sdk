@@ -36,6 +36,7 @@ models/block-record.ts
 models/block-req-body.ts
 models/bulk-casts-response.ts
 models/bulk-follow-response.ts
+models/bulk-users-by-address-response.ts
 models/bulk-users-response.ts
 models/buy-storage-req-body.ts
 models/cast-composer-actions-list-response-actions-inner-action.ts
@@ -89,8 +90,8 @@ models/conversation.ts
 models/dehydrated-channel.ts
 models/dehydrated-follower.ts
 models/delete-cast-req-body.ts
+models/delete-frame-req-body.ts
 models/delete-frame-response.ts
-models/delete-neynar-frame-request.ts
 models/developer-managed-signer.ts
 models/embed-cast-deep.ts
 models/embed-cast.ts
@@ -108,10 +109,12 @@ models/embed.ts
 models/error-res.ts
 models/farcaster-action-req-body-action.ts
 models/farcaster-action-req-body.ts
-models/feed-for-you400-response.ts
 models/feed-response.ts
 models/feed-trending-provider.ts
 models/feed-type.ts
+models/fetch-feed-for-you400-response.ts
+models/fetch-frame-meta-tags-from-url200-response.ts
+models/fids.ts
 models/filter-type.ts
 models/fname-availability-response.ts
 models/follow-req-body.ts
@@ -125,7 +128,6 @@ models/frame-action-req-body.ts
 models/frame-action.ts
 models/frame-button-action-type.ts
 models/frame-developer-managed-action-req-body.ts
-models/frame-from-url200-response.ts
 models/frame-input.ts
 models/frame-signature-packet-trusted-data.ts
 models/frame-signature-packet-untrusted-data.ts
@@ -147,6 +149,7 @@ models/hydrated-follower.ts
 models/image-object.ts
 models/index.ts
 models/individual-hash-obj.ts
+models/invite-channel-member-req-body.ts
 models/location-address.ts
 models/location.ts
 models/mark-notifications-as-seen-req-body.ts
@@ -155,9 +158,9 @@ models/mute-record.ts
 models/mute-req-body.ts
 models/mute-response.ts
 models/next-cursor.ts
-models/neynar-frame-creation-request.ts
+models/neynar-frame-creation-req-body.ts
 models/neynar-frame-page.ts
-models/neynar-frame-update-request.ts
+models/neynar-frame-update-req-body.ts
 models/neynar-frame.ts
 models/neynar-next-frame-page-mint-url.ts
 models/neynar-next-frame-page-redirect.ts
@@ -203,9 +206,9 @@ models/register-signer-key-req-body.ts
 models/register-user-req-body.ts
 models/register-user-response.ts
 models/relevant-followers-response.ts
-models/remove-channel-member-request.ts
+models/remove-channel-member-req-body.ts
 models/remove-verification-req-body.ts
-models/respond-channel-invite-request.ts
+models/respond-channel-invite-req-body.ts
 models/searched-user.ts
 models/signed-key-request-sponsor.ts
 models/signer.ts
@@ -248,9 +251,9 @@ models/user-viewer-context.ts
 models/user.ts
 models/users-active-channels-response.ts
 models/users-response.ts
+models/validate-frame-action-req-body.ts
 models/validate-frame-action-response.ts
 models/validate-frame-analytics-type.ts
-models/validate-frame-request.ts
 models/validated-frame-action-signer.ts
 models/validated-frame-action-tapped-button.ts
 models/validated-frame-action.ts
@@ -261,7 +264,6 @@ models/webhook-delete-req-body.ts
 models/webhook-list-response.ts
 models/webhook-patch-req-body.ts
 models/webhook-post-req-body.ts
-models/webhook-put-req-body-all-of.ts
 models/webhook-put-req-body.ts
 models/webhook-response.ts
 models/webhook-secret.ts

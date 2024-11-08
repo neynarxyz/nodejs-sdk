@@ -34,13 +34,17 @@ export const FnameApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Check if a given fname is available
          * @summary Check fname availability
-         * @param {string} fname 
+         * @param {string} fname  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<FnameAvailabilityResponse>} A promise that resolves to a `FnameAvailabilityResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/is-fname-available)
+         * 
          */
-        fnameAvailability: async (fname: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        isFnameAvailable: async (fname: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fname' is not null or undefined
-            assertParamExists('fnameAvailability', 'fname', fname)
+            assertParamExists('isFnameAvailable', 'fname', fname)
             const localVarPath = `/farcaster/fname/availability`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -84,14 +88,18 @@ export const FnameApiFp = function(configuration?: Configuration) {
         /**
          * Check if a given fname is available
          * @summary Check fname availability
-         * @param {string} fname 
+         * @param {string} fname  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<FnameAvailabilityResponse>} A promise that resolves to a `FnameAvailabilityResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/is-fname-available)
+         * 
          */
-        async fnameAvailability(fname: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FnameAvailabilityResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fnameAvailability(fname, options);
+        async isFnameAvailable(fname: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FnameAvailabilityResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.isFnameAvailable(fname, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['FnameApi.fnameAvailability']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['FnameApi.isFnameAvailable']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -107,15 +115,57 @@ export const FnameApiFactory = function (configuration?: Configuration, basePath
         /**
          * Check if a given fname is available
          * @summary Check fname availability
-         * @param {string} fname 
+         * @param {FnameApiIsFnameAvailableRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<FnameAvailabilityResponse>} A promise that resolves to a `FnameAvailabilityResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/is-fname-available)
+         * 
          */
-        fnameAvailability(fname: string, options?: RawAxiosRequestConfig): AxiosPromise<FnameAvailabilityResponse> {
-            return localVarFp.fnameAvailability(fname, options).then((request) => request(axios, basePath));
+        isFnameAvailable(requestParameters: FnameApiIsFnameAvailableRequest, options?: RawAxiosRequestConfig): AxiosPromise<FnameAvailabilityResponse> {
+            return localVarFp.isFnameAvailable(requestParameters.fname, options).then((request) => request(axios, basePath));
         },
     };
 };
+
+/**
+ * FnameApi - interface
+ * @export
+ * @interface FnameApi
+ */
+export interface FnameApiInterface {
+    /**
+     * Check if a given fname is available
+     * @summary Check fname availability
+     * @param {FnameApiIsFnameAvailableRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FnameApiInterface
+     * @returns {Promise<FnameAvailabilityResponse>} A promise that resolves to a `FnameAvailabilityResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/is-fname-available)
+     * 
+     */
+    isFnameAvailable(requestParameters: FnameApiIsFnameAvailableRequest, options?: RawAxiosRequestConfig): AxiosPromise<FnameAvailabilityResponse>;
+
+}
+
+/**
+ * Request parameters for isFnameAvailable operation in FnameApi.
+ * @export
+ * @interface FnameApiIsFnameAvailableRequest
+ */
+export interface FnameApiIsFnameAvailableRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {string}
+     * @memberof FnameApiIsFnameAvailable
+     */
+    readonly fname: string
+}
 
 /**
  * FnameApi - object-oriented interface
@@ -123,17 +173,21 @@ export const FnameApiFactory = function (configuration?: Configuration, basePath
  * @class FnameApi
  * @extends {BaseAPI}
  */
-export class FnameApi extends BaseAPI {
+export class FnameApi extends BaseAPI implements FnameApiInterface {
     /**
      * Check if a given fname is available
      * @summary Check fname availability
-     * @param {string} fname 
+     * @param {FnameApiIsFnameAvailableRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FnameApi
+     * @returns {Promise<FnameAvailabilityResponse>} A promise that resolves to a `FnameAvailabilityResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/is-fname-available)
+     * 
      */
-    public fnameAvailability(fname: string, options?: RawAxiosRequestConfig) {
-        return FnameApiFp(this.configuration).fnameAvailability(fname, options).then((request) => request(this.axios, this.basePath));
+    public isFnameAvailable(requestParameters: FnameApiIsFnameAvailableRequest, options?: RawAxiosRequestConfig) {
+        return FnameApiFp(this.configuration).isFnameAvailable(requestParameters.fname, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

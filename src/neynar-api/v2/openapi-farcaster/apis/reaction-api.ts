@@ -42,13 +42,17 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * Delete a reaction (like or recast) to a cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
          * @summary Delete reaction
-         * @param {ReactionReqBody} reactionReqBody 
+         * @param {ReactionReqBody} reaction_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-reaction)
+         * 
          */
-        deleteReaction: async (reactionReqBody: ReactionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'reactionReqBody' is not null or undefined
-            assertParamExists('deleteReaction', 'reactionReqBody', reactionReqBody)
+        deleteReaction: async (reaction_req_body: ReactionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'reaction_req_body' is not null or undefined
+            assertParamExists('deleteReaction', 'reaction_req_body', reaction_req_body)
             const localVarPath = `/farcaster/reaction`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -71,46 +75,7 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(reactionReqBody, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
-         * @summary Post a reaction
-         * @param {ReactionReqBody} reactionReqBody 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postReaction: async (reactionReqBody: ReactionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'reactionReqBody' is not null or undefined
-            assertParamExists('postReaction', 'reactionReqBody', reactionReqBody)
-            const localVarPath = `/farcaster/reaction`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(reactionReqBody, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(reaction_req_body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -120,19 +85,23 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * Fetches reactions for a given cast
          * @summary Reactions for cast
-         * @param {string} hash 
-         * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
-         * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {number} [limit] Number of results to fetch (default 25, max 100)
-         * @param {string} [cursor] Pagination cursor.
+         * @param {string} hash  
+         * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values.  
+         * @param {number} [viewer_fid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
+         * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<ReactionsCastResponse>} A promise that resolves to a `ReactionsCastResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-cast-reactions)
+         * 
          */
-        reactionsCast: async (hash: string, types: string, viewerFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchCastReactions: async (hash: string, types: string, viewer_fid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'hash' is not null or undefined
-            assertParamExists('reactionsCast', 'hash', hash)
+            assertParamExists('fetchCastReactions', 'hash', hash)
             // verify required parameter 'types' is not null or undefined
-            assertParamExists('reactionsCast', 'types', types)
+            assertParamExists('fetchCastReactions', 'types', types)
             const localVarPath = `/farcaster/reactions/cast`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -156,8 +125,8 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['types'] = types;
             }
 
-            if (viewerFid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewerFid;
+            if (viewer_fid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewer_fid;
             }
 
             if (limit !== undefined) {
@@ -182,19 +151,23 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * Fetches reactions for a given user
          * @summary Reactions for user
-         * @param {number} fid 
-         * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
-         * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {number} [limit] Number of results to fetch (default 25, max 100)
-         * @param {string} [cursor] Pagination cursor.
+         * @param {number} fid  
+         * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all) 
+         * @param {number} [viewer_fid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
+         * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<ReactionsResponse>} A promise that resolves to a `ReactionsResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-reactions)
+         * 
          */
-        reactionsUser: async (fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchUserReactions: async (fid: number, type: ReactionsType, viewer_fid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
-            assertParamExists('reactionsUser', 'fid', fid)
+            assertParamExists('fetchUserReactions', 'fid', fid)
             // verify required parameter 'type' is not null or undefined
-            assertParamExists('reactionsUser', 'type', type)
+            assertParamExists('fetchUserReactions', 'type', type)
             const localVarPath = `/farcaster/reactions/user`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -214,8 +187,8 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (viewerFid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewerFid;
+            if (viewer_fid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewer_fid;
             }
 
             if (type !== undefined) {
@@ -241,6 +214,49 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
+         * @summary Post a reaction
+         * @param {ReactionReqBody} reaction_req_body  
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-reaction)
+         * 
+         */
+        publishReaction: async (reaction_req_body: ReactionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'reaction_req_body' is not null or undefined
+            assertParamExists('publishReaction', 'reaction_req_body', reaction_req_body)
+            const localVarPath = `/farcaster/reaction`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(reaction_req_body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -254,61 +270,77 @@ export const ReactionApiFp = function(configuration?: Configuration) {
         /**
          * Delete a reaction (like or recast) to a cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
          * @summary Delete reaction
-         * @param {ReactionReqBody} reactionReqBody 
+         * @param {ReactionReqBody} reaction_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-reaction)
+         * 
          */
-        async deleteReaction(reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteReaction(reactionReqBody, options);
+        async deleteReaction(reaction_req_body: ReactionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteReaction(reaction_req_body, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ReactionApi.deleteReaction']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
-         * @summary Post a reaction
-         * @param {ReactionReqBody} reactionReqBody 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async postReaction(reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.postReaction(reactionReqBody, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ReactionApi.postReaction']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Fetches reactions for a given cast
          * @summary Reactions for cast
-         * @param {string} hash 
-         * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
-         * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {number} [limit] Number of results to fetch (default 25, max 100)
-         * @param {string} [cursor] Pagination cursor.
+         * @param {string} hash  
+         * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values.  
+         * @param {number} [viewer_fid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
+         * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<ReactionsCastResponse>} A promise that resolves to a `ReactionsCastResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-cast-reactions)
+         * 
          */
-        async reactionsCast(hash: string, types: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsCastResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.reactionsCast(hash, types, viewerFid, limit, cursor, options);
+        async fetchCastReactions(hash: string, types: string, viewer_fid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsCastResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchCastReactions(hash, types, viewer_fid, limit, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ReactionApi.reactionsCast']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ReactionApi.fetchCastReactions']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetches reactions for a given user
          * @summary Reactions for user
-         * @param {number} fid 
-         * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
-         * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {number} [limit] Number of results to fetch (default 25, max 100)
-         * @param {string} [cursor] Pagination cursor.
+         * @param {number} fid  
+         * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all) 
+         * @param {number} [viewer_fid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
+         * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<ReactionsResponse>} A promise that resolves to a `ReactionsResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-reactions)
+         * 
          */
-        async reactionsUser(fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.reactionsUser(fid, type, viewerFid, limit, cursor, options);
+        async fetchUserReactions(fid: number, type: ReactionsType, viewer_fid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserReactions(fid, type, viewer_fid, limit, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ReactionApi.reactionsUser']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ReactionApi.fetchUserReactions']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
+         * @summary Post a reaction
+         * @param {ReactionReqBody} reaction_req_body  
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-reaction)
+         * 
+         */
+        async publishReaction(reaction_req_body: ReactionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publishReaction(reaction_req_body, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ReactionApi.publishReaction']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -324,53 +356,261 @@ export const ReactionApiFactory = function (configuration?: Configuration, baseP
         /**
          * Delete a reaction (like or recast) to a cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
          * @summary Delete reaction
-         * @param {ReactionReqBody} reactionReqBody 
+         * @param {ReactionApiDeleteReactionRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-reaction)
+         * 
          */
-        deleteReaction(reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.deleteReaction(reactionReqBody, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
-         * @summary Post a reaction
-         * @param {ReactionReqBody} reactionReqBody 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postReaction(reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.postReaction(reactionReqBody, options).then((request) => request(axios, basePath));
+        deleteReaction(requestParameters: ReactionApiDeleteReactionRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.deleteReaction(requestParameters.reaction_req_body, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches reactions for a given cast
          * @summary Reactions for cast
-         * @param {string} hash 
-         * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
-         * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {number} [limit] Number of results to fetch (default 25, max 100)
-         * @param {string} [cursor] Pagination cursor.
+         * @param {ReactionApiFetchCastReactionsRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<ReactionsCastResponse>} A promise that resolves to a `ReactionsCastResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-cast-reactions)
+         * 
          */
-        reactionsCast(hash: string, types: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ReactionsCastResponse> {
-            return localVarFp.reactionsCast(hash, types, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
+        fetchCastReactions(requestParameters: ReactionApiFetchCastReactionsRequest, options?: RawAxiosRequestConfig): AxiosPromise<ReactionsCastResponse> {
+            return localVarFp.fetchCastReactions(requestParameters.hash, requestParameters.types, requestParameters.viewer_fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches reactions for a given user
          * @summary Reactions for user
-         * @param {number} fid 
-         * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
-         * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {number} [limit] Number of results to fetch (default 25, max 100)
-         * @param {string} [cursor] Pagination cursor.
+         * @param {ReactionApiFetchUserReactionsRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<ReactionsResponse>} A promise that resolves to a `ReactionsResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-reactions)
+         * 
          */
-        reactionsUser(fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ReactionsResponse> {
-            return localVarFp.reactionsUser(fid, type, viewerFid, limit, cursor, options).then((request) => request(axios, basePath));
+        fetchUserReactions(requestParameters: ReactionApiFetchUserReactionsRequest, options?: RawAxiosRequestConfig): AxiosPromise<ReactionsResponse> {
+            return localVarFp.fetchUserReactions(requestParameters.fid, requestParameters.type, requestParameters.viewer_fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
+         * @summary Post a reaction
+         * @param {ReactionApiPublishReactionRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-reaction)
+         * 
+         */
+        publishReaction(requestParameters: ReactionApiPublishReactionRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.publishReaction(requestParameters.reaction_req_body, options).then((request) => request(axios, basePath));
         },
     };
 };
+
+/**
+ * ReactionApi - interface
+ * @export
+ * @interface ReactionApi
+ */
+export interface ReactionApiInterface {
+    /**
+     * Delete a reaction (like or recast) to a cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
+     * @summary Delete reaction
+     * @param {ReactionApiDeleteReactionRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReactionApiInterface
+     * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-reaction)
+     * 
+     */
+    deleteReaction(requestParameters: ReactionApiDeleteReactionRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse>;
+
+    /**
+     * Fetches reactions for a given cast
+     * @summary Reactions for cast
+     * @param {ReactionApiFetchCastReactionsRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReactionApiInterface
+     * @returns {Promise<ReactionsCastResponse>} A promise that resolves to a `ReactionsCastResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-cast-reactions)
+     * 
+     */
+    fetchCastReactions(requestParameters: ReactionApiFetchCastReactionsRequest, options?: RawAxiosRequestConfig): AxiosPromise<ReactionsCastResponse>;
+
+    /**
+     * Fetches reactions for a given user
+     * @summary Reactions for user
+     * @param {ReactionApiFetchUserReactionsRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReactionApiInterface
+     * @returns {Promise<ReactionsResponse>} A promise that resolves to a `ReactionsResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-reactions)
+     * 
+     */
+    fetchUserReactions(requestParameters: ReactionApiFetchUserReactionsRequest, options?: RawAxiosRequestConfig): AxiosPromise<ReactionsResponse>;
+
+    /**
+     * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
+     * @summary Post a reaction
+     * @param {ReactionApiPublishReactionRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReactionApiInterface
+     * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-reaction)
+     * 
+     */
+    publishReaction(requestParameters: ReactionApiPublishReactionRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse>;
+
+}
+
+/**
+ * Request parameters for deleteReaction operation in ReactionApi.
+ * @export
+ * @interface ReactionApiDeleteReactionRequest
+ */
+export interface ReactionApiDeleteReactionRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {ReactionReqBody}
+     * @memberof ReactionApiDeleteReaction
+     */
+    readonly reaction_req_body: ReactionReqBody
+}
+
+/**
+ * Request parameters for fetchCastReactions operation in ReactionApi.
+ * @export
+ * @interface ReactionApiFetchCastReactionsRequest
+ */
+export interface ReactionApiFetchCastReactionsRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {string}
+     * @memberof ReactionApiFetchCastReactions
+     */
+    readonly hash: string
+
+    /**
+     * Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
+     * 
+     * @commaSeparated
+     * @type {string}
+     * @memberof ReactionApiFetchCastReactions
+     */
+    readonly types: string
+
+    /**
+     * Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * 
+     * 
+     * @type {number}
+     * @memberof ReactionApiFetchCastReactions
+     */
+    readonly viewer_fid?: number
+
+    /**
+     * Number of results to fetch (Default: 25, Maximum: 100)
+     * 
+     * 
+     * @type {number}
+     * @memberof ReactionApiFetchCastReactions
+     */
+    readonly limit?: number
+
+    /**
+     * Pagination cursor.
+     * 
+     * 
+     * @type {string}
+     * @memberof ReactionApiFetchCastReactions
+     */
+    readonly cursor?: string
+}
+
+/**
+ * Request parameters for fetchUserReactions operation in ReactionApi.
+ * @export
+ * @interface ReactionApiFetchUserReactionsRequest
+ */
+export interface ReactionApiFetchUserReactionsRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {number}
+     * @memberof ReactionApiFetchUserReactions
+     */
+    readonly fid: number
+
+    /**
+     * Type of reaction to fetch (likes or recasts or all)
+     * 
+     * 
+     * @type {ReactionsType}
+     * @memberof ReactionApiFetchUserReactions
+     */
+    readonly type: ReactionsType
+
+    /**
+     * Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * 
+     * 
+     * @type {number}
+     * @memberof ReactionApiFetchUserReactions
+     */
+    readonly viewer_fid?: number
+
+    /**
+     * Number of results to fetch (Default: 25, Maximum: 100)
+     * 
+     * 
+     * @type {number}
+     * @memberof ReactionApiFetchUserReactions
+     */
+    readonly limit?: number
+
+    /**
+     * Pagination cursor.
+     * 
+     * 
+     * @type {string}
+     * @memberof ReactionApiFetchUserReactions
+     */
+    readonly cursor?: string
+}
+
+/**
+ * Request parameters for publishReaction operation in ReactionApi.
+ * @export
+ * @interface ReactionApiPublishReactionRequest
+ */
+export interface ReactionApiPublishReactionRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {ReactionReqBody}
+     * @memberof ReactionApiPublishReaction
+     */
+    readonly reaction_req_body: ReactionReqBody
+}
 
 /**
  * ReactionApi - object-oriented interface
@@ -378,61 +618,69 @@ export const ReactionApiFactory = function (configuration?: Configuration, baseP
  * @class ReactionApi
  * @extends {BaseAPI}
  */
-export class ReactionApi extends BaseAPI {
+export class ReactionApi extends BaseAPI implements ReactionApiInterface {
     /**
      * Delete a reaction (like or recast) to a cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
      * @summary Delete reaction
-     * @param {ReactionReqBody} reactionReqBody 
+     * @param {ReactionApiDeleteReactionRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReactionApi
+     * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-reaction)
+     * 
      */
-    public deleteReaction(reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig) {
-        return ReactionApiFp(this.configuration).deleteReaction(reactionReqBody, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
-     * @summary Post a reaction
-     * @param {ReactionReqBody} reactionReqBody 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReactionApi
-     */
-    public postReaction(reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig) {
-        return ReactionApiFp(this.configuration).postReaction(reactionReqBody, options).then((request) => request(this.axios, this.basePath));
+    public deleteReaction(requestParameters: ReactionApiDeleteReactionRequest, options?: RawAxiosRequestConfig) {
+        return ReactionApiFp(this.configuration).deleteReaction(requestParameters.reaction_req_body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetches reactions for a given cast
      * @summary Reactions for cast
-     * @param {string} hash 
-     * @param {string} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
-     * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-     * @param {number} [limit] Number of results to fetch (default 25, max 100)
-     * @param {string} [cursor] Pagination cursor.
+     * @param {ReactionApiFetchCastReactionsRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReactionApi
+     * @returns {Promise<ReactionsCastResponse>} A promise that resolves to a `ReactionsCastResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-cast-reactions)
+     * 
      */
-    public reactionsCast(hash: string, types: string, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return ReactionApiFp(this.configuration).reactionsCast(hash, types, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public fetchCastReactions(requestParameters: ReactionApiFetchCastReactionsRequest, options?: RawAxiosRequestConfig) {
+        return ReactionApiFp(this.configuration).fetchCastReactions(requestParameters.hash, requestParameters.types, requestParameters.viewer_fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetches reactions for a given user
      * @summary Reactions for user
-     * @param {number} fid 
-     * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all)
-     * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-     * @param {number} [limit] Number of results to fetch (default 25, max 100)
-     * @param {string} [cursor] Pagination cursor.
+     * @param {ReactionApiFetchUserReactionsRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReactionApi
+     * @returns {Promise<ReactionsResponse>} A promise that resolves to a `ReactionsResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-reactions)
+     * 
      */
-    public reactionsUser(fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return ReactionApiFp(this.configuration).reactionsUser(fid, type, viewerFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public fetchUserReactions(requestParameters: ReactionApiFetchUserReactionsRequest, options?: RawAxiosRequestConfig) {
+        return ReactionApiFp(this.configuration).fetchUserReactions(requestParameters.fid, requestParameters.type, requestParameters.viewer_fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
+     * @summary Post a reaction
+     * @param {ReactionApiPublishReactionRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReactionApi
+     * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-reaction)
+     * 
+     */
+    public publishReaction(requestParameters: ReactionApiPublishReactionRequest, options?: RawAxiosRequestConfig) {
+        return ReactionApiFp(this.configuration).publishReaction(requestParameters.reaction_req_body, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

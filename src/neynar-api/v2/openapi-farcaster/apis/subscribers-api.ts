@@ -42,17 +42,21 @@ export const SubscribersApiAxiosParamCreator = function (configuration?: Configu
         /**
          * Fetch what FIDs and contracts a FID is subscribed to.
          * @summary Subscribed to
-         * @param {number} fid 
-         * @param {SubscriptionProvider} subscriptionProvider 
-         * @param {number} [viewerFid] 
+         * @param {number} fid  
+         * @param {SubscriptionProvider} subscription_provider  
+         * @param {number} [viewer_fid]  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<SubscribedToResponse>} A promise that resolves to a `SubscribedToResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscribed-to-for-fid)
+         * 
          */
-        subscribedTo: async (fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchSubscribedToForFid: async (fid: number, subscription_provider: SubscriptionProvider, viewer_fid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
-            assertParamExists('subscribedTo', 'fid', fid)
-            // verify required parameter 'subscriptionProvider' is not null or undefined
-            assertParamExists('subscribedTo', 'subscriptionProvider', subscriptionProvider)
+            assertParamExists('fetchSubscribedToForFid', 'fid', fid)
+            // verify required parameter 'subscription_provider' is not null or undefined
+            assertParamExists('fetchSubscribedToForFid', 'subscription_provider', subscription_provider)
             const localVarPath = `/farcaster/user/subscribed_to`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -72,12 +76,12 @@ export const SubscribersApiAxiosParamCreator = function (configuration?: Configu
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (viewerFid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewerFid;
+            if (viewer_fid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewer_fid;
             }
 
-            if (subscriptionProvider !== undefined) {
-                localVarQueryParameter['subscription_provider'] = subscriptionProvider;
+            if (subscription_provider !== undefined) {
+                localVarQueryParameter['subscription_provider'] = subscription_provider;
             }
 
 
@@ -94,17 +98,21 @@ export const SubscribersApiAxiosParamCreator = function (configuration?: Configu
         /**
          * Fetch subscribers for a given FID\'s contracts. Doesn\'t return addresses that don\'t have an FID.
          * @summary Subscribers of a user
-         * @param {number} fid 
-         * @param {SubscriptionProviders} subscriptionProvider 
-         * @param {number} [viewerFid] 
+         * @param {number} fid  
+         * @param {SubscriptionProviders} subscription_provider  
+         * @param {number} [viewer_fid]  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<SubscribersResponse>} A promise that resolves to a `SubscribersResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscribers-for-fid)
+         * 
          */
-        subscribers: async (fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchSubscribersForFid: async (fid: number, subscription_provider: SubscriptionProviders, viewer_fid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
-            assertParamExists('subscribers', 'fid', fid)
-            // verify required parameter 'subscriptionProvider' is not null or undefined
-            assertParamExists('subscribers', 'subscriptionProvider', subscriptionProvider)
+            assertParamExists('fetchSubscribersForFid', 'fid', fid)
+            // verify required parameter 'subscription_provider' is not null or undefined
+            assertParamExists('fetchSubscribersForFid', 'subscription_provider', subscription_provider)
             const localVarPath = `/farcaster/user/subscribers`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -124,12 +132,12 @@ export const SubscribersApiAxiosParamCreator = function (configuration?: Configu
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (viewerFid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewerFid;
+            if (viewer_fid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewer_fid;
             }
 
-            if (subscriptionProvider !== undefined) {
-                localVarQueryParameter['subscription_provider'] = subscriptionProvider;
+            if (subscription_provider !== undefined) {
+                localVarQueryParameter['subscription_provider'] = subscription_provider;
             }
 
 
@@ -146,16 +154,20 @@ export const SubscribersApiAxiosParamCreator = function (configuration?: Configu
         /**
          * Fetch created subscriptions for a given FID\'s.
          * @summary Subscriptions created by FID
-         * @param {number} fid 
-         * @param {SubscriptionProvider} subscriptionProvider 
+         * @param {number} fid  
+         * @param {SubscriptionProvider} subscription_provider  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<SubscriptionsResponse>} A promise that resolves to a `SubscriptionsResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscriptions-for-fid)
+         * 
          */
-        subscriptionsCreated: async (fid: number, subscriptionProvider: SubscriptionProvider, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchSubscriptionsForFid: async (fid: number, subscription_provider: SubscriptionProvider, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
-            assertParamExists('subscriptionsCreated', 'fid', fid)
-            // verify required parameter 'subscriptionProvider' is not null or undefined
-            assertParamExists('subscriptionsCreated', 'subscriptionProvider', subscriptionProvider)
+            assertParamExists('fetchSubscriptionsForFid', 'fid', fid)
+            // verify required parameter 'subscription_provider' is not null or undefined
+            assertParamExists('fetchSubscriptionsForFid', 'subscription_provider', subscription_provider)
             const localVarPath = `/farcaster/user/subscriptions_created`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -175,8 +187,8 @@ export const SubscribersApiAxiosParamCreator = function (configuration?: Configu
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (subscriptionProvider !== undefined) {
-                localVarQueryParameter['subscription_provider'] = subscriptionProvider;
+            if (subscription_provider !== undefined) {
+                localVarQueryParameter['subscription_provider'] = subscription_provider;
             }
 
 
@@ -203,45 +215,57 @@ export const SubscribersApiFp = function(configuration?: Configuration) {
         /**
          * Fetch what FIDs and contracts a FID is subscribed to.
          * @summary Subscribed to
-         * @param {number} fid 
-         * @param {SubscriptionProvider} subscriptionProvider 
-         * @param {number} [viewerFid] 
+         * @param {number} fid  
+         * @param {SubscriptionProvider} subscription_provider  
+         * @param {number} [viewer_fid]  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<SubscribedToResponse>} A promise that resolves to a `SubscribedToResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscribed-to-for-fid)
+         * 
          */
-        async subscribedTo(fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscribedToResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.subscribedTo(fid, subscriptionProvider, viewerFid, options);
+        async fetchSubscribedToForFid(fid: number, subscription_provider: SubscriptionProvider, viewer_fid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscribedToResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchSubscribedToForFid(fid, subscription_provider, viewer_fid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['SubscribersApi.subscribedTo']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['SubscribersApi.fetchSubscribedToForFid']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch subscribers for a given FID\'s contracts. Doesn\'t return addresses that don\'t have an FID.
          * @summary Subscribers of a user
-         * @param {number} fid 
-         * @param {SubscriptionProviders} subscriptionProvider 
-         * @param {number} [viewerFid] 
+         * @param {number} fid  
+         * @param {SubscriptionProviders} subscription_provider  
+         * @param {number} [viewer_fid]  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<SubscribersResponse>} A promise that resolves to a `SubscribersResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscribers-for-fid)
+         * 
          */
-        async subscribers(fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscribersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.subscribers(fid, subscriptionProvider, viewerFid, options);
+        async fetchSubscribersForFid(fid: number, subscription_provider: SubscriptionProviders, viewer_fid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscribersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchSubscribersForFid(fid, subscription_provider, viewer_fid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['SubscribersApi.subscribers']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['SubscribersApi.fetchSubscribersForFid']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch created subscriptions for a given FID\'s.
          * @summary Subscriptions created by FID
-         * @param {number} fid 
-         * @param {SubscriptionProvider} subscriptionProvider 
+         * @param {number} fid  
+         * @param {SubscriptionProvider} subscription_provider  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<SubscriptionsResponse>} A promise that resolves to a `SubscriptionsResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscriptions-for-fid)
+         * 
          */
-        async subscriptionsCreated(fid: number, subscriptionProvider: SubscriptionProvider, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.subscriptionsCreated(fid, subscriptionProvider, options);
+        async fetchSubscriptionsForFid(fid: number, subscription_provider: SubscriptionProvider, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchSubscriptionsForFid(fid, subscription_provider, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['SubscribersApi.subscriptionsCreated']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['SubscribersApi.fetchSubscriptionsForFid']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -257,40 +281,190 @@ export const SubscribersApiFactory = function (configuration?: Configuration, ba
         /**
          * Fetch what FIDs and contracts a FID is subscribed to.
          * @summary Subscribed to
-         * @param {number} fid 
-         * @param {SubscriptionProvider} subscriptionProvider 
-         * @param {number} [viewerFid] 
+         * @param {SubscribersApiFetchSubscribedToForFidRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<SubscribedToResponse>} A promise that resolves to a `SubscribedToResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscribed-to-for-fid)
+         * 
          */
-        subscribedTo(fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<SubscribedToResponse> {
-            return localVarFp.subscribedTo(fid, subscriptionProvider, viewerFid, options).then((request) => request(axios, basePath));
+        fetchSubscribedToForFid(requestParameters: SubscribersApiFetchSubscribedToForFidRequest, options?: RawAxiosRequestConfig): AxiosPromise<SubscribedToResponse> {
+            return localVarFp.fetchSubscribedToForFid(requestParameters.fid, requestParameters.subscription_provider, requestParameters.viewer_fid, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch subscribers for a given FID\'s contracts. Doesn\'t return addresses that don\'t have an FID.
          * @summary Subscribers of a user
-         * @param {number} fid 
-         * @param {SubscriptionProviders} subscriptionProvider 
-         * @param {number} [viewerFid] 
+         * @param {SubscribersApiFetchSubscribersForFidRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<SubscribersResponse>} A promise that resolves to a `SubscribersResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscribers-for-fid)
+         * 
          */
-        subscribers(fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<SubscribersResponse> {
-            return localVarFp.subscribers(fid, subscriptionProvider, viewerFid, options).then((request) => request(axios, basePath));
+        fetchSubscribersForFid(requestParameters: SubscribersApiFetchSubscribersForFidRequest, options?: RawAxiosRequestConfig): AxiosPromise<SubscribersResponse> {
+            return localVarFp.fetchSubscribersForFid(requestParameters.fid, requestParameters.subscription_provider, requestParameters.viewer_fid, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch created subscriptions for a given FID\'s.
          * @summary Subscriptions created by FID
-         * @param {number} fid 
-         * @param {SubscriptionProvider} subscriptionProvider 
+         * @param {SubscribersApiFetchSubscriptionsForFidRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<SubscriptionsResponse>} A promise that resolves to a `SubscriptionsResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscriptions-for-fid)
+         * 
          */
-        subscriptionsCreated(fid: number, subscriptionProvider: SubscriptionProvider, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionsResponse> {
-            return localVarFp.subscriptionsCreated(fid, subscriptionProvider, options).then((request) => request(axios, basePath));
+        fetchSubscriptionsForFid(requestParameters: SubscribersApiFetchSubscriptionsForFidRequest, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionsResponse> {
+            return localVarFp.fetchSubscriptionsForFid(requestParameters.fid, requestParameters.subscription_provider, options).then((request) => request(axios, basePath));
         },
     };
 };
+
+/**
+ * SubscribersApi - interface
+ * @export
+ * @interface SubscribersApi
+ */
+export interface SubscribersApiInterface {
+    /**
+     * Fetch what FIDs and contracts a FID is subscribed to.
+     * @summary Subscribed to
+     * @param {SubscribersApiFetchSubscribedToForFidRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubscribersApiInterface
+     * @returns {Promise<SubscribedToResponse>} A promise that resolves to a `SubscribedToResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscribed-to-for-fid)
+     * 
+     */
+    fetchSubscribedToForFid(requestParameters: SubscribersApiFetchSubscribedToForFidRequest, options?: RawAxiosRequestConfig): AxiosPromise<SubscribedToResponse>;
+
+    /**
+     * Fetch subscribers for a given FID\'s contracts. Doesn\'t return addresses that don\'t have an FID.
+     * @summary Subscribers of a user
+     * @param {SubscribersApiFetchSubscribersForFidRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubscribersApiInterface
+     * @returns {Promise<SubscribersResponse>} A promise that resolves to a `SubscribersResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscribers-for-fid)
+     * 
+     */
+    fetchSubscribersForFid(requestParameters: SubscribersApiFetchSubscribersForFidRequest, options?: RawAxiosRequestConfig): AxiosPromise<SubscribersResponse>;
+
+    /**
+     * Fetch created subscriptions for a given FID\'s.
+     * @summary Subscriptions created by FID
+     * @param {SubscribersApiFetchSubscriptionsForFidRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubscribersApiInterface
+     * @returns {Promise<SubscriptionsResponse>} A promise that resolves to a `SubscriptionsResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscriptions-for-fid)
+     * 
+     */
+    fetchSubscriptionsForFid(requestParameters: SubscribersApiFetchSubscriptionsForFidRequest, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionsResponse>;
+
+}
+
+/**
+ * Request parameters for fetchSubscribedToForFid operation in SubscribersApi.
+ * @export
+ * @interface SubscribersApiFetchSubscribedToForFidRequest
+ */
+export interface SubscribersApiFetchSubscribedToForFidRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {number}
+     * @memberof SubscribersApiFetchSubscribedToForFid
+     */
+    readonly fid: number
+
+    /**
+     * 
+     * 
+     * 
+     * @type {SubscriptionProvider}
+     * @memberof SubscribersApiFetchSubscribedToForFid
+     */
+    readonly subscription_provider: SubscriptionProvider
+
+    /**
+     * 
+     * 
+     * 
+     * @type {number}
+     * @memberof SubscribersApiFetchSubscribedToForFid
+     */
+    readonly viewer_fid?: number
+}
+
+/**
+ * Request parameters for fetchSubscribersForFid operation in SubscribersApi.
+ * @export
+ * @interface SubscribersApiFetchSubscribersForFidRequest
+ */
+export interface SubscribersApiFetchSubscribersForFidRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {number}
+     * @memberof SubscribersApiFetchSubscribersForFid
+     */
+    readonly fid: number
+
+    /**
+     * 
+     * 
+     * 
+     * @type {SubscriptionProviders}
+     * @memberof SubscribersApiFetchSubscribersForFid
+     */
+    readonly subscription_provider: SubscriptionProviders
+
+    /**
+     * 
+     * 
+     * 
+     * @type {number}
+     * @memberof SubscribersApiFetchSubscribersForFid
+     */
+    readonly viewer_fid?: number
+}
+
+/**
+ * Request parameters for fetchSubscriptionsForFid operation in SubscribersApi.
+ * @export
+ * @interface SubscribersApiFetchSubscriptionsForFidRequest
+ */
+export interface SubscribersApiFetchSubscriptionsForFidRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {number}
+     * @memberof SubscribersApiFetchSubscriptionsForFid
+     */
+    readonly fid: number
+
+    /**
+     * 
+     * 
+     * 
+     * @type {SubscriptionProvider}
+     * @memberof SubscribersApiFetchSubscriptionsForFid
+     */
+    readonly subscription_provider: SubscriptionProvider
+}
 
 /**
  * SubscribersApi - object-oriented interface
@@ -298,46 +472,53 @@ export const SubscribersApiFactory = function (configuration?: Configuration, ba
  * @class SubscribersApi
  * @extends {BaseAPI}
  */
-export class SubscribersApi extends BaseAPI {
+export class SubscribersApi extends BaseAPI implements SubscribersApiInterface {
     /**
      * Fetch what FIDs and contracts a FID is subscribed to.
      * @summary Subscribed to
-     * @param {number} fid 
-     * @param {SubscriptionProvider} subscriptionProvider 
-     * @param {number} [viewerFid] 
+     * @param {SubscribersApiFetchSubscribedToForFidRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SubscribersApi
+     * @returns {Promise<SubscribedToResponse>} A promise that resolves to a `SubscribedToResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscribed-to-for-fid)
+     * 
      */
-    public subscribedTo(fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number, options?: RawAxiosRequestConfig) {
-        return SubscribersApiFp(this.configuration).subscribedTo(fid, subscriptionProvider, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    public fetchSubscribedToForFid(requestParameters: SubscribersApiFetchSubscribedToForFidRequest, options?: RawAxiosRequestConfig) {
+        return SubscribersApiFp(this.configuration).fetchSubscribedToForFid(requestParameters.fid, requestParameters.subscription_provider, requestParameters.viewer_fid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetch subscribers for a given FID\'s contracts. Doesn\'t return addresses that don\'t have an FID.
      * @summary Subscribers of a user
-     * @param {number} fid 
-     * @param {SubscriptionProviders} subscriptionProvider 
-     * @param {number} [viewerFid] 
+     * @param {SubscribersApiFetchSubscribersForFidRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SubscribersApi
+     * @returns {Promise<SubscribersResponse>} A promise that resolves to a `SubscribersResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscribers-for-fid)
+     * 
      */
-    public subscribers(fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number, options?: RawAxiosRequestConfig) {
-        return SubscribersApiFp(this.configuration).subscribers(fid, subscriptionProvider, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    public fetchSubscribersForFid(requestParameters: SubscribersApiFetchSubscribersForFidRequest, options?: RawAxiosRequestConfig) {
+        return SubscribersApiFp(this.configuration).fetchSubscribersForFid(requestParameters.fid, requestParameters.subscription_provider, requestParameters.viewer_fid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetch created subscriptions for a given FID\'s.
      * @summary Subscriptions created by FID
-     * @param {number} fid 
-     * @param {SubscriptionProvider} subscriptionProvider 
+     * @param {SubscribersApiFetchSubscriptionsForFidRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SubscribersApi
+     * @returns {Promise<SubscriptionsResponse>} A promise that resolves to a `SubscriptionsResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscriptions-for-fid)
+     * 
      */
-    public subscriptionsCreated(fid: number, subscriptionProvider: SubscriptionProvider, options?: RawAxiosRequestConfig) {
-        return SubscribersApiFp(this.configuration).subscriptionsCreated(fid, subscriptionProvider, options).then((request) => request(this.axios, this.basePath));
+    public fetchSubscriptionsForFid(requestParameters: SubscribersApiFetchSubscriptionsForFidRequest, options?: RawAxiosRequestConfig) {
+        return SubscribersApiFp(this.configuration).fetchSubscriptionsForFid(requestParameters.fid, requestParameters.subscription_provider, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

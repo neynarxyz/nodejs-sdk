@@ -15,25 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { NeynarFramePage } from './neynar-frame-page';
+import type { Frame } from './frame';
 
 /**
- * 
+ * The frame object containing the meta tags
  * @export
- * @interface NeynarFrameCreationRequest
+ * @interface FetchFrameMetaTagsFromUrl200Response
  */
-export interface NeynarFrameCreationRequest {
-    /**
-     * The name of the frame.
-     * @type {string}
-     * @memberof NeynarFrameCreationRequest
-     */
-    'name': string;
+export interface FetchFrameMetaTagsFromUrl200Response {
     /**
      * 
-     * @type {Array<NeynarFramePage>}
-     * @memberof NeynarFrameCreationRequest
+     * @type {Frame}
+     * @memberof FetchFrameMetaTagsFromUrl200Response
      */
-    'pages': Array<NeynarFramePage>;
+    'frame': Frame;
 }
 

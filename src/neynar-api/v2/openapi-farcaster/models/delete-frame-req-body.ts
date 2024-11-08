@@ -17,13 +17,13 @@
 /**
  * 
  * @export
- * @interface DeleteNeynarFrameRequest
+ * @interface DeleteFrameReqBody
  */
-export interface DeleteNeynarFrameRequest {
+export interface DeleteFrameReqBody {
     /**
      * 
      * @type {string}
-     * @memberof DeleteNeynarFrameRequest
+     * @memberof DeleteFrameReqBody
      */
     'uuid'?: string;
 }

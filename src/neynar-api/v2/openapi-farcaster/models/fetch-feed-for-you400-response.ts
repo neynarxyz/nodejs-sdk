@@ -15,19 +15,18 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { Fids } from './fids';
+import type { ErrorRes } from './error-res';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { ZodError } from './zod-error';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { ZodErrorErrorsInner } from './zod-error-errors-inner';
 
 /**
- * 
+ * @type FetchFeedForYou400Response
  * @export
- * @interface UserPowerLiteResponseResult
  */
-export interface UserPowerLiteResponseResult {
-    /**
-     * 
-     * @type {Fids}
-     * @memberof UserPowerLiteResponseResult
-     */
-    'fids': Fids;
-}
+export type FetchFeedForYou400Response = ErrorRes | ZodError;
+
 

@@ -36,15 +36,19 @@ import type { ErrorRes } from '../models';
 export const BanApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
-         * @summary Ban FIDs from app
-         * @param {BanReqBody} banReqBody 
+         * Deletes a list of FIDs from the app associated with your API key.
+         * @summary Unban FIDs from app
+         * @param {BanReqBody} ban_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<BanResponse>} A promise that resolves to a `BanResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-bans)
+         * 
          */
-        addBan: async (banReqBody: BanReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'banReqBody' is not null or undefined
-            assertParamExists('addBan', 'banReqBody', banReqBody)
+        deleteBans: async (ban_req_body: BanReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'ban_req_body' is not null or undefined
+            assertParamExists('deleteBans', 'ban_req_body', ban_req_body)
             const localVarPath = `/farcaster/ban`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -53,7 +57,7 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -67,7 +71,7 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(banReqBody, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(ban_req_body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -77,12 +81,16 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
         /**
          * Fetches all FIDs that your app has banned.
          * @summary Banned FIDs of app
-         * @param {number} [limit] Number of results to fetch (default 20, max 100).
-         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
+         * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<BanListResponse>} A promise that resolves to a `BanListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-ban-list)
+         * 
          */
-        banList: async (limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchBanList: async (limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/farcaster/ban/list`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -118,15 +126,19 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
             };
         },
         /**
-         * Deletes a list of FIDs from the app associated with your API key.
-         * @summary Unban FIDs from app
-         * @param {BanReqBody} banReqBody 
+         * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
+         * @summary Ban FIDs from app
+         * @param {BanReqBody} ban_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<BanResponse>} A promise that resolves to a `BanResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-bans)
+         * 
          */
-        deleteBan: async (banReqBody: BanReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'banReqBody' is not null or undefined
-            assertParamExists('deleteBan', 'banReqBody', banReqBody)
+        publishBans: async (ban_req_body: BanReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'ban_req_body' is not null or undefined
+            assertParamExists('publishBans', 'ban_req_body', ban_req_body)
             const localVarPath = `/farcaster/ban`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -135,7 +147,7 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -149,7 +161,7 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(banReqBody, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(ban_req_body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -167,43 +179,55 @@ export const BanApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = BanApiAxiosParamCreator(configuration)
     return {
         /**
-         * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
-         * @summary Ban FIDs from app
-         * @param {BanReqBody} banReqBody 
+         * Deletes a list of FIDs from the app associated with your API key.
+         * @summary Unban FIDs from app
+         * @param {BanReqBody} ban_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<BanResponse>} A promise that resolves to a `BanResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-bans)
+         * 
          */
-        async addBan(banReqBody: BanReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.addBan(banReqBody, options);
+        async deleteBans(ban_req_body: BanReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteBans(ban_req_body, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['BanApi.addBan']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['BanApi.deleteBans']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetches all FIDs that your app has banned.
          * @summary Banned FIDs of app
-         * @param {number} [limit] Number of results to fetch (default 20, max 100).
-         * @param {string} [cursor] Pagination cursor.
+         * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
+         * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<BanListResponse>} A promise that resolves to a `BanListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-ban-list)
+         * 
          */
-        async banList(limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.banList(limit, cursor, options);
+        async fetchBanList(limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchBanList(limit, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['BanApi.banList']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['BanApi.fetchBanList']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Deletes a list of FIDs from the app associated with your API key.
-         * @summary Unban FIDs from app
-         * @param {BanReqBody} banReqBody 
+         * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
+         * @summary Ban FIDs from app
+         * @param {BanReqBody} ban_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<BanResponse>} A promise that resolves to a `BanResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-bans)
+         * 
          */
-        async deleteBan(banReqBody: BanReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteBan(banReqBody, options);
+        async publishBans(ban_req_body: BanReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publishBans(ban_req_body, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['BanApi.deleteBan']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['BanApi.publishBans']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -217,38 +241,156 @@ export const BanApiFactory = function (configuration?: Configuration, basePath?:
     const localVarFp = BanApiFp(configuration)
     return {
         /**
-         * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
-         * @summary Ban FIDs from app
-         * @param {BanReqBody} banReqBody 
+         * Deletes a list of FIDs from the app associated with your API key.
+         * @summary Unban FIDs from app
+         * @param {BanApiDeleteBansRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<BanResponse>} A promise that resolves to a `BanResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-bans)
+         * 
          */
-        addBan(banReqBody: BanReqBody, options?: RawAxiosRequestConfig): AxiosPromise<BanResponse> {
-            return localVarFp.addBan(banReqBody, options).then((request) => request(axios, basePath));
+        deleteBans(requestParameters: BanApiDeleteBansRequest, options?: RawAxiosRequestConfig): AxiosPromise<BanResponse> {
+            return localVarFp.deleteBans(requestParameters.ban_req_body, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches all FIDs that your app has banned.
          * @summary Banned FIDs of app
-         * @param {number} [limit] Number of results to fetch (default 20, max 100).
-         * @param {string} [cursor] Pagination cursor.
+         * @param {BanApiFetchBanListRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<BanListResponse>} A promise that resolves to a `BanListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-ban-list)
+         * 
          */
-        banList(limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<BanListResponse> {
-            return localVarFp.banList(limit, cursor, options).then((request) => request(axios, basePath));
+        fetchBanList(requestParameters: BanApiFetchBanListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<BanListResponse> {
+            return localVarFp.fetchBanList(requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
         },
         /**
-         * Deletes a list of FIDs from the app associated with your API key.
-         * @summary Unban FIDs from app
-         * @param {BanReqBody} banReqBody 
+         * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
+         * @summary Ban FIDs from app
+         * @param {BanApiPublishBansRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<BanResponse>} A promise that resolves to a `BanResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-bans)
+         * 
          */
-        deleteBan(banReqBody: BanReqBody, options?: RawAxiosRequestConfig): AxiosPromise<BanResponse> {
-            return localVarFp.deleteBan(banReqBody, options).then((request) => request(axios, basePath));
+        publishBans(requestParameters: BanApiPublishBansRequest, options?: RawAxiosRequestConfig): AxiosPromise<BanResponse> {
+            return localVarFp.publishBans(requestParameters.ban_req_body, options).then((request) => request(axios, basePath));
         },
     };
 };
+
+/**
+ * BanApi - interface
+ * @export
+ * @interface BanApi
+ */
+export interface BanApiInterface {
+    /**
+     * Deletes a list of FIDs from the app associated with your API key.
+     * @summary Unban FIDs from app
+     * @param {BanApiDeleteBansRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BanApiInterface
+     * @returns {Promise<BanResponse>} A promise that resolves to a `BanResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-bans)
+     * 
+     */
+    deleteBans(requestParameters: BanApiDeleteBansRequest, options?: RawAxiosRequestConfig): AxiosPromise<BanResponse>;
+
+    /**
+     * Fetches all FIDs that your app has banned.
+     * @summary Banned FIDs of app
+     * @param {BanApiFetchBanListRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BanApiInterface
+     * @returns {Promise<BanListResponse>} A promise that resolves to a `BanListResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-ban-list)
+     * 
+     */
+    fetchBanList(requestParameters?: BanApiFetchBanListRequest, options?: RawAxiosRequestConfig): AxiosPromise<BanListResponse>;
+
+    /**
+     * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
+     * @summary Ban FIDs from app
+     * @param {BanApiPublishBansRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BanApiInterface
+     * @returns {Promise<BanResponse>} A promise that resolves to a `BanResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-bans)
+     * 
+     */
+    publishBans(requestParameters: BanApiPublishBansRequest, options?: RawAxiosRequestConfig): AxiosPromise<BanResponse>;
+
+}
+
+/**
+ * Request parameters for deleteBans operation in BanApi.
+ * @export
+ * @interface BanApiDeleteBansRequest
+ */
+export interface BanApiDeleteBansRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {BanReqBody}
+     * @memberof BanApiDeleteBans
+     */
+    readonly ban_req_body: BanReqBody
+}
+
+/**
+ * Request parameters for fetchBanList operation in BanApi.
+ * @export
+ * @interface BanApiFetchBanListRequest
+ */
+export interface BanApiFetchBanListRequest {
+    /**
+     * Number of results to fetch (Default: 20, Maximum: 100)
+     * 
+     * 
+     * @type {number}
+     * @memberof BanApiFetchBanList
+     */
+    readonly limit?: number
+
+    /**
+     * Pagination cursor.
+     * 
+     * 
+     * @type {string}
+     * @memberof BanApiFetchBanList
+     */
+    readonly cursor?: string
+}
+
+/**
+ * Request parameters for publishBans operation in BanApi.
+ * @export
+ * @interface BanApiPublishBansRequest
+ */
+export interface BanApiPublishBansRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {BanReqBody}
+     * @memberof BanApiPublishBans
+     */
+    readonly ban_req_body: BanReqBody
+}
 
 /**
  * BanApi - object-oriented interface
@@ -256,42 +398,53 @@ export const BanApiFactory = function (configuration?: Configuration, basePath?:
  * @class BanApi
  * @extends {BaseAPI}
  */
-export class BanApi extends BaseAPI {
+export class BanApi extends BaseAPI implements BanApiInterface {
     /**
-     * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
-     * @summary Ban FIDs from app
-     * @param {BanReqBody} banReqBody 
+     * Deletes a list of FIDs from the app associated with your API key.
+     * @summary Unban FIDs from app
+     * @param {BanApiDeleteBansRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BanApi
+     * @returns {Promise<BanResponse>} A promise that resolves to a `BanResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-bans)
+     * 
      */
-    public addBan(banReqBody: BanReqBody, options?: RawAxiosRequestConfig) {
-        return BanApiFp(this.configuration).addBan(banReqBody, options).then((request) => request(this.axios, this.basePath));
+    public deleteBans(requestParameters: BanApiDeleteBansRequest, options?: RawAxiosRequestConfig) {
+        return BanApiFp(this.configuration).deleteBans(requestParameters.ban_req_body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetches all FIDs that your app has banned.
      * @summary Banned FIDs of app
-     * @param {number} [limit] Number of results to fetch (default 20, max 100).
-     * @param {string} [cursor] Pagination cursor.
+     * @param {BanApiFetchBanListRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BanApi
+     * @returns {Promise<BanListResponse>} A promise that resolves to a `BanListResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-ban-list)
+     * 
      */
-    public banList(limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return BanApiFp(this.configuration).banList(limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public fetchBanList(requestParameters: BanApiFetchBanListRequest = {}, options?: RawAxiosRequestConfig) {
+        return BanApiFp(this.configuration).fetchBanList(requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Deletes a list of FIDs from the app associated with your API key.
-     * @summary Unban FIDs from app
-     * @param {BanReqBody} banReqBody 
+     * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
+     * @summary Ban FIDs from app
+     * @param {BanApiPublishBansRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BanApi
+     * @returns {Promise<BanResponse>} A promise that resolves to a `BanResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-bans)
+     * 
      */
-    public deleteBan(banReqBody: BanReqBody, options?: RawAxiosRequestConfig) {
-        return BanApiFp(this.configuration).deleteBan(banReqBody, options).then((request) => request(this.axios, this.basePath));
+    public publishBans(requestParameters: BanApiPublishBansRequest, options?: RawAxiosRequestConfig) {
+        return BanApiFp(this.configuration).publishBans(requestParameters.ban_req_body, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

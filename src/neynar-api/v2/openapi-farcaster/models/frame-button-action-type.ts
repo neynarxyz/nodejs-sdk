@@ -15,7 +15,7 @@
 
 
 /**
- * 
+ * The action type of a frame button. Action types \"mint\" & \"link\" are to be handled on the client side only and so they will produce a no/op for POST /farcaster/frame/action.
  * @export
  * @enum {string}
  */
@@ -23,7 +23,9 @@
 export const FrameButtonActionType = {
     Post: 'post',
     PostRedirect: 'post_redirect',
-    Tx: 'tx'
+    Tx: 'tx',
+    Link: 'link',
+    Mint: 'mint'
 } as const;
 
 export type FrameButtonActionType = typeof FrameButtonActionType[keyof typeof FrameButtonActionType];

@@ -20,31 +20,31 @@ import type { ChannelMemberRole } from './channel-member-role';
 /**
  * 
  * @export
- * @interface RemoveChannelMemberRequest
+ * @interface RemoveChannelMemberReqBody
  */
-export interface RemoveChannelMemberRequest {
+export interface RemoveChannelMemberReqBody {
     /**
      * UUID of the signer
      * @type {string}
-     * @memberof RemoveChannelMemberRequest
+     * @memberof RemoveChannelMemberReqBody
      */
     'signer_uuid': string;
     /**
      * The unique identifier of a farcaster channel
      * @type {string}
-     * @memberof RemoveChannelMemberRequest
+     * @memberof RemoveChannelMemberReqBody
      */
     'channel_id': string;
     /**
      * The unique identifier of a farcaster user (unsigned integer)
      * @type {number}
-     * @memberof RemoveChannelMemberRequest
+     * @memberof RemoveChannelMemberReqBody
      */
     'fid': number;
     /**
      * 
      * @type {ChannelMemberRole}
-     * @memberof RemoveChannelMemberRequest
+     * @memberof RemoveChannelMemberReqBody
      */
     'role': ChannelMemberRole;
 }

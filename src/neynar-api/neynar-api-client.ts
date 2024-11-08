@@ -37,8 +37,6 @@ import {
   UsersActiveChannelsResponse,
   NeynarFrame,
   DeleteFrameResponse,
-  NeynarFrameUpdateRequest,
-  NeynarFrameCreationRequest,
   UserFIDResponse,
   RegisterUserResponse,
   DeveloperManagedSigner,
@@ -85,6 +83,8 @@ import {
   FarcasterActionReqBodyAction,
   UpdateUserReqBodyLocation,
   PostCastReqBodyEmbeds,
+  NeynarFrameUpdateReqBody,
+  NeynarFrameCreationReqBody,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -773,7 +773,7 @@ export class NeynarAPIClient {
   }
 
   /**
-   * Retrieves information status of a signer by passing in a signer_uuid
+   * Retrieves information status of a signer by passing in a signerUuid
    *
    * @param {string} signerUuid - The unique identifier (UUID) of the signer to be fetched.
    *
@@ -786,7 +786,7 @@ export class NeynarAPIClient {
    *   console.log('Signer Details:', response); // Outputs the details of the signer
    * });
    *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/signer).
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/lookup-signer).
    */
   public async lookupSigner(signerUuid: string): Promise<Signer> {
     return await this.clients.v2.lookupSigner(signerUuid);
@@ -869,7 +869,7 @@ export class NeynarAPIClient {
    *   console.log('Developer Managed Signer Status:', response);
    * });
    *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/developer-managed-signer).
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/lookup-developer-managed-signer).
    */
   public async lookupDeveloperManagedSigner(
     publicKey: string
@@ -1062,37 +1062,6 @@ export class NeynarAPIClient {
    */
   public async fetchPowerUsersLite(): Promise<UserPowerLiteResponse> {
     return await this.clients.v2.fetchPowerUsersLite();
-  }
-
-  /**
-   * Retrieves a list of active users, where "active" is determined by the Warpcast active algorithm.
-   * The information about active users is updated every 12 hours. This method is ideal for identifying
-   * users who are currently engaging with the platform.
-   *
-   * @param {Object} [options] - Optional parameters to customize the request.
-   * @param {number} [options.limit] - Number of results to retrieve, with a default of 25 and a maximum of 150.
-   * @param {string} [options.cursor] - Pagination cursor for fetching specific subsets of results.
-   *  Omit this parameter for the initial request.
-   *
-   * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
-   *   containing a list of active users and any relevant pagination information.
-   *
-   * @example
-   * // Example: Fetch a list of active users with a limit and pagination cursor
-   * client.fetchActiveUsers({
-   *  limit: 50,
-   *  // cursor: "nextPageCursor" // Omit this parameter for the initial request
-   * }).then(response => {
-   *   console.log('Active Users:', response);
-   * });
-   *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/active-users).
-   */
-  public async fetchActiveUsers(options?: {
-    limit?: number;
-    cursor?: string;
-  }): Promise<UsersResponse> {
-    return await this.clients.v2.fetchActiveUsers(options);
   }
 
   /**
@@ -1525,25 +1494,25 @@ export class NeynarAPIClient {
     return await this.clients.v2.lookupUserByUsernameV2(username, options);
   }
 
-    /**
+  /**
    * Retrieves users by their location, specified by latitude and longitude coordinates.
-   * 
+   *
    * @param {number} latitude - The latitude coordinate of the location.
    * @param {number} longitude - The longitude coordinate of the location.
    * @param {Object} [options] - Optional parameters to tailor the request.
    * @param {number} [options.viewerFid] - The FID of the user viewing this information, used for providing contextual data specific to the viewer.
    * @param {number} [options.limit] - The number of users to fetch per request. Defaults to 25 with a maximum of 100.
    * @param {string} [options.cursor] - Pagination cursor for fetching specific subsets of results.
-   * 
-   * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object, 
+   *
+   * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
    *   containing information about the users at the specified location.
-   * 
+   *
    * @example
    * // Example: Fetch users by location with viewer fid
    * client.fetchUsersByLocation(37.7749, -122.4194, {viewerFid: 3}).then(response => {
    *  console.log('Users by Location:', response);
    * });
-   * 
+   *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/user-by-location).
    */
   public async fetchUsersByLocation(
@@ -1555,7 +1524,11 @@ export class NeynarAPIClient {
       cursor?: string;
     }
   ): Promise<UsersResponse> {
-    return await this.clients.v2.fetchUsersByLocation(latitude, longitude, options);
+    return await this.clients.v2.fetchUsersByLocation(
+      latitude,
+      longitude,
+      options
+    );
   }
 
   // ------------ Cast ------------
@@ -2489,54 +2462,6 @@ export class NeynarAPIClient {
   }
 
   /**
-   * Retrieves a list of users who are active in a given channel, ordered by ascending FIDs
-   *
-   * @param {string} id - Channel ID for the channel being queried
-   * @param {boolean} hasRootCastAuthors - Include users who posted the root cast in the channel
-   * @param {Object} [options] - Optional parameters for the request
-   * @param {boolean} [options.hasCastLikers] - Include users who liked a cast in the channel
-   * @param {boolean} [options.hasCastRecasters] - Include users who recasted a cast in the channel
-   * @param {boolean} [options.hasReplyAuthors] - Include users who replied to a cast in the channel
-   * @param {number} [options.limit] - Number of results to retrieve (default 25, max 100).
-   * @param {string} [options.cursor] - Pagination cursor for the next set of results,
-   *   omit this parameter for the initial request.
-   *
-   * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object,
-   *  containing the users active in the specified channel.
-   *
-   * @example
-   * // Example: Retrieve active users in a channel
-   * client.fetchActiveUsersInSingleChannel('neynar', true, {
-   *  hasCastLikers: true,
-   *  hasCastRecasters: true,
-   *  hasReplyAuthors: true,
-   *  limit: 10
-   *  // cursor: "nextPageCursor" // Omit this parameter for the initial request.
-   * }).then(response => {
-   *  console.log('Active Users:', response);
-   * });
-   *
-   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/channel-users).
-   */
-  public async fetchActiveUsersInSingleChannel(
-    id: string,
-    hasRootCastAuthors: boolean,
-    options?: {
-      hasCastLikers?: boolean;
-      hasCastRecasters?: boolean;
-      hasReplyAuthors?: boolean;
-      limit?: number;
-      cursor?: string;
-    }
-  ): Promise<UsersResponse> {
-    return await this.clients.v2.fetchActiveUsersInSingleChannel(
-      id,
-      hasRootCastAuthors,
-      options
-    );
-  }
-
-  /**
    * Follow a channel.
    *
    * @param {string} signerUuid - UUID of the signer who is following the channel.
@@ -3237,7 +3162,7 @@ export class NeynarAPIClient {
    * Creates a new frame with a list of pages. This method enables developers to add new frames
    * to their content offerings, identified by the provided API key.
    *
-   * @param {NeynarFrameCreationRequest} neynarFrameCreationRequest - The request object containing the details for the new frame.
+   * @param {NeynarFrameCreationReqBody} neynarFrameCreationRequest - The request object containing the details for the new frame.
    *
    * @returns {Promise<NeynarFrame>} A promise that resolves to the newly created frame object.
    *
@@ -3254,7 +3179,7 @@ export class NeynarAPIClient {
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/publish-neynar-frame).
    */
   public async publishNeynarFrame(
-    neynarFrameCreationRequest: NeynarFrameCreationRequest
+    neynarFrameCreationRequest: NeynarFrameCreationReqBody
   ): Promise<NeynarFrame> {
     return await this.clients.v2.publishNeynarFrame(neynarFrameCreationRequest);
   }
@@ -3263,7 +3188,7 @@ export class NeynarAPIClient {
    * Updates an existing frame with new content or properties, assuming the frame was created by the developer,
    * as identified by the provided API key. This method allows for modifying frames post-creation.
    *
-   * @param {NeynarFrameUpdateRequest} neynarFrame - The new content or properties for the frame being updated.
+   * @param {NeynarFrameUpdateReqBody} neynarFrame - The new content or properties for the frame being updated.
    *
    * @returns {Promise<NeynarFrame>} A promise that resolves to a `NeynarFrame` object,
    *   reflecting the updated state of the frame.
@@ -3281,7 +3206,7 @@ export class NeynarAPIClient {
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/update-neynar-frame).
    */
   public async updateNeynarFrame(
-    neynarFrame: NeynarFrameUpdateRequest
+    neynarFrame: NeynarFrameUpdateReqBody
   ): Promise<NeynarFrame> {
     return await this.clients.v2.updateNeynarFrame(neynarFrame);
   }

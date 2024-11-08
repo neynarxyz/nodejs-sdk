@@ -11,6 +11,7 @@ index.ts
 models/conflict-error-res.ts
 models/error-res.ts
 models/index.ts
+models/subscription-check-response.ts
 models/subscription-status.ts
 models/subscription-tier-price.ts
 models/subscription-tier.ts

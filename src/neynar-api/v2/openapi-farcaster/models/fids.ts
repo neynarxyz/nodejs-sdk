@@ -15,16 +15,10 @@
 
 
 /**
- * 
+ * List of FIDs
  * @export
- * @interface WebhookPutReqBodyAllOf
+ * @interface Fids
  */
-export interface WebhookPutReqBodyAllOf {
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookPutReqBodyAllOf
-     */
-    'webhook_id': string;
+export interface Fids extends Array<number> {
 }
 

@@ -22,7 +22,6 @@
 
 export const ForYouProvider = {
     Openrank: 'openrank',
-    Karma3: 'karma3',
     Mbd: 'mbd'
 } as const;
 

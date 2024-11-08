@@ -15,19 +15,25 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { Fids } from './fids';
+import type { NeynarFramePage } from './neynar-frame-page';
 
 /**
  * 
  * @export
- * @interface UserPowerLiteResponseResult
+ * @interface NeynarFrameCreationReqBody
  */
-export interface UserPowerLiteResponseResult {
+export interface NeynarFrameCreationReqBody {
+    /**
+     * The name of the frame.
+     * @type {string}
+     * @memberof NeynarFrameCreationReqBody
+     */
+    'name': string;
     /**
      * 
-     * @type {Fids}
-     * @memberof UserPowerLiteResponseResult
+     * @type {Array<NeynarFramePage>}
+     * @memberof NeynarFrameCreationReqBody
      */
-    'fids': Fids;
+    'pages': Array<NeynarFramePage>;
 }
 

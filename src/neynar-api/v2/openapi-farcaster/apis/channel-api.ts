@@ -40,13 +40,15 @@ import type { ChannelType } from '../models';
 // @ts-ignore
 import type { ErrorRes } from '../models';
 // @ts-ignore
+import type { InviteChannelMemberReqBody } from '../models';
+// @ts-ignore
 import type { OperationResponse } from '../models';
 // @ts-ignore
 import type { RelevantFollowersResponse } from '../models';
 // @ts-ignore
-import type { RemoveChannelMemberRequest } from '../models';
+import type { RemoveChannelMemberReqBody } from '../models';
 // @ts-ignore
-import type { RespondChannelInviteRequest } from '../models';
+import type { RespondChannelInviteReqBody } from '../models';
 // @ts-ignore
 import type { TrendingChannelResponse } from '../models';
 // @ts-ignore
@@ -60,17 +62,508 @@ import type { UsersResponse } from '../models';
 export const ChannelApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Fetches all channels that a user has casted in, in reverse chronological order.
-         * @summary Fetch channels that user is active in
-         * @param {number} fid The user\&#39;s FID (identifier)
-         * @param {number} [limit] Number of results to fetch (default 20, max 100).
-         * @param {string} [cursor] Pagination cursor.
+         * Returns a list of all channels with their details
+         * @summary Fetch all channels with their details
+         * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 200)
+         * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<ChannelListResponse>} A promise that resolves to a `ChannelListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-all-channels)
+         * 
          */
-        activeChannels: async (fid: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchAllChannels: async (limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/farcaster/channel/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns details of multiple channels
+         * @summary Bulk fetch
+         * @param {string} ids Comma separated list of channel IDs or parent_urls, up to 100 at a time 
+         * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to ID. 
+         * @param {number} [viewer_fid] FID of the user viewing the channels. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<ChannelResponseBulk>} A promise that resolves to a `ChannelResponseBulk` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-channels)
+         * 
+         */
+        fetchBulkChannels: async (ids: string, type?: ChannelType, viewer_fid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'ids' is not null or undefined
+            assertParamExists('fetchBulkChannels', 'ids', ids)
+            const localVarPath = `/farcaster/channel/bulk`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (ids !== undefined) {
+                localVarQueryParameter['ids'] = ids;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (viewer_fid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.
+         * @summary Open invites
+         * @param {string} [channel_id] Channel ID for the channel being queried 
+         * @param {number} [invited_fid] FID of the user being invited 
+         * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
+         * @param {string} [cursor] Pagination cursor. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<ChannelMemberInviteListResponse>} A promise that resolves to a `ChannelMemberInviteListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-channel-invites)
+         * 
+         */
+        fetchChannelInvites: async (channel_id?: string, invited_fid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/farcaster/channel/member/invite/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (channel_id !== undefined) {
+                localVarQueryParameter['channel_id'] = channel_id;
+            }
+
+            if (invited_fid !== undefined) {
+                localVarQueryParameter['invited_fid'] = invited_fid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch a list of members in a channel
+         * @summary Fetch members
+         * @param {string} channel_id Channel ID for the channel being queried 
+         * @param {number} [fid] FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members. 
+         * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
+         * @param {string} [cursor] Pagination cursor. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<ChannelMemberListResponse>} A promise that resolves to a `ChannelMemberListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-channel-members)
+         * 
+         */
+        fetchChannelMembers: async (channel_id: string, fid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'channel_id' is not null or undefined
+            assertParamExists('fetchChannelMembers', 'channel_id', channel_id)
+            const localVarPath = `/farcaster/channel/member/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (channel_id !== undefined) {
+                localVarQueryParameter['channel_id'] = channel_id;
+            }
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
+         * @summary For channel
+         * @param {string} id Channel ID for the channel being queried 
+         * @param {number} [viewer_fid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {string} [cursor] Pagination cursor. 
+         * @param {number} [limit] Number of followers to fetch  (Default: 25, Maximum: 1000)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-followers-for-a-channel)
+         * 
+         */
+        fetchFollowersForAChannel: async (id: string, viewer_fid?: number, cursor?: string, limit?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('fetchFollowersForAChannel', 'id', id)
+            const localVarPath = `/farcaster/channel/followers`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
+            }
+
+            if (viewer_fid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
+         * @summary Relevant followers
+         * @param {string} id Channel ID being queried 
+         * @param {number} viewer_fid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<RelevantFollowersResponse>} A promise that resolves to a `RelevantFollowersResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-relevant-followers-for-a-channel)
+         * 
+         */
+        fetchRelevantFollowersForAChannel: async (id: string, viewer_fid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('fetchRelevantFollowersForAChannel', 'id', id)
+            // verify required parameter 'viewer_fid' is not null or undefined
+            assertParamExists('fetchRelevantFollowersForAChannel', 'viewer_fid', viewer_fid)
+            const localVarPath = `/farcaster/channel/followers/relevant`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
+            }
+
+            if (viewer_fid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of trending channels based on activity
+         * @summary Channels by activity
+         * @param {FetchTrendingChannelsTimeWindowEnum} [time_window]  
+         * @param {number} [limit] Number of results to fetch  (Default: 10, Maximum: 25)
+         * @param {string} [cursor] Pagination cursor. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<TrendingChannelResponse>} A promise that resolves to a `TrendingChannelResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-trending-channels)
+         * 
+         */
+        fetchTrendingChannels: async (time_window?: FetchTrendingChannelsTimeWindowEnum, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/farcaster/channel/trending`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (time_window !== undefined) {
+                localVarQueryParameter['time_window'] = time_window;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour.
+         * @summary Member of
+         * @param {number} fid The FID of the user. 
+         * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
+         * @param {string} [cursor] Pagination cursor. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<ChannelMemberListResponse>} A promise that resolves to a `ChannelMemberListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-channel-memberships)
+         * 
+         */
+        fetchUserChannelMemberships: async (fid: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
-            assertParamExists('activeChannels', 'fid', fid)
+            assertParamExists('fetchUserChannelMemberships', 'fid', fid)
+            const localVarPath = `/farcaster/user/memberships/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of all channels with their details that a FID follows.
+         * @summary Following
+         * @param {number} fid The FID of the user. 
+         * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
+         * @param {string} [cursor] Pagination cursor. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<ChannelListResponse>} A promise that resolves to a `ChannelListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-channels)
+         * 
+         */
+        fetchUserChannels: async (fid: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('fetchUserChannels', 'fid', fid)
+            const localVarPath = `/farcaster/user/channels`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetches all channels that a user has casted in, in reverse chronological order.
+         * @summary Fetch channels that user is active in
+         * @param {number} fid The user\&#39;s FID (identifier) 
+         * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
+         * @param {string} [cursor] Pagination cursor. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<UsersActiveChannelsResponse>} A promise that resolves to a `UsersActiveChannelsResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-users-active-channels)
+         * 
+         */
+        fetchUsersActiveChannels: async (fid: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('fetchUsersActiveChannels', 'fid', fid)
             const localVarPath = `/farcaster/channel/user`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -110,17 +603,107 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Returns details of a channel
-         * @summary By ID or parent_url
-         * @param {string} id Channel ID for the channel being queried
-         * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to ID.
-         * @param {number} [viewerFid] FID of the user viewing the channel.
+         * Follow a channel
+         * @summary Follow a channel
+         * @param {ChannelFollowReqBody} channel_follow_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/follow-channel)
+         * 
          */
-        channelDetails: async (id: string, type?: ChannelType, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        followChannel: async (channel_follow_req_body: ChannelFollowReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'channel_follow_req_body' is not null or undefined
+            assertParamExists('followChannel', 'channel_follow_req_body', channel_follow_req_body)
+            const localVarPath = `/farcaster/channel/follow`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(channel_follow_req_body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Invite a user to a channel
+         * @summary Invite
+         * @param {InviteChannelMemberReqBody} invite_channel_member_req_body  
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/invite-channel-member)
+         * 
+         */
+        inviteChannelMember: async (invite_channel_member_req_body: InviteChannelMemberReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'invite_channel_member_req_body' is not null or undefined
+            assertParamExists('inviteChannelMember', 'invite_channel_member_req_body', invite_channel_member_req_body)
+            const localVarPath = `/farcaster/channel/member/invite`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(invite_channel_member_req_body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns details of a channel
+         * @summary By ID or parent_url
+         * @param {string} id Channel ID for the channel being queried 
+         * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to ID. 
+         * @param {number} [viewer_fid] FID of the user viewing the channel. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<ChannelResponse>} A promise that resolves to a `ChannelResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-channel)
+         * 
+         */
+        lookupChannel: async (id: string, type?: ChannelType, viewer_fid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('channelDetails', 'id', id)
+            assertParamExists('lookupChannel', 'id', id)
             const localVarPath = `/farcaster/channel`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -144,461 +727,8 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['type'] = type;
             }
 
-            if (viewerFid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewerFid;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Returns details of multiple channels
-         * @summary Bulk fetch
-         * @param {string} ids Comma separated list of channel IDs or parent_urls, up to 100 at a time
-         * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to ID.
-         * @param {number} [viewerFid] FID of the user viewing the channels.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        channelDetailsBulk: async (ids: string, type?: ChannelType, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'ids' is not null or undefined
-            assertParamExists('channelDetailsBulk', 'ids', ids)
-            const localVarPath = `/farcaster/channel/bulk`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (ids !== undefined) {
-                localVarQueryParameter['ids'] = ids;
-            }
-
-            if (type !== undefined) {
-                localVarQueryParameter['type'] = type;
-            }
-
-            if (viewerFid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewerFid;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
-         * @summary For channel
-         * @param {string} id Channel ID for the channel being queried
-         * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {string} [cursor] Pagination cursor.
-         * @param {number} [limit] Number of followers to fetch (default 25, max 1000)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        channelFollowers: async (id: string, viewerFid?: number, cursor?: string, limit?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('channelFollowers', 'id', id)
-            const localVarPath = `/farcaster/channel/followers`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (id !== undefined) {
-                localVarQueryParameter['id'] = id;
-            }
-
-            if (viewerFid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewerFid;
-            }
-
-            if (cursor !== undefined) {
-                localVarQueryParameter['cursor'] = cursor;
-            }
-
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Returns a list of users who are active in a given channel, ordered by ascending FIDs
-         * @summary Fetch users who are active in a channel
-         * @param {string} id Channel ID for the channel being queried
-         * @param {boolean} hasRootCastAuthors Include users who posted the root cast in the channel
-         * @param {boolean} [hasCastLikers] Include users who liked a cast in the channel
-         * @param {boolean} [hasCastRecasters] Include users who recasted a cast in the channel
-         * @param {boolean} [hasReplyAuthors] Include users who replied to a cast in the channel
-         * @param {string} [cursor] Pagination cursor.
-         * @param {number} [limit] Number of results to fetch (default 25, max 100)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        channelUsers: async (id: string, hasRootCastAuthors: boolean, hasCastLikers?: boolean, hasCastRecasters?: boolean, hasReplyAuthors?: boolean, cursor?: string, limit?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('channelUsers', 'id', id)
-            // verify required parameter 'hasRootCastAuthors' is not null or undefined
-            assertParamExists('channelUsers', 'hasRootCastAuthors', hasRootCastAuthors)
-            const localVarPath = `/farcaster/channel/users`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (id !== undefined) {
-                localVarQueryParameter['id'] = id;
-            }
-
-            if (hasRootCastAuthors !== undefined) {
-                localVarQueryParameter['has_root_cast_authors'] = hasRootCastAuthors;
-            }
-
-            if (hasCastLikers !== undefined) {
-                localVarQueryParameter['has_cast_likers'] = hasCastLikers;
-            }
-
-            if (hasCastRecasters !== undefined) {
-                localVarQueryParameter['has_cast_recasters'] = hasCastRecasters;
-            }
-
-            if (hasReplyAuthors !== undefined) {
-                localVarQueryParameter['has_reply_authors'] = hasReplyAuthors;
-            }
-
-            if (cursor !== undefined) {
-                localVarQueryParameter['cursor'] = cursor;
-            }
-
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Follow a channel
-         * @summary Follow a channel
-         * @param {ChannelFollowReqBody} channelFollowReqBody 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        followChannel: async (channelFollowReqBody: ChannelFollowReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'channelFollowReqBody' is not null or undefined
-            assertParamExists('followChannel', 'channelFollowReqBody', channelFollowReqBody)
-            const localVarPath = `/farcaster/channel/follow`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(channelFollowReqBody, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Invite a user to a channel
-         * @summary Invite
-         * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        inviteChannelMember: async (removeChannelMemberRequest: RemoveChannelMemberRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'removeChannelMemberRequest' is not null or undefined
-            assertParamExists('inviteChannelMember', 'removeChannelMemberRequest', removeChannelMemberRequest)
-            const localVarPath = `/farcaster/channel/member/invite`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(removeChannelMemberRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Returns a list of all channels with their details
-         * @summary Fetch all channels with their details
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        listAllChannels: async (limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/farcaster/channel/list`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-            if (cursor !== undefined) {
-                localVarQueryParameter['cursor'] = cursor;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.
-         * @summary Open invites
-         * @param {string} [channelId] Channel ID for the channel being queried
-         * @param {number} [invitedFid] FID of the user being invited
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        listChannelInvites: async (channelId?: string, invitedFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/farcaster/channel/member/invite/list`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (channelId !== undefined) {
-                localVarQueryParameter['channel_id'] = channelId;
-            }
-
-            if (invitedFid !== undefined) {
-                localVarQueryParameter['invited_fid'] = invitedFid;
-            }
-
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-            if (cursor !== undefined) {
-                localVarQueryParameter['cursor'] = cursor;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Fetch a list of members in a channel
-         * @summary Fetch members
-         * @param {string} channelId Channel ID for the channel being queried
-         * @param {number} [fid] FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members.
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        listChannelMembers: async (channelId: string, fid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'channelId' is not null or undefined
-            assertParamExists('listChannelMembers', 'channelId', channelId)
-            const localVarPath = `/farcaster/channel/member/list`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (channelId !== undefined) {
-                localVarQueryParameter['channel_id'] = channelId;
-            }
-
-            if (fid !== undefined) {
-                localVarQueryParameter['fid'] = fid;
-            }
-
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-            if (cursor !== undefined) {
-                localVarQueryParameter['cursor'] = cursor;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
-         * @summary Relevant followers
-         * @param {string} id Channel ID being queried
-         * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        relevantChannelFollowers: async (id: string, viewerFid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('relevantChannelFollowers', 'id', id)
-            // verify required parameter 'viewerFid' is not null or undefined
-            assertParamExists('relevantChannelFollowers', 'viewerFid', viewerFid)
-            const localVarPath = `/farcaster/channel/followers/relevant`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (id !== undefined) {
-                localVarQueryParameter['id'] = id;
-            }
-
-            if (viewerFid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewerFid;
+            if (viewer_fid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewer_fid;
             }
 
 
@@ -615,13 +745,17 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Remove a user from a channel or a user\'s invite to a channel role
          * @summary Remove user
-         * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
+         * @param {RemoveChannelMemberReqBody} remove_channel_member_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/remove-channel-member)
+         * 
          */
-        removeChannelMember: async (removeChannelMemberRequest: RemoveChannelMemberRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'removeChannelMemberRequest' is not null or undefined
-            assertParamExists('removeChannelMember', 'removeChannelMemberRequest', removeChannelMemberRequest)
+        removeChannelMember: async (remove_channel_member_req_body: RemoveChannelMemberReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'remove_channel_member_req_body' is not null or undefined
+            assertParamExists('removeChannelMember', 'remove_channel_member_req_body', remove_channel_member_req_body)
             const localVarPath = `/farcaster/channel/member`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -644,7 +778,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(removeChannelMemberRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(remove_channel_member_req_body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -654,13 +788,17 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Accept or reject a channel invite
          * @summary Accept or reject an invite
-         * @param {RespondChannelInviteRequest} respondChannelInviteRequest 
+         * @param {RespondChannelInviteReqBody} respond_channel_invite_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/respond-channel-invite)
+         * 
          */
-        respondChannelInvite: async (respondChannelInviteRequest: RespondChannelInviteRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'respondChannelInviteRequest' is not null or undefined
-            assertParamExists('respondChannelInvite', 'respondChannelInviteRequest', respondChannelInviteRequest)
+        respondChannelInvite: async (respond_channel_invite_req_body: RespondChannelInviteReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'respond_channel_invite_req_body' is not null or undefined
+            assertParamExists('respondChannelInvite', 'respond_channel_invite_req_body', respond_channel_invite_req_body)
             const localVarPath = `/farcaster/channel/member/invite`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -683,7 +821,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(respondChannelInviteRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(respond_channel_invite_req_body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -693,11 +831,15 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Returns a list of channels based on ID or name
          * @summary Search by ID or name
-         * @param {string} q Channel ID or name for the channel being queried
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor.
+         * @param {string} q Channel ID or name for the channel being queried 
+         * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 200)
+         * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<ChannelSearchResponse>} A promise that resolves to a `ChannelSearchResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/search-channels)
+         * 
          */
         searchChannels: async (q: string, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'q' is not null or undefined
@@ -741,63 +883,19 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Returns a list of trending channels based on activity
-         * @summary Channels by activity
-         * @param {TrendingChannelsTimeWindowEnum} [timeWindow] 
-         * @param {number} [limit] Number of results to fetch (default 10, max 25)
-         * @param {string} [cursor] Pagination cursor.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        trendingChannels: async (timeWindow?: TrendingChannelsTimeWindowEnum, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/farcaster/channel/trending`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (timeWindow !== undefined) {
-                localVarQueryParameter['time_window'] = timeWindow;
-            }
-
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-            if (cursor !== undefined) {
-                localVarQueryParameter['cursor'] = cursor;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Unfollow a channel
          * @summary Unfollow a channel
-         * @param {ChannelFollowReqBody} channelFollowReqBody 
+         * @param {ChannelFollowReqBody} channel_follow_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/unfollow-channel)
+         * 
          */
-        unfollowChannel: async (channelFollowReqBody: ChannelFollowReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'channelFollowReqBody' is not null or undefined
-            assertParamExists('unfollowChannel', 'channelFollowReqBody', channelFollowReqBody)
+        unfollowChannel: async (channel_follow_req_body: ChannelFollowReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'channel_follow_req_body' is not null or undefined
+            assertParamExists('unfollowChannel', 'channel_follow_req_body', channel_follow_req_body)
             const localVarPath = `/farcaster/channel/follow`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -820,107 +918,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(channelFollowReqBody, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour.
-         * @summary Member of
-         * @param {number} fid The FID of the user.
-         * @param {number} [limit] Number of results to fetch (default 20, max 100)
-         * @param {string} [cursor] Pagination cursor.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        userChannelMemberships: async (fid: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'fid' is not null or undefined
-            assertParamExists('userChannelMemberships', 'fid', fid)
-            const localVarPath = `/farcaster/user/memberships/list`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (fid !== undefined) {
-                localVarQueryParameter['fid'] = fid;
-            }
-
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-            if (cursor !== undefined) {
-                localVarQueryParameter['cursor'] = cursor;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Returns a list of all channels with their details that a FID follows.
-         * @summary Following
-         * @param {number} fid The FID of the user.
-         * @param {number} [limit] Number of results to fetch (default 25, max 100)
-         * @param {string} [cursor] Pagination cursor.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        userChannels: async (fid: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'fid' is not null or undefined
-            assertParamExists('userChannels', 'fid', fid)
-            const localVarPath = `/farcaster/user/channels`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (fid !== undefined) {
-                localVarQueryParameter['fid'] = fid;
-            }
-
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-            if (cursor !== undefined) {
-                localVarQueryParameter['cursor'] = cursor;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(channel_follow_req_body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -938,94 +936,209 @@ export const ChannelApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ChannelApiAxiosParamCreator(configuration)
     return {
         /**
-         * Fetches all channels that a user has casted in, in reverse chronological order.
-         * @summary Fetch channels that user is active in
-         * @param {number} fid The user\&#39;s FID (identifier)
-         * @param {number} [limit] Number of results to fetch (default 20, max 100).
-         * @param {string} [cursor] Pagination cursor.
+         * Returns a list of all channels with their details
+         * @summary Fetch all channels with their details
+         * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 200)
+         * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<ChannelListResponse>} A promise that resolves to a `ChannelListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-all-channels)
+         * 
          */
-        async activeChannels(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersActiveChannelsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.activeChannels(fid, limit, cursor, options);
+        async fetchAllChannels(limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchAllChannels(limit, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ChannelApi.activeChannels']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Returns details of a channel
-         * @summary By ID or parent_url
-         * @param {string} id Channel ID for the channel being queried
-         * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to ID.
-         * @param {number} [viewerFid] FID of the user viewing the channel.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async channelDetails(id: string, type?: ChannelType, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.channelDetails(id, type, viewerFid, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ChannelApi.channelDetails']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.fetchAllChannels']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Returns details of multiple channels
          * @summary Bulk fetch
-         * @param {string} ids Comma separated list of channel IDs or parent_urls, up to 100 at a time
-         * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to ID.
-         * @param {number} [viewerFid] FID of the user viewing the channels.
+         * @param {string} ids Comma separated list of channel IDs or parent_urls, up to 100 at a time 
+         * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to ID. 
+         * @param {number} [viewer_fid] FID of the user viewing the channels. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<ChannelResponseBulk>} A promise that resolves to a `ChannelResponseBulk` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-channels)
+         * 
          */
-        async channelDetailsBulk(ids: string, type?: ChannelType, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelResponseBulk>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.channelDetailsBulk(ids, type, viewerFid, options);
+        async fetchBulkChannels(ids: string, type?: ChannelType, viewer_fid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelResponseBulk>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchBulkChannels(ids, type, viewer_fid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ChannelApi.channelDetailsBulk']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.fetchBulkChannels']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.
+         * @summary Open invites
+         * @param {string} [channel_id] Channel ID for the channel being queried 
+         * @param {number} [invited_fid] FID of the user being invited 
+         * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
+         * @param {string} [cursor] Pagination cursor. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<ChannelMemberInviteListResponse>} A promise that resolves to a `ChannelMemberInviteListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-channel-invites)
+         * 
+         */
+        async fetchChannelInvites(channel_id?: string, invited_fid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelMemberInviteListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchChannelInvites(channel_id, invited_fid, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.fetchChannelInvites']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetch a list of members in a channel
+         * @summary Fetch members
+         * @param {string} channel_id Channel ID for the channel being queried 
+         * @param {number} [fid] FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members. 
+         * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
+         * @param {string} [cursor] Pagination cursor. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<ChannelMemberListResponse>} A promise that resolves to a `ChannelMemberListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-channel-members)
+         * 
+         */
+        async fetchChannelMembers(channel_id: string, fid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelMemberListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchChannelMembers(channel_id, fid, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.fetchChannelMembers']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
          * @summary For channel
-         * @param {string} id Channel ID for the channel being queried
-         * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {string} [cursor] Pagination cursor.
-         * @param {number} [limit] Number of followers to fetch (default 25, max 1000)
+         * @param {string} id Channel ID for the channel being queried 
+         * @param {number} [viewer_fid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {string} [cursor] Pagination cursor. 
+         * @param {number} [limit] Number of followers to fetch  (Default: 25, Maximum: 1000)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-followers-for-a-channel)
+         * 
          */
-        async channelFollowers(id: string, viewerFid?: number, cursor?: string, limit?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.channelFollowers(id, viewerFid, cursor, limit, options);
+        async fetchFollowersForAChannel(id: string, viewer_fid?: number, cursor?: string, limit?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchFollowersForAChannel(id, viewer_fid, cursor, limit, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ChannelApi.channelFollowers']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.fetchFollowersForAChannel']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Returns a list of users who are active in a given channel, ordered by ascending FIDs
-         * @summary Fetch users who are active in a channel
-         * @param {string} id Channel ID for the channel being queried
-         * @param {boolean} hasRootCastAuthors Include users who posted the root cast in the channel
-         * @param {boolean} [hasCastLikers] Include users who liked a cast in the channel
-         * @param {boolean} [hasCastRecasters] Include users who recasted a cast in the channel
-         * @param {boolean} [hasReplyAuthors] Include users who replied to a cast in the channel
-         * @param {string} [cursor] Pagination cursor.
-         * @param {number} [limit] Number of results to fetch (default 25, max 100)
+         * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
+         * @summary Relevant followers
+         * @param {string} id Channel ID being queried 
+         * @param {number} viewer_fid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<RelevantFollowersResponse>} A promise that resolves to a `RelevantFollowersResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-relevant-followers-for-a-channel)
+         * 
          */
-        async channelUsers(id: string, hasRootCastAuthors: boolean, hasCastLikers?: boolean, hasCastRecasters?: boolean, hasReplyAuthors?: boolean, cursor?: string, limit?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.channelUsers(id, hasRootCastAuthors, hasCastLikers, hasCastRecasters, hasReplyAuthors, cursor, limit, options);
+        async fetchRelevantFollowersForAChannel(id: string, viewer_fid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RelevantFollowersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchRelevantFollowersForAChannel(id, viewer_fid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ChannelApi.channelUsers']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.fetchRelevantFollowersForAChannel']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Returns a list of trending channels based on activity
+         * @summary Channels by activity
+         * @param {FetchTrendingChannelsTimeWindowEnum} [time_window]  
+         * @param {number} [limit] Number of results to fetch  (Default: 10, Maximum: 25)
+         * @param {string} [cursor] Pagination cursor. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<TrendingChannelResponse>} A promise that resolves to a `TrendingChannelResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-trending-channels)
+         * 
+         */
+        async fetchTrendingChannels(time_window?: FetchTrendingChannelsTimeWindowEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TrendingChannelResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchTrendingChannels(time_window, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.fetchTrendingChannels']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour.
+         * @summary Member of
+         * @param {number} fid The FID of the user. 
+         * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
+         * @param {string} [cursor] Pagination cursor. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<ChannelMemberListResponse>} A promise that resolves to a `ChannelMemberListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-channel-memberships)
+         * 
+         */
+        async fetchUserChannelMemberships(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelMemberListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserChannelMemberships(fid, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.fetchUserChannelMemberships']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Returns a list of all channels with their details that a FID follows.
+         * @summary Following
+         * @param {number} fid The FID of the user. 
+         * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
+         * @param {string} [cursor] Pagination cursor. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<ChannelListResponse>} A promise that resolves to a `ChannelListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-channels)
+         * 
+         */
+        async fetchUserChannels(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserChannels(fid, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.fetchUserChannels']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetches all channels that a user has casted in, in reverse chronological order.
+         * @summary Fetch channels that user is active in
+         * @param {number} fid The user\&#39;s FID (identifier) 
+         * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
+         * @param {string} [cursor] Pagination cursor. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<UsersActiveChannelsResponse>} A promise that resolves to a `UsersActiveChannelsResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-users-active-channels)
+         * 
+         */
+        async fetchUsersActiveChannels(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersActiveChannelsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUsersActiveChannels(fid, limit, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.fetchUsersActiveChannels']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Follow a channel
          * @summary Follow a channel
-         * @param {ChannelFollowReqBody} channelFollowReqBody 
+         * @param {ChannelFollowReqBody} channel_follow_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/follow-channel)
+         * 
          */
-        async followChannel(channelFollowReqBody: ChannelFollowReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.followChannel(channelFollowReqBody, options);
+        async followChannel(channel_follow_req_body: ChannelFollowReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.followChannel(channel_follow_req_body, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChannelApi.followChannel']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1033,85 +1146,52 @@ export const ChannelApiFp = function(configuration?: Configuration) {
         /**
          * Invite a user to a channel
          * @summary Invite
-         * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
+         * @param {InviteChannelMemberReqBody} invite_channel_member_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/invite-channel-member)
+         * 
          */
-        async inviteChannelMember(removeChannelMemberRequest: RemoveChannelMemberRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.inviteChannelMember(removeChannelMemberRequest, options);
+        async inviteChannelMember(invite_channel_member_req_body: InviteChannelMemberReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.inviteChannelMember(invite_channel_member_req_body, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChannelApi.inviteChannelMember']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Returns a list of all channels with their details
-         * @summary Fetch all channels with their details
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor.
+         * Returns details of a channel
+         * @summary By ID or parent_url
+         * @param {string} id Channel ID for the channel being queried 
+         * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to ID. 
+         * @param {number} [viewer_fid] FID of the user viewing the channel. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<ChannelResponse>} A promise that resolves to a `ChannelResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-channel)
+         * 
          */
-        async listAllChannels(limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.listAllChannels(limit, cursor, options);
+        async lookupChannel(id: string, type?: ChannelType, viewer_fid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupChannel(id, type, viewer_fid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ChannelApi.listAllChannels']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.
-         * @summary Open invites
-         * @param {string} [channelId] Channel ID for the channel being queried
-         * @param {number} [invitedFid] FID of the user being invited
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async listChannelInvites(channelId?: string, invitedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelMemberInviteListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.listChannelInvites(channelId, invitedFid, limit, cursor, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ChannelApi.listChannelInvites']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Fetch a list of members in a channel
-         * @summary Fetch members
-         * @param {string} channelId Channel ID for the channel being queried
-         * @param {number} [fid] FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members.
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async listChannelMembers(channelId: string, fid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelMemberListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.listChannelMembers(channelId, fid, limit, cursor, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ChannelApi.listChannelMembers']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
-         * @summary Relevant followers
-         * @param {string} id Channel ID being queried
-         * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async relevantChannelFollowers(id: string, viewerFid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RelevantFollowersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.relevantChannelFollowers(id, viewerFid, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ChannelApi.relevantChannelFollowers']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ChannelApi.lookupChannel']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Remove a user from a channel or a user\'s invite to a channel role
          * @summary Remove user
-         * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
+         * @param {RemoveChannelMemberReqBody} remove_channel_member_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/remove-channel-member)
+         * 
          */
-        async removeChannelMember(removeChannelMemberRequest: RemoveChannelMemberRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.removeChannelMember(removeChannelMemberRequest, options);
+        async removeChannelMember(remove_channel_member_req_body: RemoveChannelMemberReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.removeChannelMember(remove_channel_member_req_body, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChannelApi.removeChannelMember']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1119,12 +1199,16 @@ export const ChannelApiFp = function(configuration?: Configuration) {
         /**
          * Accept or reject a channel invite
          * @summary Accept or reject an invite
-         * @param {RespondChannelInviteRequest} respondChannelInviteRequest 
+         * @param {RespondChannelInviteReqBody} respond_channel_invite_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/respond-channel-invite)
+         * 
          */
-        async respondChannelInvite(respondChannelInviteRequest: RespondChannelInviteRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.respondChannelInvite(respondChannelInviteRequest, options);
+        async respondChannelInvite(respond_channel_invite_req_body: RespondChannelInviteReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.respondChannelInvite(respond_channel_invite_req_body, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChannelApi.respondChannelInvite']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1132,11 +1216,15 @@ export const ChannelApiFp = function(configuration?: Configuration) {
         /**
          * Returns a list of channels based on ID or name
          * @summary Search by ID or name
-         * @param {string} q Channel ID or name for the channel being queried
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor.
+         * @param {string} q Channel ID or name for the channel being queried 
+         * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 200)
+         * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<ChannelSearchResponse>} A promise that resolves to a `ChannelSearchResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/search-channels)
+         * 
          */
         async searchChannels(q: string, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelSearchResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.searchChannels(q, limit, cursor, options);
@@ -1145,61 +1233,20 @@ export const ChannelApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Returns a list of trending channels based on activity
-         * @summary Channels by activity
-         * @param {TrendingChannelsTimeWindowEnum} [timeWindow] 
-         * @param {number} [limit] Number of results to fetch (default 10, max 25)
-         * @param {string} [cursor] Pagination cursor.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async trendingChannels(timeWindow?: TrendingChannelsTimeWindowEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TrendingChannelResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.trendingChannels(timeWindow, limit, cursor, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ChannelApi.trendingChannels']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Unfollow a channel
          * @summary Unfollow a channel
-         * @param {ChannelFollowReqBody} channelFollowReqBody 
+         * @param {ChannelFollowReqBody} channel_follow_req_body  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/unfollow-channel)
+         * 
          */
-        async unfollowChannel(channelFollowReqBody: ChannelFollowReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.unfollowChannel(channelFollowReqBody, options);
+        async unfollowChannel(channel_follow_req_body: ChannelFollowReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.unfollowChannel(channel_follow_req_body, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChannelApi.unfollowChannel']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour.
-         * @summary Member of
-         * @param {number} fid The FID of the user.
-         * @param {number} [limit] Number of results to fetch (default 20, max 100)
-         * @param {string} [cursor] Pagination cursor.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async userChannelMemberships(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelMemberListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userChannelMemberships(fid, limit, cursor, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ChannelApi.userChannelMemberships']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Returns a list of all channels with their details that a FID follows.
-         * @summary Following
-         * @param {number} fid The FID of the user.
-         * @param {number} [limit] Number of results to fetch (default 25, max 100)
-         * @param {string} [cursor] Pagination cursor.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async userChannels(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userChannels(fid, limit, cursor, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ChannelApi.userChannels']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -1213,218 +1260,988 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
     const localVarFp = ChannelApiFp(configuration)
     return {
         /**
-         * Fetches all channels that a user has casted in, in reverse chronological order.
-         * @summary Fetch channels that user is active in
-         * @param {number} fid The user\&#39;s FID (identifier)
-         * @param {number} [limit] Number of results to fetch (default 20, max 100).
-         * @param {string} [cursor] Pagination cursor.
+         * Returns a list of all channels with their details
+         * @summary Fetch all channels with their details
+         * @param {ChannelApiFetchAllChannelsRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<ChannelListResponse>} A promise that resolves to a `ChannelListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-all-channels)
+         * 
          */
-        activeChannels(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<UsersActiveChannelsResponse> {
-            return localVarFp.activeChannels(fid, limit, cursor, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Returns details of a channel
-         * @summary By ID or parent_url
-         * @param {string} id Channel ID for the channel being queried
-         * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to ID.
-         * @param {number} [viewerFid] FID of the user viewing the channel.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        channelDetails(id: string, type?: ChannelType, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<ChannelResponse> {
-            return localVarFp.channelDetails(id, type, viewerFid, options).then((request) => request(axios, basePath));
+        fetchAllChannels(requestParameters: ChannelApiFetchAllChannelsRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ChannelListResponse> {
+            return localVarFp.fetchAllChannels(requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns details of multiple channels
          * @summary Bulk fetch
-         * @param {string} ids Comma separated list of channel IDs or parent_urls, up to 100 at a time
-         * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to ID.
-         * @param {number} [viewerFid] FID of the user viewing the channels.
+         * @param {ChannelApiFetchBulkChannelsRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<ChannelResponseBulk>} A promise that resolves to a `ChannelResponseBulk` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-channels)
+         * 
          */
-        channelDetailsBulk(ids: string, type?: ChannelType, viewerFid?: number, options?: RawAxiosRequestConfig): AxiosPromise<ChannelResponseBulk> {
-            return localVarFp.channelDetailsBulk(ids, type, viewerFid, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
-         * @summary For channel
-         * @param {string} id Channel ID for the channel being queried
-         * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-         * @param {string} [cursor] Pagination cursor.
-         * @param {number} [limit] Number of followers to fetch (default 25, max 1000)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        channelFollowers(id: string, viewerFid?: number, cursor?: string, limit?: number, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
-            return localVarFp.channelFollowers(id, viewerFid, cursor, limit, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Returns a list of users who are active in a given channel, ordered by ascending FIDs
-         * @summary Fetch users who are active in a channel
-         * @param {string} id Channel ID for the channel being queried
-         * @param {boolean} hasRootCastAuthors Include users who posted the root cast in the channel
-         * @param {boolean} [hasCastLikers] Include users who liked a cast in the channel
-         * @param {boolean} [hasCastRecasters] Include users who recasted a cast in the channel
-         * @param {boolean} [hasReplyAuthors] Include users who replied to a cast in the channel
-         * @param {string} [cursor] Pagination cursor.
-         * @param {number} [limit] Number of results to fetch (default 25, max 100)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        channelUsers(id: string, hasRootCastAuthors: boolean, hasCastLikers?: boolean, hasCastRecasters?: boolean, hasReplyAuthors?: boolean, cursor?: string, limit?: number, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
-            return localVarFp.channelUsers(id, hasRootCastAuthors, hasCastLikers, hasCastRecasters, hasReplyAuthors, cursor, limit, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Follow a channel
-         * @summary Follow a channel
-         * @param {ChannelFollowReqBody} channelFollowReqBody 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        followChannel(channelFollowReqBody: ChannelFollowReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.followChannel(channelFollowReqBody, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Invite a user to a channel
-         * @summary Invite
-         * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        inviteChannelMember(removeChannelMemberRequest: RemoveChannelMemberRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.inviteChannelMember(removeChannelMemberRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Returns a list of all channels with their details
-         * @summary Fetch all channels with their details
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        listAllChannels(limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChannelListResponse> {
-            return localVarFp.listAllChannels(limit, cursor, options).then((request) => request(axios, basePath));
+        fetchBulkChannels(requestParameters: ChannelApiFetchBulkChannelsRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChannelResponseBulk> {
+            return localVarFp.fetchBulkChannels(requestParameters.ids, requestParameters.type, requestParameters.viewer_fid, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.
          * @summary Open invites
-         * @param {string} [channelId] Channel ID for the channel being queried
-         * @param {number} [invitedFid] FID of the user being invited
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor.
+         * @param {ChannelApiFetchChannelInvitesRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<ChannelMemberInviteListResponse>} A promise that resolves to a `ChannelMemberInviteListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-channel-invites)
+         * 
          */
-        listChannelInvites(channelId?: string, invitedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChannelMemberInviteListResponse> {
-            return localVarFp.listChannelInvites(channelId, invitedFid, limit, cursor, options).then((request) => request(axios, basePath));
+        fetchChannelInvites(requestParameters: ChannelApiFetchChannelInvitesRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ChannelMemberInviteListResponse> {
+            return localVarFp.fetchChannelInvites(requestParameters.channel_id, requestParameters.invited_fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch a list of members in a channel
          * @summary Fetch members
-         * @param {string} channelId Channel ID for the channel being queried
-         * @param {number} [fid] FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members.
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor.
+         * @param {ChannelApiFetchChannelMembersRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<ChannelMemberListResponse>} A promise that resolves to a `ChannelMemberListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-channel-members)
+         * 
          */
-        listChannelMembers(channelId: string, fid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChannelMemberListResponse> {
-            return localVarFp.listChannelMembers(channelId, fid, limit, cursor, options).then((request) => request(axios, basePath));
+        fetchChannelMembers(requestParameters: ChannelApiFetchChannelMembersRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChannelMemberListResponse> {
+            return localVarFp.fetchChannelMembers(requestParameters.channel_id, requestParameters.fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
+         * @summary For channel
+         * @param {ChannelApiFetchFollowersForAChannelRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-followers-for-a-channel)
+         * 
+         */
+        fetchFollowersForAChannel(requestParameters: ChannelApiFetchFollowersForAChannelRequest, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
+            return localVarFp.fetchFollowersForAChannel(requestParameters.id, requestParameters.viewer_fid, requestParameters.cursor, requestParameters.limit, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
          * @summary Relevant followers
-         * @param {string} id Channel ID being queried
-         * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+         * @param {ChannelApiFetchRelevantFollowersForAChannelRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<RelevantFollowersResponse>} A promise that resolves to a `RelevantFollowersResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-relevant-followers-for-a-channel)
+         * 
          */
-        relevantChannelFollowers(id: string, viewerFid: number, options?: RawAxiosRequestConfig): AxiosPromise<RelevantFollowersResponse> {
-            return localVarFp.relevantChannelFollowers(id, viewerFid, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Remove a user from a channel or a user\'s invite to a channel role
-         * @summary Remove user
-         * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        removeChannelMember(removeChannelMemberRequest: RemoveChannelMemberRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.removeChannelMember(removeChannelMemberRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Accept or reject a channel invite
-         * @summary Accept or reject an invite
-         * @param {RespondChannelInviteRequest} respondChannelInviteRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        respondChannelInvite(respondChannelInviteRequest: RespondChannelInviteRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.respondChannelInvite(respondChannelInviteRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Returns a list of channels based on ID or name
-         * @summary Search by ID or name
-         * @param {string} q Channel ID or name for the channel being queried
-         * @param {number} [limit] Number of results to fetch
-         * @param {string} [cursor] Pagination cursor.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        searchChannels(q: string, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChannelSearchResponse> {
-            return localVarFp.searchChannels(q, limit, cursor, options).then((request) => request(axios, basePath));
+        fetchRelevantFollowersForAChannel(requestParameters: ChannelApiFetchRelevantFollowersForAChannelRequest, options?: RawAxiosRequestConfig): AxiosPromise<RelevantFollowersResponse> {
+            return localVarFp.fetchRelevantFollowersForAChannel(requestParameters.id, requestParameters.viewer_fid, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of trending channels based on activity
          * @summary Channels by activity
-         * @param {TrendingChannelsTimeWindowEnum} [timeWindow] 
-         * @param {number} [limit] Number of results to fetch (default 10, max 25)
-         * @param {string} [cursor] Pagination cursor.
+         * @param {ChannelApiFetchTrendingChannelsRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<TrendingChannelResponse>} A promise that resolves to a `TrendingChannelResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-trending-channels)
+         * 
          */
-        trendingChannels(timeWindow?: TrendingChannelsTimeWindowEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<TrendingChannelResponse> {
-            return localVarFp.trendingChannels(timeWindow, limit, cursor, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Unfollow a channel
-         * @summary Unfollow a channel
-         * @param {ChannelFollowReqBody} channelFollowReqBody 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        unfollowChannel(channelFollowReqBody: ChannelFollowReqBody, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.unfollowChannel(channelFollowReqBody, options).then((request) => request(axios, basePath));
+        fetchTrendingChannels(requestParameters: ChannelApiFetchTrendingChannelsRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<TrendingChannelResponse> {
+            return localVarFp.fetchTrendingChannels(requestParameters.time_window, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour.
          * @summary Member of
-         * @param {number} fid The FID of the user.
-         * @param {number} [limit] Number of results to fetch (default 20, max 100)
-         * @param {string} [cursor] Pagination cursor.
+         * @param {ChannelApiFetchUserChannelMembershipsRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<ChannelMemberListResponse>} A promise that resolves to a `ChannelMemberListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-channel-memberships)
+         * 
          */
-        userChannelMemberships(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChannelMemberListResponse> {
-            return localVarFp.userChannelMemberships(fid, limit, cursor, options).then((request) => request(axios, basePath));
+        fetchUserChannelMemberships(requestParameters: ChannelApiFetchUserChannelMembershipsRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChannelMemberListResponse> {
+            return localVarFp.fetchUserChannelMemberships(requestParameters.fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of all channels with their details that a FID follows.
          * @summary Following
-         * @param {number} fid The FID of the user.
-         * @param {number} [limit] Number of results to fetch (default 25, max 100)
-         * @param {string} [cursor] Pagination cursor.
+         * @param {ChannelApiFetchUserChannelsRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
+         * @returns {Promise<ChannelListResponse>} A promise that resolves to a `ChannelListResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-channels)
+         * 
          */
-        userChannels(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChannelListResponse> {
-            return localVarFp.userChannels(fid, limit, cursor, options).then((request) => request(axios, basePath));
+        fetchUserChannels(requestParameters: ChannelApiFetchUserChannelsRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChannelListResponse> {
+            return localVarFp.fetchUserChannels(requestParameters.fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches all channels that a user has casted in, in reverse chronological order.
+         * @summary Fetch channels that user is active in
+         * @param {ChannelApiFetchUsersActiveChannelsRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<UsersActiveChannelsResponse>} A promise that resolves to a `UsersActiveChannelsResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-users-active-channels)
+         * 
+         */
+        fetchUsersActiveChannels(requestParameters: ChannelApiFetchUsersActiveChannelsRequest, options?: RawAxiosRequestConfig): AxiosPromise<UsersActiveChannelsResponse> {
+            return localVarFp.fetchUsersActiveChannels(requestParameters.fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Follow a channel
+         * @summary Follow a channel
+         * @param {ChannelApiFollowChannelRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/follow-channel)
+         * 
+         */
+        followChannel(requestParameters: ChannelApiFollowChannelRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.followChannel(requestParameters.channel_follow_req_body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Invite a user to a channel
+         * @summary Invite
+         * @param {ChannelApiInviteChannelMemberRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/invite-channel-member)
+         * 
+         */
+        inviteChannelMember(requestParameters: ChannelApiInviteChannelMemberRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.inviteChannelMember(requestParameters.invite_channel_member_req_body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns details of a channel
+         * @summary By ID or parent_url
+         * @param {ChannelApiLookupChannelRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<ChannelResponse>} A promise that resolves to a `ChannelResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-channel)
+         * 
+         */
+        lookupChannel(requestParameters: ChannelApiLookupChannelRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChannelResponse> {
+            return localVarFp.lookupChannel(requestParameters.id, requestParameters.type, requestParameters.viewer_fid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Remove a user from a channel or a user\'s invite to a channel role
+         * @summary Remove user
+         * @param {ChannelApiRemoveChannelMemberRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/remove-channel-member)
+         * 
+         */
+        removeChannelMember(requestParameters: ChannelApiRemoveChannelMemberRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.removeChannelMember(requestParameters.remove_channel_member_req_body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Accept or reject a channel invite
+         * @summary Accept or reject an invite
+         * @param {ChannelApiRespondChannelInviteRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/respond-channel-invite)
+         * 
+         */
+        respondChannelInvite(requestParameters: ChannelApiRespondChannelInviteRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.respondChannelInvite(requestParameters.respond_channel_invite_req_body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of channels based on ID or name
+         * @summary Search by ID or name
+         * @param {ChannelApiSearchChannelsRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<ChannelSearchResponse>} A promise that resolves to a `ChannelSearchResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/search-channels)
+         * 
+         */
+        searchChannels(requestParameters: ChannelApiSearchChannelsRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChannelSearchResponse> {
+            return localVarFp.searchChannels(requestParameters.q, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Unfollow a channel
+         * @summary Unfollow a channel
+         * @param {ChannelApiUnfollowChannelRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/unfollow-channel)
+         * 
+         */
+        unfollowChannel(requestParameters: ChannelApiUnfollowChannelRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
+            return localVarFp.unfollowChannel(requestParameters.channel_follow_req_body, options).then((request) => request(axios, basePath));
         },
     };
 };
+
+/**
+ * ChannelApi - interface
+ * @export
+ * @interface ChannelApi
+ */
+export interface ChannelApiInterface {
+    /**
+     * Returns a list of all channels with their details
+     * @summary Fetch all channels with their details
+     * @param {ChannelApiFetchAllChannelsRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     * @returns {Promise<ChannelListResponse>} A promise that resolves to a `ChannelListResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-all-channels)
+     * 
+     */
+    fetchAllChannels(requestParameters?: ChannelApiFetchAllChannelsRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChannelListResponse>;
+
+    /**
+     * Returns details of multiple channels
+     * @summary Bulk fetch
+     * @param {ChannelApiFetchBulkChannelsRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     * @returns {Promise<ChannelResponseBulk>} A promise that resolves to a `ChannelResponseBulk` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-channels)
+     * 
+     */
+    fetchBulkChannels(requestParameters: ChannelApiFetchBulkChannelsRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChannelResponseBulk>;
+
+    /**
+     * Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.
+     * @summary Open invites
+     * @param {ChannelApiFetchChannelInvitesRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     * @returns {Promise<ChannelMemberInviteListResponse>} A promise that resolves to a `ChannelMemberInviteListResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-channel-invites)
+     * 
+     */
+    fetchChannelInvites(requestParameters?: ChannelApiFetchChannelInvitesRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChannelMemberInviteListResponse>;
+
+    /**
+     * Fetch a list of members in a channel
+     * @summary Fetch members
+     * @param {ChannelApiFetchChannelMembersRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     * @returns {Promise<ChannelMemberListResponse>} A promise that resolves to a `ChannelMemberListResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-channel-members)
+     * 
+     */
+    fetchChannelMembers(requestParameters: ChannelApiFetchChannelMembersRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChannelMemberListResponse>;
+
+    /**
+     * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
+     * @summary For channel
+     * @param {ChannelApiFetchFollowersForAChannelRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-followers-for-a-channel)
+     * 
+     */
+    fetchFollowersForAChannel(requestParameters: ChannelApiFetchFollowersForAChannelRequest, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse>;
+
+    /**
+     * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
+     * @summary Relevant followers
+     * @param {ChannelApiFetchRelevantFollowersForAChannelRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     * @returns {Promise<RelevantFollowersResponse>} A promise that resolves to a `RelevantFollowersResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-relevant-followers-for-a-channel)
+     * 
+     */
+    fetchRelevantFollowersForAChannel(requestParameters: ChannelApiFetchRelevantFollowersForAChannelRequest, options?: RawAxiosRequestConfig): AxiosPromise<RelevantFollowersResponse>;
+
+    /**
+     * Returns a list of trending channels based on activity
+     * @summary Channels by activity
+     * @param {ChannelApiFetchTrendingChannelsRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     * @returns {Promise<TrendingChannelResponse>} A promise that resolves to a `TrendingChannelResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-trending-channels)
+     * 
+     */
+    fetchTrendingChannels(requestParameters?: ChannelApiFetchTrendingChannelsRequest, options?: RawAxiosRequestConfig): AxiosPromise<TrendingChannelResponse>;
+
+    /**
+     * Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour.
+     * @summary Member of
+     * @param {ChannelApiFetchUserChannelMembershipsRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     * @returns {Promise<ChannelMemberListResponse>} A promise that resolves to a `ChannelMemberListResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-channel-memberships)
+     * 
+     */
+    fetchUserChannelMemberships(requestParameters: ChannelApiFetchUserChannelMembershipsRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChannelMemberListResponse>;
+
+    /**
+     * Returns a list of all channels with their details that a FID follows.
+     * @summary Following
+     * @param {ChannelApiFetchUserChannelsRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     * @returns {Promise<ChannelListResponse>} A promise that resolves to a `ChannelListResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-channels)
+     * 
+     */
+    fetchUserChannels(requestParameters: ChannelApiFetchUserChannelsRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChannelListResponse>;
+
+    /**
+     * Fetches all channels that a user has casted in, in reverse chronological order.
+     * @summary Fetch channels that user is active in
+     * @param {ChannelApiFetchUsersActiveChannelsRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     * @returns {Promise<UsersActiveChannelsResponse>} A promise that resolves to a `UsersActiveChannelsResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-users-active-channels)
+     * 
+     */
+    fetchUsersActiveChannels(requestParameters: ChannelApiFetchUsersActiveChannelsRequest, options?: RawAxiosRequestConfig): AxiosPromise<UsersActiveChannelsResponse>;
+
+    /**
+     * Follow a channel
+     * @summary Follow a channel
+     * @param {ChannelApiFollowChannelRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/follow-channel)
+     * 
+     */
+    followChannel(requestParameters: ChannelApiFollowChannelRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse>;
+
+    /**
+     * Invite a user to a channel
+     * @summary Invite
+     * @param {ChannelApiInviteChannelMemberRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/invite-channel-member)
+     * 
+     */
+    inviteChannelMember(requestParameters: ChannelApiInviteChannelMemberRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse>;
+
+    /**
+     * Returns details of a channel
+     * @summary By ID or parent_url
+     * @param {ChannelApiLookupChannelRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     * @returns {Promise<ChannelResponse>} A promise that resolves to a `ChannelResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-channel)
+     * 
+     */
+    lookupChannel(requestParameters: ChannelApiLookupChannelRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChannelResponse>;
+
+    /**
+     * Remove a user from a channel or a user\'s invite to a channel role
+     * @summary Remove user
+     * @param {ChannelApiRemoveChannelMemberRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/remove-channel-member)
+     * 
+     */
+    removeChannelMember(requestParameters: ChannelApiRemoveChannelMemberRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse>;
+
+    /**
+     * Accept or reject a channel invite
+     * @summary Accept or reject an invite
+     * @param {ChannelApiRespondChannelInviteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/respond-channel-invite)
+     * 
+     */
+    respondChannelInvite(requestParameters: ChannelApiRespondChannelInviteRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse>;
+
+    /**
+     * Returns a list of channels based on ID or name
+     * @summary Search by ID or name
+     * @param {ChannelApiSearchChannelsRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     * @returns {Promise<ChannelSearchResponse>} A promise that resolves to a `ChannelSearchResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/search-channels)
+     * 
+     */
+    searchChannels(requestParameters: ChannelApiSearchChannelsRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChannelSearchResponse>;
+
+    /**
+     * Unfollow a channel
+     * @summary Unfollow a channel
+     * @param {ChannelApiUnfollowChannelRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/unfollow-channel)
+     * 
+     */
+    unfollowChannel(requestParameters: ChannelApiUnfollowChannelRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse>;
+
+}
+
+/**
+ * Request parameters for fetchAllChannels operation in ChannelApi.
+ * @export
+ * @interface ChannelApiFetchAllChannelsRequest
+ */
+export interface ChannelApiFetchAllChannelsRequest {
+    /**
+     * Number of results to fetch (Default: 20, Maximum: 200)
+     * 
+     * 
+     * @type {number}
+     * @memberof ChannelApiFetchAllChannels
+     */
+    readonly limit?: number
+
+    /**
+     * Pagination cursor.
+     * 
+     * 
+     * @type {string}
+     * @memberof ChannelApiFetchAllChannels
+     */
+    readonly cursor?: string
+}
+
+/**
+ * Request parameters for fetchBulkChannels operation in ChannelApi.
+ * @export
+ * @interface ChannelApiFetchBulkChannelsRequest
+ */
+export interface ChannelApiFetchBulkChannelsRequest {
+    /**
+     * Comma separated list of channel IDs or parent_urls, up to 100 at a time
+     * 
+     * @commaSeparated
+     * @type {string}
+     * @memberof ChannelApiFetchBulkChannels
+     */
+    readonly ids: string
+
+    /**
+     * Type of identifier being used to query the channels. Defaults to ID.
+     * 
+     * 
+     * @type {ChannelType}
+     * @memberof ChannelApiFetchBulkChannels
+     */
+    readonly type?: ChannelType
+
+    /**
+     * FID of the user viewing the channels.
+     * 
+     * 
+     * @type {number}
+     * @memberof ChannelApiFetchBulkChannels
+     */
+    readonly viewer_fid?: number
+}
+
+/**
+ * Request parameters for fetchChannelInvites operation in ChannelApi.
+ * @export
+ * @interface ChannelApiFetchChannelInvitesRequest
+ */
+export interface ChannelApiFetchChannelInvitesRequest {
+    /**
+     * Channel ID for the channel being queried
+     * 
+     * 
+     * @type {string}
+     * @memberof ChannelApiFetchChannelInvites
+     */
+    readonly channel_id?: string
+
+    /**
+     * FID of the user being invited
+     * 
+     * 
+     * @type {number}
+     * @memberof ChannelApiFetchChannelInvites
+     */
+    readonly invited_fid?: number
+
+    /**
+     * Number of results to fetch (Default: 20, Maximum: 100)
+     * 
+     * 
+     * @type {number}
+     * @memberof ChannelApiFetchChannelInvites
+     */
+    readonly limit?: number
+
+    /**
+     * Pagination cursor.
+     * 
+     * 
+     * @type {string}
+     * @memberof ChannelApiFetchChannelInvites
+     */
+    readonly cursor?: string
+}
+
+/**
+ * Request parameters for fetchChannelMembers operation in ChannelApi.
+ * @export
+ * @interface ChannelApiFetchChannelMembersRequest
+ */
+export interface ChannelApiFetchChannelMembersRequest {
+    /**
+     * Channel ID for the channel being queried
+     * 
+     * 
+     * @type {string}
+     * @memberof ChannelApiFetchChannelMembers
+     */
+    readonly channel_id: string
+
+    /**
+     * FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members.
+     * 
+     * 
+     * @type {number}
+     * @memberof ChannelApiFetchChannelMembers
+     */
+    readonly fid?: number
+
+    /**
+     * Number of results to fetch (Default: 20, Maximum: 100)
+     * 
+     * 
+     * @type {number}
+     * @memberof ChannelApiFetchChannelMembers
+     */
+    readonly limit?: number
+
+    /**
+     * Pagination cursor.
+     * 
+     * 
+     * @type {string}
+     * @memberof ChannelApiFetchChannelMembers
+     */
+    readonly cursor?: string
+}
+
+/**
+ * Request parameters for fetchFollowersForAChannel operation in ChannelApi.
+ * @export
+ * @interface ChannelApiFetchFollowersForAChannelRequest
+ */
+export interface ChannelApiFetchFollowersForAChannelRequest {
+    /**
+     * Channel ID for the channel being queried
+     * 
+     * 
+     * @type {string}
+     * @memberof ChannelApiFetchFollowersForAChannel
+     */
+    readonly id: string
+
+    /**
+     * Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * 
+     * 
+     * @type {number}
+     * @memberof ChannelApiFetchFollowersForAChannel
+     */
+    readonly viewer_fid?: number
+
+    /**
+     * Pagination cursor.
+     * 
+     * 
+     * @type {string}
+     * @memberof ChannelApiFetchFollowersForAChannel
+     */
+    readonly cursor?: string
+
+    /**
+     * Number of followers to fetch (Default: 25, Maximum: 1000)
+     * 
+     * 
+     * @type {number}
+     * @memberof ChannelApiFetchFollowersForAChannel
+     */
+    readonly limit?: number
+}
+
+/**
+ * Request parameters for fetchRelevantFollowersForAChannel operation in ChannelApi.
+ * @export
+ * @interface ChannelApiFetchRelevantFollowersForAChannelRequest
+ */
+export interface ChannelApiFetchRelevantFollowersForAChannelRequest {
+    /**
+     * Channel ID being queried
+     * 
+     * 
+     * @type {string}
+     * @memberof ChannelApiFetchRelevantFollowersForAChannel
+     */
+    readonly id: string
+
+    /**
+     * The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * 
+     * 
+     * @type {number}
+     * @memberof ChannelApiFetchRelevantFollowersForAChannel
+     */
+    readonly viewer_fid: number
+}
+
+/**
+ * Request parameters for fetchTrendingChannels operation in ChannelApi.
+ * @export
+ * @interface ChannelApiFetchTrendingChannelsRequest
+ */
+export interface ChannelApiFetchTrendingChannelsRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {'1d' | '7d' | '30d'}
+     * @memberof ChannelApiFetchTrendingChannels
+     */
+    readonly time_window?: FetchTrendingChannelsTimeWindowEnum
+
+    /**
+     * Number of results to fetch (Default: 10, Maximum: 25)
+     * 
+     * 
+     * @type {number}
+     * @memberof ChannelApiFetchTrendingChannels
+     */
+    readonly limit?: number
+
+    /**
+     * Pagination cursor.
+     * 
+     * 
+     * @type {string}
+     * @memberof ChannelApiFetchTrendingChannels
+     */
+    readonly cursor?: string
+}
+
+/**
+ * Request parameters for fetchUserChannelMemberships operation in ChannelApi.
+ * @export
+ * @interface ChannelApiFetchUserChannelMembershipsRequest
+ */
+export interface ChannelApiFetchUserChannelMembershipsRequest {
+    /**
+     * The FID of the user.
+     * 
+     * 
+     * @type {number}
+     * @memberof ChannelApiFetchUserChannelMemberships
+     */
+    readonly fid: number
+
+    /**
+     * Number of results to fetch (Default: 20, Maximum: 100)
+     * 
+     * 
+     * @type {number}
+     * @memberof ChannelApiFetchUserChannelMemberships
+     */
+    readonly limit?: number
+
+    /**
+     * Pagination cursor.
+     * 
+     * 
+     * @type {string}
+     * @memberof ChannelApiFetchUserChannelMemberships
+     */
+    readonly cursor?: string
+}
+
+/**
+ * Request parameters for fetchUserChannels operation in ChannelApi.
+ * @export
+ * @interface ChannelApiFetchUserChannelsRequest
+ */
+export interface ChannelApiFetchUserChannelsRequest {
+    /**
+     * The FID of the user.
+     * 
+     * 
+     * @type {number}
+     * @memberof ChannelApiFetchUserChannels
+     */
+    readonly fid: number
+
+    /**
+     * Number of results to fetch (Default: 25, Maximum: 100)
+     * 
+     * 
+     * @type {number}
+     * @memberof ChannelApiFetchUserChannels
+     */
+    readonly limit?: number
+
+    /**
+     * Pagination cursor.
+     * 
+     * 
+     * @type {string}
+     * @memberof ChannelApiFetchUserChannels
+     */
+    readonly cursor?: string
+}
+
+/**
+ * Request parameters for fetchUsersActiveChannels operation in ChannelApi.
+ * @export
+ * @interface ChannelApiFetchUsersActiveChannelsRequest
+ */
+export interface ChannelApiFetchUsersActiveChannelsRequest {
+    /**
+     * The user\&#39;s FID (identifier)
+     * 
+     * 
+     * @type {number}
+     * @memberof ChannelApiFetchUsersActiveChannels
+     */
+    readonly fid: number
+
+    /**
+     * Number of results to fetch (Default: 20, Maximum: 100)
+     * 
+     * 
+     * @type {number}
+     * @memberof ChannelApiFetchUsersActiveChannels
+     */
+    readonly limit?: number
+
+    /**
+     * Pagination cursor.
+     * 
+     * 
+     * @type {string}
+     * @memberof ChannelApiFetchUsersActiveChannels
+     */
+    readonly cursor?: string
+}
+
+/**
+ * Request parameters for followChannel operation in ChannelApi.
+ * @export
+ * @interface ChannelApiFollowChannelRequest
+ */
+export interface ChannelApiFollowChannelRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {ChannelFollowReqBody}
+     * @memberof ChannelApiFollowChannel
+     */
+    readonly channel_follow_req_body: ChannelFollowReqBody
+}
+
+/**
+ * Request parameters for inviteChannelMember operation in ChannelApi.
+ * @export
+ * @interface ChannelApiInviteChannelMemberRequest
+ */
+export interface ChannelApiInviteChannelMemberRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {InviteChannelMemberReqBody}
+     * @memberof ChannelApiInviteChannelMember
+     */
+    readonly invite_channel_member_req_body: InviteChannelMemberReqBody
+}
+
+/**
+ * Request parameters for lookupChannel operation in ChannelApi.
+ * @export
+ * @interface ChannelApiLookupChannelRequest
+ */
+export interface ChannelApiLookupChannelRequest {
+    /**
+     * Channel ID for the channel being queried
+     * 
+     * 
+     * @type {string}
+     * @memberof ChannelApiLookupChannel
+     */
+    readonly id: string
+
+    /**
+     * Type of identifier being used to query the channel. Defaults to ID.
+     * 
+     * 
+     * @type {ChannelType}
+     * @memberof ChannelApiLookupChannel
+     */
+    readonly type?: ChannelType
+
+    /**
+     * FID of the user viewing the channel.
+     * 
+     * 
+     * @type {number}
+     * @memberof ChannelApiLookupChannel
+     */
+    readonly viewer_fid?: number
+}
+
+/**
+ * Request parameters for removeChannelMember operation in ChannelApi.
+ * @export
+ * @interface ChannelApiRemoveChannelMemberRequest
+ */
+export interface ChannelApiRemoveChannelMemberRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {RemoveChannelMemberReqBody}
+     * @memberof ChannelApiRemoveChannelMember
+     */
+    readonly remove_channel_member_req_body: RemoveChannelMemberReqBody
+}
+
+/**
+ * Request parameters for respondChannelInvite operation in ChannelApi.
+ * @export
+ * @interface ChannelApiRespondChannelInviteRequest
+ */
+export interface ChannelApiRespondChannelInviteRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {RespondChannelInviteReqBody}
+     * @memberof ChannelApiRespondChannelInvite
+     */
+    readonly respond_channel_invite_req_body: RespondChannelInviteReqBody
+}
+
+/**
+ * Request parameters for searchChannels operation in ChannelApi.
+ * @export
+ * @interface ChannelApiSearchChannelsRequest
+ */
+export interface ChannelApiSearchChannelsRequest {
+    /**
+     * Channel ID or name for the channel being queried
+     * 
+     * 
+     * @type {string}
+     * @memberof ChannelApiSearchChannels
+     */
+    readonly q: string
+
+    /**
+     * Number of results to fetch (Default: 20, Maximum: 200)
+     * 
+     * 
+     * @type {number}
+     * @memberof ChannelApiSearchChannels
+     */
+    readonly limit?: number
+
+    /**
+     * Pagination cursor.
+     * 
+     * 
+     * @type {string}
+     * @memberof ChannelApiSearchChannels
+     */
+    readonly cursor?: string
+}
+
+/**
+ * Request parameters for unfollowChannel operation in ChannelApi.
+ * @export
+ * @interface ChannelApiUnfollowChannelRequest
+ */
+export interface ChannelApiUnfollowChannelRequest {
+    /**
+     * 
+     * 
+     * 
+     * @type {ChannelFollowReqBody}
+     * @memberof ChannelApiUnfollowChannel
+     */
+    readonly channel_follow_req_body: ChannelFollowReqBody
+}
 
 /**
  * ChannelApi - object-oriented interface
@@ -1432,261 +2249,286 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
  * @class ChannelApi
  * @extends {BaseAPI}
  */
-export class ChannelApi extends BaseAPI {
+export class ChannelApi extends BaseAPI implements ChannelApiInterface {
     /**
-     * Fetches all channels that a user has casted in, in reverse chronological order.
-     * @summary Fetch channels that user is active in
-     * @param {number} fid The user\&#39;s FID (identifier)
-     * @param {number} [limit] Number of results to fetch (default 20, max 100).
-     * @param {string} [cursor] Pagination cursor.
+     * Returns a list of all channels with their details
+     * @summary Fetch all channels with their details
+     * @param {ChannelApiFetchAllChannelsRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
+     * @returns {Promise<ChannelListResponse>} A promise that resolves to a `ChannelListResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-all-channels)
+     * 
      */
-    public activeChannels(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).activeChannels(fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Returns details of a channel
-     * @summary By ID or parent_url
-     * @param {string} id Channel ID for the channel being queried
-     * @param {ChannelType} [type] Type of identifier being used to query the channel. Defaults to ID.
-     * @param {number} [viewerFid] FID of the user viewing the channel.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelApi
-     */
-    public channelDetails(id: string, type?: ChannelType, viewerFid?: number, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).channelDetails(id, type, viewerFid, options).then((request) => request(this.axios, this.basePath));
+    public fetchAllChannels(requestParameters: ChannelApiFetchAllChannelsRequest = {}, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).fetchAllChannels(requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Returns details of multiple channels
      * @summary Bulk fetch
-     * @param {string} ids Comma separated list of channel IDs or parent_urls, up to 100 at a time
-     * @param {ChannelType} [type] Type of identifier being used to query the channels. Defaults to ID.
-     * @param {number} [viewerFid] FID of the user viewing the channels.
+     * @param {ChannelApiFetchBulkChannelsRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
+     * @returns {Promise<ChannelResponseBulk>} A promise that resolves to a `ChannelResponseBulk` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-channels)
+     * 
      */
-    public channelDetailsBulk(ids: string, type?: ChannelType, viewerFid?: number, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).channelDetailsBulk(ids, type, viewerFid, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
-     * @summary For channel
-     * @param {string} id Channel ID for the channel being queried
-     * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
-     * @param {string} [cursor] Pagination cursor.
-     * @param {number} [limit] Number of followers to fetch (default 25, max 1000)
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelApi
-     */
-    public channelFollowers(id: string, viewerFid?: number, cursor?: string, limit?: number, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).channelFollowers(id, viewerFid, cursor, limit, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Returns a list of users who are active in a given channel, ordered by ascending FIDs
-     * @summary Fetch users who are active in a channel
-     * @param {string} id Channel ID for the channel being queried
-     * @param {boolean} hasRootCastAuthors Include users who posted the root cast in the channel
-     * @param {boolean} [hasCastLikers] Include users who liked a cast in the channel
-     * @param {boolean} [hasCastRecasters] Include users who recasted a cast in the channel
-     * @param {boolean} [hasReplyAuthors] Include users who replied to a cast in the channel
-     * @param {string} [cursor] Pagination cursor.
-     * @param {number} [limit] Number of results to fetch (default 25, max 100)
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelApi
-     */
-    public channelUsers(id: string, hasRootCastAuthors: boolean, hasCastLikers?: boolean, hasCastRecasters?: boolean, hasReplyAuthors?: boolean, cursor?: string, limit?: number, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).channelUsers(id, hasRootCastAuthors, hasCastLikers, hasCastRecasters, hasReplyAuthors, cursor, limit, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Follow a channel
-     * @summary Follow a channel
-     * @param {ChannelFollowReqBody} channelFollowReqBody 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelApi
-     */
-    public followChannel(channelFollowReqBody: ChannelFollowReqBody, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).followChannel(channelFollowReqBody, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Invite a user to a channel
-     * @summary Invite
-     * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelApi
-     */
-    public inviteChannelMember(removeChannelMemberRequest: RemoveChannelMemberRequest, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).inviteChannelMember(removeChannelMemberRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Returns a list of all channels with their details
-     * @summary Fetch all channels with their details
-     * @param {number} [limit] Number of results to fetch
-     * @param {string} [cursor] Pagination cursor.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelApi
-     */
-    public listAllChannels(limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).listAllChannels(limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public fetchBulkChannels(requestParameters: ChannelApiFetchBulkChannelsRequest, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).fetchBulkChannels(requestParameters.ids, requestParameters.type, requestParameters.viewer_fid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.
      * @summary Open invites
-     * @param {string} [channelId] Channel ID for the channel being queried
-     * @param {number} [invitedFid] FID of the user being invited
-     * @param {number} [limit] Number of results to fetch
-     * @param {string} [cursor] Pagination cursor.
+     * @param {ChannelApiFetchChannelInvitesRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
+     * @returns {Promise<ChannelMemberInviteListResponse>} A promise that resolves to a `ChannelMemberInviteListResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-channel-invites)
+     * 
      */
-    public listChannelInvites(channelId?: string, invitedFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).listChannelInvites(channelId, invitedFid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public fetchChannelInvites(requestParameters: ChannelApiFetchChannelInvitesRequest = {}, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).fetchChannelInvites(requestParameters.channel_id, requestParameters.invited_fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetch a list of members in a channel
      * @summary Fetch members
-     * @param {string} channelId Channel ID for the channel being queried
-     * @param {number} [fid] FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members.
-     * @param {number} [limit] Number of results to fetch
-     * @param {string} [cursor] Pagination cursor.
+     * @param {ChannelApiFetchChannelMembersRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
+     * @returns {Promise<ChannelMemberListResponse>} A promise that resolves to a `ChannelMemberListResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-channel-members)
+     * 
      */
-    public listChannelMembers(channelId: string, fid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).listChannelMembers(channelId, fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public fetchChannelMembers(requestParameters: ChannelApiFetchChannelMembersRequest, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).fetchChannelMembers(requestParameters.channel_id, requestParameters.fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
+     * @summary For channel
+     * @param {ChannelApiFetchFollowersForAChannelRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-followers-for-a-channel)
+     * 
+     */
+    public fetchFollowersForAChannel(requestParameters: ChannelApiFetchFollowersForAChannelRequest, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).fetchFollowersForAChannel(requestParameters.id, requestParameters.viewer_fid, requestParameters.cursor, requestParameters.limit, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
      * @summary Relevant followers
-     * @param {string} id Channel ID being queried
-     * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
+     * @param {ChannelApiFetchRelevantFollowersForAChannelRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
+     * @returns {Promise<RelevantFollowersResponse>} A promise that resolves to a `RelevantFollowersResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-relevant-followers-for-a-channel)
+     * 
      */
-    public relevantChannelFollowers(id: string, viewerFid: number, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).relevantChannelFollowers(id, viewerFid, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Remove a user from a channel or a user\'s invite to a channel role
-     * @summary Remove user
-     * @param {RemoveChannelMemberRequest} removeChannelMemberRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelApi
-     */
-    public removeChannelMember(removeChannelMemberRequest: RemoveChannelMemberRequest, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).removeChannelMember(removeChannelMemberRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Accept or reject a channel invite
-     * @summary Accept or reject an invite
-     * @param {RespondChannelInviteRequest} respondChannelInviteRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelApi
-     */
-    public respondChannelInvite(respondChannelInviteRequest: RespondChannelInviteRequest, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).respondChannelInvite(respondChannelInviteRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Returns a list of channels based on ID or name
-     * @summary Search by ID or name
-     * @param {string} q Channel ID or name for the channel being queried
-     * @param {number} [limit] Number of results to fetch
-     * @param {string} [cursor] Pagination cursor.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelApi
-     */
-    public searchChannels(q: string, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).searchChannels(q, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public fetchRelevantFollowersForAChannel(requestParameters: ChannelApiFetchRelevantFollowersForAChannelRequest, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).fetchRelevantFollowersForAChannel(requestParameters.id, requestParameters.viewer_fid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Returns a list of trending channels based on activity
      * @summary Channels by activity
-     * @param {TrendingChannelsTimeWindowEnum} [timeWindow] 
-     * @param {number} [limit] Number of results to fetch (default 10, max 25)
-     * @param {string} [cursor] Pagination cursor.
+     * @param {ChannelApiFetchTrendingChannelsRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
+     * @returns {Promise<TrendingChannelResponse>} A promise that resolves to a `TrendingChannelResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-trending-channels)
+     * 
      */
-    public trendingChannels(timeWindow?: TrendingChannelsTimeWindowEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).trendingChannels(timeWindow, limit, cursor, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Unfollow a channel
-     * @summary Unfollow a channel
-     * @param {ChannelFollowReqBody} channelFollowReqBody 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelApi
-     */
-    public unfollowChannel(channelFollowReqBody: ChannelFollowReqBody, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).unfollowChannel(channelFollowReqBody, options).then((request) => request(this.axios, this.basePath));
+    public fetchTrendingChannels(requestParameters: ChannelApiFetchTrendingChannelsRequest = {}, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).fetchTrendingChannels(requestParameters.time_window, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour.
      * @summary Member of
-     * @param {number} fid The FID of the user.
-     * @param {number} [limit] Number of results to fetch (default 20, max 100)
-     * @param {string} [cursor] Pagination cursor.
+     * @param {ChannelApiFetchUserChannelMembershipsRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
+     * @returns {Promise<ChannelMemberListResponse>} A promise that resolves to a `ChannelMemberListResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-channel-memberships)
+     * 
      */
-    public userChannelMemberships(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).userChannelMemberships(fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public fetchUserChannelMemberships(requestParameters: ChannelApiFetchUserChannelMembershipsRequest, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).fetchUserChannelMemberships(requestParameters.fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Returns a list of all channels with their details that a FID follows.
      * @summary Following
-     * @param {number} fid The FID of the user.
-     * @param {number} [limit] Number of results to fetch (default 25, max 100)
-     * @param {string} [cursor] Pagination cursor.
+     * @param {ChannelApiFetchUserChannelsRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApi
+     * @returns {Promise<ChannelListResponse>} A promise that resolves to a `ChannelListResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-channels)
+     * 
      */
-    public userChannels(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).userChannels(fid, limit, cursor, options).then((request) => request(this.axios, this.basePath));
+    public fetchUserChannels(requestParameters: ChannelApiFetchUserChannelsRequest, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).fetchUserChannels(requestParameters.fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches all channels that a user has casted in, in reverse chronological order.
+     * @summary Fetch channels that user is active in
+     * @param {ChannelApiFetchUsersActiveChannelsRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     * @returns {Promise<UsersActiveChannelsResponse>} A promise that resolves to a `UsersActiveChannelsResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-users-active-channels)
+     * 
+     */
+    public fetchUsersActiveChannels(requestParameters: ChannelApiFetchUsersActiveChannelsRequest, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).fetchUsersActiveChannels(requestParameters.fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Follow a channel
+     * @summary Follow a channel
+     * @param {ChannelApiFollowChannelRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/follow-channel)
+     * 
+     */
+    public followChannel(requestParameters: ChannelApiFollowChannelRequest, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).followChannel(requestParameters.channel_follow_req_body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Invite a user to a channel
+     * @summary Invite
+     * @param {ChannelApiInviteChannelMemberRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/invite-channel-member)
+     * 
+     */
+    public inviteChannelMember(requestParameters: ChannelApiInviteChannelMemberRequest, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).inviteChannelMember(requestParameters.invite_channel_member_req_body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns details of a channel
+     * @summary By ID or parent_url
+     * @param {ChannelApiLookupChannelRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     * @returns {Promise<ChannelResponse>} A promise that resolves to a `ChannelResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-channel)
+     * 
+     */
+    public lookupChannel(requestParameters: ChannelApiLookupChannelRequest, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).lookupChannel(requestParameters.id, requestParameters.type, requestParameters.viewer_fid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Remove a user from a channel or a user\'s invite to a channel role
+     * @summary Remove user
+     * @param {ChannelApiRemoveChannelMemberRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/remove-channel-member)
+     * 
+     */
+    public removeChannelMember(requestParameters: ChannelApiRemoveChannelMemberRequest, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).removeChannelMember(requestParameters.remove_channel_member_req_body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Accept or reject a channel invite
+     * @summary Accept or reject an invite
+     * @param {ChannelApiRespondChannelInviteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/respond-channel-invite)
+     * 
+     */
+    public respondChannelInvite(requestParameters: ChannelApiRespondChannelInviteRequest, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).respondChannelInvite(requestParameters.respond_channel_invite_req_body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of channels based on ID or name
+     * @summary Search by ID or name
+     * @param {ChannelApiSearchChannelsRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     * @returns {Promise<ChannelSearchResponse>} A promise that resolves to a `ChannelSearchResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/search-channels)
+     * 
+     */
+    public searchChannels(requestParameters: ChannelApiSearchChannelsRequest, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).searchChannels(requestParameters.q, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Unfollow a channel
+     * @summary Unfollow a channel
+     * @param {ChannelApiUnfollowChannelRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApi
+     * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/unfollow-channel)
+     * 
+     */
+    public unfollowChannel(requestParameters: ChannelApiUnfollowChannelRequest, options?: RawAxiosRequestConfig) {
+        return ChannelApiFp(this.configuration).unfollowChannel(requestParameters.channel_follow_req_body, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
 /**
  * @export
  */
-export const TrendingChannelsTimeWindowEnum = {
+export const FetchTrendingChannelsTimeWindowEnum = {
     _1d: '1d',
     _7d: '7d',
     _30d: '30d'
 } as const;
-export type TrendingChannelsTimeWindowEnum = typeof TrendingChannelsTimeWindowEnum[keyof typeof TrendingChannelsTimeWindowEnum];
+export type FetchTrendingChannelsTimeWindowEnum = typeof FetchTrendingChannelsTimeWindowEnum[keyof typeof FetchTrendingChannelsTimeWindowEnum];

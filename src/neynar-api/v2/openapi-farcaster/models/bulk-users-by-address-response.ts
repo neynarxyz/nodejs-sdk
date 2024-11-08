@@ -15,18 +15,15 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ErrorRes } from './error-res';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { ZodError } from './zod-error';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { ZodErrorErrorsInner } from './zod-error-errors-inner';
+import type { User } from './user';
 
 /**
- * @type FeedForYou400Response
+ * 
  * @export
+ * @interface BulkUsersByAddressResponse
  */
-export type FeedForYou400Response = ErrorRes | ZodError;
+export interface BulkUsersByAddressResponse {
+    [key: string]: Array<User>;
 
+}
 
