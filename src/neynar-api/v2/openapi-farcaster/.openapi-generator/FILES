@@ -237,6 +237,7 @@ models/trending-channel-response.ts
 models/update-user-req-body-location.ts
 models/update-user-req-body.ts
 models/user-dehydrated.ts
+models/user-experimental.ts
 models/user-fidresponse.ts
 models/user-power-lite-response-result.ts
 models/user-power-lite-response.ts

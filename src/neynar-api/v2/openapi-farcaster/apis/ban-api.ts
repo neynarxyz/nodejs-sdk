@@ -83,6 +83,7 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
          * @summary Banned FIDs of app
          * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
+         * @param {boolean} [x_neynar_experimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<BanListResponse>} A promise that resolves to a `BanListResponse` object
@@ -90,7 +91,7 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-ban-list)
          * 
          */
-        fetchBanList: async (limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchBanList: async (limit?: number, cursor?: string, x_neynar_experimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/farcaster/ban/list`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -112,6 +113,12 @@ export const BanApiAxiosParamCreator = function (configuration?: Configuration) 
 
             if (cursor !== undefined) {
                 localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (x_neynar_experimental != null) {
+                localVarHeaderParameter['x-neynar-experimental'] = typeof x_neynar_experimental === 'string'
+                    ? x_neynar_experimental
+                    : JSON.stringify(x_neynar_experimental);
             }
 
 
@@ -200,6 +207,7 @@ export const BanApiFp = function(configuration?: Configuration) {
          * @summary Banned FIDs of app
          * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
+         * @param {boolean} [x_neynar_experimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<BanListResponse>} A promise that resolves to a `BanListResponse` object
@@ -207,8 +215,8 @@ export const BanApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-ban-list)
          * 
          */
-        async fetchBanList(limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchBanList(limit, cursor, options);
+        async fetchBanList(limit?: number, cursor?: string, x_neynar_experimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BanListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchBanList(limit, cursor, x_neynar_experimental, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['BanApi.fetchBanList']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -266,7 +274,7 @@ export const BanApiFactory = function (configuration?: Configuration, basePath?:
          * 
          */
         fetchBanList(requestParameters: BanApiFetchBanListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<BanListResponse> {
-            return localVarFp.fetchBanList(requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchBanList(requestParameters.limit, requestParameters.cursor, requestParameters.x_neynar_experimental, options).then((request) => request(axios, basePath));
         },
         /**
          * Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
@@ -374,6 +382,15 @@ export interface BanApiFetchBanListRequest {
      * @memberof BanApiFetchBanList
      */
     readonly cursor?: string
+
+    /**
+     * Enables experimental features
+     * 
+     * 
+     * @type {boolean}
+     * @memberof BanApiFetchBanList
+     */
+    readonly x_neynar_experimental?: boolean
 }
 
 /**
@@ -428,7 +445,7 @@ export class BanApi extends BaseAPI implements BanApiInterface {
      * 
      */
     public fetchBanList(requestParameters: BanApiFetchBanListRequest = {}, options?: RawAxiosRequestConfig) {
-        return BanApiFp(this.configuration).fetchBanList(requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
+        return BanApiFp(this.configuration).fetchBanList(requestParameters.limit, requestParameters.cursor, requestParameters.x_neynar_experimental, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

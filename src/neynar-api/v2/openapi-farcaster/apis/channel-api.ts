@@ -226,6 +226,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @param {number} [fid] FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members. 
          * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
+         * @param {boolean} [x_neynar_experimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<ChannelMemberListResponse>} A promise that resolves to a `ChannelMemberListResponse` object
@@ -233,7 +234,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-channel-members)
          * 
          */
-        fetchChannelMembers: async (channel_id: string, fid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchChannelMembers: async (channel_id: string, fid?: number, limit?: number, cursor?: string, x_neynar_experimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'channel_id' is not null or undefined
             assertParamExists('fetchChannelMembers', 'channel_id', channel_id)
             const localVarPath = `/farcaster/channel/member/list`;
@@ -267,6 +268,12 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['cursor'] = cursor;
             }
 
+            if (x_neynar_experimental != null) {
+                localVarHeaderParameter['x-neynar-experimental'] = typeof x_neynar_experimental === 'string'
+                    ? x_neynar_experimental
+                    : JSON.stringify(x_neynar_experimental);
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -285,6 +292,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @param {number} [viewer_fid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {string} [cursor] Pagination cursor. 
          * @param {number} [limit] Number of followers to fetch  (Default: 25, Maximum: 1000)
+         * @param {boolean} [x_neynar_experimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object
@@ -292,7 +300,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-followers-for-a-channel)
          * 
          */
-        fetchFollowersForAChannel: async (id: string, viewer_fid?: number, cursor?: string, limit?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchFollowersForAChannel: async (id: string, viewer_fid?: number, cursor?: string, limit?: number, x_neynar_experimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('fetchFollowersForAChannel', 'id', id)
             const localVarPath = `/farcaster/channel/followers`;
@@ -326,6 +334,12 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['limit'] = limit;
             }
 
+            if (x_neynar_experimental != null) {
+                localVarHeaderParameter['x-neynar-experimental'] = typeof x_neynar_experimental === 'string'
+                    ? x_neynar_experimental
+                    : JSON.stringify(x_neynar_experimental);
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -342,6 +356,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Relevant followers
          * @param {string} id Channel ID being queried 
          * @param {number} viewer_fid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {boolean} [x_neynar_experimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<RelevantFollowersResponse>} A promise that resolves to a `RelevantFollowersResponse` object
@@ -349,7 +364,7 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-relevant-followers-for-a-channel)
          * 
          */
-        fetchRelevantFollowersForAChannel: async (id: string, viewer_fid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchRelevantFollowersForAChannel: async (id: string, viewer_fid: number, x_neynar_experimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('fetchRelevantFollowersForAChannel', 'id', id)
             // verify required parameter 'viewer_fid' is not null or undefined
@@ -375,6 +390,12 @@ export const ChannelApiAxiosParamCreator = function (configuration?: Configurati
 
             if (viewer_fid !== undefined) {
                 localVarQueryParameter['viewer_fid'] = viewer_fid;
+            }
+
+            if (x_neynar_experimental != null) {
+                localVarHeaderParameter['x-neynar-experimental'] = typeof x_neynar_experimental === 'string'
+                    ? x_neynar_experimental
+                    : JSON.stringify(x_neynar_experimental);
             }
 
 
@@ -999,6 +1020,7 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {number} [fid] FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members. 
          * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
+         * @param {boolean} [x_neynar_experimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<ChannelMemberListResponse>} A promise that resolves to a `ChannelMemberListResponse` object
@@ -1006,8 +1028,8 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-channel-members)
          * 
          */
-        async fetchChannelMembers(channel_id: string, fid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelMemberListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchChannelMembers(channel_id, fid, limit, cursor, options);
+        async fetchChannelMembers(channel_id: string, fid?: number, limit?: number, cursor?: string, x_neynar_experimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelMemberListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchChannelMembers(channel_id, fid, limit, cursor, x_neynar_experimental, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChannelApi.fetchChannelMembers']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1019,6 +1041,7 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @param {number} [viewer_fid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {string} [cursor] Pagination cursor. 
          * @param {number} [limit] Number of followers to fetch  (Default: 25, Maximum: 1000)
+         * @param {boolean} [x_neynar_experimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object
@@ -1026,8 +1049,8 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-followers-for-a-channel)
          * 
          */
-        async fetchFollowersForAChannel(id: string, viewer_fid?: number, cursor?: string, limit?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchFollowersForAChannel(id, viewer_fid, cursor, limit, options);
+        async fetchFollowersForAChannel(id: string, viewer_fid?: number, cursor?: string, limit?: number, x_neynar_experimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchFollowersForAChannel(id, viewer_fid, cursor, limit, x_neynar_experimental, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChannelApi.fetchFollowersForAChannel']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1037,6 +1060,7 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * @summary Relevant followers
          * @param {string} id Channel ID being queried 
          * @param {number} viewer_fid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {boolean} [x_neynar_experimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<RelevantFollowersResponse>} A promise that resolves to a `RelevantFollowersResponse` object
@@ -1044,8 +1068,8 @@ export const ChannelApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-relevant-followers-for-a-channel)
          * 
          */
-        async fetchRelevantFollowersForAChannel(id: string, viewer_fid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RelevantFollowersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchRelevantFollowersForAChannel(id, viewer_fid, options);
+        async fetchRelevantFollowersForAChannel(id: string, viewer_fid: number, x_neynar_experimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RelevantFollowersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchRelevantFollowersForAChannel(id, viewer_fid, x_neynar_experimental, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChannelApi.fetchRelevantFollowersForAChannel']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1313,7 +1337,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * 
          */
         fetchChannelMembers(requestParameters: ChannelApiFetchChannelMembersRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChannelMemberListResponse> {
-            return localVarFp.fetchChannelMembers(requestParameters.channel_id, requestParameters.fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchChannelMembers(requestParameters.channel_id, requestParameters.fid, requestParameters.limit, requestParameters.cursor, requestParameters.x_neynar_experimental, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
@@ -1327,7 +1351,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * 
          */
         fetchFollowersForAChannel(requestParameters: ChannelApiFetchFollowersForAChannelRequest, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
-            return localVarFp.fetchFollowersForAChannel(requestParameters.id, requestParameters.viewer_fid, requestParameters.cursor, requestParameters.limit, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchFollowersForAChannel(requestParameters.id, requestParameters.viewer_fid, requestParameters.cursor, requestParameters.limit, requestParameters.x_neynar_experimental, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".
@@ -1341,7 +1365,7 @@ export const ChannelApiFactory = function (configuration?: Configuration, basePa
          * 
          */
         fetchRelevantFollowersForAChannel(requestParameters: ChannelApiFetchRelevantFollowersForAChannelRequest, options?: RawAxiosRequestConfig): AxiosPromise<RelevantFollowersResponse> {
-            return localVarFp.fetchRelevantFollowersForAChannel(requestParameters.id, requestParameters.viewer_fid, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchRelevantFollowersForAChannel(requestParameters.id, requestParameters.viewer_fid, requestParameters.x_neynar_experimental, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of trending channels based on activity
@@ -1889,6 +1913,15 @@ export interface ChannelApiFetchChannelMembersRequest {
      * @memberof ChannelApiFetchChannelMembers
      */
     readonly cursor?: string
+
+    /**
+     * Enables experimental features
+     * 
+     * 
+     * @type {boolean}
+     * @memberof ChannelApiFetchChannelMembers
+     */
+    readonly x_neynar_experimental?: boolean
 }
 
 /**
@@ -1932,6 +1965,15 @@ export interface ChannelApiFetchFollowersForAChannelRequest {
      * @memberof ChannelApiFetchFollowersForAChannel
      */
     readonly limit?: number
+
+    /**
+     * Enables experimental features
+     * 
+     * 
+     * @type {boolean}
+     * @memberof ChannelApiFetchFollowersForAChannel
+     */
+    readonly x_neynar_experimental?: boolean
 }
 
 /**
@@ -1957,6 +1999,15 @@ export interface ChannelApiFetchRelevantFollowersForAChannelRequest {
      * @memberof ChannelApiFetchRelevantFollowersForAChannel
      */
     readonly viewer_fid: number
+
+    /**
+     * Enables experimental features
+     * 
+     * 
+     * @type {boolean}
+     * @memberof ChannelApiFetchRelevantFollowersForAChannel
+     */
+    readonly x_neynar_experimental?: boolean
 }
 
 /**
@@ -2311,7 +2362,7 @@ export class ChannelApi extends BaseAPI implements ChannelApiInterface {
      * 
      */
     public fetchChannelMembers(requestParameters: ChannelApiFetchChannelMembersRequest, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).fetchChannelMembers(requestParameters.channel_id, requestParameters.fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
+        return ChannelApiFp(this.configuration).fetchChannelMembers(requestParameters.channel_id, requestParameters.fid, requestParameters.limit, requestParameters.cursor, requestParameters.x_neynar_experimental, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2327,7 +2378,7 @@ export class ChannelApi extends BaseAPI implements ChannelApiInterface {
      * 
      */
     public fetchFollowersForAChannel(requestParameters: ChannelApiFetchFollowersForAChannelRequest, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).fetchFollowersForAChannel(requestParameters.id, requestParameters.viewer_fid, requestParameters.cursor, requestParameters.limit, options).then((request) => request(this.axios, this.basePath));
+        return ChannelApiFp(this.configuration).fetchFollowersForAChannel(requestParameters.id, requestParameters.viewer_fid, requestParameters.cursor, requestParameters.limit, requestParameters.x_neynar_experimental, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2343,7 +2394,7 @@ export class ChannelApi extends BaseAPI implements ChannelApiInterface {
      * 
      */
     public fetchRelevantFollowersForAChannel(requestParameters: ChannelApiFetchRelevantFollowersForAChannelRequest, options?: RawAxiosRequestConfig) {
-        return ChannelApiFp(this.configuration).fetchRelevantFollowersForAChannel(requestParameters.id, requestParameters.viewer_fid, options).then((request) => request(this.axios, this.basePath));
+        return ChannelApiFp(this.configuration).fetchRelevantFollowersForAChannel(requestParameters.id, requestParameters.viewer_fid, requestParameters.x_neynar_experimental, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -84,6 +84,7 @@ export const MuteApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {number} fid The user\&#39;s FID (identifier) 
          * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
+         * @param {boolean} [x_neynar_experimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<MuteListResponse>} A promise that resolves to a `MuteListResponse` object
@@ -91,7 +92,7 @@ export const MuteApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-mute-list)
          * 
          */
-        fetchMuteList: async (fid: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchMuteList: async (fid: number, limit?: number, cursor?: string, x_neynar_experimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('fetchMuteList', 'fid', fid)
             const localVarPath = `/farcaster/mute/list`;
@@ -119,6 +120,12 @@ export const MuteApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (cursor !== undefined) {
                 localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (x_neynar_experimental != null) {
+                localVarHeaderParameter['x-neynar-experimental'] = typeof x_neynar_experimental === 'string'
+                    ? x_neynar_experimental
+                    : JSON.stringify(x_neynar_experimental);
             }
 
 
@@ -208,6 +215,7 @@ export const MuteApiFp = function(configuration?: Configuration) {
          * @param {number} fid The user\&#39;s FID (identifier) 
          * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
+         * @param {boolean} [x_neynar_experimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<MuteListResponse>} A promise that resolves to a `MuteListResponse` object
@@ -215,8 +223,8 @@ export const MuteApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-mute-list)
          * 
          */
-        async fetchMuteList(fid: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MuteListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchMuteList(fid, limit, cursor, options);
+        async fetchMuteList(fid: number, limit?: number, cursor?: string, x_neynar_experimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MuteListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchMuteList(fid, limit, cursor, x_neynar_experimental, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['MuteApi.fetchMuteList']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -274,7 +282,7 @@ export const MuteApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         fetchMuteList(requestParameters: MuteApiFetchMuteListRequest, options?: RawAxiosRequestConfig): AxiosPromise<MuteListResponse> {
-            return localVarFp.fetchMuteList(requestParameters.fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchMuteList(requestParameters.fid, requestParameters.limit, requestParameters.cursor, requestParameters.x_neynar_experimental, options).then((request) => request(axios, basePath));
         },
         /**
          * Adds a mute for a given FID. This is a whitelisted API, reach out if you want access.
@@ -391,6 +399,15 @@ export interface MuteApiFetchMuteListRequest {
      * @memberof MuteApiFetchMuteList
      */
     readonly cursor?: string
+
+    /**
+     * Enables experimental features
+     * 
+     * 
+     * @type {boolean}
+     * @memberof MuteApiFetchMuteList
+     */
+    readonly x_neynar_experimental?: boolean
 }
 
 /**
@@ -445,7 +462,7 @@ export class MuteApi extends BaseAPI implements MuteApiInterface {
      * 
      */
     public fetchMuteList(requestParameters: MuteApiFetchMuteListRequest, options?: RawAxiosRequestConfig) {
-        return MuteApiFp(this.configuration).fetchMuteList(requestParameters.fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
+        return MuteApiFp(this.configuration).fetchMuteList(requestParameters.fid, requestParameters.limit, requestParameters.cursor, requestParameters.x_neynar_experimental, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
