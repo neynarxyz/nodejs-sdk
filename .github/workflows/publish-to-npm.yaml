@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - src/neynar-api/common/version.ts
 
 jobs:
   build:
