@@ -1,9 +1,11 @@
-name: "Publish to npm 🚀"
+name: "Publish v1 to npm 🚀"
 
 on:
   push:
     branches:
       - v1
+    paths:
+      - src/neynar-api/common/version.ts
 
 jobs:
   build:
@@ -27,5 +29,5 @@ jobs:
       - name: Set npm Config
         run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
 
-      - name: Publish to npm
-        run: npm publish --access public
+      - name: Publish v1 to npm with 'v1' tag
+        run: npm publish --tag v1 --access public
