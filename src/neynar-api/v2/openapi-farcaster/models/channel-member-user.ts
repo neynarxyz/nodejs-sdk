@@ -21,6 +21,9 @@ import type { User } from './user';
 import type { UserDehydrated } from './user-dehydrated';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { UserExperimental } from './user-experimental';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { UserProfile } from './user-profile';
 // May contain unused imports in some cases
 // @ts-ignore

@@ -211,6 +211,7 @@ export * from './update-user-req-body';
 export * from './update-user-req-body-location';
 export * from './user';
 export * from './user-dehydrated';
+export * from './user-experimental';
 export * from './user-fidresponse';
 export * from './user-power-lite-response';
 export * from './user-power-lite-response-result';

@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import type { UserExperimental } from './user-experimental';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { UserProfile } from './user-profile';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -110,6 +113,12 @@ export interface User {
      * @memberof User
      */
     'power_badge': boolean;
+    /**
+     * 
+     * @type {UserExperimental}
+     * @memberof User
+     */
+    'experimental'?: UserExperimental;
     /**
      * 
      * @type {UserViewerContext}

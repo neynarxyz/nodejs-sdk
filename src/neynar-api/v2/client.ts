@@ -159,10 +159,12 @@ export class NeynarV2APIClient {
   constructor(
     apiKey: string,
     {
+      baseOptions,
       basePath,
       logger = silentLogger,
       axiosInstance,
     }: {
+      baseOptions?: any;
       basePath?: string;
       logger?: Logger;
       axiosInstance?: AxiosInstance;
@@ -204,6 +206,7 @@ export class NeynarV2APIClient {
 
     axiosInstance.defaults.headers["x-sdk-version"] = version;
     const config: Configuration = new Configuration({
+      baseOptions: baseOptions,
       basePath: basePath ? `${basePath}/v2` : BASE_PATH,
       apiKey: apiKey,
     });

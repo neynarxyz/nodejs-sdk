@@ -137,10 +137,12 @@ export class NeynarAPIClient {
   constructor(
     apiKey: string,
     {
+      baseOptions,
       basePath,
       logger = silentLogger,
       axiosInstance,
     }: {
+      baseOptions?: any;
       basePath?: string;
       logger?: Logger;
       axiosInstance?: AxiosInstance;
@@ -155,8 +157,17 @@ export class NeynarAPIClient {
     }
 
     this.clients = {
-      v1: new NeynarV1APIClient(apiKey, { basePath, logger, axiosInstance }),
-      v2: new NeynarV2APIClient(apiKey, { basePath, logger, axiosInstance }),
+      v1: new NeynarV1APIClient(apiKey, {
+        basePath,
+        logger,
+        axiosInstance,
+      }),
+      v2: new NeynarV2APIClient(apiKey, {
+        baseOptions,
+        basePath,
+        logger,
+        axiosInstance,
+      }),
     };
   }
 
@@ -2943,7 +2954,7 @@ export class NeynarAPIClient {
     fid: number,
     options?: {
       viewerFid?: number;
-      sortType: FollowSortType;
+      sortType?: FollowSortType;
       cursor?: string;
       limit?: number;
     }

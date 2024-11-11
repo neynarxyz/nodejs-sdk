@@ -85,6 +85,7 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
          * @param {number} [blocked_fid] Providing this will return the users that have blocked this user 
          * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
+         * @param {boolean} [x_neynar_experimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<BlockListResponse>} A promise that resolves to a `BlockListResponse` object
@@ -92,7 +93,7 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-block-list)
          * 
          */
-        fetchBlockList: async (blocker_fid?: number, blocked_fid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchBlockList: async (blocker_fid?: number, blocked_fid?: number, limit?: number, cursor?: string, x_neynar_experimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/farcaster/block/list`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -122,6 +123,12 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
 
             if (cursor !== undefined) {
                 localVarQueryParameter['cursor'] = cursor;
+            }
+
+            if (x_neynar_experimental != null) {
+                localVarHeaderParameter['x-neynar-experimental'] = typeof x_neynar_experimental === 'string'
+                    ? x_neynar_experimental
+                    : JSON.stringify(x_neynar_experimental);
             }
 
 
@@ -212,6 +219,7 @@ export const BlockApiFp = function(configuration?: Configuration) {
          * @param {number} [blocked_fid] Providing this will return the users that have blocked this user 
          * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
+         * @param {boolean} [x_neynar_experimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<BlockListResponse>} A promise that resolves to a `BlockListResponse` object
@@ -219,8 +227,8 @@ export const BlockApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-block-list)
          * 
          */
-        async fetchBlockList(blocker_fid?: number, blocked_fid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BlockListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchBlockList(blocker_fid, blocked_fid, limit, cursor, options);
+        async fetchBlockList(blocker_fid?: number, blocked_fid?: number, limit?: number, cursor?: string, x_neynar_experimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BlockListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchBlockList(blocker_fid, blocked_fid, limit, cursor, x_neynar_experimental, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['BlockApi.fetchBlockList']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -278,7 +286,7 @@ export const BlockApiFactory = function (configuration?: Configuration, basePath
          * 
          */
         fetchBlockList(requestParameters: BlockApiFetchBlockListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<BlockListResponse> {
-            return localVarFp.fetchBlockList(requestParameters.blocker_fid, requestParameters.blocked_fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchBlockList(requestParameters.blocker_fid, requestParameters.blocked_fid, requestParameters.limit, requestParameters.cursor, requestParameters.x_neynar_experimental, options).then((request) => request(axios, basePath));
         },
         /**
          * Adds a block for a given FID.
@@ -404,6 +412,15 @@ export interface BlockApiFetchBlockListRequest {
      * @memberof BlockApiFetchBlockList
      */
     readonly cursor?: string
+
+    /**
+     * Enables experimental features
+     * 
+     * 
+     * @type {boolean}
+     * @memberof BlockApiFetchBlockList
+     */
+    readonly x_neynar_experimental?: boolean
 }
 
 /**
@@ -458,7 +475,7 @@ export class BlockApi extends BaseAPI implements BlockApiInterface {
      * 
      */
     public fetchBlockList(requestParameters: BlockApiFetchBlockListRequest = {}, options?: RawAxiosRequestConfig) {
-        return BlockApiFp(this.configuration).fetchBlockList(requestParameters.blocker_fid, requestParameters.blocked_fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
+        return BlockApiFp(this.configuration).fetchBlockList(requestParameters.blocker_fid, requestParameters.blocked_fid, requestParameters.limit, requestParameters.cursor, requestParameters.x_neynar_experimental, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -24,6 +24,9 @@ import type { ProfileUrlPfp } from './profile-url-pfp';
 import type { User } from './user';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { UserExperimental } from './user-experimental';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { UserProfile } from './user-profile';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -119,6 +122,12 @@ export interface SearchedUser {
      * @memberof SearchedUser
      */
     'power_badge': boolean;
+    /**
+     * 
+     * @type {UserExperimental}
+     * @memberof SearchedUser
+     */
+    'experimental'?: UserExperimental;
     /**
      * 
      * @type {UserViewerContext}
