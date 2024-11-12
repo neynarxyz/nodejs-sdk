@@ -16,6 +16,7 @@ apis/notifications-api.ts
 apis/reaction-api.ts
 apis/signer-api.ts
 apis/storage-api.ts
+apis/stp-api.ts
 apis/subscribers-api.ts
 apis/user-api.ts
 apis/webhook-api.ts
@@ -222,6 +223,7 @@ models/subscribed-to-response.ts
 models/subscribed-to.ts
 models/subscriber.ts
 models/subscribers-response.ts
+models/subscription-check-response.ts
 models/subscription-metadata.ts
 models/subscription-price.ts
 models/subscription-provider.ts

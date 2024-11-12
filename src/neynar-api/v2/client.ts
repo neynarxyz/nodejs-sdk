@@ -111,6 +111,8 @@ import {
   InviteChannelMemberReqBody,
   RemoveChannelMemberReqBody,
   RespondChannelInviteReqBody,
+  StpApi,
+  SubscriptionStatus,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -123,7 +125,6 @@ import {
   ValidateFrameAggregateWindow,
 } from "../common/constants";
 import { version } from "../common/version";
-import { STPApi, SubscriptionStatus } from "./openapi-stp";
 
 const BASE_PATH = "https://api.neynar.com/v2";
 
@@ -148,7 +149,7 @@ export class NeynarV2APIClient {
     block: BlockApi;
     ban: BanApi;
     subscribers: SubscribersApi;
-    stp: STPApi;
+    stp: StpApi;
   };
 
   /**
@@ -233,7 +234,7 @@ export class NeynarV2APIClient {
       block: new BlockApi(config, undefined, axiosInstance),
       ban: new BanApi(config, undefined, axiosInstance),
       subscribers: new SubscribersApi(config, undefined, axiosInstance),
-      stp: new STPApi(config, undefined, axiosInstance),
+      stp: new StpApi(config, undefined, axiosInstance),
     };
   }
 

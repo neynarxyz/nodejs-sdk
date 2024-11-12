@@ -196,6 +196,7 @@ export * from './subscribed-to-response';
 export * from './subscriber';
 export * from './subscribers-response';
 export * from './subscription';
+export * from './subscription-check-response';
 export * from './subscription-metadata';
 export * from './subscription-price';
 export * from './subscription-provider';

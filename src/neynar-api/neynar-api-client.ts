@@ -4000,7 +4000,7 @@ export class NeynarAPIClient {
    * @example
    * // Example: Fetch Subscription Check for tabletop on Base.
    * client.fetchSubscriptionCheck(['0xedd3783e8c7c52b80cfbd026a63c207edc9cbee7','0x5a927ac639636e534b678e81768ca19e2c6280b7'], '0x76ad4cb9ac51c09f4d9c2cadcea75c9fa9074e5b', '8453').then(response => {
-   *
+   *  console.log('Subscription Check:', response)});
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscription-check).
    */

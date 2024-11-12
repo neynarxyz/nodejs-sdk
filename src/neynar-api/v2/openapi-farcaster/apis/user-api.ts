@@ -441,7 +441,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
+         * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-account)
          * @summary Fetch fresh FID
          * @param {boolean} [x_neynar_experimental] Enables experimental features 
          * @param {*} [options] Override http request option.
@@ -965,7 +965,7 @@ export const UserApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
+         * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-account)
          * @summary Fetch fresh FID
          * @param {boolean} [x_neynar_experimental] Enables experimental features 
          * @param {*} [options] Override http request option.
@@ -1215,7 +1215,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.followUser(requestParameters.follow_req_body, options).then((request) => request(axios, basePath));
         },
         /**
-         * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
+         * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-account)
          * @summary Fetch fresh FID
          * @param {UserApiGetFreshAccountFIDRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
@@ -1434,7 +1434,7 @@ export interface UserApiInterface {
     followUser(requestParameters: UserApiFollowUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<BulkFollowResponse>;
 
     /**
-     * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
+     * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-account)
      * @summary Fetch fresh FID
      * @param {UserApiGetFreshAccountFIDRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
@@ -2078,7 +2078,7 @@ export class UserApi extends BaseAPI implements UserApiInterface {
     }
 
     /**
-     * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
+     * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-account)
      * @summary Fetch fresh FID
      * @param {UserApiGetFreshAccountFIDRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
