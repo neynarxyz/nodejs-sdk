@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - src/neynar-api/common/version.ts
+      - package.json
 
 jobs:
   build:
