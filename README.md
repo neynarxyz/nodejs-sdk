@@ -6,24 +6,14 @@
 
 Please refer to our [Getting Started Guide](https://docs.neynar.com/reference/getting-started-with-sdk)
 
+<!-- TODO: Add migration guide link here-->
+
 Checkout [examples](https://github.com/neynarxyz/farcaster-examples) using this SDK
-
-## Type Definitions
-
-You can directly import the type definitions from the SDK as shown below:
-
-- See your `node_modules/@neynar/nodejs-sdk/build/neynar-api/v2/openapi-farcaster` directory for the type definitions.
-
-```typescript
-import { type User } from '@neynar/nodejs-sdk/build/neynar-api/v2/openapi-farcaster/models/user'
-import { type CastAuthor } from '@neynar/nodejs-sdk/build/neynar-api/v2/openapi-farcaster/models/cast-author'
-import { type CastWithInteractionsReactions } from '@neynar/nodejs-sdk/build/neynar-api/v2/openapi-farcaster/models/cast-with-interactions-reactions'
-
-```
 
 ## Contribution Guidelines
 
-see [CONTRIBUTING.md](./CONTRIBUTING.md).
+SDK is auto generated.
+To make contributions to this SDK please update the [OAS](https://github.com/neynarxyz/oas)
 
 ## License
 
