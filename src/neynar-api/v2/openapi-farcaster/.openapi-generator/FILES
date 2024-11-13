@@ -26,8 +26,12 @@ configuration.ts
 git_push.sh
 index.ts
 models/add-verification-req-body.ts
+models/address-balance-verified-address.ts
+models/address-balance.ts
 models/authorization-url-response-type.ts
 models/authorization-url-response.ts
+models/balance-response-user-balance.ts
+models/balance-response.ts
 models/ban-list-response.ts
 models/ban-record.ts
 models/ban-req-body.ts
@@ -235,6 +239,9 @@ models/subscription-token.ts
 models/subscription.ts
 models/subscriptions-response.ts
 models/subscriptions.ts
+models/token-balance-balance.ts
+models/token-balance-token.ts
+models/token-balance.ts
 models/trending-channel-response.ts
 models/update-user-req-body-location.ts
 models/update-user-req-body.ts
