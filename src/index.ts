@@ -11,4 +11,5 @@ if (!semver.satisfies(process.version, requiredVersion)) {
 
 export * from "./clients";
 export * from "./utils";
+export * from "./types"
 export { Configuration } from "./clients/configuration";
