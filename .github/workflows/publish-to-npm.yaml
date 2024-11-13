@@ -1,12 +1,11 @@
-name: "Publish to npm 🚀"
+name: "Publish v2 Alpha to npm 🚀"
 
 on:
   push:
     branches:
-      - main
+      - v2-alpha
     paths:
       - package.json
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,5 +28,7 @@ jobs:
       - name: Set npm Config
         run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
 
-      - name: Publish to npm
-        run: npm publish --access public
+      - name: Publish v2 Alpha to npm with 'alpha' tag
+        run: npm publish --tag alpha --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
