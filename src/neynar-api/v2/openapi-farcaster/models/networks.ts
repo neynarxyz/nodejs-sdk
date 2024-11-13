@@ -15,13 +15,13 @@
 
 
 /**
- * A blockchain network e.g. \"base-mainnet\"
+ * A blockchain network e.g. \"base\"
  * @export
  * @enum {string}
  */
 
 export const Networks = {
-    BaseMainnet: 'base-mainnet'
+    Base: 'base'
 } as const;
 
 export type Networks = typeof Networks[keyof typeof Networks];

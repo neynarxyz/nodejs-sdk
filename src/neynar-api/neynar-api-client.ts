@@ -1549,7 +1549,7 @@ export class NeynarAPIClient {
    * Fetches the token balance of a user given their FID.
    * 
    * @param {number} fid - The FID of the user whose token balance is being fetched.
-   * @param {Array<Networks>} networks Comma separated list of networks to fetch balances for. Currently, only \&quot;base-mainnet\&quot; is supported. 
+   * @param {Array<Networks>} networks Comma separated list of networks to fetch balances for. Currently, only \&quot;base\&quot; is supported. 
    * 
    * @returns {Promise<BalanceResponse>} A promise that resolves to a `BalanceResponse` object
    * 

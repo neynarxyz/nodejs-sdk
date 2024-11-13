@@ -27,7 +27,7 @@ export interface AddressBalanceVerifiedAddress {
      */
     'address': string;
     /**
-     * A blockchain network e.g. \"base-mainnet\"
+     * A blockchain network e.g. \"base\"
      * @type {string}
      * @memberof AddressBalanceVerifiedAddress
      */
@@ -35,7 +35,7 @@ export interface AddressBalanceVerifiedAddress {
 }
 
 export const AddressBalanceVerifiedAddressNetworkEnum = {
-    BaseMainnet: 'base-mainnet'
+    Base: 'base'
 } as const;
 
 export type AddressBalanceVerifiedAddressNetworkEnum = typeof AddressBalanceVerifiedAddressNetworkEnum[keyof typeof AddressBalanceVerifiedAddressNetworkEnum];

@@ -332,7 +332,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * Fetches the token balances of a user given their FID
          * @summary Token balance
          * @param {number} fid FID of the user to fetch 
-         * @param {Array<Networks>} networks Comma separated list of networks to fetch balances for. Currently, only \&quot;base-mainnet\&quot; is supported. 
+         * @param {Array<Networks>} networks Comma separated list of networks to fetch balances for. Currently, only \&quot;base\&quot; is supported. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<BalanceResponse>} A promise that resolves to a `BalanceResponse` object
@@ -984,7 +984,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * Fetches the token balances of a user given their FID
          * @summary Token balance
          * @param {number} fid FID of the user to fetch 
-         * @param {Array<Networks>} networks Comma separated list of networks to fetch balances for. Currently, only \&quot;base-mainnet\&quot; is supported. 
+         * @param {Array<Networks>} networks Comma separated list of networks to fetch balances for. Currently, only \&quot;base\&quot; is supported. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<BalanceResponse>} A promise that resolves to a `BalanceResponse` object
@@ -1816,7 +1816,7 @@ export interface UserApiFetchUserBalanceRequest {
     readonly fid: number
 
     /**
-     * Comma separated list of networks to fetch balances for. Currently, only \&quot;base-mainnet\&quot; is supported.
+     * Comma separated list of networks to fetch balances for. Currently, only \&quot;base\&quot; is supported.
      * 
      * 
      * @type {Array<Networks>}
