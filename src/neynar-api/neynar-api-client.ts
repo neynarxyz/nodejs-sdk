@@ -85,6 +85,9 @@ import {
   PostCastReqBodyEmbeds,
   NeynarFrameUpdateReqBody,
   NeynarFrameCreationReqBody,
+  BalanceResponse,
+  Networks,
+  FetchFrameMetaTagsFromUrl200Response,
 } from "./v2/openapi-farcaster";
 
 import {
@@ -1540,6 +1543,26 @@ export class NeynarAPIClient {
       longitude,
       options
     );
+  }
+
+  /**
+   * Fetches the token balance of a user given their FID.
+   * 
+   * @param {number} fid - The FID of the user whose token balance is being fetched.
+   * @param {Array<Networks>} networks Comma separated list of networks to fetch balances for. Currently, only \&quot;base\&quot; is supported. 
+   * 
+   * @returns {Promise<BalanceResponse>} A promise that resolves to a `BalanceResponse` object
+   * 
+   * @example
+   * // Example: Fetch the token balance of a user with FID 3
+   * client.fetchUserBalance(3).then(response => {
+   *  console.log('User Balance:', response); // Outputs the token balance of the user
+   * });
+   *  
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/fetch-user-balance)
+   */
+  public async fetchUserBalance(fid: number, networks: Networks[]): Promise<BalanceResponse> {
+    return await this.clients.v2.fetchUserBalance(fid, networks);
   }
 
   // ------------ Cast ------------
@@ -3034,6 +3057,33 @@ export class NeynarAPIClient {
     return await this.clients.v2.fetchUserChannelMemberships(fid, options);
   }
 
+  /**
+   * Fetch a list of suggested users to follow. Used to help users discover new users to follow
+   *
+   * @param {number} fid - FID of the user whose following you want to fetch.
+   * @param {Object} [options] - Optional parameters for customizing the response
+   * @param {number} [options.limit] - Number of results to fetch (Default: 25, Maximum: 100)
+   * @param {number} [options.viewerFid] - Providing this will return a list of users that respects this user's mutes and blocks and includes `viewer_context`.
+   *
+   * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object
+   *
+   * @example
+   *
+   * // Example: Fetch follow suggestions for a user
+   * client.fetchFollowSuggestions(3, {limit: 5}).then(response => {
+   *  console.log('Follow Suggestions:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/fetch-follow-suggestions)
+   *
+   */
+  public async fetchFollowSuggestions(
+    fid: number,
+    options?: { limit?: number; viewerFid?: number }
+  ): Promise<UsersResponse> {
+    return await this.clients.v2.fetchFollowSuggestions(fid, options);
+  }
+
   // ------------ Storage ------------
 
   /**
@@ -3242,6 +3292,29 @@ export class NeynarAPIClient {
    */
   public async deleteNeynarFrame(uuid: string): Promise<DeleteFrameResponse> {
     return await this.clients.v2.deleteNeynarFrame(uuid);
+  }
+
+  /**
+   * Fetches the frame meta tags from the URL
+   *
+   * @param {string} url - The URL from which to fetch the frame meta tags
+   *
+   * @returns {Promise<FetchFrameMetaTagsFromUrl200Response>} A promise that resolves to a `FetchFrameMetaTagsFromUrl200Response` object
+   *
+   * @example
+   * // Example: Fetch frame meta tags from a URL
+   * const url = 'https://frames.neynar.com/f/862277df/ff7be6a4';
+   * client.fetchFrameMetaTagsFromUrl(url).then(response => {
+   *  console.log('Frame Meta Tags:', response);
+   * });
+   *
+   * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-frame-meta-tags-from-url)
+   *
+   */
+  public async fetchFrameMetaTagsFromUrl(
+    url: string
+  ): Promise<FetchFrameMetaTagsFromUrl200Response> {
+    return await this.clients.v2.fetchFrameMetaTagsFromUrl(url);
   }
 
   /**
@@ -4000,7 +4073,7 @@ export class NeynarAPIClient {
    * @example
    * // Example: Fetch Subscription Check for tabletop on Base.
    * client.fetchSubscriptionCheck(['0xedd3783e8c7c52b80cfbd026a63c207edc9cbee7','0x5a927ac639636e534b678e81768ca19e2c6280b7'], '0x76ad4cb9ac51c09f4d9c2cadcea75c9fa9074e5b', '8453').then(response => {
-   *
+   *  console.log('Subscription Check:', response)});
    *
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/subscription-check).
    */

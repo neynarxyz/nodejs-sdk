@@ -1,6 +1,6 @@
 {
   "name": "@neynar/nodejs-sdk",
-  "version": "1.70.0",
+  "version": "1.71.0",
   "description": "SDK to interact with Neynar APIs (https://docs.neynar.com/)",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -10,9 +10,8 @@
   "scripts": {
     "clean": "del-cli ./build/*",
     "build": "yarn run clean && tsc",
-    "generate:neynar-oas-v1-farcaster": "del-cli src/neynar-api/v1/openapi; openapi-generator-cli generate -i src/oas/src/v1/spec.yaml -g typescript-axios -o src/neynar-api/v1/openapi --config src/oas/openapi-generator-config.json --inline-schema-options 'REFACTOR_ALLOF_INLINE_SCHEMAS=true'",
-    "generate:neynar-oas-v2-farcaster": "del-cli src/neynar-api/v2/openapi-farcaster; openapi-generator-cli generate -i src/oas/src/v2/spec.yaml -g typescript-axios -o src/neynar-api/v2/openapi-farcaster --config src/oas/openapi-generator-config.json --inline-schema-options 'REFACTOR_ALLOF_INLINE_SCHEMAS=true'",
-    "generate:neynar-oas-v2-stp": "del-cli src/neynar-api/v2/openapi-stp; openapi-generator-cli generate -i src/oas/src/v2/stp/spec.yaml -g typescript-axios -o src/neynar-api/v2/openapi-stp --config src/oas/openapi-generator-config.json --inline-schema-options 'REFACTOR_ALLOF_INLINE_SCHEMAS=true'"
+    "generate:neynar-oas-v1-farcaster": "del-cli src/neynar-api/v1/openapi; openapi-generator-cli generate -i src/oas/src/v1/spec.yaml -g typescript-axios -o src/neynar-api/v1/openapi --config ./openapi-generator-config.json --inline-schema-options 'REFACTOR_ALLOF_INLINE_SCHEMAS=true'",
+    "generate:neynar-oas-v2-farcaster": "del-cli src/neynar-api/v2/openapi-farcaster; openapi-generator-cli generate -i src/oas/src/v2/spec.yaml -g typescript-axios -o src/neynar-api/v2/openapi-farcaster --config ./openapi-generator-config.json --inline-schema-options 'REFACTOR_ALLOF_INLINE_SCHEMAS=true'"
   },
   "author": "Neynar",
   "license": "MIT",

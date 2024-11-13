@@ -24,6 +24,8 @@ import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError
 // @ts-ignore
 import type { AddVerificationReqBody } from '../models';
 // @ts-ignore
+import type { BalanceResponse } from '../models';
+// @ts-ignore
 import type { BulkFollowResponse } from '../models';
 // @ts-ignore
 import type { BulkUsersByAddressResponse } from '../models';
@@ -35,6 +37,8 @@ import type { ConflictErrorRes } from '../models';
 import type { ErrorRes } from '../models';
 // @ts-ignore
 import type { FollowReqBody } from '../models';
+// @ts-ignore
+import type { Networks } from '../models';
 // @ts-ignore
 import type { OperationResponse } from '../models';
 // @ts-ignore
@@ -325,6 +329,57 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
+         * Fetches the token balances of a user given their FID
+         * @summary Token balance
+         * @param {number} fid FID of the user to fetch 
+         * @param {Array<Networks>} networks Comma separated list of networks to fetch balances for. Currently, only \&quot;base\&quot; is supported. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<BalanceResponse>} A promise that resolves to a `BalanceResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-balance)
+         * 
+         */
+        fetchUserBalance: async (fid: number, networks: Array<Networks>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fid' is not null or undefined
+            assertParamExists('fetchUserBalance', 'fid', fid)
+            // verify required parameter 'networks' is not null or undefined
+            assertParamExists('fetchUserBalance', 'networks', networks)
+            const localVarPath = `/farcaster/user/balance`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (fid !== undefined) {
+                localVarQueryParameter['fid'] = fid;
+            }
+
+            if (networks) {
+                localVarQueryParameter['networks'] = networks.join(COLLECTION_FORMATS.csv);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Fetches a list of users given a location
          * @summary By location
          * @param {number} latitude Latitude of the location 
@@ -441,7 +496,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
+         * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-account)
          * @summary Fetch fresh FID
          * @param {boolean} [x_neynar_experimental] Enables experimental features 
          * @param {*} [options] Override http request option.
@@ -926,6 +981,24 @@ export const UserApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Fetches the token balances of a user given their FID
+         * @summary Token balance
+         * @param {number} fid FID of the user to fetch 
+         * @param {Array<Networks>} networks Comma separated list of networks to fetch balances for. Currently, only \&quot;base\&quot; is supported. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<BalanceResponse>} A promise that resolves to a `BalanceResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-balance)
+         * 
+         */
+        async fetchUserBalance(fid: number, networks: Array<Networks>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BalanceResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserBalance(fid, networks, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.fetchUserBalance']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Fetches a list of users given a location
          * @summary By location
          * @param {number} latitude Latitude of the location 
@@ -965,7 +1038,7 @@ export const UserApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
+         * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-account)
          * @summary Fetch fresh FID
          * @param {boolean} [x_neynar_experimental] Enables experimental features 
          * @param {*} [options] Override http request option.
@@ -1187,6 +1260,20 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.fetchPowerUsersLite(requestParameters.x_neynar_experimental, options).then((request) => request(axios, basePath));
         },
         /**
+         * Fetches the token balances of a user given their FID
+         * @summary Token balance
+         * @param {UserApiFetchUserBalanceRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         * @returns {Promise<BalanceResponse>} A promise that resolves to a `BalanceResponse` object
+         * 
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-balance)
+         * 
+         */
+        fetchUserBalance(requestParameters: UserApiFetchUserBalanceRequest, options?: RawAxiosRequestConfig): AxiosPromise<BalanceResponse> {
+            return localVarFp.fetchUserBalance(requestParameters.fid, requestParameters.networks, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Fetches a list of users given a location
          * @summary By location
          * @param {UserApiFetchUsersByLocationRequest} requestParameters Request parameters.
@@ -1215,7 +1302,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.followUser(requestParameters.follow_req_body, options).then((request) => request(axios, basePath));
         },
         /**
-         * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
+         * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-account)
          * @summary Fetch fresh FID
          * @param {UserApiGetFreshAccountFIDRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
@@ -1406,6 +1493,20 @@ export interface UserApiInterface {
     fetchPowerUsersLite(requestParameters?: UserApiFetchPowerUsersLiteRequest, options?: RawAxiosRequestConfig): AxiosPromise<UserPowerLiteResponse>;
 
     /**
+     * Fetches the token balances of a user given their FID
+     * @summary Token balance
+     * @param {UserApiFetchUserBalanceRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApiInterface
+     * @returns {Promise<BalanceResponse>} A promise that resolves to a `BalanceResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-balance)
+     * 
+     */
+    fetchUserBalance(requestParameters: UserApiFetchUserBalanceRequest, options?: RawAxiosRequestConfig): AxiosPromise<BalanceResponse>;
+
+    /**
      * Fetches a list of users given a location
      * @summary By location
      * @param {UserApiFetchUsersByLocationRequest} requestParameters Request parameters.
@@ -1434,7 +1535,7 @@ export interface UserApiInterface {
     followUser(requestParameters: UserApiFollowUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<BulkFollowResponse>;
 
     /**
-     * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
+     * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-account)
      * @summary Fetch fresh FID
      * @param {UserApiGetFreshAccountFIDRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
@@ -1615,7 +1716,7 @@ export interface UserApiFetchBulkUsersByEthereumAddressRequest {
     /**
      * Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
      * 
-     * @commaSeparated
+     * 
      * @type {string}
      * @memberof UserApiFetchBulkUsersByEthereumAddress
      */
@@ -1697,6 +1798,31 @@ export interface UserApiFetchPowerUsersLiteRequest {
      * @memberof UserApiFetchPowerUsersLite
      */
     readonly x_neynar_experimental?: boolean
+}
+
+/**
+ * Request parameters for fetchUserBalance operation in UserApi.
+ * @export
+ * @interface UserApiFetchUserBalanceRequest
+ */
+export interface UserApiFetchUserBalanceRequest {
+    /**
+     * FID of the user to fetch
+     * 
+     * 
+     * @type {number}
+     * @memberof UserApiFetchUserBalance
+     */
+    readonly fid: number
+
+    /**
+     * Comma separated list of networks to fetch balances for. Currently, only \&quot;base\&quot; is supported.
+     * 
+     * 
+     * @type {Array<Networks>}
+     * @memberof UserApiFetchUserBalance
+     */
+    readonly networks: Array<Networks>
 }
 
 /**
@@ -2046,6 +2172,22 @@ export class UserApi extends BaseAPI implements UserApiInterface {
     }
 
     /**
+     * Fetches the token balances of a user given their FID
+     * @summary Token balance
+     * @param {UserApiFetchUserBalanceRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     * @returns {Promise<BalanceResponse>} A promise that resolves to a `BalanceResponse` object
+     * 
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-balance)
+     * 
+     */
+    public fetchUserBalance(requestParameters: UserApiFetchUserBalanceRequest, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).fetchUserBalance(requestParameters.fid, requestParameters.networks, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Fetches a list of users given a location
      * @summary By location
      * @param {UserApiFetchUsersByLocationRequest} requestParameters Request parameters.
@@ -2078,7 +2220,7 @@ export class UserApi extends BaseAPI implements UserApiInterface {
     }
 
     /**
-     * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-user)
+     * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-account)
      * @summary Fetch fresh FID
      * @param {UserApiGetFreshAccountFIDRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
