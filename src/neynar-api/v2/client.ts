@@ -114,6 +114,7 @@ import {
   StpApi,
   SubscriptionStatus,
   BalanceResponse,
+  FetchFrameMetaTagsFromUrl200Response,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -3073,6 +3074,38 @@ export class NeynarV2APIClient {
     return response.data;
   }
 
+  /**
+   * Fetch a list of suggested users to follow. Used to help users discover new users to follow
+   *
+   * @param {number} fid - FID of the user whose following you want to fetch.
+   * @param {Object} [options] - Optional parameters for customizing the response
+   * @param {number} [options.limit] - Number of results to fetch (Default: 25, Maximum: 100)
+   * @param {number} [options.viewerFid] - Providing this will return a list of users that respects this user's mutes and blocks and includes `viewer_context`.
+   *
+   * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object
+   *
+   * @example
+   *
+   * // Example: Fetch follow suggestions for a user
+   * client.fetchFollowSuggestions(3, {limit: 5}).then(response => {
+   *  console.log('Follow Suggestions:', response);
+   * });
+   *
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/fetch-follow-suggestions)
+   *
+   */
+  public async fetchFollowSuggestions(
+    fid: number,
+    options?: { limit?: number; viewerFid?: number }
+  ): Promise<UsersResponse> {
+    const response = await this.apis.follows.fetchFollowSuggestions({
+      fid,
+      limit: options?.limit,
+      viewer_fid: options?.viewerFid,
+    });
+    return response.data;
+  }
+
   // ------------ Storage ------------
 
   /**
@@ -3306,6 +3339,30 @@ export class NeynarV2APIClient {
     const response = await this.apis.frame.deleteNeynarFrame({
       delete_frame_req_body: deleteNeynarFrameRequest,
     });
+    return response.data;
+  }
+
+  /**
+   * Fetches the frame meta tags from the URL
+   *
+   * @param {string} url - The URL from which to fetch the frame meta tags
+   *
+   * @returns {Promise<FetchFrameMetaTagsFromUrl200Response>} A promise that resolves to a `FetchFrameMetaTagsFromUrl200Response` object
+   *
+   * @example
+   * // Example: Fetch frame meta tags from a URL
+   * const url = 'https://frames.neynar.com/f/862277df/ff7be6a4';
+   * client.fetchFrameMetaTagsFromUrl(url).then(response => {
+   *  console.log('Frame Meta Tags:', response);
+   * });
+   *
+   * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-frame-meta-tags-from-url)
+   *
+   */
+  public async fetchFrameMetaTagsFromUrl(
+    url: string
+  ): Promise<FetchFrameMetaTagsFromUrl200Response> {
+    const response = await this.apis.frame.fetchFrameMetaTagsFromUrl({ url });
     return response.data;
   }
 
