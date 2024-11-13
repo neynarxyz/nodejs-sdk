@@ -113,6 +113,7 @@ import {
   RespondChannelInviteReqBody,
   StpApi,
   SubscriptionStatus,
+  BalanceResponse,
 } from "./openapi-farcaster";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { silentLogger, Logger } from "../common/logger";
@@ -1090,6 +1091,26 @@ export class NeynarV2APIClient {
       limit: options?.limit,
       cursor: options?.cursor,
     });
+    return response.data;
+  }
+
+  /**
+   * Fetches the token balance of a user given their FID.
+   * 
+   * @param {number} fid - The FID of the user whose token balance is being fetched.
+   * 
+   * @returns {Promise<BalanceResponse>} A promise that resolves to a `BalanceResponse` object
+   * 
+   * @example
+   * // Example: Fetch the token balance of a user with FID 3
+   * client.fetchUserBalance(3).then(response => {
+   *  console.log('User Balance:', response); // Outputs the token balance of the user
+   * });
+   *  
+   * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/fetch-user-balance)
+   */
+  public async fetchUserBalance(fid: number): Promise<BalanceResponse> {
+    const response = await this.apis.user.fetchUserBalance({ fid });
     return response.data;
   }
 
