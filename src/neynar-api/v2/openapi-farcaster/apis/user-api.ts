@@ -38,6 +38,8 @@ import type { ErrorRes } from '../models';
 // @ts-ignore
 import type { FollowReqBody } from '../models';
 // @ts-ignore
+import type { Networks } from '../models';
+// @ts-ignore
 import type { OperationResponse } from '../models';
 // @ts-ignore
 import type { RegisterUserReqBody } from '../models';
@@ -330,6 +332,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * Fetches the token balances of a user given their FID
          * @summary Token balance
          * @param {number} fid FID of the user to fetch 
+         * @param {Array<Networks>} networks Comma separated list of networks to fetch balances for. Currently, only \&quot;base-mainnet\&quot; is supported. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<BalanceResponse>} A promise that resolves to a `BalanceResponse` object
@@ -337,9 +340,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-balance)
          * 
          */
-        fetchUserBalance: async (fid: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchUserBalance: async (fid: number, networks: Array<Networks>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('fetchUserBalance', 'fid', fid)
+            // verify required parameter 'networks' is not null or undefined
+            assertParamExists('fetchUserBalance', 'networks', networks)
             const localVarPath = `/farcaster/user/balance`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -357,6 +362,10 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (fid !== undefined) {
                 localVarQueryParameter['fid'] = fid;
+            }
+
+            if (networks) {
+                localVarQueryParameter['networks'] = networks.join(COLLECTION_FORMATS.csv);
             }
 
 
@@ -975,6 +984,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * Fetches the token balances of a user given their FID
          * @summary Token balance
          * @param {number} fid FID of the user to fetch 
+         * @param {Array<Networks>} networks Comma separated list of networks to fetch balances for. Currently, only \&quot;base-mainnet\&quot; is supported. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<BalanceResponse>} A promise that resolves to a `BalanceResponse` object
@@ -982,8 +992,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-balance)
          * 
          */
-        async fetchUserBalance(fid: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BalanceResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserBalance(fid, options);
+        async fetchUserBalance(fid: number, networks: Array<Networks>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BalanceResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserBalance(fid, networks, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.fetchUserBalance']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1261,7 +1271,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         fetchUserBalance(requestParameters: UserApiFetchUserBalanceRequest, options?: RawAxiosRequestConfig): AxiosPromise<BalanceResponse> {
-            return localVarFp.fetchUserBalance(requestParameters.fid, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchUserBalance(requestParameters.fid, requestParameters.networks, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches a list of users given a location
@@ -1706,7 +1716,7 @@ export interface UserApiFetchBulkUsersByEthereumAddressRequest {
     /**
      * Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
      * 
-     * @commaSeparated
+     * 
      * @type {string}
      * @memberof UserApiFetchBulkUsersByEthereumAddress
      */
@@ -1804,6 +1814,15 @@ export interface UserApiFetchUserBalanceRequest {
      * @memberof UserApiFetchUserBalance
      */
     readonly fid: number
+
+    /**
+     * Comma separated list of networks to fetch balances for. Currently, only \&quot;base-mainnet\&quot; is supported.
+     * 
+     * 
+     * @type {Array<Networks>}
+     * @memberof UserApiFetchUserBalance
+     */
+    readonly networks: Array<Networks>
 }
 
 /**
@@ -2165,7 +2184,7 @@ export class UserApi extends BaseAPI implements UserApiInterface {
      * 
      */
     public fetchUserBalance(requestParameters: UserApiFetchUserBalanceRequest, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).fetchUserBalance(requestParameters.fid, options).then((request) => request(this.axios, this.basePath));
+        return UserApiFp(this.configuration).fetchUserBalance(requestParameters.fid, requestParameters.networks, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
