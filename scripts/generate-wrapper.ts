@@ -702,6 +702,8 @@ function generateWrapper(apiDir: string, outputFile: string) {
 
   const usedTypes = new Set<string>();
 
+  let generatedMethodCount = 0;
+
   let wrapperCode = `
 export interface ${clientClassName}Options {
   logger?: Logger;
@@ -815,6 +817,7 @@ export class ${clientClassName} {
       return apiInterface.members
         .filter(ts.isMethodSignature)
         .map((method) => {
+          generatedMethodCount += 1;
           const methodName = method.name.getText();
 
           // Find the corresponding request interface if it exists
@@ -956,6 +959,8 @@ public async ${methodName}(${methodParams}): Promise<${responseType}> {
   ${additionalMethods}
 }
 `;
+
+  console.log(`Number of generated methods: ${generatedMethodCount}`);
 
   // Find source files for collected types
   for (const type of usedTypes) {
