@@ -134,6 +134,7 @@ export * from './mute-list-response';
 export * from './mute-record';
 export * from './mute-req-body';
 export * from './mute-response';
+export * from './networks';
 export * from './next-cursor';
 export * from './neynar-frame';
 export * from './neynar-frame-creation-req-body';

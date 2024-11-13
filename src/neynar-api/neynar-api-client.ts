@@ -86,6 +86,7 @@ import {
   NeynarFrameUpdateReqBody,
   NeynarFrameCreationReqBody,
   BalanceResponse,
+  Networks,
   FetchFrameMetaTagsFromUrl200Response,
 } from "./v2/openapi-farcaster";
 
@@ -1548,6 +1549,7 @@ export class NeynarAPIClient {
    * Fetches the token balance of a user given their FID.
    * 
    * @param {number} fid - The FID of the user whose token balance is being fetched.
+   * @param {Array<Networks>} networks Comma separated list of networks to fetch balances for. Currently, only \&quot;base-mainnet\&quot; is supported. 
    * 
    * @returns {Promise<BalanceResponse>} A promise that resolves to a `BalanceResponse` object
    * 
@@ -1559,8 +1561,8 @@ export class NeynarAPIClient {
    *  
    * For more information, refer to the [Neynar documentation](https://docs.neynar.com/reference/fetch-user-balance)
    */
-  public async fetchUserBalance(fid: number): Promise<BalanceResponse> {
-    return await this.clients.v2.fetchUserBalance(fid);
+  public async fetchUserBalance(fid: number, networks: Networks[]): Promise<BalanceResponse> {
+    return await this.clients.v2.fetchUserBalance(fid, networks);
   }
 
   // ------------ Cast ------------
