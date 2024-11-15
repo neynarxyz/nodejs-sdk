@@ -10,6 +10,6 @@
     "useSingleRequestParameter": true,
     "withInterfaces": true,
     "supportsES6": true,
-    "paramNaming": "snake_case"
+    "paramNaming": "camelCase"
   }
 }

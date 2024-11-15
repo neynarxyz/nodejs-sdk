@@ -49,6 +49,15 @@ function decodeString(str) {
   return decoder.write(Buffer.from(htmlDecoded));
 }
 
+function snakeToCamel(snakeStr) {
+  if (!snakeStr.includes("_")) {
+    return snakeStr; // Return the original string if it's not in snake_case
+  }
+  return snakeStr
+    .toLowerCase()
+    .replace(/_([a-z])/g, (match, letter) => letter.toUpperCase());
+}
+
 function getGlobalHeaderInfo(prop: ts.PropertySignature): {
   isGlobalHeader: boolean;
   headerName?: string;
@@ -152,7 +161,7 @@ function buildTypeMap(typeFiles: string[]): Map<string, ts.Declaration> {
 
 // Helper function to determine if a property is the request body parameter
 function isRequestBodyParameter(prop: ts.PropertySignature): boolean {
-  return prop.name.getText().endsWith("_req_body");
+  return prop.name.getText().endsWith("ReqBody");
 }
 
 // handle request body parameters
@@ -191,7 +200,7 @@ function createMethodSignature(
 
       if (typeDecl && ts.isInterfaceDeclaration(typeDecl)) {
         typeDecl.members.filter(ts.isPropertySignature).forEach((bodyProp) => {
-          const bodyPropName = bodyProp.name.getText();
+          const bodyPropName = snakeToCamel(bodyProp.name.getText());
           const bodyPropType = bodyProp.type?.getText() || "any";
           const bodyIsOptional = !!bodyProp.questionToken;
 
@@ -597,7 +606,7 @@ if (clientType === "api") {
      * It returns a Signer which includes \`signer_approval_url\` that can be used to create a QR Code for the user to scan and approve the signer.
      *
      * @param {Object} [options] - Optional parameters for the request.
-     * @param {string} [options.farcaster_developer_mnemonic] - mnemonic of the farcaster developer account
+     * @param {string} [options.farcasterDeveloperMnemonic] - mnemonic of the farcaster developer account
      * @param {number} [options.deadline] - (Optional) Unix timestamp in seconds that controls how long the signed key
      *   request is valid for. A 24-hour duration from now is recommended.
      *
@@ -608,28 +617,28 @@ if (clientType === "api") {
      * 
      * // Fill in the appropriate values
      * 
-     * const farcaster_developer_mnemonic = 
+     * const farcasterDeveloperMnemonic = 
      * const deadline = 
      * 
-     * client.createSignerAndRegisterSignedKey({ farcaster_developer_mnemonic, deadline: 1693927665 }).then(response => {
+     * client.createSignerAndRegisterSignedKey({ farcasterDeveloperMnemonic, deadline: 1693927665 }).then(response => {
      *   console.log('Signer', response);
      * });
      */
     public async createSignerAndRegisterSignedKey(
       params: {
-        farcaster_developer_mnemonic: string;
+        farcasterDeveloperMnemonic: string;
         deadline?: number;
       }
     ) {
-      const { farcaster_developer_mnemonic, deadline } = params;
+      const { farcasterDeveloperMnemonic, deadline } = params;
       try {
         const { public_key: signerPublicKey, signer_uuid } =
           await this.createSigner();
   
-        const account = mnemonicToAccount(farcaster_developer_mnemonic);
+        const account = mnemonicToAccount(farcasterDeveloperMnemonic);
         const { user: farcasterDeveloper } =
           await this.lookupUserByCustodyAddress({
-            custody_address: account.address,
+            custodyAddress: account.address,
           });
   
         // Generates an expiration date for the signature
@@ -651,8 +660,8 @@ if (clientType === "api") {
         });
   
         let signer_pending = await this.registerSignedKey({
-          signer_uuid,
-          app_fid: farcasterDeveloper.fid,
+          signerUuid: signer_uuid,
+          appFid: farcasterDeveloper.fid,
           deadline: signed_key_deadline,
           signature,
         });
@@ -866,6 +875,7 @@ export class ${clientClassName} {
           if (paramSignature) {
             methodParamsParts.push(`params: ${paramSignature}`);
           }
+
           const methodParams = methodParamsParts.join(", ");
 
           const jsDoc = getJSDocComment(
@@ -890,7 +900,7 @@ export class ${clientClassName} {
             adjustParamsCode += `const adjustedParams: any = {};\n`;
 
             if (hasRequestBodyParameter) {
-              adjustParamsCode += `const _params = { ${requestBodyParamName}: params };\n`;
+              adjustParamsCode += `const _params = { ${requestBodyParamName}: camelCaseToSnakeCaseKeys(params) };\n`;
               adjustParamsCode += `Object.assign(adjustedParams, _params);\n`;
             } else if (paramSignature) {
               adjustParamsCode += `Object.assign(adjustedParams, params);\n`;
@@ -960,7 +970,7 @@ public async ${methodName}(${methodParams}): Promise<${responseType}> {
 }
 `;
 
-  console.log(`Number of generated methods: ${generatedMethodCount}`);
+  console.log(`Number of methods: ${generatedMethodCount}`);
 
   // Find source files for collected types
   for (const type of usedTypes) {
@@ -990,6 +1000,45 @@ public async ${methodName}(${methodParams}): Promise<${responseType}> {
           .join(", ")} } from '${apiImportPath}';`
       : "";
 
+  const utilityFunctions = `
+/**
+ * Converts a camelCase string to snake_case.
+ * If the input string is not in camelCase format, it returns the original string.
+ *
+ * @param {string} str - The string to convert.
+ * @returns {string} The converted string in snake_case, or the original string if not camelCase.
+ */
+function camelToSnakeCase(str) {
+  // Check if the string is camelCase
+  if (/^[a-z]+([A-Z][a-z]*)+$/.test(str)) {
+    return str.replace(/([A-Z])/g, '_$1').toLowerCase();
+  }
+  return str; // Return the original string if it's not camelCase
+}
+
+/**
+ * Converts the top-level keys of an object from camelCase to snake_case.
+ * If a key is not in camelCase, it retains its original format.
+ * Nested objects or arrays are left unchanged. 
+ * This is done to revert the conversion of top-level keys since we accept snake_case keys in the API but convert them to camelCase in the wrapper.
+ *
+ * @param {object} obj - The object whose top-level keys are to be converted.
+ * @returns {object} A new object with top-level keys converted to snake_case.
+ */
+function camelCaseToSnakeCaseKeys(obj) {
+  if (obj && typeof obj === 'object' && !Array.isArray(obj)) {
+    // Convert only the top-level keys
+    return Object.fromEntries(
+      Object.entries(obj).map(([key, value]) => [
+        camelToSnakeCase(key), // Convert only camelCase keys
+        value, // Leave the value untouched
+      ])
+    );
+  }
+  return obj; // If not an object, return as is
+}
+`;
+
   // Combine everything
   const finalCode = `
 import { mnemonicToAccount } from "viem/accounts";
@@ -1012,6 +1061,8 @@ ${apiFiles
   })
   .join("\n")}
 ${importStatements}
+
+${utilityFunctions}
 
 ${wrapperCode}`;
 
