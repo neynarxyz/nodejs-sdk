@@ -691,6 +691,21 @@ if (clientType === "api") {
   throw new Error(`Unknown CLIENT_TYPE: ${clientType}`);
 }
 
+/**
+ * Converts a camelCase string to kebab-case.
+ * If the input string is not in camelCase format, it returns the original string.
+ *
+ * @param {string} str - The string to convert.
+ * @returns {string} The converted string in kebab-case, or the original string if not camelCase.
+ */
+function camelToKebabCase(str: string): string {
+  // Check if the string is camelCase
+  if (/^[a-z]+([A-Z][a-z]*)+$/.test(str)) {
+    return str.replace(/([A-Z])/g, "-$1").toLowerCase();
+  }
+  return str; // Return the original string if it's not camelCase
+}
+
 function generateWrapper(apiDir: string, outputFile: string) {
   const apiFiles = fs
     .readdirSync(apiDir)
@@ -910,7 +925,11 @@ export class ${clientClassName} {
               .filter((param) => param.isGlobalHeader)
               .forEach((param) => {
                 if (param.headerName) {
-                  adjustParamsCode += `adjustedParams['${param.name}'] = this.config.baseOptions?.headers?.['${param.headerName}'];\n`;
+                  adjustParamsCode += `adjustedParams['${
+                    param.name
+                  }'] = this.config.baseOptions?.headers?.['${camelToKebabCase(
+                    param.headerName
+                  )}'];\n`;
                 }
               });
 
