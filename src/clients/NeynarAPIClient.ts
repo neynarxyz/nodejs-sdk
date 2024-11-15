@@ -261,7 +261,7 @@ Object.assign(adjustedParams, _params);
 public async fetchBanList(params: { limit?: number, cursor?: string }): Promise<BanListResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNeynarExperimental'];
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.banApi.fetchBanList(adjustedParams);
   return response.data;
@@ -361,7 +361,7 @@ Object.assign(adjustedParams, _params);
 public async fetchBlockList(params: { blockerFid?: number, blockedFid?: number, limit?: number, cursor?: string }): Promise<BlockListResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNeynarExperimental'];
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.blockApi.fetchBlockList(adjustedParams);
   return response.data;
@@ -801,7 +801,7 @@ Object.assign(adjustedParams, params);
 public async fetchChannelMembers(params: { channelId: string, fid?: number, limit?: number, cursor?: string }): Promise<ChannelMemberListResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNeynarExperimental'];
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.channelApi.fetchChannelMembers(adjustedParams);
   return response.data;
@@ -837,7 +837,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNey
 public async fetchFollowersForAChannel(params: { id: string, viewerFid?: number, cursor?: string, limit?: number }): Promise<UsersResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNeynarExperimental'];
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.channelApi.fetchFollowersForAChannel(adjustedParams);
   return response.data;
@@ -870,7 +870,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNey
 public async fetchRelevantFollowersForAChannel(params: { id: string, viewerFid: number }): Promise<RelevantFollowersResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNeynarExperimental'];
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.channelApi.fetchRelevantFollowersForAChannel(adjustedParams);
   return response.data;
@@ -1712,7 +1712,7 @@ Object.assign(adjustedParams, params);
 public async fetchFollowSuggestions(params: { fid: number, viewerFid?: number, limit?: number }): Promise<UsersResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNeynarExperimental'];
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.followsApi.fetchFollowSuggestions(adjustedParams);
   return response.data;
@@ -1745,7 +1745,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNey
 public async fetchRelevantFollowers(params: { targetFid: number, viewerFid: number }): Promise<RelevantFollowersResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNeynarExperimental'];
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.followsApi.fetchRelevantFollowers(adjustedParams);
   return response.data;
@@ -1783,7 +1783,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNey
 public async fetchUserFollowers(params: { fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string }): Promise<FollowersResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNeynarExperimental'];
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.followsApi.fetchUserFollowers(adjustedParams);
   return response.data;
@@ -1821,7 +1821,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNey
 public async fetchUserFollowing(params: { fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string }): Promise<FollowersResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNeynarExperimental'];
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.followsApi.fetchUserFollowing(adjustedParams);
   return response.data;
@@ -2244,7 +2244,7 @@ Object.assign(adjustedParams, _params);
 public async fetchMuteList(params: { fid: number, limit?: number, cursor?: string }): Promise<MuteListResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNeynarExperimental'];
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.muteApi.fetchMuteList(adjustedParams);
   return response.data;
@@ -3127,7 +3127,7 @@ Object.assign(adjustedParams, _params);
 public async fetchBulkUsers(params: { fids: number[], viewerFid?: number }): Promise<BulkUsersResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNeynarExperimental'];
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
   adjustedParams.fids = adjustedParams.fids.map(value => (String(value)));
 }
@@ -3168,7 +3168,7 @@ if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
 public async fetchBulkUsersByEthereumAddress(params: { addresses: string[], addressTypes?: Array<BulkUserAddressType>, viewerFid?: number }): Promise<BulkUsersByAddressResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNeynarExperimental'];
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 if (adjustedParams.addresses && Array.isArray(adjustedParams.addresses)) {
   adjustedParams.addresses = adjustedParams.addresses.join(",");
 }
@@ -3205,7 +3205,7 @@ if (adjustedParams.addresses && Array.isArray(adjustedParams.addresses)) {
 public async fetchPowerUsers(params: { viewerFid?: number, limit?: number, cursor?: string }): Promise<UsersResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNeynarExperimental'];
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.userApi.fetchPowerUsers(adjustedParams);
   return response.data;
@@ -3233,7 +3233,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNey
  */
 public async fetchPowerUsersLite(): Promise<UserPowerLiteResponse> {
   const adjustedParams: any = {};
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNeynarExperimental'];
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.userApi.fetchPowerUsersLite(adjustedParams);
   return response.data;
@@ -3271,7 +3271,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNey
 public async fetchUsersByLocation(params: { latitude: number, longitude: number, viewerFid?: number, limit?: number, cursor?: string }): Promise<UsersResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNeynarExperimental'];
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.userApi.fetchUsersByLocation(adjustedParams);
   return response.data;
@@ -3332,7 +3332,7 @@ Object.assign(adjustedParams, _params);
  */
 public async getFreshAccountFID(): Promise<UserFIDResponse> {
   const adjustedParams: any = {};
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNeynarExperimental'];
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.userApi.getFreshAccountFID(adjustedParams);
   return response.data;
@@ -3395,7 +3395,7 @@ Object.assign(adjustedParams, params);
 public async lookupUserByUsername(params: { username: string, viewerFid?: number }): Promise<UserResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNeynarExperimental'];
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.userApi.lookupUserByUsername(adjustedParams);
   return response.data;
@@ -3511,7 +3511,7 @@ Object.assign(adjustedParams, _params);
 public async searchUser(params: { q: string, viewerFid?: number, limit?: number, cursor?: string }): Promise<UserSearchResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['xNeynarExperimental'];
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.userApi.searchUser(adjustedParams);
   return response.data;
