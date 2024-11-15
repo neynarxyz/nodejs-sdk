@@ -13,10 +13,10 @@ apis/follows-api.ts
 apis/frame-api.ts
 apis/mute-api.ts
 apis/notifications-api.ts
+apis/onchain-api.ts
 apis/reaction-api.ts
 apis/signer-api.ts
 apis/storage-api.ts
-apis/stp-api.ts
 apis/subscribers-api.ts
 apis/user-api.ts
 apis/webhook-api.ts
@@ -26,8 +26,12 @@ configuration.ts
 git_push.sh
 index.ts
 models/add-verification-req-body.ts
+models/address-balance-verified-address.ts
+models/address-balance.ts
 models/authorization-url-response-type.ts
 models/authorization-url-response.ts
+models/balance-response-user-balance.ts
+models/balance-response.ts
 models/ban-list-response.ts
 models/ban-record.ts
 models/ban-req-body.ts
@@ -159,6 +163,7 @@ models/mute-list-response.ts
 models/mute-record.ts
 models/mute-req-body.ts
 models/mute-response.ts
+models/networks.ts
 models/next-cursor.ts
 models/neynar-frame-creation-req-body.ts
 models/neynar-frame-page.ts
@@ -236,6 +241,9 @@ models/subscription-token.ts
 models/subscription.ts
 models/subscriptions-response.ts
 models/subscriptions.ts
+models/token-balance-balance.ts
+models/token-balance-token.ts
+models/token-balance.ts
 models/trending-channel-response.ts
 models/update-user-req-body-location.ts
 models/update-user-req-body.ts

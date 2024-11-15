@@ -44,7 +44,7 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Delete a webhook
          * @summary Delete a webhook
-         * @param {WebhookDeleteReqBody} webhook_delete_req_body  
+         * @param {WebhookDeleteReqBody} webhookDeleteReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<WebhookResponse>} A promise that resolves to a `WebhookResponse` object
@@ -52,9 +52,9 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-webhook)
          * 
          */
-        deleteWebhook: async (webhook_delete_req_body: WebhookDeleteReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'webhook_delete_req_body' is not null or undefined
-            assertParamExists('deleteWebhook', 'webhook_delete_req_body', webhook_delete_req_body)
+        deleteWebhook: async (webhookDeleteReqBody: WebhookDeleteReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'webhookDeleteReqBody' is not null or undefined
+            assertParamExists('deleteWebhook', 'webhookDeleteReqBody', webhookDeleteReqBody)
             const localVarPath = `/farcaster/webhook`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -77,7 +77,7 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(webhook_delete_req_body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(webhookDeleteReqBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -124,7 +124,7 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Fetch a webhook
          * @summary Fetch a webhook
-         * @param {string} webhook_id  
+         * @param {string} webhookId  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<WebhookResponse>} A promise that resolves to a `WebhookResponse` object
@@ -132,9 +132,9 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-webhook)
          * 
          */
-        lookupWebhook: async (webhook_id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'webhook_id' is not null or undefined
-            assertParamExists('lookupWebhook', 'webhook_id', webhook_id)
+        lookupWebhook: async (webhookId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'webhookId' is not null or undefined
+            assertParamExists('lookupWebhook', 'webhookId', webhookId)
             const localVarPath = `/farcaster/webhook`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -150,8 +150,8 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (webhook_id !== undefined) {
-                localVarQueryParameter['webhook_id'] = webhook_id;
+            if (webhookId !== undefined) {
+                localVarQueryParameter['webhook_id'] = webhookId;
             }
 
 
@@ -168,7 +168,7 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Create a webhook
          * @summary Create a webhook
-         * @param {WebhookPostReqBody} webhook_post_req_body  
+         * @param {WebhookPostReqBody} webhookPostReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<WebhookResponse>} A promise that resolves to a `WebhookResponse` object
@@ -176,9 +176,9 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-webhook)
          * 
          */
-        publishWebhook: async (webhook_post_req_body: WebhookPostReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'webhook_post_req_body' is not null or undefined
-            assertParamExists('publishWebhook', 'webhook_post_req_body', webhook_post_req_body)
+        publishWebhook: async (webhookPostReqBody: WebhookPostReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'webhookPostReqBody' is not null or undefined
+            assertParamExists('publishWebhook', 'webhookPostReqBody', webhookPostReqBody)
             const localVarPath = `/farcaster/webhook`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -201,7 +201,7 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(webhook_post_req_body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(webhookPostReqBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -211,7 +211,7 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Update a webhook
          * @summary Update a webhook
-         * @param {WebhookPutReqBody} webhook_put_req_body  
+         * @param {WebhookPutReqBody} webhookPutReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<WebhookResponse>} A promise that resolves to a `WebhookResponse` object
@@ -219,9 +219,9 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/update-webhook)
          * 
          */
-        updateWebhook: async (webhook_put_req_body: WebhookPutReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'webhook_put_req_body' is not null or undefined
-            assertParamExists('updateWebhook', 'webhook_put_req_body', webhook_put_req_body)
+        updateWebhook: async (webhookPutReqBody: WebhookPutReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'webhookPutReqBody' is not null or undefined
+            assertParamExists('updateWebhook', 'webhookPutReqBody', webhookPutReqBody)
             const localVarPath = `/farcaster/webhook`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -244,7 +244,7 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(webhook_put_req_body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(webhookPutReqBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -254,7 +254,7 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Update webhook active status
          * @summary Update webhook status
-         * @param {WebhookPatchReqBody} webhook_patch_req_body  
+         * @param {WebhookPatchReqBody} webhookPatchReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<WebhookResponse>} A promise that resolves to a `WebhookResponse` object
@@ -262,9 +262,9 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/update-webhook-active-status)
          * 
          */
-        updateWebhookActiveStatus: async (webhook_patch_req_body: WebhookPatchReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'webhook_patch_req_body' is not null or undefined
-            assertParamExists('updateWebhookActiveStatus', 'webhook_patch_req_body', webhook_patch_req_body)
+        updateWebhookActiveStatus: async (webhookPatchReqBody: WebhookPatchReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'webhookPatchReqBody' is not null or undefined
+            assertParamExists('updateWebhookActiveStatus', 'webhookPatchReqBody', webhookPatchReqBody)
             const localVarPath = `/farcaster/webhook`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -287,7 +287,7 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(webhook_patch_req_body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(webhookPatchReqBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -307,7 +307,7 @@ export const WebhookApiFp = function(configuration?: Configuration) {
         /**
          * Delete a webhook
          * @summary Delete a webhook
-         * @param {WebhookDeleteReqBody} webhook_delete_req_body  
+         * @param {WebhookDeleteReqBody} webhookDeleteReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<WebhookResponse>} A promise that resolves to a `WebhookResponse` object
@@ -315,8 +315,8 @@ export const WebhookApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-webhook)
          * 
          */
-        async deleteWebhook(webhook_delete_req_body: WebhookDeleteReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteWebhook(webhook_delete_req_body, options);
+        async deleteWebhook(webhookDeleteReqBody: WebhookDeleteReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteWebhook(webhookDeleteReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['WebhookApi.deleteWebhook']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -340,7 +340,7 @@ export const WebhookApiFp = function(configuration?: Configuration) {
         /**
          * Fetch a webhook
          * @summary Fetch a webhook
-         * @param {string} webhook_id  
+         * @param {string} webhookId  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<WebhookResponse>} A promise that resolves to a `WebhookResponse` object
@@ -348,8 +348,8 @@ export const WebhookApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-webhook)
          * 
          */
-        async lookupWebhook(webhook_id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupWebhook(webhook_id, options);
+        async lookupWebhook(webhookId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupWebhook(webhookId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['WebhookApi.lookupWebhook']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -357,7 +357,7 @@ export const WebhookApiFp = function(configuration?: Configuration) {
         /**
          * Create a webhook
          * @summary Create a webhook
-         * @param {WebhookPostReqBody} webhook_post_req_body  
+         * @param {WebhookPostReqBody} webhookPostReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<WebhookResponse>} A promise that resolves to a `WebhookResponse` object
@@ -365,8 +365,8 @@ export const WebhookApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-webhook)
          * 
          */
-        async publishWebhook(webhook_post_req_body: WebhookPostReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.publishWebhook(webhook_post_req_body, options);
+        async publishWebhook(webhookPostReqBody: WebhookPostReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publishWebhook(webhookPostReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['WebhookApi.publishWebhook']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -374,7 +374,7 @@ export const WebhookApiFp = function(configuration?: Configuration) {
         /**
          * Update a webhook
          * @summary Update a webhook
-         * @param {WebhookPutReqBody} webhook_put_req_body  
+         * @param {WebhookPutReqBody} webhookPutReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<WebhookResponse>} A promise that resolves to a `WebhookResponse` object
@@ -382,8 +382,8 @@ export const WebhookApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/update-webhook)
          * 
          */
-        async updateWebhook(webhook_put_req_body: WebhookPutReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateWebhook(webhook_put_req_body, options);
+        async updateWebhook(webhookPutReqBody: WebhookPutReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateWebhook(webhookPutReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['WebhookApi.updateWebhook']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -391,7 +391,7 @@ export const WebhookApiFp = function(configuration?: Configuration) {
         /**
          * Update webhook active status
          * @summary Update webhook status
-         * @param {WebhookPatchReqBody} webhook_patch_req_body  
+         * @param {WebhookPatchReqBody} webhookPatchReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<WebhookResponse>} A promise that resolves to a `WebhookResponse` object
@@ -399,8 +399,8 @@ export const WebhookApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/update-webhook-active-status)
          * 
          */
-        async updateWebhookActiveStatus(webhook_patch_req_body: WebhookPatchReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateWebhookActiveStatus(webhook_patch_req_body, options);
+        async updateWebhookActiveStatus(webhookPatchReqBody: WebhookPatchReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateWebhookActiveStatus(webhookPatchReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['WebhookApi.updateWebhookActiveStatus']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -427,7 +427,7 @@ export const WebhookApiFactory = function (configuration?: Configuration, basePa
          * 
          */
         deleteWebhook(requestParameters: WebhookApiDeleteWebhookRequest, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse> {
-            return localVarFp.deleteWebhook(requestParameters.webhook_delete_req_body, options).then((request) => request(axios, basePath));
+            return localVarFp.deleteWebhook(requestParameters.webhookDeleteReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch a list of webhooks associated to a user
@@ -454,7 +454,7 @@ export const WebhookApiFactory = function (configuration?: Configuration, basePa
          * 
          */
         lookupWebhook(requestParameters: WebhookApiLookupWebhookRequest, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse> {
-            return localVarFp.lookupWebhook(requestParameters.webhook_id, options).then((request) => request(axios, basePath));
+            return localVarFp.lookupWebhook(requestParameters.webhookId, options).then((request) => request(axios, basePath));
         },
         /**
          * Create a webhook
@@ -468,7 +468,7 @@ export const WebhookApiFactory = function (configuration?: Configuration, basePa
          * 
          */
         publishWebhook(requestParameters: WebhookApiPublishWebhookRequest, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse> {
-            return localVarFp.publishWebhook(requestParameters.webhook_post_req_body, options).then((request) => request(axios, basePath));
+            return localVarFp.publishWebhook(requestParameters.webhookPostReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Update a webhook
@@ -482,7 +482,7 @@ export const WebhookApiFactory = function (configuration?: Configuration, basePa
          * 
          */
         updateWebhook(requestParameters: WebhookApiUpdateWebhookRequest, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse> {
-            return localVarFp.updateWebhook(requestParameters.webhook_put_req_body, options).then((request) => request(axios, basePath));
+            return localVarFp.updateWebhook(requestParameters.webhookPutReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Update webhook active status
@@ -496,7 +496,7 @@ export const WebhookApiFactory = function (configuration?: Configuration, basePa
          * 
          */
         updateWebhookActiveStatus(requestParameters: WebhookApiUpdateWebhookActiveStatusRequest, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse> {
-            return localVarFp.updateWebhookActiveStatus(requestParameters.webhook_patch_req_body, options).then((request) => request(axios, basePath));
+            return localVarFp.updateWebhookActiveStatus(requestParameters.webhookPatchReqBody, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -606,7 +606,7 @@ export interface WebhookApiDeleteWebhookRequest {
      * @type {WebhookDeleteReqBody}
      * @memberof WebhookApiDeleteWebhook
      */
-    readonly webhook_delete_req_body: WebhookDeleteReqBody
+    readonly webhookDeleteReqBody: WebhookDeleteReqBody
 }
 
 /**
@@ -623,7 +623,7 @@ export interface WebhookApiLookupWebhookRequest {
      * @type {string}
      * @memberof WebhookApiLookupWebhook
      */
-    readonly webhook_id: string
+    readonly webhookId: string
 }
 
 /**
@@ -640,7 +640,7 @@ export interface WebhookApiPublishWebhookRequest {
      * @type {WebhookPostReqBody}
      * @memberof WebhookApiPublishWebhook
      */
-    readonly webhook_post_req_body: WebhookPostReqBody
+    readonly webhookPostReqBody: WebhookPostReqBody
 }
 
 /**
@@ -657,7 +657,7 @@ export interface WebhookApiUpdateWebhookRequest {
      * @type {WebhookPutReqBody}
      * @memberof WebhookApiUpdateWebhook
      */
-    readonly webhook_put_req_body: WebhookPutReqBody
+    readonly webhookPutReqBody: WebhookPutReqBody
 }
 
 /**
@@ -674,7 +674,7 @@ export interface WebhookApiUpdateWebhookActiveStatusRequest {
      * @type {WebhookPatchReqBody}
      * @memberof WebhookApiUpdateWebhookActiveStatus
      */
-    readonly webhook_patch_req_body: WebhookPatchReqBody
+    readonly webhookPatchReqBody: WebhookPatchReqBody
 }
 
 /**
@@ -697,7 +697,7 @@ export class WebhookApi extends BaseAPI implements WebhookApiInterface {
      * 
      */
     public deleteWebhook(requestParameters: WebhookApiDeleteWebhookRequest, options?: RawAxiosRequestConfig) {
-        return WebhookApiFp(this.configuration).deleteWebhook(requestParameters.webhook_delete_req_body, options).then((request) => request(this.axios, this.basePath));
+        return WebhookApiFp(this.configuration).deleteWebhook(requestParameters.webhookDeleteReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -728,7 +728,7 @@ export class WebhookApi extends BaseAPI implements WebhookApiInterface {
      * 
      */
     public lookupWebhook(requestParameters: WebhookApiLookupWebhookRequest, options?: RawAxiosRequestConfig) {
-        return WebhookApiFp(this.configuration).lookupWebhook(requestParameters.webhook_id, options).then((request) => request(this.axios, this.basePath));
+        return WebhookApiFp(this.configuration).lookupWebhook(requestParameters.webhookId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -744,7 +744,7 @@ export class WebhookApi extends BaseAPI implements WebhookApiInterface {
      * 
      */
     public publishWebhook(requestParameters: WebhookApiPublishWebhookRequest, options?: RawAxiosRequestConfig) {
-        return WebhookApiFp(this.configuration).publishWebhook(requestParameters.webhook_post_req_body, options).then((request) => request(this.axios, this.basePath));
+        return WebhookApiFp(this.configuration).publishWebhook(requestParameters.webhookPostReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -760,7 +760,7 @@ export class WebhookApi extends BaseAPI implements WebhookApiInterface {
      * 
      */
     public updateWebhook(requestParameters: WebhookApiUpdateWebhookRequest, options?: RawAxiosRequestConfig) {
-        return WebhookApiFp(this.configuration).updateWebhook(requestParameters.webhook_put_req_body, options).then((request) => request(this.axios, this.basePath));
+        return WebhookApiFp(this.configuration).updateWebhook(requestParameters.webhookPutReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -776,7 +776,7 @@ export class WebhookApi extends BaseAPI implements WebhookApiInterface {
      * 
      */
     public updateWebhookActiveStatus(requestParameters: WebhookApiUpdateWebhookActiveStatusRequest, options?: RawAxiosRequestConfig) {
-        return WebhookApiFp(this.configuration).updateWebhookActiveStatus(requestParameters.webhook_patch_req_body, options).then((request) => request(this.axios, this.basePath));
+        return WebhookApiFp(this.configuration).updateWebhookActiveStatus(requestParameters.webhookPatchReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

@@ -34,9 +34,9 @@ export const FidsApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @summary Fetch a list of all the FIDs
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FidsResponse>} A promise that resolves to a `FidsResponse` object
@@ -44,7 +44,7 @@ export const FidsApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-fids)
          * 
          */
-        fetchFids: async (page_size?: number, reverse?: boolean, page_token?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchFids: async (pageSize?: number, reverse?: boolean, pageToken?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/v1/fids`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -60,16 +60,16 @@ export const FidsApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (page_size !== undefined) {
-                localVarQueryParameter['pageSize'] = page_size;
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
             }
 
             if (reverse !== undefined) {
                 localVarQueryParameter['reverse'] = reverse;
             }
 
-            if (page_token !== undefined) {
-                localVarQueryParameter['pageToken'] = page_token;
+            if (pageToken !== undefined) {
+                localVarQueryParameter['pageToken'] = pageToken;
             }
 
 
@@ -96,9 +96,9 @@ export const FidsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Fetch a list of all the FIDs
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FidsResponse>} A promise that resolves to a `FidsResponse` object
@@ -106,8 +106,8 @@ export const FidsApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-fids)
          * 
          */
-        async fetchFids(page_size?: number, reverse?: boolean, page_token?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FidsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchFids(page_size, reverse, page_token, options);
+        async fetchFids(pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FidsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchFids(pageSize, reverse, pageToken, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FidsApi.fetchFids']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -134,7 +134,7 @@ export const FidsApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         fetchFids(requestParameters: FidsApiFetchFidsRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<FidsResponse> {
-            return localVarFp.fetchFids(requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchFids(requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -175,7 +175,7 @@ export interface FidsApiFetchFidsRequest {
      * @type {number}
      * @memberof FidsApiFetchFids
      */
-    readonly page_size?: number
+    readonly pageSize?: number
 
     /**
      * Reverse the sort order, returning latest messages first
@@ -195,7 +195,7 @@ export interface FidsApiFetchFidsRequest {
      * @type {string}
      * @memberof FidsApiFetchFids
      */
-    readonly page_token?: string
+    readonly pageToken?: string
 }
 
 /**
@@ -218,7 +218,7 @@ export class FidsApi extends BaseAPI implements FidsApiInterface {
      * 
      */
     public fetchFids(requestParameters: FidsApiFetchFidsRequest = {}, options?: RawAxiosRequestConfig) {
-        return FidsApiFp(this.configuration).fetchFids(requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(this.axios, this.basePath));
+        return FidsApiFp(this.configuration).fetchFids(requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

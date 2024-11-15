@@ -36,7 +36,7 @@ export const HubEventsApiAxiosParamCreator = function (configuration?: Configura
         /**
          * 
          * @summary Page of events
-         * @param {number} [from_event_id] An optional Hub Id to start getting events from. This is also returned from the API as nextPageEventId, which can be used to page through all the Hub events. Set it to 0 to start from the first event 
+         * @param {number} [fromEventId] An optional Hub Id to start getting events from. This is also returned from the API as nextPageEventId, which can be used to page through all the Hub events. Set it to 0 to start from the first event 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchEvents200Response>} A promise that resolves to a `FetchEvents200Response` object
@@ -44,7 +44,7 @@ export const HubEventsApiAxiosParamCreator = function (configuration?: Configura
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-events)
          * 
          */
-        fetchEvents: async (from_event_id?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchEvents: async (fromEventId?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/v1/events`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -60,8 +60,8 @@ export const HubEventsApiAxiosParamCreator = function (configuration?: Configura
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (from_event_id !== undefined) {
-                localVarQueryParameter['from_event_id'] = from_event_id;
+            if (fromEventId !== undefined) {
+                localVarQueryParameter['from_event_id'] = fromEventId;
             }
 
 
@@ -78,7 +78,7 @@ export const HubEventsApiAxiosParamCreator = function (configuration?: Configura
         /**
          * 
          * @summary Event by ID
-         * @param {number} event_id The Hub Id of the event 
+         * @param {number} eventId The Hub Id of the event 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<HubEvent>} A promise that resolves to a `HubEvent` object
@@ -86,9 +86,9 @@ export const HubEventsApiAxiosParamCreator = function (configuration?: Configura
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-event)
          * 
          */
-        lookupEvent: async (event_id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'event_id' is not null or undefined
-            assertParamExists('lookupEvent', 'event_id', event_id)
+        lookupEvent: async (eventId: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'eventId' is not null or undefined
+            assertParamExists('lookupEvent', 'eventId', eventId)
             const localVarPath = `/v1/eventById`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -104,8 +104,8 @@ export const HubEventsApiAxiosParamCreator = function (configuration?: Configura
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (event_id !== undefined) {
-                localVarQueryParameter['event_id'] = event_id;
+            if (eventId !== undefined) {
+                localVarQueryParameter['event_id'] = eventId;
             }
 
 
@@ -132,7 +132,7 @@ export const HubEventsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Page of events
-         * @param {number} [from_event_id] An optional Hub Id to start getting events from. This is also returned from the API as nextPageEventId, which can be used to page through all the Hub events. Set it to 0 to start from the first event 
+         * @param {number} [fromEventId] An optional Hub Id to start getting events from. This is also returned from the API as nextPageEventId, which can be used to page through all the Hub events. Set it to 0 to start from the first event 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchEvents200Response>} A promise that resolves to a `FetchEvents200Response` object
@@ -140,8 +140,8 @@ export const HubEventsApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-events)
          * 
          */
-        async fetchEvents(from_event_id?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchEvents200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchEvents(from_event_id, options);
+        async fetchEvents(fromEventId?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchEvents200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchEvents(fromEventId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['HubEventsApi.fetchEvents']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -149,7 +149,7 @@ export const HubEventsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Event by ID
-         * @param {number} event_id The Hub Id of the event 
+         * @param {number} eventId The Hub Id of the event 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<HubEvent>} A promise that resolves to a `HubEvent` object
@@ -157,8 +157,8 @@ export const HubEventsApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-event)
          * 
          */
-        async lookupEvent(event_id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<HubEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupEvent(event_id, options);
+        async lookupEvent(eventId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<HubEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupEvent(eventId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['HubEventsApi.lookupEvent']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -185,7 +185,7 @@ export const HubEventsApiFactory = function (configuration?: Configuration, base
          * 
          */
         fetchEvents(requestParameters: HubEventsApiFetchEventsRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<FetchEvents200Response> {
-            return localVarFp.fetchEvents(requestParameters.from_event_id, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchEvents(requestParameters.fromEventId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -199,7 +199,7 @@ export const HubEventsApiFactory = function (configuration?: Configuration, base
          * 
          */
         lookupEvent(requestParameters: HubEventsApiLookupEventRequest, options?: RawAxiosRequestConfig): AxiosPromise<HubEvent> {
-            return localVarFp.lookupEvent(requestParameters.event_id, options).then((request) => request(axios, basePath));
+            return localVarFp.lookupEvent(requestParameters.eventId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -254,7 +254,7 @@ export interface HubEventsApiFetchEventsRequest {
      * @type {number}
      * @memberof HubEventsApiFetchEvents
      */
-    readonly from_event_id?: number
+    readonly fromEventId?: number
 }
 
 /**
@@ -271,7 +271,7 @@ export interface HubEventsApiLookupEventRequest {
      * @type {number}
      * @memberof HubEventsApiLookupEvent
      */
-    readonly event_id: number
+    readonly eventId: number
 }
 
 /**
@@ -294,7 +294,7 @@ export class HubEventsApi extends BaseAPI implements HubEventsApiInterface {
      * 
      */
     public fetchEvents(requestParameters: HubEventsApiFetchEventsRequest = {}, options?: RawAxiosRequestConfig) {
-        return HubEventsApiFp(this.configuration).fetchEvents(requestParameters.from_event_id, options).then((request) => request(this.axios, this.basePath));
+        return HubEventsApiFp(this.configuration).fetchEvents(requestParameters.fromEventId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -310,7 +310,7 @@ export class HubEventsApi extends BaseAPI implements HubEventsApiInterface {
      * 
      */
     public lookupEvent(requestParameters: HubEventsApiLookupEventRequest, options?: RawAxiosRequestConfig) {
-        return HubEventsApiFp(this.configuration).lookupEvent(requestParameters.event_id, options).then((request) => request(this.axios, this.basePath));
+        return HubEventsApiFp(this.configuration).lookupEvent(requestParameters.eventId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

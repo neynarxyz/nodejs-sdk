@@ -81,8 +81,8 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
          * @summary Fetch authorization url
-         * @param {string} client_id  
-         * @param {AuthorizationUrlResponseType} response_type  
+         * @param {string} clientId  
+         * @param {AuthorizationUrlResponseType} responseType  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<AuthorizationUrlResponse>} A promise that resolves to a `AuthorizationUrlResponse` object
@@ -90,11 +90,11 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-authorization-url)
          * 
          */
-        fetchAuthorizationUrl: async (client_id: string, response_type: AuthorizationUrlResponseType, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'client_id' is not null or undefined
-            assertParamExists('fetchAuthorizationUrl', 'client_id', client_id)
-            // verify required parameter 'response_type' is not null or undefined
-            assertParamExists('fetchAuthorizationUrl', 'response_type', response_type)
+        fetchAuthorizationUrl: async (clientId: string, responseType: AuthorizationUrlResponseType, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'clientId' is not null or undefined
+            assertParamExists('fetchAuthorizationUrl', 'clientId', clientId)
+            // verify required parameter 'responseType' is not null or undefined
+            assertParamExists('fetchAuthorizationUrl', 'responseType', responseType)
             const localVarPath = `/farcaster/login/authorize`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -110,12 +110,12 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (client_id !== undefined) {
-                localVarQueryParameter['client_id'] = client_id;
+            if (clientId !== undefined) {
+                localVarQueryParameter['client_id'] = clientId;
             }
 
-            if (response_type !== undefined) {
-                localVarQueryParameter['response_type'] = response_type;
+            if (responseType !== undefined) {
+                localVarQueryParameter['response_type'] = responseType;
             }
 
 
@@ -132,7 +132,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Fetches the status of a developer managed signer by public key
          * @summary Status by public key
-         * @param {string} public_key  
+         * @param {string} publicKey  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<DeveloperManagedSigner>} A promise that resolves to a `DeveloperManagedSigner` object
@@ -140,9 +140,9 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-developer-managed-signer)
          * 
          */
-        lookupDeveloperManagedSigner: async (public_key: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'public_key' is not null or undefined
-            assertParamExists('lookupDeveloperManagedSigner', 'public_key', public_key)
+        lookupDeveloperManagedSigner: async (publicKey: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'publicKey' is not null or undefined
+            assertParamExists('lookupDeveloperManagedSigner', 'publicKey', publicKey)
             const localVarPath = `/farcaster/signer/developer_managed`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -158,8 +158,8 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (public_key !== undefined) {
-                localVarQueryParameter['public_key'] = public_key;
+            if (publicKey !== undefined) {
+                localVarQueryParameter['public_key'] = publicKey;
             }
 
 
@@ -176,7 +176,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
          * @summary Status
-         * @param {string} signer_uuid  
+         * @param {string} signerUuid  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<Signer>} A promise that resolves to a `Signer` object
@@ -184,9 +184,9 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-signer)
          * 
          */
-        lookupSigner: async (signer_uuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'signer_uuid' is not null or undefined
-            assertParamExists('lookupSigner', 'signer_uuid', signer_uuid)
+        lookupSigner: async (signerUuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'signerUuid' is not null or undefined
+            assertParamExists('lookupSigner', 'signerUuid', signerUuid)
             const localVarPath = `/farcaster/signer`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -202,8 +202,8 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (signer_uuid !== undefined) {
-                localVarQueryParameter['signer_uuid'] = signer_uuid;
+            if (signerUuid !== undefined) {
+                localVarQueryParameter['signer_uuid'] = signerUuid;
             }
 
 
@@ -263,7 +263,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Registers an app FID, deadline and a signature. Returns the signer status with an approval url.
          * @summary Register Signed Key
-         * @param {RegisterSignerKeyReqBody} register_signer_key_req_body  
+         * @param {RegisterSignerKeyReqBody} registerSignerKeyReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<Signer>} A promise that resolves to a `Signer` object
@@ -271,9 +271,9 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/register-signed-key)
          * 
          */
-        registerSignedKey: async (register_signer_key_req_body: RegisterSignerKeyReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'register_signer_key_req_body' is not null or undefined
-            assertParamExists('registerSignedKey', 'register_signer_key_req_body', register_signer_key_req_body)
+        registerSignedKey: async (registerSignerKeyReqBody: RegisterSignerKeyReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'registerSignerKeyReqBody' is not null or undefined
+            assertParamExists('registerSignedKey', 'registerSignerKeyReqBody', registerSignerKeyReqBody)
             const localVarPath = `/farcaster/signer/signed_key`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -296,7 +296,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(register_signer_key_req_body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(registerSignerKeyReqBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -306,7 +306,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Registers an signed key and returns the developer managed signer status with an approval url.
          * @summary Register Signed Key
-         * @param {RegisterDeveloperManagedSignedKeyReqBody} register_developer_managed_signed_key_req_body  
+         * @param {RegisterDeveloperManagedSignedKeyReqBody} registerDeveloperManagedSignedKeyReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<DeveloperManagedSigner>} A promise that resolves to a `DeveloperManagedSigner` object
@@ -314,9 +314,9 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/register-signed-key-for-developer-managed-signer)
          * 
          */
-        registerSignedKeyForDeveloperManagedSigner: async (register_developer_managed_signed_key_req_body: RegisterDeveloperManagedSignedKeyReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'register_developer_managed_signed_key_req_body' is not null or undefined
-            assertParamExists('registerSignedKeyForDeveloperManagedSigner', 'register_developer_managed_signed_key_req_body', register_developer_managed_signed_key_req_body)
+        registerSignedKeyForDeveloperManagedSigner: async (registerDeveloperManagedSignedKeyReqBody: RegisterDeveloperManagedSignedKeyReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'registerDeveloperManagedSignedKeyReqBody' is not null or undefined
+            assertParamExists('registerSignedKeyForDeveloperManagedSigner', 'registerDeveloperManagedSignedKeyReqBody', registerDeveloperManagedSignedKeyReqBody)
             const localVarPath = `/farcaster/signer/developer_managed/signed_key`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -339,7 +339,7 @@ export const SignerApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(register_developer_managed_signed_key_req_body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(registerDeveloperManagedSignedKeyReqBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -375,8 +375,8 @@ export const SignerApiFp = function(configuration?: Configuration) {
         /**
          * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
          * @summary Fetch authorization url
-         * @param {string} client_id  
-         * @param {AuthorizationUrlResponseType} response_type  
+         * @param {string} clientId  
+         * @param {AuthorizationUrlResponseType} responseType  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<AuthorizationUrlResponse>} A promise that resolves to a `AuthorizationUrlResponse` object
@@ -384,8 +384,8 @@ export const SignerApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-authorization-url)
          * 
          */
-        async fetchAuthorizationUrl(client_id: string, response_type: AuthorizationUrlResponseType, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthorizationUrlResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchAuthorizationUrl(client_id, response_type, options);
+        async fetchAuthorizationUrl(clientId: string, responseType: AuthorizationUrlResponseType, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthorizationUrlResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchAuthorizationUrl(clientId, responseType, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['SignerApi.fetchAuthorizationUrl']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -393,7 +393,7 @@ export const SignerApiFp = function(configuration?: Configuration) {
         /**
          * Fetches the status of a developer managed signer by public key
          * @summary Status by public key
-         * @param {string} public_key  
+         * @param {string} publicKey  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<DeveloperManagedSigner>} A promise that resolves to a `DeveloperManagedSigner` object
@@ -401,8 +401,8 @@ export const SignerApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-developer-managed-signer)
          * 
          */
-        async lookupDeveloperManagedSigner(public_key: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeveloperManagedSigner>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupDeveloperManagedSigner(public_key, options);
+        async lookupDeveloperManagedSigner(publicKey: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeveloperManagedSigner>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupDeveloperManagedSigner(publicKey, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['SignerApi.lookupDeveloperManagedSigner']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -410,7 +410,7 @@ export const SignerApiFp = function(configuration?: Configuration) {
         /**
          * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
          * @summary Status
-         * @param {string} signer_uuid  
+         * @param {string} signerUuid  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<Signer>} A promise that resolves to a `Signer` object
@@ -418,8 +418,8 @@ export const SignerApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-signer)
          * 
          */
-        async lookupSigner(signer_uuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signer>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupSigner(signer_uuid, options);
+        async lookupSigner(signerUuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signer>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupSigner(signerUuid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['SignerApi.lookupSigner']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -444,7 +444,7 @@ export const SignerApiFp = function(configuration?: Configuration) {
         /**
          * Registers an app FID, deadline and a signature. Returns the signer status with an approval url.
          * @summary Register Signed Key
-         * @param {RegisterSignerKeyReqBody} register_signer_key_req_body  
+         * @param {RegisterSignerKeyReqBody} registerSignerKeyReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<Signer>} A promise that resolves to a `Signer` object
@@ -452,8 +452,8 @@ export const SignerApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/register-signed-key)
          * 
          */
-        async registerSignedKey(register_signer_key_req_body: RegisterSignerKeyReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signer>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.registerSignedKey(register_signer_key_req_body, options);
+        async registerSignedKey(registerSignerKeyReqBody: RegisterSignerKeyReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signer>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.registerSignedKey(registerSignerKeyReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['SignerApi.registerSignedKey']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -461,7 +461,7 @@ export const SignerApiFp = function(configuration?: Configuration) {
         /**
          * Registers an signed key and returns the developer managed signer status with an approval url.
          * @summary Register Signed Key
-         * @param {RegisterDeveloperManagedSignedKeyReqBody} register_developer_managed_signed_key_req_body  
+         * @param {RegisterDeveloperManagedSignedKeyReqBody} registerDeveloperManagedSignedKeyReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<DeveloperManagedSigner>} A promise that resolves to a `DeveloperManagedSigner` object
@@ -469,8 +469,8 @@ export const SignerApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/register-signed-key-for-developer-managed-signer)
          * 
          */
-        async registerSignedKeyForDeveloperManagedSigner(register_developer_managed_signed_key_req_body: RegisterDeveloperManagedSignedKeyReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeveloperManagedSigner>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.registerSignedKeyForDeveloperManagedSigner(register_developer_managed_signed_key_req_body, options);
+        async registerSignedKeyForDeveloperManagedSigner(registerDeveloperManagedSignedKeyReqBody: RegisterDeveloperManagedSignedKeyReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeveloperManagedSigner>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.registerSignedKeyForDeveloperManagedSigner(registerDeveloperManagedSignedKeyReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['SignerApi.registerSignedKeyForDeveloperManagedSigner']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -510,7 +510,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
          * 
          */
         fetchAuthorizationUrl(requestParameters: SignerApiFetchAuthorizationUrlRequest, options?: RawAxiosRequestConfig): AxiosPromise<AuthorizationUrlResponse> {
-            return localVarFp.fetchAuthorizationUrl(requestParameters.client_id, requestParameters.response_type, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchAuthorizationUrl(requestParameters.clientId, requestParameters.responseType, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches the status of a developer managed signer by public key
@@ -524,7 +524,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
          * 
          */
         lookupDeveloperManagedSigner(requestParameters: SignerApiLookupDeveloperManagedSignerRequest, options?: RawAxiosRequestConfig): AxiosPromise<DeveloperManagedSigner> {
-            return localVarFp.lookupDeveloperManagedSigner(requestParameters.public_key, options).then((request) => request(axios, basePath));
+            return localVarFp.lookupDeveloperManagedSigner(requestParameters.publicKey, options).then((request) => request(axios, basePath));
         },
         /**
          * Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
@@ -538,7 +538,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
          * 
          */
         lookupSigner(requestParameters: SignerApiLookupSignerRequest, options?: RawAxiosRequestConfig): AxiosPromise<Signer> {
-            return localVarFp.lookupSigner(requestParameters.signer_uuid, options).then((request) => request(axios, basePath));
+            return localVarFp.lookupSigner(requestParameters.signerUuid, options).then((request) => request(axios, basePath));
         },
         /**
          * Publish a message to farcaster. The message must be signed by a signer managed by the developer. Use the @farcaster/core library to construct and sign the message. Use the Message.toJSON method on the signed message and pass the JSON in the body of this POST request.
@@ -566,7 +566,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
          * 
          */
         registerSignedKey(requestParameters: SignerApiRegisterSignedKeyRequest, options?: RawAxiosRequestConfig): AxiosPromise<Signer> {
-            return localVarFp.registerSignedKey(requestParameters.register_signer_key_req_body, options).then((request) => request(axios, basePath));
+            return localVarFp.registerSignedKey(requestParameters.registerSignerKeyReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Registers an signed key and returns the developer managed signer status with an approval url.
@@ -580,7 +580,7 @@ export const SignerApiFactory = function (configuration?: Configuration, basePat
          * 
          */
         registerSignedKeyForDeveloperManagedSigner(requestParameters: SignerApiRegisterSignedKeyForDeveloperManagedSignerRequest, options?: RawAxiosRequestConfig): AxiosPromise<DeveloperManagedSigner> {
-            return localVarFp.registerSignedKeyForDeveloperManagedSigner(requestParameters.register_developer_managed_signed_key_req_body, options).then((request) => request(axios, basePath));
+            return localVarFp.registerSignedKeyForDeveloperManagedSigner(requestParameters.registerDeveloperManagedSignedKeyReqBody, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -704,7 +704,7 @@ export interface SignerApiFetchAuthorizationUrlRequest {
      * @type {string}
      * @memberof SignerApiFetchAuthorizationUrl
      */
-    readonly client_id: string
+    readonly clientId: string
 
     /**
      * 
@@ -714,7 +714,7 @@ export interface SignerApiFetchAuthorizationUrlRequest {
      * @type {AuthorizationUrlResponseType}
      * @memberof SignerApiFetchAuthorizationUrl
      */
-    readonly response_type: AuthorizationUrlResponseType
+    readonly responseType: AuthorizationUrlResponseType
 }
 
 /**
@@ -731,7 +731,7 @@ export interface SignerApiLookupDeveloperManagedSignerRequest {
      * @type {string}
      * @memberof SignerApiLookupDeveloperManagedSigner
      */
-    readonly public_key: string
+    readonly publicKey: string
 }
 
 /**
@@ -748,7 +748,7 @@ export interface SignerApiLookupSignerRequest {
      * @type {string}
      * @memberof SignerApiLookupSigner
      */
-    readonly signer_uuid: string
+    readonly signerUuid: string
 }
 
 /**
@@ -782,7 +782,7 @@ export interface SignerApiRegisterSignedKeyRequest {
      * @type {RegisterSignerKeyReqBody}
      * @memberof SignerApiRegisterSignedKey
      */
-    readonly register_signer_key_req_body: RegisterSignerKeyReqBody
+    readonly registerSignerKeyReqBody: RegisterSignerKeyReqBody
 }
 
 /**
@@ -799,7 +799,7 @@ export interface SignerApiRegisterSignedKeyForDeveloperManagedSignerRequest {
      * @type {RegisterDeveloperManagedSignedKeyReqBody}
      * @memberof SignerApiRegisterSignedKeyForDeveloperManagedSigner
      */
-    readonly register_developer_managed_signed_key_req_body: RegisterDeveloperManagedSignedKeyReqBody
+    readonly registerDeveloperManagedSignedKeyReqBody: RegisterDeveloperManagedSignedKeyReqBody
 }
 
 /**
@@ -837,7 +837,7 @@ export class SignerApi extends BaseAPI implements SignerApiInterface {
      * 
      */
     public fetchAuthorizationUrl(requestParameters: SignerApiFetchAuthorizationUrlRequest, options?: RawAxiosRequestConfig) {
-        return SignerApiFp(this.configuration).fetchAuthorizationUrl(requestParameters.client_id, requestParameters.response_type, options).then((request) => request(this.axios, this.basePath));
+        return SignerApiFp(this.configuration).fetchAuthorizationUrl(requestParameters.clientId, requestParameters.responseType, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -853,7 +853,7 @@ export class SignerApi extends BaseAPI implements SignerApiInterface {
      * 
      */
     public lookupDeveloperManagedSigner(requestParameters: SignerApiLookupDeveloperManagedSignerRequest, options?: RawAxiosRequestConfig) {
-        return SignerApiFp(this.configuration).lookupDeveloperManagedSigner(requestParameters.public_key, options).then((request) => request(this.axios, this.basePath));
+        return SignerApiFp(this.configuration).lookupDeveloperManagedSigner(requestParameters.publicKey, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -869,7 +869,7 @@ export class SignerApi extends BaseAPI implements SignerApiInterface {
      * 
      */
     public lookupSigner(requestParameters: SignerApiLookupSignerRequest, options?: RawAxiosRequestConfig) {
-        return SignerApiFp(this.configuration).lookupSigner(requestParameters.signer_uuid, options).then((request) => request(this.axios, this.basePath));
+        return SignerApiFp(this.configuration).lookupSigner(requestParameters.signerUuid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -901,7 +901,7 @@ export class SignerApi extends BaseAPI implements SignerApiInterface {
      * 
      */
     public registerSignedKey(requestParameters: SignerApiRegisterSignedKeyRequest, options?: RawAxiosRequestConfig) {
-        return SignerApiFp(this.configuration).registerSignedKey(requestParameters.register_signer_key_req_body, options).then((request) => request(this.axios, this.basePath));
+        return SignerApiFp(this.configuration).registerSignedKey(requestParameters.registerSignerKeyReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -917,7 +917,7 @@ export class SignerApi extends BaseAPI implements SignerApiInterface {
      * 
      */
     public registerSignedKeyForDeveloperManagedSigner(requestParameters: SignerApiRegisterSignedKeyForDeveloperManagedSignerRequest, options?: RawAxiosRequestConfig) {
-        return SignerApiFp(this.configuration).registerSignedKeyForDeveloperManagedSigner(requestParameters.register_developer_managed_signed_key_req_body, options).then((request) => request(this.axios, this.basePath));
+        return SignerApiFp(this.configuration).registerSignedKeyForDeveloperManagedSigner(requestParameters.registerDeveloperManagedSignedKeyReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

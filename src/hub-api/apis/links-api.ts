@@ -38,11 +38,11 @@ export const LinksApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @summary To target FID
-         * @param {number} target_fid The FID of the target of the link 
-         * @param {LinkType} [link_type] The type of link, as a string value 
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {number} targetFid The FID of the target of the link 
+         * @param {LinkType} [linkType] The type of link, as a string value 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchUserFollowing200Response>} A promise that resolves to a `FetchUserFollowing200Response` object
@@ -50,9 +50,9 @@ export const LinksApiAxiosParamCreator = function (configuration?: Configuration
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-followers)
          * 
          */
-        fetchUserFollowers: async (target_fid: number, link_type?: LinkType, page_size?: number, reverse?: boolean, page_token?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'target_fid' is not null or undefined
-            assertParamExists('fetchUserFollowers', 'target_fid', target_fid)
+        fetchUserFollowers: async (targetFid: number, linkType?: LinkType, pageSize?: number, reverse?: boolean, pageToken?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'targetFid' is not null or undefined
+            assertParamExists('fetchUserFollowers', 'targetFid', targetFid)
             const localVarPath = `/v1/linksByTargetFid`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -68,24 +68,24 @@ export const LinksApiAxiosParamCreator = function (configuration?: Configuration
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (target_fid !== undefined) {
-                localVarQueryParameter['target_fid'] = target_fid;
+            if (targetFid !== undefined) {
+                localVarQueryParameter['target_fid'] = targetFid;
             }
 
-            if (link_type !== undefined) {
-                localVarQueryParameter['link_type'] = link_type;
+            if (linkType !== undefined) {
+                localVarQueryParameter['link_type'] = linkType;
             }
 
-            if (page_size !== undefined) {
-                localVarQueryParameter['pageSize'] = page_size;
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
             }
 
             if (reverse !== undefined) {
                 localVarQueryParameter['reverse'] = reverse;
             }
 
-            if (page_token !== undefined) {
-                localVarQueryParameter['pageToken'] = page_token;
+            if (pageToken !== undefined) {
+                localVarQueryParameter['pageToken'] = pageToken;
             }
 
 
@@ -103,10 +103,10 @@ export const LinksApiAxiosParamCreator = function (configuration?: Configuration
          * 
          * @summary From source FID
          * @param {number} fid The FID of the link\&#39;s originator 
-         * @param {LinkType} [link_type] The type of link, as a string value 
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {LinkType} [linkType] The type of link, as a string value 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchUserFollowing200Response>} A promise that resolves to a `FetchUserFollowing200Response` object
@@ -114,7 +114,7 @@ export const LinksApiAxiosParamCreator = function (configuration?: Configuration
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-following)
          * 
          */
-        fetchUserFollowing: async (fid: number, link_type?: LinkType, page_size?: number, reverse?: boolean, page_token?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchUserFollowing: async (fid: number, linkType?: LinkType, pageSize?: number, reverse?: boolean, pageToken?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('fetchUserFollowing', 'fid', fid)
             const localVarPath = `/v1/linksByFid`;
@@ -136,20 +136,20 @@ export const LinksApiAxiosParamCreator = function (configuration?: Configuration
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (link_type !== undefined) {
-                localVarQueryParameter['link_type'] = link_type;
+            if (linkType !== undefined) {
+                localVarQueryParameter['link_type'] = linkType;
             }
 
-            if (page_size !== undefined) {
-                localVarQueryParameter['pageSize'] = page_size;
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
             }
 
             if (reverse !== undefined) {
                 localVarQueryParameter['reverse'] = reverse;
             }
 
-            if (page_token !== undefined) {
-                localVarQueryParameter['pageToken'] = page_token;
+            if (pageToken !== undefined) {
+                localVarQueryParameter['pageToken'] = pageToken;
             }
 
 
@@ -167,8 +167,8 @@ export const LinksApiAxiosParamCreator = function (configuration?: Configuration
          * 
          * @summary By its FID and target FID.
          * @param {number} fid The FID of the link\&#39;s originator 
-         * @param {number} target_fid The FID of the target of the link 
-         * @param {LinkType} link_type The type of link, as a string value 
+         * @param {number} targetFid The FID of the target of the link 
+         * @param {LinkType} linkType The type of link, as a string value 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<LinkAdd>} A promise that resolves to a `LinkAdd` object
@@ -176,13 +176,13 @@ export const LinksApiAxiosParamCreator = function (configuration?: Configuration
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-user-relation)
          * 
          */
-        lookupUserRelation: async (fid: number, target_fid: number, link_type: LinkType, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        lookupUserRelation: async (fid: number, targetFid: number, linkType: LinkType, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('lookupUserRelation', 'fid', fid)
-            // verify required parameter 'target_fid' is not null or undefined
-            assertParamExists('lookupUserRelation', 'target_fid', target_fid)
-            // verify required parameter 'link_type' is not null or undefined
-            assertParamExists('lookupUserRelation', 'link_type', link_type)
+            // verify required parameter 'targetFid' is not null or undefined
+            assertParamExists('lookupUserRelation', 'targetFid', targetFid)
+            // verify required parameter 'linkType' is not null or undefined
+            assertParamExists('lookupUserRelation', 'linkType', linkType)
             const localVarPath = `/v1/linkById`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -202,12 +202,12 @@ export const LinksApiAxiosParamCreator = function (configuration?: Configuration
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (target_fid !== undefined) {
-                localVarQueryParameter['target_fid'] = target_fid;
+            if (targetFid !== undefined) {
+                localVarQueryParameter['target_fid'] = targetFid;
             }
 
-            if (link_type !== undefined) {
-                localVarQueryParameter['link_type'] = link_type;
+            if (linkType !== undefined) {
+                localVarQueryParameter['link_type'] = linkType;
             }
 
 
@@ -234,11 +234,11 @@ export const LinksApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary To target FID
-         * @param {number} target_fid The FID of the target of the link 
-         * @param {LinkType} [link_type] The type of link, as a string value 
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {number} targetFid The FID of the target of the link 
+         * @param {LinkType} [linkType] The type of link, as a string value 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchUserFollowing200Response>} A promise that resolves to a `FetchUserFollowing200Response` object
@@ -246,8 +246,8 @@ export const LinksApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-followers)
          * 
          */
-        async fetchUserFollowers(target_fid: number, link_type?: LinkType, page_size?: number, reverse?: boolean, page_token?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchUserFollowing200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserFollowers(target_fid, link_type, page_size, reverse, page_token, options);
+        async fetchUserFollowers(targetFid: number, linkType?: LinkType, pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchUserFollowing200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserFollowers(targetFid, linkType, pageSize, reverse, pageToken, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['LinksApi.fetchUserFollowers']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -256,10 +256,10 @@ export const LinksApiFp = function(configuration?: Configuration) {
          * 
          * @summary From source FID
          * @param {number} fid The FID of the link\&#39;s originator 
-         * @param {LinkType} [link_type] The type of link, as a string value 
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {LinkType} [linkType] The type of link, as a string value 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchUserFollowing200Response>} A promise that resolves to a `FetchUserFollowing200Response` object
@@ -267,8 +267,8 @@ export const LinksApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-following)
          * 
          */
-        async fetchUserFollowing(fid: number, link_type?: LinkType, page_size?: number, reverse?: boolean, page_token?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchUserFollowing200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserFollowing(fid, link_type, page_size, reverse, page_token, options);
+        async fetchUserFollowing(fid: number, linkType?: LinkType, pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchUserFollowing200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserFollowing(fid, linkType, pageSize, reverse, pageToken, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['LinksApi.fetchUserFollowing']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -277,8 +277,8 @@ export const LinksApiFp = function(configuration?: Configuration) {
          * 
          * @summary By its FID and target FID.
          * @param {number} fid The FID of the link\&#39;s originator 
-         * @param {number} target_fid The FID of the target of the link 
-         * @param {LinkType} link_type The type of link, as a string value 
+         * @param {number} targetFid The FID of the target of the link 
+         * @param {LinkType} linkType The type of link, as a string value 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<LinkAdd>} A promise that resolves to a `LinkAdd` object
@@ -286,8 +286,8 @@ export const LinksApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-user-relation)
          * 
          */
-        async lookupUserRelation(fid: number, target_fid: number, link_type: LinkType, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LinkAdd>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupUserRelation(fid, target_fid, link_type, options);
+        async lookupUserRelation(fid: number, targetFid: number, linkType: LinkType, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LinkAdd>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupUserRelation(fid, targetFid, linkType, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['LinksApi.lookupUserRelation']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -314,7 +314,7 @@ export const LinksApiFactory = function (configuration?: Configuration, basePath
          * 
          */
         fetchUserFollowers(requestParameters: LinksApiFetchUserFollowersRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchUserFollowing200Response> {
-            return localVarFp.fetchUserFollowers(requestParameters.target_fid, requestParameters.link_type, requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchUserFollowers(requestParameters.targetFid, requestParameters.linkType, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -328,7 +328,7 @@ export const LinksApiFactory = function (configuration?: Configuration, basePath
          * 
          */
         fetchUserFollowing(requestParameters: LinksApiFetchUserFollowingRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchUserFollowing200Response> {
-            return localVarFp.fetchUserFollowing(requestParameters.fid, requestParameters.link_type, requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchUserFollowing(requestParameters.fid, requestParameters.linkType, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -342,7 +342,7 @@ export const LinksApiFactory = function (configuration?: Configuration, basePath
          * 
          */
         lookupUserRelation(requestParameters: LinksApiLookupUserRelationRequest, options?: RawAxiosRequestConfig): AxiosPromise<LinkAdd> {
-            return localVarFp.lookupUserRelation(requestParameters.fid, requestParameters.target_fid, requestParameters.link_type, options).then((request) => request(axios, basePath));
+            return localVarFp.lookupUserRelation(requestParameters.fid, requestParameters.targetFid, requestParameters.linkType, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -411,7 +411,7 @@ export interface LinksApiFetchUserFollowersRequest {
      * @type {number}
      * @memberof LinksApiFetchUserFollowers
      */
-    readonly target_fid: number
+    readonly targetFid: number
 
     /**
      * The type of link, as a string value
@@ -421,7 +421,7 @@ export interface LinksApiFetchUserFollowersRequest {
      * @type {LinkType}
      * @memberof LinksApiFetchUserFollowers
      */
-    readonly link_type?: LinkType
+    readonly linkType?: LinkType
 
     /**
      * Maximum number of messages to return in a single response
@@ -431,7 +431,7 @@ export interface LinksApiFetchUserFollowersRequest {
      * @type {number}
      * @memberof LinksApiFetchUserFollowers
      */
-    readonly page_size?: number
+    readonly pageSize?: number
 
     /**
      * Reverse the sort order, returning latest messages first
@@ -451,7 +451,7 @@ export interface LinksApiFetchUserFollowersRequest {
      * @type {string}
      * @memberof LinksApiFetchUserFollowers
      */
-    readonly page_token?: string
+    readonly pageToken?: string
 }
 
 /**
@@ -478,7 +478,7 @@ export interface LinksApiFetchUserFollowingRequest {
      * @type {LinkType}
      * @memberof LinksApiFetchUserFollowing
      */
-    readonly link_type?: LinkType
+    readonly linkType?: LinkType
 
     /**
      * Maximum number of messages to return in a single response
@@ -488,7 +488,7 @@ export interface LinksApiFetchUserFollowingRequest {
      * @type {number}
      * @memberof LinksApiFetchUserFollowing
      */
-    readonly page_size?: number
+    readonly pageSize?: number
 
     /**
      * Reverse the sort order, returning latest messages first
@@ -508,7 +508,7 @@ export interface LinksApiFetchUserFollowingRequest {
      * @type {string}
      * @memberof LinksApiFetchUserFollowing
      */
-    readonly page_token?: string
+    readonly pageToken?: string
 }
 
 /**
@@ -535,7 +535,7 @@ export interface LinksApiLookupUserRelationRequest {
      * @type {number}
      * @memberof LinksApiLookupUserRelation
      */
-    readonly target_fid: number
+    readonly targetFid: number
 
     /**
      * The type of link, as a string value
@@ -545,7 +545,7 @@ export interface LinksApiLookupUserRelationRequest {
      * @type {LinkType}
      * @memberof LinksApiLookupUserRelation
      */
-    readonly link_type: LinkType
+    readonly linkType: LinkType
 }
 
 /**
@@ -568,7 +568,7 @@ export class LinksApi extends BaseAPI implements LinksApiInterface {
      * 
      */
     public fetchUserFollowers(requestParameters: LinksApiFetchUserFollowersRequest, options?: RawAxiosRequestConfig) {
-        return LinksApiFp(this.configuration).fetchUserFollowers(requestParameters.target_fid, requestParameters.link_type, requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(this.axios, this.basePath));
+        return LinksApiFp(this.configuration).fetchUserFollowers(requestParameters.targetFid, requestParameters.linkType, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -584,7 +584,7 @@ export class LinksApi extends BaseAPI implements LinksApiInterface {
      * 
      */
     public fetchUserFollowing(requestParameters: LinksApiFetchUserFollowingRequest, options?: RawAxiosRequestConfig) {
-        return LinksApiFp(this.configuration).fetchUserFollowing(requestParameters.fid, requestParameters.link_type, requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(this.axios, this.basePath));
+        return LinksApiFp(this.configuration).fetchUserFollowing(requestParameters.fid, requestParameters.linkType, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -600,7 +600,7 @@ export class LinksApi extends BaseAPI implements LinksApiInterface {
      * 
      */
     public lookupUserRelation(requestParameters: LinksApiLookupUserRelationRequest, options?: RawAxiosRequestConfig) {
-        return LinksApiFp(this.configuration).lookupUserRelation(requestParameters.fid, requestParameters.target_fid, requestParameters.link_type, options).then((request) => request(this.axios, this.basePath));
+        return LinksApiFp(this.configuration).lookupUserRelation(requestParameters.fid, requestParameters.targetFid, requestParameters.linkType, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

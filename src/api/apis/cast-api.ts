@@ -56,7 +56,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved) 
          * @summary Delete a cast
-         * @param {DeleteCastReqBody} delete_cast_req_body  
+         * @param {DeleteCastReqBody} deleteCastReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
@@ -64,9 +64,9 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-cast)
          * 
          */
-        deleteCast: async (delete_cast_req_body: DeleteCastReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'delete_cast_req_body' is not null or undefined
-            assertParamExists('deleteCast', 'delete_cast_req_body', delete_cast_req_body)
+        deleteCast: async (deleteCastReqBody: DeleteCastReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deleteCastReqBody' is not null or undefined
+            assertParamExists('deleteCast', 'deleteCastReqBody', deleteCastReqBody)
             const localVarPath = `/farcaster/cast`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -89,7 +89,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(delete_cast_req_body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(deleteCastReqBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -100,8 +100,8 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * Fetch multiple casts using their respective hashes.
          * @summary Bulk fetch casts
          * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces) 
-         * @param {number} [viewer_fid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast. 
-         * @param {FetchBulkCastsSortTypeEnum} [sort_type] Optional parameter to sort the casts based on different criteria 
+         * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast. 
+         * @param {FetchBulkCastsSortTypeEnum} [sortType] Optional parameter to sort the casts based on different criteria 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<CastsResponse>} A promise that resolves to a `CastsResponse` object
@@ -109,7 +109,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-casts)
          * 
          */
-        fetchBulkCasts: async (casts: string, viewer_fid?: number, sort_type?: FetchBulkCastsSortTypeEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchBulkCasts: async (casts: string, viewerFid?: number, sortType?: FetchBulkCastsSortTypeEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'casts' is not null or undefined
             assertParamExists('fetchBulkCasts', 'casts', casts)
             const localVarPath = `/farcaster/casts`;
@@ -131,12 +131,12 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['casts'] = casts;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
-            if (sort_type !== undefined) {
-                localVarQueryParameter['sort_type'] = sort_type;
+            if (sortType !== undefined) {
+                localVarQueryParameter['sort_type'] = sortType;
             }
 
 
@@ -209,7 +209,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary By hash or URL
          * @param {string} identifier Cast identifier (Its either a url or a hash) 
          * @param {CastParamType} type  
-         * @param {number} [viewer_fid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast. 
+         * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<CastResponse>} A promise that resolves to a `CastResponse` object
@@ -217,7 +217,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-cast-by-hash-or-warpcast-url)
          * 
          */
-        lookupCastByHashOrWarpcastUrl: async (identifier: string, type: CastParamType, viewer_fid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        lookupCastByHashOrWarpcastUrl: async (identifier: string, type: CastParamType, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'identifier' is not null or undefined
             assertParamExists('lookupCastByHashOrWarpcastUrl', 'identifier', identifier)
             // verify required parameter 'type' is not null or undefined
@@ -245,8 +245,8 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['type'] = type;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
 
@@ -265,10 +265,10 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Conversation for a cast
          * @param {string} identifier Cast identifier (Its either a url or a hash) 
          * @param {CastParamType} type  
-         * @param {number} [reply_depth] The depth of replies in the conversation that will be returned (default 2) 
-         * @param {boolean} [include_chronological_parent_casts] Include all parent casts in chronological order 
-         * @param {number} [viewer_fid] Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
-         * @param {CastConversationSortType} [sort_type] Sort type for the ordering of descendants. Default is &#x60;chron&#x60; 
+         * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2) 
+         * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order 
+         * @param {number} [viewerFid] Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;chron&#x60; 
          * @param {LookupCastConversationFoldEnum} [fold] Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding. 
          * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 50)
          * @param {string} [cursor] Pagination cursor. 
@@ -279,7 +279,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-cast-conversation)
          * 
          */
-        lookupCastConversation: async (identifier: string, type: CastParamType, reply_depth?: number, include_chronological_parent_casts?: boolean, viewer_fid?: number, sort_type?: CastConversationSortType, fold?: LookupCastConversationFoldEnum, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        lookupCastConversation: async (identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, fold?: LookupCastConversationFoldEnum, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'identifier' is not null or undefined
             assertParamExists('lookupCastConversation', 'identifier', identifier)
             // verify required parameter 'type' is not null or undefined
@@ -307,20 +307,20 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['type'] = type;
             }
 
-            if (reply_depth !== undefined) {
-                localVarQueryParameter['reply_depth'] = reply_depth;
+            if (replyDepth !== undefined) {
+                localVarQueryParameter['reply_depth'] = replyDepth;
             }
 
-            if (include_chronological_parent_casts !== undefined) {
-                localVarQueryParameter['include_chronological_parent_casts'] = include_chronological_parent_casts;
+            if (includeChronologicalParentCasts !== undefined) {
+                localVarQueryParameter['include_chronological_parent_casts'] = includeChronologicalParentCasts;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
-            if (sort_type !== undefined) {
-                localVarQueryParameter['sort_type'] = sort_type;
+            if (sortType !== undefined) {
+                localVarQueryParameter['sort_type'] = sortType;
             }
 
             if (fold !== undefined) {
@@ -349,7 +349,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Posts a cast or cast reply. Works with mentions and embeds.   (In order to post a cast `signer_uuid` must be approved) 
          * @summary Post a cast
-         * @param {PostCastReqBody} post_cast_req_body  
+         * @param {PostCastReqBody} postCastReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<PostCastResponse>} A promise that resolves to a `PostCastResponse` object
@@ -357,9 +357,9 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-cast)
          * 
          */
-        publishCast: async (post_cast_req_body: PostCastReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'post_cast_req_body' is not null or undefined
-            assertParamExists('publishCast', 'post_cast_req_body', post_cast_req_body)
+        publishCast: async (postCastReqBody: PostCastReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'postCastReqBody' is not null or undefined
+            assertParamExists('publishCast', 'postCastReqBody', postCastReqBody)
             const localVarPath = `/farcaster/cast`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -382,7 +382,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(post_cast_req_body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(postCastReqBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -393,11 +393,11 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * Search for casts based on a query string, with optional AND filters
          * @summary Search for casts
          * @param {string} q Query string to search for casts 
-         * @param {number} [author_fid] Fid of the user whose casts you want to search 
-         * @param {number} [viewer_fid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
-         * @param {string} [parent_url] Parent URL of the casts you want to search 
-         * @param {string} [channel_id] Channel ID of the casts you want to search 
-         * @param {boolean} [priority_mode] When true, only returns search results from power badge users and users that the viewer follows (if viewer_fid is provided). 
+         * @param {number} [authorFid] Fid of the user whose casts you want to search 
+         * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {string} [parentUrl] Parent URL of the casts you want to search 
+         * @param {string} [channelId] Channel ID of the casts you want to search 
+         * @param {boolean} [priorityMode] When true, only returns search results from power badge users and users that the viewer follows (if viewer_fid is provided). 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
          * @param {string} [cursor] Pagination cursor 
          * @param {*} [options] Override http request option.
@@ -407,7 +407,7 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/search-casts)
          * 
          */
-        searchCasts: async (q: string, author_fid?: number, viewer_fid?: number, parent_url?: string, channel_id?: string, priority_mode?: boolean, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        searchCasts: async (q: string, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'q' is not null or undefined
             assertParamExists('searchCasts', 'q', q)
             const localVarPath = `/farcaster/cast/search`;
@@ -429,24 +429,24 @@ export const CastApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['q'] = q;
             }
 
-            if (author_fid !== undefined) {
-                localVarQueryParameter['author_fid'] = author_fid;
+            if (authorFid !== undefined) {
+                localVarQueryParameter['author_fid'] = authorFid;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
-            if (parent_url !== undefined) {
-                localVarQueryParameter['parent_url'] = parent_url;
+            if (parentUrl !== undefined) {
+                localVarQueryParameter['parent_url'] = parentUrl;
             }
 
-            if (channel_id !== undefined) {
-                localVarQueryParameter['channel_id'] = channel_id;
+            if (channelId !== undefined) {
+                localVarQueryParameter['channel_id'] = channelId;
             }
 
-            if (priority_mode !== undefined) {
-                localVarQueryParameter['priority_mode'] = priority_mode;
+            if (priorityMode !== undefined) {
+                localVarQueryParameter['priority_mode'] = priorityMode;
             }
 
             if (limit !== undefined) {
@@ -481,7 +481,7 @@ export const CastApiFp = function(configuration?: Configuration) {
         /**
          * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved) 
          * @summary Delete a cast
-         * @param {DeleteCastReqBody} delete_cast_req_body  
+         * @param {DeleteCastReqBody} deleteCastReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
@@ -489,8 +489,8 @@ export const CastApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-cast)
          * 
          */
-        async deleteCast(delete_cast_req_body: DeleteCastReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteCast(delete_cast_req_body, options);
+        async deleteCast(deleteCastReqBody: DeleteCastReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteCast(deleteCastReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CastApi.deleteCast']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -499,8 +499,8 @@ export const CastApiFp = function(configuration?: Configuration) {
          * Fetch multiple casts using their respective hashes.
          * @summary Bulk fetch casts
          * @param {string} casts Hashes of the cast to be retrived (Comma separated, no spaces) 
-         * @param {number} [viewer_fid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast. 
-         * @param {FetchBulkCastsSortTypeEnum} [sort_type] Optional parameter to sort the casts based on different criteria 
+         * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast. 
+         * @param {FetchBulkCastsSortTypeEnum} [sortType] Optional parameter to sort the casts based on different criteria 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<CastsResponse>} A promise that resolves to a `CastsResponse` object
@@ -508,8 +508,8 @@ export const CastApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-casts)
          * 
          */
-        async fetchBulkCasts(casts: string, viewer_fid?: number, sort_type?: FetchBulkCastsSortTypeEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchBulkCasts(casts, viewer_fid, sort_type, options);
+        async fetchBulkCasts(casts: string, viewerFid?: number, sortType?: FetchBulkCastsSortTypeEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchBulkCasts(casts, viewerFid, sortType, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CastApi.fetchBulkCasts']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -538,7 +538,7 @@ export const CastApiFp = function(configuration?: Configuration) {
          * @summary By hash or URL
          * @param {string} identifier Cast identifier (Its either a url or a hash) 
          * @param {CastParamType} type  
-         * @param {number} [viewer_fid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast. 
+         * @param {number} [viewerFid] adds viewer_context to cast object to show whether viewer has liked or recasted the cast. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<CastResponse>} A promise that resolves to a `CastResponse` object
@@ -546,8 +546,8 @@ export const CastApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-cast-by-hash-or-warpcast-url)
          * 
          */
-        async lookupCastByHashOrWarpcastUrl(identifier: string, type: CastParamType, viewer_fid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupCastByHashOrWarpcastUrl(identifier, type, viewer_fid, options);
+        async lookupCastByHashOrWarpcastUrl(identifier: string, type: CastParamType, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupCastByHashOrWarpcastUrl(identifier, type, viewerFid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CastApi.lookupCastByHashOrWarpcastUrl']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -557,10 +557,10 @@ export const CastApiFp = function(configuration?: Configuration) {
          * @summary Conversation for a cast
          * @param {string} identifier Cast identifier (Its either a url or a hash) 
          * @param {CastParamType} type  
-         * @param {number} [reply_depth] The depth of replies in the conversation that will be returned (default 2) 
-         * @param {boolean} [include_chronological_parent_casts] Include all parent casts in chronological order 
-         * @param {number} [viewer_fid] Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
-         * @param {CastConversationSortType} [sort_type] Sort type for the ordering of descendants. Default is &#x60;chron&#x60; 
+         * @param {number} [replyDepth] The depth of replies in the conversation that will be returned (default 2) 
+         * @param {boolean} [includeChronologicalParentCasts] Include all parent casts in chronological order 
+         * @param {number} [viewerFid] Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {CastConversationSortType} [sortType] Sort type for the ordering of descendants. Default is &#x60;chron&#x60; 
          * @param {LookupCastConversationFoldEnum} [fold] Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding. 
          * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 50)
          * @param {string} [cursor] Pagination cursor. 
@@ -571,8 +571,8 @@ export const CastApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-cast-conversation)
          * 
          */
-        async lookupCastConversation(identifier: string, type: CastParamType, reply_depth?: number, include_chronological_parent_casts?: boolean, viewer_fid?: number, sort_type?: CastConversationSortType, fold?: LookupCastConversationFoldEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Conversation>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupCastConversation(identifier, type, reply_depth, include_chronological_parent_casts, viewer_fid, sort_type, fold, limit, cursor, options);
+        async lookupCastConversation(identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, fold?: LookupCastConversationFoldEnum, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Conversation>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupCastConversation(identifier, type, replyDepth, includeChronologicalParentCasts, viewerFid, sortType, fold, limit, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CastApi.lookupCastConversation']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -580,7 +580,7 @@ export const CastApiFp = function(configuration?: Configuration) {
         /**
          * Posts a cast or cast reply. Works with mentions and embeds.   (In order to post a cast `signer_uuid` must be approved) 
          * @summary Post a cast
-         * @param {PostCastReqBody} post_cast_req_body  
+         * @param {PostCastReqBody} postCastReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<PostCastResponse>} A promise that resolves to a `PostCastResponse` object
@@ -588,8 +588,8 @@ export const CastApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-cast)
          * 
          */
-        async publishCast(post_cast_req_body: PostCastReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PostCastResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.publishCast(post_cast_req_body, options);
+        async publishCast(postCastReqBody: PostCastReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PostCastResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publishCast(postCastReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CastApi.publishCast']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -598,11 +598,11 @@ export const CastApiFp = function(configuration?: Configuration) {
          * Search for casts based on a query string, with optional AND filters
          * @summary Search for casts
          * @param {string} q Query string to search for casts 
-         * @param {number} [author_fid] Fid of the user whose casts you want to search 
-         * @param {number} [viewer_fid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
-         * @param {string} [parent_url] Parent URL of the casts you want to search 
-         * @param {string} [channel_id] Channel ID of the casts you want to search 
-         * @param {boolean} [priority_mode] When true, only returns search results from power badge users and users that the viewer follows (if viewer_fid is provided). 
+         * @param {number} [authorFid] Fid of the user whose casts you want to search 
+         * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {string} [parentUrl] Parent URL of the casts you want to search 
+         * @param {string} [channelId] Channel ID of the casts you want to search 
+         * @param {boolean} [priorityMode] When true, only returns search results from power badge users and users that the viewer follows (if viewer_fid is provided). 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
          * @param {string} [cursor] Pagination cursor 
          * @param {*} [options] Override http request option.
@@ -612,8 +612,8 @@ export const CastApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/search-casts)
          * 
          */
-        async searchCasts(q: string, author_fid?: number, viewer_fid?: number, parent_url?: string, channel_id?: string, priority_mode?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.searchCasts(q, author_fid, viewer_fid, parent_url, channel_id, priority_mode, limit, cursor, options);
+        async searchCasts(q: string, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CastsSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.searchCasts(q, authorFid, viewerFid, parentUrl, channelId, priorityMode, limit, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CastApi.searchCasts']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -640,7 +640,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         deleteCast(requestParameters: CastApiDeleteCastRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.deleteCast(requestParameters.delete_cast_req_body, options).then((request) => request(axios, basePath));
+            return localVarFp.deleteCast(requestParameters.deleteCastReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch multiple casts using their respective hashes.
@@ -654,7 +654,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         fetchBulkCasts(requestParameters: CastApiFetchBulkCastsRequest, options?: RawAxiosRequestConfig): AxiosPromise<CastsResponse> {
-            return localVarFp.fetchBulkCasts(requestParameters.casts, requestParameters.viewer_fid, requestParameters.sort_type, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchBulkCasts(requestParameters.casts, requestParameters.viewerFid, requestParameters.sortType, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches all composer actions on Warpcast. You can filter by top or featured.
@@ -682,7 +682,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         lookupCastByHashOrWarpcastUrl(requestParameters: CastApiLookupCastByHashOrWarpcastUrlRequest, options?: RawAxiosRequestConfig): AxiosPromise<CastResponse> {
-            return localVarFp.lookupCastByHashOrWarpcastUrl(requestParameters.identifier, requestParameters.type, requestParameters.viewer_fid, options).then((request) => request(axios, basePath));
+            return localVarFp.lookupCastByHashOrWarpcastUrl(requestParameters.identifier, requestParameters.type, requestParameters.viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
@@ -696,7 +696,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         lookupCastConversation(requestParameters: CastApiLookupCastConversationRequest, options?: RawAxiosRequestConfig): AxiosPromise<Conversation> {
-            return localVarFp.lookupCastConversation(requestParameters.identifier, requestParameters.type, requestParameters.reply_depth, requestParameters.include_chronological_parent_casts, requestParameters.viewer_fid, requestParameters.sort_type, requestParameters.fold, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
+            return localVarFp.lookupCastConversation(requestParameters.identifier, requestParameters.type, requestParameters.replyDepth, requestParameters.includeChronologicalParentCasts, requestParameters.viewerFid, requestParameters.sortType, requestParameters.fold, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Posts a cast or cast reply. Works with mentions and embeds.   (In order to post a cast `signer_uuid` must be approved) 
@@ -710,7 +710,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         publishCast(requestParameters: CastApiPublishCastRequest, options?: RawAxiosRequestConfig): AxiosPromise<PostCastResponse> {
-            return localVarFp.publishCast(requestParameters.post_cast_req_body, options).then((request) => request(axios, basePath));
+            return localVarFp.publishCast(requestParameters.postCastReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Search for casts based on a query string, with optional AND filters
@@ -724,7 +724,7 @@ export const CastApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         searchCasts(requestParameters: CastApiSearchCastsRequest, options?: RawAxiosRequestConfig): AxiosPromise<CastsSearchResponse> {
-            return localVarFp.searchCasts(requestParameters.q, requestParameters.author_fid, requestParameters.viewer_fid, requestParameters.parent_url, requestParameters.channel_id, requestParameters.priority_mode, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
+            return localVarFp.searchCasts(requestParameters.q, requestParameters.authorFid, requestParameters.viewerFid, requestParameters.parentUrl, requestParameters.channelId, requestParameters.priorityMode, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -849,7 +849,7 @@ export interface CastApiDeleteCastRequest {
      * @type {DeleteCastReqBody}
      * @memberof CastApiDeleteCast
      */
-    readonly delete_cast_req_body: DeleteCastReqBody
+    readonly deleteCastReqBody: DeleteCastReqBody
 }
 
 /**
@@ -876,7 +876,7 @@ export interface CastApiFetchBulkCastsRequest {
      * @type {number}
      * @memberof CastApiFetchBulkCasts
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * Optional parameter to sort the casts based on different criteria
@@ -886,7 +886,7 @@ export interface CastApiFetchBulkCastsRequest {
      * @type {'trending' | 'likes' | 'recasts' | 'replies' | 'recent'}
      * @memberof CastApiFetchBulkCasts
      */
-    readonly sort_type?: FetchBulkCastsSortTypeEnum
+    readonly sortType?: FetchBulkCastsSortTypeEnum
 }
 
 /**
@@ -960,7 +960,7 @@ export interface CastApiLookupCastByHashOrWarpcastUrlRequest {
      * @type {number}
      * @memberof CastApiLookupCastByHashOrWarpcastUrl
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 }
 
 /**
@@ -997,7 +997,7 @@ export interface CastApiLookupCastConversationRequest {
      * @type {number}
      * @memberof CastApiLookupCastConversation
      */
-    readonly reply_depth?: number
+    readonly replyDepth?: number
 
     /**
      * Include all parent casts in chronological order
@@ -1007,7 +1007,7 @@ export interface CastApiLookupCastConversationRequest {
      * @type {boolean}
      * @memberof CastApiLookupCastConversation
      */
-    readonly include_chronological_parent_casts?: boolean
+    readonly includeChronologicalParentCasts?: boolean
 
     /**
      * Providing this will return a conversation that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -1017,7 +1017,7 @@ export interface CastApiLookupCastConversationRequest {
      * @type {number}
      * @memberof CastApiLookupCastConversation
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * Sort type for the ordering of descendants. Default is &#x60;chron&#x60;
@@ -1027,7 +1027,7 @@ export interface CastApiLookupCastConversationRequest {
      * @type {CastConversationSortType}
      * @memberof CastApiLookupCastConversation
      */
-    readonly sort_type?: CastConversationSortType
+    readonly sortType?: CastConversationSortType
 
     /**
      * Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding.
@@ -1074,7 +1074,7 @@ export interface CastApiPublishCastRequest {
      * @type {PostCastReqBody}
      * @memberof CastApiPublishCast
      */
-    readonly post_cast_req_body: PostCastReqBody
+    readonly postCastReqBody: PostCastReqBody
 }
 
 /**
@@ -1101,7 +1101,7 @@ export interface CastApiSearchCastsRequest {
      * @type {number}
      * @memberof CastApiSearchCasts
      */
-    readonly author_fid?: number
+    readonly authorFid?: number
 
     /**
      * Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -1111,7 +1111,7 @@ export interface CastApiSearchCastsRequest {
      * @type {number}
      * @memberof CastApiSearchCasts
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * Parent URL of the casts you want to search
@@ -1121,7 +1121,7 @@ export interface CastApiSearchCastsRequest {
      * @type {string}
      * @memberof CastApiSearchCasts
      */
-    readonly parent_url?: string
+    readonly parentUrl?: string
 
     /**
      * Channel ID of the casts you want to search
@@ -1131,7 +1131,7 @@ export interface CastApiSearchCastsRequest {
      * @type {string}
      * @memberof CastApiSearchCasts
      */
-    readonly channel_id?: string
+    readonly channelId?: string
 
     /**
      * When true, only returns search results from power badge users and users that the viewer follows (if viewer_fid is provided).
@@ -1141,7 +1141,7 @@ export interface CastApiSearchCastsRequest {
      * @type {boolean}
      * @memberof CastApiSearchCasts
      */
-    readonly priority_mode?: boolean
+    readonly priorityMode?: boolean
 
     /**
      * Number of results to fetch (Default: 25, Maximum: 100)
@@ -1184,7 +1184,7 @@ export class CastApi extends BaseAPI implements CastApiInterface {
      * 
      */
     public deleteCast(requestParameters: CastApiDeleteCastRequest, options?: RawAxiosRequestConfig) {
-        return CastApiFp(this.configuration).deleteCast(requestParameters.delete_cast_req_body, options).then((request) => request(this.axios, this.basePath));
+        return CastApiFp(this.configuration).deleteCast(requestParameters.deleteCastReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1200,7 +1200,7 @@ export class CastApi extends BaseAPI implements CastApiInterface {
      * 
      */
     public fetchBulkCasts(requestParameters: CastApiFetchBulkCastsRequest, options?: RawAxiosRequestConfig) {
-        return CastApiFp(this.configuration).fetchBulkCasts(requestParameters.casts, requestParameters.viewer_fid, requestParameters.sort_type, options).then((request) => request(this.axios, this.basePath));
+        return CastApiFp(this.configuration).fetchBulkCasts(requestParameters.casts, requestParameters.viewerFid, requestParameters.sortType, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1232,7 +1232,7 @@ export class CastApi extends BaseAPI implements CastApiInterface {
      * 
      */
     public lookupCastByHashOrWarpcastUrl(requestParameters: CastApiLookupCastByHashOrWarpcastUrlRequest, options?: RawAxiosRequestConfig) {
-        return CastApiFp(this.configuration).lookupCastByHashOrWarpcastUrl(requestParameters.identifier, requestParameters.type, requestParameters.viewer_fid, options).then((request) => request(this.axios, this.basePath));
+        return CastApiFp(this.configuration).lookupCastByHashOrWarpcastUrl(requestParameters.identifier, requestParameters.type, requestParameters.viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1248,7 +1248,7 @@ export class CastApi extends BaseAPI implements CastApiInterface {
      * 
      */
     public lookupCastConversation(requestParameters: CastApiLookupCastConversationRequest, options?: RawAxiosRequestConfig) {
-        return CastApiFp(this.configuration).lookupCastConversation(requestParameters.identifier, requestParameters.type, requestParameters.reply_depth, requestParameters.include_chronological_parent_casts, requestParameters.viewer_fid, requestParameters.sort_type, requestParameters.fold, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
+        return CastApiFp(this.configuration).lookupCastConversation(requestParameters.identifier, requestParameters.type, requestParameters.replyDepth, requestParameters.includeChronologicalParentCasts, requestParameters.viewerFid, requestParameters.sortType, requestParameters.fold, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1264,7 +1264,7 @@ export class CastApi extends BaseAPI implements CastApiInterface {
      * 
      */
     public publishCast(requestParameters: CastApiPublishCastRequest, options?: RawAxiosRequestConfig) {
-        return CastApiFp(this.configuration).publishCast(requestParameters.post_cast_req_body, options).then((request) => request(this.axios, this.basePath));
+        return CastApiFp(this.configuration).publishCast(requestParameters.postCastReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1280,7 +1280,7 @@ export class CastApi extends BaseAPI implements CastApiInterface {
      * 
      */
     public searchCasts(requestParameters: CastApiSearchCastsRequest, options?: RawAxiosRequestConfig) {
-        return CastApiFp(this.configuration).searchCasts(requestParameters.q, requestParameters.author_fid, requestParameters.viewer_fid, requestParameters.parent_url, requestParameters.channel_id, requestParameters.priority_mode, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
+        return CastApiFp(this.configuration).searchCasts(requestParameters.q, requestParameters.authorFid, requestParameters.viewerFid, requestParameters.parentUrl, requestParameters.channelId, requestParameters.priorityMode, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

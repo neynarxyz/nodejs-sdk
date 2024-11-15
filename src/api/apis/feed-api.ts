@@ -49,12 +49,12 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * Fetch casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel
          * @summary Chronologically
          * @param {number} fid FID of user whose recent casts you want to fetch 
-         * @param {number} [viewer_fid] FID of the user viewing the feed 
+         * @param {number} [viewerFid] FID of the user viewing the feed 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 150)
          * @param {string} [cursor] Pagination cursor 
-         * @param {boolean} [include_replies] Include reply casts by the author in the response, true by default 
-         * @param {string} [parent_url] Parent URL to filter the feed; mutually exclusive with channel_id 
-         * @param {string} [channel_id] Channel ID to filter the feed; mutually exclusive with parent_url 
+         * @param {boolean} [includeReplies] Include reply casts by the author in the response, true by default 
+         * @param {string} [parentUrl] Parent URL to filter the feed; mutually exclusive with channel_id 
+         * @param {string} [channelId] Channel ID to filter the feed; mutually exclusive with parent_url 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object
@@ -62,7 +62,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-casts-for-user)
          * 
          */
-        fetchCastsForUser: async (fid: number, viewer_fid?: number, limit?: number, cursor?: string, include_replies?: boolean, parent_url?: string, channel_id?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchCastsForUser: async (fid: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('fetchCastsForUser', 'fid', fid)
             const localVarPath = `/farcaster/feed/user/casts`;
@@ -84,8 +84,8 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
             if (limit !== undefined) {
@@ -96,16 +96,16 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['cursor'] = cursor;
             }
 
-            if (include_replies !== undefined) {
-                localVarQueryParameter['include_replies'] = include_replies;
+            if (includeReplies !== undefined) {
+                localVarQueryParameter['include_replies'] = includeReplies;
             }
 
-            if (parent_url !== undefined) {
-                localVarQueryParameter['parent_url'] = parent_url;
+            if (parentUrl !== undefined) {
+                localVarQueryParameter['parent_url'] = parentUrl;
             }
 
-            if (channel_id !== undefined) {
-                localVarQueryParameter['channel_id'] = channel_id;
+            if (channelId !== undefined) {
+                localVarQueryParameter['channel_id'] = channelId;
             }
 
 
@@ -122,19 +122,19 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Fetch casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type.
          * @summary By filters
-         * @param {FeedType} feed_type Defaults to following (requires FID or address). If set to filter (requires filter_type) 
-         * @param {FilterType} [filter_type] Used when feed_type&#x3D;filter. Can be set to FIDs (requires FIDs) or parent_url (requires parent_url) or channel_id (requires channel_id) 
+         * @param {FeedType} feedType Defaults to following (requires FID or address). If set to filter (requires filter_type) 
+         * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to FIDs (requires FIDs) or parent_url (requires parent_url) or channel_id (requires channel_id) 
          * @param {number} [fid] (Optional) FID of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type 
          * @param {string} [fids] Used when filter_type&#x3D;FIDs . Create a feed based on a list of FIDs. Max array size is 250. Requires feed_type and filter_type. 
-         * @param {string} [parent_url] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type 
-         * @param {string} [channel_id] Used when filter_type&#x3D;channel_id can be used to fetch casts under a channel. Requires feed_type and filter_type. 
-         * @param {boolean} [members_only] Used when filter_type&#x3D;channel_id. Only include casts from members of the channel. True by default. 
-         * @param {string} [embed_url] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type 
-         * @param {Array<EmbedType>} [embed_types] Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type 
-         * @param {boolean} [with_recasts] Include recasts in the response, true by default 
+         * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type 
+         * @param {string} [channelId] Used when filter_type&#x3D;channel_id can be used to fetch casts under a channel. Requires feed_type and filter_type. 
+         * @param {boolean} [membersOnly] Used when filter_type&#x3D;channel_id. Only include casts from members of the channel. True by default. 
+         * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type 
+         * @param {Array<EmbedType>} [embedTypes] Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type 
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
-         * @param {number} [viewer_fid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object
@@ -142,9 +142,9 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-feed)
          * 
          */
-        fetchFeed: async (feed_type: FeedType, filter_type?: FilterType, fid?: number, fids?: string, parent_url?: string, channel_id?: string, members_only?: boolean, embed_url?: string, embed_types?: Array<EmbedType>, with_recasts?: boolean, limit?: number, cursor?: string, viewer_fid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'feed_type' is not null or undefined
-            assertParamExists('fetchFeed', 'feed_type', feed_type)
+        fetchFeed: async (feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, membersOnly?: boolean, embedUrl?: string, embedTypes?: Array<EmbedType>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'feedType' is not null or undefined
+            assertParamExists('fetchFeed', 'feedType', feedType)
             const localVarPath = `/farcaster/feed`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -160,12 +160,12 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (feed_type !== undefined) {
-                localVarQueryParameter['feed_type'] = feed_type;
+            if (feedType !== undefined) {
+                localVarQueryParameter['feed_type'] = feedType;
             }
 
-            if (filter_type !== undefined) {
-                localVarQueryParameter['filter_type'] = filter_type;
+            if (filterType !== undefined) {
+                localVarQueryParameter['filter_type'] = filterType;
             }
 
             if (fid !== undefined) {
@@ -176,28 +176,28 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['fids'] = fids;
             }
 
-            if (parent_url !== undefined) {
-                localVarQueryParameter['parent_url'] = parent_url;
+            if (parentUrl !== undefined) {
+                localVarQueryParameter['parent_url'] = parentUrl;
             }
 
-            if (channel_id !== undefined) {
-                localVarQueryParameter['channel_id'] = channel_id;
+            if (channelId !== undefined) {
+                localVarQueryParameter['channel_id'] = channelId;
             }
 
-            if (members_only !== undefined) {
-                localVarQueryParameter['members_only'] = members_only;
+            if (membersOnly !== undefined) {
+                localVarQueryParameter['members_only'] = membersOnly;
             }
 
-            if (embed_url !== undefined) {
-                localVarQueryParameter['embed_url'] = embed_url;
+            if (embedUrl !== undefined) {
+                localVarQueryParameter['embed_url'] = embedUrl;
             }
 
-            if (embed_types) {
-                localVarQueryParameter['embed_types'] = embed_types.join(COLLECTION_FORMATS.csv);
+            if (embedTypes) {
+                localVarQueryParameter['embed_types'] = embedTypes.join(COLLECTION_FORMATS.csv);
             }
 
-            if (with_recasts !== undefined) {
-                localVarQueryParameter['with_recasts'] = with_recasts;
+            if (withRecasts !== undefined) {
+                localVarQueryParameter['with_recasts'] = withRecasts;
             }
 
             if (limit !== undefined) {
@@ -208,8 +208,8 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['cursor'] = cursor;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
 
@@ -226,14 +226,14 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Fetch feed based on channel IDs
          * @summary By channel IDs
-         * @param {string} channel_ids Comma separated list of channel IDs e.g. neynar,farcaster 
-         * @param {boolean} [with_recasts] Include recasts in the response, true by default 
-         * @param {number} [viewer_fid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
-         * @param {boolean} [with_replies] Include replies in the response, false by default 
-         * @param {boolean} [members_only] Only include casts from members of the channel. True by default. 
+         * @param {string} channelIds Comma separated list of channel IDs e.g. neynar,farcaster 
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {boolean} [withReplies] Include replies in the response, false by default 
+         * @param {boolean} [membersOnly] Only include casts from members of the channel. True by default. 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
-         * @param {boolean} [should_moderate] If true, only casts that have been liked by the moderator (if one exists) will be returned. 
+         * @param {boolean} [shouldModerate] If true, only casts that have been liked by the moderator (if one exists) will be returned. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object
@@ -241,9 +241,9 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-feed-by-channel-ids)
          * 
          */
-        fetchFeedByChannelIds: async (channel_ids: string, with_recasts?: boolean, viewer_fid?: number, with_replies?: boolean, members_only?: boolean, limit?: number, cursor?: string, should_moderate?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'channel_ids' is not null or undefined
-            assertParamExists('fetchFeedByChannelIds', 'channel_ids', channel_ids)
+        fetchFeedByChannelIds: async (channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, membersOnly?: boolean, limit?: number, cursor?: string, shouldModerate?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'channelIds' is not null or undefined
+            assertParamExists('fetchFeedByChannelIds', 'channelIds', channelIds)
             const localVarPath = `/farcaster/feed/channels`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -259,24 +259,24 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (channel_ids !== undefined) {
-                localVarQueryParameter['channel_ids'] = channel_ids;
+            if (channelIds !== undefined) {
+                localVarQueryParameter['channel_ids'] = channelIds;
             }
 
-            if (with_recasts !== undefined) {
-                localVarQueryParameter['with_recasts'] = with_recasts;
+            if (withRecasts !== undefined) {
+                localVarQueryParameter['with_recasts'] = withRecasts;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
-            if (with_replies !== undefined) {
-                localVarQueryParameter['with_replies'] = with_replies;
+            if (withReplies !== undefined) {
+                localVarQueryParameter['with_replies'] = withReplies;
             }
 
-            if (members_only !== undefined) {
-                localVarQueryParameter['members_only'] = members_only;
+            if (membersOnly !== undefined) {
+                localVarQueryParameter['members_only'] = membersOnly;
             }
 
             if (limit !== undefined) {
@@ -287,8 +287,8 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['cursor'] = cursor;
             }
 
-            if (should_moderate !== undefined) {
-                localVarQueryParameter['should_moderate'] = should_moderate;
+            if (shouldModerate !== undefined) {
+                localVarQueryParameter['should_moderate'] = shouldModerate;
             }
 
 
@@ -305,10 +305,10 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Fetch feed based on parent URLs
          * @summary By parent URLs
-         * @param {string} parent_urls Comma separated list of parent_urls 
-         * @param {boolean} [with_recasts] Include recasts in the response, true by default 
-         * @param {number} [viewer_fid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
-         * @param {boolean} [with_replies] Include replies in the response, false by default 
+         * @param {string} parentUrls Comma separated list of parent_urls 
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {boolean} [withReplies] Include replies in the response, false by default 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
@@ -318,9 +318,9 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-feed-by-parent-urls)
          * 
          */
-        fetchFeedByParentUrls: async (parent_urls: string, with_recasts?: boolean, viewer_fid?: number, with_replies?: boolean, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'parent_urls' is not null or undefined
-            assertParamExists('fetchFeedByParentUrls', 'parent_urls', parent_urls)
+        fetchFeedByParentUrls: async (parentUrls: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'parentUrls' is not null or undefined
+            assertParamExists('fetchFeedByParentUrls', 'parentUrls', parentUrls)
             const localVarPath = `/farcaster/feed/parent_urls`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -336,20 +336,20 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (parent_urls !== undefined) {
-                localVarQueryParameter['parent_urls'] = parent_urls;
+            if (parentUrls !== undefined) {
+                localVarQueryParameter['parent_urls'] = parentUrls;
             }
 
-            if (with_recasts !== undefined) {
-                localVarQueryParameter['with_recasts'] = with_recasts;
+            if (withRecasts !== undefined) {
+                localVarQueryParameter['with_recasts'] = withRecasts;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
-            if (with_replies !== undefined) {
-                localVarQueryParameter['with_replies'] = with_replies;
+            if (withReplies !== undefined) {
+                localVarQueryParameter['with_replies'] = withReplies;
             }
 
             if (limit !== undefined) {
@@ -375,11 +375,11 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * Fetch a personalized For You feed for a user
          * @summary For you
          * @param {number} fid FID of user whose feed you want to create 
-         * @param {number} [viewer_fid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {ForYouProvider} [provider]  
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 50)
          * @param {string} [cursor] Pagination cursor. 
-         * @param {string} [provider_metadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use.  
+         * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use.  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object
@@ -387,7 +387,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-feed-for-you)
          * 
          */
-        fetchFeedForYou: async (fid: number, viewer_fid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, provider_metadata?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchFeedForYou: async (fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, providerMetadata?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('fetchFeedForYou', 'fid', fid)
             const localVarPath = `/farcaster/feed/for_you`;
@@ -409,8 +409,8 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
             if (provider !== undefined) {
@@ -425,8 +425,8 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['cursor'] = cursor;
             }
 
-            if (provider_metadata !== undefined) {
-                localVarQueryParameter['provider_metadata'] = provider_metadata;
+            if (providerMetadata !== undefined) {
+                localVarQueryParameter['provider_metadata'] = providerMetadata;
             }
 
 
@@ -444,7 +444,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * Fetch feed of casts with Frames, reverse chronological order
          * @summary Casts with Frames
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
-         * @param {number} [viewer_fid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -453,7 +453,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-frames-only-feed)
          * 
          */
-        fetchFramesOnlyFeed: async (limit?: number, viewer_fid?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchFramesOnlyFeed: async (limit?: number, viewerFid?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/farcaster/feed/frames`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -473,8 +473,8 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['limit'] = limit;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
             if (cursor !== undefined) {
@@ -496,7 +496,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * Fetch 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
          * @summary 10 most popular casts
          * @param {number} fid FID of user whose feed you want to create 
-         * @param {number} [viewer_fid]  
+         * @param {number} [viewerFid]  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<BulkCastsResponse>} A promise that resolves to a `BulkCastsResponse` object
@@ -504,7 +504,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-popular-casts-by-user)
          * 
          */
-        fetchPopularCastsByUser: async (fid: number, viewer_fid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchPopularCastsByUser: async (fid: number, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('fetchPopularCastsByUser', 'fid', fid)
             const localVarPath = `/farcaster/feed/user/popular`;
@@ -526,8 +526,8 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
 
@@ -548,7 +548,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {FetchRepliesAndRecastsForUserFilterEnum} [filter] filter to fetch only replies or recasts 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 50)
          * @param {string} [cursor] Pagination cursor. 
-         * @param {number} [viewer_fid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object
@@ -556,7 +556,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-replies-and-recasts-for-user)
          * 
          */
-        fetchRepliesAndRecastsForUser: async (fid: number, filter?: FetchRepliesAndRecastsForUserFilterEnum, limit?: number, cursor?: string, viewer_fid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchRepliesAndRecastsForUser: async (fid: number, filter?: FetchRepliesAndRecastsForUserFilterEnum, limit?: number, cursor?: string, viewerFid?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('fetchRepliesAndRecastsForUser', 'fid', fid)
             const localVarPath = `/farcaster/feed/user/replies_and_recasts`;
@@ -590,8 +590,8 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['cursor'] = cursor;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
 
@@ -607,14 +607,14 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * Fetch trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
-         * @summary Trending casts
+         * @summary Trending feeds
          * @param {number} [limit] Number of results to fetch  (Default: 10, Maximum: 10)
          * @param {string} [cursor] Pagination cursor 
-         * @param {number} [viewer_fid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
-         * @param {FetchTrendingFeedTimeWindowEnum} [time_window] Time window for trending casts (7d window for channel feeds only) 
-         * @param {string} [channel_id] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected. 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {FetchTrendingFeedTimeWindowEnum} [timeWindow] Time window for trending casts (7d window for channel feeds only) 
+         * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected. 
          * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed. 
-         * @param {string} [provider_metadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use.  
+         * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use.  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object
@@ -622,7 +622,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-trending-feed)
          * 
          */
-        fetchTrendingFeed: async (limit?: number, cursor?: string, viewer_fid?: number, time_window?: FetchTrendingFeedTimeWindowEnum, channel_id?: string, provider?: FeedTrendingProvider, provider_metadata?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchTrendingFeed: async (limit?: number, cursor?: string, viewerFid?: number, timeWindow?: FetchTrendingFeedTimeWindowEnum, channelId?: string, provider?: FeedTrendingProvider, providerMetadata?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/farcaster/feed/trending`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -646,24 +646,24 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['cursor'] = cursor;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
-            if (time_window !== undefined) {
-                localVarQueryParameter['time_window'] = time_window;
+            if (timeWindow !== undefined) {
+                localVarQueryParameter['time_window'] = timeWindow;
             }
 
-            if (channel_id !== undefined) {
-                localVarQueryParameter['channel_id'] = channel_id;
+            if (channelId !== undefined) {
+                localVarQueryParameter['channel_id'] = channelId;
             }
 
             if (provider !== undefined) {
                 localVarQueryParameter['provider'] = provider;
             }
 
-            if (provider_metadata !== undefined) {
-                localVarQueryParameter['provider_metadata'] = provider_metadata;
+            if (providerMetadata !== undefined) {
+                localVarQueryParameter['provider_metadata'] = providerMetadata;
             }
 
 
@@ -681,8 +681,8 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * Fetch feed based on who a user is following
          * @summary Following
          * @param {number} fid FID of user whose feed you want to create 
-         * @param {number} [viewer_fid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
-         * @param {boolean} [with_recasts] Include recasts in the response, true by default 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
@@ -692,7 +692,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-following-feed)
          * 
          */
-        fetchUserFollowingFeed: async (fid: number, viewer_fid?: number, with_recasts?: boolean, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchUserFollowingFeed: async (fid: number, viewerFid?: number, withRecasts?: boolean, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('fetchUserFollowingFeed', 'fid', fid)
             const localVarPath = `/farcaster/feed/following`;
@@ -714,12 +714,12 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
-            if (with_recasts !== undefined) {
-                localVarQueryParameter['with_recasts'] = with_recasts;
+            if (withRecasts !== undefined) {
+                localVarQueryParameter['with_recasts'] = withRecasts;
             }
 
             if (limit !== undefined) {
@@ -755,12 +755,12 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * Fetch casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel
          * @summary Chronologically
          * @param {number} fid FID of user whose recent casts you want to fetch 
-         * @param {number} [viewer_fid] FID of the user viewing the feed 
+         * @param {number} [viewerFid] FID of the user viewing the feed 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 150)
          * @param {string} [cursor] Pagination cursor 
-         * @param {boolean} [include_replies] Include reply casts by the author in the response, true by default 
-         * @param {string} [parent_url] Parent URL to filter the feed; mutually exclusive with channel_id 
-         * @param {string} [channel_id] Channel ID to filter the feed; mutually exclusive with parent_url 
+         * @param {boolean} [includeReplies] Include reply casts by the author in the response, true by default 
+         * @param {string} [parentUrl] Parent URL to filter the feed; mutually exclusive with channel_id 
+         * @param {string} [channelId] Channel ID to filter the feed; mutually exclusive with parent_url 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object
@@ -768,8 +768,8 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-casts-for-user)
          * 
          */
-        async fetchCastsForUser(fid: number, viewer_fid?: number, limit?: number, cursor?: string, include_replies?: boolean, parent_url?: string, channel_id?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchCastsForUser(fid, viewer_fid, limit, cursor, include_replies, parent_url, channel_id, options);
+        async fetchCastsForUser(fid: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchCastsForUser(fid, viewerFid, limit, cursor, includeReplies, parentUrl, channelId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FeedApi.fetchCastsForUser']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -777,19 +777,19 @@ export const FeedApiFp = function(configuration?: Configuration) {
         /**
          * Fetch casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type.
          * @summary By filters
-         * @param {FeedType} feed_type Defaults to following (requires FID or address). If set to filter (requires filter_type) 
-         * @param {FilterType} [filter_type] Used when feed_type&#x3D;filter. Can be set to FIDs (requires FIDs) or parent_url (requires parent_url) or channel_id (requires channel_id) 
+         * @param {FeedType} feedType Defaults to following (requires FID or address). If set to filter (requires filter_type) 
+         * @param {FilterType} [filterType] Used when feed_type&#x3D;filter. Can be set to FIDs (requires FIDs) or parent_url (requires parent_url) or channel_id (requires channel_id) 
          * @param {number} [fid] (Optional) FID of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type 
          * @param {string} [fids] Used when filter_type&#x3D;FIDs . Create a feed based on a list of FIDs. Max array size is 250. Requires feed_type and filter_type. 
-         * @param {string} [parent_url] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type 
-         * @param {string} [channel_id] Used when filter_type&#x3D;channel_id can be used to fetch casts under a channel. Requires feed_type and filter_type. 
-         * @param {boolean} [members_only] Used when filter_type&#x3D;channel_id. Only include casts from members of the channel. True by default. 
-         * @param {string} [embed_url] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type 
-         * @param {Array<EmbedType>} [embed_types] Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type 
-         * @param {boolean} [with_recasts] Include recasts in the response, true by default 
+         * @param {string} [parentUrl] Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type 
+         * @param {string} [channelId] Used when filter_type&#x3D;channel_id can be used to fetch casts under a channel. Requires feed_type and filter_type. 
+         * @param {boolean} [membersOnly] Used when filter_type&#x3D;channel_id. Only include casts from members of the channel. True by default. 
+         * @param {string} [embedUrl] Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type 
+         * @param {Array<EmbedType>} [embedTypes] Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type 
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
-         * @param {number} [viewer_fid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object
@@ -797,8 +797,8 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-feed)
          * 
          */
-        async fetchFeed(feed_type: FeedType, filter_type?: FilterType, fid?: number, fids?: string, parent_url?: string, channel_id?: string, members_only?: boolean, embed_url?: string, embed_types?: Array<EmbedType>, with_recasts?: boolean, limit?: number, cursor?: string, viewer_fid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchFeed(feed_type, filter_type, fid, fids, parent_url, channel_id, members_only, embed_url, embed_types, with_recasts, limit, cursor, viewer_fid, options);
+        async fetchFeed(feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, membersOnly?: boolean, embedUrl?: string, embedTypes?: Array<EmbedType>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchFeed(feedType, filterType, fid, fids, parentUrl, channelId, membersOnly, embedUrl, embedTypes, withRecasts, limit, cursor, viewerFid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FeedApi.fetchFeed']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -806,14 +806,14 @@ export const FeedApiFp = function(configuration?: Configuration) {
         /**
          * Fetch feed based on channel IDs
          * @summary By channel IDs
-         * @param {string} channel_ids Comma separated list of channel IDs e.g. neynar,farcaster 
-         * @param {boolean} [with_recasts] Include recasts in the response, true by default 
-         * @param {number} [viewer_fid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
-         * @param {boolean} [with_replies] Include replies in the response, false by default 
-         * @param {boolean} [members_only] Only include casts from members of the channel. True by default. 
+         * @param {string} channelIds Comma separated list of channel IDs e.g. neynar,farcaster 
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {boolean} [withReplies] Include replies in the response, false by default 
+         * @param {boolean} [membersOnly] Only include casts from members of the channel. True by default. 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
-         * @param {boolean} [should_moderate] If true, only casts that have been liked by the moderator (if one exists) will be returned. 
+         * @param {boolean} [shouldModerate] If true, only casts that have been liked by the moderator (if one exists) will be returned. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object
@@ -821,8 +821,8 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-feed-by-channel-ids)
          * 
          */
-        async fetchFeedByChannelIds(channel_ids: string, with_recasts?: boolean, viewer_fid?: number, with_replies?: boolean, members_only?: boolean, limit?: number, cursor?: string, should_moderate?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchFeedByChannelIds(channel_ids, with_recasts, viewer_fid, with_replies, members_only, limit, cursor, should_moderate, options);
+        async fetchFeedByChannelIds(channelIds: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, membersOnly?: boolean, limit?: number, cursor?: string, shouldModerate?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchFeedByChannelIds(channelIds, withRecasts, viewerFid, withReplies, membersOnly, limit, cursor, shouldModerate, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FeedApi.fetchFeedByChannelIds']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -830,10 +830,10 @@ export const FeedApiFp = function(configuration?: Configuration) {
         /**
          * Fetch feed based on parent URLs
          * @summary By parent URLs
-         * @param {string} parent_urls Comma separated list of parent_urls 
-         * @param {boolean} [with_recasts] Include recasts in the response, true by default 
-         * @param {number} [viewer_fid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
-         * @param {boolean} [with_replies] Include replies in the response, false by default 
+         * @param {string} parentUrls Comma separated list of parent_urls 
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {boolean} [withReplies] Include replies in the response, false by default 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
@@ -843,8 +843,8 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-feed-by-parent-urls)
          * 
          */
-        async fetchFeedByParentUrls(parent_urls: string, with_recasts?: boolean, viewer_fid?: number, with_replies?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchFeedByParentUrls(parent_urls, with_recasts, viewer_fid, with_replies, limit, cursor, options);
+        async fetchFeedByParentUrls(parentUrls: string, withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchFeedByParentUrls(parentUrls, withRecasts, viewerFid, withReplies, limit, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FeedApi.fetchFeedByParentUrls']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -853,11 +853,11 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * Fetch a personalized For You feed for a user
          * @summary For you
          * @param {number} fid FID of user whose feed you want to create 
-         * @param {number} [viewer_fid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {ForYouProvider} [provider]  
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 50)
          * @param {string} [cursor] Pagination cursor. 
-         * @param {string} [provider_metadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use.  
+         * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use.  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object
@@ -865,8 +865,8 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-feed-for-you)
          * 
          */
-        async fetchFeedForYou(fid: number, viewer_fid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, provider_metadata?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchFeedForYou(fid, viewer_fid, provider, limit, cursor, provider_metadata, options);
+        async fetchFeedForYou(fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, providerMetadata?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchFeedForYou(fid, viewerFid, provider, limit, cursor, providerMetadata, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FeedApi.fetchFeedForYou']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -875,7 +875,7 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * Fetch feed of casts with Frames, reverse chronological order
          * @summary Casts with Frames
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
-         * @param {number} [viewer_fid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -884,8 +884,8 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-frames-only-feed)
          * 
          */
-        async fetchFramesOnlyFeed(limit?: number, viewer_fid?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchFramesOnlyFeed(limit, viewer_fid, cursor, options);
+        async fetchFramesOnlyFeed(limit?: number, viewerFid?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchFramesOnlyFeed(limit, viewerFid, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FeedApi.fetchFramesOnlyFeed']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -894,7 +894,7 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * Fetch 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
          * @summary 10 most popular casts
          * @param {number} fid FID of user whose feed you want to create 
-         * @param {number} [viewer_fid]  
+         * @param {number} [viewerFid]  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<BulkCastsResponse>} A promise that resolves to a `BulkCastsResponse` object
@@ -902,8 +902,8 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-popular-casts-by-user)
          * 
          */
-        async fetchPopularCastsByUser(fid: number, viewer_fid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkCastsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchPopularCastsByUser(fid, viewer_fid, options);
+        async fetchPopularCastsByUser(fid: number, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkCastsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchPopularCastsByUser(fid, viewerFid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FeedApi.fetchPopularCastsByUser']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -915,7 +915,7 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * @param {FetchRepliesAndRecastsForUserFilterEnum} [filter] filter to fetch only replies or recasts 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 50)
          * @param {string} [cursor] Pagination cursor. 
-         * @param {number} [viewer_fid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object
@@ -923,22 +923,22 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-replies-and-recasts-for-user)
          * 
          */
-        async fetchRepliesAndRecastsForUser(fid: number, filter?: FetchRepliesAndRecastsForUserFilterEnum, limit?: number, cursor?: string, viewer_fid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchRepliesAndRecastsForUser(fid, filter, limit, cursor, viewer_fid, options);
+        async fetchRepliesAndRecastsForUser(fid: number, filter?: FetchRepliesAndRecastsForUserFilterEnum, limit?: number, cursor?: string, viewerFid?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchRepliesAndRecastsForUser(fid, filter, limit, cursor, viewerFid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FeedApi.fetchRepliesAndRecastsForUser']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Fetch trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
-         * @summary Trending casts
+         * @summary Trending feeds
          * @param {number} [limit] Number of results to fetch  (Default: 10, Maximum: 10)
          * @param {string} [cursor] Pagination cursor 
-         * @param {number} [viewer_fid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
-         * @param {FetchTrendingFeedTimeWindowEnum} [time_window] Time window for trending casts (7d window for channel feeds only) 
-         * @param {string} [channel_id] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected. 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {FetchTrendingFeedTimeWindowEnum} [timeWindow] Time window for trending casts (7d window for channel feeds only) 
+         * @param {string} [channelId] Channel ID to filter trending casts. Less active channels might have no casts in the time window selected. 
          * @param {FeedTrendingProvider} [provider] The provider of the trending casts feed. 
-         * @param {string} [provider_metadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use.  
+         * @param {string} [providerMetadata] provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use.  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object
@@ -946,8 +946,8 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-trending-feed)
          * 
          */
-        async fetchTrendingFeed(limit?: number, cursor?: string, viewer_fid?: number, time_window?: FetchTrendingFeedTimeWindowEnum, channel_id?: string, provider?: FeedTrendingProvider, provider_metadata?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchTrendingFeed(limit, cursor, viewer_fid, time_window, channel_id, provider, provider_metadata, options);
+        async fetchTrendingFeed(limit?: number, cursor?: string, viewerFid?: number, timeWindow?: FetchTrendingFeedTimeWindowEnum, channelId?: string, provider?: FeedTrendingProvider, providerMetadata?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchTrendingFeed(limit, cursor, viewerFid, timeWindow, channelId, provider, providerMetadata, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FeedApi.fetchTrendingFeed']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -956,8 +956,8 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * Fetch feed based on who a user is following
          * @summary Following
          * @param {number} fid FID of user whose feed you want to create 
-         * @param {number} [viewer_fid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
-         * @param {boolean} [with_recasts] Include recasts in the response, true by default 
+         * @param {number} [viewerFid] Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {boolean} [withRecasts] Include recasts in the response, true by default 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
@@ -967,8 +967,8 @@ export const FeedApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-following-feed)
          * 
          */
-        async fetchUserFollowingFeed(fid: number, viewer_fid?: number, with_recasts?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserFollowingFeed(fid, viewer_fid, with_recasts, limit, cursor, options);
+        async fetchUserFollowingFeed(fid: number, viewerFid?: number, withRecasts?: boolean, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserFollowingFeed(fid, viewerFid, withRecasts, limit, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FeedApi.fetchUserFollowingFeed']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -995,7 +995,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         fetchCastsForUser(requestParameters: FeedApiFetchCastsForUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
-            return localVarFp.fetchCastsForUser(requestParameters.fid, requestParameters.viewer_fid, requestParameters.limit, requestParameters.cursor, requestParameters.include_replies, requestParameters.parent_url, requestParameters.channel_id, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchCastsForUser(requestParameters.fid, requestParameters.viewerFid, requestParameters.limit, requestParameters.cursor, requestParameters.includeReplies, requestParameters.parentUrl, requestParameters.channelId, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type.
@@ -1009,7 +1009,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         fetchFeed(requestParameters: FeedApiFetchFeedRequest, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
-            return localVarFp.fetchFeed(requestParameters.feed_type, requestParameters.filter_type, requestParameters.fid, requestParameters.fids, requestParameters.parent_url, requestParameters.channel_id, requestParameters.members_only, requestParameters.embed_url, requestParameters.embed_types, requestParameters.with_recasts, requestParameters.limit, requestParameters.cursor, requestParameters.viewer_fid, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchFeed(requestParameters.feedType, requestParameters.filterType, requestParameters.fid, requestParameters.fids, requestParameters.parentUrl, requestParameters.channelId, requestParameters.membersOnly, requestParameters.embedUrl, requestParameters.embedTypes, requestParameters.withRecasts, requestParameters.limit, requestParameters.cursor, requestParameters.viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch feed based on channel IDs
@@ -1023,7 +1023,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         fetchFeedByChannelIds(requestParameters: FeedApiFetchFeedByChannelIdsRequest, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
-            return localVarFp.fetchFeedByChannelIds(requestParameters.channel_ids, requestParameters.with_recasts, requestParameters.viewer_fid, requestParameters.with_replies, requestParameters.members_only, requestParameters.limit, requestParameters.cursor, requestParameters.should_moderate, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchFeedByChannelIds(requestParameters.channelIds, requestParameters.withRecasts, requestParameters.viewerFid, requestParameters.withReplies, requestParameters.membersOnly, requestParameters.limit, requestParameters.cursor, requestParameters.shouldModerate, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch feed based on parent URLs
@@ -1037,7 +1037,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         fetchFeedByParentUrls(requestParameters: FeedApiFetchFeedByParentUrlsRequest, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
-            return localVarFp.fetchFeedByParentUrls(requestParameters.parent_urls, requestParameters.with_recasts, requestParameters.viewer_fid, requestParameters.with_replies, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchFeedByParentUrls(requestParameters.parentUrls, requestParameters.withRecasts, requestParameters.viewerFid, requestParameters.withReplies, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch a personalized For You feed for a user
@@ -1051,7 +1051,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         fetchFeedForYou(requestParameters: FeedApiFetchFeedForYouRequest, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
-            return localVarFp.fetchFeedForYou(requestParameters.fid, requestParameters.viewer_fid, requestParameters.provider, requestParameters.limit, requestParameters.cursor, requestParameters.provider_metadata, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchFeedForYou(requestParameters.fid, requestParameters.viewerFid, requestParameters.provider, requestParameters.limit, requestParameters.cursor, requestParameters.providerMetadata, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch feed of casts with Frames, reverse chronological order
@@ -1065,7 +1065,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         fetchFramesOnlyFeed(requestParameters: FeedApiFetchFramesOnlyFeedRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
-            return localVarFp.fetchFramesOnlyFeed(requestParameters.limit, requestParameters.viewer_fid, requestParameters.cursor, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchFramesOnlyFeed(requestParameters.limit, requestParameters.viewerFid, requestParameters.cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
@@ -1079,7 +1079,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         fetchPopularCastsByUser(requestParameters: FeedApiFetchPopularCastsByUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<BulkCastsResponse> {
-            return localVarFp.fetchPopularCastsByUser(requestParameters.fid, requestParameters.viewer_fid, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchPopularCastsByUser(requestParameters.fid, requestParameters.viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch recent replies and recasts for a given user FID; sorted by most recent first
@@ -1093,11 +1093,11 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         fetchRepliesAndRecastsForUser(requestParameters: FeedApiFetchRepliesAndRecastsForUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
-            return localVarFp.fetchRepliesAndRecastsForUser(requestParameters.fid, requestParameters.filter, requestParameters.limit, requestParameters.cursor, requestParameters.viewer_fid, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchRepliesAndRecastsForUser(requestParameters.fid, requestParameters.filter, requestParameters.limit, requestParameters.cursor, requestParameters.viewerFid, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
-         * @summary Trending casts
+         * @summary Trending feeds
          * @param {FeedApiFetchTrendingFeedRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1107,7 +1107,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         fetchTrendingFeed(requestParameters: FeedApiFetchTrendingFeedRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
-            return localVarFp.fetchTrendingFeed(requestParameters.limit, requestParameters.cursor, requestParameters.viewer_fid, requestParameters.time_window, requestParameters.channel_id, requestParameters.provider, requestParameters.provider_metadata, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchTrendingFeed(requestParameters.limit, requestParameters.cursor, requestParameters.viewerFid, requestParameters.timeWindow, requestParameters.channelId, requestParameters.provider, requestParameters.providerMetadata, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch feed based on who a user is following
@@ -1121,7 +1121,7 @@ export const FeedApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         fetchUserFollowingFeed(requestParameters: FeedApiFetchUserFollowingFeedRequest, options?: RawAxiosRequestConfig): AxiosPromise<FeedResponse> {
-            return localVarFp.fetchUserFollowingFeed(requestParameters.fid, requestParameters.viewer_fid, requestParameters.with_recasts, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchUserFollowingFeed(requestParameters.fid, requestParameters.viewerFid, requestParameters.withRecasts, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1246,7 +1246,7 @@ export interface FeedApiInterface {
 
     /**
      * Fetch trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
-     * @summary Trending casts
+     * @summary Trending feeds
      * @param {FeedApiFetchTrendingFeedRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1298,7 +1298,7 @@ export interface FeedApiFetchCastsForUserRequest {
      * @type {number}
      * @memberof FeedApiFetchCastsForUser
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * Number of results to fetch (Default: 25, Maximum: 150)
@@ -1328,7 +1328,7 @@ export interface FeedApiFetchCastsForUserRequest {
      * @type {boolean}
      * @memberof FeedApiFetchCastsForUser
      */
-    readonly include_replies?: boolean
+    readonly includeReplies?: boolean
 
     /**
      * Parent URL to filter the feed; mutually exclusive with channel_id
@@ -1338,7 +1338,7 @@ export interface FeedApiFetchCastsForUserRequest {
      * @type {string}
      * @memberof FeedApiFetchCastsForUser
      */
-    readonly parent_url?: string
+    readonly parentUrl?: string
 
     /**
      * Channel ID to filter the feed; mutually exclusive with parent_url
@@ -1348,7 +1348,7 @@ export interface FeedApiFetchCastsForUserRequest {
      * @type {string}
      * @memberof FeedApiFetchCastsForUser
      */
-    readonly channel_id?: string
+    readonly channelId?: string
 }
 
 /**
@@ -1365,7 +1365,7 @@ export interface FeedApiFetchFeedRequest {
      * @type {FeedType}
      * @memberof FeedApiFetchFeed
      */
-    readonly feed_type: FeedType
+    readonly feedType: FeedType
 
     /**
      * Used when feed_type&#x3D;filter. Can be set to FIDs (requires FIDs) or parent_url (requires parent_url) or channel_id (requires channel_id)
@@ -1375,7 +1375,7 @@ export interface FeedApiFetchFeedRequest {
      * @type {FilterType}
      * @memberof FeedApiFetchFeed
      */
-    readonly filter_type?: FilterType
+    readonly filterType?: FilterType
 
     /**
      * (Optional) FID of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
@@ -1405,7 +1405,7 @@ export interface FeedApiFetchFeedRequest {
      * @type {string}
      * @memberof FeedApiFetchFeed
      */
-    readonly parent_url?: string
+    readonly parentUrl?: string
 
     /**
      * Used when filter_type&#x3D;channel_id can be used to fetch casts under a channel. Requires feed_type and filter_type.
@@ -1415,7 +1415,7 @@ export interface FeedApiFetchFeedRequest {
      * @type {string}
      * @memberof FeedApiFetchFeed
      */
-    readonly channel_id?: string
+    readonly channelId?: string
 
     /**
      * Used when filter_type&#x3D;channel_id. Only include casts from members of the channel. True by default.
@@ -1425,7 +1425,7 @@ export interface FeedApiFetchFeedRequest {
      * @type {boolean}
      * @memberof FeedApiFetchFeed
      */
-    readonly members_only?: boolean
+    readonly membersOnly?: boolean
 
     /**
      * Used when filter_type&#x3D;embed_url can be used to fetch all casts with an embed url that contains embed_url. Requires feed_type and filter_type
@@ -1435,7 +1435,7 @@ export interface FeedApiFetchFeedRequest {
      * @type {string}
      * @memberof FeedApiFetchFeed
      */
-    readonly embed_url?: string
+    readonly embedUrl?: string
 
     /**
      * Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type
@@ -1445,7 +1445,7 @@ export interface FeedApiFetchFeedRequest {
      * @type {Array<EmbedType>}
      * @memberof FeedApiFetchFeed
      */
-    readonly embed_types?: Array<EmbedType>
+    readonly embedTypes?: Array<EmbedType>
 
     /**
      * Include recasts in the response, true by default
@@ -1455,7 +1455,7 @@ export interface FeedApiFetchFeedRequest {
      * @type {boolean}
      * @memberof FeedApiFetchFeed
      */
-    readonly with_recasts?: boolean
+    readonly withRecasts?: boolean
 
     /**
      * Number of results to fetch (Default: 25, Maximum: 100)
@@ -1485,7 +1485,7 @@ export interface FeedApiFetchFeedRequest {
      * @type {number}
      * @memberof FeedApiFetchFeed
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 }
 
 /**
@@ -1502,7 +1502,7 @@ export interface FeedApiFetchFeedByChannelIdsRequest {
      * @type {string}
      * @memberof FeedApiFetchFeedByChannelIds
      */
-    readonly channel_ids: string
+    readonly channelIds: string
 
     /**
      * Include recasts in the response, true by default
@@ -1512,7 +1512,7 @@ export interface FeedApiFetchFeedByChannelIdsRequest {
      * @type {boolean}
      * @memberof FeedApiFetchFeedByChannelIds
      */
-    readonly with_recasts?: boolean
+    readonly withRecasts?: boolean
 
     /**
      * Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -1522,7 +1522,7 @@ export interface FeedApiFetchFeedByChannelIdsRequest {
      * @type {number}
      * @memberof FeedApiFetchFeedByChannelIds
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * Include replies in the response, false by default
@@ -1532,7 +1532,7 @@ export interface FeedApiFetchFeedByChannelIdsRequest {
      * @type {boolean}
      * @memberof FeedApiFetchFeedByChannelIds
      */
-    readonly with_replies?: boolean
+    readonly withReplies?: boolean
 
     /**
      * Only include casts from members of the channel. True by default.
@@ -1542,7 +1542,7 @@ export interface FeedApiFetchFeedByChannelIdsRequest {
      * @type {boolean}
      * @memberof FeedApiFetchFeedByChannelIds
      */
-    readonly members_only?: boolean
+    readonly membersOnly?: boolean
 
     /**
      * Number of results to fetch (Default: 25, Maximum: 100)
@@ -1572,7 +1572,7 @@ export interface FeedApiFetchFeedByChannelIdsRequest {
      * @type {boolean}
      * @memberof FeedApiFetchFeedByChannelIds
      */
-    readonly should_moderate?: boolean
+    readonly shouldModerate?: boolean
 }
 
 /**
@@ -1589,7 +1589,7 @@ export interface FeedApiFetchFeedByParentUrlsRequest {
      * @type {string}
      * @memberof FeedApiFetchFeedByParentUrls
      */
-    readonly parent_urls: string
+    readonly parentUrls: string
 
     /**
      * Include recasts in the response, true by default
@@ -1599,7 +1599,7 @@ export interface FeedApiFetchFeedByParentUrlsRequest {
      * @type {boolean}
      * @memberof FeedApiFetchFeedByParentUrls
      */
-    readonly with_recasts?: boolean
+    readonly withRecasts?: boolean
 
     /**
      * Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -1609,7 +1609,7 @@ export interface FeedApiFetchFeedByParentUrlsRequest {
      * @type {number}
      * @memberof FeedApiFetchFeedByParentUrls
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * Include replies in the response, false by default
@@ -1619,7 +1619,7 @@ export interface FeedApiFetchFeedByParentUrlsRequest {
      * @type {boolean}
      * @memberof FeedApiFetchFeedByParentUrls
      */
-    readonly with_replies?: boolean
+    readonly withReplies?: boolean
 
     /**
      * Number of results to fetch (Default: 25, Maximum: 100)
@@ -1666,7 +1666,7 @@ export interface FeedApiFetchFeedForYouRequest {
      * @type {number}
      * @memberof FeedApiFetchFeedForYou
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * 
@@ -1706,7 +1706,7 @@ export interface FeedApiFetchFeedForYouRequest {
      * @type {string}
      * @memberof FeedApiFetchFeedForYou
      */
-    readonly provider_metadata?: string
+    readonly providerMetadata?: string
 }
 
 /**
@@ -1733,7 +1733,7 @@ export interface FeedApiFetchFramesOnlyFeedRequest {
      * @type {number}
      * @memberof FeedApiFetchFramesOnlyFeed
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * Pagination cursor.
@@ -1770,7 +1770,7 @@ export interface FeedApiFetchPopularCastsByUserRequest {
      * @type {number}
      * @memberof FeedApiFetchPopularCastsByUser
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 }
 
 /**
@@ -1827,7 +1827,7 @@ export interface FeedApiFetchRepliesAndRecastsForUserRequest {
      * @type {number}
      * @memberof FeedApiFetchRepliesAndRecastsForUser
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 }
 
 /**
@@ -1864,7 +1864,7 @@ export interface FeedApiFetchTrendingFeedRequest {
      * @type {number}
      * @memberof FeedApiFetchTrendingFeed
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * Time window for trending casts (7d window for channel feeds only)
@@ -1874,7 +1874,7 @@ export interface FeedApiFetchTrendingFeedRequest {
      * @type {'1h' | '6h' | '12h' | '24h' | '7d'}
      * @memberof FeedApiFetchTrendingFeed
      */
-    readonly time_window?: FetchTrendingFeedTimeWindowEnum
+    readonly timeWindow?: FetchTrendingFeedTimeWindowEnum
 
     /**
      * Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
@@ -1884,7 +1884,7 @@ export interface FeedApiFetchTrendingFeedRequest {
      * @type {string}
      * @memberof FeedApiFetchTrendingFeed
      */
-    readonly channel_id?: string
+    readonly channelId?: string
 
     /**
      * The provider of the trending casts feed.
@@ -1904,7 +1904,7 @@ export interface FeedApiFetchTrendingFeedRequest {
      * @type {string}
      * @memberof FeedApiFetchTrendingFeed
      */
-    readonly provider_metadata?: string
+    readonly providerMetadata?: string
 }
 
 /**
@@ -1931,7 +1931,7 @@ export interface FeedApiFetchUserFollowingFeedRequest {
      * @type {number}
      * @memberof FeedApiFetchUserFollowingFeed
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * Include recasts in the response, true by default
@@ -1941,7 +1941,7 @@ export interface FeedApiFetchUserFollowingFeedRequest {
      * @type {boolean}
      * @memberof FeedApiFetchUserFollowingFeed
      */
-    readonly with_recasts?: boolean
+    readonly withRecasts?: boolean
 
     /**
      * Number of results to fetch (Default: 25, Maximum: 100)
@@ -1984,7 +1984,7 @@ export class FeedApi extends BaseAPI implements FeedApiInterface {
      * 
      */
     public fetchCastsForUser(requestParameters: FeedApiFetchCastsForUserRequest, options?: RawAxiosRequestConfig) {
-        return FeedApiFp(this.configuration).fetchCastsForUser(requestParameters.fid, requestParameters.viewer_fid, requestParameters.limit, requestParameters.cursor, requestParameters.include_replies, requestParameters.parent_url, requestParameters.channel_id, options).then((request) => request(this.axios, this.basePath));
+        return FeedApiFp(this.configuration).fetchCastsForUser(requestParameters.fid, requestParameters.viewerFid, requestParameters.limit, requestParameters.cursor, requestParameters.includeReplies, requestParameters.parentUrl, requestParameters.channelId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2000,7 +2000,7 @@ export class FeedApi extends BaseAPI implements FeedApiInterface {
      * 
      */
     public fetchFeed(requestParameters: FeedApiFetchFeedRequest, options?: RawAxiosRequestConfig) {
-        return FeedApiFp(this.configuration).fetchFeed(requestParameters.feed_type, requestParameters.filter_type, requestParameters.fid, requestParameters.fids, requestParameters.parent_url, requestParameters.channel_id, requestParameters.members_only, requestParameters.embed_url, requestParameters.embed_types, requestParameters.with_recasts, requestParameters.limit, requestParameters.cursor, requestParameters.viewer_fid, options).then((request) => request(this.axios, this.basePath));
+        return FeedApiFp(this.configuration).fetchFeed(requestParameters.feedType, requestParameters.filterType, requestParameters.fid, requestParameters.fids, requestParameters.parentUrl, requestParameters.channelId, requestParameters.membersOnly, requestParameters.embedUrl, requestParameters.embedTypes, requestParameters.withRecasts, requestParameters.limit, requestParameters.cursor, requestParameters.viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2016,7 +2016,7 @@ export class FeedApi extends BaseAPI implements FeedApiInterface {
      * 
      */
     public fetchFeedByChannelIds(requestParameters: FeedApiFetchFeedByChannelIdsRequest, options?: RawAxiosRequestConfig) {
-        return FeedApiFp(this.configuration).fetchFeedByChannelIds(requestParameters.channel_ids, requestParameters.with_recasts, requestParameters.viewer_fid, requestParameters.with_replies, requestParameters.members_only, requestParameters.limit, requestParameters.cursor, requestParameters.should_moderate, options).then((request) => request(this.axios, this.basePath));
+        return FeedApiFp(this.configuration).fetchFeedByChannelIds(requestParameters.channelIds, requestParameters.withRecasts, requestParameters.viewerFid, requestParameters.withReplies, requestParameters.membersOnly, requestParameters.limit, requestParameters.cursor, requestParameters.shouldModerate, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2032,7 +2032,7 @@ export class FeedApi extends BaseAPI implements FeedApiInterface {
      * 
      */
     public fetchFeedByParentUrls(requestParameters: FeedApiFetchFeedByParentUrlsRequest, options?: RawAxiosRequestConfig) {
-        return FeedApiFp(this.configuration).fetchFeedByParentUrls(requestParameters.parent_urls, requestParameters.with_recasts, requestParameters.viewer_fid, requestParameters.with_replies, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
+        return FeedApiFp(this.configuration).fetchFeedByParentUrls(requestParameters.parentUrls, requestParameters.withRecasts, requestParameters.viewerFid, requestParameters.withReplies, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2048,7 +2048,7 @@ export class FeedApi extends BaseAPI implements FeedApiInterface {
      * 
      */
     public fetchFeedForYou(requestParameters: FeedApiFetchFeedForYouRequest, options?: RawAxiosRequestConfig) {
-        return FeedApiFp(this.configuration).fetchFeedForYou(requestParameters.fid, requestParameters.viewer_fid, requestParameters.provider, requestParameters.limit, requestParameters.cursor, requestParameters.provider_metadata, options).then((request) => request(this.axios, this.basePath));
+        return FeedApiFp(this.configuration).fetchFeedForYou(requestParameters.fid, requestParameters.viewerFid, requestParameters.provider, requestParameters.limit, requestParameters.cursor, requestParameters.providerMetadata, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2064,7 +2064,7 @@ export class FeedApi extends BaseAPI implements FeedApiInterface {
      * 
      */
     public fetchFramesOnlyFeed(requestParameters: FeedApiFetchFramesOnlyFeedRequest = {}, options?: RawAxiosRequestConfig) {
-        return FeedApiFp(this.configuration).fetchFramesOnlyFeed(requestParameters.limit, requestParameters.viewer_fid, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
+        return FeedApiFp(this.configuration).fetchFramesOnlyFeed(requestParameters.limit, requestParameters.viewerFid, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2080,7 +2080,7 @@ export class FeedApi extends BaseAPI implements FeedApiInterface {
      * 
      */
     public fetchPopularCastsByUser(requestParameters: FeedApiFetchPopularCastsByUserRequest, options?: RawAxiosRequestConfig) {
-        return FeedApiFp(this.configuration).fetchPopularCastsByUser(requestParameters.fid, requestParameters.viewer_fid, options).then((request) => request(this.axios, this.basePath));
+        return FeedApiFp(this.configuration).fetchPopularCastsByUser(requestParameters.fid, requestParameters.viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2096,12 +2096,12 @@ export class FeedApi extends BaseAPI implements FeedApiInterface {
      * 
      */
     public fetchRepliesAndRecastsForUser(requestParameters: FeedApiFetchRepliesAndRecastsForUserRequest, options?: RawAxiosRequestConfig) {
-        return FeedApiFp(this.configuration).fetchRepliesAndRecastsForUser(requestParameters.fid, requestParameters.filter, requestParameters.limit, requestParameters.cursor, requestParameters.viewer_fid, options).then((request) => request(this.axios, this.basePath));
+        return FeedApiFp(this.configuration).fetchRepliesAndRecastsForUser(requestParameters.fid, requestParameters.filter, requestParameters.limit, requestParameters.cursor, requestParameters.viewerFid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Fetch trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
-     * @summary Trending casts
+     * @summary Trending feeds
      * @param {FeedApiFetchTrendingFeedRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -2112,7 +2112,7 @@ export class FeedApi extends BaseAPI implements FeedApiInterface {
      * 
      */
     public fetchTrendingFeed(requestParameters: FeedApiFetchTrendingFeedRequest = {}, options?: RawAxiosRequestConfig) {
-        return FeedApiFp(this.configuration).fetchTrendingFeed(requestParameters.limit, requestParameters.cursor, requestParameters.viewer_fid, requestParameters.time_window, requestParameters.channel_id, requestParameters.provider, requestParameters.provider_metadata, options).then((request) => request(this.axios, this.basePath));
+        return FeedApiFp(this.configuration).fetchTrendingFeed(requestParameters.limit, requestParameters.cursor, requestParameters.viewerFid, requestParameters.timeWindow, requestParameters.channelId, requestParameters.provider, requestParameters.providerMetadata, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2128,7 +2128,7 @@ export class FeedApi extends BaseAPI implements FeedApiInterface {
      * 
      */
     public fetchUserFollowingFeed(requestParameters: FeedApiFetchUserFollowingFeedRequest, options?: RawAxiosRequestConfig) {
-        return FeedApiFp(this.configuration).fetchUserFollowingFeed(requestParameters.fid, requestParameters.viewer_fid, requestParameters.with_recasts, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
+        return FeedApiFp(this.configuration).fetchUserFollowingFeed(requestParameters.fid, requestParameters.viewerFid, requestParameters.withRecasts, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

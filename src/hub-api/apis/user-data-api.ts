@@ -37,10 +37,10 @@ export const UserDataApiAxiosParamCreator = function (configuration?: Configurat
          * **Note:** one of two different response schemas is returned based on whether the caller provides the `user_data_type` parameter. If included, a single `UserDataAdd` message is returned (or a `not_found` error). If omitted, a paginated list of `UserDataAdd` messages is returned instead
          * @summary Fetch UserData for a FID.
          * @param {number} fid The FID that\&#39;s being requested 
-         * @param {UserDataType} [user_data_type] The type of user data, either as a numerical value or type string. If this is omitted, all user data for the FID is returned 
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {UserDataType} [userDataType] The type of user data, either as a numerical value or type string. If this is omitted, all user data for the FID is returned 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchUserData200Response>} A promise that resolves to a `FetchUserData200Response` object
@@ -48,7 +48,7 @@ export const UserDataApiAxiosParamCreator = function (configuration?: Configurat
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-data)
          * 
          */
-        fetchUserData: async (fid: number, user_data_type?: UserDataType, page_size?: number, reverse?: boolean, page_token?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchUserData: async (fid: number, userDataType?: UserDataType, pageSize?: number, reverse?: boolean, pageToken?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('fetchUserData', 'fid', fid)
             const localVarPath = `/v1/userDataByFid`;
@@ -70,20 +70,20 @@ export const UserDataApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (user_data_type !== undefined) {
-                localVarQueryParameter['user_data_type'] = user_data_type;
+            if (userDataType !== undefined) {
+                localVarQueryParameter['user_data_type'] = userDataType;
             }
 
-            if (page_size !== undefined) {
-                localVarQueryParameter['pageSize'] = page_size;
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
             }
 
             if (reverse !== undefined) {
                 localVarQueryParameter['reverse'] = reverse;
             }
 
-            if (page_token !== undefined) {
-                localVarQueryParameter['pageToken'] = page_token;
+            if (pageToken !== undefined) {
+                localVarQueryParameter['pageToken'] = pageToken;
             }
 
 
@@ -111,10 +111,10 @@ export const UserDataApiFp = function(configuration?: Configuration) {
          * **Note:** one of two different response schemas is returned based on whether the caller provides the `user_data_type` parameter. If included, a single `UserDataAdd` message is returned (or a `not_found` error). If omitted, a paginated list of `UserDataAdd` messages is returned instead
          * @summary Fetch UserData for a FID.
          * @param {number} fid The FID that\&#39;s being requested 
-         * @param {UserDataType} [user_data_type] The type of user data, either as a numerical value or type string. If this is omitted, all user data for the FID is returned 
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {UserDataType} [userDataType] The type of user data, either as a numerical value or type string. If this is omitted, all user data for the FID is returned 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchUserData200Response>} A promise that resolves to a `FetchUserData200Response` object
@@ -122,8 +122,8 @@ export const UserDataApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-data)
          * 
          */
-        async fetchUserData(fid: number, user_data_type?: UserDataType, page_size?: number, reverse?: boolean, page_token?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchUserData200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserData(fid, user_data_type, page_size, reverse, page_token, options);
+        async fetchUserData(fid: number, userDataType?: UserDataType, pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchUserData200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserData(fid, userDataType, pageSize, reverse, pageToken, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserDataApi.fetchUserData']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -150,7 +150,7 @@ export const UserDataApiFactory = function (configuration?: Configuration, baseP
          * 
          */
         fetchUserData(requestParameters: UserDataApiFetchUserDataRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchUserData200Response> {
-            return localVarFp.fetchUserData(requestParameters.fid, requestParameters.user_data_type, requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchUserData(requestParameters.fid, requestParameters.userDataType, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -201,7 +201,7 @@ export interface UserDataApiFetchUserDataRequest {
      * @type {UserDataType}
      * @memberof UserDataApiFetchUserData
      */
-    readonly user_data_type?: UserDataType
+    readonly userDataType?: UserDataType
 
     /**
      * Maximum number of messages to return in a single response
@@ -211,7 +211,7 @@ export interface UserDataApiFetchUserDataRequest {
      * @type {number}
      * @memberof UserDataApiFetchUserData
      */
-    readonly page_size?: number
+    readonly pageSize?: number
 
     /**
      * Reverse the sort order, returning latest messages first
@@ -231,7 +231,7 @@ export interface UserDataApiFetchUserDataRequest {
      * @type {string}
      * @memberof UserDataApiFetchUserData
      */
-    readonly page_token?: string
+    readonly pageToken?: string
 }
 
 /**
@@ -254,7 +254,7 @@ export class UserDataApi extends BaseAPI implements UserDataApiInterface {
      * 
      */
     public fetchUserData(requestParameters: UserDataApiFetchUserDataRequest, options?: RawAxiosRequestConfig) {
-        return UserDataApiFp(this.configuration).fetchUserData(requestParameters.fid, requestParameters.user_data_type, requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(this.axios, this.basePath));
+        return UserDataApiFp(this.configuration).fetchUserData(requestParameters.fid, requestParameters.userDataType, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

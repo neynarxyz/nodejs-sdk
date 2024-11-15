@@ -38,12 +38,12 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
         /**
          * 
          * @summary On cast
-         * @param {number} target_fid The FID of the cast\&#39;s creator 
-         * @param {string} target_hash The hash of the cast 
-         * @param {ReactionType} reaction_type The type of reaction, either as a numerical enum value or string representation 
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {number} targetFid The FID of the cast\&#39;s creator 
+         * @param {string} targetHash The hash of the cast 
+         * @param {ReactionType} reactionType The type of reaction, either as a numerical enum value or string representation 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object
@@ -51,13 +51,13 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-cast-reactions)
          * 
          */
-        fetchCastReactions: async (target_fid: number, target_hash: string, reaction_type: ReactionType, page_size?: number, reverse?: boolean, page_token?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'target_fid' is not null or undefined
-            assertParamExists('fetchCastReactions', 'target_fid', target_fid)
-            // verify required parameter 'target_hash' is not null or undefined
-            assertParamExists('fetchCastReactions', 'target_hash', target_hash)
-            // verify required parameter 'reaction_type' is not null or undefined
-            assertParamExists('fetchCastReactions', 'reaction_type', reaction_type)
+        fetchCastReactions: async (targetFid: number, targetHash: string, reactionType: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'targetFid' is not null or undefined
+            assertParamExists('fetchCastReactions', 'targetFid', targetFid)
+            // verify required parameter 'targetHash' is not null or undefined
+            assertParamExists('fetchCastReactions', 'targetHash', targetHash)
+            // verify required parameter 'reactionType' is not null or undefined
+            assertParamExists('fetchCastReactions', 'reactionType', reactionType)
             const localVarPath = `/v1/reactionsByCast`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -73,28 +73,28 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (target_fid !== undefined) {
-                localVarQueryParameter['target_fid'] = target_fid;
+            if (targetFid !== undefined) {
+                localVarQueryParameter['target_fid'] = targetFid;
             }
 
-            if (target_hash !== undefined) {
-                localVarQueryParameter['target_hash'] = target_hash;
+            if (targetHash !== undefined) {
+                localVarQueryParameter['target_hash'] = targetHash;
             }
 
-            if (reaction_type !== undefined) {
-                localVarQueryParameter['reaction_type'] = reaction_type;
+            if (reactionType !== undefined) {
+                localVarQueryParameter['reaction_type'] = reactionType;
             }
 
-            if (page_size !== undefined) {
-                localVarQueryParameter['pageSize'] = page_size;
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
             }
 
             if (reverse !== undefined) {
                 localVarQueryParameter['reverse'] = reverse;
             }
 
-            if (page_token !== undefined) {
-                localVarQueryParameter['pageToken'] = page_token;
+            if (pageToken !== undefined) {
+                localVarQueryParameter['pageToken'] = pageToken;
             }
 
 
@@ -112,10 +112,10 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
          * 
          * @summary To a target URL
          * @param {string} url The URL of the parent cast 
-         * @param {ReactionType} reaction_type The type of reaction, either as a numerical enum value or string representation 
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {ReactionType} reactionType The type of reaction, either as a numerical enum value or string representation 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object
@@ -123,11 +123,11 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-reactions-by-target)
          * 
          */
-        fetchReactionsByTarget: async (url: string, reaction_type: ReactionType, page_size?: number, reverse?: boolean, page_token?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchReactionsByTarget: async (url: string, reactionType: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'url' is not null or undefined
             assertParamExists('fetchReactionsByTarget', 'url', url)
-            // verify required parameter 'reaction_type' is not null or undefined
-            assertParamExists('fetchReactionsByTarget', 'reaction_type', reaction_type)
+            // verify required parameter 'reactionType' is not null or undefined
+            assertParamExists('fetchReactionsByTarget', 'reactionType', reactionType)
             const localVarPath = `/v1/reactionsByTarget`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -147,20 +147,20 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
                 localVarQueryParameter['url'] = url;
             }
 
-            if (reaction_type !== undefined) {
-                localVarQueryParameter['reaction_type'] = reaction_type;
+            if (reactionType !== undefined) {
+                localVarQueryParameter['reaction_type'] = reactionType;
             }
 
-            if (page_size !== undefined) {
-                localVarQueryParameter['pageSize'] = page_size;
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
             }
 
             if (reverse !== undefined) {
                 localVarQueryParameter['reverse'] = reverse;
             }
 
-            if (page_token !== undefined) {
-                localVarQueryParameter['pageToken'] = page_token;
+            if (pageToken !== undefined) {
+                localVarQueryParameter['pageToken'] = pageToken;
             }
 
 
@@ -178,10 +178,10 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
          * 
          * @summary By FID
          * @param {number} fid The FID of the reaction\&#39;s creator 
-         * @param {ReactionType} reaction_type The type of reaction, either as a numerical enum value or string representation 
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {ReactionType} reactionType The type of reaction, either as a numerical enum value or string representation 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object
@@ -189,11 +189,11 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-reactions)
          * 
          */
-        fetchUserReactions: async (fid: number, reaction_type: ReactionType, page_size?: number, reverse?: boolean, page_token?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchUserReactions: async (fid: number, reactionType: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('fetchUserReactions', 'fid', fid)
-            // verify required parameter 'reaction_type' is not null or undefined
-            assertParamExists('fetchUserReactions', 'reaction_type', reaction_type)
+            // verify required parameter 'reactionType' is not null or undefined
+            assertParamExists('fetchUserReactions', 'reactionType', reactionType)
             const localVarPath = `/v1/reactionsByFid`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -213,20 +213,20 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (reaction_type !== undefined) {
-                localVarQueryParameter['reaction_type'] = reaction_type;
+            if (reactionType !== undefined) {
+                localVarQueryParameter['reaction_type'] = reactionType;
             }
 
-            if (page_size !== undefined) {
-                localVarQueryParameter['pageSize'] = page_size;
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
             }
 
             if (reverse !== undefined) {
                 localVarQueryParameter['reverse'] = reverse;
             }
 
-            if (page_token !== undefined) {
-                localVarQueryParameter['pageToken'] = page_token;
+            if (pageToken !== undefined) {
+                localVarQueryParameter['pageToken'] = pageToken;
             }
 
 
@@ -244,9 +244,9 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
          * 
          * @summary By FID or cast
          * @param {number} fid The FID of the reaction\&#39;s creator 
-         * @param {number} target_fid The FID of the cast\&#39;s creator 
-         * @param {string} target_hash The cast\&#39;s hash 
-         * @param {ReactionType} reaction_type The type of reaction, either as a numerical enum value or string representation 
+         * @param {number} targetFid The FID of the cast\&#39;s creator 
+         * @param {string} targetHash The cast\&#39;s hash 
+         * @param {ReactionType} reactionType The type of reaction, either as a numerical enum value or string representation 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<Reaction>} A promise that resolves to a `Reaction` object
@@ -254,15 +254,15 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-reaction-by-id)
          * 
          */
-        lookupReactionById: async (fid: number, target_fid: number, target_hash: string, reaction_type: ReactionType, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        lookupReactionById: async (fid: number, targetFid: number, targetHash: string, reactionType: ReactionType, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('lookupReactionById', 'fid', fid)
-            // verify required parameter 'target_fid' is not null or undefined
-            assertParamExists('lookupReactionById', 'target_fid', target_fid)
-            // verify required parameter 'target_hash' is not null or undefined
-            assertParamExists('lookupReactionById', 'target_hash', target_hash)
-            // verify required parameter 'reaction_type' is not null or undefined
-            assertParamExists('lookupReactionById', 'reaction_type', reaction_type)
+            // verify required parameter 'targetFid' is not null or undefined
+            assertParamExists('lookupReactionById', 'targetFid', targetFid)
+            // verify required parameter 'targetHash' is not null or undefined
+            assertParamExists('lookupReactionById', 'targetHash', targetHash)
+            // verify required parameter 'reactionType' is not null or undefined
+            assertParamExists('lookupReactionById', 'reactionType', reactionType)
             const localVarPath = `/v1/reactionById`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -282,16 +282,16 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (target_fid !== undefined) {
-                localVarQueryParameter['target_fid'] = target_fid;
+            if (targetFid !== undefined) {
+                localVarQueryParameter['target_fid'] = targetFid;
             }
 
-            if (target_hash !== undefined) {
-                localVarQueryParameter['target_hash'] = target_hash;
+            if (targetHash !== undefined) {
+                localVarQueryParameter['target_hash'] = targetHash;
             }
 
-            if (reaction_type !== undefined) {
-                localVarQueryParameter['reaction_type'] = reaction_type;
+            if (reactionType !== undefined) {
+                localVarQueryParameter['reaction_type'] = reactionType;
             }
 
 
@@ -318,12 +318,12 @@ export const ReactionsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary On cast
-         * @param {number} target_fid The FID of the cast\&#39;s creator 
-         * @param {string} target_hash The hash of the cast 
-         * @param {ReactionType} reaction_type The type of reaction, either as a numerical enum value or string representation 
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {number} targetFid The FID of the cast\&#39;s creator 
+         * @param {string} targetHash The hash of the cast 
+         * @param {ReactionType} reactionType The type of reaction, either as a numerical enum value or string representation 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object
@@ -331,8 +331,8 @@ export const ReactionsApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-cast-reactions)
          * 
          */
-        async fetchCastReactions(target_fid: number, target_hash: string, reaction_type: ReactionType, page_size?: number, reverse?: boolean, page_token?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchCastReactions200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchCastReactions(target_fid, target_hash, reaction_type, page_size, reverse, page_token, options);
+        async fetchCastReactions(targetFid: number, targetHash: string, reactionType: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchCastReactions200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchCastReactions(targetFid, targetHash, reactionType, pageSize, reverse, pageToken, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ReactionsApi.fetchCastReactions']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -341,10 +341,10 @@ export const ReactionsApiFp = function(configuration?: Configuration) {
          * 
          * @summary To a target URL
          * @param {string} url The URL of the parent cast 
-         * @param {ReactionType} reaction_type The type of reaction, either as a numerical enum value or string representation 
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {ReactionType} reactionType The type of reaction, either as a numerical enum value or string representation 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object
@@ -352,8 +352,8 @@ export const ReactionsApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-reactions-by-target)
          * 
          */
-        async fetchReactionsByTarget(url: string, reaction_type: ReactionType, page_size?: number, reverse?: boolean, page_token?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchCastReactions200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchReactionsByTarget(url, reaction_type, page_size, reverse, page_token, options);
+        async fetchReactionsByTarget(url: string, reactionType: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchCastReactions200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchReactionsByTarget(url, reactionType, pageSize, reverse, pageToken, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ReactionsApi.fetchReactionsByTarget']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -362,10 +362,10 @@ export const ReactionsApiFp = function(configuration?: Configuration) {
          * 
          * @summary By FID
          * @param {number} fid The FID of the reaction\&#39;s creator 
-         * @param {ReactionType} reaction_type The type of reaction, either as a numerical enum value or string representation 
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {ReactionType} reactionType The type of reaction, either as a numerical enum value or string representation 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object
@@ -373,8 +373,8 @@ export const ReactionsApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-reactions)
          * 
          */
-        async fetchUserReactions(fid: number, reaction_type: ReactionType, page_size?: number, reverse?: boolean, page_token?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchCastReactions200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserReactions(fid, reaction_type, page_size, reverse, page_token, options);
+        async fetchUserReactions(fid: number, reactionType: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchCastReactions200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserReactions(fid, reactionType, pageSize, reverse, pageToken, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ReactionsApi.fetchUserReactions']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -383,9 +383,9 @@ export const ReactionsApiFp = function(configuration?: Configuration) {
          * 
          * @summary By FID or cast
          * @param {number} fid The FID of the reaction\&#39;s creator 
-         * @param {number} target_fid The FID of the cast\&#39;s creator 
-         * @param {string} target_hash The cast\&#39;s hash 
-         * @param {ReactionType} reaction_type The type of reaction, either as a numerical enum value or string representation 
+         * @param {number} targetFid The FID of the cast\&#39;s creator 
+         * @param {string} targetHash The cast\&#39;s hash 
+         * @param {ReactionType} reactionType The type of reaction, either as a numerical enum value or string representation 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<Reaction>} A promise that resolves to a `Reaction` object
@@ -393,8 +393,8 @@ export const ReactionsApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-reaction-by-id)
          * 
          */
-        async lookupReactionById(fid: number, target_fid: number, target_hash: string, reaction_type: ReactionType, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Reaction>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupReactionById(fid, target_fid, target_hash, reaction_type, options);
+        async lookupReactionById(fid: number, targetFid: number, targetHash: string, reactionType: ReactionType, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Reaction>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupReactionById(fid, targetFid, targetHash, reactionType, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ReactionsApi.lookupReactionById']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -421,7 +421,7 @@ export const ReactionsApiFactory = function (configuration?: Configuration, base
          * 
          */
         fetchCastReactions(requestParameters: ReactionsApiFetchCastReactionsRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchCastReactions200Response> {
-            return localVarFp.fetchCastReactions(requestParameters.target_fid, requestParameters.target_hash, requestParameters.reaction_type, requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchCastReactions(requestParameters.targetFid, requestParameters.targetHash, requestParameters.reactionType, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -435,7 +435,7 @@ export const ReactionsApiFactory = function (configuration?: Configuration, base
          * 
          */
         fetchReactionsByTarget(requestParameters: ReactionsApiFetchReactionsByTargetRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchCastReactions200Response> {
-            return localVarFp.fetchReactionsByTarget(requestParameters.url, requestParameters.reaction_type, requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchReactionsByTarget(requestParameters.url, requestParameters.reactionType, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -449,7 +449,7 @@ export const ReactionsApiFactory = function (configuration?: Configuration, base
          * 
          */
         fetchUserReactions(requestParameters: ReactionsApiFetchUserReactionsRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchCastReactions200Response> {
-            return localVarFp.fetchUserReactions(requestParameters.fid, requestParameters.reaction_type, requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchUserReactions(requestParameters.fid, requestParameters.reactionType, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -463,7 +463,7 @@ export const ReactionsApiFactory = function (configuration?: Configuration, base
          * 
          */
         lookupReactionById(requestParameters: ReactionsApiLookupReactionByIdRequest, options?: RawAxiosRequestConfig): AxiosPromise<Reaction> {
-            return localVarFp.lookupReactionById(requestParameters.fid, requestParameters.target_fid, requestParameters.target_hash, requestParameters.reaction_type, options).then((request) => request(axios, basePath));
+            return localVarFp.lookupReactionById(requestParameters.fid, requestParameters.targetFid, requestParameters.targetHash, requestParameters.reactionType, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -546,7 +546,7 @@ export interface ReactionsApiFetchCastReactionsRequest {
      * @type {number}
      * @memberof ReactionsApiFetchCastReactions
      */
-    readonly target_fid: number
+    readonly targetFid: number
 
     /**
      * The hash of the cast
@@ -556,7 +556,7 @@ export interface ReactionsApiFetchCastReactionsRequest {
      * @type {string}
      * @memberof ReactionsApiFetchCastReactions
      */
-    readonly target_hash: string
+    readonly targetHash: string
 
     /**
      * The type of reaction, either as a numerical enum value or string representation
@@ -566,7 +566,7 @@ export interface ReactionsApiFetchCastReactionsRequest {
      * @type {ReactionType}
      * @memberof ReactionsApiFetchCastReactions
      */
-    readonly reaction_type: ReactionType
+    readonly reactionType: ReactionType
 
     /**
      * Maximum number of messages to return in a single response
@@ -576,7 +576,7 @@ export interface ReactionsApiFetchCastReactionsRequest {
      * @type {number}
      * @memberof ReactionsApiFetchCastReactions
      */
-    readonly page_size?: number
+    readonly pageSize?: number
 
     /**
      * Reverse the sort order, returning latest messages first
@@ -596,7 +596,7 @@ export interface ReactionsApiFetchCastReactionsRequest {
      * @type {string}
      * @memberof ReactionsApiFetchCastReactions
      */
-    readonly page_token?: string
+    readonly pageToken?: string
 }
 
 /**
@@ -623,7 +623,7 @@ export interface ReactionsApiFetchReactionsByTargetRequest {
      * @type {ReactionType}
      * @memberof ReactionsApiFetchReactionsByTarget
      */
-    readonly reaction_type: ReactionType
+    readonly reactionType: ReactionType
 
     /**
      * Maximum number of messages to return in a single response
@@ -633,7 +633,7 @@ export interface ReactionsApiFetchReactionsByTargetRequest {
      * @type {number}
      * @memberof ReactionsApiFetchReactionsByTarget
      */
-    readonly page_size?: number
+    readonly pageSize?: number
 
     /**
      * Reverse the sort order, returning latest messages first
@@ -653,7 +653,7 @@ export interface ReactionsApiFetchReactionsByTargetRequest {
      * @type {string}
      * @memberof ReactionsApiFetchReactionsByTarget
      */
-    readonly page_token?: string
+    readonly pageToken?: string
 }
 
 /**
@@ -680,7 +680,7 @@ export interface ReactionsApiFetchUserReactionsRequest {
      * @type {ReactionType}
      * @memberof ReactionsApiFetchUserReactions
      */
-    readonly reaction_type: ReactionType
+    readonly reactionType: ReactionType
 
     /**
      * Maximum number of messages to return in a single response
@@ -690,7 +690,7 @@ export interface ReactionsApiFetchUserReactionsRequest {
      * @type {number}
      * @memberof ReactionsApiFetchUserReactions
      */
-    readonly page_size?: number
+    readonly pageSize?: number
 
     /**
      * Reverse the sort order, returning latest messages first
@@ -710,7 +710,7 @@ export interface ReactionsApiFetchUserReactionsRequest {
      * @type {string}
      * @memberof ReactionsApiFetchUserReactions
      */
-    readonly page_token?: string
+    readonly pageToken?: string
 }
 
 /**
@@ -737,7 +737,7 @@ export interface ReactionsApiLookupReactionByIdRequest {
      * @type {number}
      * @memberof ReactionsApiLookupReactionById
      */
-    readonly target_fid: number
+    readonly targetFid: number
 
     /**
      * The cast\&#39;s hash
@@ -747,7 +747,7 @@ export interface ReactionsApiLookupReactionByIdRequest {
      * @type {string}
      * @memberof ReactionsApiLookupReactionById
      */
-    readonly target_hash: string
+    readonly targetHash: string
 
     /**
      * The type of reaction, either as a numerical enum value or string representation
@@ -757,7 +757,7 @@ export interface ReactionsApiLookupReactionByIdRequest {
      * @type {ReactionType}
      * @memberof ReactionsApiLookupReactionById
      */
-    readonly reaction_type: ReactionType
+    readonly reactionType: ReactionType
 }
 
 /**
@@ -780,7 +780,7 @@ export class ReactionsApi extends BaseAPI implements ReactionsApiInterface {
      * 
      */
     public fetchCastReactions(requestParameters: ReactionsApiFetchCastReactionsRequest, options?: RawAxiosRequestConfig) {
-        return ReactionsApiFp(this.configuration).fetchCastReactions(requestParameters.target_fid, requestParameters.target_hash, requestParameters.reaction_type, requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(this.axios, this.basePath));
+        return ReactionsApiFp(this.configuration).fetchCastReactions(requestParameters.targetFid, requestParameters.targetHash, requestParameters.reactionType, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -796,7 +796,7 @@ export class ReactionsApi extends BaseAPI implements ReactionsApiInterface {
      * 
      */
     public fetchReactionsByTarget(requestParameters: ReactionsApiFetchReactionsByTargetRequest, options?: RawAxiosRequestConfig) {
-        return ReactionsApiFp(this.configuration).fetchReactionsByTarget(requestParameters.url, requestParameters.reaction_type, requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(this.axios, this.basePath));
+        return ReactionsApiFp(this.configuration).fetchReactionsByTarget(requestParameters.url, requestParameters.reactionType, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -812,7 +812,7 @@ export class ReactionsApi extends BaseAPI implements ReactionsApiInterface {
      * 
      */
     public fetchUserReactions(requestParameters: ReactionsApiFetchUserReactionsRequest, options?: RawAxiosRequestConfig) {
-        return ReactionsApiFp(this.configuration).fetchUserReactions(requestParameters.fid, requestParameters.reaction_type, requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(this.axios, this.basePath));
+        return ReactionsApiFp(this.configuration).fetchUserReactions(requestParameters.fid, requestParameters.reactionType, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -828,7 +828,7 @@ export class ReactionsApi extends BaseAPI implements ReactionsApiInterface {
      * 
      */
     public lookupReactionById(requestParameters: ReactionsApiLookupReactionByIdRequest, options?: RawAxiosRequestConfig) {
-        return ReactionsApiFp(this.configuration).lookupReactionById(requestParameters.fid, requestParameters.target_fid, requestParameters.target_hash, requestParameters.reaction_type, options).then((request) => request(this.axios, this.basePath));
+        return ReactionsApiFp(this.configuration).lookupReactionById(requestParameters.fid, requestParameters.targetFid, requestParameters.targetHash, requestParameters.reactionType, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

@@ -36,9 +36,9 @@ export const VerificationsApiAxiosParamCreator = function (configuration?: Confi
          * @summary Provided by an FID
          * @param {number} fid The FID being requested 
          * @param {string} [address] The optional ETH address to filter by 
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchVerificationsByFid200Response>} A promise that resolves to a `FetchVerificationsByFid200Response` object
@@ -46,7 +46,7 @@ export const VerificationsApiAxiosParamCreator = function (configuration?: Confi
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-verifications-by-fid)
          * 
          */
-        fetchVerificationsByFid: async (fid: number, address?: string, page_size?: number, reverse?: boolean, page_token?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchVerificationsByFid: async (fid: number, address?: string, pageSize?: number, reverse?: boolean, pageToken?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('fetchVerificationsByFid', 'fid', fid)
             const localVarPath = `/v1/verificationsByFid`;
@@ -72,16 +72,16 @@ export const VerificationsApiAxiosParamCreator = function (configuration?: Confi
                 localVarQueryParameter['address'] = address;
             }
 
-            if (page_size !== undefined) {
-                localVarQueryParameter['pageSize'] = page_size;
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
             }
 
             if (reverse !== undefined) {
                 localVarQueryParameter['reverse'] = reverse;
             }
 
-            if (page_token !== undefined) {
-                localVarQueryParameter['pageToken'] = page_token;
+            if (pageToken !== undefined) {
+                localVarQueryParameter['pageToken'] = pageToken;
             }
 
 
@@ -110,9 +110,9 @@ export const VerificationsApiFp = function(configuration?: Configuration) {
          * @summary Provided by an FID
          * @param {number} fid The FID being requested 
          * @param {string} [address] The optional ETH address to filter by 
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchVerificationsByFid200Response>} A promise that resolves to a `FetchVerificationsByFid200Response` object
@@ -120,8 +120,8 @@ export const VerificationsApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-verifications-by-fid)
          * 
          */
-        async fetchVerificationsByFid(fid: number, address?: string, page_size?: number, reverse?: boolean, page_token?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchVerificationsByFid200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchVerificationsByFid(fid, address, page_size, reverse, page_token, options);
+        async fetchVerificationsByFid(fid: number, address?: string, pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchVerificationsByFid200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchVerificationsByFid(fid, address, pageSize, reverse, pageToken, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['VerificationsApi.fetchVerificationsByFid']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -148,7 +148,7 @@ export const VerificationsApiFactory = function (configuration?: Configuration, 
          * 
          */
         fetchVerificationsByFid(requestParameters: VerificationsApiFetchVerificationsByFidRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchVerificationsByFid200Response> {
-            return localVarFp.fetchVerificationsByFid(requestParameters.fid, requestParameters.address, requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchVerificationsByFid(requestParameters.fid, requestParameters.address, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -209,7 +209,7 @@ export interface VerificationsApiFetchVerificationsByFidRequest {
      * @type {number}
      * @memberof VerificationsApiFetchVerificationsByFid
      */
-    readonly page_size?: number
+    readonly pageSize?: number
 
     /**
      * Reverse the sort order, returning latest messages first
@@ -229,7 +229,7 @@ export interface VerificationsApiFetchVerificationsByFidRequest {
      * @type {string}
      * @memberof VerificationsApiFetchVerificationsByFid
      */
-    readonly page_token?: string
+    readonly pageToken?: string
 }
 
 /**
@@ -252,7 +252,7 @@ export class VerificationsApi extends BaseAPI implements VerificationsApiInterfa
      * 
      */
     public fetchVerificationsByFid(requestParameters: VerificationsApiFetchVerificationsByFidRequest, options?: RawAxiosRequestConfig) {
-        return VerificationsApiFp(this.configuration).fetchVerificationsByFid(requestParameters.fid, requestParameters.address, requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(this.axios, this.basePath));
+        return VerificationsApiFp(this.configuration).fetchVerificationsByFid(requestParameters.fid, requestParameters.address, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

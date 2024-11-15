@@ -42,7 +42,7 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * Delete a reaction (like or recast) to a cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
          * @summary Delete reaction
-         * @param {ReactionReqBody} reaction_req_body  
+         * @param {ReactionReqBody} reactionReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
@@ -50,9 +50,9 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-reaction)
          * 
          */
-        deleteReaction: async (reaction_req_body: ReactionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'reaction_req_body' is not null or undefined
-            assertParamExists('deleteReaction', 'reaction_req_body', reaction_req_body)
+        deleteReaction: async (reactionReqBody: ReactionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'reactionReqBody' is not null or undefined
+            assertParamExists('deleteReaction', 'reactionReqBody', reactionReqBody)
             const localVarPath = `/farcaster/reaction`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -75,7 +75,7 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(reaction_req_body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(reactionReqBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -87,7 +87,7 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
          * @summary Reactions for cast
          * @param {string} hash  
          * @param {Array<ReactionsType>} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values.  
-         * @param {number} [viewer_fid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
@@ -97,7 +97,7 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-cast-reactions)
          * 
          */
-        fetchCastReactions: async (hash: string, types: Array<ReactionsType>, viewer_fid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchCastReactions: async (hash: string, types: Array<ReactionsType>, viewerFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'hash' is not null or undefined
             assertParamExists('fetchCastReactions', 'hash', hash)
             // verify required parameter 'types' is not null or undefined
@@ -125,8 +125,8 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['types'] = types.join(COLLECTION_FORMATS.csv);
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
             if (limit !== undefined) {
@@ -153,7 +153,7 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
          * @summary Reactions for user
          * @param {number} fid  
          * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all) 
-         * @param {number} [viewer_fid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
@@ -163,7 +163,7 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-reactions)
          * 
          */
-        fetchUserReactions: async (fid: number, type: ReactionsType, viewer_fid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchUserReactions: async (fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('fetchUserReactions', 'fid', fid)
             // verify required parameter 'type' is not null or undefined
@@ -187,8 +187,8 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
             if (type !== undefined) {
@@ -217,7 +217,7 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
          * @summary Post a reaction
-         * @param {ReactionReqBody} reaction_req_body  
+         * @param {ReactionReqBody} reactionReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
@@ -225,9 +225,9 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-reaction)
          * 
          */
-        publishReaction: async (reaction_req_body: ReactionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'reaction_req_body' is not null or undefined
-            assertParamExists('publishReaction', 'reaction_req_body', reaction_req_body)
+        publishReaction: async (reactionReqBody: ReactionReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'reactionReqBody' is not null or undefined
+            assertParamExists('publishReaction', 'reactionReqBody', reactionReqBody)
             const localVarPath = `/farcaster/reaction`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -250,7 +250,7 @@ export const ReactionApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(reaction_req_body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(reactionReqBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -270,7 +270,7 @@ export const ReactionApiFp = function(configuration?: Configuration) {
         /**
          * Delete a reaction (like or recast) to a cast \\ (In order to delete a reaction `signer_uuid` must be approved) 
          * @summary Delete reaction
-         * @param {ReactionReqBody} reaction_req_body  
+         * @param {ReactionReqBody} reactionReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
@@ -278,8 +278,8 @@ export const ReactionApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-reaction)
          * 
          */
-        async deleteReaction(reaction_req_body: ReactionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteReaction(reaction_req_body, options);
+        async deleteReaction(reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteReaction(reactionReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ReactionApi.deleteReaction']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -289,7 +289,7 @@ export const ReactionApiFp = function(configuration?: Configuration) {
          * @summary Reactions for cast
          * @param {string} hash  
          * @param {Array<ReactionsType>} types Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: \&#39;likes\&#39; and \&#39;recasts\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values.  
-         * @param {number} [viewer_fid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
@@ -299,8 +299,8 @@ export const ReactionApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-cast-reactions)
          * 
          */
-        async fetchCastReactions(hash: string, types: Array<ReactionsType>, viewer_fid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsCastResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchCastReactions(hash, types, viewer_fid, limit, cursor, options);
+        async fetchCastReactions(hash: string, types: Array<ReactionsType>, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsCastResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchCastReactions(hash, types, viewerFid, limit, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ReactionApi.fetchCastReactions']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -310,7 +310,7 @@ export const ReactionApiFp = function(configuration?: Configuration) {
          * @summary Reactions for user
          * @param {number} fid  
          * @param {ReactionsType} type Type of reaction to fetch (likes or recasts or all) 
-         * @param {number} [viewer_fid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [viewerFid] Providing this will return a list of reactions that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
          * @param {*} [options] Override http request option.
@@ -320,8 +320,8 @@ export const ReactionApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-reactions)
          * 
          */
-        async fetchUserReactions(fid: number, type: ReactionsType, viewer_fid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserReactions(fid, type, viewer_fid, limit, cursor, options);
+        async fetchUserReactions(fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReactionsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserReactions(fid, type, viewerFid, limit, cursor, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ReactionApi.fetchUserReactions']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -329,7 +329,7 @@ export const ReactionApiFp = function(configuration?: Configuration) {
         /**
          * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
          * @summary Post a reaction
-         * @param {ReactionReqBody} reaction_req_body  
+         * @param {ReactionReqBody} reactionReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
@@ -337,8 +337,8 @@ export const ReactionApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-reaction)
          * 
          */
-        async publishReaction(reaction_req_body: ReactionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.publishReaction(reaction_req_body, options);
+        async publishReaction(reactionReqBody: ReactionReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publishReaction(reactionReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ReactionApi.publishReaction']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -365,7 +365,7 @@ export const ReactionApiFactory = function (configuration?: Configuration, baseP
          * 
          */
         deleteReaction(requestParameters: ReactionApiDeleteReactionRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.deleteReaction(requestParameters.reaction_req_body, options).then((request) => request(axios, basePath));
+            return localVarFp.deleteReaction(requestParameters.reactionReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches reactions for a given cast
@@ -379,7 +379,7 @@ export const ReactionApiFactory = function (configuration?: Configuration, baseP
          * 
          */
         fetchCastReactions(requestParameters: ReactionApiFetchCastReactionsRequest, options?: RawAxiosRequestConfig): AxiosPromise<ReactionsCastResponse> {
-            return localVarFp.fetchCastReactions(requestParameters.hash, requestParameters.types, requestParameters.viewer_fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchCastReactions(requestParameters.hash, requestParameters.types, requestParameters.viewerFid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches reactions for a given user
@@ -393,7 +393,7 @@ export const ReactionApiFactory = function (configuration?: Configuration, baseP
          * 
          */
         fetchUserReactions(requestParameters: ReactionApiFetchUserReactionsRequest, options?: RawAxiosRequestConfig): AxiosPromise<ReactionsResponse> {
-            return localVarFp.fetchUserReactions(requestParameters.fid, requestParameters.type, requestParameters.viewer_fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchUserReactions(requestParameters.fid, requestParameters.type, requestParameters.viewerFid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(axios, basePath));
         },
         /**
          * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved) 
@@ -407,7 +407,7 @@ export const ReactionApiFactory = function (configuration?: Configuration, baseP
          * 
          */
         publishReaction(requestParameters: ReactionApiPublishReactionRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.publishReaction(requestParameters.reaction_req_body, options).then((request) => request(axios, basePath));
+            return localVarFp.publishReaction(requestParameters.reactionReqBody, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -490,7 +490,7 @@ export interface ReactionApiDeleteReactionRequest {
      * @type {ReactionReqBody}
      * @memberof ReactionApiDeleteReaction
      */
-    readonly reaction_req_body: ReactionReqBody
+    readonly reactionReqBody: ReactionReqBody
 }
 
 /**
@@ -527,7 +527,7 @@ export interface ReactionApiFetchCastReactionsRequest {
      * @type {number}
      * @memberof ReactionApiFetchCastReactions
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * Number of results to fetch (Default: 25, Maximum: 100)
@@ -584,7 +584,7 @@ export interface ReactionApiFetchUserReactionsRequest {
      * @type {number}
      * @memberof ReactionApiFetchUserReactions
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * Number of results to fetch (Default: 25, Maximum: 100)
@@ -621,7 +621,7 @@ export interface ReactionApiPublishReactionRequest {
      * @type {ReactionReqBody}
      * @memberof ReactionApiPublishReaction
      */
-    readonly reaction_req_body: ReactionReqBody
+    readonly reactionReqBody: ReactionReqBody
 }
 
 /**
@@ -644,7 +644,7 @@ export class ReactionApi extends BaseAPI implements ReactionApiInterface {
      * 
      */
     public deleteReaction(requestParameters: ReactionApiDeleteReactionRequest, options?: RawAxiosRequestConfig) {
-        return ReactionApiFp(this.configuration).deleteReaction(requestParameters.reaction_req_body, options).then((request) => request(this.axios, this.basePath));
+        return ReactionApiFp(this.configuration).deleteReaction(requestParameters.reactionReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -660,7 +660,7 @@ export class ReactionApi extends BaseAPI implements ReactionApiInterface {
      * 
      */
     public fetchCastReactions(requestParameters: ReactionApiFetchCastReactionsRequest, options?: RawAxiosRequestConfig) {
-        return ReactionApiFp(this.configuration).fetchCastReactions(requestParameters.hash, requestParameters.types, requestParameters.viewer_fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
+        return ReactionApiFp(this.configuration).fetchCastReactions(requestParameters.hash, requestParameters.types, requestParameters.viewerFid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -676,7 +676,7 @@ export class ReactionApi extends BaseAPI implements ReactionApiInterface {
      * 
      */
     public fetchUserReactions(requestParameters: ReactionApiFetchUserReactionsRequest, options?: RawAxiosRequestConfig) {
-        return ReactionApiFp(this.configuration).fetchUserReactions(requestParameters.fid, requestParameters.type, requestParameters.viewer_fid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
+        return ReactionApiFp(this.configuration).fetchUserReactions(requestParameters.fid, requestParameters.type, requestParameters.viewerFid, requestParameters.limit, requestParameters.cursor, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -692,7 +692,7 @@ export class ReactionApi extends BaseAPI implements ReactionApiInterface {
      * 
      */
     public publishReaction(requestParameters: ReactionApiPublishReactionRequest, options?: RawAxiosRequestConfig) {
-        return ReactionApiFp(this.configuration).publishReaction(requestParameters.reaction_req_body, options).then((request) => request(this.axios, this.basePath));
+        return ReactionApiFp(this.configuration).publishReaction(requestParameters.reactionReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

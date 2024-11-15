@@ -24,6 +24,45 @@ import { VerificationsApi } from '../hub-api/apis/verifications-api';
 import type { CastAdd, FetchCastReactions200Response, FetchEvents200Response, FetchUserData200Response, FetchUserFollowing200Response, FetchUserOnChainEvents200Response, FetchUserOnChainSignersEvents200Response, FetchUsersCasts200Response, FetchVerificationsByFid200Response, FidsResponse, HubEvent, HubInfoResponse, LinkAdd, LinkType, Message, OnChainEventIdRegister, OnChainEventType, Reaction, ReactionType, StorageLimitsResponse, UserDataType, UserNameProof, UsernameProofsResponse, ValidateMessageResponse } from '../hub-api';
 
 
+/**
+ * Converts a camelCase string to snake_case.
+ * If the input string is not in camelCase format, it returns the original string.
+ *
+ * @param {string} str - The string to convert.
+ * @returns {string} The converted string in snake_case, or the original string if not camelCase.
+ */
+function camelToSnakeCase(str) {
+  // Check if the string is camelCase
+  if (/^[a-z]+([A-Z][a-z]*)+$/.test(str)) {
+    return str.replace(/([A-Z])/g, '_$1').toLowerCase();
+  }
+  return str; // Return the original string if it's not camelCase
+}
+
+/**
+ * Converts the top-level keys of an object from camelCase to snake_case.
+ * If a key is not in camelCase, it retains its original format.
+ * Nested objects or arrays are left unchanged. 
+ * This is done to revert the conversion of top-level keys since we accept snake_case keys in the API but convert them to camelCase in the wrapper.
+ *
+ * @param {object} obj - The object whose top-level keys are to be converted.
+ * @returns {object} A new object with top-level keys converted to snake_case.
+ */
+function camelCaseToSnakeCaseKeys(obj) {
+  if (obj && typeof obj === 'object' && !Array.isArray(obj)) {
+    // Convert only the top-level keys
+    return Object.fromEntries(
+      Object.entries(obj).map(([key, value]) => [
+        camelToSnakeCase(key), // Convert only camelCase keys
+        value, // Leave the value untouched
+      ])
+    );
+  }
+  return obj; // If not an object, return as is
+}
+
+
+
 export interface NeynarHubClientOptions {
   logger?: Logger;
   axiosInstance?: AxiosInstance;
@@ -119,9 +158,9 @@ export class NeynarHubClient {
  * @param {number} params.fid [optional]  - The FID of the parent cast
  * @param {string} params.hash [optional]  - The parent cast's hash
  * @param {string} params.url [optional] 
- * @param {number} params.page_size [optional]  - Maximum number of messages to return in a single response
+ * @param {number} params.pageSize [optional]  - Maximum number of messages to return in a single response
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
- * @param {string} params.page_token [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
+ * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
  *
  * @returns {Promise<FetchUsersCasts200Response>} A promise that resolves to a `FetchUsersCasts200Response` object.
  *
@@ -131,18 +170,18 @@ export class NeynarHubClient {
  * const fid = 
  * const hash = 
  * const url = 
- * const page_size = 
+ * const pageSize = 
  * const reverse = 
- * const page_token = 
+ * const pageToken = 
  *
- * client.fetchCastsByParent({ fid, hash, url, page_size, reverse, page_token }).then(response => {
+ * client.fetchCastsByParent({ fid, hash, url, pageSize, reverse, pageToken }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-casts-by-parent)
  *
  */
-public async fetchCastsByParent(params: { fid?: number, hash?: string, url?: string, page_size?: number, reverse?: boolean, page_token?: string }): Promise<FetchUsersCasts200Response> {
+public async fetchCastsByParent(params: { fid?: number, hash?: string, url?: string, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchUsersCasts200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -155,9 +194,9 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {number} params.fid  - The FID that is mentioned in a cast
- * @param {number} params.page_size [optional]  - Maximum number of messages to return in a single response
+ * @param {number} params.pageSize [optional]  - Maximum number of messages to return in a single response
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
- * @param {string} params.page_token [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
+ * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
  *
  * @returns {Promise<FetchUsersCasts200Response>} A promise that resolves to a `FetchUsersCasts200Response` object.
  *
@@ -165,18 +204,18 @@ Object.assign(adjustedParams, params);
  *
  * // Fill in the appropriate values
  * const fid = 
- * const page_size = 
+ * const pageSize = 
  * const reverse = 
- * const page_token = 
+ * const pageToken = 
  *
- * client.fetchCastsMentioningUser({ fid, page_size, reverse, page_token }).then(response => {
+ * client.fetchCastsMentioningUser({ fid, pageSize, reverse, pageToken }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-casts-mentioning-user)
  *
  */
-public async fetchCastsMentioningUser(params: { fid: number, page_size?: number, reverse?: boolean, page_token?: string }): Promise<FetchUsersCasts200Response> {
+public async fetchCastsMentioningUser(params: { fid: number, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchUsersCasts200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -189,9 +228,9 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {number} params.fid  - The FID of the casts' creator
- * @param {number} params.page_size [optional]  - Maximum number of messages to return in a single response
+ * @param {number} params.pageSize [optional]  - Maximum number of messages to return in a single response
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
- * @param {string} params.page_token [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
+ * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
  *
  * @returns {Promise<FetchUsersCasts200Response>} A promise that resolves to a `FetchUsersCasts200Response` object.
  *
@@ -199,18 +238,18 @@ Object.assign(adjustedParams, params);
  *
  * // Fill in the appropriate values
  * const fid = 
- * const page_size = 
+ * const pageSize = 
  * const reverse = 
- * const page_token = 
+ * const pageToken = 
  *
- * client.fetchUsersCasts({ fid, page_size, reverse, page_token }).then(response => {
+ * client.fetchUsersCasts({ fid, pageSize, reverse, pageToken }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-users-casts)
  *
  */
-public async fetchUsersCasts(params: { fid: number, page_size?: number, reverse?: boolean, page_token?: string }): Promise<FetchUsersCasts200Response> {
+public async fetchUsersCasts(params: { fid: number, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchUsersCasts200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -252,27 +291,27 @@ Object.assign(adjustedParams, params);
  * @summary Fetch a list of all the FIDs
  *
  * @param {object} params
- * @param {number} params.page_size [optional]  - Maximum number of messages to return in a single response
+ * @param {number} params.pageSize [optional]  - Maximum number of messages to return in a single response
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
- * @param {string} params.page_token [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
+ * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
  *
  * @returns {Promise<FidsResponse>} A promise that resolves to a `FidsResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const page_size = 
+ * const pageSize = 
  * const reverse = 
- * const page_token = 
+ * const pageToken = 
  *
- * client.fetchFids({ page_size, reverse, page_token }).then(response => {
+ * client.fetchFids({ pageSize, reverse, pageToken }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-fids)
  *
  */
-public async fetchFids(params: { page_size?: number, reverse?: boolean, page_token?: string }): Promise<FidsResponse> {
+public async fetchFids(params: { pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FidsResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -284,23 +323,23 @@ Object.assign(adjustedParams, params);
  * @summary Page of events
  *
  * @param {object} params
- * @param {number} params.from_event_id [optional]  - An optional Hub Id to start getting events from. This is also returned from the API as nextPageEventId, which can be used to page through all the Hub events. Set it to 0 to start from the first event
+ * @param {number} params.fromEventId [optional]  - An optional Hub Id to start getting events from. This is also returned from the API as nextPageEventId, which can be used to page through all the Hub events. Set it to 0 to start from the first event
  *
  * @returns {Promise<FetchEvents200Response>} A promise that resolves to a `FetchEvents200Response` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const from_event_id = 
+ * const fromEventId = 
  *
- * client.fetchEvents({ from_event_id }).then(response => {
+ * client.fetchEvents({ fromEventId }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-events)
  *
  */
-public async fetchEvents(params: { from_event_id?: number }): Promise<FetchEvents200Response> {
+public async fetchEvents(params: { fromEventId?: number }): Promise<FetchEvents200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -312,23 +351,23 @@ Object.assign(adjustedParams, params);
  * @summary Event by ID
  *
  * @param {object} params
- * @param {number} params.event_id  - The Hub Id of the event
+ * @param {number} params.eventId  - The Hub Id of the event
  *
  * @returns {Promise<HubEvent>} A promise that resolves to a `HubEvent` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const event_id = 
+ * const eventId = 
  *
- * client.lookupEvent({ event_id }).then(response => {
+ * client.lookupEvent({ eventId }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-event)
  *
  */
-public async lookupEvent(params: { event_id: number }): Promise<HubEvent> {
+public async lookupEvent(params: { eventId: number }): Promise<HubEvent> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -368,31 +407,31 @@ Object.assign(adjustedParams, params);
  * @summary To target FID
  *
  * @param {object} params
- * @param {number} params.target_fid  - The FID of the target of the link
- * @param {LinkType} params.link_type [optional]  - The type of link, as a string value
- * @param {number} params.page_size [optional]  - Maximum number of messages to return in a single response
+ * @param {number} params.targetFid  - The FID of the target of the link
+ * @param {LinkType} params.linkType [optional]  - The type of link, as a string value
+ * @param {number} params.pageSize [optional]  - Maximum number of messages to return in a single response
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
- * @param {string} params.page_token [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
+ * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
  *
  * @returns {Promise<FetchUserFollowing200Response>} A promise that resolves to a `FetchUserFollowing200Response` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const target_fid = 
- * const link_type = 
- * const page_size = 
+ * const targetFid = 
+ * const linkType = 
+ * const pageSize = 
  * const reverse = 
- * const page_token = 
+ * const pageToken = 
  *
- * client.fetchUserFollowers({ target_fid, link_type, page_size, reverse, page_token }).then(response => {
+ * client.fetchUserFollowers({ targetFid, linkType, pageSize, reverse, pageToken }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-followers)
  *
  */
-public async fetchUserFollowers(params: { target_fid: number, link_type?: LinkType, page_size?: number, reverse?: boolean, page_token?: string }): Promise<FetchUserFollowing200Response> {
+public async fetchUserFollowers(params: { targetFid: number, linkType?: LinkType, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchUserFollowing200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -405,10 +444,10 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {number} params.fid  - The FID of the link's originator
- * @param {LinkType} params.link_type [optional]  - The type of link, as a string value
- * @param {number} params.page_size [optional]  - Maximum number of messages to return in a single response
+ * @param {LinkType} params.linkType [optional]  - The type of link, as a string value
+ * @param {number} params.pageSize [optional]  - Maximum number of messages to return in a single response
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
- * @param {string} params.page_token [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
+ * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
  *
  * @returns {Promise<FetchUserFollowing200Response>} A promise that resolves to a `FetchUserFollowing200Response` object.
  *
@@ -416,19 +455,19 @@ Object.assign(adjustedParams, params);
  *
  * // Fill in the appropriate values
  * const fid = 
- * const link_type = 
- * const page_size = 
+ * const linkType = 
+ * const pageSize = 
  * const reverse = 
- * const page_token = 
+ * const pageToken = 
  *
- * client.fetchUserFollowing({ fid, link_type, page_size, reverse, page_token }).then(response => {
+ * client.fetchUserFollowing({ fid, linkType, pageSize, reverse, pageToken }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-following)
  *
  */
-public async fetchUserFollowing(params: { fid: number, link_type?: LinkType, page_size?: number, reverse?: boolean, page_token?: string }): Promise<FetchUserFollowing200Response> {
+public async fetchUserFollowing(params: { fid: number, linkType?: LinkType, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchUserFollowing200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -441,8 +480,8 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {number} params.fid  - The FID of the link's originator
- * @param {number} params.target_fid  - The FID of the target of the link
- * @param {LinkType} params.link_type  - The type of link, as a string value
+ * @param {number} params.targetFid  - The FID of the target of the link
+ * @param {LinkType} params.linkType  - The type of link, as a string value
  *
  * @returns {Promise<LinkAdd>} A promise that resolves to a `LinkAdd` object.
  *
@@ -450,17 +489,17 @@ Object.assign(adjustedParams, params);
  *
  * // Fill in the appropriate values
  * const fid = 
- * const target_fid = 
- * const link_type = 
+ * const targetFid = 
+ * const linkType = 
  *
- * client.lookupUserRelation({ fid, target_fid, link_type }).then(response => {
+ * client.lookupUserRelation({ fid, targetFid, linkType }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-user-relation)
  *
  */
-public async lookupUserRelation(params: { fid: number, target_fid: number, link_type: LinkType }): Promise<LinkAdd> {
+public async lookupUserRelation(params: { fid: number, targetFid: number, linkType: LinkType }): Promise<LinkAdd> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -529,7 +568,7 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {number} params.fid  - The FID being requested
- * @param {OnChainEventType} params.event_type  - The numeric of string value of the event type being requested.
+ * @param {OnChainEventType} params.eventType  - The numeric of string value of the event type being requested.
  *
  * @returns {Promise<FetchUserOnChainEvents200Response>} A promise that resolves to a `FetchUserOnChainEvents200Response` object.
  *
@@ -537,16 +576,16 @@ Object.assign(adjustedParams, params);
  *
  * // Fill in the appropriate values
  * const fid = 
- * const event_type = 
+ * const eventType = 
  *
- * client.fetchUserOnChainEvents({ fid, event_type }).then(response => {
+ * client.fetchUserOnChainEvents({ fid, eventType }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-on-chain-events)
  *
  */
-public async fetchUserOnChainEvents(params: { fid: number, event_type: OnChainEventType }): Promise<FetchUserOnChainEvents200Response> {
+public async fetchUserOnChainEvents(params: { fid: number, eventType: OnChainEventType }): Promise<FetchUserOnChainEvents200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -618,33 +657,33 @@ Object.assign(adjustedParams, params);
  * @summary On cast
  *
  * @param {object} params
- * @param {number} params.target_fid  - The FID of the cast's creator
- * @param {string} params.target_hash  - The hash of the cast
- * @param {ReactionType} params.reaction_type  - The type of reaction, either as a numerical enum value or string representation
- * @param {number} params.page_size [optional]  - Maximum number of messages to return in a single response
+ * @param {number} params.targetFid  - The FID of the cast's creator
+ * @param {string} params.targetHash  - The hash of the cast
+ * @param {ReactionType} params.reactionType  - The type of reaction, either as a numerical enum value or string representation
+ * @param {number} params.pageSize [optional]  - Maximum number of messages to return in a single response
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
- * @param {string} params.page_token [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
+ * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
  *
  * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const target_fid = 
- * const target_hash = 
- * const reaction_type = 
- * const page_size = 
+ * const targetFid = 
+ * const targetHash = 
+ * const reactionType = 
+ * const pageSize = 
  * const reverse = 
- * const page_token = 
+ * const pageToken = 
  *
- * client.fetchCastReactions({ target_fid, target_hash, reaction_type, page_size, reverse, page_token }).then(response => {
+ * client.fetchCastReactions({ targetFid, targetHash, reactionType, pageSize, reverse, pageToken }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-cast-reactions)
  *
  */
-public async fetchCastReactions(params: { target_fid: number, target_hash: string, reaction_type: ReactionType, page_size?: number, reverse?: boolean, page_token?: string }): Promise<FetchCastReactions200Response> {
+public async fetchCastReactions(params: { targetFid: number, targetHash: string, reactionType: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchCastReactions200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -657,10 +696,10 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {string} params.url  - The URL of the parent cast
- * @param {ReactionType} params.reaction_type  - The type of reaction, either as a numerical enum value or string representation
- * @param {number} params.page_size [optional]  - Maximum number of messages to return in a single response
+ * @param {ReactionType} params.reactionType  - The type of reaction, either as a numerical enum value or string representation
+ * @param {number} params.pageSize [optional]  - Maximum number of messages to return in a single response
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
- * @param {string} params.page_token [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
+ * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
  *
  * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object.
  *
@@ -668,19 +707,19 @@ Object.assign(adjustedParams, params);
  *
  * // Fill in the appropriate values
  * const url = 
- * const reaction_type = 
- * const page_size = 
+ * const reactionType = 
+ * const pageSize = 
  * const reverse = 
- * const page_token = 
+ * const pageToken = 
  *
- * client.fetchReactionsByTarget({ url, reaction_type, page_size, reverse, page_token }).then(response => {
+ * client.fetchReactionsByTarget({ url, reactionType, pageSize, reverse, pageToken }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-reactions-by-target)
  *
  */
-public async fetchReactionsByTarget(params: { url: string, reaction_type: ReactionType, page_size?: number, reverse?: boolean, page_token?: string }): Promise<FetchCastReactions200Response> {
+public async fetchReactionsByTarget(params: { url: string, reactionType: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchCastReactions200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -693,10 +732,10 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {number} params.fid  - The FID of the reaction's creator
- * @param {ReactionType} params.reaction_type  - The type of reaction, either as a numerical enum value or string representation
- * @param {number} params.page_size [optional]  - Maximum number of messages to return in a single response
+ * @param {ReactionType} params.reactionType  - The type of reaction, either as a numerical enum value or string representation
+ * @param {number} params.pageSize [optional]  - Maximum number of messages to return in a single response
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
- * @param {string} params.page_token [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
+ * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
  *
  * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object.
  *
@@ -704,19 +743,19 @@ Object.assign(adjustedParams, params);
  *
  * // Fill in the appropriate values
  * const fid = 
- * const reaction_type = 
- * const page_size = 
+ * const reactionType = 
+ * const pageSize = 
  * const reverse = 
- * const page_token = 
+ * const pageToken = 
  *
- * client.fetchUserReactions({ fid, reaction_type, page_size, reverse, page_token }).then(response => {
+ * client.fetchUserReactions({ fid, reactionType, pageSize, reverse, pageToken }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-reactions)
  *
  */
-public async fetchUserReactions(params: { fid: number, reaction_type: ReactionType, page_size?: number, reverse?: boolean, page_token?: string }): Promise<FetchCastReactions200Response> {
+public async fetchUserReactions(params: { fid: number, reactionType: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchCastReactions200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -729,9 +768,9 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {number} params.fid  - The FID of the reaction's creator
- * @param {number} params.target_fid  - The FID of the cast's creator
- * @param {string} params.target_hash  - The cast's hash
- * @param {ReactionType} params.reaction_type  - The type of reaction, either as a numerical enum value or string representation
+ * @param {number} params.targetFid  - The FID of the cast's creator
+ * @param {string} params.targetHash  - The cast's hash
+ * @param {ReactionType} params.reactionType  - The type of reaction, either as a numerical enum value or string representation
  *
  * @returns {Promise<Reaction>} A promise that resolves to a `Reaction` object.
  *
@@ -739,18 +778,18 @@ Object.assign(adjustedParams, params);
  *
  * // Fill in the appropriate values
  * const fid = 
- * const target_fid = 
- * const target_hash = 
- * const reaction_type = 
+ * const targetFid = 
+ * const targetHash = 
+ * const reactionType = 
  *
- * client.lookupReactionById({ fid, target_fid, target_hash, reaction_type }).then(response => {
+ * client.lookupReactionById({ fid, targetFid, targetHash, reactionType }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-reaction-by-id)
  *
  */
-public async lookupReactionById(params: { fid: number, target_fid: number, target_hash: string, reaction_type: ReactionType }): Promise<Reaction> {
+public async lookupReactionById(params: { fid: number, targetFid: number, targetHash: string, reactionType: ReactionType }): Promise<Reaction> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -793,10 +832,10 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {number} params.fid  - The FID that's being requested
- * @param {UserDataType} params.user_data_type [optional]  - The type of user data, either as a numerical value or type string. If this is omitted, all user data for the FID is returned
- * @param {number} params.page_size [optional]  - Maximum number of messages to return in a single response
+ * @param {UserDataType} params.userDataType [optional]  - The type of user data, either as a numerical value or type string. If this is omitted, all user data for the FID is returned
+ * @param {number} params.pageSize [optional]  - Maximum number of messages to return in a single response
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
- * @param {string} params.page_token [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
+ * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
  *
  * @returns {Promise<FetchUserData200Response>} A promise that resolves to a `FetchUserData200Response` object.
  *
@@ -804,19 +843,19 @@ Object.assign(adjustedParams, params);
  *
  * // Fill in the appropriate values
  * const fid = 
- * const user_data_type = 
- * const page_size = 
+ * const userDataType = 
+ * const pageSize = 
  * const reverse = 
- * const page_token = 
+ * const pageToken = 
  *
- * client.fetchUserData({ fid, user_data_type, page_size, reverse, page_token }).then(response => {
+ * client.fetchUserData({ fid, userDataType, pageSize, reverse, pageToken }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-data)
  *
  */
-public async fetchUserData(params: { fid: number, user_data_type?: UserDataType, page_size?: number, reverse?: boolean, page_token?: string }): Promise<FetchUserData200Response> {
+public async fetchUserData(params: { fid: number, userDataType?: UserDataType, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchUserData200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -886,9 +925,9 @@ Object.assign(adjustedParams, params);
  * @param {object} params
  * @param {number} params.fid  - The FID being requested
  * @param {string} params.address [optional]  - The optional ETH address to filter by
- * @param {number} params.page_size [optional]  - Maximum number of messages to return in a single response
+ * @param {number} params.pageSize [optional]  - Maximum number of messages to return in a single response
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
- * @param {string} params.page_token [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
+ * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
  *
  * @returns {Promise<FetchVerificationsByFid200Response>} A promise that resolves to a `FetchVerificationsByFid200Response` object.
  *
@@ -897,18 +936,18 @@ Object.assign(adjustedParams, params);
  * // Fill in the appropriate values
  * const fid = 
  * const address = 
- * const page_size = 
+ * const pageSize = 
  * const reverse = 
- * const page_token = 
+ * const pageToken = 
  *
- * client.fetchVerificationsByFid({ fid, address, page_size, reverse, page_token }).then(response => {
+ * client.fetchVerificationsByFid({ fid, address, pageSize, reverse, pageToken }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-verifications-by-fid)
  *
  */
-public async fetchVerificationsByFid(params: { fid: number, address?: string, page_size?: number, reverse?: boolean, page_token?: string }): Promise<FetchVerificationsByFid200Response> {
+public async fetchVerificationsByFid(params: { fid: number, address?: string, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchVerificationsByFid200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 

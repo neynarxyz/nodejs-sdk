@@ -66,7 +66,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
          * @summary Delete verification
-         * @param {RemoveVerificationReqBody} remove_verification_req_body  
+         * @param {RemoveVerificationReqBody} removeVerificationReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
@@ -74,9 +74,9 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-verification)
          * 
          */
-        deleteVerification: async (remove_verification_req_body: RemoveVerificationReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'remove_verification_req_body' is not null or undefined
-            assertParamExists('deleteVerification', 'remove_verification_req_body', remove_verification_req_body)
+        deleteVerification: async (removeVerificationReqBody: RemoveVerificationReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'removeVerificationReqBody' is not null or undefined
+            assertParamExists('deleteVerification', 'removeVerificationReqBody', removeVerificationReqBody)
             const localVarPath = `/farcaster/user/verification`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -99,7 +99,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(remove_verification_req_body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(removeVerificationReqBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -110,8 +110,8 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * Fetches information about multiple users based on FIDs
          * @summary By FIDs
          * @param {string} fids Comma separated list of FIDs, up to 100 at a time 
-         * @param {number} [viewer_fid]  
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {number} [viewerFid]  
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<BulkUsersResponse>} A promise that resolves to a `BulkUsersResponse` object
@@ -119,7 +119,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-users)
          * 
          */
-        fetchBulkUsers: async (fids: string, viewer_fid?: number, x_neynar_experimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchBulkUsers: async (fids: string, viewerFid?: number, xNeynarExperimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fids' is not null or undefined
             assertParamExists('fetchBulkUsers', 'fids', fids)
             const localVarPath = `/farcaster/user/bulk`;
@@ -141,14 +141,14 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['fids'] = fids;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
-            if (x_neynar_experimental != null) {
-                localVarHeaderParameter['x-neynar-experimental'] = typeof x_neynar_experimental === 'string'
-                    ? x_neynar_experimental
-                    : JSON.stringify(x_neynar_experimental);
+            if (xNeynarExperimental != null) {
+                localVarHeaderParameter['x-neynar-experimental'] = typeof xNeynarExperimental === 'string'
+                    ? xNeynarExperimental
+                    : JSON.stringify(xNeynarExperimental);
             }
 
 
@@ -166,9 +166,9 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
          * @summary By Eth or Sol addresses
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time 
-         * @param {Array<BulkUserAddressType>} [address_types] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values.  
-         * @param {number} [viewer_fid]  
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {Array<BulkUserAddressType>} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values.  
+         * @param {number} [viewerFid]  
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<BulkUsersByAddressResponse>} A promise that resolves to a `BulkUsersByAddressResponse` object
@@ -176,7 +176,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-users-by-ethereum-address)
          * 
          */
-        fetchBulkUsersByEthereumAddress: async (addresses: string, address_types?: Array<BulkUserAddressType>, viewer_fid?: number, x_neynar_experimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchBulkUsersByEthereumAddress: async (addresses: string, addressTypes?: Array<BulkUserAddressType>, viewerFid?: number, xNeynarExperimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'addresses' is not null or undefined
             assertParamExists('fetchBulkUsersByEthereumAddress', 'addresses', addresses)
             const localVarPath = `/farcaster/user/bulk-by-address`;
@@ -198,18 +198,18 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['addresses'] = addresses;
             }
 
-            if (address_types) {
-                localVarQueryParameter['address_types'] = address_types.join(COLLECTION_FORMATS.csv);
+            if (addressTypes) {
+                localVarQueryParameter['address_types'] = addressTypes.join(COLLECTION_FORMATS.csv);
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
-            if (x_neynar_experimental != null) {
-                localVarHeaderParameter['x-neynar-experimental'] = typeof x_neynar_experimental === 'string'
-                    ? x_neynar_experimental
-                    : JSON.stringify(x_neynar_experimental);
+            if (xNeynarExperimental != null) {
+                localVarHeaderParameter['x-neynar-experimental'] = typeof xNeynarExperimental === 'string'
+                    ? xNeynarExperimental
+                    : JSON.stringify(xNeynarExperimental);
             }
 
 
@@ -226,10 +226,10 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Fetches power users based on Warpcast power badges. Information is updated once a day.
          * @summary Power users
-         * @param {number} [viewer_fid]  
+         * @param {number} [viewerFid]  
          * @param {number} [limit] Number of power users to fetch  (Default: 25, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object
@@ -237,7 +237,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-power-users)
          * 
          */
-        fetchPowerUsers: async (viewer_fid?: number, limit?: number, cursor?: string, x_neynar_experimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchPowerUsers: async (viewerFid?: number, limit?: number, cursor?: string, xNeynarExperimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/farcaster/user/power`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -253,8 +253,8 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
             if (limit !== undefined) {
@@ -265,10 +265,10 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['cursor'] = cursor;
             }
 
-            if (x_neynar_experimental != null) {
-                localVarHeaderParameter['x-neynar-experimental'] = typeof x_neynar_experimental === 'string'
-                    ? x_neynar_experimental
-                    : JSON.stringify(x_neynar_experimental);
+            if (xNeynarExperimental != null) {
+                localVarHeaderParameter['x-neynar-experimental'] = typeof xNeynarExperimental === 'string'
+                    ? xNeynarExperimental
+                    : JSON.stringify(xNeynarExperimental);
             }
 
 
@@ -285,7 +285,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
          * @summary Power user FIDs
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<UserPowerLiteResponse>} A promise that resolves to a `UserPowerLiteResponse` object
@@ -293,7 +293,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-power-users-lite)
          * 
          */
-        fetchPowerUsersLite: async (x_neynar_experimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchPowerUsersLite: async (xNeynarExperimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/farcaster/user/power_lite`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -309,10 +309,10 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (x_neynar_experimental != null) {
-                localVarHeaderParameter['x-neynar-experimental'] = typeof x_neynar_experimental === 'string'
-                    ? x_neynar_experimental
-                    : JSON.stringify(x_neynar_experimental);
+            if (xNeynarExperimental != null) {
+                localVarHeaderParameter['x-neynar-experimental'] = typeof xNeynarExperimental === 'string'
+                    ? xNeynarExperimental
+                    : JSON.stringify(xNeynarExperimental);
             }
 
 
@@ -331,10 +331,10 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary By location
          * @param {number} latitude Latitude of the location 
          * @param {number} longitude Longitude of the location 
-         * @param {number} [viewer_fid] FID of the user viewing the feed. Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [viewerFid] FID of the user viewing the feed. Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
          * @param {string} [cursor] Pagination cursor 
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object
@@ -342,7 +342,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-users-by-location)
          * 
          */
-        fetchUsersByLocation: async (latitude: number, longitude: number, viewer_fid?: number, limit?: number, cursor?: string, x_neynar_experimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchUsersByLocation: async (latitude: number, longitude: number, viewerFid?: number, limit?: number, cursor?: string, xNeynarExperimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'latitude' is not null or undefined
             assertParamExists('fetchUsersByLocation', 'latitude', latitude)
             // verify required parameter 'longitude' is not null or undefined
@@ -370,8 +370,8 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['longitude'] = longitude;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
             if (limit !== undefined) {
@@ -382,10 +382,10 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['cursor'] = cursor;
             }
 
-            if (x_neynar_experimental != null) {
-                localVarHeaderParameter['x-neynar-experimental'] = typeof x_neynar_experimental === 'string'
-                    ? x_neynar_experimental
-                    : JSON.stringify(x_neynar_experimental);
+            if (xNeynarExperimental != null) {
+                localVarHeaderParameter['x-neynar-experimental'] = typeof xNeynarExperimental === 'string'
+                    ? xNeynarExperimental
+                    : JSON.stringify(xNeynarExperimental);
             }
 
 
@@ -402,7 +402,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
          * @summary Follow user
-         * @param {FollowReqBody} follow_req_body  
+         * @param {FollowReqBody} followReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<BulkFollowResponse>} A promise that resolves to a `BulkFollowResponse` object
@@ -410,9 +410,9 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/follow-user)
          * 
          */
-        followUser: async (follow_req_body: FollowReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'follow_req_body' is not null or undefined
-            assertParamExists('followUser', 'follow_req_body', follow_req_body)
+        followUser: async (followReqBody: FollowReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'followReqBody' is not null or undefined
+            assertParamExists('followUser', 'followReqBody', followReqBody)
             const localVarPath = `/farcaster/user/follow`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -435,7 +435,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(follow_req_body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(followReqBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -445,7 +445,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-account)
          * @summary Fetch fresh FID
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<UserFIDResponse>} A promise that resolves to a `UserFIDResponse` object
@@ -453,7 +453,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-fresh-account-fid)
          * 
          */
-        getFreshAccountFID: async (x_neynar_experimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getFreshAccountFID: async (xNeynarExperimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/farcaster/user/fid`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -469,10 +469,10 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (x_neynar_experimental != null) {
-                localVarHeaderParameter['x-neynar-experimental'] = typeof x_neynar_experimental === 'string'
-                    ? x_neynar_experimental
-                    : JSON.stringify(x_neynar_experimental);
+            if (xNeynarExperimental != null) {
+                localVarHeaderParameter['x-neynar-experimental'] = typeof xNeynarExperimental === 'string'
+                    ? xNeynarExperimental
+                    : JSON.stringify(xNeynarExperimental);
             }
 
 
@@ -489,7 +489,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Lookup a user by custody-address
          * @summary By custody-address
-         * @param {string} custody_address Custody Address associated with mnemonic 
+         * @param {string} custodyAddress Custody Address associated with mnemonic 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<UserResponse>} A promise that resolves to a `UserResponse` object
@@ -497,9 +497,9 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-user-by-custody-address)
          * 
          */
-        lookupUserByCustodyAddress: async (custody_address: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'custody_address' is not null or undefined
-            assertParamExists('lookupUserByCustodyAddress', 'custody_address', custody_address)
+        lookupUserByCustodyAddress: async (custodyAddress: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'custodyAddress' is not null or undefined
+            assertParamExists('lookupUserByCustodyAddress', 'custodyAddress', custodyAddress)
             const localVarPath = `/farcaster/user/custody-address`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -515,8 +515,8 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (custody_address !== undefined) {
-                localVarQueryParameter['custody_address'] = custody_address;
+            if (custodyAddress !== undefined) {
+                localVarQueryParameter['custody_address'] = custodyAddress;
             }
 
 
@@ -534,8 +534,8 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * Fetches a single hydrated user object given a username
          * @summary By username
          * @param {string} username Username of the user to fetch 
-         * @param {number} [viewer_fid]  
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {number} [viewerFid]  
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<UserResponse>} A promise that resolves to a `UserResponse` object
@@ -543,7 +543,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-user-by-username)
          * 
          */
-        lookupUserByUsername: async (username: string, viewer_fid?: number, x_neynar_experimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        lookupUserByUsername: async (username: string, viewerFid?: number, xNeynarExperimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'username' is not null or undefined
             assertParamExists('lookupUserByUsername', 'username', username)
             const localVarPath = `/farcaster/user/by_username`;
@@ -565,14 +565,14 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['username'] = username;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
-            if (x_neynar_experimental != null) {
-                localVarHeaderParameter['x-neynar-experimental'] = typeof x_neynar_experimental === 'string'
-                    ? x_neynar_experimental
-                    : JSON.stringify(x_neynar_experimental);
+            if (xNeynarExperimental != null) {
+                localVarHeaderParameter['x-neynar-experimental'] = typeof xNeynarExperimental === 'string'
+                    ? xNeynarExperimental
+                    : JSON.stringify(xNeynarExperimental);
             }
 
 
@@ -589,7 +589,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Adds verification for an eth address or contract for the user \\ (In order to add verification `signer_uuid` must be approved) 
          * @summary Add verification
-         * @param {AddVerificationReqBody} add_verification_req_body  
+         * @param {AddVerificationReqBody} addVerificationReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
@@ -597,9 +597,9 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-verification)
          * 
          */
-        publishVerification: async (add_verification_req_body: AddVerificationReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'add_verification_req_body' is not null or undefined
-            assertParamExists('publishVerification', 'add_verification_req_body', add_verification_req_body)
+        publishVerification: async (addVerificationReqBody: AddVerificationReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'addVerificationReqBody' is not null or undefined
+            assertParamExists('publishVerification', 'addVerificationReqBody', addVerificationReqBody)
             const localVarPath = `/farcaster/user/verification`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -622,7 +622,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(add_verification_req_body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(addVerificationReqBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -632,7 +632,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user. 
          * @summary Register new account
-         * @param {RegisterUserReqBody} register_user_req_body  
+         * @param {RegisterUserReqBody} registerUserReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<RegisterUserResponse>} A promise that resolves to a `RegisterUserResponse` object
@@ -640,9 +640,9 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/register-account)
          * 
          */
-        registerAccount: async (register_user_req_body: RegisterUserReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'register_user_req_body' is not null or undefined
-            assertParamExists('registerAccount', 'register_user_req_body', register_user_req_body)
+        registerAccount: async (registerUserReqBody: RegisterUserReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'registerUserReqBody' is not null or undefined
+            assertParamExists('registerAccount', 'registerUserReqBody', registerUserReqBody)
             const localVarPath = `/farcaster/user`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -665,7 +665,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(register_user_req_body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(registerUserReqBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -676,10 +676,10 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * Search for Usernames
          * @summary Search for Usernames
          * @param {string} q  
-         * @param {number} [viewer_fid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {number} [limit] Number of users to fetch  (Default: 5, Maximum: 10)
          * @param {string} [cursor] Pagination cursor. 
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<UserSearchResponse>} A promise that resolves to a `UserSearchResponse` object
@@ -687,7 +687,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/search-user)
          * 
          */
-        searchUser: async (q: string, viewer_fid?: number, limit?: number, cursor?: string, x_neynar_experimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        searchUser: async (q: string, viewerFid?: number, limit?: number, cursor?: string, xNeynarExperimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'q' is not null or undefined
             assertParamExists('searchUser', 'q', q)
             const localVarPath = `/farcaster/user/search`;
@@ -709,8 +709,8 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['q'] = q;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
             if (limit !== undefined) {
@@ -721,10 +721,10 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['cursor'] = cursor;
             }
 
-            if (x_neynar_experimental != null) {
-                localVarHeaderParameter['x-neynar-experimental'] = typeof x_neynar_experimental === 'string'
-                    ? x_neynar_experimental
-                    : JSON.stringify(x_neynar_experimental);
+            if (xNeynarExperimental != null) {
+                localVarHeaderParameter['x-neynar-experimental'] = typeof xNeynarExperimental === 'string'
+                    ? xNeynarExperimental
+                    : JSON.stringify(xNeynarExperimental);
             }
 
 
@@ -741,7 +741,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved) 
          * @summary Unfollow user
-         * @param {FollowReqBody} follow_req_body  
+         * @param {FollowReqBody} followReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<BulkFollowResponse>} A promise that resolves to a `BulkFollowResponse` object
@@ -749,9 +749,9 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/unfollow-user)
          * 
          */
-        unfollowUser: async (follow_req_body: FollowReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'follow_req_body' is not null or undefined
-            assertParamExists('unfollowUser', 'follow_req_body', follow_req_body)
+        unfollowUser: async (followReqBody: FollowReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'followReqBody' is not null or undefined
+            assertParamExists('unfollowUser', 'followReqBody', followReqBody)
             const localVarPath = `/farcaster/user/follow`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -774,7 +774,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(follow_req_body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(followReqBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -784,7 +784,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Update user profile \\ (In order to update user\'s profile `signer_uuid` must be approved) 
          * @summary Update user profile
-         * @param {UpdateUserReqBody} update_user_req_body  
+         * @param {UpdateUserReqBody} updateUserReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
@@ -792,9 +792,9 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/update-user)
          * 
          */
-        updateUser: async (update_user_req_body: UpdateUserReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'update_user_req_body' is not null or undefined
-            assertParamExists('updateUser', 'update_user_req_body', update_user_req_body)
+        updateUser: async (updateUserReqBody: UpdateUserReqBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'updateUserReqBody' is not null or undefined
+            assertParamExists('updateUser', 'updateUserReqBody', updateUserReqBody)
             const localVarPath = `/farcaster/user`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -817,7 +817,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(update_user_req_body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(updateUserReqBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -837,7 +837,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved) 
          * @summary Delete verification
-         * @param {RemoveVerificationReqBody} remove_verification_req_body  
+         * @param {RemoveVerificationReqBody} removeVerificationReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
@@ -845,8 +845,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-verification)
          * 
          */
-        async deleteVerification(remove_verification_req_body: RemoveVerificationReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteVerification(remove_verification_req_body, options);
+        async deleteVerification(removeVerificationReqBody: RemoveVerificationReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteVerification(removeVerificationReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.deleteVerification']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -855,8 +855,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * Fetches information about multiple users based on FIDs
          * @summary By FIDs
          * @param {string} fids Comma separated list of FIDs, up to 100 at a time 
-         * @param {number} [viewer_fid]  
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {number} [viewerFid]  
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<BulkUsersResponse>} A promise that resolves to a `BulkUsersResponse` object
@@ -864,8 +864,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-users)
          * 
          */
-        async fetchBulkUsers(fids: string, viewer_fid?: number, x_neynar_experimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkUsersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchBulkUsers(fids, viewer_fid, x_neynar_experimental, options);
+        async fetchBulkUsers(fids: string, viewerFid?: number, xNeynarExperimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkUsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchBulkUsers(fids, viewerFid, xNeynarExperimental, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.fetchBulkUsers']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -874,9 +874,9 @@ export const UserApiFp = function(configuration?: Configuration) {
          * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
          * @summary By Eth or Sol addresses
          * @param {string} addresses Comma separated list of Ethereum addresses, up to 350 at a time 
-         * @param {Array<BulkUserAddressType>} [address_types] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values.  
-         * @param {number} [viewer_fid]  
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {Array<BulkUserAddressType>} [addressTypes] Customize which address types the request should search for. This is a comma-separated string that can include the following values: \&#39;custody_address\&#39; and \&#39;verified_address\&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values.  
+         * @param {number} [viewerFid]  
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<BulkUsersByAddressResponse>} A promise that resolves to a `BulkUsersByAddressResponse` object
@@ -884,8 +884,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-users-by-ethereum-address)
          * 
          */
-        async fetchBulkUsersByEthereumAddress(addresses: string, address_types?: Array<BulkUserAddressType>, viewer_fid?: number, x_neynar_experimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkUsersByAddressResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchBulkUsersByEthereumAddress(addresses, address_types, viewer_fid, x_neynar_experimental, options);
+        async fetchBulkUsersByEthereumAddress(addresses: string, addressTypes?: Array<BulkUserAddressType>, viewerFid?: number, xNeynarExperimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkUsersByAddressResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchBulkUsersByEthereumAddress(addresses, addressTypes, viewerFid, xNeynarExperimental, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.fetchBulkUsersByEthereumAddress']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -893,10 +893,10 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Fetches power users based on Warpcast power badges. Information is updated once a day.
          * @summary Power users
-         * @param {number} [viewer_fid]  
+         * @param {number} [viewerFid]  
          * @param {number} [limit] Number of power users to fetch  (Default: 25, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object
@@ -904,8 +904,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-power-users)
          * 
          */
-        async fetchPowerUsers(viewer_fid?: number, limit?: number, cursor?: string, x_neynar_experimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchPowerUsers(viewer_fid, limit, cursor, x_neynar_experimental, options);
+        async fetchPowerUsers(viewerFid?: number, limit?: number, cursor?: string, xNeynarExperimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchPowerUsers(viewerFid, limit, cursor, xNeynarExperimental, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.fetchPowerUsers']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -913,7 +913,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
          * @summary Power user FIDs
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<UserPowerLiteResponse>} A promise that resolves to a `UserPowerLiteResponse` object
@@ -921,8 +921,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-power-users-lite)
          * 
          */
-        async fetchPowerUsersLite(x_neynar_experimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserPowerLiteResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchPowerUsersLite(x_neynar_experimental, options);
+        async fetchPowerUsersLite(xNeynarExperimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserPowerLiteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchPowerUsersLite(xNeynarExperimental, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.fetchPowerUsersLite']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -932,10 +932,10 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @summary By location
          * @param {number} latitude Latitude of the location 
          * @param {number} longitude Longitude of the location 
-         * @param {number} [viewer_fid] FID of the user viewing the feed. Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [viewerFid] FID of the user viewing the feed. Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
          * @param {string} [cursor] Pagination cursor 
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object
@@ -943,8 +943,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-users-by-location)
          * 
          */
-        async fetchUsersByLocation(latitude: number, longitude: number, viewer_fid?: number, limit?: number, cursor?: string, x_neynar_experimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUsersByLocation(latitude, longitude, viewer_fid, limit, cursor, x_neynar_experimental, options);
+        async fetchUsersByLocation(latitude: number, longitude: number, viewerFid?: number, limit?: number, cursor?: string, xNeynarExperimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUsersByLocation(latitude, longitude, viewerFid, limit, cursor, xNeynarExperimental, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.fetchUsersByLocation']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -952,7 +952,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
          * @summary Follow user
-         * @param {FollowReqBody} follow_req_body  
+         * @param {FollowReqBody} followReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<BulkFollowResponse>} A promise that resolves to a `BulkFollowResponse` object
@@ -960,8 +960,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/follow-user)
          * 
          */
-        async followUser(follow_req_body: FollowReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkFollowResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.followUser(follow_req_body, options);
+        async followUser(followReqBody: FollowReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkFollowResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.followUser(followReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.followUser']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -969,7 +969,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-account)
          * @summary Fetch fresh FID
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<UserFIDResponse>} A promise that resolves to a `UserFIDResponse` object
@@ -977,8 +977,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-fresh-account-fid)
          * 
          */
-        async getFreshAccountFID(x_neynar_experimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserFIDResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getFreshAccountFID(x_neynar_experimental, options);
+        async getFreshAccountFID(xNeynarExperimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserFIDResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getFreshAccountFID(xNeynarExperimental, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.getFreshAccountFID']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -986,7 +986,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Lookup a user by custody-address
          * @summary By custody-address
-         * @param {string} custody_address Custody Address associated with mnemonic 
+         * @param {string} custodyAddress Custody Address associated with mnemonic 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<UserResponse>} A promise that resolves to a `UserResponse` object
@@ -994,8 +994,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-user-by-custody-address)
          * 
          */
-        async lookupUserByCustodyAddress(custody_address: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupUserByCustodyAddress(custody_address, options);
+        async lookupUserByCustodyAddress(custodyAddress: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupUserByCustodyAddress(custodyAddress, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.lookupUserByCustodyAddress']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1004,8 +1004,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * Fetches a single hydrated user object given a username
          * @summary By username
          * @param {string} username Username of the user to fetch 
-         * @param {number} [viewer_fid]  
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {number} [viewerFid]  
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<UserResponse>} A promise that resolves to a `UserResponse` object
@@ -1013,8 +1013,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-user-by-username)
          * 
          */
-        async lookupUserByUsername(username: string, viewer_fid?: number, x_neynar_experimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupUserByUsername(username, viewer_fid, x_neynar_experimental, options);
+        async lookupUserByUsername(username: string, viewerFid?: number, xNeynarExperimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lookupUserByUsername(username, viewerFid, xNeynarExperimental, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.lookupUserByUsername']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1022,7 +1022,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Adds verification for an eth address or contract for the user \\ (In order to add verification `signer_uuid` must be approved) 
          * @summary Add verification
-         * @param {AddVerificationReqBody} add_verification_req_body  
+         * @param {AddVerificationReqBody} addVerificationReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
@@ -1030,8 +1030,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-verification)
          * 
          */
-        async publishVerification(add_verification_req_body: AddVerificationReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.publishVerification(add_verification_req_body, options);
+        async publishVerification(addVerificationReqBody: AddVerificationReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publishVerification(addVerificationReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.publishVerification']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1039,7 +1039,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user. 
          * @summary Register new account
-         * @param {RegisterUserReqBody} register_user_req_body  
+         * @param {RegisterUserReqBody} registerUserReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<RegisterUserResponse>} A promise that resolves to a `RegisterUserResponse` object
@@ -1047,8 +1047,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/register-account)
          * 
          */
-        async registerAccount(register_user_req_body: RegisterUserReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RegisterUserResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.registerAccount(register_user_req_body, options);
+        async registerAccount(registerUserReqBody: RegisterUserReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RegisterUserResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.registerAccount(registerUserReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.registerAccount']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1057,10 +1057,10 @@ export const UserApiFp = function(configuration?: Configuration) {
          * Search for Usernames
          * @summary Search for Usernames
          * @param {string} q  
-         * @param {number} [viewer_fid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [viewerFid] Providing this will return search results that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {number} [limit] Number of users to fetch  (Default: 5, Maximum: 10)
          * @param {string} [cursor] Pagination cursor. 
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<UserSearchResponse>} A promise that resolves to a `UserSearchResponse` object
@@ -1068,8 +1068,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/search-user)
          * 
          */
-        async searchUser(q: string, viewer_fid?: number, limit?: number, cursor?: string, x_neynar_experimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.searchUser(q, viewer_fid, limit, cursor, x_neynar_experimental, options);
+        async searchUser(q: string, viewerFid?: number, limit?: number, cursor?: string, xNeynarExperimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.searchUser(q, viewerFid, limit, cursor, xNeynarExperimental, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.searchUser']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1077,7 +1077,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved) 
          * @summary Unfollow user
-         * @param {FollowReqBody} follow_req_body  
+         * @param {FollowReqBody} followReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<BulkFollowResponse>} A promise that resolves to a `BulkFollowResponse` object
@@ -1085,8 +1085,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/unfollow-user)
          * 
          */
-        async unfollowUser(follow_req_body: FollowReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkFollowResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.unfollowUser(follow_req_body, options);
+        async unfollowUser(followReqBody: FollowReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkFollowResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.unfollowUser(followReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.unfollowUser']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1094,7 +1094,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Update user profile \\ (In order to update user\'s profile `signer_uuid` must be approved) 
          * @summary Update user profile
-         * @param {UpdateUserReqBody} update_user_req_body  
+         * @param {UpdateUserReqBody} updateUserReqBody  
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object
@@ -1102,8 +1102,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/update-user)
          * 
          */
-        async updateUser(update_user_req_body: UpdateUserReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateUser(update_user_req_body, options);
+        async updateUser(updateUserReqBody: UpdateUserReqBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OperationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateUser(updateUserReqBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.updateUser']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1130,7 +1130,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         deleteVerification(requestParameters: UserApiDeleteVerificationRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.deleteVerification(requestParameters.remove_verification_req_body, options).then((request) => request(axios, basePath));
+            return localVarFp.deleteVerification(requestParameters.removeVerificationReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches information about multiple users based on FIDs
@@ -1144,7 +1144,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         fetchBulkUsers(requestParameters: UserApiFetchBulkUsersRequest, options?: RawAxiosRequestConfig): AxiosPromise<BulkUsersResponse> {
-            return localVarFp.fetchBulkUsers(requestParameters.fids, requestParameters.viewer_fid, requestParameters.x_neynar_experimental, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchBulkUsers(requestParameters.fids, requestParameters.viewerFid, requestParameters.xNeynarExperimental, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
@@ -1158,7 +1158,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         fetchBulkUsersByEthereumAddress(requestParameters: UserApiFetchBulkUsersByEthereumAddressRequest, options?: RawAxiosRequestConfig): AxiosPromise<BulkUsersByAddressResponse> {
-            return localVarFp.fetchBulkUsersByEthereumAddress(requestParameters.addresses, requestParameters.address_types, requestParameters.viewer_fid, requestParameters.x_neynar_experimental, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchBulkUsersByEthereumAddress(requestParameters.addresses, requestParameters.addressTypes, requestParameters.viewerFid, requestParameters.xNeynarExperimental, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches power users based on Warpcast power badges. Information is updated once a day.
@@ -1172,7 +1172,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         fetchPowerUsers(requestParameters: UserApiFetchPowerUsersRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
-            return localVarFp.fetchPowerUsers(requestParameters.viewer_fid, requestParameters.limit, requestParameters.cursor, requestParameters.x_neynar_experimental, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchPowerUsers(requestParameters.viewerFid, requestParameters.limit, requestParameters.cursor, requestParameters.xNeynarExperimental, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
@@ -1186,7 +1186,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         fetchPowerUsersLite(requestParameters: UserApiFetchPowerUsersLiteRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<UserPowerLiteResponse> {
-            return localVarFp.fetchPowerUsersLite(requestParameters.x_neynar_experimental, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchPowerUsersLite(requestParameters.xNeynarExperimental, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches a list of users given a location
@@ -1200,7 +1200,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         fetchUsersByLocation(requestParameters: UserApiFetchUsersByLocationRequest, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
-            return localVarFp.fetchUsersByLocation(requestParameters.latitude, requestParameters.longitude, requestParameters.viewer_fid, requestParameters.limit, requestParameters.cursor, requestParameters.x_neynar_experimental, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchUsersByLocation(requestParameters.latitude, requestParameters.longitude, requestParameters.viewerFid, requestParameters.limit, requestParameters.cursor, requestParameters.xNeynarExperimental, options).then((request) => request(axios, basePath));
         },
         /**
          * Follow a user \\ (In order to follow a user `signer_uuid` must be approved) 
@@ -1214,7 +1214,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         followUser(requestParameters: UserApiFollowUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<BulkFollowResponse> {
-            return localVarFp.followUser(requestParameters.follow_req_body, options).then((request) => request(axios, basePath));
+            return localVarFp.followUser(requestParameters.followReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-account)
@@ -1228,7 +1228,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         getFreshAccountFID(requestParameters: UserApiGetFreshAccountFIDRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<UserFIDResponse> {
-            return localVarFp.getFreshAccountFID(requestParameters.x_neynar_experimental, options).then((request) => request(axios, basePath));
+            return localVarFp.getFreshAccountFID(requestParameters.xNeynarExperimental, options).then((request) => request(axios, basePath));
         },
         /**
          * Lookup a user by custody-address
@@ -1242,7 +1242,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         lookupUserByCustodyAddress(requestParameters: UserApiLookupUserByCustodyAddressRequest, options?: RawAxiosRequestConfig): AxiosPromise<UserResponse> {
-            return localVarFp.lookupUserByCustodyAddress(requestParameters.custody_address, options).then((request) => request(axios, basePath));
+            return localVarFp.lookupUserByCustodyAddress(requestParameters.custodyAddress, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches a single hydrated user object given a username
@@ -1256,7 +1256,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         lookupUserByUsername(requestParameters: UserApiLookupUserByUsernameRequest, options?: RawAxiosRequestConfig): AxiosPromise<UserResponse> {
-            return localVarFp.lookupUserByUsername(requestParameters.username, requestParameters.viewer_fid, requestParameters.x_neynar_experimental, options).then((request) => request(axios, basePath));
+            return localVarFp.lookupUserByUsername(requestParameters.username, requestParameters.viewerFid, requestParameters.xNeynarExperimental, options).then((request) => request(axios, basePath));
         },
         /**
          * Adds verification for an eth address or contract for the user \\ (In order to add verification `signer_uuid` must be approved) 
@@ -1270,7 +1270,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         publishVerification(requestParameters: UserApiPublishVerificationRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.publishVerification(requestParameters.add_verification_req_body, options).then((request) => request(axios, basePath));
+            return localVarFp.publishVerification(requestParameters.addVerificationReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user. 
@@ -1284,7 +1284,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         registerAccount(requestParameters: UserApiRegisterAccountRequest, options?: RawAxiosRequestConfig): AxiosPromise<RegisterUserResponse> {
-            return localVarFp.registerAccount(requestParameters.register_user_req_body, options).then((request) => request(axios, basePath));
+            return localVarFp.registerAccount(requestParameters.registerUserReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Search for Usernames
@@ -1298,7 +1298,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         searchUser(requestParameters: UserApiSearchUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<UserSearchResponse> {
-            return localVarFp.searchUser(requestParameters.q, requestParameters.viewer_fid, requestParameters.limit, requestParameters.cursor, requestParameters.x_neynar_experimental, options).then((request) => request(axios, basePath));
+            return localVarFp.searchUser(requestParameters.q, requestParameters.viewerFid, requestParameters.limit, requestParameters.cursor, requestParameters.xNeynarExperimental, options).then((request) => request(axios, basePath));
         },
         /**
          * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved) 
@@ -1312,7 +1312,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         unfollowUser(requestParameters: UserApiUnfollowUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<BulkFollowResponse> {
-            return localVarFp.unfollowUser(requestParameters.follow_req_body, options).then((request) => request(axios, basePath));
+            return localVarFp.unfollowUser(requestParameters.followReqBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Update user profile \\ (In order to update user\'s profile `signer_uuid` must be approved) 
@@ -1326,7 +1326,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * 
          */
         updateUser(requestParameters: UserApiUpdateUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<OperationResponse> {
-            return localVarFp.updateUser(requestParameters.update_user_req_body, options).then((request) => request(axios, basePath));
+            return localVarFp.updateUser(requestParameters.updateUserReqBody, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1563,7 +1563,7 @@ export interface UserApiDeleteVerificationRequest {
      * @type {RemoveVerificationReqBody}
      * @memberof UserApiDeleteVerification
      */
-    readonly remove_verification_req_body: RemoveVerificationReqBody
+    readonly removeVerificationReqBody: RemoveVerificationReqBody
 }
 
 /**
@@ -1590,7 +1590,7 @@ export interface UserApiFetchBulkUsersRequest {
      * @type {number}
      * @memberof UserApiFetchBulkUsers
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * Enables experimental features
@@ -1600,7 +1600,7 @@ export interface UserApiFetchBulkUsersRequest {
      * @type {boolean}
      * @memberof UserApiFetchBulkUsers
      */
-    readonly x_neynar_experimental?: boolean
+    readonly xNeynarExperimental?: boolean
 }
 
 /**
@@ -1627,7 +1627,7 @@ export interface UserApiFetchBulkUsersByEthereumAddressRequest {
      * @type {Array<BulkUserAddressType>}
      * @memberof UserApiFetchBulkUsersByEthereumAddress
      */
-    readonly address_types?: Array<BulkUserAddressType>
+    readonly addressTypes?: Array<BulkUserAddressType>
 
     /**
      * 
@@ -1637,7 +1637,7 @@ export interface UserApiFetchBulkUsersByEthereumAddressRequest {
      * @type {number}
      * @memberof UserApiFetchBulkUsersByEthereumAddress
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * Enables experimental features
@@ -1647,7 +1647,7 @@ export interface UserApiFetchBulkUsersByEthereumAddressRequest {
      * @type {boolean}
      * @memberof UserApiFetchBulkUsersByEthereumAddress
      */
-    readonly x_neynar_experimental?: boolean
+    readonly xNeynarExperimental?: boolean
 }
 
 /**
@@ -1664,7 +1664,7 @@ export interface UserApiFetchPowerUsersRequest {
      * @type {number}
      * @memberof UserApiFetchPowerUsers
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * Number of power users to fetch (Default: 25, Maximum: 100)
@@ -1694,7 +1694,7 @@ export interface UserApiFetchPowerUsersRequest {
      * @type {boolean}
      * @memberof UserApiFetchPowerUsers
      */
-    readonly x_neynar_experimental?: boolean
+    readonly xNeynarExperimental?: boolean
 }
 
 /**
@@ -1711,7 +1711,7 @@ export interface UserApiFetchPowerUsersLiteRequest {
      * @type {boolean}
      * @memberof UserApiFetchPowerUsersLite
      */
-    readonly x_neynar_experimental?: boolean
+    readonly xNeynarExperimental?: boolean
 }
 
 /**
@@ -1748,7 +1748,7 @@ export interface UserApiFetchUsersByLocationRequest {
      * @type {number}
      * @memberof UserApiFetchUsersByLocation
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * Number of results to fetch (Default: 25, Maximum: 100)
@@ -1778,7 +1778,7 @@ export interface UserApiFetchUsersByLocationRequest {
      * @type {boolean}
      * @memberof UserApiFetchUsersByLocation
      */
-    readonly x_neynar_experimental?: boolean
+    readonly xNeynarExperimental?: boolean
 }
 
 /**
@@ -1795,7 +1795,7 @@ export interface UserApiFollowUserRequest {
      * @type {FollowReqBody}
      * @memberof UserApiFollowUser
      */
-    readonly follow_req_body: FollowReqBody
+    readonly followReqBody: FollowReqBody
 }
 
 /**
@@ -1812,7 +1812,7 @@ export interface UserApiGetFreshAccountFIDRequest {
      * @type {boolean}
      * @memberof UserApiGetFreshAccountFID
      */
-    readonly x_neynar_experimental?: boolean
+    readonly xNeynarExperimental?: boolean
 }
 
 /**
@@ -1829,7 +1829,7 @@ export interface UserApiLookupUserByCustodyAddressRequest {
      * @type {string}
      * @memberof UserApiLookupUserByCustodyAddress
      */
-    readonly custody_address: string
+    readonly custodyAddress: string
 }
 
 /**
@@ -1856,7 +1856,7 @@ export interface UserApiLookupUserByUsernameRequest {
      * @type {number}
      * @memberof UserApiLookupUserByUsername
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * Enables experimental features
@@ -1866,7 +1866,7 @@ export interface UserApiLookupUserByUsernameRequest {
      * @type {boolean}
      * @memberof UserApiLookupUserByUsername
      */
-    readonly x_neynar_experimental?: boolean
+    readonly xNeynarExperimental?: boolean
 }
 
 /**
@@ -1883,7 +1883,7 @@ export interface UserApiPublishVerificationRequest {
      * @type {AddVerificationReqBody}
      * @memberof UserApiPublishVerification
      */
-    readonly add_verification_req_body: AddVerificationReqBody
+    readonly addVerificationReqBody: AddVerificationReqBody
 }
 
 /**
@@ -1900,7 +1900,7 @@ export interface UserApiRegisterAccountRequest {
      * @type {RegisterUserReqBody}
      * @memberof UserApiRegisterAccount
      */
-    readonly register_user_req_body: RegisterUserReqBody
+    readonly registerUserReqBody: RegisterUserReqBody
 }
 
 /**
@@ -1927,7 +1927,7 @@ export interface UserApiSearchUserRequest {
      * @type {number}
      * @memberof UserApiSearchUser
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * Number of users to fetch (Default: 5, Maximum: 10)
@@ -1957,7 +1957,7 @@ export interface UserApiSearchUserRequest {
      * @type {boolean}
      * @memberof UserApiSearchUser
      */
-    readonly x_neynar_experimental?: boolean
+    readonly xNeynarExperimental?: boolean
 }
 
 /**
@@ -1974,7 +1974,7 @@ export interface UserApiUnfollowUserRequest {
      * @type {FollowReqBody}
      * @memberof UserApiUnfollowUser
      */
-    readonly follow_req_body: FollowReqBody
+    readonly followReqBody: FollowReqBody
 }
 
 /**
@@ -1991,7 +1991,7 @@ export interface UserApiUpdateUserRequest {
      * @type {UpdateUserReqBody}
      * @memberof UserApiUpdateUser
      */
-    readonly update_user_req_body: UpdateUserReqBody
+    readonly updateUserReqBody: UpdateUserReqBody
 }
 
 /**
@@ -2014,7 +2014,7 @@ export class UserApi extends BaseAPI implements UserApiInterface {
      * 
      */
     public deleteVerification(requestParameters: UserApiDeleteVerificationRequest, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).deleteVerification(requestParameters.remove_verification_req_body, options).then((request) => request(this.axios, this.basePath));
+        return UserApiFp(this.configuration).deleteVerification(requestParameters.removeVerificationReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2030,7 +2030,7 @@ export class UserApi extends BaseAPI implements UserApiInterface {
      * 
      */
     public fetchBulkUsers(requestParameters: UserApiFetchBulkUsersRequest, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).fetchBulkUsers(requestParameters.fids, requestParameters.viewer_fid, requestParameters.x_neynar_experimental, options).then((request) => request(this.axios, this.basePath));
+        return UserApiFp(this.configuration).fetchBulkUsers(requestParameters.fids, requestParameters.viewerFid, requestParameters.xNeynarExperimental, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2046,7 +2046,7 @@ export class UserApi extends BaseAPI implements UserApiInterface {
      * 
      */
     public fetchBulkUsersByEthereumAddress(requestParameters: UserApiFetchBulkUsersByEthereumAddressRequest, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).fetchBulkUsersByEthereumAddress(requestParameters.addresses, requestParameters.address_types, requestParameters.viewer_fid, requestParameters.x_neynar_experimental, options).then((request) => request(this.axios, this.basePath));
+        return UserApiFp(this.configuration).fetchBulkUsersByEthereumAddress(requestParameters.addresses, requestParameters.addressTypes, requestParameters.viewerFid, requestParameters.xNeynarExperimental, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2062,7 +2062,7 @@ export class UserApi extends BaseAPI implements UserApiInterface {
      * 
      */
     public fetchPowerUsers(requestParameters: UserApiFetchPowerUsersRequest = {}, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).fetchPowerUsers(requestParameters.viewer_fid, requestParameters.limit, requestParameters.cursor, requestParameters.x_neynar_experimental, options).then((request) => request(this.axios, this.basePath));
+        return UserApiFp(this.configuration).fetchPowerUsers(requestParameters.viewerFid, requestParameters.limit, requestParameters.cursor, requestParameters.xNeynarExperimental, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2078,7 +2078,7 @@ export class UserApi extends BaseAPI implements UserApiInterface {
      * 
      */
     public fetchPowerUsersLite(requestParameters: UserApiFetchPowerUsersLiteRequest = {}, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).fetchPowerUsersLite(requestParameters.x_neynar_experimental, options).then((request) => request(this.axios, this.basePath));
+        return UserApiFp(this.configuration).fetchPowerUsersLite(requestParameters.xNeynarExperimental, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2094,7 +2094,7 @@ export class UserApi extends BaseAPI implements UserApiInterface {
      * 
      */
     public fetchUsersByLocation(requestParameters: UserApiFetchUsersByLocationRequest, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).fetchUsersByLocation(requestParameters.latitude, requestParameters.longitude, requestParameters.viewer_fid, requestParameters.limit, requestParameters.cursor, requestParameters.x_neynar_experimental, options).then((request) => request(this.axios, this.basePath));
+        return UserApiFp(this.configuration).fetchUsersByLocation(requestParameters.latitude, requestParameters.longitude, requestParameters.viewerFid, requestParameters.limit, requestParameters.cursor, requestParameters.xNeynarExperimental, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2110,7 +2110,7 @@ export class UserApi extends BaseAPI implements UserApiInterface {
      * 
      */
     public followUser(requestParameters: UserApiFollowUserRequest, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).followUser(requestParameters.follow_req_body, options).then((request) => request(this.axios, this.basePath));
+        return UserApiFp(this.configuration).followUser(requestParameters.followReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2126,7 +2126,7 @@ export class UserApi extends BaseAPI implements UserApiInterface {
      * 
      */
     public getFreshAccountFID(requestParameters: UserApiGetFreshAccountFIDRequest = {}, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).getFreshAccountFID(requestParameters.x_neynar_experimental, options).then((request) => request(this.axios, this.basePath));
+        return UserApiFp(this.configuration).getFreshAccountFID(requestParameters.xNeynarExperimental, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2142,7 +2142,7 @@ export class UserApi extends BaseAPI implements UserApiInterface {
      * 
      */
     public lookupUserByCustodyAddress(requestParameters: UserApiLookupUserByCustodyAddressRequest, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).lookupUserByCustodyAddress(requestParameters.custody_address, options).then((request) => request(this.axios, this.basePath));
+        return UserApiFp(this.configuration).lookupUserByCustodyAddress(requestParameters.custodyAddress, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2158,7 +2158,7 @@ export class UserApi extends BaseAPI implements UserApiInterface {
      * 
      */
     public lookupUserByUsername(requestParameters: UserApiLookupUserByUsernameRequest, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).lookupUserByUsername(requestParameters.username, requestParameters.viewer_fid, requestParameters.x_neynar_experimental, options).then((request) => request(this.axios, this.basePath));
+        return UserApiFp(this.configuration).lookupUserByUsername(requestParameters.username, requestParameters.viewerFid, requestParameters.xNeynarExperimental, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2174,7 +2174,7 @@ export class UserApi extends BaseAPI implements UserApiInterface {
      * 
      */
     public publishVerification(requestParameters: UserApiPublishVerificationRequest, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).publishVerification(requestParameters.add_verification_req_body, options).then((request) => request(this.axios, this.basePath));
+        return UserApiFp(this.configuration).publishVerification(requestParameters.addVerificationReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2190,7 +2190,7 @@ export class UserApi extends BaseAPI implements UserApiInterface {
      * 
      */
     public registerAccount(requestParameters: UserApiRegisterAccountRequest, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).registerAccount(requestParameters.register_user_req_body, options).then((request) => request(this.axios, this.basePath));
+        return UserApiFp(this.configuration).registerAccount(requestParameters.registerUserReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2206,7 +2206,7 @@ export class UserApi extends BaseAPI implements UserApiInterface {
      * 
      */
     public searchUser(requestParameters: UserApiSearchUserRequest, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).searchUser(requestParameters.q, requestParameters.viewer_fid, requestParameters.limit, requestParameters.cursor, requestParameters.x_neynar_experimental, options).then((request) => request(this.axios, this.basePath));
+        return UserApiFp(this.configuration).searchUser(requestParameters.q, requestParameters.viewerFid, requestParameters.limit, requestParameters.cursor, requestParameters.xNeynarExperimental, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2222,7 +2222,7 @@ export class UserApi extends BaseAPI implements UserApiInterface {
      * 
      */
     public unfollowUser(requestParameters: UserApiUnfollowUserRequest, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).unfollowUser(requestParameters.follow_req_body, options).then((request) => request(this.axios, this.basePath));
+        return UserApiFp(this.configuration).unfollowUser(requestParameters.followReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2238,7 +2238,7 @@ export class UserApi extends BaseAPI implements UserApiInterface {
      * 
      */
     public updateUser(requestParameters: UserApiUpdateUserRequest, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).updateUser(requestParameters.update_user_req_body, options).then((request) => request(this.axios, this.basePath));
+        return UserApiFp(this.configuration).updateUser(requestParameters.updateUserReqBody, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

@@ -39,9 +39,9 @@ export const CastsApiAxiosParamCreator = function (configuration?: Configuration
          * @param {number} [fid] The FID of the parent cast 
          * @param {string} [hash] The parent cast\&#39;s hash 
          * @param {string} [url]  
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchUsersCasts200Response>} A promise that resolves to a `FetchUsersCasts200Response` object
@@ -49,7 +49,7 @@ export const CastsApiAxiosParamCreator = function (configuration?: Configuration
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-casts-by-parent)
          * 
          */
-        fetchCastsByParent: async (fid?: number, hash?: string, url?: string, page_size?: number, reverse?: boolean, page_token?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchCastsByParent: async (fid?: number, hash?: string, url?: string, pageSize?: number, reverse?: boolean, pageToken?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/v1/castsByParent`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -77,16 +77,16 @@ export const CastsApiAxiosParamCreator = function (configuration?: Configuration
                 localVarQueryParameter['url'] = url;
             }
 
-            if (page_size !== undefined) {
-                localVarQueryParameter['pageSize'] = page_size;
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
             }
 
             if (reverse !== undefined) {
                 localVarQueryParameter['reverse'] = reverse;
             }
 
-            if (page_token !== undefined) {
-                localVarQueryParameter['pageToken'] = page_token;
+            if (pageToken !== undefined) {
+                localVarQueryParameter['pageToken'] = pageToken;
             }
 
 
@@ -104,9 +104,9 @@ export const CastsApiAxiosParamCreator = function (configuration?: Configuration
          * 
          * @summary Mentioning an FID
          * @param {number} fid The FID that is mentioned in a cast 
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchUsersCasts200Response>} A promise that resolves to a `FetchUsersCasts200Response` object
@@ -114,7 +114,7 @@ export const CastsApiAxiosParamCreator = function (configuration?: Configuration
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-casts-mentioning-user)
          * 
          */
-        fetchCastsMentioningUser: async (fid: number, page_size?: number, reverse?: boolean, page_token?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchCastsMentioningUser: async (fid: number, pageSize?: number, reverse?: boolean, pageToken?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('fetchCastsMentioningUser', 'fid', fid)
             const localVarPath = `/v1/castsByMention`;
@@ -136,16 +136,16 @@ export const CastsApiAxiosParamCreator = function (configuration?: Configuration
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (page_size !== undefined) {
-                localVarQueryParameter['pageSize'] = page_size;
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
             }
 
             if (reverse !== undefined) {
                 localVarQueryParameter['reverse'] = reverse;
             }
 
-            if (page_token !== undefined) {
-                localVarQueryParameter['pageToken'] = page_token;
+            if (pageToken !== undefined) {
+                localVarQueryParameter['pageToken'] = pageToken;
             }
 
 
@@ -163,9 +163,9 @@ export const CastsApiAxiosParamCreator = function (configuration?: Configuration
          * 
          * @summary By FID
          * @param {number} fid The FID of the casts\&#39; creator 
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchUsersCasts200Response>} A promise that resolves to a `FetchUsersCasts200Response` object
@@ -173,7 +173,7 @@ export const CastsApiAxiosParamCreator = function (configuration?: Configuration
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-users-casts)
          * 
          */
-        fetchUsersCasts: async (fid: number, page_size?: number, reverse?: boolean, page_token?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchUsersCasts: async (fid: number, pageSize?: number, reverse?: boolean, pageToken?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('fetchUsersCasts', 'fid', fid)
             const localVarPath = `/v1/castsByFid`;
@@ -195,16 +195,16 @@ export const CastsApiAxiosParamCreator = function (configuration?: Configuration
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (page_size !== undefined) {
-                localVarQueryParameter['pageSize'] = page_size;
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
             }
 
             if (reverse !== undefined) {
                 localVarQueryParameter['reverse'] = reverse;
             }
 
-            if (page_token !== undefined) {
-                localVarQueryParameter['pageToken'] = page_token;
+            if (pageToken !== undefined) {
+                localVarQueryParameter['pageToken'] = pageToken;
             }
 
 
@@ -285,9 +285,9 @@ export const CastsApiFp = function(configuration?: Configuration) {
          * @param {number} [fid] The FID of the parent cast 
          * @param {string} [hash] The parent cast\&#39;s hash 
          * @param {string} [url]  
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchUsersCasts200Response>} A promise that resolves to a `FetchUsersCasts200Response` object
@@ -295,8 +295,8 @@ export const CastsApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-casts-by-parent)
          * 
          */
-        async fetchCastsByParent(fid?: number, hash?: string, url?: string, page_size?: number, reverse?: boolean, page_token?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchUsersCasts200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchCastsByParent(fid, hash, url, page_size, reverse, page_token, options);
+        async fetchCastsByParent(fid?: number, hash?: string, url?: string, pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchUsersCasts200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchCastsByParent(fid, hash, url, pageSize, reverse, pageToken, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CastsApi.fetchCastsByParent']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -305,9 +305,9 @@ export const CastsApiFp = function(configuration?: Configuration) {
          * 
          * @summary Mentioning an FID
          * @param {number} fid The FID that is mentioned in a cast 
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchUsersCasts200Response>} A promise that resolves to a `FetchUsersCasts200Response` object
@@ -315,8 +315,8 @@ export const CastsApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-casts-mentioning-user)
          * 
          */
-        async fetchCastsMentioningUser(fid: number, page_size?: number, reverse?: boolean, page_token?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchUsersCasts200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchCastsMentioningUser(fid, page_size, reverse, page_token, options);
+        async fetchCastsMentioningUser(fid: number, pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchUsersCasts200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchCastsMentioningUser(fid, pageSize, reverse, pageToken, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CastsApi.fetchCastsMentioningUser']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -325,9 +325,9 @@ export const CastsApiFp = function(configuration?: Configuration) {
          * 
          * @summary By FID
          * @param {number} fid The FID of the casts\&#39; creator 
-         * @param {number} [page_size] Maximum number of messages to return in a single response 
+         * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
-         * @param {string} [page_token] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
+         * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchUsersCasts200Response>} A promise that resolves to a `FetchUsersCasts200Response` object
@@ -335,8 +335,8 @@ export const CastsApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-users-casts)
          * 
          */
-        async fetchUsersCasts(fid: number, page_size?: number, reverse?: boolean, page_token?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchUsersCasts200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUsersCasts(fid, page_size, reverse, page_token, options);
+        async fetchUsersCasts(fid: number, pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchUsersCasts200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUsersCasts(fid, pageSize, reverse, pageToken, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CastsApi.fetchUsersCasts']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -381,7 +381,7 @@ export const CastsApiFactory = function (configuration?: Configuration, basePath
          * 
          */
         fetchCastsByParent(requestParameters: CastsApiFetchCastsByParentRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<FetchUsersCasts200Response> {
-            return localVarFp.fetchCastsByParent(requestParameters.fid, requestParameters.hash, requestParameters.url, requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchCastsByParent(requestParameters.fid, requestParameters.hash, requestParameters.url, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -395,7 +395,7 @@ export const CastsApiFactory = function (configuration?: Configuration, basePath
          * 
          */
         fetchCastsMentioningUser(requestParameters: CastsApiFetchCastsMentioningUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchUsersCasts200Response> {
-            return localVarFp.fetchCastsMentioningUser(requestParameters.fid, requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchCastsMentioningUser(requestParameters.fid, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -409,7 +409,7 @@ export const CastsApiFactory = function (configuration?: Configuration, basePath
          * 
          */
         fetchUsersCasts(requestParameters: CastsApiFetchUsersCastsRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchUsersCasts200Response> {
-            return localVarFp.fetchUsersCasts(requestParameters.fid, requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchUsersCasts(requestParameters.fid, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -536,7 +536,7 @@ export interface CastsApiFetchCastsByParentRequest {
      * @type {number}
      * @memberof CastsApiFetchCastsByParent
      */
-    readonly page_size?: number
+    readonly pageSize?: number
 
     /**
      * Reverse the sort order, returning latest messages first
@@ -556,7 +556,7 @@ export interface CastsApiFetchCastsByParentRequest {
      * @type {string}
      * @memberof CastsApiFetchCastsByParent
      */
-    readonly page_token?: string
+    readonly pageToken?: string
 }
 
 /**
@@ -583,7 +583,7 @@ export interface CastsApiFetchCastsMentioningUserRequest {
      * @type {number}
      * @memberof CastsApiFetchCastsMentioningUser
      */
-    readonly page_size?: number
+    readonly pageSize?: number
 
     /**
      * Reverse the sort order, returning latest messages first
@@ -603,7 +603,7 @@ export interface CastsApiFetchCastsMentioningUserRequest {
      * @type {string}
      * @memberof CastsApiFetchCastsMentioningUser
      */
-    readonly page_token?: string
+    readonly pageToken?: string
 }
 
 /**
@@ -630,7 +630,7 @@ export interface CastsApiFetchUsersCastsRequest {
      * @type {number}
      * @memberof CastsApiFetchUsersCasts
      */
-    readonly page_size?: number
+    readonly pageSize?: number
 
     /**
      * Reverse the sort order, returning latest messages first
@@ -650,7 +650,7 @@ export interface CastsApiFetchUsersCastsRequest {
      * @type {string}
      * @memberof CastsApiFetchUsersCasts
      */
-    readonly page_token?: string
+    readonly pageToken?: string
 }
 
 /**
@@ -700,7 +700,7 @@ export class CastsApi extends BaseAPI implements CastsApiInterface {
      * 
      */
     public fetchCastsByParent(requestParameters: CastsApiFetchCastsByParentRequest = {}, options?: RawAxiosRequestConfig) {
-        return CastsApiFp(this.configuration).fetchCastsByParent(requestParameters.fid, requestParameters.hash, requestParameters.url, requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(this.axios, this.basePath));
+        return CastsApiFp(this.configuration).fetchCastsByParent(requestParameters.fid, requestParameters.hash, requestParameters.url, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -716,7 +716,7 @@ export class CastsApi extends BaseAPI implements CastsApiInterface {
      * 
      */
     public fetchCastsMentioningUser(requestParameters: CastsApiFetchCastsMentioningUserRequest, options?: RawAxiosRequestConfig) {
-        return CastsApiFp(this.configuration).fetchCastsMentioningUser(requestParameters.fid, requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(this.axios, this.basePath));
+        return CastsApiFp(this.configuration).fetchCastsMentioningUser(requestParameters.fid, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -732,7 +732,7 @@ export class CastsApi extends BaseAPI implements CastsApiInterface {
      * 
      */
     public fetchUsersCasts(requestParameters: CastsApiFetchUsersCastsRequest, options?: RawAxiosRequestConfig) {
-        return CastsApiFp(this.configuration).fetchUsersCasts(requestParameters.fid, requestParameters.page_size, requestParameters.reverse, requestParameters.page_token, options).then((request) => request(this.axios, this.basePath));
+        return CastsApiFp(this.configuration).fetchUsersCasts(requestParameters.fid, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

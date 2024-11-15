@@ -41,7 +41,7 @@ export const OnChainEventsApiAxiosParamCreator = function (configuration?: Confi
          * 
          * @summary Fetch a list of on-chain events provided by an FID
          * @param {number} fid The FID being requested 
-         * @param {OnChainEventType} event_type The numeric of string value of the event type being requested. 
+         * @param {OnChainEventType} eventType The numeric of string value of the event type being requested. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchUserOnChainEvents200Response>} A promise that resolves to a `FetchUserOnChainEvents200Response` object
@@ -49,11 +49,11 @@ export const OnChainEventsApiAxiosParamCreator = function (configuration?: Confi
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-on-chain-events)
          * 
          */
-        fetchUserOnChainEvents: async (fid: number, event_type: OnChainEventType, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchUserOnChainEvents: async (fid: number, eventType: OnChainEventType, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('fetchUserOnChainEvents', 'fid', fid)
-            // verify required parameter 'event_type' is not null or undefined
-            assertParamExists('fetchUserOnChainEvents', 'event_type', event_type)
+            // verify required parameter 'eventType' is not null or undefined
+            assertParamExists('fetchUserOnChainEvents', 'eventType', eventType)
             const localVarPath = `/v1/onChainEventsByFid`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -73,8 +73,8 @@ export const OnChainEventsApiAxiosParamCreator = function (configuration?: Confi
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (event_type !== undefined) {
-                localVarQueryParameter['event_type'] = event_type;
+            if (eventType !== undefined) {
+                localVarQueryParameter['event_type'] = eventType;
             }
 
 
@@ -195,7 +195,7 @@ export const OnChainEventsApiFp = function(configuration?: Configuration) {
          * 
          * @summary Fetch a list of on-chain events provided by an FID
          * @param {number} fid The FID being requested 
-         * @param {OnChainEventType} event_type The numeric of string value of the event type being requested. 
+         * @param {OnChainEventType} eventType The numeric of string value of the event type being requested. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FetchUserOnChainEvents200Response>} A promise that resolves to a `FetchUserOnChainEvents200Response` object
@@ -203,8 +203,8 @@ export const OnChainEventsApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-on-chain-events)
          * 
          */
-        async fetchUserOnChainEvents(fid: number, event_type: OnChainEventType, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchUserOnChainEvents200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserOnChainEvents(fid, event_type, options);
+        async fetchUserOnChainEvents(fid: number, eventType: OnChainEventType, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchUserOnChainEvents200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserOnChainEvents(fid, eventType, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['OnChainEventsApi.fetchUserOnChainEvents']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -266,7 +266,7 @@ export const OnChainEventsApiFactory = function (configuration?: Configuration, 
          * 
          */
         fetchUserOnChainEvents(requestParameters: OnChainEventsApiFetchUserOnChainEventsRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchUserOnChainEvents200Response> {
-            return localVarFp.fetchUserOnChainEvents(requestParameters.fid, requestParameters.event_type, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchUserOnChainEvents(requestParameters.fid, requestParameters.eventType, options).then((request) => request(axios, basePath));
         },
         /**
          * **Note:** one of two different response schemas is returned based on whether the caller provides the `signer` parameter. If included, a single `OnChainEventSigner` message is returned (or a `not_found` error). If omitted, a non-paginated list of `OnChainEventSigner` messages is returned instead
@@ -373,7 +373,7 @@ export interface OnChainEventsApiFetchUserOnChainEventsRequest {
      * @type {OnChainEventType}
      * @memberof OnChainEventsApiFetchUserOnChainEvents
      */
-    readonly event_type: OnChainEventType
+    readonly eventType: OnChainEventType
 }
 
 /**
@@ -440,7 +440,7 @@ export class OnChainEventsApi extends BaseAPI implements OnChainEventsApiInterfa
      * 
      */
     public fetchUserOnChainEvents(requestParameters: OnChainEventsApiFetchUserOnChainEventsRequest, options?: RawAxiosRequestConfig) {
-        return OnChainEventsApiFp(this.configuration).fetchUserOnChainEvents(requestParameters.fid, requestParameters.event_type, options).then((request) => request(this.axios, this.basePath));
+        return OnChainEventsApiFp(this.configuration).fetchUserOnChainEvents(requestParameters.fid, requestParameters.eventType, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

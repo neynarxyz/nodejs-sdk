@@ -41,9 +41,9 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
          * Fetch a list of suggested users to follow. Used to help users discover new users to follow
          * @summary Suggest Follows
          * @param {number} fid FID of the user whose following you want to fetch. 
-         * @param {number} [viewer_fid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object
@@ -51,7 +51,7 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-follow-suggestions)
          * 
          */
-        fetchFollowSuggestions: async (fid: number, viewer_fid?: number, limit?: number, x_neynar_experimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchFollowSuggestions: async (fid: number, viewerFid?: number, limit?: number, xNeynarExperimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('fetchFollowSuggestions', 'fid', fid)
             const localVarPath = `/farcaster/following/suggested`;
@@ -73,18 +73,18 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
 
-            if (x_neynar_experimental != null) {
-                localVarHeaderParameter['x-neynar-experimental'] = typeof x_neynar_experimental === 'string'
-                    ? x_neynar_experimental
-                    : JSON.stringify(x_neynar_experimental);
+            if (xNeynarExperimental != null) {
+                localVarHeaderParameter['x-neynar-experimental'] = typeof xNeynarExperimental === 'string'
+                    ? xNeynarExperimental
+                    : JSON.stringify(xNeynarExperimental);
             }
 
 
@@ -101,9 +101,9 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
          * @summary Relevant followers
-         * @param {number} target_fid User who\&#39;s profile you are looking at 
-         * @param {number} viewer_fid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {number} targetFid User who\&#39;s profile you are looking at 
+         * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<RelevantFollowersResponse>} A promise that resolves to a `RelevantFollowersResponse` object
@@ -111,11 +111,11 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-relevant-followers)
          * 
          */
-        fetchRelevantFollowers: async (target_fid: number, viewer_fid: number, x_neynar_experimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'target_fid' is not null or undefined
-            assertParamExists('fetchRelevantFollowers', 'target_fid', target_fid)
-            // verify required parameter 'viewer_fid' is not null or undefined
-            assertParamExists('fetchRelevantFollowers', 'viewer_fid', viewer_fid)
+        fetchRelevantFollowers: async (targetFid: number, viewerFid: number, xNeynarExperimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'targetFid' is not null or undefined
+            assertParamExists('fetchRelevantFollowers', 'targetFid', targetFid)
+            // verify required parameter 'viewerFid' is not null or undefined
+            assertParamExists('fetchRelevantFollowers', 'viewerFid', viewerFid)
             const localVarPath = `/farcaster/followers/relevant`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -131,18 +131,18 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
             // authentication ApiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (target_fid !== undefined) {
-                localVarQueryParameter['target_fid'] = target_fid;
+            if (targetFid !== undefined) {
+                localVarQueryParameter['target_fid'] = targetFid;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
-            if (x_neynar_experimental != null) {
-                localVarHeaderParameter['x-neynar-experimental'] = typeof x_neynar_experimental === 'string'
-                    ? x_neynar_experimental
-                    : JSON.stringify(x_neynar_experimental);
+            if (xNeynarExperimental != null) {
+                localVarHeaderParameter['x-neynar-experimental'] = typeof xNeynarExperimental === 'string'
+                    ? xNeynarExperimental
+                    : JSON.stringify(xNeynarExperimental);
             }
 
 
@@ -160,11 +160,11 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
          * Returns a list of followers for a specific FID.
          * @summary Followers
          * @param {number} fid User who\&#39;s profile you are looking at 
-         * @param {number} [viewer_fid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
-         * @param {FollowSortType} [sort_type] Sort type for fetch followers. Default is &#x60;desc_chron&#x60; 
+         * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {FollowSortType} [sortType] Sort type for fetch followers. Default is &#x60;desc_chron&#x60; 
          * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FollowersResponse>} A promise that resolves to a `FollowersResponse` object
@@ -172,7 +172,7 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-followers)
          * 
          */
-        fetchUserFollowers: async (fid: number, viewer_fid?: number, sort_type?: FollowSortType, limit?: number, cursor?: string, x_neynar_experimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchUserFollowers: async (fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, xNeynarExperimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('fetchUserFollowers', 'fid', fid)
             const localVarPath = `/farcaster/followers`;
@@ -194,12 +194,12 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
-            if (sort_type !== undefined) {
-                localVarQueryParameter['sort_type'] = sort_type;
+            if (sortType !== undefined) {
+                localVarQueryParameter['sort_type'] = sortType;
             }
 
             if (limit !== undefined) {
@@ -210,10 +210,10 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['cursor'] = cursor;
             }
 
-            if (x_neynar_experimental != null) {
-                localVarHeaderParameter['x-neynar-experimental'] = typeof x_neynar_experimental === 'string'
-                    ? x_neynar_experimental
-                    : JSON.stringify(x_neynar_experimental);
+            if (xNeynarExperimental != null) {
+                localVarHeaderParameter['x-neynar-experimental'] = typeof xNeynarExperimental === 'string'
+                    ? xNeynarExperimental
+                    : JSON.stringify(xNeynarExperimental);
             }
 
 
@@ -231,11 +231,11 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
          * Fetch a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
          * @summary Followed by
          * @param {number} fid FID of the user whose following you want to fetch. 
-         * @param {number} [viewer_fid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
-         * @param {FollowSortType} [sort_type] Optional parameter to sort the users based on different criteria. 
+         * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {FollowSortType} [sortType] Optional parameter to sort the users based on different criteria. 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FollowersResponse>} A promise that resolves to a `FollowersResponse` object
@@ -243,7 +243,7 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-following)
          * 
          */
-        fetchUserFollowing: async (fid: number, viewer_fid?: number, sort_type?: FollowSortType, limit?: number, cursor?: string, x_neynar_experimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchUserFollowing: async (fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, xNeynarExperimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fid' is not null or undefined
             assertParamExists('fetchUserFollowing', 'fid', fid)
             const localVarPath = `/farcaster/following`;
@@ -265,12 +265,12 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['fid'] = fid;
             }
 
-            if (viewer_fid !== undefined) {
-                localVarQueryParameter['viewer_fid'] = viewer_fid;
+            if (viewerFid !== undefined) {
+                localVarQueryParameter['viewer_fid'] = viewerFid;
             }
 
-            if (sort_type !== undefined) {
-                localVarQueryParameter['sort_type'] = sort_type;
+            if (sortType !== undefined) {
+                localVarQueryParameter['sort_type'] = sortType;
             }
 
             if (limit !== undefined) {
@@ -281,10 +281,10 @@ export const FollowsApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['cursor'] = cursor;
             }
 
-            if (x_neynar_experimental != null) {
-                localVarHeaderParameter['x-neynar-experimental'] = typeof x_neynar_experimental === 'string'
-                    ? x_neynar_experimental
-                    : JSON.stringify(x_neynar_experimental);
+            if (xNeynarExperimental != null) {
+                localVarHeaderParameter['x-neynar-experimental'] = typeof xNeynarExperimental === 'string'
+                    ? xNeynarExperimental
+                    : JSON.stringify(xNeynarExperimental);
             }
 
 
@@ -312,9 +312,9 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          * Fetch a list of suggested users to follow. Used to help users discover new users to follow
          * @summary Suggest Follows
          * @param {number} fid FID of the user whose following you want to fetch. 
-         * @param {number} [viewer_fid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object
@@ -322,8 +322,8 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-follow-suggestions)
          * 
          */
-        async fetchFollowSuggestions(fid: number, viewer_fid?: number, limit?: number, x_neynar_experimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchFollowSuggestions(fid, viewer_fid, limit, x_neynar_experimental, options);
+        async fetchFollowSuggestions(fid: number, viewerFid?: number, limit?: number, xNeynarExperimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchFollowSuggestions(fid, viewerFid, limit, xNeynarExperimental, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FollowsApi.fetchFollowSuggestions']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -331,9 +331,9 @@ export const FollowsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
          * @summary Relevant followers
-         * @param {number} target_fid User who\&#39;s profile you are looking at 
-         * @param {number} viewer_fid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {number} targetFid User who\&#39;s profile you are looking at 
+         * @param {number} viewerFid The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<RelevantFollowersResponse>} A promise that resolves to a `RelevantFollowersResponse` object
@@ -341,8 +341,8 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-relevant-followers)
          * 
          */
-        async fetchRelevantFollowers(target_fid: number, viewer_fid: number, x_neynar_experimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RelevantFollowersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchRelevantFollowers(target_fid, viewer_fid, x_neynar_experimental, options);
+        async fetchRelevantFollowers(targetFid: number, viewerFid: number, xNeynarExperimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RelevantFollowersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchRelevantFollowers(targetFid, viewerFid, xNeynarExperimental, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FollowsApi.fetchRelevantFollowers']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -351,11 +351,11 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          * Returns a list of followers for a specific FID.
          * @summary Followers
          * @param {number} fid User who\&#39;s profile you are looking at 
-         * @param {number} [viewer_fid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
-         * @param {FollowSortType} [sort_type] Sort type for fetch followers. Default is &#x60;desc_chron&#x60; 
+         * @param {number} [viewerFid] Providing this will return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {FollowSortType} [sortType] Sort type for fetch followers. Default is &#x60;desc_chron&#x60; 
          * @param {number} [limit] Number of results to fetch  (Default: 20, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FollowersResponse>} A promise that resolves to a `FollowersResponse` object
@@ -363,8 +363,8 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-followers)
          * 
          */
-        async fetchUserFollowers(fid: number, viewer_fid?: number, sort_type?: FollowSortType, limit?: number, cursor?: string, x_neynar_experimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FollowersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserFollowers(fid, viewer_fid, sort_type, limit, cursor, x_neynar_experimental, options);
+        async fetchUserFollowers(fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, xNeynarExperimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FollowersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserFollowers(fid, viewerFid, sortType, limit, cursor, xNeynarExperimental, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FollowsApi.fetchUserFollowers']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -373,11 +373,11 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          * Fetch a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
          * @summary Followed by
          * @param {number} fid FID of the user whose following you want to fetch. 
-         * @param {number} [viewer_fid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
-         * @param {FollowSortType} [sort_type] Optional parameter to sort the users based on different criteria. 
+         * @param {number} [viewerFid] Providing this will return a list of users that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. 
+         * @param {FollowSortType} [sortType] Optional parameter to sort the users based on different criteria. 
          * @param {number} [limit] Number of results to fetch  (Default: 25, Maximum: 100)
          * @param {string} [cursor] Pagination cursor. 
-         * @param {boolean} [x_neynar_experimental] Enables experimental features 
+         * @param {boolean} [xNeynarExperimental] Enables experimental features 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<FollowersResponse>} A promise that resolves to a `FollowersResponse` object
@@ -385,8 +385,8 @@ export const FollowsApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-following)
          * 
          */
-        async fetchUserFollowing(fid: number, viewer_fid?: number, sort_type?: FollowSortType, limit?: number, cursor?: string, x_neynar_experimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FollowersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserFollowing(fid, viewer_fid, sort_type, limit, cursor, x_neynar_experimental, options);
+        async fetchUserFollowing(fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string, xNeynarExperimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FollowersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserFollowing(fid, viewerFid, sortType, limit, cursor, xNeynarExperimental, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FollowsApi.fetchUserFollowing']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -413,7 +413,7 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
          * 
          */
         fetchFollowSuggestions(requestParameters: FollowsApiFetchFollowSuggestionsRequest, options?: RawAxiosRequestConfig): AxiosPromise<UsersResponse> {
-            return localVarFp.fetchFollowSuggestions(requestParameters.fid, requestParameters.viewer_fid, requestParameters.limit, requestParameters.x_neynar_experimental, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchFollowSuggestions(requestParameters.fid, requestParameters.viewerFid, requestParameters.limit, requestParameters.xNeynarExperimental, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".
@@ -427,7 +427,7 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
          * 
          */
         fetchRelevantFollowers(requestParameters: FollowsApiFetchRelevantFollowersRequest, options?: RawAxiosRequestConfig): AxiosPromise<RelevantFollowersResponse> {
-            return localVarFp.fetchRelevantFollowers(requestParameters.target_fid, requestParameters.viewer_fid, requestParameters.x_neynar_experimental, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchRelevantFollowers(requestParameters.targetFid, requestParameters.viewerFid, requestParameters.xNeynarExperimental, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of followers for a specific FID.
@@ -441,7 +441,7 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
          * 
          */
         fetchUserFollowers(requestParameters: FollowsApiFetchUserFollowersRequest, options?: RawAxiosRequestConfig): AxiosPromise<FollowersResponse> {
-            return localVarFp.fetchUserFollowers(requestParameters.fid, requestParameters.viewer_fid, requestParameters.sort_type, requestParameters.limit, requestParameters.cursor, requestParameters.x_neynar_experimental, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchUserFollowers(requestParameters.fid, requestParameters.viewerFid, requestParameters.sortType, requestParameters.limit, requestParameters.cursor, requestParameters.xNeynarExperimental, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
@@ -455,7 +455,7 @@ export const FollowsApiFactory = function (configuration?: Configuration, basePa
          * 
          */
         fetchUserFollowing(requestParameters: FollowsApiFetchUserFollowingRequest, options?: RawAxiosRequestConfig): AxiosPromise<FollowersResponse> {
-            return localVarFp.fetchUserFollowing(requestParameters.fid, requestParameters.viewer_fid, requestParameters.sort_type, requestParameters.limit, requestParameters.cursor, requestParameters.x_neynar_experimental, options).then((request) => request(axios, basePath));
+            return localVarFp.fetchUserFollowing(requestParameters.fid, requestParameters.viewerFid, requestParameters.sortType, requestParameters.limit, requestParameters.cursor, requestParameters.xNeynarExperimental, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -548,7 +548,7 @@ export interface FollowsApiFetchFollowSuggestionsRequest {
      * @type {number}
      * @memberof FollowsApiFetchFollowSuggestions
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * Number of results to fetch (Default: 25, Maximum: 100)
@@ -568,7 +568,7 @@ export interface FollowsApiFetchFollowSuggestionsRequest {
      * @type {boolean}
      * @memberof FollowsApiFetchFollowSuggestions
      */
-    readonly x_neynar_experimental?: boolean
+    readonly xNeynarExperimental?: boolean
 }
 
 /**
@@ -585,7 +585,7 @@ export interface FollowsApiFetchRelevantFollowersRequest {
      * @type {number}
      * @memberof FollowsApiFetchRelevantFollowers
      */
-    readonly target_fid: number
+    readonly targetFid: number
 
     /**
      * The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
@@ -595,7 +595,7 @@ export interface FollowsApiFetchRelevantFollowersRequest {
      * @type {number}
      * @memberof FollowsApiFetchRelevantFollowers
      */
-    readonly viewer_fid: number
+    readonly viewerFid: number
 
     /**
      * Enables experimental features
@@ -605,7 +605,7 @@ export interface FollowsApiFetchRelevantFollowersRequest {
      * @type {boolean}
      * @memberof FollowsApiFetchRelevantFollowers
      */
-    readonly x_neynar_experimental?: boolean
+    readonly xNeynarExperimental?: boolean
 }
 
 /**
@@ -632,7 +632,7 @@ export interface FollowsApiFetchUserFollowersRequest {
      * @type {number}
      * @memberof FollowsApiFetchUserFollowers
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * Sort type for fetch followers. Default is &#x60;desc_chron&#x60;
@@ -642,7 +642,7 @@ export interface FollowsApiFetchUserFollowersRequest {
      * @type {FollowSortType}
      * @memberof FollowsApiFetchUserFollowers
      */
-    readonly sort_type?: FollowSortType
+    readonly sortType?: FollowSortType
 
     /**
      * Number of results to fetch (Default: 20, Maximum: 100)
@@ -672,7 +672,7 @@ export interface FollowsApiFetchUserFollowersRequest {
      * @type {boolean}
      * @memberof FollowsApiFetchUserFollowers
      */
-    readonly x_neynar_experimental?: boolean
+    readonly xNeynarExperimental?: boolean
 }
 
 /**
@@ -699,7 +699,7 @@ export interface FollowsApiFetchUserFollowingRequest {
      * @type {number}
      * @memberof FollowsApiFetchUserFollowing
      */
-    readonly viewer_fid?: number
+    readonly viewerFid?: number
 
     /**
      * Optional parameter to sort the users based on different criteria.
@@ -709,7 +709,7 @@ export interface FollowsApiFetchUserFollowingRequest {
      * @type {FollowSortType}
      * @memberof FollowsApiFetchUserFollowing
      */
-    readonly sort_type?: FollowSortType
+    readonly sortType?: FollowSortType
 
     /**
      * Number of results to fetch (Default: 25, Maximum: 100)
@@ -739,7 +739,7 @@ export interface FollowsApiFetchUserFollowingRequest {
      * @type {boolean}
      * @memberof FollowsApiFetchUserFollowing
      */
-    readonly x_neynar_experimental?: boolean
+    readonly xNeynarExperimental?: boolean
 }
 
 /**
@@ -762,7 +762,7 @@ export class FollowsApi extends BaseAPI implements FollowsApiInterface {
      * 
      */
     public fetchFollowSuggestions(requestParameters: FollowsApiFetchFollowSuggestionsRequest, options?: RawAxiosRequestConfig) {
-        return FollowsApiFp(this.configuration).fetchFollowSuggestions(requestParameters.fid, requestParameters.viewer_fid, requestParameters.limit, requestParameters.x_neynar_experimental, options).then((request) => request(this.axios, this.basePath));
+        return FollowsApiFp(this.configuration).fetchFollowSuggestions(requestParameters.fid, requestParameters.viewerFid, requestParameters.limit, requestParameters.xNeynarExperimental, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -778,7 +778,7 @@ export class FollowsApi extends BaseAPI implements FollowsApiInterface {
      * 
      */
     public fetchRelevantFollowers(requestParameters: FollowsApiFetchRelevantFollowersRequest, options?: RawAxiosRequestConfig) {
-        return FollowsApiFp(this.configuration).fetchRelevantFollowers(requestParameters.target_fid, requestParameters.viewer_fid, requestParameters.x_neynar_experimental, options).then((request) => request(this.axios, this.basePath));
+        return FollowsApiFp(this.configuration).fetchRelevantFollowers(requestParameters.targetFid, requestParameters.viewerFid, requestParameters.xNeynarExperimental, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -794,7 +794,7 @@ export class FollowsApi extends BaseAPI implements FollowsApiInterface {
      * 
      */
     public fetchUserFollowers(requestParameters: FollowsApiFetchUserFollowersRequest, options?: RawAxiosRequestConfig) {
-        return FollowsApiFp(this.configuration).fetchUserFollowers(requestParameters.fid, requestParameters.viewer_fid, requestParameters.sort_type, requestParameters.limit, requestParameters.cursor, requestParameters.x_neynar_experimental, options).then((request) => request(this.axios, this.basePath));
+        return FollowsApiFp(this.configuration).fetchUserFollowers(requestParameters.fid, requestParameters.viewerFid, requestParameters.sortType, requestParameters.limit, requestParameters.cursor, requestParameters.xNeynarExperimental, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -810,7 +810,7 @@ export class FollowsApi extends BaseAPI implements FollowsApiInterface {
      * 
      */
     public fetchUserFollowing(requestParameters: FollowsApiFetchUserFollowingRequest, options?: RawAxiosRequestConfig) {
-        return FollowsApiFp(this.configuration).fetchUserFollowing(requestParameters.fid, requestParameters.viewer_fid, requestParameters.sort_type, requestParameters.limit, requestParameters.cursor, requestParameters.x_neynar_experimental, options).then((request) => request(this.axios, this.basePath));
+        return FollowsApiFp(this.configuration).fetchUserFollowing(requestParameters.fid, requestParameters.viewerFid, requestParameters.sortType, requestParameters.limit, requestParameters.cursor, requestParameters.xNeynarExperimental, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
