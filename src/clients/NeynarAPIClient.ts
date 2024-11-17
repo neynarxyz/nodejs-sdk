@@ -3161,14 +3161,14 @@ if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
  * const addressTypes = 
  * const viewerFid = 
  *
- * client.fetchBulkUsersByEthereumAddress({ addresses, addressTypes, viewerFid }).then(response => {
+ * client.fetchBulkUsersByEthereumOrSolAddress({ addresses, addressTypes, viewerFid }).then(response => {
  *   console.log('response:', response);
  * });
  *
- * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-users-by-ethereum-address)
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-users-by-ethereum-or-sol-address)
  *
  */
-public async fetchBulkUsersByEthereumAddress(params: { addresses: string[], addressTypes?: Array<BulkUserAddressType>, viewerFid?: number }): Promise<BulkUsersByAddressResponse> {
+public async fetchBulkUsersByEthereumOrSolAddress(params: { addresses: string[], addressTypes?: Array<BulkUserAddressType>, viewerFid?: number }): Promise<BulkUsersByAddressResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
@@ -3176,7 +3176,7 @@ if (adjustedParams.addresses && Array.isArray(adjustedParams.addresses)) {
   adjustedParams.addresses = adjustedParams.addresses.join(",");
 }
 
-  const response = await this.apis.userApi.fetchBulkUsersByEthereumAddress(adjustedParams);
+  const response = await this.apis.userApi.fetchBulkUsersByEthereumOrSolAddress(adjustedParams);
   return response.data;
 }
 
