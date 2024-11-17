@@ -16,7 +16,8 @@
     "generate:api:wrapper": "cross-env CLIENT_TYPE=api ts-node -P tsconfig.scripts.json scripts/generate-wrapper.ts",
     "generate:hub-api:wrapper": "cross-env CLIENT_TYPE=hub-api ts-node -P tsconfig.scripts.json scripts/generate-wrapper.ts",
     "generate:wrapper": "yarn generate:api:wrapper && yarn generate:hub-api:wrapper",
-    "generate:all": "yarn generate && yarn generate:wrapper"
+    "generate:all": "yarn generate && yarn generate:wrapper",
+    "postinstall": "node postinstall.js"
   },
   "author": "Neynar",
   "license": "MIT",

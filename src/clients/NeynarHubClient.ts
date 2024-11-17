@@ -91,6 +91,26 @@ export class NeynarHubClient {
     config: Configuration,
     options: NeynarHubClientOptions = {}
   ) {
+
+    if (typeof config === 'string') {
+      console.error('Error: config must be of type Configuration');
+      console.log('Correct usage:');
+      console.log(`
+import { NeynarHubClient, Configuration } from "@neynar/nodejs-sdk";
+
+const config = new Configuration({
+  apiKey: "API_KEY",
+  baseOptions: {
+    headers: {
+      "x-neynar-experimental": true,
+    },
+  },
+});
+
+const client = new NeynarHubClient(config);`);
+      throw new Error('Invalid configuration type. Expected Configuration object but received string.');
+    }
+
     const { logger = silentLogger, axiosInstance: customAxiosInstance } = options;
     
     this.logger = logger;
