@@ -173,12 +173,12 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @throws {RequiredError}
          * @returns {Promise<BulkUsersByAddressResponse>} A promise that resolves to a `BulkUsersByAddressResponse` object
          * 
-         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-users-by-ethereum-or-sol-address)
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-users-by-eth-or-sol-address)
          * 
          */
-        fetchBulkUsersByEthereumOrSolAddress: async (addresses: string, addressTypes?: Array<BulkUserAddressType>, viewerFid?: number, xNeynarExperimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchBulkUsersByEthOrSolAddress: async (addresses: string, addressTypes?: Array<BulkUserAddressType>, viewerFid?: number, xNeynarExperimental?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'addresses' is not null or undefined
-            assertParamExists('fetchBulkUsersByEthereumOrSolAddress', 'addresses', addresses)
+            assertParamExists('fetchBulkUsersByEthOrSolAddress', 'addresses', addresses)
             const localVarPath = `/farcaster/user/bulk-by-address`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -881,13 +881,13 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          * @returns {Promise<BulkUsersByAddressResponse>} A promise that resolves to a `BulkUsersByAddressResponse` object
          * 
-         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-users-by-ethereum-or-sol-address)
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-users-by-eth-or-sol-address)
          * 
          */
-        async fetchBulkUsersByEthereumOrSolAddress(addresses: string, addressTypes?: Array<BulkUserAddressType>, viewerFid?: number, xNeynarExperimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkUsersByAddressResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchBulkUsersByEthereumOrSolAddress(addresses, addressTypes, viewerFid, xNeynarExperimental, options);
+        async fetchBulkUsersByEthOrSolAddress(addresses: string, addressTypes?: Array<BulkUserAddressType>, viewerFid?: number, xNeynarExperimental?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BulkUsersByAddressResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchBulkUsersByEthOrSolAddress(addresses, addressTypes, viewerFid, xNeynarExperimental, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UserApi.fetchBulkUsersByEthereumOrSolAddress']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.fetchBulkUsersByEthOrSolAddress']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -1149,16 +1149,16 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         /**
          * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
          * @summary By Eth or Sol addresses
-         * @param {UserApiFetchBulkUsersByEthereumOrSolAddressRequest} requestParameters Request parameters.
+         * @param {UserApiFetchBulkUsersByEthOrSolAddressRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          * @returns {Promise<BulkUsersByAddressResponse>} A promise that resolves to a `BulkUsersByAddressResponse` object
          * 
-         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-users-by-ethereum-or-sol-address)
+         * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-users-by-eth-or-sol-address)
          * 
          */
-        fetchBulkUsersByEthereumOrSolAddress(requestParameters: UserApiFetchBulkUsersByEthereumOrSolAddressRequest, options?: RawAxiosRequestConfig): AxiosPromise<BulkUsersByAddressResponse> {
-            return localVarFp.fetchBulkUsersByEthereumOrSolAddress(requestParameters.addresses, requestParameters.addressTypes, requestParameters.viewerFid, requestParameters.xNeynarExperimental, options).then((request) => request(axios, basePath));
+        fetchBulkUsersByEthOrSolAddress(requestParameters: UserApiFetchBulkUsersByEthOrSolAddressRequest, options?: RawAxiosRequestConfig): AxiosPromise<BulkUsersByAddressResponse> {
+            return localVarFp.fetchBulkUsersByEthOrSolAddress(requestParameters.addresses, requestParameters.addressTypes, requestParameters.viewerFid, requestParameters.xNeynarExperimental, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches power users based on Warpcast power badges. Information is updated once a day.
@@ -1368,16 +1368,16 @@ export interface UserApiInterface {
     /**
      * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
      * @summary By Eth or Sol addresses
-     * @param {UserApiFetchBulkUsersByEthereumOrSolAddressRequest} requestParameters Request parameters.
+     * @param {UserApiFetchBulkUsersByEthOrSolAddressRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApiInterface
      * @returns {Promise<BulkUsersByAddressResponse>} A promise that resolves to a `BulkUsersByAddressResponse` object
      * 
-     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-users-by-ethereum-or-sol-address)
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-users-by-eth-or-sol-address)
      * 
      */
-    fetchBulkUsersByEthereumOrSolAddress(requestParameters: UserApiFetchBulkUsersByEthereumOrSolAddressRequest, options?: RawAxiosRequestConfig): AxiosPromise<BulkUsersByAddressResponse>;
+    fetchBulkUsersByEthOrSolAddress(requestParameters: UserApiFetchBulkUsersByEthOrSolAddressRequest, options?: RawAxiosRequestConfig): AxiosPromise<BulkUsersByAddressResponse>;
 
     /**
      * Fetches power users based on Warpcast power badges. Information is updated once a day.
@@ -1604,18 +1604,18 @@ export interface UserApiFetchBulkUsersRequest {
 }
 
 /**
- * Request parameters for fetchBulkUsersByEthereumOrSolAddress operation in UserApi.
+ * Request parameters for fetchBulkUsersByEthOrSolAddress operation in UserApi.
  * @export
- * @interface UserApiFetchBulkUsersByEthereumOrSolAddressRequest
+ * @interface UserApiFetchBulkUsersByEthOrSolAddressRequest
  */
-export interface UserApiFetchBulkUsersByEthereumOrSolAddressRequest {
+export interface UserApiFetchBulkUsersByEthOrSolAddressRequest {
     /**
      * Comma separated list of Ethereum addresses, up to 350 at a time
      * 
      * @commaSeparated
      * 
      * @type {string}
-     * @memberof UserApiFetchBulkUsersByEthereumOrSolAddress
+     * @memberof UserApiFetchBulkUsersByEthOrSolAddress
      */
     readonly addresses: string
 
@@ -1625,7 +1625,7 @@ export interface UserApiFetchBulkUsersByEthereumOrSolAddressRequest {
      * 
      * 
      * @type {Array<BulkUserAddressType>}
-     * @memberof UserApiFetchBulkUsersByEthereumOrSolAddress
+     * @memberof UserApiFetchBulkUsersByEthOrSolAddress
      */
     readonly addressTypes?: Array<BulkUserAddressType>
 
@@ -1635,7 +1635,7 @@ export interface UserApiFetchBulkUsersByEthereumOrSolAddressRequest {
      * 
      * 
      * @type {number}
-     * @memberof UserApiFetchBulkUsersByEthereumOrSolAddress
+     * @memberof UserApiFetchBulkUsersByEthOrSolAddress
      */
     readonly viewerFid?: number
 
@@ -1645,7 +1645,7 @@ export interface UserApiFetchBulkUsersByEthereumOrSolAddressRequest {
      * 
      * @globalHeader
      * @type {boolean}
-     * @memberof UserApiFetchBulkUsersByEthereumOrSolAddress
+     * @memberof UserApiFetchBulkUsersByEthOrSolAddress
      */
     readonly xNeynarExperimental?: boolean
 }
@@ -2036,17 +2036,17 @@ export class UserApi extends BaseAPI implements UserApiInterface {
     /**
      * Fetches all users based on multiple Ethereum or Solana addresses.  Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.  A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users. You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
      * @summary By Eth or Sol addresses
-     * @param {UserApiFetchBulkUsersByEthereumOrSolAddressRequest} requestParameters Request parameters.
+     * @param {UserApiFetchBulkUsersByEthOrSolAddressRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      * @returns {Promise<BulkUsersByAddressResponse>} A promise that resolves to a `BulkUsersByAddressResponse` object
      * 
-     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-users-by-ethereum-or-sol-address)
+     * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-users-by-eth-or-sol-address)
      * 
      */
-    public fetchBulkUsersByEthereumOrSolAddress(requestParameters: UserApiFetchBulkUsersByEthereumOrSolAddressRequest, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).fetchBulkUsersByEthereumOrSolAddress(requestParameters.addresses, requestParameters.addressTypes, requestParameters.viewerFid, requestParameters.xNeynarExperimental, options).then((request) => request(this.axios, this.basePath));
+    public fetchBulkUsersByEthOrSolAddress(requestParameters: UserApiFetchBulkUsersByEthOrSolAddressRequest, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).fetchBulkUsersByEthOrSolAddress(requestParameters.addresses, requestParameters.addressTypes, requestParameters.viewerFid, requestParameters.xNeynarExperimental, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
