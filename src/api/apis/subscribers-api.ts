@@ -563,7 +563,7 @@ export interface SubscribersApiFetchSubscriptionCheckRequest {
     /**
      * Comma separated list of Ethereum addresses, up to 350 at a time
      * 
-     * 
+     * @commaSeparated
      * 
      * @type {string}
      * @memberof SubscribersApiFetchSubscriptionCheck

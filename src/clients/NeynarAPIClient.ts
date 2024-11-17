@@ -3007,7 +3007,7 @@ Object.assign(adjustedParams, params);
  * @summary Hypersub subscription check
  *
  * @param {object} params
- * @param {string} params.addresses  - Comma separated list of Ethereum addresses, up to 350 at a time
+ * @param {string[]} params.addresses  - Comma separated list of Ethereum addresses, up to 350 at a time
  * @param {string} params.contractAddress  - Ethereum address of the STP contract
  * @param {string} params.chainId  - Chain ID of the STP contract
  *
@@ -3027,9 +3027,12 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscription-check)
  *
  */
-public async fetchSubscriptionCheck(params: { addresses: string, contractAddress: string, chainId: string }): Promise<SubscriptionCheckResponse> {
+public async fetchSubscriptionCheck(params: { addresses: string[], contractAddress: string, chainId: string }): Promise<SubscriptionCheckResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
+if (adjustedParams.addresses && Array.isArray(adjustedParams.addresses)) {
+  adjustedParams.addresses = adjustedParams.addresses.join(",");
+}
 
   const response = await this.apis.subscribersApi.fetchSubscriptionCheck(adjustedParams);
   return response.data;
