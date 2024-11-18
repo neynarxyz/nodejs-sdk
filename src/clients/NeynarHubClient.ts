@@ -94,8 +94,12 @@ export class NeynarHubClient {
 
     if (typeof config === 'string') {
       console.error('Error: config must be of type Configuration');
-      console.log('Correct usage:');
       console.log(`
+Seems, like you are using sdk v2 but the syntax on client instantiation is for sdk v1.
+SDK v1 -> v2 migration guide: https://docs.neynar.com/reference/neynar-nodejs-sdk-v1-to-v2-migration-guide
+
+Correct usage way to instantiate the client:
+
 import { NeynarHubClient, Configuration } from "@neynar/nodejs-sdk";
 
 const config = new Configuration({
@@ -107,7 +111,7 @@ const config = new Configuration({
   },
 });
 
-const client = new NeynarHubClient(config);`);
+const client = new NeynarHubClient(config);\n`);
       throw new Error('Invalid configuration type. Expected Configuration object but received string.');
     }
 

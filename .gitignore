@@ -7,3 +7,4 @@ build
 .DS_Store
 
 test-sdk.ts
+test-sdk.js
