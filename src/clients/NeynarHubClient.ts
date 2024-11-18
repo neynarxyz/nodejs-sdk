@@ -72,7 +72,7 @@ export class NeynarHubClient {
   private readonly logger: Logger;
   private config: OpenAPIGeneratedConfiguration;
 
-  public readonly apis: {
+  private readonly apis: {
     castsApi: CastsApi;
     fidsApi: FidsApi;
     hubEventsApi: HubEventsApi;

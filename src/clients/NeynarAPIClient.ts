@@ -78,7 +78,7 @@ export class NeynarAPIClient {
   private readonly logger: Logger;
   private config: OpenAPIGeneratedConfiguration;
 
-  public readonly apis: {
+  private readonly apis: {
     actionApi: ActionApi;
     banApi: BanApi;
     blockApi: BlockApi;

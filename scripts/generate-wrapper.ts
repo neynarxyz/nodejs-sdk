@@ -738,7 +738,7 @@ export class ${clientClassName} {
   private readonly logger: Logger;
   private config: OpenAPIGeneratedConfiguration;
 
-  public readonly apis: {
+  private readonly apis: {
     ${apiFiles
       .map((file) => {
         const apiName = kebabToPascalCase(file.replace(".ts", ""));
