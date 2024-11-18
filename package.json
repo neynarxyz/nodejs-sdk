@@ -1,6 +1,6 @@
 {
   "name": "@neynar/nodejs-sdk",
-  "version": "2.0.0-alpha.12",
+  "version": "2.0.0-alpha.13",
   "description": "SDK to interact with Neynar APIs (https://docs.neynar.com/reference/quickstart)",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -17,7 +17,7 @@
     "generate:hub-api:wrapper": "cross-env CLIENT_TYPE=hub-api ts-node -P tsconfig.scripts.json scripts/generate-wrapper.ts",
     "generate:wrapper": "yarn generate:api:wrapper && yarn generate:hub-api:wrapper",
     "generate:all": "yarn generate && yarn generate:wrapper",
-    "postinstall": "node build/postinstall.js"
+    "postinstall": "build/postinstall.js"
   },
   "author": "Neynar",
   "license": "MIT",
