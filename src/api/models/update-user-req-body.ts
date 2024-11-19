@@ -24,7 +24,7 @@ import type { UpdateUserReqBodyLocation } from './update-user-req-body-location'
  */
 export interface UpdateUserReqBody {
     /**
-     * UUID of the signer
+     * UUID of the signer. `signer_uuid` is paired with API key, you cannot use a `uuid` made with a different API key.
      * @type {string}
      * @memberof UpdateUserReqBody
      */

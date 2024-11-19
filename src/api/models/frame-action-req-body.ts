@@ -24,7 +24,7 @@ import type { FrameAction } from './frame-action';
  */
 export interface FrameActionReqBody {
     /**
-     * UUID of the signer
+     * UUID of the signer. `signer_uuid` is paired with API key, you cannot use a `uuid` made with a different API key.
      * @type {string}
      * @memberof FrameActionReqBody
      */
