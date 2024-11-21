@@ -88,7 +88,6 @@ models/channel-response.ts
 models/channel-search-response.ts
 models/channel-type.ts
 models/channel-user-context.ts
-models/channel-viewer-context.ts
 models/channel.ts
 models/conflict-error-res.ts
 models/conversation-conversation.ts
@@ -154,7 +153,6 @@ models/frame.ts
 models/hydrated-follower.ts
 models/image-object.ts
 models/index.ts
-models/individual-hash-obj.ts
 models/invite-channel-member-req-body.ts
 models/location-address.ts
 models/location.ts

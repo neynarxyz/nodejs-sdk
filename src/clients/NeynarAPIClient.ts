@@ -328,7 +328,7 @@ Object.assign(adjustedParams, _params);
  * @summary Unblock FID
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, you cannot use a `uuid` made with a different API key.
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {number} params.blockedFid  - The unique identifier of a farcaster user (unsigned integer)
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
@@ -397,7 +397,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * @summary Block FID
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, you cannot use a `uuid` made with a different API key.
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {number} params.blockedFid  - The unique identifier of a farcaster user (unsigned integer)
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
@@ -430,7 +430,7 @@ Object.assign(adjustedParams, _params);
  * @summary Delete a cast
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, you cannot use a `uuid` made with a different API key.
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {string} params.targetHash  - Cast Hash
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
@@ -612,7 +612,7 @@ Object.assign(adjustedParams, params);
  * @summary Post a cast
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, you cannot use a `uuid` made with a different API key.
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {string} params.text [optional] 
  * @param {Array<PostCastReqBodyEmbeds>} params.embeds [optional] 
  * @param {string} params.parent [optional]  - parent_url of the channel the cast is in, or hash of the cast
@@ -1038,7 +1038,7 @@ Object.assign(adjustedParams, params);
  * @summary Follow a channel
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, you cannot use a `uuid` made with a different API key.
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {string} params.channelId  - The unique identifier of a farcaster channel
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
@@ -1071,7 +1071,7 @@ Object.assign(adjustedParams, _params);
  * @summary Invite
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, you cannot use a `uuid` made with a different API key.
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {string} params.channelId  - The unique identifier of a farcaster channel
  * @param {number} params.fid  - The unique identifier of a farcaster user (unsigned integer)
  * @param {ChannelMemberRole} params.role 
@@ -1142,7 +1142,7 @@ Object.assign(adjustedParams, params);
  * @summary Remove user
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, you cannot use a `uuid` made with a different API key.
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {string} params.channelId  - The unique identifier of a farcaster channel
  * @param {number} params.fid  - The unique identifier of a farcaster user (unsigned integer)
  * @param {ChannelMemberRole} params.role 
@@ -1179,7 +1179,7 @@ Object.assign(adjustedParams, _params);
  * @summary Accept or reject an invite
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, you cannot use a `uuid` made with a different API key.
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {string} params.channelId  - The unique identifier of a farcaster channel
  * @param {ChannelMemberRole} params.role 
  * @param {boolean} params.accept  - Accept or reject the invite
@@ -1249,7 +1249,7 @@ Object.assign(adjustedParams, params);
  * @summary Unfollow a channel
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, you cannot use a `uuid` made with a different API key.
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {string} params.channelId  - The unique identifier of a farcaster channel
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
@@ -2036,7 +2036,7 @@ Object.assign(adjustedParams, params);
  * @summary Post a frame action, cast action or a cast composer action
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, you cannot use a `uuid` made with a different API key.
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {string} params.castHash [optional]  - Cast Hash
  * @param {FrameAction} params.action 
  *
@@ -2489,7 +2489,7 @@ Object.assign(adjustedParams, params);
  * @summary Delete reaction
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, you cannot use a `uuid` made with a different API key.
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {ReactionType} params.reactionType 
  * @param {string} params.target 
  * @param {number} params.targetAuthorFid [optional]  - The unique identifier of a farcaster user (unsigned integer)
@@ -2602,7 +2602,7 @@ Object.assign(adjustedParams, params);
  * @summary Post a reaction
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, you cannot use a `uuid` made with a different API key.
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {ReactionType} params.reactionType 
  * @param {string} params.target 
  * @param {number} params.targetAuthorFid [optional]  - The unique identifier of a farcaster user (unsigned integer)
@@ -2786,7 +2786,7 @@ Object.assign(adjustedParams, params);
  * @summary Register Signed Key
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, you cannot use a `uuid` made with a different API key.
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {string} params.signature  - Signature generated by the custody address of the app. Signed data includes app_fid, deadline, signer’s public key
  * @param {number} params.appFid  - The unique identifier of a farcaster user (unsigned integer)
  * @param {number} params.deadline  - unix timestamp in seconds that controls how long the signed key request is valid for. (24 hours from now is recommended)
@@ -3100,8 +3100,9 @@ Object.assign(adjustedParams, params);
  * @summary Delete verification
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, you cannot use a `uuid` made with a different API key.
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {string} params.address  - Ethereum address
+ * @param {string} params.blockHash 
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
  *
@@ -3110,15 +3111,16 @@ Object.assign(adjustedParams, params);
  * // Fill in the appropriate values
  * const signerUuid = 
  * const address = 
+ * const blockHash = 
  *
- * client.deleteVerification({signerUuid, address}).then(response => {
+ * client.deleteVerification({signerUuid, address, blockHash}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-verification)
  *
  */
-public async deleteVerification(params: { signerUuid: string, address: string }): Promise<OperationResponse> {
+public async deleteVerification(params: { signerUuid: string, address: string, blockHash: string }): Promise<OperationResponse> {
   const adjustedParams: any = {};
 const _params = { removeVerificationReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -3310,7 +3312,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * @summary Follow user
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, you cannot use a `uuid` made with a different API key.
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {Array<number>} params.targetFids 
  *
  * @returns {Promise<BulkFollowResponse>} A promise that resolves to a `BulkFollowResponse` object.
@@ -3434,7 +3436,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * @summary Add verification
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, you cannot use a `uuid` made with a different API key.
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {string} params.address  - Ethereum address
  * @param {string} params.blockHash 
  * @param {string} params.ethSignature 
@@ -3550,7 +3552,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * @summary Unfollow user
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, you cannot use a `uuid` made with a different API key.
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {Array<number>} params.targetFids 
  *
  * @returns {Promise<BulkFollowResponse>} A promise that resolves to a `BulkFollowResponse` object.
@@ -3583,7 +3585,7 @@ Object.assign(adjustedParams, _params);
  * @summary Update user profile
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, you cannot use a `uuid` made with a different API key.
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {string} params.bio [optional] 
  * @param {string} params.pfpUrl [optional] 
  * @param {string} params.url [optional] 

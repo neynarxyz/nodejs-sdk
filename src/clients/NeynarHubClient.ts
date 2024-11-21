@@ -176,6 +176,8 @@ const client = new NeynarHubClient(config);\n`);
 
   
 /**
+ * Fetch casts by parent.
+ *
  * @summary By parent cast
  *
  * @param {object} params
@@ -214,6 +216,8 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Fetch casts mentioning a user.
+ *
  * @summary Mentioning an FID
  *
  * @param {object} params
@@ -248,6 +252,8 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Fetch user\'s casts.
+ *
  * @summary By FID
  *
  * @param {object} params
@@ -282,6 +288,8 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Lookup a cast by its FID and hash.
+ *
  * @summary By FID and Hash
  *
  * @param {object} params
@@ -312,6 +320,8 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Fetch a list of all the FIDs.
+ *
  * @summary Fetch a list of all the FIDs
  *
  * @param {object} params
@@ -344,10 +354,12 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Fetch a list of events.
+ *
  * @summary Page of events
  *
  * @param {object} params
- * @param {number} params.fromEventId [optional]  - An optional Hub Id to start getting events from. This is also returned from the API as nextPageEventId, which can be used to page through all the Hub events. Set it to 0 to start from the first event
+ * @param {number} params.fromEventId [optional]  - An optional Hub Id to start getting events from. This is also returned from the API as nextPageEventId, which can be used to page through all the Hub events. Set it to 0 to start from the first event.
  *
  * @returns {Promise<FetchEvents200Response>} A promise that resolves to a `FetchEvents200Response` object.
  *
@@ -372,6 +384,8 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Lookup an event by its ID.
+ *
  * @summary Event by ID
  *
  * @param {object} params
@@ -400,6 +414,8 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Retrieve hub information.
+ *
  * @summary Sync Methods
  *
  * @param {object} params
@@ -428,6 +444,8 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Fetch a list of users that are following a user.
+ *
  * @summary To target FID
  *
  * @param {object} params
@@ -464,6 +482,8 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Fetch a list of users that a user is following.
+ *
  * @summary From source FID
  *
  * @param {object} params
@@ -500,7 +520,9 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * @summary By its FID and target FID.
+ * Lookup a link by its FID and target FID.
+ *
+ * @summary By its FID and target FID
  *
  * @param {object} params
  * @param {number} params.fid  - The FID of the link's originator
@@ -532,10 +554,12 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Submit a message to the Farcaster network.
+ *
  * @summary Submit signed message
  *
  * @param {object} params
- * @param {File} params.body  - *  A Message is a delta operation on the Farcaster network. The message protobuf is an envelope  that wraps a MessageData object and contains a hash and signature which can verify its authenticity.
+ * @param {File} params.body  - A Message is a delta operation on the Farcaster network. The message protobuf is an envelope that wraps a MessageData object and contains a hash and signature which can verify its authenticity.
  *
  * @returns {Promise<Message>} A promise that resolves to a `Message` object.
  *
@@ -560,10 +584,12 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Validate a message on the Farcaster network.
+ *
  * @summary Validate signed message
  *
  * @param {object} params
- * @param {File} params.body  - *  A Message is a delta operation on the Farcaster network. The message protobuf is an envelope  that wraps a MessageData object and contains a hash and signature which can verify its authenticity.
+ * @param {File} params.body  - A Message is a delta operation on the Farcaster network. The message protobuf is an envelope that wraps a MessageData object and contains a hash and signature which can verify its authenticity.
  *
  * @returns {Promise<ValidateMessageResponse>} A promise that resolves to a `ValidateMessageResponse` object.
  *
@@ -588,11 +614,13 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Fetch on-chain events provided by a user.
+ *
  * @summary Fetch a list of on-chain events provided by an FID
  *
  * @param {object} params
  * @param {number} params.fid  - The FID being requested
- * @param {OnChainEventType} params.eventType  - The numeric of string value of the event type being requested.
+ * @param {OnChainEventType} params.eventType  - The numeric or string value of the event type being requested
  *
  * @returns {Promise<FetchUserOnChainEvents200Response>} A promise that resolves to a `FetchUserOnChainEvents200Response` object.
  *
@@ -618,7 +646,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * **Note:** one of two different response schemas is returned based on whether the caller provides the `signer` parameter. If included, a single `OnChainEventSigner` message is returned (or a `not_found` error). If omitted, a non-paginated list of `OnChainEventSigner` messages is returned instead
+ * **Note:** one of two different response schemas is returned based on whether the caller provides the `signer` parameter. If included, a single `OnChainEventSigner` message is returned (or a `not_found` error). If omitted, a non-paginated list of `OnChainEventSigner` messages is returned instead.
  *
  * @summary Fetch a list of signers provided by an FID
  *
@@ -650,7 +678,9 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * @summary Fetch an on chain ID Registry Event for a given Address
+ * Fetch an on-chain ID Registry Event for a given Address.
+ *
+ * @summary Fetch an on-chain ID Registry Event for a given Address
  *
  * @param {object} params
  * @param {string} params.address  - The ETH address being requested
@@ -678,6 +708,8 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Fetch reactions on a cast.
+ *
  * @summary On cast
  *
  * @param {object} params
@@ -716,6 +748,8 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Fetch reactions by a target URL.
+ *
  * @summary To a target URL
  *
  * @param {object} params
@@ -752,6 +786,8 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Fetch reactions by a user.
+ *
  * @summary By FID
  *
  * @param {object} params
@@ -788,6 +824,8 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Lookup a reaction by its FID or cast.
+ *
  * @summary By FID or cast
  *
  * @param {object} params
@@ -822,6 +860,8 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Fetch a user\'s storage limits.
+ *
  * @summary FID\'s limits
  *
  * @param {object} params
@@ -850,9 +890,9 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * **Note:** one of two different response schemas is returned based on whether the caller provides the `user_data_type` parameter. If included, a single `UserDataAdd` message is returned (or a `not_found` error). If omitted, a paginated list of `UserDataAdd` messages is returned instead
+ * **Note:** one of two different response schemas is returned based on whether the caller provides the `user_data_type` parameter. If included, a single `UserDataAdd` message is returned (or a `not_found` error). If omitted, a paginated list of `UserDataAdd` messages is returned instead.
  *
- * @summary Fetch UserData for a FID.
+ * @summary Fetch UserData for a FID
  *
  * @param {object} params
  * @param {number} params.fid  - The FID that's being requested
@@ -888,6 +928,8 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Fetch a proof for a username.
+ *
  * @summary Proof for a username
  *
  * @param {object} params
@@ -916,6 +958,8 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Fetch proofs provided by a user.
+ *
  * @summary Proofs provided by an FID
  *
  * @param {object} params
@@ -944,6 +988,8 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Fetch verifications provided by a user.
+ *
  * @summary Provided by an FID
  *
  * @param {object} params

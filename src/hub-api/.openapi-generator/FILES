@@ -26,10 +26,6 @@ models/cast-add-body.ts
 models/cast-add.ts
 models/cast-embed.ts
 models/cast-id.ts
-models/cast-remove-all-of-data.ts
-models/cast-remove-all-of.ts
-models/cast-remove-body.ts
-models/cast-remove.ts
 models/db-stats.ts
 models/embed.ts
 models/error-response-metadata.ts
@@ -62,7 +58,6 @@ models/link-add-all-of-data.ts
 models/link-add-all-of.ts
 models/link-add.ts
 models/link-body.ts
-models/link-remove.ts
 models/link-type.ts
 models/merge-message-body.ts
 models/merge-on-chain-event-body.ts
@@ -106,8 +101,6 @@ models/prune-message-body.ts
 models/reaction-all-of-data.ts
 models/reaction-all-of.ts
 models/reaction-body.ts
-models/reaction-remove-all-of.ts
-models/reaction-remove.ts
 models/reaction-type.ts
 models/reaction.ts
 models/revoke-message-body.ts
@@ -132,8 +125,5 @@ models/validate-message-response.ts
 models/verification-add-eth-address-body.ts
 models/verification-all-of-data.ts
 models/verification-all-of.ts
-models/verification-remove-all-of-data.ts
-models/verification-remove-all-of.ts
 models/verification-remove-body.ts
-models/verification-remove.ts
 models/verification.ts
