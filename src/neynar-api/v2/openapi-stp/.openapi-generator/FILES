@@ -1,0 +1,16 @@
+.gitignore
+.npmignore
+.openapi-generator-ignore
+api.ts
+apis/stpapi.ts
+base.ts
+common.ts
+configuration.ts
+git_push.sh
+index.ts
+models/conflict-error-res.ts
+models/error-res.ts
+models/index.ts
+models/subscription-status.ts
+models/subscription-tier-price.ts
+models/subscription-tier.ts

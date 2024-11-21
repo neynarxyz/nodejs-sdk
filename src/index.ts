@@ -9,7 +9,4 @@ if (!semver.satisfies(process.version, requiredVersion)) {
   process.exit(1);
 }
 
-export * from "./clients";
-export * from "./utils";
-export * from "./types"
-export { Configuration } from "./clients/configuration";
+export * from "./neynar-api";
