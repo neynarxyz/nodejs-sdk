@@ -139,6 +139,7 @@ const client = new NeynarAPIClient(config);\n`);
     const axiosInstance = customAxiosInstance || axios.create({
       headers: {
         "x-sdk-version": process.env.npm_package_version,
+        "x-sdk": "node"
       },
     });
 
