@@ -1,12 +1,11 @@
-name: "Publish to npm 🚀"
+name: "Publish v2 to npm 🚀"
 
 on:
   push:
     branches:
       - main
     paths:
-      - src/neynar-api/common/version.ts
-
+      - package.json
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,7 +20,7 @@ jobs:
           node-version: "20"
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --ignore-scripts
 
       - name: Build
         run: npm run build
@@ -29,5 +28,7 @@ jobs:
       - name: Set npm Config
         run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
 
-      - name: Publish to npm
+      - name: Publish v2 to npm
         run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
