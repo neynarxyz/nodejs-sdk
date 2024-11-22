@@ -3,7 +3,7 @@ name: "Publish v2 to npm 🚀"
 on:
   push:
     branches:
-      - v2-alpha
+      - main
     paths:
       - package.json
 jobs:
