@@ -1,6 +1,6 @@
 {
   "name": "@neynar/nodejs-sdk",
-  "version": "2.0.0-alpha.22",
+  "version": "2.0.0",
   "description": "SDK to interact with Neynar APIs (https://docs.neynar.com/reference/quickstart)",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -27,6 +27,8 @@
     "generate:wrapper": "yarn generate:api:wrapper && yarn generate:hub-api:wrapper",
     "generate:all": "yarn generate && yarn generate:wrapper"
   },
+  "author": "Neynar",
+  "license": "MIT",
   "dependencies": {
     "@openapitools/openapi-generator-cli": "^2.14.1",
     "semver": "^7.6.3",

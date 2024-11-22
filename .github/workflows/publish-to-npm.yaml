@@ -1,4 +1,4 @@
-name: "Publish v2 Alpha to npm 🚀"
+name: "Publish v2 to npm 🚀"
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
       - name: Set npm Config
         run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
 
-      - name: Publish v2 Alpha to npm with 'alpha' tag
-        run: npm publish --tag alpha --access public
+      - name: Publish v2 to npm
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
