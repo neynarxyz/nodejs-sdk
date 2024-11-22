@@ -4,6 +4,9 @@ node_modules
 # TS build folder
 build
 
+# Use this for testing the packed (`npm pack`) sdk locally
+temp
+
 .DS_Store
 
 test-sdk.ts

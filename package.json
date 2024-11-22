@@ -1,11 +1,12 @@
 {
   "name": "@neynar/nodejs-sdk",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "SDK to interact with Neynar APIs (https://docs.neynar.com/reference/quickstart)",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "files": [
-    "build/**/*"
+    "build/**/*",
+    "v1-to-v2-migration.md"
   ],
   "scripts": {
     "clean": "del-cli ./build/*",
