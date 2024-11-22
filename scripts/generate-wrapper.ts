@@ -787,7 +787,8 @@ const client = new ${clientClassName}(config);\\n\`);
 
     const axiosInstance = customAxiosInstance || axios.create({
       headers: {
-        "x-sdk-version": process.env.npm_package_version,
+        "x-sdk-version": sdkVersion,
+        "x-sdk": "node"
       },
     });
 
@@ -1104,6 +1105,8 @@ ${apiFiles
   })
   .join("\n")}
 ${importStatements}
+
+const { version: sdkVersion } = require("../../package.json");
 
 ${utilityFunctions}
 

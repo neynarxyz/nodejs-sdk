@@ -23,6 +23,8 @@ import { UsernamesApi } from '../hub-api/apis/usernames-api';
 import { VerificationsApi } from '../hub-api/apis/verifications-api';
 import type { CastAdd, FetchCastReactions200Response, FetchEvents200Response, FetchUserData200Response, FetchUserFollowing200Response, FetchUserOnChainEvents200Response, FetchUserOnChainSignersEvents200Response, FetchUsersCasts200Response, FetchVerificationsByFid200Response, FidsResponse, HubEvent, HubInfoResponse, LinkAdd, LinkType, Message, OnChainEventIdRegister, OnChainEventType, Reaction, ReactionType, StorageLimitsResponse, UserDataType, UserNameProof, UsernameProofsResponse, ValidateMessageResponse } from '../hub-api';
 
+const { version: sdkVersion } = require("../../package.json");
+
 
 /**
  * Converts a camelCase string to snake_case.
@@ -126,7 +128,8 @@ const client = new NeynarHubClient(config);\n`);
 
     const axiosInstance = customAxiosInstance || axios.create({
       headers: {
-        "x-sdk-version": process.env.npm_package_version,
+        "x-sdk-version": sdkVersion,
+        "x-sdk": "node"
       },
     });
 
