@@ -1,13 +1,17 @@
 {
   "name": "@neynar/nodejs-sdk",
-  "version": "2.0.0-alpha.20",
+  "version": "2.0.0-alpha.21",
   "description": "SDK to interact with Neynar APIs (https://docs.neynar.com/reference/quickstart)",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "exports": {
+    ".": {
+      "require": "./build/index.js",
+      "import": "./build/index.js",
+      "types": "./build/index.d.ts"
+    },
     "./api": "./build/api/index.js",
-    "./hub-api": "./build/hub-api/index.js",
-    "./*": "./build/*"
+    "./hub-api": "./build/hub-api/index.js"
   },
   "files": [
     "build/**/*"
