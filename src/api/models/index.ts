@@ -183,6 +183,7 @@ export * from './register-signer-key-req-body';
 export * from './register-user-req-body';
 export * from './register-user-response';
 export * from './relevant-followers-response';
+export * from './relevant-fungible-owners-response';
 export * from './remove-channel-member-req-body';
 export * from './remove-verification-req-body';
 export * from './respond-channel-invite-req-body';

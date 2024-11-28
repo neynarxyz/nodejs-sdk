@@ -15,19 +15,25 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { UserPowerLiteResponseResult } from './user-power-lite-response-result';
+import type { User } from './user';
 
 /**
  * 
  * @export
- * @interface UserPowerLiteResponse
+ * @interface RelevantFungibleOwnersResponse
  */
-export interface UserPowerLiteResponse {
+export interface RelevantFungibleOwnersResponse {
     /**
      * 
-     * @type {UserPowerLiteResponseResult}
-     * @memberof UserPowerLiteResponse
+     * @type {Array<User>}
+     * @memberof RelevantFungibleOwnersResponse
      */
-    'result': UserPowerLiteResponseResult;
+    'top_relevant_owners_hydrated'?: Array<User>;
+    /**
+     * 
+     * @type {Array<User>}
+     * @memberof RelevantFungibleOwnersResponse
+     */
+    'all_relevant_owners_dehydrated'?: Array<User>;
 }
 

@@ -211,6 +211,7 @@ models/register-signer-key-req-body.ts
 models/register-user-req-body.ts
 models/register-user-response.ts
 models/relevant-followers-response.ts
+models/relevant-fungible-owners-response.ts
 models/remove-channel-member-req-body.ts
 models/remove-verification-req-body.ts
 models/respond-channel-invite-req-body.ts
