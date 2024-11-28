@@ -20,27 +20,20 @@ import type { User } from './user';
 /**
  * 
  * @export
- * @interface Follow
+ * @interface RelevantFungibleOwnersResponse
  */
-export interface Follow {
+export interface RelevantFungibleOwnersResponse {
     /**
      * 
-     * @type {string}
-     * @memberof Follow
+     * @type {Array<User>}
+     * @memberof RelevantFungibleOwnersResponse
      */
-    'object': FollowObjectEnum;
+    'top_relevant_owners_hydrated'?: Array<User>;
     /**
      * 
-     * @type {User}
-     * @memberof Follow
+     * @type {Array<User>}
+     * @memberof RelevantFungibleOwnersResponse
      */
-    'user': User;
+    'all_relevant_owners_dehydrated'?: Array<User>;
 }
-
-export const FollowObjectEnum = {
-    Follow: 'follow'
-} as const;
-
-export type FollowObjectEnum = typeof FollowObjectEnum[keyof typeof FollowObjectEnum];
-
 
