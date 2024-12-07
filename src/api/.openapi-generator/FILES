@@ -51,6 +51,7 @@ models/cast-composer-actions-list-response.ts
 models/cast-composer-type.ts
 models/cast-conversation-sort-type.ts
 models/cast-dehydrated.ts
+models/cast-embed-crawl-response.ts
 models/cast-embedded-parent-author.ts
 models/cast-embedded.ts
 models/cast-id.ts
@@ -97,6 +98,10 @@ models/dehydrated-follower.ts
 models/delete-cast-req-body.ts
 models/delete-frame-req-body.ts
 models/delete-frame-response.ts
+models/deploy-fungible-req-body-metadata-media.ts
+models/deploy-fungible-response-contract-fungible.ts
+models/deploy-fungible-response-contract.ts
+models/deploy-fungible-response.ts
 models/developer-managed-signer.ts
 models/embed-cast-deep.ts
 models/embed-cast.ts

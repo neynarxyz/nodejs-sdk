@@ -27,7 +27,7 @@ import { StorageApi } from '../api/apis/storage-api';
 import { SubscribersApi } from '../api/apis/subscribers-api';
 import { UserApi } from '../api/apis/user-api';
 import { WebhookApi } from '../api/apis/webhook-api';
-import type { AddVerificationReqBody, AuthorizationUrlResponse, AuthorizationUrlResponseType, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUserAddressType, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastComposerType, CastConversationSortType, CastParamType, CastResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, ChannelType, Conversation, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeveloperManagedSigner, EmbedType, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FeedTrendingProvider, FeedType, FetchBulkCastsSortTypeEnum, FetchFrameMetaTagsFromUrl200Response, FetchRepliesAndRecastsForUserFilterEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedTimeWindowEnum, FilterType, FnameAvailabilityResponse, FollowReqBody, FollowSortType, FollowersResponse, ForYouProvider, Frame, FrameAction, FrameActionReqBody, FrameDeveloperManagedActionReqBody, FrameSignaturePacket, FrameType, FrameValidateAnalyticsResponse, FrameValidateListResponse, InviteChannelMemberReqBody, LookupCastConversationFoldEnum, MarkNotificationsAsSeenReqBody, MuteListResponse, MuteReqBody, MuteResponse, Networks, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, ReactionsType, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserReqBody, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SignedKeyRequestSponsor, Signer, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionProvider, SubscriptionProviders, SubscriptionsResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, ValidateFrameAggregateWindow, ValidateFrameAnalyticsType, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
+import type { AddVerificationReqBody, AuthorizationUrlResponse, AuthorizationUrlResponseType, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUserAddressType, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastComposerType, CastConversationSortType, CastEmbedCrawlResponse, CastParamType, CastResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, ChannelType, Conversation, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleReqBodyMetadataMedia, DeployFungibleResponse, DeveloperManagedSigner, EmbedType, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FeedTrendingProvider, FeedType, FetchBulkCastsSortTypeEnum, FetchFrameMetaTagsFromUrl200Response, FetchRepliesAndRecastsForUserFilterEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedTimeWindowEnum, FilterType, FnameAvailabilityResponse, FollowReqBody, FollowSortType, FollowersResponse, ForYouProvider, Frame, FrameAction, FrameActionReqBody, FrameDeveloperManagedActionReqBody, FrameSignaturePacket, FrameType, FrameValidateAnalyticsResponse, FrameValidateListResponse, InviteChannelMemberReqBody, LookupCastConversationFoldEnum, MarkNotificationsAsSeenReqBody, MuteListResponse, MuteReqBody, MuteResponse, Networks, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, ReactionsType, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserReqBody, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SignedKeyRequestSponsor, Signer, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionProvider, SubscriptionProviders, SubscriptionsResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, ValidateFrameAggregateWindow, ValidateFrameAnalyticsType, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
 
 const { version: sdkVersion } = require("../../package.json");
 
@@ -527,6 +527,36 @@ public async fetchComposerActions(params: { list: CastComposerType, limit?: numb
 Object.assign(adjustedParams, params);
 
   const response = await this.apis.castApi.fetchComposerActions(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Crawls the given URL and returns metadata useful when embedding the URL in a cast.
+ *
+ * @summary Embedded URL metadata
+ *
+ * @param {object} params
+ * @param {string} params.url [optional]  - URL to crawl metadata of
+ *
+ * @returns {Promise<CastEmbedCrawlResponse>} A promise that resolves to a `CastEmbedCrawlResponse` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const url = 
+ *
+ * client.fetchEmbeddedUrlMetadata({ url }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-embedded-url-metadata)
+ *
+ */
+public async fetchEmbeddedUrlMetadata(params: { url?: string }): Promise<CastEmbedCrawlResponse> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.castApi.fetchEmbeddedUrlMetadata(adjustedParams);
   return response.data;
 }
 
@@ -2211,7 +2241,7 @@ Object.assign(adjustedParams, _params);
 }
 
 /**
- * Deletes a mute for a given FID. This is a whitelisted API, reach out if you want access.
+ * Deletes a mute for a given FID. This is an allowlisted API, reach out if you want access.
  *
  * @summary Unmute FID
  *
@@ -2278,7 +2308,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
 }
 
 /**
- * Adds a mute for a given FID. This is a whitelisted API, reach out if you want access.
+ * Adds a mute for a given FID. This is an allowlisted API, reach out if you want access.
  *
  * @summary Mute FID
  *
@@ -2451,6 +2481,55 @@ const _params = { markNotificationsAsSeenReqBody: camelCaseToSnakeCaseKeys(param
 Object.assign(adjustedParams, _params);
 
   const response = await this.apis.notificationsApi.markNotificationsAsSeen(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Creates a new token. This is an allowlisted API, reach out if you want access.
+ *
+ * @summary Deploy fungible
+ *
+ * @param {object} params
+ * @param {string} params.owner  - Ethereum address of the one who is creating the token
+ * @param {string} params.symbol  - Symbol/Ticker for the token
+ * @param {string} params.name  - Name of the token
+ * @param {DeployFungibleReqBodyMetadataMedia} params.metadataMedia [optional] 
+ * @param {string} params.metadataDescription [optional]  - Description of the token
+ * @param {DeployFungibleMetadataNsfwEnum} params.metadataNsfw [optional]  - Indicates if the token is NSFW (Not Safe For Work).
+ * @param {string} params.metadataWebsiteLink [optional]  - Website link related to the token
+ * @param {string} params.metadataTwitter [optional]  - Twitter profile link
+ * @param {string} params.metadataDiscord [optional]  - Discord server link
+ * @param {string} params.metadataTelegram [optional]  - Telegram link
+ * @param {DeployFungibleNetworkEnum} params.network [optional]  - Network/Chain name
+ * @param {DeployFungibleFactoryEnum} params.factory [optional]  - Factory name - wow -> wow.xyz
+ *
+ * @returns {Promise<DeployFungibleResponse>} A promise that resolves to a `DeployFungibleResponse` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const owner = 
+ * const symbol = 
+ * const name = 
+ * const metadataMedia = 
+ * const metadataDescription = 
+ * const metadataNsfw = 
+ * const metadataWebsiteLink = 
+ * const metadataTwitter = 
+ * const metadataDiscord = 
+ * const metadataTelegram = 
+ * const network = 
+ * const factory = 
+ *
+ * client.deployFungible({ owner, symbol, name, metadataMedia, metadataDescription, metadataNsfw, metadataWebsiteLink, metadataTwitter, metadataDiscord, metadataTelegram, network, factory }).then(response => {
+ *   console.log('response:', response);
+ * });
+ */
+public async deployFungible(params: { owner: string, symbol: string, name: string, metadataMedia?: DeployFungibleReqBodyMetadataMedia, metadataDescription?: string, metadataNsfw?: DeployFungibleMetadataNsfwEnum, metadataWebsiteLink?: string, metadataTwitter?: string, metadataDiscord?: string, metadataTelegram?: string, network?: DeployFungibleNetworkEnum, factory?: DeployFungibleFactoryEnum }): Promise<DeployFungibleResponse> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.onchainApi.deployFungible(adjustedParams);
   return response.data;
 }
 
