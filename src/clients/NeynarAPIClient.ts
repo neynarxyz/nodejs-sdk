@@ -3601,6 +3601,7 @@ Object.assign(adjustedParams, _params);
  * @param {string} params.requestedUserCustodyAddress 
  * @param {number} params.deadline 
  * @param {string} params.fname [optional] 
+ * @param {object} params.metadata [optional] 
  *
  * @returns {Promise<RegisterUserResponse>} A promise that resolves to a `RegisterUserResponse` object.
  *
@@ -3612,15 +3613,16 @@ Object.assign(adjustedParams, _params);
  * const requestedUserCustodyAddress = 
  * const deadline = 
  * const fname = 
+ * const metadata = 
  *
- * client.registerAccount({signature, fid, requestedUserCustodyAddress, deadline, fname}).then(response => {
+ * client.registerAccount({signature, fid, requestedUserCustodyAddress, deadline, fname, metadata}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/register-account)
  *
  */
-public async registerAccount(params: { signature: string, fid: number, requestedUserCustodyAddress: string, deadline: number, fname?: string }): Promise<RegisterUserResponse> {
+public async registerAccount(params: { signature: string, fid: number, requestedUserCustodyAddress: string, deadline: number, fname?: string, metadata?: object }): Promise<RegisterUserResponse> {
   const adjustedParams: any = {};
 const _params = { registerUserReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
