@@ -2524,6 +2524,9 @@ Object.assign(adjustedParams, _params);
  * client.deployFungible({ owner, symbol, name, metadataMedia, metadataDescription, metadataNsfw, metadataWebsiteLink, metadataTwitter, metadataDiscord, metadataTelegram, network, factory }).then(response => {
  *   console.log('response:', response);
  * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/deploy-fungible)
+ *
  */
 public async deployFungible(params: { owner: string, symbol: string, name: string, metadataMedia?: DeployFungibleReqBodyMetadataMedia, metadataDescription?: string, metadataNsfw?: DeployFungibleMetadataNsfwEnum, metadataWebsiteLink?: string, metadataTwitter?: string, metadataDiscord?: string, metadataTelegram?: string, network?: DeployFungibleNetworkEnum, factory?: DeployFungibleFactoryEnum }): Promise<DeployFungibleResponse> {
   const adjustedParams: any = {};
