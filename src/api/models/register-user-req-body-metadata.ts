@@ -20,49 +20,43 @@ import type { UpdateUserReqBodyLocation } from './update-user-req-body-location'
 /**
  * 
  * @export
- * @interface UpdateUserReqBody
+ * @interface RegisterUserReqBodyMetadata
  */
-export interface UpdateUserReqBody {
-    /**
-     * UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key. 
-     * @type {string}
-     * @memberof UpdateUserReqBody
-     */
-    'signer_uuid': string;
+export interface RegisterUserReqBodyMetadata {
     /**
      * 
      * @type {string}
-     * @memberof UpdateUserReqBody
+     * @memberof RegisterUserReqBodyMetadata
      */
     'bio'?: string;
     /**
      * 
      * @type {string}
-     * @memberof UpdateUserReqBody
+     * @memberof RegisterUserReqBodyMetadata
      */
     'pfp_url'?: string;
     /**
      * 
      * @type {string}
-     * @memberof UpdateUserReqBody
+     * @memberof RegisterUserReqBodyMetadata
      */
     'url'?: string;
     /**
      * 
      * @type {string}
-     * @memberof UpdateUserReqBody
+     * @memberof RegisterUserReqBodyMetadata
      */
     'username'?: string;
     /**
      * 
      * @type {string}
-     * @memberof UpdateUserReqBody
+     * @memberof RegisterUserReqBodyMetadata
      */
     'display_name'?: string;
     /**
      * 
      * @type {UpdateUserReqBodyLocation}
-     * @memberof UpdateUserReqBody
+     * @memberof RegisterUserReqBodyMetadata
      */
     'location'?: UpdateUserReqBodyLocation;
 }
