@@ -249,7 +249,7 @@ models/token-balance-balance.ts
 models/token-balance-token.ts
 models/token-balance.ts
 models/trending-channel-response.ts
-models/update-user-req-body-location.ts
+models/update-user-req-body-all-of.ts
 models/update-user-req-body.ts
 models/user-dehydrated.ts
 models/user-experimental.ts

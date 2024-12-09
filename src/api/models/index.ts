@@ -222,7 +222,7 @@ export * from './token-balance-balance';
 export * from './token-balance-token';
 export * from './trending-channel-response';
 export * from './update-user-req-body';
-export * from './update-user-req-body-location';
+export * from './update-user-req-body-all-of';
 export * from './user';
 export * from './user-dehydrated';
 export * from './user-experimental';
