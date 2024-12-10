@@ -180,6 +180,7 @@ models/neynar-page-button.ts
 models/neynar-page-image.ts
 models/neynar-page-input-text.ts
 models/neynar-page-input.ts
+models/notification-delivery.ts
 models/notification-type.ts
 models/notification.ts
 models/notifications-response.ts
@@ -222,6 +223,9 @@ models/remove-channel-member-req-body.ts
 models/remove-verification-req-body.ts
 models/respond-channel-invite-req-body.ts
 models/searched-user.ts
+models/send-frame-notifications-req-body-notification.ts
+models/send-frame-notifications-req-body.ts
+models/send-frame-notifications-response.ts
 models/signed-key-request-sponsor.ts
 models/signer.ts
 models/storage-allocation.ts
