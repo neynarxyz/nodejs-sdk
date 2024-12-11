@@ -198,6 +198,7 @@ export * from './searched-user';
 export * from './send-frame-notifications-req-body';
 export * from './send-frame-notifications-req-body-notification';
 export * from './send-frame-notifications-response';
+export * from './shared-signer-permission';
 export * from './signed-key-request-sponsor';
 export * from './signer';
 export * from './storage-allocation';
