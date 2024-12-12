@@ -17,20 +17,20 @@
 /**
  * 
  * @export
- * @interface TokenBalanceBalance
+ * @interface RegisterUserReqBodyMetadataVerifiedAccounts
  */
-export interface TokenBalanceBalance {
+export interface RegisterUserReqBodyMetadataVerifiedAccounts {
     /**
-     * The balance in the token
+     * 
      * @type {string}
-     * @memberof TokenBalanceBalance
+     * @memberof RegisterUserReqBodyMetadataVerifiedAccounts
      */
-    'in_token': string;
+    'x'?: string;
     /**
-     * The balance in USDC
+     * 
      * @type {string}
-     * @memberof TokenBalanceBalance
+     * @memberof RegisterUserReqBodyMetadataVerifiedAccounts
      */
-    'in_usdc': string;
+    'github'?: string;
 }
 

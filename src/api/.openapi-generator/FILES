@@ -214,6 +214,8 @@ models/reactions-response.ts
 models/reactions-type.ts
 models/register-developer-managed-signed-key-req-body.ts
 models/register-signer-key-req-body.ts
+models/register-user-req-body-metadata-location.ts
+models/register-user-req-body-metadata-verified-accounts.ts
 models/register-user-req-body-metadata.ts
 models/register-user-req-body.ts
 models/register-user-response.ts
