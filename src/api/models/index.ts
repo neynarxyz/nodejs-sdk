@@ -188,6 +188,8 @@ export * from './register-developer-managed-signed-key-req-body';
 export * from './register-signer-key-req-body';
 export * from './register-user-req-body';
 export * from './register-user-req-body-metadata';
+export * from './register-user-req-body-metadata-location';
+export * from './register-user-req-body-metadata-verified-accounts';
 export * from './register-user-response';
 export * from './relevant-followers-response';
 export * from './relevant-fungible-owners-response';

@@ -17,20 +17,20 @@
 /**
  * 
  * @export
- * @interface TokenBalanceBalance
+ * @interface RegisterUserReqBodyMetadataLocation
  */
-export interface TokenBalanceBalance {
+export interface RegisterUserReqBodyMetadataLocation {
     /**
-     * The balance in the token
-     * @type {string}
-     * @memberof TokenBalanceBalance
+     * 
+     * @type {number}
+     * @memberof RegisterUserReqBodyMetadataLocation
      */
-    'in_token': string;
+    'latitude': number;
     /**
-     * The balance in USDC
-     * @type {string}
-     * @memberof TokenBalanceBalance
+     * 
+     * @type {number}
+     * @memberof RegisterUserReqBodyMetadataLocation
      */
-    'in_usdc': string;
+    'longitude': number;
 }
 
