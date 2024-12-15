@@ -30,7 +30,7 @@ export interface MessageDataCommon {
      */
     'fid': number;
     /**
-     * 
+     * Seconds since [Farcaster Epoch](https://docs.farcaster.xyz/learn/what-is-farcaster/messages#timestamps) which began on Jan 1, 2021 00:00:00 UTC
      * @type {number}
      * @memberof MessageDataCommon
      */
