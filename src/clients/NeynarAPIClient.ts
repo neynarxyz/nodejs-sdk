@@ -2534,7 +2534,7 @@ Object.assign(adjustedParams, _params);
  * @param {string} params.metadataDiscord [optional]  - Discord server link
  * @param {string} params.metadataTelegram [optional]  - Telegram link
  * @param {DeployFungibleNetworkEnum} params.network [optional]  - Network/Chain name
- * @param {DeployFungibleFactoryEnum} params.factory [optional]  - Factory name - wow -> wow.xyz
+ * @param {DeployFungibleFactoryEnum} params.factory [optional]  - Factory name - wow -> [wow.xyz](https://wow.xyz) - clanker -> [clanker.world](https://www.clanker.world)
  *
  * @returns {Promise<DeployFungibleResponse>} A promise that resolves to a `DeployFungibleResponse` object.
  *

@@ -24,7 +24,7 @@ import type { UserNameType } from './user-name-type';
  */
 export interface UserNameProof {
     /**
-     * 
+     * Seconds since Unix Epoch which began on Jan 1, 1970 00:00:00 UTC
      * @type {number}
      * @memberof UserNameProof
      */
