@@ -66,6 +66,8 @@ export * from './channel-user-context';
 export * from './conflict-error-res';
 export * from './conversation';
 export * from './conversation-conversation';
+export * from './conversation-summary';
+export * from './conversation-summary-summary';
 export * from './dehydrated-channel';
 export * from './dehydrated-follower';
 export * from './delete-cast-req-body';

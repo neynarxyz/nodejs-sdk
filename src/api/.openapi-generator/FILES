@@ -92,6 +92,8 @@ models/channel-user-context.ts
 models/channel.ts
 models/conflict-error-res.ts
 models/conversation-conversation.ts
+models/conversation-summary-summary.ts
+models/conversation-summary.ts
 models/conversation.ts
 models/dehydrated-channel.ts
 models/dehydrated-follower.ts

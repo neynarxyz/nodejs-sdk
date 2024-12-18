@@ -13,19 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { ConversationSummarySummary } from './conversation-summary-summary';
 
 /**
- * The provider of the subscription. 
+ * 
  * @export
- * @enum {string}
+ * @interface ConversationSummary
  */
-
-export const SubscriptionProviders = {
-    FabricStp: 'fabric_stp',
-    Paragraph: 'paragraph'
-} as const;
-
-export type SubscriptionProviders = typeof SubscriptionProviders[keyof typeof SubscriptionProviders];
-
-
+export interface ConversationSummary {
+    /**
+     * 
+     * @type {ConversationSummarySummary}
+     * @memberof ConversationSummary
+     */
+    'summary': ConversationSummarySummary;
+}
 
