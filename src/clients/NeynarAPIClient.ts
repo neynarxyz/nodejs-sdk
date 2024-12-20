@@ -28,7 +28,7 @@ import { StorageApi } from '../api/apis/storage-api';
 import { SubscribersApi } from '../api/apis/subscribers-api';
 import { UserApi } from '../api/apis/user-api';
 import { WebhookApi } from '../api/apis/webhook-api';
-import type { AddVerificationReqBody, AuthorizationUrlResponse, AuthorizationUrlResponseType, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUserAddressType, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastComposerType, CastConversationSortType, CastEmbedCrawlResponse, CastParamType, CastResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, ChannelType, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleReqBodyMetadataMedia, DeployFungibleResponse, DeveloperManagedSigner, EmbedType, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FeedTrendingProvider, FeedType, FetchBulkCastsSortTypeEnum, FetchFrameMetaTagsFromUrl200Response, FetchRepliesAndRecastsForUserFilterEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedTimeWindowEnum, FilterType, FnameAvailabilityResponse, FollowReqBody, FollowSortType, FollowersResponse, ForYouProvider, Frame, FrameAction, FrameActionReqBody, FrameDeveloperManagedActionReqBody, FrameSignaturePacket, FrameType, FrameValidateAnalyticsResponse, FrameValidateListResponse, InviteChannelMemberReqBody, LookupCastConversationFoldEnum, MarkNotificationsAsSeenReqBody, MuteListResponse, MuteReqBody, MuteResponse, Networks, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, ReactionsType, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionProvider, SubscriptionProviders, SubscriptionsResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, ValidateFrameAggregateWindow, ValidateFrameAnalyticsType, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
+import type { AddVerificationReqBody, AuthorizationUrlResponse, AuthorizationUrlResponseType, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUserAddressType, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastComposerType, CastConversationSortType, CastEmbedCrawlResponse, CastParamType, CastResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, ChannelType, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleReqBodyMetadataMedia, DeployFungibleResponse, DeveloperManagedSigner, EmbedType, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FeedTrendingProvider, FeedType, FetchBulkCastsSortTypeEnum, FetchFrameMetaTagsFromUrl200Response, FetchRepliesAndRecastsForUserFilterEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedTimeWindowEnum, FilterType, FnameAvailabilityResponse, FollowReqBody, FollowSortType, FollowersResponse, ForYouProvider, Frame, FrameAction, FrameActionReqBody, FrameDeveloperManagedActionReqBody, FrameNotificationTokens, FrameSignaturePacket, FrameType, FrameValidateAnalyticsResponse, FrameValidateListResponse, InviteChannelMemberReqBody, LookupCastConversationFoldEnum, MarkNotificationsAsSeenReqBody, MuteListResponse, MuteReqBody, MuteResponse, Networks, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, ReactionsType, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionProvider, SubscriptionProviders, SubscriptionsResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, ValidateFrameAggregateWindow, ValidateFrameAnalyticsType, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
 
 const { version: sdkVersion } = require("../../package.json");
 
@@ -2002,6 +2002,44 @@ Object.assign(adjustedParams, params);
 public async fetchNeynarFrames(): Promise<Array<NeynarFrame>> {
   
   const response = await this.apis.frameApi.fetchNeynarFrames();
+  return response.data;
+}
+
+/**
+ * Returns a list of notifications tokens related for an app
+ *
+ * @summary List of frame notification tokens. 
+ *
+ * @param {object} params
+ * @param {number} params.limit [optional]  - Number of results to fetch (Default: 20, Maximum: 100)
+ * @param {number[]} params.fids [optional]  - Comma separated list of FIDs, up to 100 at a time
+ *
+ * @returns {Promise<FrameNotificationTokens>} A promise that resolves to a `FrameNotificationTokens` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const limit = 
+ * const fids = 
+ *
+ * client.fetchNotificationTokens({ limit, fids }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-notification-tokens)
+ *
+ */
+public async fetchNotificationTokens(params: { limit?: number, fids?: number[] }): Promise<FrameNotificationTokens> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
+  adjustedParams.fids = adjustedParams.fids.map(value => (String(value)));
+}
+if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
+  adjustedParams.fids = adjustedParams.fids.join(",");
+}
+
+  const response = await this.apis.frameApi.fetchNotificationTokens(adjustedParams);
   return response.data;
 }
 
