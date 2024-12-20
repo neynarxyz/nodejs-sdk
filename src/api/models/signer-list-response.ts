@@ -15,25 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ValidatedFrameAction } from './validated-frame-action';
+import type { Signer } from './signer';
 
 /**
  * 
  * @export
- * @interface ValidateFrameActionResponse
+ * @interface SignerListResponse
  */
-export interface ValidateFrameActionResponse {
+export interface SignerListResponse {
     /**
      * 
-     * @type {boolean}
-     * @memberof ValidateFrameActionResponse
+     * @type {Array<Signer>}
+     * @memberof SignerListResponse
      */
-    'valid': boolean;
-    /**
-     * 
-     * @type {ValidatedFrameAction}
-     * @memberof ValidateFrameActionResponse
-     */
-    'action': ValidatedFrameAction;
+    'signers': Array<Signer>;
 }
 
