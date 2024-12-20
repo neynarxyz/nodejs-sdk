@@ -13,27 +13,18 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { ValidatedFrameAction } from './validated-frame-action';
 
 /**
  * 
  * @export
- * @interface ValidateFrameActionResponse
+ * @interface NonceResponse
  */
-export interface ValidateFrameActionResponse {
+export interface NonceResponse {
     /**
-     * 
-     * @type {boolean}
-     * @memberof ValidateFrameActionResponse
+     * The nonce value to sign the message
+     * @type {string}
+     * @memberof NonceResponse
      */
-    'valid': boolean;
-    /**
-     * 
-     * @type {ValidatedFrameAction}
-     * @memberof ValidateFrameActionResponse
-     */
-    'action': ValidatedFrameAction;
+    'nonce': string;
 }
 
