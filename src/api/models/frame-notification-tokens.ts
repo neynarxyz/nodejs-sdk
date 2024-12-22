@@ -15,31 +15,28 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { PostCastReqBodyEmbedsCastIdProperties } from './post-cast-req-body-embeds-cast-id-properties';
+import type { FrameNotificationTokensNotificationTokensInner } from './frame-notification-tokens-notification-tokens-inner';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { NextCursor } from './next-cursor';
 
 /**
  * 
  * @export
- * @interface PostCastReqBodyEmbeds
+ * @interface FrameNotificationTokens
  */
-export interface PostCastReqBodyEmbeds {
+export interface FrameNotificationTokens {
     /**
      * 
-     * @type {PostCastReqBodyEmbedsCastIdProperties}
-     * @memberof PostCastReqBodyEmbeds
+     * @type {Array<FrameNotificationTokensNotificationTokensInner>}
+     * @memberof FrameNotificationTokens
      */
-    'cast_id'?: PostCastReqBodyEmbedsCastIdProperties;
+    'notification_tokens': Array<FrameNotificationTokensNotificationTokensInner>;
     /**
      * 
-     * @type {PostCastReqBodyEmbedsCastIdProperties}
-     * @memberof PostCastReqBodyEmbeds
+     * @type {NextCursor}
+     * @memberof FrameNotificationTokens
      */
-    'castId'?: PostCastReqBodyEmbedsCastIdProperties;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostCastReqBodyEmbeds
-     */
-    'url'?: string;
+    'next': NextCursor;
 }
 
