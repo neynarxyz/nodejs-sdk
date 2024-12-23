@@ -1451,6 +1451,7 @@ Object.assign(adjustedParams, params);
  * @param {number} params.viewerFid [optional]  - Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`.
  * @param {boolean} params.withReplies [optional]  - Include replies in the response, false by default
  * @param {boolean} params.membersOnly [optional]  - Only include casts from members of the channel. True by default.
+ * @param {number[]} params.fids [optional]  - Comma separated list of FIDs to filter the feed by, up to 10 at a time
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 25, Maximum: 100)
  * @param {string} params.cursor [optional]  - Pagination cursor.
  * @param {boolean} params.shouldModerate [optional]  - If true, only casts that have been liked by the moderator (if one exists) will be returned.
@@ -1465,21 +1466,28 @@ Object.assign(adjustedParams, params);
  * const viewerFid = 
  * const withReplies = 
  * const membersOnly = 
+ * const fids = 
  * const limit = 
  * const shouldModerate = 
  *
- * client.fetchFeedByChannelIds({ channelIds, withRecasts, viewerFid, withReplies, membersOnly, limit, shouldModerate }).then(response => {
+ * client.fetchFeedByChannelIds({ channelIds, withRecasts, viewerFid, withReplies, membersOnly, fids, limit, shouldModerate }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-feed-by-channel-ids)
  *
  */
-public async fetchFeedByChannelIds(params: { channelIds: string[], withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, membersOnly?: boolean, limit?: number, cursor?: string, shouldModerate?: boolean }): Promise<FeedResponse> {
+public async fetchFeedByChannelIds(params: { channelIds: string[], withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, membersOnly?: boolean, fids?: number[], limit?: number, cursor?: string, shouldModerate?: boolean }): Promise<FeedResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 if (adjustedParams.channelIds && Array.isArray(adjustedParams.channelIds)) {
   adjustedParams.channelIds = adjustedParams.channelIds.join(",");
+}
+if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
+  adjustedParams.fids = adjustedParams.fids.map(value => (String(value)));
+}
+if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
+  adjustedParams.fids = adjustedParams.fids.join(",");
 }
 
   const response = await this.apis.feedApi.fetchFeedByChannelIds(adjustedParams);
