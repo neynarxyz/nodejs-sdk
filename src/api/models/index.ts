@@ -115,6 +115,8 @@ export * from './frame-action-req-body';
 export * from './frame-button-action-type';
 export * from './frame-developer-managed-action-req-body';
 export * from './frame-input';
+export * from './frame-notification-tokens';
+export * from './frame-notification-tokens-notification-tokens-inner';
 export * from './frame-signature-packet';
 export * from './frame-signature-packet-trusted-data';
 export * from './frame-signature-packet-untrusted-data';

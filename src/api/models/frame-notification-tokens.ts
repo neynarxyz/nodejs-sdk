@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { Channel } from './channel';
+import type { FrameNotificationTokensNotificationTokensInner } from './frame-notification-tokens-notification-tokens-inner';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { NextCursor } from './next-cursor';
@@ -23,20 +23,20 @@ import type { NextCursor } from './next-cursor';
 /**
  * 
  * @export
- * @interface ChannelListResponse
+ * @interface FrameNotificationTokens
  */
-export interface ChannelListResponse {
+export interface FrameNotificationTokens {
     /**
      * 
-     * @type {Array<Channel>}
-     * @memberof ChannelListResponse
+     * @type {Array<FrameNotificationTokensNotificationTokensInner>}
+     * @memberof FrameNotificationTokens
      */
-    'channels': Array<Channel>;
+    'notification_tokens': Array<FrameNotificationTokensNotificationTokensInner>;
     /**
      * 
      * @type {NextCursor}
-     * @memberof ChannelListResponse
+     * @memberof FrameNotificationTokens
      */
-    'next'?: NextCursor;
+    'next': NextCursor;
 }
 
