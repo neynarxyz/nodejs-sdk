@@ -13,6 +13,30 @@
  */
 
 
-export * from "./api";
-export * from "./configuration";
-export * from "./models";
+
+/**
+ * 
+ * @export
+ * @interface CastsMetrics
+ */
+export interface CastsMetrics {
+    /**
+     * 
+     * @type {string}
+     * @memberof CastsMetrics
+     */
+    'start': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CastsMetrics
+     */
+    'resolution_in_seconds': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CastsMetrics
+     */
+    'cast_count': number;
+}
+

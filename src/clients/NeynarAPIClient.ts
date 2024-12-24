@@ -19,6 +19,7 @@ import { FnameApi } from '../api/apis/fname-api';
 import { FollowsApi } from '../api/apis/follows-api';
 import { FrameApi } from '../api/apis/frame-api';
 import { LoginApi } from '../api/apis/login-api';
+import { MetricsApi } from '../api/apis/metrics-api';
 import { MuteApi } from '../api/apis/mute-api';
 import { NotificationsApi } from '../api/apis/notifications-api';
 import { OnchainApi } from '../api/apis/onchain-api';
@@ -28,7 +29,7 @@ import { StorageApi } from '../api/apis/storage-api';
 import { SubscribersApi } from '../api/apis/subscribers-api';
 import { UserApi } from '../api/apis/user-api';
 import { WebhookApi } from '../api/apis/webhook-api';
-import type { AddVerificationReqBody, AuthorizationUrlResponse, AuthorizationUrlResponseType, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUserAddressType, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastComposerType, CastConversationSortType, CastEmbedCrawlResponse, CastParamType, CastResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, ChannelType, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleReqBodyMetadataMedia, DeployFungibleResponse, DeveloperManagedSigner, EmbedType, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FeedTrendingProvider, FeedType, FetchBulkCastsSortTypeEnum, FetchFrameMetaTagsFromUrl200Response, FetchRepliesAndRecastsForUserFilterEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedTimeWindowEnum, FilterType, FnameAvailabilityResponse, FollowReqBody, FollowSortType, FollowersResponse, ForYouProvider, Frame, FrameAction, FrameActionReqBody, FrameDeveloperManagedActionReqBody, FrameNotificationTokens, FrameSignaturePacket, FrameType, FrameValidateAnalyticsResponse, FrameValidateListResponse, InviteChannelMemberReqBody, LookupCastConversationFoldEnum, MarkNotificationsAsSeenReqBody, MuteListResponse, MuteReqBody, MuteResponse, Networks, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, ReactionsType, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionProvider, SubscriptionProviders, SubscriptionsResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, ValidateFrameAggregateWindow, ValidateFrameAnalyticsType, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
+import type { AddVerificationReqBody, AuthorizationUrlResponse, AuthorizationUrlResponseType, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUserAddressType, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastComposerType, CastConversationSortType, CastEmbedCrawlResponse, CastParamType, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, ChannelType, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleReqBodyMetadataMedia, DeployFungibleResponse, DeveloperManagedSigner, EmbedType, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FeedTrendingProvider, FeedType, FetchBulkCastsSortTypeEnum, FetchCastMetricsIntervalEnum, FetchFrameMetaTagsFromUrl200Response, FetchRepliesAndRecastsForUserFilterEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedTimeWindowEnum, FilterType, FnameAvailabilityResponse, FollowReqBody, FollowSortType, FollowersResponse, ForYouProvider, Frame, FrameAction, FrameActionReqBody, FrameDeveloperManagedActionReqBody, FrameNotificationTokens, FrameSignaturePacket, FrameType, FrameValidateAnalyticsResponse, FrameValidateListResponse, InviteChannelMemberReqBody, LookupCastConversationFoldEnum, MarkNotificationsAsSeenReqBody, MuteListResponse, MuteReqBody, MuteResponse, Networks, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, ReactionsType, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionProvider, SubscriptionProviders, SubscriptionsResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, ValidateFrameAggregateWindow, ValidateFrameAnalyticsType, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
 
 const { version: sdkVersion } = require("../../package.json");
 
@@ -92,6 +93,7 @@ export class NeynarAPIClient {
     followsApi: FollowsApi;
     frameApi: FrameApi;
     loginApi: LoginApi;
+    metricsApi: MetricsApi;
     muteApi: MuteApi;
     notificationsApi: NotificationsApi;
     onchainApi: OnchainApi;
@@ -177,6 +179,7 @@ const client = new NeynarAPIClient(config);\n`);
       followsApi: new FollowsApi(this.config, undefined, axiosInstance),
       frameApi: new FrameApi(this.config, undefined, axiosInstance),
       loginApi: new LoginApi(this.config, undefined, axiosInstance),
+      metricsApi: new MetricsApi(this.config, undefined, axiosInstance),
       muteApi: new MuteApi(this.config, undefined, axiosInstance),
       notificationsApi: new NotificationsApi(this.config, undefined, axiosInstance),
       onchainApi: new OnchainApi(this.config, undefined, axiosInstance),
@@ -2376,6 +2379,42 @@ Object.assign(adjustedParams, _params);
 public async fetchNonce(): Promise<NonceResponse> {
   
   const response = await this.apis.loginApi.fetchNonce();
+  return response.data;
+}
+
+/**
+ * Fetches metrics casts matching a query
+ *
+ * @summary Metrics for casts
+ *
+ * @param {object} params
+ * @param {string} params.q  - Query string to search for casts
+ * @param {FetchCastMetricsIntervalEnum} params.interval [optional]  - Interval of time for which to fetch metrics. Choices are `1d`, `7d`, `30d`
+ * @param {number} params.authorFid [optional]  - Fid of the user whose casts you want to search
+ * @param {string} params.channelId [optional]  - Channel ID of the casts you want to search
+ *
+ * @returns {Promise<CastsMetricsResponse>} A promise that resolves to a `CastsMetricsResponse` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const q = 
+ * const interval = 
+ * const authorFid = 
+ * const channelId = 
+ *
+ * client.fetchCastMetrics({ q, interval, authorFid, channelId }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-cast-metrics)
+ *
+ */
+public async fetchCastMetrics(params: { q: string, interval?: FetchCastMetricsIntervalEnum, authorFid?: number, channelId?: string }): Promise<CastsMetricsResponse> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.metricsApi.fetchCastMetrics(adjustedParams);
   return response.data;
 }
 
