@@ -41,6 +41,8 @@ export * from './cast-with-interactions-and-conversations-ref';
 export * from './cast-with-interactions-and-conversations-ref-all-of';
 export * from './cast-with-interactions-reactions';
 export * from './cast-with-interactions-replies';
+export * from './casts-metrics';
+export * from './casts-metrics-response';
 export * from './casts-response';
 export * from './casts-response-result';
 export * from './casts-search-response';
