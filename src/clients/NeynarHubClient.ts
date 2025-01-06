@@ -21,7 +21,7 @@ import { StorageApi } from '../hub-api/apis/storage-api';
 import { UserDataApi } from '../hub-api/apis/user-data-api';
 import { UsernamesApi } from '../hub-api/apis/usernames-api';
 import { VerificationsApi } from '../hub-api/apis/verifications-api';
-import type { CastAdd, FetchCastReactions200Response, FetchEvents200Response, FetchUserData200Response, FetchUserFollowing200Response, FetchUserOnChainEvents200Response, FetchUserOnChainSignersEvents200Response, FetchUsersCasts200Response, FetchVerificationsByFid200Response, FidsResponse, HubEvent, HubInfoResponse, LinkAdd, LinkType, Message, OnChainEventIdRegister, OnChainEventType, Reaction, ReactionType, StorageLimitsResponse, UserDataType, UserNameProof, UsernameProofsResponse, ValidateMessageResponse } from '../hub-api';
+import type { CastAdd, FetchCastReactions200Response, FetchCastsByParent200Response, FetchEvents200Response, FetchUserData200Response, FetchUserFollowing200Response, FetchUserOnChainEvents200Response, FetchUserOnChainSignersEvents200Response, FetchUsersCasts200Response, FetchVerificationsByFid200Response, FidsResponse, HubEvent, HubInfoResponse, LinkAdd, LinkType, Message, OnChainEventIdRegister, OnChainEventType, Reaction, ReactionType, StorageLimitsResponse, UserDataType, UserNameProof, UsernameProofsResponse, ValidateMessageResponse } from '../hub-api';
 
 const { version: sdkVersion } = require("../../package.json");
 
@@ -179,19 +179,19 @@ const client = new NeynarHubClient(config);\n`);
 
   
 /**
- * Fetch casts by parent.
+ * Retrieve all reply casts (responses) to a specific parent cast in the Farcaster network. Parent casts can be identified using either a combination of FID and hash, or by their URL. This endpoint enables traversal of conversation threads and retrieval of all responses to a particular cast.
  *
  * @summary By parent cast
  *
  * @param {object} params
- * @param {number} params.fid [optional]  - The FID of the parent cast
- * @param {string} params.hash [optional]  - The parent cast's hash
- * @param {string} params.url [optional] 
+ * @param {number} params.fid [optional]  - The Farcaster ID (FID) of the parent cast's creator. This parameter must be used together with the 'hash' parameter to uniquely identify a parent cast. Required only when using hash-based lookup instead of URL-based lookup. The FID is a unique identifier assigned to each Farcaster user.
+ * @param {string} params.hash [optional]  - The unique hash identifier of the parent cast. Must be used together with the 'fid' parameter when doing hash-based lookup. This is a 40-character hexadecimal string prefixed with '0x' that uniquely identifies the cast within the creator's posts. Not required if using URL-based lookup.
+ * @param {string} params.url [optional]  - Cast URL starting with 'chain://'
  * @param {number} params.pageSize [optional]  - Maximum number of messages to return in a single response
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
  * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
  *
- * @returns {Promise<FetchUsersCasts200Response>} A promise that resolves to a `FetchUsersCasts200Response` object.
+ * @returns {Promise<FetchCastsByParent200Response>} A promise that resolves to a `FetchCastsByParent200Response` object.
  *
  * @example
  *
@@ -210,7 +210,7 @@ const client = new NeynarHubClient(config);\n`);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-casts-by-parent)
  *
  */
-public async fetchCastsByParent(params: { fid?: number, hash?: string, url?: string, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchUsersCasts200Response> {
+public async fetchCastsByParent(params: { fid?: number, hash?: string, url?: string, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchCastsByParent200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -297,7 +297,7 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {number} params.fid  - The FID of the cast's creator
- * @param {string} params.hash  - The cast's hash
+ * @param {string} params.hash  - The unique hash identifier of the cast. This is a 40-character hexadecimal string prefixed with '0x' that uniquely identifies a specific cast in the Farcaster network.
  *
  * @returns {Promise<CastAdd>} A promise that resolves to a `CastAdd` object.
  *
@@ -422,7 +422,7 @@ Object.assign(adjustedParams, params);
  * @summary Sync Methods
  *
  * @param {object} params
- * @param {boolean} params.dbstats  - Whether to return DB stats
+ * @param {boolean} params.dbstats  - Controls whether the response includes database statistics. When true, the response includes information about the hub's database state, storage usage, and performance metrics.
  *
  * @returns {Promise<HubInfoResponse>} A promise that resolves to a `HubInfoResponse` object.
  *
@@ -452,8 +452,8 @@ Object.assign(adjustedParams, params);
  * @summary To target FID
  *
  * @param {object} params
- * @param {number} params.targetFid  - The FID of the target of the link
- * @param {LinkType} params.linkType [optional]  - The type of link, as a string value
+ * @param {number} params.targetFid  - The FID of the target user for this link
+ * @param {LinkType} params.linkType [optional] 
  * @param {number} params.pageSize [optional]  - Maximum number of messages to return in a single response
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
  * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
@@ -491,7 +491,7 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {number} params.fid  - The FID of the link's originator
- * @param {LinkType} params.linkType [optional]  - The type of link, as a string value
+ * @param {LinkType} params.linkType [optional] 
  * @param {number} params.pageSize [optional]  - Maximum number of messages to return in a single response
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
  * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
@@ -529,8 +529,8 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {number} params.fid  - The FID of the link's originator
- * @param {number} params.targetFid  - The FID of the target of the link
- * @param {LinkType} params.linkType  - The type of link, as a string value
+ * @param {number} params.targetFid  - The FID of the target user for this link
+ * @param {LinkType} params.linkType 
  *
  * @returns {Promise<LinkAdd>} A promise that resolves to a `LinkAdd` object.
  *
@@ -711,14 +711,14 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Fetch reactions on a cast.
+ * Retrieve all reactions (likes or recasts) on a specific cast in the Farcaster network. The cast is identified by its creator\'s FID and unique hash. This endpoint helps track engagement metrics and user interactions with specific content.
  *
  * @summary On cast
  *
  * @param {object} params
- * @param {number} params.targetFid  - The FID of the cast's creator
- * @param {string} params.targetHash  - The hash of the cast
- * @param {ReactionType} params.reactionType  - The type of reaction, either as a numerical enum value or string representation
+ * @param {number} params.targetFid  - The FID of the cast's creator. Required to uniquely identify the cast that received the reactions. Must be used in conjunction with target_hash.
+ * @param {string} params.targetHash  - The unique hash identifier of the cast that received the reactions. This is a 40-character hexadecimal string prefixed with '0x' that uniquely identifies the cast within the creator's posts. Must be used with target_fid.
+ * @param {ReactionType} params.reactionType 
  * @param {number} params.pageSize [optional]  - Maximum number of messages to return in a single response
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
  * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
@@ -751,13 +751,13 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Fetch reactions by a target URL.
+ * Fetch all reactions of a specific type (like or recast) that target a given URL. This endpoint is useful for tracking engagement with content across the Farcaster network.
  *
  * @summary To a target URL
  *
  * @param {object} params
- * @param {string} params.url  - The URL of the parent cast
- * @param {ReactionType} params.reactionType  - The type of reaction, either as a numerical enum value or string representation
+ * @param {string} params.url  - Target URL starting with 'chain://'.
+ * @param {ReactionType} params.reactionType 
  * @param {number} params.pageSize [optional]  - Maximum number of messages to return in a single response
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
  * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
@@ -795,7 +795,7 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {number} params.fid  - The FID of the reaction's creator
- * @param {ReactionType} params.reactionType  - The type of reaction, either as a numerical enum value or string representation
+ * @param {ReactionType} params.reactionType 
  * @param {number} params.pageSize [optional]  - Maximum number of messages to return in a single response
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
  * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
@@ -835,7 +835,7 @@ Object.assign(adjustedParams, params);
  * @param {number} params.fid  - The FID of the reaction's creator
  * @param {number} params.targetFid  - The FID of the cast's creator
  * @param {string} params.targetHash  - The cast's hash
- * @param {ReactionType} params.reactionType  - The type of reaction, either as a numerical enum value or string representation
+ * @param {ReactionType} params.reactionType 
  *
  * @returns {Promise<Reaction>} A promise that resolves to a `Reaction` object.
  *
