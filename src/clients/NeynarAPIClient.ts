@@ -1449,7 +1449,7 @@ Object.assign(adjustedParams, params);
  * @summary By channel IDs
  *
  * @param {object} params
- * @param {string[]} params.channelIds  - Comma separated list of channel IDs e.g. neynar,farcaster
+ * @param {string[]} params.channelIds  - Comma separated list of up to 10 channel IDs e.g. neynar,farcaster
  * @param {boolean} params.withRecasts [optional]  - Include recasts in the response, true by default
  * @param {number} params.viewerFid [optional]  - Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`.
  * @param {boolean} params.withReplies [optional]  - Include replies in the response, false by default
