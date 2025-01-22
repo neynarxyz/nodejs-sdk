@@ -728,7 +728,7 @@ Object.assign(adjustedParams, _params);
  * @summary Search for casts
  *
  * @param {object} params
- * @param {string} params.q  - Query string to search for casts
+ * @param {string} params.q  - Query string to search for casts. Include 'before:YYYY-MM-DD' or 'after:YYYY-MM-DD' to search for casts before or after a specific date.
  * @param {number} params.authorFid [optional]  - Fid of the user whose casts you want to search
  * @param {number} params.viewerFid [optional]  - Providing this will return search results that respects this user's mutes and blocks and includes `viewer_context`.
  * @param {string} params.parentUrl [optional]  - Parent URL of the casts you want to search
@@ -1449,7 +1449,7 @@ Object.assign(adjustedParams, params);
  * @summary By channel IDs
  *
  * @param {object} params
- * @param {string[]} params.channelIds  - Comma separated list of channel IDs e.g. neynar,farcaster
+ * @param {string[]} params.channelIds  - Comma separated list of up to 10 channel IDs e.g. neynar,farcaster
  * @param {boolean} params.withRecasts [optional]  - Include recasts in the response, true by default
  * @param {number} params.viewerFid [optional]  - Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`.
  * @param {boolean} params.withReplies [optional]  - Include replies in the response, false by default
