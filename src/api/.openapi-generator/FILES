@@ -125,6 +125,12 @@ models/embed.ts
 models/error-res.ts
 models/farcaster-action-req-body-action.ts
 models/farcaster-action-req-body.ts
+models/farcaster-manifest-account-association.ts
+models/farcaster-manifest-frame.ts
+models/farcaster-manifest-triggers-inner-one-of.ts
+models/farcaster-manifest-triggers-inner-one-of1.ts
+models/farcaster-manifest-triggers-inner.ts
+models/farcaster-manifest.ts
 models/feed-response.ts
 models/feed-trending-provider.ts
 models/feed-type.ts
@@ -142,7 +148,9 @@ models/for-you-provider.ts
 models/frame-action-button.ts
 models/frame-action-req-body.ts
 models/frame-action.ts
+models/frame-base.ts
 models/frame-button-action-type.ts
+models/frame-catalog-response.ts
 models/frame-developer-managed-action-req-body.ts
 models/frame-input.ts
 models/frame-notification-tokens-notification-tokens-inner.ts
@@ -153,6 +161,12 @@ models/frame-signature-packet.ts
 models/frame-state.ts
 models/frame-transaction.ts
 models/frame-type.ts
+models/frame-v1-all-of-input.ts
+models/frame-v1-all-of-state.ts
+models/frame-v1-all-of.ts
+models/frame-v1.ts
+models/frame-v2-all-of.ts
+models/frame-v2.ts
 models/frame-validate-analytics-input-text-input-texts-inner.ts
 models/frame-validate-analytics-input-text.ts
 models/frame-validate-analytics-interactions-per-cast-interactions-per-cast-inner.ts
