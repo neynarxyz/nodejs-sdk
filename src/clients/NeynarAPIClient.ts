@@ -2047,7 +2047,7 @@ public async fetchNeynarFrames(): Promise<Array<NeynarFrame>> {
 /**
  * Returns a list of notifications tokens related for an app
  *
- * @summary List of frame notification tokens. 
+ * @summary List of frame notification tokens 
  *
  * @param {object} params
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 20, Maximum: 100)
