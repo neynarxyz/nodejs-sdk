@@ -107,6 +107,7 @@ export * from './feed-trending-provider';
 export * from './feed-type';
 export * from './fetch-feed-for-you400-response';
 export * from './fetch-frame-meta-tags-from-url200-response';
+export * from './fetch-user-interactions200-response';
 export * from './fids';
 export * from './filter-type';
 export * from './fname-availability-response';

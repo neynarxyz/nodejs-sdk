@@ -136,6 +136,7 @@ models/feed-trending-provider.ts
 models/feed-type.ts
 models/fetch-feed-for-you400-response.ts
 models/fetch-frame-meta-tags-from-url200-response.ts
+models/fetch-user-interactions200-response.ts
 models/fids.ts
 models/filter-type.ts
 models/fname-availability-response.ts

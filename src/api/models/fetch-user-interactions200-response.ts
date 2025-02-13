@@ -15,29 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CastEmbedded } from './cast-embedded';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { CastId } from './cast-id';
+import type { Notification } from './notification';
 
 /**
  * 
  * @export
- * @interface EmbedCast
+ * @interface FetchUserInteractions200Response
  */
-export interface EmbedCast {
-    /**
-     * [DEPRECATED: Use \"cast\" key instead]
-     * @type {CastId}
-     * @memberof EmbedCast
-     * @deprecated
-     */
-    'cast_id'?: CastId;
+export interface FetchUserInteractions200Response {
     /**
      * 
-     * @type {CastEmbedded}
-     * @memberof EmbedCast
+     * @type {Array<Notification>}
+     * @memberof FetchUserInteractions200Response
      */
-    'cast': CastEmbedded;
+    'interactions': Array<Notification>;
 }
 
