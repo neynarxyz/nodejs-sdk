@@ -3631,7 +3631,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * @summary User interactions
  *
  * @param {object} params
- * @param {number} params.fid  - FID of the user you want to fetch interactions for.
+ * @param {number[]} params.fids  - Comma separated list of two FIDs
  * @param {Array<NotificationType>} params.type [optional]  - Comma seperated list of Interaction type to fetch
  *
  * @returns {Promise<FetchUserInteractions200Response>} A promise that resolves to a `FetchUserInteractions200Response` object.
@@ -3639,16 +3639,22 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * @example
  *
  * // Fill in the appropriate values
- * const fid = 
+ * const fids = 
  * const type = 
  *
- * client.fetchUserInteractions({ fid, type }).then(response => {
+ * client.fetchUserInteractions({ fids, type }).then(response => {
  *   console.log('response:', response);
  * });
  */
-public async fetchUserInteractions(params: { fid: number, type?: Array<NotificationType> }): Promise<FetchUserInteractions200Response> {
+public async fetchUserInteractions(params: { fids: number[], type?: Array<NotificationType> }): Promise<FetchUserInteractions200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
+if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
+  adjustedParams.fids = adjustedParams.fids.map(value => (String(value)));
+}
+if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
+  adjustedParams.fids = adjustedParams.fids.join(",");
+}
 
   const response = await this.apis.userApi.fetchUserInteractions(adjustedParams);
   return response.data;
