@@ -60,6 +60,7 @@ models/cast-id.ts
 models/cast-notification-type.ts
 models/cast-param-type.ts
 models/cast-response.ts
+models/cast-text-range.ts
 models/cast-viewer-context.ts
 models/cast-with-interactions-all-of.ts
 models/cast-with-interactions-and-conversations-all-of.ts
