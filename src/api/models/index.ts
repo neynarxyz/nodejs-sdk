@@ -32,6 +32,7 @@ export * from './cast-id';
 export * from './cast-notification-type';
 export * from './cast-param-type';
 export * from './cast-response';
+export * from './cast-text-range';
 export * from './cast-viewer-context';
 export * from './cast-with-interactions';
 export * from './cast-with-interactions-all-of';
