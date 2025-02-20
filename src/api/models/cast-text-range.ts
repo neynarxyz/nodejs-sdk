@@ -13,21 +13,24 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { Channel } from './channel';
 
 /**
  * 
  * @export
- * @interface ChannelResponseBulk
+ * @interface CastTextRange
  */
-export interface ChannelResponseBulk {
+export interface CastTextRange {
     /**
      * 
-     * @type {Array<Channel>}
-     * @memberof ChannelResponseBulk
+     * @type {number}
+     * @memberof CastTextRange
      */
-    'channels': Array<Channel>;
+    'start'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CastTextRange
+     */
+    'end'?: number;
 }
 
