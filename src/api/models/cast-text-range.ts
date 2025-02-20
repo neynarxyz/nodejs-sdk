@@ -13,29 +13,24 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { ChannelMemberRole } from './channel-member-role';
 
 /**
- * Adds context on the viewer\'s or author\'s role in the channel.
+ * 
  * @export
- * @interface ChannelUserContext
+ * @interface CastTextRange
  */
-export interface ChannelUserContext {
-    /**
-     * Indicates if the user is following the channel.
-     * @type {boolean}
-     * @memberof ChannelUserContext
-     */
-    'following': boolean;
+export interface CastTextRange {
     /**
      * 
-     * @type {ChannelMemberRole}
-     * @memberof ChannelUserContext
+     * @type {number}
+     * @memberof CastTextRange
      */
-    'role'?: ChannelMemberRole;
+    'start'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CastTextRange
+     */
+    'end'?: number;
 }
-
-
 
