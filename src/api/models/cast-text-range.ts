@@ -13,21 +13,24 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { ProfileUrlPfp } from './profile-url-pfp';
 
 /**
  * 
  * @export
- * @interface ProfileUrl
+ * @interface CastTextRange
  */
-export interface ProfileUrl {
+export interface CastTextRange {
     /**
      * 
-     * @type {ProfileUrlPfp}
-     * @memberof ProfileUrl
+     * @type {number}
+     * @memberof CastTextRange
      */
-    'pfp': ProfileUrlPfp;
+    'start'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CastTextRange
+     */
+    'end'?: number;
 }
 
