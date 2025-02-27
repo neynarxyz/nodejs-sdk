@@ -17,17 +17,20 @@
 /**
  * 
  * @export
- * @enum {string}
+ * @interface CastTextRange
  */
-
-export const ValidateFrameAnalyticsType = {
-    TotalInteractors: 'total-interactors',
-    Interactors: 'interactors',
-    InteractionsPerCast: 'interactions-per-cast',
-    InputText: 'input-text'
-} as const;
-
-export type ValidateFrameAnalyticsType = typeof ValidateFrameAnalyticsType[keyof typeof ValidateFrameAnalyticsType];
-
-
+export interface CastTextRange {
+    /**
+     * 
+     * @type {number}
+     * @memberof CastTextRange
+     */
+    'start'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CastTextRange
+     */
+    'end'?: number;
+}
 
