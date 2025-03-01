@@ -10,6 +10,7 @@ import {SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN, SIGNED_KEY_REQUEST_TYPE} fr
 import {isApiErrorResponse} from '../utils';
 
 import { ActionApi } from '../api/apis/action-api';
+import { AgentsApi } from '../api/apis/agents-api';
 import { BanApi } from '../api/apis/ban-api';
 import { BlockApi } from '../api/apis/block-api';
 import { CastApi } from '../api/apis/cast-api';
@@ -29,7 +30,7 @@ import { StorageApi } from '../api/apis/storage-api';
 import { SubscribersApi } from '../api/apis/subscribers-api';
 import { UserApi } from '../api/apis/user-api';
 import { WebhookApi } from '../api/apis/webhook-api';
-import type { AddVerificationReqBody, AuthorizationUrlResponse, AuthorizationUrlResponseType, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUserAddressType, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastComposerType, CastConversationSortType, CastEmbedCrawlResponse, CastParamType, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, ChannelType, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleReqBodyMetadataMedia, DeployFungibleResponse, DeveloperManagedSigner, EmbedType, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FeedTrendingProvider, FeedType, FetchBulkCastsSortTypeEnum, FetchCastMetricsIntervalEnum, FetchFrameMetaTagsFromUrl200Response, FetchRepliesAndRecastsForUserFilterEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedTimeWindowEnum, FetchUserInteractions200Response, FilterType, FnameAvailabilityResponse, FollowReqBody, FollowSortType, FollowersResponse, ForYouProvider, Frame, FrameAction, FrameActionReqBody, FrameCatalogResponse, FrameDeveloperManagedActionReqBody, FrameNotificationTokens, FrameSignaturePacket, FrameType, FrameValidateAnalyticsResponse, FrameValidateListResponse, InviteChannelMemberReqBody, LookupCastConversationFoldEnum, MarkNotificationsAsSeenReqBody, MuteListResponse, MuteReqBody, MuteResponse, Networks, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, ReactionsType, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionProvider, SubscriptionProviders, SubscriptionsResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, ValidateFrameAggregateWindow, ValidateFrameAnalyticsType, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
+import type { AddVerificationReqBody, AuthorizationUrlResponse, AuthorizationUrlResponseType, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUserAddressType, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastComposerType, CastConversationSortType, CastEmbedCrawlResponse, CastParamType, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, ChannelType, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleReqBodyMetadataMedia, DeployFungibleResponse, DeveloperManagedSigner, EmbedType, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FeedTrendingProvider, FeedType, FetchBulkCastsSortTypeEnum, FetchCastMetricsIntervalEnum, FetchFrameMetaTagsFromUrl200Response, FetchRepliesAndRecastsForUserFilterEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedTimeWindowEnum, FetchUserInteractions200Response, FilterType, FnameAvailabilityResponse, FollowReqBody, FollowSortType, FollowersResponse, ForYouProvider, Frame, FrameAction, FrameActionReqBody, FrameCatalogResponse, FrameDeveloperManagedActionReqBody, FrameNotificationTokens, FrameSignaturePacket, FrameType, FrameValidateAnalyticsResponse, FrameValidateListResponse, InviteChannelMemberReqBody, LookupCastConversationFoldEnum, MarkNotificationsAsSeenReqBody, MuteListResponse, MuteReqBody, MuteResponse, Networks, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, ReactionsType, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionProvider, SubscriptionProviders, SubscriptionsResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, ValidateFrameAggregateWindow, ValidateFrameAnalyticsType, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
 
 const { version: sdkVersion } = require("../../package.json");
 
@@ -84,6 +85,7 @@ export class NeynarAPIClient {
 
   private readonly apis: {
     actionApi: ActionApi;
+    agentsApi: AgentsApi;
     banApi: BanApi;
     blockApi: BlockApi;
     castApi: CastApi;
@@ -170,6 +172,7 @@ const client = new NeynarAPIClient(config);\n`);
 
     this.apis = {
       actionApi: new ActionApi(this.config, undefined, axiosInstance),
+      agentsApi: new AgentsApi(this.config, undefined, axiosInstance),
       banApi: new BanApi(this.config, undefined, axiosInstance),
       blockApi: new BlockApi(this.config, undefined, axiosInstance),
       castApi: new CastApi(this.config, undefined, axiosInstance),
@@ -234,6 +237,75 @@ const _params = { farcasterActionReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
 
   const response = await this.apis.actionApi.publishFarcasterAction(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Returns a list of interactions between two users
+ *
+ * @summary User interactions
+ *
+ * @param {object} params
+ * @param {number[]} params.fids  - Comma separated list of two FIDs
+ * @param {Array<NotificationType>} params.type [optional]  - Comma seperated list of Interaction type to fetch
+ *
+ * @returns {Promise<FetchUserInteractions200Response>} A promise that resolves to a `FetchUserInteractions200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const fids = 
+ * const type = 
+ *
+ * client.fetchUserInteractions({ fids, type }).then(response => {
+ *   console.log('response:', response);
+ * });
+ */
+public async fetchUserInteractions(params: { fids: number[], type?: Array<NotificationType> }): Promise<FetchUserInteractions200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
+  adjustedParams.fids = adjustedParams.fids.map(value => (String(value)));
+}
+if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
+  adjustedParams.fids = adjustedParams.fids.join(",");
+}
+
+  const response = await this.apis.agentsApi.fetchUserInteractions(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Generates a summary of all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL.  Summary is generated by an LLM and is intended to be passed as a context to AI agents.
+ *
+ * @summary Conversation summary for a cast
+ *
+ * @param {object} params
+ * @param {string} params.identifier  - Cast identifier (Its either a url or a hash)
+ * @param {number} params.limit [optional]  - Number of casts to consider in a summary up to a point of target cast (Default: 20, Maximum: 50)
+ * @param {string} params.prompt [optional]  - Additional prompt used to generate a summary
+ *
+ * @returns {Promise<ConversationSummary>} A promise that resolves to a `ConversationSummary` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const identifier = 
+ * const limit = 
+ * const prompt = 
+ *
+ * client.lookupCastConversationSummary({ identifier, limit, prompt }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-cast-conversation-summary)
+ *
+ */
+public async lookupCastConversationSummary(params: { identifier: string, limit?: number, prompt?: string }): Promise<ConversationSummary> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.agentsApi.lookupCastConversationSummary(adjustedParams);
   return response.data;
 }
 
@@ -646,40 +718,6 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Generates a summary of all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL.  Summary is generated by an LLM and is intended to be passed as a context to AI agents.
- *
- * @summary Conversation summary for a cast
- *
- * @param {object} params
- * @param {string} params.identifier  - Cast identifier (Its either a url or a hash)
- * @param {number} params.limit [optional]  - Number of casts to consider in a summary up to a point of target cast (Default: 20, Maximum: 50)
- * @param {string} params.prompt [optional]  - Additional prompt used to generate a summary
- *
- * @returns {Promise<ConversationSummary>} A promise that resolves to a `ConversationSummary` object.
- *
- * @example
- *
- * // Fill in the appropriate values
- * const identifier = 
- * const limit = 
- * const prompt = 
- *
- * client.lookupCastConversationSummary({ identifier, limit, prompt }).then(response => {
- *   console.log('response:', response);
- * });
- *
- * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-cast-conversation-summary)
- *
- */
-public async lookupCastConversationSummary(params: { identifier: string, limit?: number, prompt?: string }): Promise<ConversationSummary> {
-  const adjustedParams: any = {};
-Object.assign(adjustedParams, params);
-
-  const response = await this.apis.castApi.lookupCastConversationSummary(adjustedParams);
-  return response.data;
-}
-
-/**
  * Posts a cast or cast reply. Works with mentions and embeds.   (In order to post a cast `signer_uuid` must be approved)
  *
  * @summary Post a cast
@@ -729,6 +767,7 @@ Object.assign(adjustedParams, _params);
  *
  * @param {object} params
  * @param {string} params.q  - Query string to search for casts. Include 'before:YYYY-MM-DD' or 'after:YYYY-MM-DD' to search for casts before or after a specific date.
+ * @param {SearchCastsModeEnum} params.mode [optional]  - Choices are `literal` (default), `semantic`, `hybrid`
  * @param {number} params.authorFid [optional]  - Fid of the user whose casts you want to search
  * @param {number} params.viewerFid [optional]  - Providing this will return search results that respects this user's mutes and blocks and includes `viewer_context`.
  * @param {string} params.parentUrl [optional]  - Parent URL of the casts you want to search
@@ -743,6 +782,7 @@ Object.assign(adjustedParams, _params);
  *
  * // Fill in the appropriate values
  * const q = 
+ * const mode = 
  * const authorFid = 
  * const viewerFid = 
  * const parentUrl = 
@@ -750,14 +790,14 @@ Object.assign(adjustedParams, _params);
  * const priorityMode = 
  * const limit = 
  *
- * client.searchCasts({ q, authorFid, viewerFid, parentUrl, channelId, priorityMode, limit }).then(response => {
+ * client.searchCasts({ q, mode, authorFid, viewerFid, parentUrl, channelId, priorityMode, limit }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/search-casts)
  *
  */
-public async searchCasts(params: { q: string, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string }): Promise<CastsSearchResponse> {
+public async searchCasts(params: { q: string, mode?: SearchCastsModeEnum, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string }): Promise<CastsSearchResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -1356,6 +1396,7 @@ Object.assign(adjustedParams, _params);
  *
  * @param {object} params
  * @param {number} params.fid  - FID of user whose recent casts you want to fetch
+ * @param {number} params.appFid [optional]  - Optionally filter to casts created via a specific app FID, e.g. 9152 for Warpcast
  * @param {number} params.viewerFid [optional]  - FID of the user viewing the feed
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 25, Maximum: 150)
  * @param {string} params.cursor [optional]  - Pagination cursor
@@ -1369,20 +1410,21 @@ Object.assign(adjustedParams, _params);
  *
  * // Fill in the appropriate values
  * const fid = 
+ * const appFid = 
  * const viewerFid = 
  * const limit = 
  * const includeReplies = 
  * const parentUrl = 
  * const channelId = 
  *
- * client.fetchCastsForUser({ fid, viewerFid, limit, includeReplies, parentUrl, channelId }).then(response => {
+ * client.fetchCastsForUser({ fid, appFid, viewerFid, limit, includeReplies, parentUrl, channelId }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-casts-for-user)
  *
  */
-public async fetchCastsForUser(params: { fid: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string }): Promise<FeedResponse> {
+public async fetchCastsForUser(params: { fid: number, appFid?: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string }): Promise<FeedResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -1895,9 +1937,9 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
 }
 
 /**
- * Fetch a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
+ * Fetch a list of users who a given user is following. Can optionally include a viewer_fid and sort_type.
  *
- * @summary Followed by
+ * @summary Following
  *
  * @param {object} params
  * @param {number} params.fid  - FID of the user whose following you want to fetch.
@@ -2052,6 +2094,7 @@ public async fetchNeynarFrames(): Promise<Array<NeynarFrame>> {
  * @param {object} params
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 20, Maximum: 100)
  * @param {number[]} params.fids [optional]  - Comma separated list of FIDs, up to 100 at a time
+ * @param {string} params.cursor [optional]  - Pagination cursor
  *
  * @returns {Promise<FrameNotificationTokens>} A promise that resolves to a `FrameNotificationTokens` object.
  *
@@ -2068,7 +2111,7 @@ public async fetchNeynarFrames(): Promise<Array<NeynarFrame>> {
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-notification-tokens)
  *
  */
-public async fetchNotificationTokens(params: { limit?: number, fids?: number[] }): Promise<FrameNotificationTokens> {
+public async fetchNotificationTokens(params: { limit?: number, fids?: number[], cursor?: string }): Promise<FrameNotificationTokens> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
@@ -2555,6 +2598,7 @@ Object.assign(adjustedParams, _params);
  * @param {number} params.fid  - FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
  * @param {Array<NotificationType>} params.type [optional]  - Notification type to fetch. Comma separated values of follows, recasts, likes, mentions, replies.
  * @param {boolean} params.priorityMode [optional]  - When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
+ * @param {number} params.limit [optional]  - Number of results to fetch (Default: 15, Maximum: 25)
  * @param {string} params.cursor [optional]  - Pagination cursor.
  *
  * @returns {Promise<NotificationsResponse>} A promise that resolves to a `NotificationsResponse` object.
@@ -2565,15 +2609,16 @@ Object.assign(adjustedParams, _params);
  * const fid = 
  * const type = 
  * const priorityMode = 
+ * const limit = 
  *
- * client.fetchAllNotifications({ fid, type, priorityMode }).then(response => {
+ * client.fetchAllNotifications({ fid, type, priorityMode, limit }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-all-notifications)
  *
  */
-public async fetchAllNotifications(params: { fid: number, type?: Array<NotificationType>, priorityMode?: boolean, cursor?: string }): Promise<NotificationsResponse> {
+public async fetchAllNotifications(params: { fid: number, type?: Array<NotificationType>, priorityMode?: boolean, limit?: number, cursor?: string }): Promise<NotificationsResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -2590,6 +2635,7 @@ Object.assign(adjustedParams, params);
  * @param {number} params.fid  - FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
  * @param {string[]} params.channelIds  - Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
  * @param {boolean} params.priorityMode [optional]  - When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
+ * @param {number} params.limit [optional]  - Number of results to fetch (Default: 15, Maximum: 25)
  * @param {string} params.cursor [optional]  - Pagination cursor.
  *
  * @returns {Promise<NotificationsResponse>} A promise that resolves to a `NotificationsResponse` object.
@@ -2600,15 +2646,16 @@ Object.assign(adjustedParams, params);
  * const fid = 
  * const channelIds = 
  * const priorityMode = 
+ * const limit = 
  *
- * client.fetchChannelNotificationsForUser({ fid, channelIds, priorityMode }).then(response => {
+ * client.fetchChannelNotificationsForUser({ fid, channelIds, priorityMode, limit }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-channel-notifications-for-user)
  *
  */
-public async fetchChannelNotificationsForUser(params: { fid: number, channelIds: string[], priorityMode?: boolean, cursor?: string }): Promise<NotificationsResponse> {
+public async fetchChannelNotificationsForUser(params: { fid: number, channelIds: string[], priorityMode?: boolean, limit?: number, cursor?: string }): Promise<NotificationsResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 if (adjustedParams.channelIds && Array.isArray(adjustedParams.channelIds)) {
@@ -2628,6 +2675,7 @@ if (adjustedParams.channelIds && Array.isArray(adjustedParams.channelIds)) {
  * @param {number} params.fid  - FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
  * @param {string[]} params.parentUrls  - Comma separated parent_urls
  * @param {boolean} params.priorityMode [optional]  - When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
+ * @param {number} params.limit [optional]  - Number of results to fetch (Default: 15, Maximum: 25)
  * @param {string} params.cursor [optional]  - Pagination cursor.
  *
  * @returns {Promise<NotificationsResponse>} A promise that resolves to a `NotificationsResponse` object.
@@ -2638,15 +2686,16 @@ if (adjustedParams.channelIds && Array.isArray(adjustedParams.channelIds)) {
  * const fid = 
  * const parentUrls = 
  * const priorityMode = 
+ * const limit = 
  *
- * client.fetchNotificationsByParentUrlForUser({ fid, parentUrls, priorityMode }).then(response => {
+ * client.fetchNotificationsByParentUrlForUser({ fid, parentUrls, priorityMode, limit }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-notifications-by-parent-url-for-user)
  *
  */
-public async fetchNotificationsByParentUrlForUser(params: { fid: number, parentUrls: string[], priorityMode?: boolean, cursor?: string }): Promise<NotificationsResponse> {
+public async fetchNotificationsByParentUrlForUser(params: { fid: number, parentUrls: string[], priorityMode?: boolean, limit?: number, cursor?: string }): Promise<NotificationsResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 if (adjustedParams.parentUrls && Array.isArray(adjustedParams.parentUrls)) {
@@ -3622,41 +3671,6 @@ public async fetchPowerUsersLite(): Promise<UserPowerLiteResponse> {
 adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.userApi.fetchPowerUsersLite(adjustedParams);
-  return response.data;
-}
-
-/**
- * Returns a list of interactions between two users
- *
- * @summary User interactions
- *
- * @param {object} params
- * @param {number[]} params.fids  - Comma separated list of two FIDs
- * @param {Array<NotificationType>} params.type [optional]  - Comma seperated list of Interaction type to fetch
- *
- * @returns {Promise<FetchUserInteractions200Response>} A promise that resolves to a `FetchUserInteractions200Response` object.
- *
- * @example
- *
- * // Fill in the appropriate values
- * const fids = 
- * const type = 
- *
- * client.fetchUserInteractions({ fids, type }).then(response => {
- *   console.log('response:', response);
- * });
- */
-public async fetchUserInteractions(params: { fids: number[], type?: Array<NotificationType> }): Promise<FetchUserInteractions200Response> {
-  const adjustedParams: any = {};
-Object.assign(adjustedParams, params);
-if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
-  adjustedParams.fids = adjustedParams.fids.map(value => (String(value)));
-}
-if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
-  adjustedParams.fids = adjustedParams.fids.join(",");
-}
-
-  const response = await this.apis.userApi.fetchUserInteractions(adjustedParams);
   return response.data;
 }
 
