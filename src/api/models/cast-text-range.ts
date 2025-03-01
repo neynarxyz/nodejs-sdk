@@ -17,20 +17,20 @@
 /**
  * 
  * @export
- * @interface FarcasterActionReqBodyAction
+ * @interface CastTextRange
  */
-export interface FarcasterActionReqBodyAction {
+export interface CastTextRange {
     /**
-     * The type of action being performed. 
-     * @type {string}
-     * @memberof FarcasterActionReqBodyAction
+     * 
+     * @type {number}
+     * @memberof CastTextRange
      */
-    'type': string;
+    'start'?: number;
     /**
-     * The payload of the action being performed. 
-     * @type {object}
-     * @memberof FarcasterActionReqBodyAction
+     * 
+     * @type {number}
+     * @memberof CastTextRange
      */
-    'payload'?: object;
+    'end'?: number;
 }
 
