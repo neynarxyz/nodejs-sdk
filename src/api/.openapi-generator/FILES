@@ -158,6 +158,7 @@ models/frame-developer-managed-action-req-body.ts
 models/frame-input.ts
 models/frame-notification-tokens-notification-tokens-inner.ts
 models/frame-notification-tokens.ts
+models/frame-pay-transaction-request-body.ts
 models/frame-signature-packet-trusted-data.ts
 models/frame-signature-packet-untrusted-data.ts
 models/frame-signature-packet.ts
@@ -281,6 +282,18 @@ models/subscriptions.ts
 models/token-balance-balance.ts
 models/token-balance-token.ts
 models/token-balance.ts
+models/transaction-frame-action.ts
+models/transaction-frame-base.ts
+models/transaction-frame-config.ts
+models/transaction-frame-destination.ts
+models/transaction-frame-line-item.ts
+models/transaction-frame-pay-all-of-transaction.ts
+models/transaction-frame-pay-all-of.ts
+models/transaction-frame-pay.ts
+models/transaction-frame-response.ts
+models/transaction-frame-status.ts
+models/transaction-frame-type.ts
+models/transaction-frame.ts
 models/trending-channel-response.ts
 models/update-user-req-body-location.ts
 models/update-user-req-body-verified-accounts.ts
