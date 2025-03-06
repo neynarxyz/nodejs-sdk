@@ -30,7 +30,7 @@ import { StorageApi } from '../api/apis/storage-api';
 import { SubscribersApi } from '../api/apis/subscribers-api';
 import { UserApi } from '../api/apis/user-api';
 import { WebhookApi } from '../api/apis/webhook-api';
-import type { AddVerificationReqBody, AuthorizationUrlResponse, AuthorizationUrlResponseType, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUserAddressType, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastComposerType, CastConversationSortType, CastEmbedCrawlResponse, CastParamType, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, ChannelType, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleReqBodyMetadataMedia, DeployFungibleResponse, DeveloperManagedSigner, EmbedType, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FeedTrendingProvider, FeedType, FetchBulkCastsSortTypeEnum, FetchCastMetricsIntervalEnum, FetchFrameMetaTagsFromUrl200Response, FetchRepliesAndRecastsForUserFilterEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedTimeWindowEnum, FetchUserInteractions200Response, FilterType, FnameAvailabilityResponse, FollowReqBody, FollowSortType, FollowersResponse, ForYouProvider, Frame, FrameAction, FrameActionReqBody, FrameCatalogResponse, FrameDeveloperManagedActionReqBody, FrameNotificationTokens, FrameSignaturePacket, FrameType, FrameValidateAnalyticsResponse, FrameValidateListResponse, InviteChannelMemberReqBody, LookupCastConversationFoldEnum, MarkNotificationsAsSeenReqBody, MuteListResponse, MuteReqBody, MuteResponse, Networks, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, ReactionsType, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionProvider, SubscriptionProviders, SubscriptionsResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, ValidateFrameAggregateWindow, ValidateFrameAnalyticsType, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
+import type { AddVerificationReqBody, AuthorizationUrlResponse, AuthorizationUrlResponseType, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUserAddressType, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastComposerType, CastConversationSortType, CastEmbedCrawlResponse, CastParamType, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, ChannelType, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleReqBodyMetadataMedia, DeployFungibleResponse, DeveloperManagedSigner, EmbedType, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FeedTrendingProvider, FeedType, FetchBulkCastsSortTypeEnum, FetchCastMetricsIntervalEnum, FetchFrameMetaTagsFromUrl200Response, FetchRepliesAndRecastsForUserFilterEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedTimeWindowEnum, FetchUserInteractions200Response, FilterType, FnameAvailabilityResponse, FollowReqBody, FollowSortType, FollowersResponse, ForYouProvider, Frame, FrameAction, FrameActionReqBody, FrameCatalogResponse, FrameDeveloperManagedActionReqBody, FrameNotificationTokens, FramePayTransactionRequestBody, FrameSignaturePacket, FrameType, FrameValidateAnalyticsResponse, FrameValidateListResponse, InviteChannelMemberReqBody, LookupCastConversationFoldEnum, MarkNotificationsAsSeenReqBody, MuteListResponse, MuteReqBody, MuteResponse, Networks, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, ReactionsType, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionProvider, SubscriptionProviders, SubscriptionsResponse, TransactionFrameResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, ValidateFrameAggregateWindow, ValidateFrameAnalyticsType, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
 
 const { version: sdkVersion } = require("../../package.json");
 
@@ -241,6 +241,33 @@ Object.assign(adjustedParams, _params);
 }
 
 /**
+ * Creates a new transaction pay frame that can be used to collect payments through a frame
+ *
+ * @summary Create transaction pay frame
+ *
+ * @param {object} params
+ * @param {FramePayTransactionRequestBody} params.framePayTransactionRequestBody 
+ *
+ * @returns {Promise<TransactionFrameResponse>} A promise that resolves to a `TransactionFrameResponse` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const framePayTransactionRequestBody = 
+ *
+ * client.createTransactionPayFrame({ framePayTransactionRequestBody }).then(response => {
+ *   console.log('response:', response);
+ * });
+ */
+public async createTransactionPayFrame(params: { framePayTransactionRequestBody: FramePayTransactionRequestBody }): Promise<TransactionFrameResponse> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.agentsApi.createTransactionPayFrame(adjustedParams);
+  return response.data;
+}
+
+/**
  * Returns a list of interactions between two users
  *
  * @summary User interactions
@@ -278,7 +305,7 @@ if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
 /**
  * Generates a summary of all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL.  Summary is generated by an LLM and is intended to be passed as a context to AI agents.
  *
- * @summary Conversation summary for a cast
+ * @summary Cast conversation summary
  *
  * @param {object} params
  * @param {string} params.identifier  - Cast identifier (Its either a url or a hash)
@@ -768,6 +795,7 @@ Object.assign(adjustedParams, _params);
  * @param {object} params
  * @param {string} params.q  - Query string to search for casts. Include 'before:YYYY-MM-DD' or 'after:YYYY-MM-DD' to search for casts before or after a specific date.
  * @param {SearchCastsModeEnum} params.mode [optional]  - Choices are `literal` (default), `semantic`, `hybrid`
+ * @param {FollowSortType} params.sortType [optional]  - Sort type for search. Default is `desc_chron`
  * @param {number} params.authorFid [optional]  - Fid of the user whose casts you want to search
  * @param {number} params.viewerFid [optional]  - Providing this will return search results that respects this user's mutes and blocks and includes `viewer_context`.
  * @param {string} params.parentUrl [optional]  - Parent URL of the casts you want to search
@@ -783,6 +811,7 @@ Object.assign(adjustedParams, _params);
  * // Fill in the appropriate values
  * const q = 
  * const mode = 
+ * const sortType = 
  * const authorFid = 
  * const viewerFid = 
  * const parentUrl = 
@@ -790,14 +819,14 @@ Object.assign(adjustedParams, _params);
  * const priorityMode = 
  * const limit = 
  *
- * client.searchCasts({ q, mode, authorFid, viewerFid, parentUrl, channelId, priorityMode, limit }).then(response => {
+ * client.searchCasts({ q, mode, sortType, authorFid, viewerFid, parentUrl, channelId, priorityMode, limit }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/search-casts)
  *
  */
-public async searchCasts(params: { q: string, mode?: SearchCastsModeEnum, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string }): Promise<CastsSearchResponse> {
+public async searchCasts(params: { q: string, mode?: SearchCastsModeEnum, sortType?: FollowSortType, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string }): Promise<CastsSearchResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -2183,6 +2212,33 @@ Object.assign(adjustedParams, params);
 public async fetchValidateFrameList(): Promise<FrameValidateListResponse> {
   
   const response = await this.apis.frameApi.fetchValidateFrameList();
+  return response.data;
+}
+
+/**
+ * Retrieves details about a transaction pay frame by ID
+ *
+ * @summary Get transaction pay frame
+ *
+ * @param {object} params
+ * @param {string} params.id  - ID of the transaction frame to retrieve
+ *
+ * @returns {Promise<TransactionFrameResponse>} A promise that resolves to a `TransactionFrameResponse` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const id = 
+ *
+ * client.getTransactionPayFrame({ id }).then(response => {
+ *   console.log('response:', response);
+ * });
+ */
+public async getTransactionPayFrame(params: { id: string }): Promise<TransactionFrameResponse> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.frameApi.getTransactionPayFrame(adjustedParams);
   return response.data;
 }
 
