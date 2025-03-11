@@ -15,15 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { OembedData } from './oembed-data';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { OembedPhotoDataAllOf } from './oembed-photo-data-all-of';
+import type { HtmlMetadata } from './html-metadata';
 
 /**
- * @type OembedPhotoData
+ * 
  * @export
+ * @interface FrameV2AllOfMetadata
  */
-export type OembedPhotoData = OembedData & OembedPhotoDataAllOf;
-
+export interface FrameV2AllOfMetadata {
+    /**
+     * 
+     * @type {HtmlMetadata}
+     * @memberof FrameV2AllOfMetadata
+     */
+    'html': HtmlMetadata;
+}
 
