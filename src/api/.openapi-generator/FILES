@@ -115,9 +115,6 @@ models/embed-cast-deep.ts
 models/embed-cast.ts
 models/embed-deep.ts
 models/embed-type.ts
-models/embed-url-metadata-html-all-of-oembed.ts
-models/embed-url-metadata-html-all-of.ts
-models/embed-url-metadata-html.ts
 models/embed-url-metadata-image.ts
 models/embed-url-metadata-video-stream-inner.ts
 models/embed-url-metadata-video.ts
@@ -169,6 +166,7 @@ models/frame-v1-all-of-input.ts
 models/frame-v1-all-of-state.ts
 models/frame-v1-all-of.ts
 models/frame-v1.ts
+models/frame-v2-all-of-metadata.ts
 models/frame-v2-all-of.ts
 models/frame-v2.ts
 models/frame-validate-analytics-input-text-input-texts-inner.ts
@@ -181,6 +179,9 @@ models/frame-validate-analytics-response.ts
 models/frame-validate-analytics-total-interactors.ts
 models/frame-validate-list-response.ts
 models/frame.ts
+models/html-metadata-all-of-oembed.ts
+models/html-metadata-all-of.ts
+models/html-metadata.ts
 models/hydrated-follower.ts
 models/image-object.ts
 models/index.ts
