@@ -794,8 +794,8 @@ Object.assign(adjustedParams, _params);
  *
  * @param {object} params
  * @param {string} params.q  - Query string to search for casts. Include 'before:YYYY-MM-DD' or 'after:YYYY-MM-DD' to search for casts before or after a specific date.
- * @param {SearchCastsModeEnum} params.mode [optional]  - Choices are `literal` (default), `semantic`, `hybrid`
- * @param {FollowSortType} params.sortType [optional]  - Sort type for search. Default is `desc_chron`
+ * @param {SearchCastsModeEnum} params.mode [optional]  - Choices are: - `literal` - Searches for the words in the query string (default) - `semantic` - Searches for the meaning of the query string - `hybrid` - Combines both literal and semantic results
+ * @param {FollowSortType} params.sortType [optional]  - Choices are: - `desc_chron` - All casts sorted by time (default) - `algorithmic` - Casts sorted by engagement and time
  * @param {number} params.authorFid [optional]  - Fid of the user whose casts you want to search
  * @param {number} params.viewerFid [optional]  - Providing this will return search results that respects this user's mutes and blocks and includes `viewer_context`.
  * @param {string} params.parentUrl [optional]  - Parent URL of the casts you want to search
