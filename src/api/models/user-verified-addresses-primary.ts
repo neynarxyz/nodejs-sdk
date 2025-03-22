@@ -17,24 +17,20 @@
 /**
  * 
  * @export
- * @enum {string}
+ * @interface UserVerifiedAddressesPrimary
  */
-
-export const ValidateFrameAggregateWindow = {
-    _10s: '10s',
-    _1m: '1m',
-    _2m: '2m',
-    _5m: '5m',
-    _10m: '10m',
-    _20m: '20m',
-    _30m: '30m',
-    _2h: '2h',
-    _12h: '12h',
-    _1d: '1d',
-    _7d: '7d'
-} as const;
-
-export type ValidateFrameAggregateWindow = typeof ValidateFrameAggregateWindow[keyof typeof ValidateFrameAggregateWindow];
-
-
+export interface UserVerifiedAddressesPrimary {
+    /**
+     * Ethereum address
+     * @type {string}
+     * @memberof UserVerifiedAddressesPrimary
+     */
+    'eth_address': string;
+    /**
+     * Solana address
+     * @type {string}
+     * @memberof UserVerifiedAddressesPrimary
+     */
+    'sol_address': string;
+}
 

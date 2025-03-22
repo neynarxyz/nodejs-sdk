@@ -310,6 +310,7 @@ models/user-response.ts
 models/user-search-response-result.ts
 models/user-search-response.ts
 models/user-verified-accounts-inner.ts
+models/user-verified-addresses-primary.ts
 models/user-verified-addresses.ts
 models/user-viewer-context.ts
 models/user.ts
