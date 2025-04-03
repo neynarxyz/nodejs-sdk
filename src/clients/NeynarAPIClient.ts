@@ -1474,7 +1474,7 @@ Object.assign(adjustedParams, params);
  * @param {string} params.parentUrl [optional]  - Used when filter_type=parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type.
  * @param {string} params.channelId [optional]  - Used when filter_type=channel_id can be used to fetch casts under a channel. Requires feed_type and filter_type.
  * @param {boolean} params.membersOnly [optional]  - Used when filter_type=channel_id. Only include casts from members of the channel. True by default.
- * @param {string} params.embedUrl [optional]  - Used when filter_type=embed_url. Casts with an embedded URL that is prefixed by or equal to this embed_url param will be returned. We will match against your given URL prefix as is, and additionally against a normalized version with 'https://' prepended if no protocol was included. Requires feed_type and filter_type.
+ * @param {string} params.embedUrl [optional]  - Used when filter_type=embed_url. Casts with embedded URLs prefixed by this embed_url param will be returned. We normalize your given URL prefix and prepend 'https://' if no protocol is included. Requires feed_type and filter_type.
  * @param {Array<EmbedType>} params.embedTypes [optional]  - Used when filter_type=embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type.
  * @param {boolean} params.withRecasts [optional]  - Include recasts in the response, true by default
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 25, Maximum: 100)
