@@ -17,4 +17,4 @@ To make contributions to this SDK please update the [OAS](https://github.com/ney
 
 ## License
 
-This project is licensed under the MIT License. This license permits free use, modification, and distribution of the software, with the requirement that the original copyright and license notice are included in any substantial portion of the work. - see the [LICENSE](https://github.com/neynarxyz/nodejs-sdk/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License. This license permits free use, modification, and distribution of the software, requiring the original copyright and license notice to be included in any substantial portion of the work. - see the [LICENSE](https://github.com/neynarxyz/nodejs-sdk/blob/main/LICENSE) file for details.
