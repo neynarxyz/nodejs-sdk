@@ -1761,7 +1761,8 @@ Object.assign(adjustedParams, params);
  * @param {string} params.cursor [optional]  - Pagination cursor
  * @param {number} params.viewerFid [optional]  - Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`.
  * @param {FetchTrendingFeedTimeWindowEnum} params.timeWindow [optional]  - Time window for trending casts (7d window for channel feeds only)
- * @param {string} params.channelId [optional]  - Channel ID to filter trending casts. Less active channels might have no casts in the time window selected.
+ * @param {string} params.channelId [optional]  - Channel ID to filter trending casts. Less active channels might have no casts in the time window selected. Provide either `channel_id` or `parent_url`, not both.
+ * @param {string} params.parentUrl [optional]  - Parent URL to filter trending casts. Less active channels might have no casts in the time window selected. Provide either `channel_id` or `parent_url`, not both.
  * @param {FeedTrendingProvider} params.provider [optional]  - The provider of the trending casts feed.
  * @param {string} params.providerMetadata [optional]  - provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use.
  *
@@ -1774,17 +1775,18 @@ Object.assign(adjustedParams, params);
  * const viewerFid = 
  * const timeWindow = 
  * const channelId = 
+ * const parentUrl = 
  * const provider = 
  * const providerMetadata = 
  *
- * client.fetchTrendingFeed({ limit, viewerFid, timeWindow, channelId, provider, providerMetadata }).then(response => {
+ * client.fetchTrendingFeed({ limit, viewerFid, timeWindow, channelId, parentUrl, provider, providerMetadata }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-trending-feed)
  *
  */
-public async fetchTrendingFeed(params: { limit?: number, cursor?: string, viewerFid?: number, timeWindow?: FetchTrendingFeedTimeWindowEnum, channelId?: string, provider?: FeedTrendingProvider, providerMetadata?: string }): Promise<FeedResponse> {
+public async fetchTrendingFeed(params: { limit?: number, cursor?: string, viewerFid?: number, timeWindow?: FetchTrendingFeedTimeWindowEnum, channelId?: string, parentUrl?: string, provider?: FeedTrendingProvider, providerMetadata?: string }): Promise<FeedResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
