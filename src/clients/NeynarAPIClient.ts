@@ -594,6 +594,7 @@ Object.assign(adjustedParams, _params);
 public async fetchBulkCasts(params: { casts: string[], viewerFid?: number, sortType?: FetchBulkCastsSortTypeEnum }): Promise<CastsResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 if (adjustedParams.casts && Array.isArray(adjustedParams.casts)) {
   adjustedParams.casts = adjustedParams.casts.join(",");
 }
@@ -694,6 +695,7 @@ Object.assign(adjustedParams, params);
 public async lookupCastByHashOrWarpcastUrl(params: { identifier: string, type: CastParamType, viewerFid?: number }): Promise<CastResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.castApi.lookupCastByHashOrWarpcastUrl(adjustedParams);
   return response.data;
@@ -739,6 +741,7 @@ Object.assign(adjustedParams, params);
 public async lookupCastConversation(params: { identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, fold?: LookupCastConversationFoldEnum, limit?: number, cursor?: string }): Promise<Conversation> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.castApi.lookupCastConversation(adjustedParams);
   return response.data;
@@ -829,6 +832,7 @@ Object.assign(adjustedParams, _params);
 public async searchCasts(params: { q: string, mode?: SearchCastsModeEnum, sortType?: FollowSortType, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string }): Promise<CastsSearchResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.castApi.searchCasts(adjustedParams);
   return response.data;
@@ -1456,6 +1460,7 @@ Object.assign(adjustedParams, _params);
 public async fetchCastsForUser(params: { fid: number, appFid?: number, viewerFid?: number, limit?: number, cursor?: string, includeReplies?: boolean, parentUrl?: string, channelId?: string }): Promise<FeedResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.feedApi.fetchCastsForUser(adjustedParams);
   return response.data;
@@ -1509,6 +1514,7 @@ Object.assign(adjustedParams, params);
 public async fetchFeed(params: { feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, membersOnly?: boolean, embedUrl?: string, embedTypes?: Array<EmbedType>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number }): Promise<FeedResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.feedApi.fetchFeed(adjustedParams);
   return response.data;
@@ -1554,6 +1560,7 @@ Object.assign(adjustedParams, params);
 public async fetchFeedByChannelIds(params: { channelIds: string[], withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, membersOnly?: boolean, fids?: number[], limit?: number, cursor?: string, shouldModerate?: boolean }): Promise<FeedResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 if (adjustedParams.channelIds && Array.isArray(adjustedParams.channelIds)) {
   adjustedParams.channelIds = adjustedParams.channelIds.join(",");
 }
@@ -1602,6 +1609,7 @@ if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
 public async fetchFeedByParentUrls(params: { parentUrls: string[], withRecasts?: boolean, viewerFid?: number, withReplies?: boolean, limit?: number, cursor?: string }): Promise<FeedResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 if (adjustedParams.parentUrls && Array.isArray(adjustedParams.parentUrls)) {
   adjustedParams.parentUrls = adjustedParams.parentUrls.join(",");
 }
@@ -1644,6 +1652,7 @@ if (adjustedParams.parentUrls && Array.isArray(adjustedParams.parentUrls)) {
 public async fetchFeedForYou(params: { fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, providerMetadata?: string }): Promise<FeedResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.feedApi.fetchFeedForYou(adjustedParams);
   return response.data;
@@ -1677,6 +1686,7 @@ Object.assign(adjustedParams, params);
 public async fetchFramesOnlyFeed(params: { limit?: number, viewerFid?: number, cursor?: string }): Promise<FeedResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.feedApi.fetchFramesOnlyFeed(adjustedParams);
   return response.data;
@@ -1789,6 +1799,7 @@ Object.assign(adjustedParams, params);
 public async fetchTrendingFeed(params: { limit?: number, cursor?: string, viewerFid?: number, timeWindow?: FetchTrendingFeedTimeWindowEnum, channelId?: string, parentUrl?: string, provider?: FeedTrendingProvider, providerMetadata?: string }): Promise<FeedResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.feedApi.fetchTrendingFeed(adjustedParams);
   return response.data;
@@ -1826,6 +1837,7 @@ Object.assign(adjustedParams, params);
 public async fetchUserFollowingFeed(params: { fid: number, viewerFid?: number, withRecasts?: boolean, limit?: number, cursor?: string }): Promise<FeedResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.feedApi.fetchUserFollowingFeed(adjustedParams);
   return response.data;
