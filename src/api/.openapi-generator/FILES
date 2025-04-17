@@ -79,6 +79,7 @@ models/casts-response.ts
 models/casts-search-response-result.ts
 models/casts-search-response.ts
 models/channel-activity.ts
+models/channel-dehydrated.ts
 models/channel-external-link.ts
 models/channel-follow-req-body.ts
 models/channel-list-response.ts
@@ -89,7 +90,7 @@ models/channel-member-list-response.ts
 models/channel-member-role.ts
 models/channel-member-user.ts
 models/channel-member.ts
-models/channel-or-dehydrated-channel.ts
+models/channel-or-channel-dehydrated.ts
 models/channel-response-bulk.ts
 models/channel-response.ts
 models/channel-search-response.ts
@@ -101,8 +102,6 @@ models/conversation-conversation.ts
 models/conversation-summary-summary.ts
 models/conversation-summary.ts
 models/conversation.ts
-models/dehydrated-channel.ts
-models/dehydrated-follower.ts
 models/delete-cast-req-body.ts
 models/delete-frame-req-body.ts
 models/delete-frame-response.ts
@@ -142,7 +141,8 @@ models/fname-availability-response.ts
 models/follow-req-body.ts
 models/follow-response.ts
 models/follow-sort-type.ts
-models/follow.ts
+models/follower-dehydrated.ts
+models/follower.ts
 models/followers-response.ts
 models/for-you-provider.ts
 models/frame-action-button.ts
@@ -182,7 +182,6 @@ models/frame.ts
 models/html-metadata-all-of-oembed.ts
 models/html-metadata-all-of.ts
 models/html-metadata.ts
-models/hydrated-follower.ts
 models/image-object.ts
 models/index.ts
 models/invite-channel-member-req-body.ts
@@ -224,6 +223,9 @@ models/oembed-video-data.ts
 models/og-object.ts
 models/operation-response.ts
 models/post-cast-req-body-embeds-cast-id-properties.ts
+models/post-cast-req-body-embeds-one-of.ts
+models/post-cast-req-body-embeds-one-of1.ts
+models/post-cast-req-body-embeds-one-of2.ts
 models/post-cast-req-body-embeds.ts
 models/post-cast-req-body.ts
 models/post-cast-response-cast.ts
@@ -250,6 +252,7 @@ models/relevant-fungible-owners-response.ts
 models/remove-channel-member-req-body.ts
 models/remove-verification-req-body.ts
 models/respond-channel-invite-req-body.ts
+models/search-sort-type.ts
 models/searched-user.ts
 models/send-frame-notifications-req-body-notification.ts
 models/send-frame-notifications-req-body.ts
