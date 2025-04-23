@@ -15,7 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { SubscriptionTier } from './subscription-tier';
+import type { FarcasterManifest } from './farcaster-manifest';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { FrameV2AllOfMetadata } from './frame-v2-all-of-metadata';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { User } from './user';
@@ -23,32 +26,32 @@ import type { User } from './user';
 /**
  * 
  * @export
- * @interface SubscribedToAllOf
+ * @interface FrameV2WithFullAuthorAllOf
  */
-export interface SubscribedToAllOf {
+export interface FrameV2WithFullAuthorAllOf {
     /**
-     * 
+     * Button title of a frame
      * @type {string}
-     * @memberof SubscribedToAllOf
+     * @memberof FrameV2WithFullAuthorAllOf
      */
-    'expires_at': string;
+    'title'?: string;
     /**
      * 
-     * @type {string}
-     * @memberof SubscribedToAllOf
+     * @type {FarcasterManifest}
+     * @memberof FrameV2WithFullAuthorAllOf
      */
-    'subscribed_at': string;
-    /**
-     * 
-     * @type {SubscriptionTier}
-     * @memberof SubscribedToAllOf
-     */
-    'tier': SubscriptionTier;
+    'manifest'?: FarcasterManifest;
     /**
      * 
      * @type {User}
-     * @memberof SubscribedToAllOf
+     * @memberof FrameV2WithFullAuthorAllOf
      */
-    'creator': User;
+    'author'?: User;
+    /**
+     * 
+     * @type {FrameV2AllOfMetadata}
+     * @memberof FrameV2WithFullAuthorAllOf
+     */
+    'metadata'?: FrameV2AllOfMetadata;
 }
 
