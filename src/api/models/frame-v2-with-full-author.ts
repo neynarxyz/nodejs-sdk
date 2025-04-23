@@ -15,24 +15,25 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CastDehydrated } from './cast-dehydrated';
+import type { FarcasterManifest } from './farcaster-manifest';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CastId } from './cast-id';
+import type { FrameBase } from './frame-base';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { EmbedCastDeep } from './embed-cast-deep';
+import type { FrameV2AllOfMetadata } from './frame-v2-all-of-metadata';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { EmbedUrl } from './embed-url';
+import type { FrameV2WithFullAuthorAllOf } from './frame-v2-with-full-author-all-of';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { EmbedUrlMetadata } from './embed-url-metadata';
+import type { User } from './user';
 
 /**
- * @type EmbedDeep
+ * @type FrameV2WithFullAuthor
+ * Frame v2 object with full user object
  * @export
  */
-export type EmbedDeep = EmbedCastDeep | EmbedUrl;
+export type FrameV2WithFullAuthor = FrameBase & FrameV2WithFullAuthorAllOf;
 
 

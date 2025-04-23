@@ -141,6 +141,8 @@ export * from './frame-v1-all-of-state';
 export * from './frame-v2';
 export * from './frame-v2-all-of';
 export * from './frame-v2-all-of-metadata';
+export * from './frame-v2-with-full-author';
+export * from './frame-v2-with-full-author-all-of';
 export * from './frame-validate-analytics-input-text';
 export * from './frame-validate-analytics-input-text-input-texts-inner';
 export * from './frame-validate-analytics-interactions-per-cast';

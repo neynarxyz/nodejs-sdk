@@ -757,7 +757,7 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {string} params.url  - Target URL starting with 'chain://'.
- * @param {ReactionType} params.reactionType 
+ * @param {ReactionType} params.reactionType [optional] 
  * @param {number} params.pageSize [optional]  - Maximum number of messages to return in a single response
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
  * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
@@ -780,7 +780,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-reactions-by-target)
  *
  */
-public async fetchReactionsByTarget(params: { url: string, reactionType: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchCastReactions200Response> {
+public async fetchReactionsByTarget(params: { url: string, reactionType?: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchCastReactions200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 

@@ -112,7 +112,7 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
          * Fetch all reactions of a specific type (like or recast) that target a given URL. This endpoint is useful for tracking engagement with content across the Farcaster network.
          * @summary To a target URL
          * @param {string} url Target URL starting with \&#39;chain://\&#39;. 
-         * @param {ReactionType} reactionType  
+         * @param {ReactionType} [reactionType]  
          * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
          * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
@@ -123,11 +123,9 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-reactions-by-target)
          * 
          */
-        fetchReactionsByTarget: async (url: string, reactionType: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchReactionsByTarget: async (url: string, reactionType?: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'url' is not null or undefined
             assertParamExists('fetchReactionsByTarget', 'url', url)
-            // verify required parameter 'reactionType' is not null or undefined
-            assertParamExists('fetchReactionsByTarget', 'reactionType', reactionType)
             const localVarPath = `/v1/reactionsByTarget`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -341,7 +339,7 @@ export const ReactionsApiFp = function(configuration?: Configuration) {
          * Fetch all reactions of a specific type (like or recast) that target a given URL. This endpoint is useful for tracking engagement with content across the Farcaster network.
          * @summary To a target URL
          * @param {string} url Target URL starting with \&#39;chain://\&#39;. 
-         * @param {ReactionType} reactionType  
+         * @param {ReactionType} [reactionType]  
          * @param {number} [pageSize] Maximum number of messages to return in a single response 
          * @param {boolean} [reverse] Reverse the sort order, returning latest messages first 
          * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
@@ -352,7 +350,7 @@ export const ReactionsApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-reactions-by-target)
          * 
          */
-        async fetchReactionsByTarget(url: string, reactionType: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchCastReactions200Response>> {
+        async fetchReactionsByTarget(url: string, reactionType?: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchCastReactions200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.fetchReactionsByTarget(url, reactionType, pageSize, reverse, pageToken, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ReactionsApi.fetchReactionsByTarget']?.[localVarOperationServerIndex]?.url;
@@ -623,7 +621,7 @@ export interface ReactionsApiFetchReactionsByTargetRequest {
      * @type {ReactionType}
      * @memberof ReactionsApiFetchReactionsByTarget
      */
-    readonly reactionType: ReactionType
+    readonly reactionType?: ReactionType
 
     /**
      * Maximum number of messages to return in a single response
