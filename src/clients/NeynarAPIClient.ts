@@ -796,7 +796,7 @@ Object.assign(adjustedParams, _params);
  * @summary Search for casts
  *
  * @param {object} params
- * @param {string} params.q  - Query string to search for casts. Include 'before:YYYY-MM-DD' or 'after:YYYY-MM-DD' to search for casts before or after a specific date.
+ * @param {string} params.q  - Query string to search for casts. Supported operators:  | Operator  | Description                                                                                              | | --------- | -------------------------------------------------------------------------------------------------------- | | `+`       | Acts as the AND operator. This is the default operator between terms and can usually be omitted.         | | `|`      | Acts as the OR operator.                                                                                 | | `*`       | When used at the end of a term, signifies a prefix query.                                                  | | `"`       | Wraps several terms into a phrase (for example, `"star wars"`).                                          | | `(`, `)`  | Wrap a clause for precedence (for example, `star + (wars | trek)`).                                     | | `~n`      | When used after a term (for example, `satr~3`), sets `fuzziness`. When used after a phrase, sets `slop`. | | `-`       | Negates the term.                                                                                        | | `before:` | Search for casts before a specific date. (e.g. `before:2025-04-20`)                                       | | `after:`  | Search for casts after a specific date. (e.g. `after:2025-04-20`)                                         |
  * @param {SearchCastsModeEnum} params.mode [optional]  - Choices are: - `literal` - Searches for the words in the query string (default) - `semantic` - Searches for the meaning of the query string - `hybrid` - Combines both literal and semantic results
  * @param {SearchSortType} params.sortType [optional]  - Choices are: - `desc_chron` - All casts sorted by time (default) - `algorithmic` - Casts sorted by engagement and time
  * @param {number} params.authorFid [optional]  - Fid of the user whose casts you want to search
@@ -3934,6 +3934,39 @@ Object.assign(adjustedParams, params);
 adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.userApi.lookupUserByUsername(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Fetches the users who have verified the specified X (Twitter) account
+ *
+ * @summary Lookup users by X (Twitter) username
+ *
+ * @param {object} params
+ * @param {string} params.xUsername  - X (Twitter) username to search for, without the @ symbol
+ * @param {number} params.viewerFid [optional]  - FID of the viewer for contextual information like follows and blocks
+ *
+ * @returns {Promise<BulkUsersResponse>} A promise that resolves to a `BulkUsersResponse` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const xUsername = 
+ * const viewerFid = 
+ *
+ * client.lookupUsersByXUsername({ xUsername, viewerFid }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-users-by-x-username)
+ *
+ */
+public async lookupUsersByXUsername(params: { xUsername: string, viewerFid?: number }): Promise<BulkUsersResponse> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
+
+  const response = await this.apis.userApi.lookupUsersByXUsername(adjustedParams);
   return response.data;
 }
 

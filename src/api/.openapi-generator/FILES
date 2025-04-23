@@ -169,6 +169,8 @@ models/frame-v1-all-of.ts
 models/frame-v1.ts
 models/frame-v2-all-of-metadata.ts
 models/frame-v2-all-of.ts
+models/frame-v2-with-full-author-all-of.ts
+models/frame-v2-with-full-author.ts
 models/frame-v2.ts
 models/frame-validate-analytics-input-text-input-texts-inner.ts
 models/frame-validate-analytics-input-text.ts
