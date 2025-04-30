@@ -30,7 +30,7 @@ import { StorageApi } from '../api/apis/storage-api';
 import { SubscribersApi } from '../api/apis/subscribers-api';
 import { UserApi } from '../api/apis/user-api';
 import { WebhookApi } from '../api/apis/webhook-api';
-import type { AddVerificationReqBody, AuthorizationUrlResponse, AuthorizationUrlResponseType, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUserAddressType, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastComposerType, CastConversationSortType, CastEmbedCrawlResponse, CastParamType, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, ChannelType, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleReqBodyMetadataMedia, DeployFungibleResponse, DeveloperManagedSigner, EmbedType, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FeedTrendingProvider, FeedType, FetchBulkCastsSortTypeEnum, FetchCastMetricsIntervalEnum, FetchFrameMetaTagsFromUrl200Response, FetchRelevantFrames200Response, FetchRepliesAndRecastsForUserFilterEnum, FetchTrendingChannelsTimeWindowEnum, FetchUserInteractions200Response, FilterType, FnameAvailabilityResponse, FollowReqBody, FollowSortType, FollowersResponse, ForYouProvider, Frame, FrameAction, FrameActionReqBody, FrameCatalogResponse, FrameDeveloperManagedActionReqBody, FrameNotificationTokens, FramePayTransactionRequestBody, FrameSignaturePacket, FrameType, FrameValidateAnalyticsResponse, FrameValidateListResponse, InviteChannelMemberReqBody, LookupCastConversationFoldEnum, MarkNotificationsAsSeenReqBody, MuteListResponse, MuteReqBody, MuteResponse, Networks, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, ReactionsType, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchSortType, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionProvider, SubscriptionProviders, SubscriptionsResponse, TransactionFrameResponse, TrendingChannelResponse, TrendingTimeWindow, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, ValidateFrameAggregateWindow, ValidateFrameAnalyticsType, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
+import type { AddVerificationReqBody, AuthorizationUrlResponse, AuthorizationUrlResponseType, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUserAddressType, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastComposerType, CastConversationSortType, CastEmbedCrawlResponse, CastParamType, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, ChannelType, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleReqBodyMetadataMedia, DeployFungibleResponse, DeveloperManagedSigner, EmbedType, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FeedTrendingProvider, FeedType, FetchBulkCastsSortTypeEnum, FetchCastMetricsIntervalEnum, FetchFrameMetaTagsFromUrl200Response, FetchFrameRelevant200Response, FetchRepliesAndRecastsForUserFilterEnum, FetchTrendingChannelsTimeWindowEnum, FetchUserInteractions200Response, FilterType, FnameAvailabilityResponse, FollowReqBody, FollowSortType, FollowersResponse, ForYouProvider, Frame, FrameAction, FrameActionReqBody, FrameCatalogResponse, FrameDeveloperManagedActionReqBody, FrameNotificationTokens, FramePayTransactionRequestBody, FrameSignaturePacket, FrameType, FrameValidateAnalyticsResponse, FrameValidateListResponse, InviteChannelMemberReqBody, LookupCastConversationFoldEnum, MarkNotificationsAsSeenReqBody, MuteListResponse, MuteReqBody, MuteResponse, Networks, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, ReactionsType, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchSortType, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionProvider, SubscriptionProviders, SubscriptionsResponse, TransactionFrameResponse, TrendingChannelResponse, TrendingTimeWindow, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, ValidateFrameAggregateWindow, ValidateFrameAnalyticsType, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
 
 const { version: sdkVersion } = require("../../package.json");
 
@@ -241,9 +241,9 @@ Object.assign(adjustedParams, _params);
 }
 
 /**
- * Creates a new transaction pay frame that can be used to collect payments through a frame
+ * Creates a new transaction pay mini app that can be used to collect payments through a mini app
  *
- * @summary Create transaction pay frame
+ * @summary Create transaction pay mini app
  *
  * @param {object} params
  * @param {FramePayTransactionRequestBody} params.framePayTransactionRequestBody 
@@ -1659,9 +1659,9 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
 }
 
 /**
- * Fetch feed of casts with Frames, reverse chronological order
+ * Fetch feed of casts with mini apps, reverse chronological order
  *
- * @summary Casts with Frames
+ * @summary Casts with mini apps
  *
  * @param {object} params
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 25, Maximum: 100)
@@ -2018,9 +2018,9 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
 }
 
 /**
- * Delete an existing frame, if it was made by the developer (identified by API key)
+ * Delete an existing mini app, if it was made by the developer (identified by API key)
  *
- * @summary Delete frame
+ * @summary Delete mini app
  *
  * @param {object} params
  * @param {string} params.uuid [optional] 
@@ -2049,14 +2049,14 @@ Object.assign(adjustedParams, _params);
 }
 
 /**
- * A curated list of featured frames
+ * A curated list of featured mini apps
  *
- * @summary Frames Catalog
+ * @summary Mini apps catalog
  *
  * @param {object} params
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 100, Maximum: 100)
  * @param {string} params.cursor [optional]  - Pagination cursor
- * @param {TrendingTimeWindow} params.timeWindow [optional]  - Time window used to calculate the change in trending score for each frame, used to sort frame results
+ * @param {TrendingTimeWindow} params.timeWindow [optional]  - Time window used to calculate the change in trending score for each mini app, used to sort mini app results
  *
  * @returns {Promise<FrameCatalogResponse>} A promise that resolves to a `FrameCatalogResponse` object.
  *
@@ -2079,12 +2079,12 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Fetches the frame meta tags from the URL
+ * Fetches the mini app meta tags from the URL
  *
  * @summary Meta tags from URL
  *
  * @param {object} params
- * @param {string} params.url  - The frame URL to crawl
+ * @param {string} params.url  - The mini app URL to crawl
  *
  * @returns {Promise<FetchFrameMetaTagsFromUrl200Response>} A promise that resolves to a `FetchFrameMetaTagsFromUrl200Response` object.
  *
@@ -2109,9 +2109,38 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Fetch a list of frames made by the developer (identified by API key)
+ * Fetch a list of mini apps relevant to the user based on casts by users with strong affinity score for the user
  *
- * @summary List of frames
+ * @summary Relevant mini apps
+ *
+ * @param {object} params
+ * @param {number} params.viewerFid  - FID of the user to fetch relevant mini apps for
+ * @param {TrendingTimeWindow} params.timeWindow [optional]  - Time window used to limit statistics used to calculate mini app relevance
+ *
+ * @returns {Promise<FetchFrameRelevant200Response>} A promise that resolves to a `FetchFrameRelevant200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const viewerFid = 
+ * const timeWindow = 
+ *
+ * client.fetchFrameRelevant({ viewerFid, timeWindow }).then(response => {
+ *   console.log('response:', response);
+ * });
+ */
+public async fetchFrameRelevant(params: { viewerFid: number, timeWindow?: TrendingTimeWindow }): Promise<FetchFrameRelevant200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.frameApi.fetchFrameRelevant(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Fetch a list of mini apps made by the developer (identified by API key)
+ *
+ * @summary List of mini apps
  *
  *
  * @returns {Promise<Array<NeynarFrame>>} A promise that resolves to a `Array<NeynarFrame>` object.
@@ -2132,9 +2161,9 @@ public async fetchNeynarFrames(): Promise<Array<NeynarFrame>> {
 }
 
 /**
- * Returns a list of notifications tokens related for an app
+ * Returns a list of notifications tokens related to a mini app
  *
- * @summary List of frame notification tokens 
+ * @summary List of mini app notification tokens 
  *
  * @param {object} params
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 20, Maximum: 100)
@@ -2171,38 +2200,9 @@ if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
 }
 
 /**
- * Fetch a list of frames relevant to the user based on casts by users with strong affinity score for the user
- *
- * @summary Relevant frames
- *
- * @param {object} params
- * @param {number} params.viewerFid  - FID of the user to fetch relevant frames for
- * @param {TrendingTimeWindow} params.timeWindow [optional]  - Time window used to limit statistics used to calculate frame relevance
- *
- * @returns {Promise<FetchRelevantFrames200Response>} A promise that resolves to a `FetchRelevantFrames200Response` object.
- *
- * @example
- *
- * // Fill in the appropriate values
- * const viewerFid = 
- * const timeWindow = 
- *
- * client.fetchRelevantFrames({ viewerFid, timeWindow }).then(response => {
- *   console.log('response:', response);
- * });
- */
-public async fetchRelevantFrames(params: { viewerFid: number, timeWindow?: TrendingTimeWindow }): Promise<FetchRelevantFrames200Response> {
-  const adjustedParams: any = {};
-Object.assign(adjustedParams, params);
-
-  const response = await this.apis.frameApi.fetchRelevantFrames(adjustedParams);
-  return response.data;
-}
-
-/**
  * Fetch analytics for total-interactors, interactors, nteractions-per-cast and input-text.
  *
- * @summary Analytics for the frame
+ * @summary Analytics for the mini app
  *
  * @param {object} params
  * @param {string} params.frameUrl 
@@ -2238,9 +2238,9 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Fetch a list of all the frames validated by a user
+ * Fetch a list of all the mini apps validated by a user
  *
- * @summary All frames validated by user
+ * @summary All mini apps validated by user
  *
  *
  * @returns {Promise<FrameValidateListResponse>} A promise that resolves to a `FrameValidateListResponse` object.
@@ -2261,12 +2261,12 @@ public async fetchValidateFrameList(): Promise<FrameValidateListResponse> {
 }
 
 /**
- * Retrieves details about a transaction pay frame by ID
+ * Retrieves details about a transaction pay mini app by ID
  *
- * @summary Get transaction pay frame
+ * @summary Get transaction pay mini app
  *
  * @param {object} params
- * @param {string} params.id  - ID of the transaction frame to retrieve
+ * @param {string} params.id  - ID of the transaction mini app to retrieve
  *
  * @returns {Promise<TransactionFrameResponse>} A promise that resolves to a `TransactionFrameResponse` object.
  *
@@ -2288,14 +2288,14 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Fetch a frame either by UUID or Neynar URL
+ * Fetch a mini app either by UUID or Neynar URL
  *
- * @summary Frame by UUID or URL
+ * @summary Mini app by UUID or URL
  *
  * @param {object} params
  * @param {FrameType} params.type 
- * @param {string} params.uuid [optional]  - UUID of the frame to fetch
- * @param {string} params.url [optional]  - URL of the Neynar frame to fetch
+ * @param {string} params.uuid [optional]  - UUID of the mini app to fetch
+ * @param {string} params.url [optional]  - URL of the Neynar mini app to fetch
  *
  * @returns {Promise<NeynarFrame>} A promise that resolves to a `NeynarFrame` object.
  *
@@ -2322,9 +2322,9 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Post frame actions, cast actions or cast composer actions to the server  \\ (In order to post any of these actions, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds for frames.
+ * Post mini app actions, cast actions or cast composer actions to the server  \\ (In order to post any of these actions, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds for mini apps.
  *
- * @summary Post a frame action, cast action or a cast composer action
+ * @summary Post a mini app action, cast action or a cast composer action
  *
  * @param {object} params
  * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
@@ -2357,7 +2357,7 @@ Object.assign(adjustedParams, _params);
 }
 
 /**
- * Post a frame action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds.
+ * Post a mini app action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds.
  *
  * @summary Signature packet
  *
@@ -2392,7 +2392,7 @@ Object.assign(adjustedParams, _params);
 }
 
 /**
- * Send notifications to interactors of a frame
+ * Send notifications to interactors of a mini app
  *
  * @summary Send notifications
  *
@@ -2425,12 +2425,12 @@ Object.assign(adjustedParams, _params);
 }
 
 /**
- * Create a new frame with a list of pages.
+ * Create a new mini app with a list of pages.
  *
- * @summary Create frame
+ * @summary Create mini app
  *
  * @param {object} params
- * @param {string} params.name  - The name of the frame.
+ * @param {string} params.name  - The name of the mini app.
  * @param {Array<NeynarFramePage>} params.pages 
  *
  * @returns {Promise<NeynarFrame>} A promise that resolves to a `NeynarFrame` object.
@@ -2458,13 +2458,13 @@ Object.assign(adjustedParams, _params);
 }
 
 /**
- * Update an existing frame with a list of pages, if it was made by the developer (identified by API key)
+ * Update an existing mini app with a list of pages, if it was made by the developer (identified by API key)
  *
- * @summary Update frame
+ * @summary Update mini app
  *
  * @param {object} params
- * @param {string} params.uuid  - The UUID of the frame to update.
- * @param {string} params.name [optional]  - The name of the frame.
+ * @param {string} params.uuid  - The UUID of the mini app to update.
+ * @param {string} params.name [optional]  - The name of the mini app.
  * @param {Array<NeynarFramePage>} params.pages 
  *
  * @returns {Promise<NeynarFrame>} A promise that resolves to a `NeynarFrame` object.
@@ -2493,13 +2493,13 @@ Object.assign(adjustedParams, _params);
 }
 
 /**
- * Validates a frame against by an interacting user against a Farcaster Hub \\ (In order to validate a frame, message bytes from Frame Action must be provided in hex)
+ * Validates a mini app against by an interacting user against a Farcaster Hub \\ (In order to validate a mini app, message bytes from Frame Action must be provided in hex)
  *
- * @summary Validate frame action
+ * @summary Validate mini app action
  *
  * @param {object} params
  * @param {string} params.messageBytesInHex  - Hexadecimal string of message bytes.
- * @param {boolean} params.castReactionContext [optional]  - Adds viewer_context inside the cast object to indicate whether the interactor reacted to the cast housing the frame.
+ * @param {boolean} params.castReactionContext [optional]  - Adds viewer_context inside the cast object to indicate whether the interactor reacted to the cast housing the mini app.
  * @param {boolean} params.followContext [optional]  - Adds viewer_context inside the user (interactor) object to indicate whether the interactor follows or is followed by the cast author.
  * @param {boolean} params.signerContext [optional]  - Adds context about the app used by the user inside `frame.action`.
  * @param {boolean} params.channelFollowContext [optional]  - Adds context about the channel that the cast belongs to inside of the cast object.
