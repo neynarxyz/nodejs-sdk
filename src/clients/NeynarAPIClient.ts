@@ -2903,7 +2903,7 @@ Object.assign(adjustedParams, params);
  * @param {object} params
  * @param {string} params.contractAddress  - Contract address of the fungible asset
  * @param {Array<Networks>} params.networks  - Comma separated list of networks to fetch balances for. Currently, only "base" is supported.
- * @param {number} params.viewerFid  - The FID of the user to customize this response for. Providing this will also return a list of owners that respects this user's mutes and blocks and includes `viewer_context`.
+ * @param {number} params.viewerFid [optional]  - If you provide a viewer_fid, the response will include token holders from the user's network, respecting their mutes and blocks and including viewer_context; if not provided, the response will show top token holders across the network—both sets can be combined to generate a longer list if desired.
  *
  * @returns {Promise<RelevantFungibleOwnersResponse>} A promise that resolves to a `RelevantFungibleOwnersResponse` object.
  *
@@ -2921,7 +2921,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-relevant-fungible-owners)
  *
  */
-public async fetchRelevantFungibleOwners(params: { contractAddress: string, networks: Array<Networks>, viewerFid: number }): Promise<RelevantFungibleOwnersResponse> {
+public async fetchRelevantFungibleOwners(params: { contractAddress: string, networks: Array<Networks>, viewerFid?: number }): Promise<RelevantFungibleOwnersResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
