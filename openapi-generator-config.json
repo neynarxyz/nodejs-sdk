@@ -3,8 +3,6 @@
   "apiPackage": "apis",
   "modelPackage": "models",
   "templateDir": "./templates",
-  "modelPropertyNaming": "original",
-  "ensureUniqueParams": true,
   "generateAliasAsModel": true,
   "additionalProperties": {
     "useSingleRequestParameter": true,
