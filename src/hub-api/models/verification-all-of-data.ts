@@ -15,9 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CastAddAllOfDataAllOf } from './cast-add-all-of-data-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import type { FarcasterNetwork } from './farcaster-network';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -28,11 +25,14 @@ import type { MessageType } from './message-type';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { VerificationAddEthAddressBody } from './verification-add-eth-address-body';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { VerificationAllOfDataAllOf } from './verification-all-of-data-all-of';
 
 /**
  * @type VerificationAllOfData
  * @export
  */
-export type VerificationAllOfData = CastAddAllOfDataAllOf & MessageDataVerificationAdd;
+export type VerificationAllOfData = MessageDataVerificationAdd & VerificationAllOfDataAllOf;
 
 

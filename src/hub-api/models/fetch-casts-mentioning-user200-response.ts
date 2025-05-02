@@ -15,24 +15,18 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { FarcasterNetwork } from './farcaster-network';
+import type { CastAdd } from './cast-add';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { LinkAddAllOfDataAllOf } from './link-add-all-of-data-all-of';
+import type { FetchCastsMentioningUser200ResponseAllOf } from './fetch-casts-mentioning-user200-response-all-of';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { LinkBody } from './link-body';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { MessageDataLink } from './message-data-link';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { MessageType } from './message-type';
+import type { PaginationResponse } from './pagination-response';
 
 /**
- * @type LinkAddAllOfData
+ * @type FetchCastsMentioningUser200Response
  * @export
  */
-export type LinkAddAllOfData = LinkAddAllOfDataAllOf & MessageDataLink;
+export type FetchCastsMentioningUser200Response = FetchCastsMentioningUser200ResponseAllOf & PaginationResponse;
 
 

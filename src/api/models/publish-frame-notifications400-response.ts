@@ -15,25 +15,18 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { FarcasterManifest } from './farcaster-manifest';
+import type { ErrorRes } from './error-res';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { FrameBase } from './frame-base';
+import type { ZodError } from './zod-error';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { FrameV2WithFullAuthorAllOf } from './frame-v2-with-full-author-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { FrameV2WithFullAuthorAllOfMetadata } from './frame-v2-with-full-author-all-of-metadata';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { User } from './user';
+import type { ZodErrorErrorsInner } from './zod-error-errors-inner';
 
 /**
- * @type FrameV2WithFullAuthor
- * Mini app v2 object with full user object
+ * @type PublishFrameNotifications400Response
  * @export
  */
-export type FrameV2WithFullAuthor = FrameBase & FrameV2WithFullAuthorAllOf;
+export type PublishFrameNotifications400Response = ErrorRes | ZodError;
 
 

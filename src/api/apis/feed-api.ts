@@ -36,6 +36,8 @@ import type { FeedType } from '../models';
 // @ts-ignore
 import type { FetchFeedForYou400Response } from '../models';
 // @ts-ignore
+import type { FetchTrendingFeed400Response } from '../models';
+// @ts-ignore
 import type { FilterType } from '../models';
 // @ts-ignore
 import type { ForYouProvider } from '../models';

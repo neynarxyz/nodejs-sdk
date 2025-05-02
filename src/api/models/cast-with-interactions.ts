@@ -18,10 +18,10 @@
 import type { Cast } from './cast';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CastEmbeddedParentAuthor } from './cast-embedded-parent-author';
+import type { CastNotificationType } from './cast-notification-type';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CastNotificationType } from './cast-notification-type';
+import type { CastParentAuthor } from './cast-parent-author';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { CastViewerContext } from './cast-viewer-context';

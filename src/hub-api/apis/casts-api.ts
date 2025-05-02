@@ -28,6 +28,8 @@ import type { ErrorResponse } from '../models';
 // @ts-ignore
 import type { FetchCastsByParent200Response } from '../models';
 // @ts-ignore
+import type { FetchCastsMentioningUser200Response } from '../models';
+// @ts-ignore
 import type { FetchUsersCasts200Response } from '../models';
 /**
  * CastsApi - axios parameter creator
@@ -111,7 +113,7 @@ export const CastsApiAxiosParamCreator = function (configuration?: Configuration
          * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
-         * @returns {Promise<FetchUsersCasts200Response>} A promise that resolves to a `FetchUsersCasts200Response` object
+         * @returns {Promise<FetchCastsMentioningUser200Response>} A promise that resolves to a `FetchCastsMentioningUser200Response` object
          * 
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-casts-mentioning-user)
          * 
@@ -312,12 +314,12 @@ export const CastsApiFp = function(configuration?: Configuration) {
          * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
-         * @returns {Promise<FetchUsersCasts200Response>} A promise that resolves to a `FetchUsersCasts200Response` object
+         * @returns {Promise<FetchCastsMentioningUser200Response>} A promise that resolves to a `FetchCastsMentioningUser200Response` object
          * 
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-casts-mentioning-user)
          * 
          */
-        async fetchCastsMentioningUser(fid: number, pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchUsersCasts200Response>> {
+        async fetchCastsMentioningUser(fid: number, pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchCastsMentioningUser200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.fetchCastsMentioningUser(fid, pageSize, reverse, pageToken, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CastsApi.fetchCastsMentioningUser']?.[localVarOperationServerIndex]?.url;
@@ -391,12 +393,12 @@ export const CastsApiFactory = function (configuration?: Configuration, basePath
          * @param {CastsApiFetchCastsMentioningUserRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
-         * @returns {Promise<FetchUsersCasts200Response>} A promise that resolves to a `FetchUsersCasts200Response` object
+         * @returns {Promise<FetchCastsMentioningUser200Response>} A promise that resolves to a `FetchCastsMentioningUser200Response` object
          * 
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-casts-mentioning-user)
          * 
          */
-        fetchCastsMentioningUser(requestParameters: CastsApiFetchCastsMentioningUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchUsersCasts200Response> {
+        fetchCastsMentioningUser(requestParameters: CastsApiFetchCastsMentioningUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchCastsMentioningUser200Response> {
             return localVarFp.fetchCastsMentioningUser(requestParameters.fid, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(axios, basePath));
         },
         /**
@@ -457,12 +459,12 @@ export interface CastsApiInterface {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CastsApiInterface
-     * @returns {Promise<FetchUsersCasts200Response>} A promise that resolves to a `FetchUsersCasts200Response` object
+     * @returns {Promise<FetchCastsMentioningUser200Response>} A promise that resolves to a `FetchCastsMentioningUser200Response` object
      * 
      * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-casts-mentioning-user)
      * 
      */
-    fetchCastsMentioningUser(requestParameters: CastsApiFetchCastsMentioningUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchUsersCasts200Response>;
+    fetchCastsMentioningUser(requestParameters: CastsApiFetchCastsMentioningUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchCastsMentioningUser200Response>;
 
     /**
      * Fetch user\'s casts.
@@ -712,7 +714,7 @@ export class CastsApi extends BaseAPI implements CastsApiInterface {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CastsApi
-     * @returns {Promise<FetchUsersCasts200Response>} A promise that resolves to a `FetchUsersCasts200Response` object
+     * @returns {Promise<FetchCastsMentioningUser200Response>} A promise that resolves to a `FetchCastsMentioningUser200Response` object
      * 
      * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-casts-mentioning-user)
      * 

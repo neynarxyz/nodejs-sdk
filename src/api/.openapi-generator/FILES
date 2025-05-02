@@ -60,6 +60,7 @@ models/cast-embedded.ts
 models/cast-id.ts
 models/cast-notification-type.ts
 models/cast-param-type.ts
+models/cast-parent-author.ts
 models/cast-response.ts
 models/cast-viewer-context.ts
 models/cast-with-interactions-all-of.ts
@@ -134,6 +135,7 @@ models/fetch-feed-for-you400-response.ts
 models/fetch-frame-meta-tags-from-url200-response.ts
 models/fetch-relevant-frames200-response-relevant-frames-inner.ts
 models/fetch-relevant-frames200-response.ts
+models/fetch-trending-feed400-response.ts
 models/fetch-user-interactions200-response.ts
 models/filter-type.ts
 models/fname-availability-response.ts
@@ -154,6 +156,7 @@ models/frame-developer-managed-action-req-body.ts
 models/frame-input.ts
 models/frame-notification-tokens-notification-tokens-inner.ts
 models/frame-notification-tokens.ts
+models/frame-pay-transaction-request-body-transaction.ts
 models/frame-pay-transaction-request-body.ts
 models/frame-signature-packet-trusted-data.ts
 models/frame-signature-packet-untrusted-data.ts
@@ -167,6 +170,7 @@ models/frame-v1-all-of.ts
 models/frame-v1.ts
 models/frame-v2-all-of-metadata.ts
 models/frame-v2-all-of.ts
+models/frame-v2-with-full-author-all-of-metadata.ts
 models/frame-v2-with-full-author-all-of.ts
 models/frame-v2-with-full-author.ts
 models/frame-v2.ts
@@ -234,6 +238,7 @@ models/post-cast-response-cast.ts
 models/post-cast-response.ts
 models/profile-url-pfp.ts
 models/profile-url.ts
+models/publish-frame-notifications400-response.ts
 models/reaction-for-cast.ts
 models/reaction-like.ts
 models/reaction-recast.ts
@@ -246,6 +251,8 @@ models/reactions-response.ts
 models/reactions-type.ts
 models/register-developer-managed-signed-key-req-body.ts
 models/register-signer-key-req-body.ts
+models/register-user-req-body-metadata-location.ts
+models/register-user-req-body-metadata-verified-accounts.ts
 models/register-user-req-body-metadata.ts
 models/register-user-req-body.ts
 models/register-user-response.ts

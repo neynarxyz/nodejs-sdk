@@ -18,7 +18,7 @@
 import type { FarcasterManifest } from './farcaster-manifest';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { FrameV2AllOfMetadata } from './frame-v2-all-of-metadata';
+import type { FrameV2WithFullAuthorAllOfMetadata } from './frame-v2-with-full-author-all-of-metadata';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { User } from './user';
@@ -49,9 +49,9 @@ export interface FrameV2WithFullAuthorAllOf {
     'author'?: User;
     /**
      * 
-     * @type {FrameV2AllOfMetadata}
+     * @type {FrameV2WithFullAuthorAllOfMetadata}
      * @memberof FrameV2WithFullAuthorAllOf
      */
-    'metadata'?: FrameV2AllOfMetadata;
+    'metadata'?: FrameV2WithFullAuthorAllOfMetadata;
 }
 

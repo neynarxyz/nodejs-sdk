@@ -28,8 +28,6 @@ import type { DeleteFrameResponse } from '../models';
 // @ts-ignore
 import type { ErrorRes } from '../models';
 // @ts-ignore
-import type { FetchFeedForYou400Response } from '../models';
-// @ts-ignore
 import type { FetchFrameMetaTagsFromUrl200Response } from '../models';
 // @ts-ignore
 import type { FetchRelevantFrames200Response } from '../models';
@@ -55,6 +53,8 @@ import type { NeynarFrame } from '../models';
 import type { NeynarFrameCreationReqBody } from '../models';
 // @ts-ignore
 import type { NeynarFrameUpdateReqBody } from '../models';
+// @ts-ignore
+import type { PublishFrameNotifications400Response } from '../models';
 // @ts-ignore
 import type { SendFrameNotificationsReqBody } from '../models';
 // @ts-ignore

@@ -24,6 +24,8 @@ import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError
 // @ts-ignore
 import type { ErrorResponse } from '../models';
 // @ts-ignore
+import type { FetchUserFollowers200Response } from '../models';
+// @ts-ignore
 import type { FetchUserFollowing200Response } from '../models';
 // @ts-ignore
 import type { LinkAdd } from '../models';
@@ -45,7 +47,7 @@ export const LinksApiAxiosParamCreator = function (configuration?: Configuration
          * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
-         * @returns {Promise<FetchUserFollowing200Response>} A promise that resolves to a `FetchUserFollowing200Response` object
+         * @returns {Promise<FetchUserFollowers200Response>} A promise that resolves to a `FetchUserFollowers200Response` object
          * 
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-followers)
          * 
@@ -241,12 +243,12 @@ export const LinksApiFp = function(configuration?: Configuration) {
          * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
-         * @returns {Promise<FetchUserFollowing200Response>} A promise that resolves to a `FetchUserFollowing200Response` object
+         * @returns {Promise<FetchUserFollowers200Response>} A promise that resolves to a `FetchUserFollowers200Response` object
          * 
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-followers)
          * 
          */
-        async fetchUserFollowers(targetFid: number, linkType?: LinkType, pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchUserFollowing200Response>> {
+        async fetchUserFollowers(targetFid: number, linkType?: LinkType, pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchUserFollowers200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserFollowers(targetFid, linkType, pageSize, reverse, pageToken, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['LinksApi.fetchUserFollowers']?.[localVarOperationServerIndex]?.url;
@@ -308,12 +310,12 @@ export const LinksApiFactory = function (configuration?: Configuration, basePath
          * @param {LinksApiFetchUserFollowersRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
-         * @returns {Promise<FetchUserFollowing200Response>} A promise that resolves to a `FetchUserFollowing200Response` object
+         * @returns {Promise<FetchUserFollowers200Response>} A promise that resolves to a `FetchUserFollowers200Response` object
          * 
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-followers)
          * 
          */
-        fetchUserFollowers(requestParameters: LinksApiFetchUserFollowersRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchUserFollowing200Response> {
+        fetchUserFollowers(requestParameters: LinksApiFetchUserFollowersRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchUserFollowers200Response> {
             return localVarFp.fetchUserFollowers(requestParameters.targetFid, requestParameters.linkType, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(axios, basePath));
         },
         /**
@@ -360,12 +362,12 @@ export interface LinksApiInterface {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof LinksApiInterface
-     * @returns {Promise<FetchUserFollowing200Response>} A promise that resolves to a `FetchUserFollowing200Response` object
+     * @returns {Promise<FetchUserFollowers200Response>} A promise that resolves to a `FetchUserFollowers200Response` object
      * 
      * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-followers)
      * 
      */
-    fetchUserFollowers(requestParameters: LinksApiFetchUserFollowersRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchUserFollowing200Response>;
+    fetchUserFollowers(requestParameters: LinksApiFetchUserFollowersRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchUserFollowers200Response>;
 
     /**
      * Fetch a list of users that a user is following.
@@ -562,7 +564,7 @@ export class LinksApi extends BaseAPI implements LinksApiInterface {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof LinksApi
-     * @returns {Promise<FetchUserFollowing200Response>} A promise that resolves to a `FetchUserFollowing200Response` object
+     * @returns {Promise<FetchUserFollowers200Response>} A promise that resolves to a `FetchUserFollowers200Response` object
      * 
      * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-followers)
      * 

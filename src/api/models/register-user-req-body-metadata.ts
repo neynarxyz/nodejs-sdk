@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { UpdateUserReqBodyLocation } from './update-user-req-body-location';
+import type { RegisterUserReqBodyMetadataLocation } from './register-user-req-body-metadata-location';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { UpdateUserReqBodyVerifiedAccounts } from './update-user-req-body-verified-accounts';
+import type { RegisterUserReqBodyMetadataVerifiedAccounts } from './register-user-req-body-metadata-verified-accounts';
 
 /**
  * 
@@ -58,15 +58,15 @@ export interface RegisterUserReqBodyMetadata {
     'display_name'?: string;
     /**
      * 
-     * @type {UpdateUserReqBodyVerifiedAccounts}
+     * @type {RegisterUserReqBodyMetadataVerifiedAccounts}
      * @memberof RegisterUserReqBodyMetadata
      */
-    'verified_accounts'?: UpdateUserReqBodyVerifiedAccounts;
+    'verified_accounts'?: RegisterUserReqBodyMetadataVerifiedAccounts;
     /**
      * 
-     * @type {UpdateUserReqBodyLocation}
+     * @type {RegisterUserReqBodyMetadataLocation}
      * @memberof RegisterUserReqBodyMetadata
      */
-    'location'?: UpdateUserReqBodyLocation;
+    'location'?: RegisterUserReqBodyMetadataLocation;
 }
 

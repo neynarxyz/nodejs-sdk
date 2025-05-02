@@ -15,9 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CastAddAllOfDataAllOf } from './cast-add-all-of-data-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import type { FarcasterNetwork } from './farcaster-network';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -27,12 +24,15 @@ import type { MessageDataUserDataAdd } from './message-data-user-data-add';
 import type { MessageType } from './message-type';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { UserDataAddAllOfDataAllOf } from './user-data-add-all-of-data-all-of';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { UserDataBody } from './user-data-body';
 
 /**
  * @type UserDataAddAllOfData
  * @export
  */
-export type UserDataAddAllOfData = CastAddAllOfDataAllOf & MessageDataUserDataAdd;
+export type UserDataAddAllOfData = MessageDataUserDataAdd & UserDataAddAllOfDataAllOf;
 
 

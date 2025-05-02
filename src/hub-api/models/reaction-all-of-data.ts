@@ -15,9 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CastAddAllOfDataAllOf } from './cast-add-all-of-data-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import type { FarcasterNetwork } from './farcaster-network';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -27,12 +24,15 @@ import type { MessageDataReaction } from './message-data-reaction';
 import type { MessageType } from './message-type';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { ReactionAllOfDataAllOf } from './reaction-all-of-data-all-of';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { ReactionBody } from './reaction-body';
 
 /**
  * @type ReactionAllOfData
  * @export
  */
-export type ReactionAllOfData = CastAddAllOfDataAllOf & MessageDataReaction;
+export type ReactionAllOfData = MessageDataReaction & ReactionAllOfDataAllOf;
 
 

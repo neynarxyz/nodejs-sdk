@@ -35,15 +35,23 @@ models/fetch-cast-reactions200-response-all-of.ts
 models/fetch-cast-reactions200-response.ts
 models/fetch-casts-by-parent200-response-all-of.ts
 models/fetch-casts-by-parent200-response.ts
+models/fetch-casts-mentioning-user200-response-all-of.ts
+models/fetch-casts-mentioning-user200-response.ts
 models/fetch-events200-response.ts
+models/fetch-reactions-by-target200-response-all-of.ts
+models/fetch-reactions-by-target200-response.ts
 models/fetch-user-data200-response-one-of-all-of.ts
 models/fetch-user-data200-response-one-of.ts
 models/fetch-user-data200-response.ts
+models/fetch-user-followers200-response-all-of.ts
+models/fetch-user-followers200-response.ts
 models/fetch-user-following200-response-all-of.ts
 models/fetch-user-following200-response.ts
 models/fetch-user-on-chain-events200-response.ts
 models/fetch-user-on-chain-signers-events200-response-one-of.ts
 models/fetch-user-on-chain-signers-events200-response.ts
+models/fetch-user-reactions200-response-all-of.ts
+models/fetch-user-reactions200-response.ts
 models/fetch-users-casts200-response-all-of.ts
 models/fetch-users-casts200-response.ts
 models/fetch-verifications-by-fid200-response.ts
@@ -61,6 +69,7 @@ models/hub-info-response.ts
 models/id-register-event-body.ts
 models/id-register-event-type.ts
 models/index.ts
+models/link-add-all-of-data-all-of.ts
 models/link-add-all-of-data.ts
 models/link-add-all-of.ts
 models/link-add.ts
@@ -106,6 +115,7 @@ models/on-chain-event-type.ts
 models/on-chain-event.ts
 models/pagination-response.ts
 models/prune-message-body.ts
+models/reaction-all-of-data-all-of.ts
 models/reaction-all-of-data.ts
 models/reaction-all-of.ts
 models/reaction-body.ts
@@ -121,6 +131,7 @@ models/storage-limits-response.ts
 models/storage-rent-event-body.ts
 models/store-type.ts
 models/url-embed.ts
+models/user-data-add-all-of-data-all-of.ts
 models/user-data-add-all-of-data.ts
 models/user-data-add-all-of.ts
 models/user-data-add.ts
@@ -131,6 +142,7 @@ models/user-name-type.ts
 models/username-proofs-response.ts
 models/validate-message-response.ts
 models/verification-add-eth-address-body.ts
+models/verification-all-of-data-all-of.ts
 models/verification-all-of-data.ts
 models/verification-all-of.ts
 models/verification-remove-body.ts

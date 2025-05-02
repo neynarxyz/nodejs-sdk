@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { TransactionFrameConfig } from './transaction-frame-config';
+import type { FramePayTransactionRequestBodyTransaction } from './frame-pay-transaction-request-body-transaction';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { TransactionFramePayAllOfTransaction } from './transaction-frame-pay-all-of-transaction';
+import type { TransactionFrameConfig } from './transaction-frame-config';
 
 /**
  * 
@@ -28,10 +28,10 @@ import type { TransactionFramePayAllOfTransaction } from './transaction-frame-pa
 export interface FramePayTransactionRequestBody {
     /**
      * 
-     * @type {TransactionFramePayAllOfTransaction}
+     * @type {FramePayTransactionRequestBodyTransaction}
      * @memberof FramePayTransactionRequestBody
      */
-    'transaction': TransactionFramePayAllOfTransaction;
+    'transaction': FramePayTransactionRequestBodyTransaction;
     /**
      * 
      * @type {TransactionFrameConfig}

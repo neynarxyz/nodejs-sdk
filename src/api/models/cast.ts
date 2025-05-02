@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CastEmbeddedParentAuthor } from './cast-embedded-parent-author';
+import type { CastNotificationType } from './cast-notification-type';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CastNotificationType } from './cast-notification-type';
+import type { CastParentAuthor } from './cast-parent-author';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { Embed } from './embed';
@@ -67,10 +67,10 @@ export interface Cast {
     'root_parent_url': string | null;
     /**
      * 
-     * @type {CastEmbeddedParentAuthor}
+     * @type {CastParentAuthor}
      * @memberof Cast
      */
-    'parent_author': CastEmbeddedParentAuthor;
+    'parent_author': CastParentAuthor;
     /**
      * 
      * @type {User}

@@ -26,6 +26,10 @@ import type { ErrorResponse } from '../models';
 // @ts-ignore
 import type { FetchCastReactions200Response } from '../models';
 // @ts-ignore
+import type { FetchReactionsByTarget200Response } from '../models';
+// @ts-ignore
+import type { FetchUserReactions200Response } from '../models';
+// @ts-ignore
 import type { Reaction } from '../models';
 // @ts-ignore
 import type { ReactionType } from '../models';
@@ -118,7 +122,7 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
          * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
-         * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object
+         * @returns {Promise<FetchReactionsByTarget200Response>} A promise that resolves to a `FetchReactionsByTarget200Response` object
          * 
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-reactions-by-target)
          * 
@@ -182,7 +186,7 @@ export const ReactionsApiAxiosParamCreator = function (configuration?: Configura
          * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
-         * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object
+         * @returns {Promise<FetchUserReactions200Response>} A promise that resolves to a `FetchUserReactions200Response` object
          * 
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-reactions)
          * 
@@ -345,12 +349,12 @@ export const ReactionsApiFp = function(configuration?: Configuration) {
          * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
-         * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object
+         * @returns {Promise<FetchReactionsByTarget200Response>} A promise that resolves to a `FetchReactionsByTarget200Response` object
          * 
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-reactions-by-target)
          * 
          */
-        async fetchReactionsByTarget(url: string, reactionType?: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchCastReactions200Response>> {
+        async fetchReactionsByTarget(url: string, reactionType?: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchReactionsByTarget200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.fetchReactionsByTarget(url, reactionType, pageSize, reverse, pageToken, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ReactionsApi.fetchReactionsByTarget']?.[localVarOperationServerIndex]?.url;
@@ -366,12 +370,12 @@ export const ReactionsApiFp = function(configuration?: Configuration) {
          * @param {string} [pageToken] The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
-         * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object
+         * @returns {Promise<FetchUserReactions200Response>} A promise that resolves to a `FetchUserReactions200Response` object
          * 
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-reactions)
          * 
          */
-        async fetchUserReactions(fid: number, reactionType: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchCastReactions200Response>> {
+        async fetchUserReactions(fid: number, reactionType: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FetchUserReactions200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUserReactions(fid, reactionType, pageSize, reverse, pageToken, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ReactionsApi.fetchUserReactions']?.[localVarOperationServerIndex]?.url;
@@ -427,12 +431,12 @@ export const ReactionsApiFactory = function (configuration?: Configuration, base
          * @param {ReactionsApiFetchReactionsByTargetRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
-         * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object
+         * @returns {Promise<FetchReactionsByTarget200Response>} A promise that resolves to a `FetchReactionsByTarget200Response` object
          * 
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-reactions-by-target)
          * 
          */
-        fetchReactionsByTarget(requestParameters: ReactionsApiFetchReactionsByTargetRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchCastReactions200Response> {
+        fetchReactionsByTarget(requestParameters: ReactionsApiFetchReactionsByTargetRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchReactionsByTarget200Response> {
             return localVarFp.fetchReactionsByTarget(requestParameters.url, requestParameters.reactionType, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(axios, basePath));
         },
         /**
@@ -441,12 +445,12 @@ export const ReactionsApiFactory = function (configuration?: Configuration, base
          * @param {ReactionsApiFetchUserReactionsRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
-         * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object
+         * @returns {Promise<FetchUserReactions200Response>} A promise that resolves to a `FetchUserReactions200Response` object
          * 
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-reactions)
          * 
          */
-        fetchUserReactions(requestParameters: ReactionsApiFetchUserReactionsRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchCastReactions200Response> {
+        fetchUserReactions(requestParameters: ReactionsApiFetchUserReactionsRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchUserReactions200Response> {
             return localVarFp.fetchUserReactions(requestParameters.fid, requestParameters.reactionType, requestParameters.pageSize, requestParameters.reverse, requestParameters.pageToken, options).then((request) => request(axios, basePath));
         },
         /**
@@ -493,12 +497,12 @@ export interface ReactionsApiInterface {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReactionsApiInterface
-     * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object
+     * @returns {Promise<FetchReactionsByTarget200Response>} A promise that resolves to a `FetchReactionsByTarget200Response` object
      * 
      * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-reactions-by-target)
      * 
      */
-    fetchReactionsByTarget(requestParameters: ReactionsApiFetchReactionsByTargetRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchCastReactions200Response>;
+    fetchReactionsByTarget(requestParameters: ReactionsApiFetchReactionsByTargetRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchReactionsByTarget200Response>;
 
     /**
      * Fetch reactions by a user.
@@ -507,12 +511,12 @@ export interface ReactionsApiInterface {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReactionsApiInterface
-     * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object
+     * @returns {Promise<FetchUserReactions200Response>} A promise that resolves to a `FetchUserReactions200Response` object
      * 
      * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-reactions)
      * 
      */
-    fetchUserReactions(requestParameters: ReactionsApiFetchUserReactionsRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchCastReactions200Response>;
+    fetchUserReactions(requestParameters: ReactionsApiFetchUserReactionsRequest, options?: RawAxiosRequestConfig): AxiosPromise<FetchUserReactions200Response>;
 
     /**
      * Lookup a reaction by its FID or cast.
@@ -788,7 +792,7 @@ export class ReactionsApi extends BaseAPI implements ReactionsApiInterface {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReactionsApi
-     * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object
+     * @returns {Promise<FetchReactionsByTarget200Response>} A promise that resolves to a `FetchReactionsByTarget200Response` object
      * 
      * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-reactions-by-target)
      * 
@@ -804,7 +808,7 @@ export class ReactionsApi extends BaseAPI implements ReactionsApiInterface {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReactionsApi
-     * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object
+     * @returns {Promise<FetchUserReactions200Response>} A promise that resolves to a `FetchUserReactions200Response` object
      * 
      * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-reactions)
      * 
