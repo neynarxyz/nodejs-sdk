@@ -21,9 +21,9 @@
  */
 
 export const FarcasterNetwork = {
-    Mainnet: 'FARCASTER_NETWORK_MAINNET',
-    Testnet: 'FARCASTER_NETWORK_TESTNET',
-    Devnet: 'FARCASTER_NETWORK_DEVNET'
+    FarcasterNetworkMainnet: 'FARCASTER_NETWORK_MAINNET',
+    FarcasterNetworkTestnet: 'FARCASTER_NETWORK_TESTNET',
+    FarcasterNetworkDevnet: 'FARCASTER_NETWORK_DEVNET'
 } as const;
 
 export type FarcasterNetwork = typeof FarcasterNetwork[keyof typeof FarcasterNetwork];

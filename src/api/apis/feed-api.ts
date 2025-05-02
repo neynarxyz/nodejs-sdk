@@ -709,9 +709,7 @@ export const FeedApiAxiosParamCreator = function (configuration?: Configuration)
             }
 
             if (timeWindow !== undefined) {
-                for (const [key, value] of Object.entries(timeWindow)) {
-                    localVarQueryParameter[key] = value;
-                }
+                localVarQueryParameter['time_window'] = timeWindow;
             }
 
             if (channelId !== undefined) {

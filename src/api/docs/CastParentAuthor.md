@@ -1,0 +1,20 @@
+# CastParentAuthor
+
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**fid** | **number** | The unique identifier of a farcaster user (unsigned integer) | [default to undefined]
+
+## Example
+
+```typescript
+import { CastParentAuthor } from './api';
+
+const instance: CastParentAuthor = {
+    fid,
+};
+```
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

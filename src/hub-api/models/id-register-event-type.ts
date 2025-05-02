@@ -21,9 +21,9 @@
  */
 
 export const IdRegisterEventType = {
-    Register: 'ID_REGISTER_EVENT_TYPE_REGISTER',
-    Transfer: 'ID_REGISTER_EVENT_TYPE_TRANSFER',
-    ChangeRecovery: 'ID_REGISTER_EVENT_TYPE_CHANGE_RECOVERY'
+    IdRegisterEventTypeRegister: 'ID_REGISTER_EVENT_TYPE_REGISTER',
+    IdRegisterEventTypeTransfer: 'ID_REGISTER_EVENT_TYPE_TRANSFER',
+    IdRegisterEventTypeChangeRecovery: 'ID_REGISTER_EVENT_TYPE_CHANGE_RECOVERY'
 } as const;
 
 export type IdRegisterEventType = typeof IdRegisterEventType[keyof typeof IdRegisterEventType];

@@ -21,9 +21,9 @@
  */
 
 export const SignerEventType = {
-    Add: 'SIGNER_EVENT_TYPE_ADD',
-    Remove: 'SIGNER_EVENT_TYPE_REMOVE',
-    AdminReset: 'SIGNER_EVENT_TYPE_ADMIN_RESET'
+    SignerEventTypeAdd: 'SIGNER_EVENT_TYPE_ADD',
+    SignerEventTypeRemove: 'SIGNER_EVENT_TYPE_REMOVE',
+    SignerEventTypeAdminReset: 'SIGNER_EVENT_TYPE_ADMIN_RESET'
 } as const;
 
 export type SignerEventType = typeof SignerEventType[keyof typeof SignerEventType];

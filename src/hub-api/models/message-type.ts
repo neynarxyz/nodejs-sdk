@@ -21,17 +21,17 @@
  */
 
 export const MessageType = {
-    CastAdd: 'MESSAGE_TYPE_CAST_ADD',
-    CastRemove: 'MESSAGE_TYPE_CAST_REMOVE',
-    ReactionAdd: 'MESSAGE_TYPE_REACTION_ADD',
-    ReactionRemove: 'MESSAGE_TYPE_REACTION_REMOVE',
-    LinkAdd: 'MESSAGE_TYPE_LINK_ADD',
-    LinkRemove: 'MESSAGE_TYPE_LINK_REMOVE',
-    VerificationAddEthAddress: 'MESSAGE_TYPE_VERIFICATION_ADD_ETH_ADDRESS',
-    VerificationRemove: 'MESSAGE_TYPE_VERIFICATION_REMOVE',
-    UserDataAdd: 'MESSAGE_TYPE_USER_DATA_ADD',
-    UsernameProof: 'MESSAGE_TYPE_USERNAME_PROOF',
-    FrameAction: 'MESSAGE_TYPE_FRAME_ACTION'
+    MessageTypeCastAdd: 'MESSAGE_TYPE_CAST_ADD',
+    MessageTypeCastRemove: 'MESSAGE_TYPE_CAST_REMOVE',
+    MessageTypeReactionAdd: 'MESSAGE_TYPE_REACTION_ADD',
+    MessageTypeReactionRemove: 'MESSAGE_TYPE_REACTION_REMOVE',
+    MessageTypeLinkAdd: 'MESSAGE_TYPE_LINK_ADD',
+    MessageTypeLinkRemove: 'MESSAGE_TYPE_LINK_REMOVE',
+    MessageTypeVerificationAddEthAddress: 'MESSAGE_TYPE_VERIFICATION_ADD_ETH_ADDRESS',
+    MessageTypeVerificationRemove: 'MESSAGE_TYPE_VERIFICATION_REMOVE',
+    MessageTypeUserDataAdd: 'MESSAGE_TYPE_USER_DATA_ADD',
+    MessageTypeUsernameProof: 'MESSAGE_TYPE_USERNAME_PROOF',
+    MessageTypeFrameAction: 'MESSAGE_TYPE_FRAME_ACTION'
 } as const;
 
 export type MessageType = typeof MessageType[keyof typeof MessageType];

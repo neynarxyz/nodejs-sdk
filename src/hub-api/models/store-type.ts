@@ -21,12 +21,12 @@
  */
 
 export const StoreType = {
-    Casts: 'STORE_TYPE_CASTS',
-    Links: 'STORE_TYPE_LINKS',
-    Reactions: 'STORE_TYPE_REACTIONS',
-    UserData: 'STORE_TYPE_USER_DATA',
-    Verifications: 'STORE_TYPE_VERIFICATIONS',
-    UsernameProofs: 'STORE_TYPE_USERNAME_PROOFS'
+    StoreTypeCasts: 'STORE_TYPE_CASTS',
+    StoreTypeLinks: 'STORE_TYPE_LINKS',
+    StoreTypeReactions: 'STORE_TYPE_REACTIONS',
+    StoreTypeUserData: 'STORE_TYPE_USER_DATA',
+    StoreTypeVerifications: 'STORE_TYPE_VERIFICATIONS',
+    StoreTypeUsernameProofs: 'STORE_TYPE_USERNAME_PROOFS'
 } as const;
 
 export type StoreType = typeof StoreType[keyof typeof StoreType];

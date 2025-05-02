@@ -21,7 +21,7 @@ import { StorageApi } from '../hub-api/apis/storage-api';
 import { UserDataApi } from '../hub-api/apis/user-data-api';
 import { UsernamesApi } from '../hub-api/apis/usernames-api';
 import { VerificationsApi } from '../hub-api/apis/verifications-api';
-import type { CastAdd, FetchCastReactions200Response, FetchCastsByParent200Response, FetchEvents200Response, FetchUserData200Response, FetchUserFollowing200Response, FetchUserOnChainEvents200Response, FetchUserOnChainSignersEvents200Response, FetchUsersCasts200Response, FetchVerificationsByFid200Response, FidsResponse, HubEvent, HubInfoResponse, LinkAdd, LinkType, Message, OnChainEventIdRegister, OnChainEventType, Reaction, ReactionType, StorageLimitsResponse, UserDataType, UserNameProof, UsernameProofsResponse, ValidateMessageResponse } from '../hub-api';
+import type { CastAdd, FetchCastReactions200Response, FetchCastsByParent200Response, FetchCastsMentioningUser200Response, FetchEvents200Response, FetchReactionsByTarget200Response, FetchUserData200Response, FetchUserFollowers200Response, FetchUserFollowing200Response, FetchUserOnChainEvents200Response, FetchUserOnChainSignersEvents200Response, FetchUserReactions200Response, FetchUsersCasts200Response, FetchVerificationsByFid200Response, FidsResponse, HubEvent, HubInfoResponse, LinkAdd, LinkType, Message, OnChainEventIdRegister, OnChainEventType, Reaction, ReactionType, StorageLimitsResponse, UserDataType, UserNameProof, UsernameProofsResponse, ValidateMessageResponse } from '../hub-api';
 
 const { version: sdkVersion } = require("../../package.json");
 
@@ -229,7 +229,7 @@ Object.assign(adjustedParams, params);
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
  * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
  *
- * @returns {Promise<FetchUsersCasts200Response>} A promise that resolves to a `FetchUsersCasts200Response` object.
+ * @returns {Promise<FetchCastsMentioningUser200Response>} A promise that resolves to a `FetchCastsMentioningUser200Response` object.
  *
  * @example
  *
@@ -246,7 +246,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-casts-mentioning-user)
  *
  */
-public async fetchCastsMentioningUser(params: { fid: number, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchUsersCasts200Response> {
+public async fetchCastsMentioningUser(params: { fid: number, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchCastsMentioningUser200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -458,7 +458,7 @@ Object.assign(adjustedParams, params);
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
  * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
  *
- * @returns {Promise<FetchUserFollowing200Response>} A promise that resolves to a `FetchUserFollowing200Response` object.
+ * @returns {Promise<FetchUserFollowers200Response>} A promise that resolves to a `FetchUserFollowers200Response` object.
  *
  * @example
  *
@@ -476,7 +476,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-followers)
  *
  */
-public async fetchUserFollowers(params: { targetFid: number, linkType?: LinkType, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchUserFollowing200Response> {
+public async fetchUserFollowers(params: { targetFid: number, linkType?: LinkType, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchUserFollowers200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -762,7 +762,7 @@ Object.assign(adjustedParams, params);
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
  * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
  *
- * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object.
+ * @returns {Promise<FetchReactionsByTarget200Response>} A promise that resolves to a `FetchReactionsByTarget200Response` object.
  *
  * @example
  *
@@ -780,7 +780,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-reactions-by-target)
  *
  */
-public async fetchReactionsByTarget(params: { url: string, reactionType?: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchCastReactions200Response> {
+public async fetchReactionsByTarget(params: { url: string, reactionType?: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchReactionsByTarget200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -800,7 +800,7 @@ Object.assign(adjustedParams, params);
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
  * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
  *
- * @returns {Promise<FetchCastReactions200Response>} A promise that resolves to a `FetchCastReactions200Response` object.
+ * @returns {Promise<FetchUserReactions200Response>} A promise that resolves to a `FetchUserReactions200Response` object.
  *
  * @example
  *
@@ -818,7 +818,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-reactions)
  *
  */
-public async fetchUserReactions(params: { fid: number, reactionType: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchCastReactions200Response> {
+public async fetchUserReactions(params: { fid: number, reactionType: ReactionType, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FetchUserReactions200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 

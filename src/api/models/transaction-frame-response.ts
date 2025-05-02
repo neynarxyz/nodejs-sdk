@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { TransactionFrame } from './transaction-frame';
+import type { TransactionFramePay } from './transaction-frame-pay';
 
 /**
  * 
@@ -25,9 +25,9 @@ import type { TransactionFrame } from './transaction-frame';
 export interface TransactionFrameResponse {
     /**
      * 
-     * @type {TransactionFrame}
+     * @type {TransactionFramePay}
      * @memberof TransactionFrameResponse
      */
-    'transaction_frame': TransactionFrame;
+    'transaction_frame': TransactionFramePay;
 }
 

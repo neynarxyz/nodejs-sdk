@@ -21,11 +21,11 @@
  */
 
 export const UserDataType = {
-    Pfp: 'USER_DATA_TYPE_PFP',
-    Display: 'USER_DATA_TYPE_DISPLAY',
-    Bio: 'USER_DATA_TYPE_BIO',
-    Url: 'USER_DATA_TYPE_URL',
-    Username: 'USER_DATA_TYPE_USERNAME'
+    UserDataTypePfp: 'USER_DATA_TYPE_PFP',
+    UserDataTypeDisplay: 'USER_DATA_TYPE_DISPLAY',
+    UserDataTypeBio: 'USER_DATA_TYPE_BIO',
+    UserDataTypeUrl: 'USER_DATA_TYPE_URL',
+    UserDataTypeUsername: 'USER_DATA_TYPE_USERNAME'
 } as const;
 
 export type UserDataType = typeof UserDataType[keyof typeof UserDataType];

@@ -21,10 +21,10 @@
  */
 
 export const OnChainEventType = {
-    Signer: 'EVENT_TYPE_SIGNER',
-    SignerMigrated: 'EVENT_TYPE_SIGNER_MIGRATED',
-    IdRegister: 'EVENT_TYPE_ID_REGISTER',
-    StorageRent: 'EVENT_TYPE_STORAGE_RENT'
+    EventTypeSigner: 'EVENT_TYPE_SIGNER',
+    EventTypeSignerMigrated: 'EVENT_TYPE_SIGNER_MIGRATED',
+    EventTypeIdRegister: 'EVENT_TYPE_ID_REGISTER',
+    EventTypeStorageRent: 'EVENT_TYPE_STORAGE_RENT'
 } as const;
 
 export type OnChainEventType = typeof OnChainEventType[keyof typeof OnChainEventType];

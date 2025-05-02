@@ -21,8 +21,8 @@
  */
 
 export const UserNameType = {
-    Fname: 'USERNAME_TYPE_FNAME',
-    EnsL1: 'USERNAME_TYPE_ENS_L1'
+    UsernameTypeFname: 'USERNAME_TYPE_FNAME',
+    UsernameTypeEnsL1: 'USERNAME_TYPE_ENS_L1'
 } as const;
 
 export type UserNameType = typeof UserNameType[keyof typeof UserNameType];
