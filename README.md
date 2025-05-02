@@ -8,7 +8,7 @@ Please refer to our [Getting Started Guide](https://docs.neynar.com/reference/ge
 
 There's also generated docs for the individual APIs within each subpackage's directory for more detailed info: 
 - [api](./src/api/docs/): The main package for interacting with the Neynar API.
-- [hub-api](./src/hub-api/docs/): The package for interacting with Neynar's Farcaster hub API.
+- [hub-api](./src/hub-api/docs/): The package for interacting with Neynar's Farcaster hub (Hubble/Snapchain) API.
 
 Checkout [examples](https://github.com/neynarxyz/farcaster-examples) using this SDK
 
