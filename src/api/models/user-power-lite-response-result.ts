@@ -13,9 +13,6 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { Fids } from './fids';
 
 /**
  * 
@@ -24,10 +21,10 @@ import type { Fids } from './fids';
  */
 export interface UserPowerLiteResponseResult {
     /**
-     * 
-     * @type {Fids}
+     * List of FIDs
+     * @type {Array<number>}
      * @memberof UserPowerLiteResponseResult
      */
-    'fids': Fids;
+    'fids': Array<number>;
 }
 

@@ -104,7 +104,6 @@ models/conversation.ts
 models/delete-cast-req-body.ts
 models/delete-frame-req-body.ts
 models/delete-frame-response.ts
-models/deploy-fungible-req-body-metadata-media.ts
 models/deploy-fungible-response-contract-fungible.ts
 models/deploy-fungible-response-contract.ts
 models/deploy-fungible-response.ts
@@ -136,7 +135,6 @@ models/fetch-frame-meta-tags-from-url200-response.ts
 models/fetch-relevant-frames200-response-relevant-frames-inner.ts
 models/fetch-relevant-frames200-response.ts
 models/fetch-user-interactions200-response.ts
-models/fids.ts
 models/filter-type.ts
 models/fname-availability-response.ts
 models/follow-req-body.ts
@@ -231,6 +229,7 @@ models/post-cast-req-body-embeds-one-of1.ts
 models/post-cast-req-body-embeds-one-of2.ts
 models/post-cast-req-body-embeds.ts
 models/post-cast-req-body.ts
+models/post-cast-response-cast-author.ts
 models/post-cast-response-cast.ts
 models/post-cast-response.ts
 models/profile-url-pfp.ts

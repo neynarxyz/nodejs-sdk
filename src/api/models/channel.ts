@@ -142,6 +142,7 @@ export interface Channel {
      * 
      * @type {Array<User>}
      * @memberof Channel
+     * @deprecated
      */
     'hosts'?: Array<User>;
     /**

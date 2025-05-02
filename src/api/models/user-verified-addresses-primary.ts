@@ -25,12 +25,12 @@ export interface UserVerifiedAddressesPrimary {
      * @type {string}
      * @memberof UserVerifiedAddressesPrimary
      */
-    'eth_address': string;
+    'eth_address': string | null;
     /**
      * Solana address
      * @type {string}
      * @memberof UserVerifiedAddressesPrimary
      */
-    'sol_address': string;
+    'sol_address': string | null;
 }
 

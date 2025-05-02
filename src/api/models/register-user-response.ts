@@ -31,7 +31,7 @@ export interface RegisterUserResponse {
      * @type {boolean}
      * @memberof RegisterUserResponse
      */
-    'success': RegisterUserResponseSuccessEnum;
+    'success': boolean;
     /**
      * 
      * @type {string}
@@ -51,11 +51,4 @@ export interface RegisterUserResponse {
      */
     'user'?: User;
 }
-
-export const RegisterUserResponseSuccessEnum = {
-    True: true
-} as const;
-
-export type RegisterUserResponseSuccessEnum = typeof RegisterUserResponseSuccessEnum[keyof typeof RegisterUserResponseSuccessEnum];
-
 

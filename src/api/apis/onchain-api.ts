@@ -24,8 +24,6 @@ import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError
 // @ts-ignore
 import type { BalanceResponse } from '../models';
 // @ts-ignore
-import type { DeployFungibleReqBodyMetadataMedia } from '../models';
-// @ts-ignore
 import type { DeployFungibleResponse } from '../models';
 // @ts-ignore
 import type { ErrorRes } from '../models';
@@ -45,7 +43,7 @@ export const OnchainApiAxiosParamCreator = function (configuration?: Configurati
          * @param {string} owner Ethereum address of the one who is creating the token 
          * @param {string} symbol Symbol/Ticker for the token 
          * @param {string} name Name of the token 
-         * @param {DeployFungibleReqBodyMetadataMedia} [metadataMedia]  
+         * @param {File} [metadataMedia] Media file associated with the token.  Supported formats are image/jpeg, image/gif and image/png  
          * @param {string} [metadataDescription] Description of the token 
          * @param {DeployFungibleMetadataNsfwEnum} [metadataNsfw] Indicates if the token is NSFW (Not Safe For Work).  
          * @param {string} [metadataWebsiteLink] Website link related to the token 
@@ -61,7 +59,7 @@ export const OnchainApiAxiosParamCreator = function (configuration?: Configurati
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/deploy-fungible)
          * 
          */
-        deployFungible: async (owner: string, symbol: string, name: string, metadataMedia?: DeployFungibleReqBodyMetadataMedia, metadataDescription?: string, metadataNsfw?: DeployFungibleMetadataNsfwEnum, metadataWebsiteLink?: string, metadataTwitter?: string, metadataDiscord?: string, metadataTelegram?: string, network?: DeployFungibleNetworkEnum, factory?: DeployFungibleFactoryEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deployFungible: async (owner: string, symbol: string, name: string, metadataMedia?: File, metadataDescription?: string, metadataNsfw?: DeployFungibleMetadataNsfwEnum, metadataWebsiteLink?: string, metadataTwitter?: string, metadataDiscord?: string, metadataTelegram?: string, network?: DeployFungibleNetworkEnum, factory?: DeployFungibleFactoryEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'owner' is not null or undefined
             assertParamExists('deployFungible', 'owner', owner)
             // verify required parameter 'symbol' is not null or undefined
@@ -98,7 +96,7 @@ export const OnchainApiAxiosParamCreator = function (configuration?: Configurati
             }
     
             if (metadataMedia !== undefined) { 
-                localVarFormParams.append('metadata[media]', metadataMedia);
+                localVarFormParams.append('metadata[media]', metadataMedia as any);
             }
     
             if (metadataDescription !== undefined) { 
@@ -269,7 +267,7 @@ export const OnchainApiFp = function(configuration?: Configuration) {
          * @param {string} owner Ethereum address of the one who is creating the token 
          * @param {string} symbol Symbol/Ticker for the token 
          * @param {string} name Name of the token 
-         * @param {DeployFungibleReqBodyMetadataMedia} [metadataMedia]  
+         * @param {File} [metadataMedia] Media file associated with the token.  Supported formats are image/jpeg, image/gif and image/png  
          * @param {string} [metadataDescription] Description of the token 
          * @param {DeployFungibleMetadataNsfwEnum} [metadataNsfw] Indicates if the token is NSFW (Not Safe For Work).  
          * @param {string} [metadataWebsiteLink] Website link related to the token 
@@ -285,7 +283,7 @@ export const OnchainApiFp = function(configuration?: Configuration) {
          * For more information, refer to the [API documentation](https://docs.neynar.com/reference/deploy-fungible)
          * 
          */
-        async deployFungible(owner: string, symbol: string, name: string, metadataMedia?: DeployFungibleReqBodyMetadataMedia, metadataDescription?: string, metadataNsfw?: DeployFungibleMetadataNsfwEnum, metadataWebsiteLink?: string, metadataTwitter?: string, metadataDiscord?: string, metadataTelegram?: string, network?: DeployFungibleNetworkEnum, factory?: DeployFungibleFactoryEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeployFungibleResponse>> {
+        async deployFungible(owner: string, symbol: string, name: string, metadataMedia?: File, metadataDescription?: string, metadataNsfw?: DeployFungibleMetadataNsfwEnum, metadataWebsiteLink?: string, metadataTwitter?: string, metadataDiscord?: string, metadataTelegram?: string, network?: DeployFungibleNetworkEnum, factory?: DeployFungibleFactoryEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeployFungibleResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deployFungible(owner, symbol, name, metadataMedia, metadataDescription, metadataNsfw, metadataWebsiteLink, metadataTwitter, metadataDiscord, metadataTelegram, network, factory, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['OnchainApi.deployFungible']?.[localVarOperationServerIndex]?.url;
@@ -470,14 +468,14 @@ export interface OnchainApiDeployFungibleRequest {
     readonly name: string
 
     /**
+     * Media file associated with the token.  Supported formats are image/jpeg, image/gif and image/png 
      * 
      * 
      * 
-     * 
-     * @type {DeployFungibleReqBodyMetadataMedia}
+     * @type {File}
      * @memberof OnchainApiDeployFungible
      */
-    readonly metadataMedia?: DeployFungibleReqBodyMetadataMedia
+    readonly metadataMedia?: File
 
     /**
      * Description of the token

@@ -48,7 +48,7 @@ export interface UserNameProof {
      */
     'signature': string;
     /**
-     * Farcaster ID (FID). A unique identifier assigned to each user in the Farcaster network. This number is permanent and cannot be changed. FIDs are assigned sequentially when users register on the network. 
+     * The FID of the user who owns this username proof
      * @type {number}
      * @memberof UserNameProof
      */

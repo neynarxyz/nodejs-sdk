@@ -15,9 +15,16 @@
 
 
 /**
- * @type DeployFungibleReqBodyMetadataMedia
+ * 
  * @export
+ * @interface PostCastResponseCastAuthor
  */
-export type DeployFungibleReqBodyMetadataMedia = File | string;
-
+export interface PostCastResponseCastAuthor {
+    /**
+     * The unique identifier of a farcaster user (unsigned integer)
+     * @type {number}
+     * @memberof PostCastResponseCastAuthor
+     */
+    'fid': number;
+}
 
