@@ -642,7 +642,7 @@ Object.assign(adjustedParams, params);
  * @summary Embedded URL metadata
  *
  * @param {object} params
- * @param {string} params.url [optional]  - URL to crawl metadata of
+ * @param {string} params.url  - URL to crawl metadata of
  *
  * @returns {Promise<CastEmbedCrawlResponse>} A promise that resolves to a `CastEmbedCrawlResponse` object.
  *
@@ -658,7 +658,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-embedded-url-metadata)
  *
  */
-public async fetchEmbeddedUrlMetadata(params: { url?: string }): Promise<CastEmbedCrawlResponse> {
+public async fetchEmbeddedUrlMetadata(params: { url: string }): Promise<CastEmbedCrawlResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
