@@ -328,6 +328,7 @@ Object.assign(adjustedParams, params);
  * @summary Fetch a list of all the FIDs
  *
  * @param {object} params
+ * @param {number} params.shardId  - The shard ID to filter by
  * @param {number} params.pageSize [optional]  - Maximum number of messages to return in a single response
  * @param {boolean} params.reverse [optional]  - Reverse the sort order, returning latest messages first
  * @param {string} params.pageToken [optional]  - The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
@@ -337,18 +338,19 @@ Object.assign(adjustedParams, params);
  * @example
  *
  * // Fill in the appropriate values
+ * const shardId = 
  * const pageSize = 
  * const reverse = 
  * const pageToken = 
  *
- * client.fetchFids({ pageSize, reverse, pageToken }).then(response => {
+ * client.fetchFids({ shardId, pageSize, reverse, pageToken }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-fids)
  *
  */
-public async fetchFids(params: { pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FidsResponse> {
+public async fetchFids(params: { shardId: number, pageSize?: number, reverse?: boolean, pageToken?: string }): Promise<FidsResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
