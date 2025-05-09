@@ -246,6 +246,10 @@ models/reactions-response.ts
 models/reactions-type.ts
 models/register-developer-managed-signed-key-req-body.ts
 models/register-signer-key-req-body.ts
+models/register-user-on-chain-req-body-registration.ts
+models/register-user-on-chain-req-body-signers-inner.ts
+models/register-user-on-chain-req-body.ts
+models/register-user-on-chain-response.ts
 models/register-user-req-body-metadata.ts
 models/register-user-req-body.ts
 models/register-user-response.ts
