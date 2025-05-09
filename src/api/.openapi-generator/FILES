@@ -123,9 +123,6 @@ models/farcaster-action-req-body-action.ts
 models/farcaster-action-req-body.ts
 models/farcaster-manifest-account-association.ts
 models/farcaster-manifest-frame.ts
-models/farcaster-manifest-triggers-inner-one-of.ts
-models/farcaster-manifest-triggers-inner-one-of1.ts
-models/farcaster-manifest-triggers-inner.ts
 models/farcaster-manifest.ts
 models/feed-response.ts
 models/feed-trending-provider.ts
