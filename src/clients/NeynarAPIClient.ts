@@ -2463,6 +2463,39 @@ Object.assign(adjustedParams, _params);
 }
 
 /**
+ * Search for mini apps based on a query string
+ *
+ * @summary Search mini apps
+ *
+ * @param {object} params
+ * @param {string} params.q  - Query string to search for mini apps
+ * @param {number} params.limit [optional]  - Number of results to fetch (Default: 20, Maximum: 100)
+ * @param {string} params.cursor [optional]  - Pagination cursor
+ *
+ * @returns {Promise<FrameCatalogResponse>} A promise that resolves to a `FrameCatalogResponse` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const q = 
+ * const limit = 
+ *
+ * client.searchFrames({ q, limit }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/search-frames)
+ *
+ */
+public async searchFrames(params: { q: string, limit?: number, cursor?: string }): Promise<FrameCatalogResponse> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.frameApi.searchFrames(adjustedParams);
+  return response.data;
+}
+
+/**
  * Update an existing mini app with a list of pages, if it was made by the developer (identified by API key)
  *
  * @summary Update mini app
