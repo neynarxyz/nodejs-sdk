@@ -13,18 +13,17 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { Location } from './location';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { LocationAddress } from './location-address';
 
 /**
- * 
+ * @type SendFrameNotificationsReqBodyFiltersNearLocation
  * @export
- * @interface ProfileUrlPfp
  */
-export interface ProfileUrlPfp {
-    /**
-     * 
-     * @type {string}
-     * @memberof ProfileUrlPfp
-     */
-    'url': string;
-}
+export type SendFrameNotificationsReqBodyFiltersNearLocation = Location;
+
 
