@@ -257,6 +257,7 @@ models/remove-verification-req-body.ts
 models/respond-channel-invite-req-body.ts
 models/search-sort-type.ts
 models/searched-user.ts
+models/send-frame-notifications-req-body-filters.ts
 models/send-frame-notifications-req-body-notification.ts
 models/send-frame-notifications-req-body.ts
 models/send-frame-notifications-response.ts

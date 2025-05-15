@@ -227,6 +227,7 @@ export * from './respond-channel-invite-req-body';
 export * from './search-sort-type';
 export * from './searched-user';
 export * from './send-frame-notifications-req-body';
+export * from './send-frame-notifications-req-body-filters';
 export * from './send-frame-notifications-req-body-notification';
 export * from './send-frame-notifications-response';
 export * from './shared-signer-permission';
