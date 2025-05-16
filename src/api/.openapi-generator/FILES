@@ -186,6 +186,7 @@ models/invite-channel-member-req-body.ts
 models/location-address.ts
 models/location.ts
 models/mark-notifications-as-seen-req-body.ts
+models/mini-app-time-window.ts
 models/mute-list-response.ts
 models/mute-record.ts
 models/mute-req-body.ts
@@ -234,6 +235,7 @@ models/profile-url.ts
 models/reaction-for-cast.ts
 models/reaction-like.ts
 models/reaction-recast.ts
+models/reaction-req-body-target.ts
 models/reaction-req-body.ts
 models/reaction-type.ts
 models/reaction-with-cast-info.ts
@@ -305,7 +307,6 @@ models/transaction-frame-status.ts
 models/transaction-frame-type.ts
 models/transaction-frame.ts
 models/trending-channel-response.ts
-models/trending-time-window.ts
 models/update-user-req-body-location.ts
 models/update-user-req-body-verified-accounts.ts
 models/update-user-req-body.ts
