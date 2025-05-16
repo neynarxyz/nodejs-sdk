@@ -15,34 +15,20 @@
 
 
 /**
- * Details for the error response
+ * Time window for mini app analytics
  * @export
- * @interface ErrorRes
+ * @enum {string}
  */
-export interface ErrorRes {
-    /**
-     * 
-     * @type {string}
-     * @memberof ErrorRes
-     */
-    'code'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ErrorRes
-     */
-    'message': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ErrorRes
-     */
-    'property'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ErrorRes
-     */
-    'status'?: number;
-}
+
+export const MiniAppTimeWindow = {
+    _1h: '1h',
+    _6h: '6h',
+    _12h: '12h',
+    _24h: '24h',
+    _7d: '7d'
+} as const;
+
+export type MiniAppTimeWindow = typeof MiniAppTimeWindow[keyof typeof MiniAppTimeWindow];
+
+
 

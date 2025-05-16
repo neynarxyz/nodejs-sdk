@@ -30,7 +30,7 @@ import { StorageApi } from '../api/apis/storage-api';
 import { SubscribersApi } from '../api/apis/subscribers-api';
 import { UserApi } from '../api/apis/user-api';
 import { WebhookApi } from '../api/apis/webhook-api';
-import type { AddVerificationReqBody, AuthorizationUrlResponse, AuthorizationUrlResponseType, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUserAddressType, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastComposerType, CastConversationSortType, CastEmbedCrawlResponse, CastParamType, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, ChannelType, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeveloperManagedSigner, EmbedType, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FeedTrendingProvider, FeedType, FetchBulkCastsSortTypeEnum, FetchCastMetricsIntervalEnum, FetchFrameCatalogCategoriesEnum, FetchFrameMetaTagsFromUrl200Response, FetchRelevantFrames200Response, FetchRepliesAndRecastsForUserFilterEnum, FetchTrendingChannelsTimeWindowEnum, FetchUserInteractions200Response, FilterType, FnameAvailabilityResponse, FollowReqBody, FollowSortType, FollowersResponse, ForYouProvider, Frame, FrameAction, FrameActionReqBody, FrameCatalogResponse, FrameDeveloperManagedActionReqBody, FrameNotificationTokens, FramePayTransactionRequestBody, FrameSignaturePacket, FrameType, FrameValidateAnalyticsResponse, FrameValidateListResponse, InviteChannelMemberReqBody, LookupCastConversationFoldEnum, MarkNotificationsAsSeenReqBody, MuteListResponse, MuteReqBody, MuteResponse, Networks, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, ReactionsType, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchSortType, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionProvider, SubscriptionProviders, SubscriptionsResponse, TransactionFrameResponse, TrendingChannelResponse, TrendingTimeWindow, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, ValidateFrameAggregateWindow, ValidateFrameAnalyticsType, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
+import type { AddVerificationReqBody, AuthorizationUrlResponse, AuthorizationUrlResponseType, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUserAddressType, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastComposerType, CastConversationSortType, CastEmbedCrawlResponse, CastParamType, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, ChannelType, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeveloperManagedSigner, EmbedType, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FeedTrendingProvider, FeedType, FetchBulkCastsSortTypeEnum, FetchCastMetricsIntervalEnum, FetchFrameCatalogCategoriesEnum, FetchFrameMetaTagsFromUrl200Response, FetchRelevantFrames200Response, FetchRepliesAndRecastsForUserFilterEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedTimeWindowEnum, FetchUserInteractions200Response, FilterType, FnameAvailabilityResponse, FollowReqBody, FollowSortType, FollowersResponse, ForYouProvider, Frame, FrameAction, FrameActionReqBody, FrameCatalogResponse, FrameDeveloperManagedActionReqBody, FrameNotificationTokens, FramePayTransactionRequestBody, FrameSignaturePacket, FrameType, FrameValidateAnalyticsResponse, FrameValidateListResponse, InviteChannelMemberReqBody, LookupCastConversationFoldEnum, MarkNotificationsAsSeenReqBody, MiniAppTimeWindow, MuteListResponse, MuteReqBody, MuteResponse, Networks, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionReqBodyTarget, ReactionType, ReactionsCastResponse, ReactionsResponse, ReactionsType, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchSortType, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionProvider, SubscriptionProviders, SubscriptionsResponse, TransactionFrameResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, ValidateFrameAggregateWindow, ValidateFrameAnalyticsType, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
 
 const { version: sdkVersion } = require("../../package.json");
 
@@ -1770,7 +1770,7 @@ Object.assign(adjustedParams, params);
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 10, Maximum: 10)
  * @param {string} params.cursor [optional]  - Pagination cursor
  * @param {number} params.viewerFid [optional]  - Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`.
- * @param {TrendingTimeWindow & string} params.timeWindow [optional]  - Time window for trending casts (7d window for channel feeds only)
+ * @param {FetchTrendingFeedTimeWindowEnum} params.timeWindow [optional]  - Time window for trending casts (7d window for channel feeds only)
  * @param {string} params.channelId [optional]  - Channel ID to filter trending casts. Less active channels might have no casts in the time window selected. Provide either `channel_id` or `parent_url`, not both.
  * @param {string} params.parentUrl [optional]  - Parent URL to filter trending casts. Less active channels might have no casts in the time window selected. Provide either `channel_id` or `parent_url`, not both.
  * @param {FeedTrendingProvider} params.provider [optional]  - The provider of the trending casts feed.
@@ -1796,7 +1796,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-trending-feed)
  *
  */
-public async fetchTrendingFeed(params: { limit?: number, cursor?: string, viewerFid?: number, timeWindow?: TrendingTimeWindow & string, channelId?: string, parentUrl?: string, provider?: FeedTrendingProvider, providerMetadata?: string }): Promise<FeedResponse> {
+public async fetchTrendingFeed(params: { limit?: number, cursor?: string, viewerFid?: number, timeWindow?: FetchTrendingFeedTimeWindowEnum, channelId?: string, parentUrl?: string, provider?: FeedTrendingProvider, providerMetadata?: string }): Promise<FeedResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
@@ -2056,7 +2056,7 @@ Object.assign(adjustedParams, _params);
  * @param {object} params
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 100, Maximum: 100)
  * @param {string} params.cursor [optional]  - Pagination cursor
- * @param {TrendingTimeWindow & string} params.timeWindow [optional]  - Time window used to calculate the change in trending score for each mini app, used to sort mini app results
+ * @param {MiniAppTimeWindow} params.timeWindow [optional]  - Time window used to calculate the change in trending score for each mini app, used to sort mini app results
  * @param {Array<FetchFrameCatalogCategoriesEnum>} params.categories [optional]  - Comma separated list of categories to include in the results.  Includes all if left blank.  Example: `categories=games,social` OR: `categories=games&categories=social`
  *
  * @returns {Promise<FrameCatalogResponse>} A promise that resolves to a `FrameCatalogResponse` object.
@@ -2072,7 +2072,7 @@ Object.assign(adjustedParams, _params);
  *   console.log('response:', response);
  * });
  */
-public async fetchFrameCatalog(params: { limit?: number, cursor?: string, timeWindow?: TrendingTimeWindow & string, categories?: Array<FetchFrameCatalogCategoriesEnum> }): Promise<FrameCatalogResponse> {
+public async fetchFrameCatalog(params: { limit?: number, cursor?: string, timeWindow?: MiniAppTimeWindow, categories?: Array<FetchFrameCatalogCategoriesEnum> }): Promise<FrameCatalogResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -2179,7 +2179,7 @@ if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
  *
  * @param {object} params
  * @param {number} params.viewerFid  - FID of the user to fetch relevant mini apps for
- * @param {TrendingTimeWindow & string} params.timeWindow [optional]  - Time window used to limit statistics used to calculate mini app relevance
+ * @param {MiniAppTimeWindow} params.timeWindow [optional]  - Time window used to limit statistics used to calculate mini app relevance
  *
  * @returns {Promise<FetchRelevantFrames200Response>} A promise that resolves to a `FetchRelevantFrames200Response` object.
  *
@@ -2196,7 +2196,7 @@ if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-frame-relevant)
  *
  */
-public async fetchRelevantFrames(params: { viewerFid: number, timeWindow?: TrendingTimeWindow & string }): Promise<FetchRelevantFrames200Response> {
+public async fetchRelevantFrames(params: { viewerFid: number, timeWindow?: MiniAppTimeWindow }): Promise<FetchRelevantFrames200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3042,7 +3042,7 @@ Object.assign(adjustedParams, _params);
  * @param {object} params
  * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {ReactionType} params.reactionType 
- * @param {string} params.target 
+ * @param {ReactionReqBodyTarget} params.target 
  * @param {number} params.targetAuthorFid [optional]  - The unique identifier of a farcaster user (unsigned integer)
  * @param {string} params.idem [optional]  - An Idempotency key is a unique identifier for the request. **Note:**  1) This is used to prevent duplicate requests. Use the same idem key on retry attempts. 2) This should be a unique identifier for each request. 3) Recommended format is a 16-character string generated by the developer at the time of making this request.
  *
@@ -3064,7 +3064,7 @@ Object.assign(adjustedParams, _params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-reaction)
  *
  */
-public async deleteReaction(params: { signerUuid: string, reactionType: ReactionType, target: string, targetAuthorFid?: number, idem?: string }): Promise<OperationResponse> {
+public async deleteReaction(params: { signerUuid: string, reactionType: ReactionType, target: ReactionReqBodyTarget, targetAuthorFid?: number, idem?: string }): Promise<OperationResponse> {
   const adjustedParams: any = {};
 const _params = { reactionReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -3155,7 +3155,7 @@ Object.assign(adjustedParams, params);
  * @param {object} params
  * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {ReactionType} params.reactionType 
- * @param {string} params.target 
+ * @param {ReactionReqBodyTarget} params.target 
  * @param {number} params.targetAuthorFid [optional]  - The unique identifier of a farcaster user (unsigned integer)
  * @param {string} params.idem [optional]  - An Idempotency key is a unique identifier for the request. **Note:**  1) This is used to prevent duplicate requests. Use the same idem key on retry attempts. 2) This should be a unique identifier for each request. 3) Recommended format is a 16-character string generated by the developer at the time of making this request.
  *
@@ -3177,7 +3177,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-reaction)
  *
  */
-public async publishReaction(params: { signerUuid: string, reactionType: ReactionType, target: string, targetAuthorFid?: number, idem?: string }): Promise<OperationResponse> {
+public async publishReaction(params: { signerUuid: string, reactionType: ReactionType, target: ReactionReqBodyTarget, targetAuthorFid?: number, idem?: string }): Promise<OperationResponse> {
   const adjustedParams: any = {};
 const _params = { reactionReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
