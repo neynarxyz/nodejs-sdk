@@ -215,6 +215,7 @@ export * from './reactions-type';
 export * from './register-developer-managed-signed-key-req-body';
 export * from './register-signer-key-req-body';
 export * from './register-user-on-chain-req-body';
+export * from './register-user-on-chain-req-body-pre-registration-calls-inner';
 export * from './register-user-on-chain-req-body-registration';
 export * from './register-user-on-chain-req-body-signers-inner';
 export * from './register-user-on-chain-response';
