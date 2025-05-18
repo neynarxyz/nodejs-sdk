@@ -2140,7 +2140,7 @@ public async fetchNeynarFrames(): Promise<Array<NeynarFrame>> {
  *
  * @param {object} params
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 20, Maximum: 100)
- * @param {number[]} params.fids [optional]  - Comma separated list of FIDs, up to 100 at a time
+ * @param {number[]} params.fids [optional]  - Comma separated list of FIDs, up to 100 at a time. If you pass in FIDs, you will get back the notification tokens for those FIDs. If you don't pass in FIDs, you will get back all the notification tokens for the mini app.
  * @param {string} params.cursor [optional]  - Pagination cursor
  *
  * @returns {Promise<FrameNotificationTokens>} A promise that resolves to a `FrameNotificationTokens` object.
