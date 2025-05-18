@@ -191,7 +191,7 @@ models/mute-list-response.ts
 models/mute-record.ts
 models/mute-req-body.ts
 models/mute-response.ts
-models/networks.ts
+models/network.ts
 models/next-cursor.ts
 models/neynar-frame-creation-req-body.ts
 models/neynar-frame-page.ts
