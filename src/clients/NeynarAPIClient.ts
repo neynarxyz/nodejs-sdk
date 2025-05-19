@@ -2849,13 +2849,14 @@ if (adjustedParams.parentUrls && Array.isArray(adjustedParams.parentUrls)) {
 }
 
 /**
- * Mark notifications as seen
+ * Mark notifications as seen. You can choose one of two authorization methods, either:   1. Provide a valid signer_uuid in the request body (Most common)   2. Provide a valid, signed \"Bearer\" token in the request\'s `Authorization` header similar to the      approach described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication)
  *
  * @summary Mark as seen
  *
  * @param {object} params
- * @param {string} params.signerUuid  - The UUID of the signer. Signer should have atleast one write permission
+ * @param {string} params.signerUuid [optional]  - The UUID of a signer with at least one write permission.  Required unless a valid Authorization Bearer token is provided in the header.
  * @param {NotificationType} params.type [optional] 
+ * @param {string} params.authorization [optional]  - Optional Bearer token for certain endpoints. The token format is described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication).
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
  *
@@ -2864,15 +2865,16 @@ if (adjustedParams.parentUrls && Array.isArray(adjustedParams.parentUrls)) {
  * // Fill in the appropriate values
  * const signerUuid = 
  * const type = 
+ * const authorization = 
  *
- * client.markNotificationsAsSeen({signerUuid, type}).then(response => {
+ * client.markNotificationsAsSeen({signerUuid, type, authorization}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/mark-notifications-as-seen)
  *
  */
-public async markNotificationsAsSeen(params: { signerUuid: string, type?: NotificationType }): Promise<OperationResponse> {
+public async markNotificationsAsSeen(params: { signerUuid?: string, type?: NotificationType, authorization?: string }): Promise<OperationResponse> {
   const adjustedParams: any = {};
 const _params = { markNotificationsAsSeenReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
