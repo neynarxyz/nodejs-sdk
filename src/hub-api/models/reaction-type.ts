@@ -21,8 +21,8 @@
  */
 
 export const ReactionType = {
-    Like: 'REACTION_TYPE_LIKE',
-    Recast: 'REACTION_TYPE_RECAST'
+    Like: 'Like',
+    Recast: 'Recast'
 } as const;
 
 export type ReactionType = typeof ReactionType[keyof typeof ReactionType];
