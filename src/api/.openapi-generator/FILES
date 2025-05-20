@@ -307,6 +307,11 @@ models/transaction-frame-response.ts
 models/transaction-frame-status.ts
 models/transaction-frame-type.ts
 models/transaction-frame.ts
+models/transaction-send-fungibles-receipt.ts
+models/transaction-send-fungibles-recipient.ts
+models/transaction-send-fungibles-request.ts
+models/transaction-send-fungibles-response.ts
+models/transaction-send-tx-info.ts
 models/trending-channel-response.ts
 models/update-user-req-body-location.ts
 models/update-user-req-body-verified-accounts.ts
