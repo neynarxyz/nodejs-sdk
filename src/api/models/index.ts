@@ -205,7 +205,6 @@ export * from './reaction-for-cast';
 export * from './reaction-like';
 export * from './reaction-recast';
 export * from './reaction-req-body';
-export * from './reaction-req-body-target';
 export * from './reaction-type';
 export * from './reaction-with-cast-info';
 export * from './reaction-with-user-info';
