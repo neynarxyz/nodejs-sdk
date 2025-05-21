@@ -13,21 +13,22 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { Channel } from './channel';
 
 /**
- * 
+ * A blockchain network supported for fungible owner relevance queries
  * @export
- * @interface ChannelResponseBulk
+ * @enum {string}
  */
-export interface ChannelResponseBulk {
-    /**
-     * 
-     * @type {Array<Channel>}
-     * @memberof ChannelResponseBulk
-     */
-    'channels': Array<Channel>;
-}
+
+export const FungibleOwnerRelevantNetwork = {
+    Ethereum: 'ethereum',
+    Optimism: 'optimism',
+    Base: 'base',
+    Arbitrum: 'arbitrum',
+    Solana: 'solana'
+} as const;
+
+export type FungibleOwnerRelevantNetwork = typeof FungibleOwnerRelevantNetwork[keyof typeof FungibleOwnerRelevantNetwork];
+
+
 

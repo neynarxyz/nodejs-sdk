@@ -177,6 +177,7 @@ models/frame-validate-analytics-response.ts
 models/frame-validate-analytics-total-interactors.ts
 models/frame-validate-list-response.ts
 models/frame.ts
+models/fungible-owner-relevant-network.ts
 models/html-metadata-all-of-oembed.ts
 models/html-metadata-all-of.ts
 models/html-metadata.ts

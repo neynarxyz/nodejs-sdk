@@ -147,6 +147,7 @@ export * from './frame-validate-analytics-interactors-interactors-inner';
 export * from './frame-validate-analytics-response';
 export * from './frame-validate-analytics-total-interactors';
 export * from './frame-validate-list-response';
+export * from './fungible-owner-relevant-network';
 export * from './html-metadata';
 export * from './html-metadata-all-of';
 export * from './html-metadata-all-of-oembed';
