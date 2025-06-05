@@ -4,6 +4,7 @@
 api.ts
 apis/action-api.ts
 apis/agents-api.ts
+apis/app-host-api.ts
 apis/ban-api.ts
 apis/block-api.ts
 apis/cast-api.ts
@@ -31,6 +32,15 @@ index.ts
 models/add-verification-req-body.ts
 models/address-balance-verified-address.ts
 models/address-balance.ts
+models/app-host-event-type.ts
+models/app-host-get-event-response-notification-details.ts
+models/app-host-get-event-response.ts
+models/app-host-post-event-body-one-of.ts
+models/app-host-post-event-body-one-of1.ts
+models/app-host-post-event-body.ts
+models/app-host-post-event-response.ts
+models/app-host-user-state-response-notifications-enabled-inner.ts
+models/app-host-user-state-response.ts
 models/authorization-url-response-type.ts
 models/authorization-url-response.ts
 models/balance-response-user-balance.ts
@@ -178,6 +188,9 @@ models/frame-validate-analytics-total-interactors.ts
 models/frame-validate-list-response.ts
 models/frame.ts
 models/fungible-owner-relevant-network.ts
+models/get-notification-campaign-stats200-response-notification-campaigns-inner-stats.ts
+models/get-notification-campaign-stats200-response-notification-campaigns-inner.ts
+models/get-notification-campaign-stats200-response.ts
 models/html-metadata-all-of-oembed.ts
 models/html-metadata-all-of.ts
 models/html-metadata.ts
