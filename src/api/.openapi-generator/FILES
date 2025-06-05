@@ -178,6 +178,9 @@ models/frame-validate-analytics-total-interactors.ts
 models/frame-validate-list-response.ts
 models/frame.ts
 models/fungible-owner-relevant-network.ts
+models/get-notification-campaign-stats200-response-notification-campaigns-inner-stats.ts
+models/get-notification-campaign-stats200-response-notification-campaigns-inner.ts
+models/get-notification-campaign-stats200-response.ts
 models/html-metadata-all-of-oembed.ts
 models/html-metadata-all-of.ts
 models/html-metadata.ts

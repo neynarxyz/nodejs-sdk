@@ -30,7 +30,7 @@ import { StorageApi } from '../api/apis/storage-api';
 import { SubscribersApi } from '../api/apis/subscribers-api';
 import { UserApi } from '../api/apis/user-api';
 import { WebhookApi } from '../api/apis/webhook-api';
-import type { AddVerificationReqBody, AuthorizationUrlResponse, AuthorizationUrlResponseType, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUserAddressType, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastComposerType, CastConversationSortType, CastEmbedCrawlResponse, CastParamType, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, ChannelType, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeveloperManagedSigner, EmbedType, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FeedTrendingProvider, FeedType, FetchBulkCastsSortTypeEnum, FetchCastMetricsIntervalEnum, FetchFrameCatalogCategoriesEnum, FetchFrameMetaTagsFromUrl200Response, FetchRelevantFrames200Response, FetchRepliesAndRecastsForUserFilterEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedTimeWindowEnum, FetchUserInteractions200Response, FilterType, FnameAvailabilityResponse, FollowReqBody, FollowSortType, FollowersResponse, ForYouProvider, Frame, FrameAction, FrameActionReqBody, FrameCatalogResponse, FrameDeveloperManagedActionReqBody, FrameNotificationTokens, FramePayTransactionRequestBody, FrameSignaturePacket, FrameType, FrameValidateAnalyticsResponse, FrameValidateListResponse, FungibleOwnerRelevantNetwork, InviteChannelMemberReqBody, LookupCastConversationFoldEnum, MarkNotificationsAsSeenReqBody, MiniAppTimeWindow, MuteListResponse, MuteReqBody, MuteResponse, Network, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, ReactionsType, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyPreRegistrationCallsInner, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchSortType, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionProvider, SubscriptionProviders, SubscriptionsResponse, TransactionFrameResponse, TransactionSendFungiblesRequest, TransactionSendFungiblesResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, ValidateFrameAggregateWindow, ValidateFrameAnalyticsType, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
+import type { AddVerificationReqBody, AuthorizationUrlResponse, AuthorizationUrlResponseType, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUserAddressType, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastComposerType, CastConversationSortType, CastEmbedCrawlResponse, CastParamType, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, ChannelType, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeveloperManagedSigner, EmbedType, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FeedTrendingProvider, FeedType, FetchBulkCastsSortTypeEnum, FetchCastMetricsIntervalEnum, FetchFrameCatalogCategoriesEnum, FetchFrameMetaTagsFromUrl200Response, FetchRelevantFrames200Response, FetchRepliesAndRecastsForUserFilterEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedTimeWindowEnum, FetchUserInteractions200Response, FilterType, FnameAvailabilityResponse, FollowReqBody, FollowSortType, FollowersResponse, ForYouProvider, Frame, FrameAction, FrameActionReqBody, FrameCatalogResponse, FrameDeveloperManagedActionReqBody, FrameNotificationTokens, FramePayTransactionRequestBody, FrameSignaturePacket, FrameType, FrameValidateAnalyticsResponse, FrameValidateListResponse, FungibleOwnerRelevantNetwork, GetNotificationCampaignStats200Response, InviteChannelMemberReqBody, LookupCastConversationFoldEnum, MarkNotificationsAsSeenReqBody, MiniAppTimeWindow, MuteListResponse, MuteReqBody, MuteResponse, Network, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, ReactionsType, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyPreRegistrationCallsInner, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchSortType, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionProvider, SubscriptionProviders, SubscriptionsResponse, TransactionFrameResponse, TransactionSendFungiblesRequest, TransactionSendFungiblesResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, ValidateFrameAggregateWindow, ValidateFrameAnalyticsType, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
 
 const { version: sdkVersion } = require("../../package.json");
 
@@ -303,7 +303,7 @@ if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
 }
 
 /**
- * Generates a summary of all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL.  Summary is generated by an LLM and is intended to be passed as a context to AI agents.
+ * Generates a summary of all casts related to a conversation surrounding a cast by passing in a cast hash or Farcaster URL.  Summary is generated by an LLM and is intended to be passed as a context to AI agents.
  *
  * @summary Cast conversation summary
  *
@@ -437,7 +437,7 @@ Object.assign(adjustedParams, _params);
  *
  * @param {object} params
  * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
- * @param {number} params.blockedFid  - The unique identifier of a farcaster user (unsigned integer)
+ * @param {number} params.blockedFid  - The unique identifier of a farcaster user or app (unsigned integer)
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
  *
@@ -506,7 +506,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  *
  * @param {object} params
  * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
- * @param {number} params.blockedFid  - The unique identifier of a farcaster user (unsigned integer)
+ * @param {number} params.blockedFid  - The unique identifier of a farcaster user or app (unsigned integer)
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
  *
@@ -667,7 +667,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Gets information about an individual cast by passing in a Warpcast web URL or cast hash
+ * Gets information about an individual cast by passing in a Farcaster web URL or cast hash
  *
  * @summary By hash or URL
  *
@@ -702,7 +702,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
 }
 
 /**
- * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
+ * Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Farcaster URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
  *
  * @summary Conversation for a cast
  *
@@ -759,7 +759,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * @param {string} params.parent [optional]  - parent_url of the channel the cast is in, or hash of the cast
  * @param {string} params.channelId [optional]  - Channel ID of the channel where the cast is to be posted. e.g. neynar, farcaster, warpcast
  * @param {string} params.idem [optional]  - An Idempotency key is a unique identifier for the request. **Note:**  1) This is used to prevent duplicate requests. Use the same idem key on retry attempts. 2) This should be a unique identifier for each request. 3) Recommended format is a 16-character string generated by the developer at the time of making this request.
- * @param {number} params.parentAuthorFid [optional]  - The unique identifier of a farcaster user (unsigned integer)
+ * @param {number} params.parentAuthorFid [optional]  - The unique identifier of a farcaster user or app (unsigned integer)
  *
  * @returns {Promise<PostCastResponse>} A promise that resolves to a `PostCastResponse` object.
  *
@@ -1219,7 +1219,7 @@ Object.assign(adjustedParams, _params);
  * @param {object} params
  * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {string} params.channelId  - The unique identifier of a farcaster channel
- * @param {number} params.fid  - The unique identifier of a farcaster user (unsigned integer)
+ * @param {number} params.fid  - The unique identifier of a farcaster user or app (unsigned integer)
  * @param {ChannelMemberRole} params.role 
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
@@ -1290,7 +1290,7 @@ Object.assign(adjustedParams, params);
  * @param {object} params
  * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {string} params.channelId  - The unique identifier of a farcaster channel
- * @param {number} params.fid  - The unique identifier of a farcaster user (unsigned integer)
+ * @param {number} params.fid  - The unique identifier of a farcaster user or app (unsigned integer)
  * @param {ChannelMemberRole} params.role 
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
@@ -2266,6 +2266,36 @@ public async fetchValidateFrameList(): Promise<FrameValidateListResponse> {
 }
 
 /**
+ * Retrieve notification delivery and opened stats for notification campaigns
+ *
+ * @summary Get notification campaign stats
+ *
+ * @param {object} params
+ * @param {string} params.campaignId [optional]  - An ID of a specific notification campaign to query
+ * @param {number} params.limit [optional]  - The number of results to return (Default: 100,
+ * @param {string} params.cursor [optional]  - Pagination cursor
+ *
+ * @returns {Promise<GetNotificationCampaignStats200Response>} A promise that resolves to a `GetNotificationCampaignStats200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const campaignId = 
+ * const limit = 
+ *
+ * client.getNotificationCampaignStats({ campaignId, limit }).then(response => {
+ *   console.log('response:', response);
+ * });
+ */
+public async getNotificationCampaignStats(params: { campaignId?: string, limit?: number, cursor?: string }): Promise<GetNotificationCampaignStats200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.frameApi.getNotificationCampaignStats(adjustedParams);
+  return response.data;
+}
+
+/**
  * Retrieves details about a transaction pay mini app by ID
  *
  * @summary Get transaction pay mini app
@@ -2601,7 +2631,7 @@ public async fetchNonce(): Promise<NonceResponse> {
  *
  * @param {object} params
  * @param {string} params.q  - Query string to search for casts
- * @param {FetchCastMetricsIntervalEnum} params.interval [optional]  - Interval of time for which to fetch metrics. Choices are `1d`, `7d`, `30d`
+ * @param {FetchCastMetricsIntervalEnum} params.interval [optional]  - Interval of time for which to fetch metrics. Default is 30d.
  * @param {number} params.authorFid [optional]  - Fid of the user whose casts you want to search
  * @param {string} params.channelId [optional]  - Channel ID of the casts you want to search
  *
@@ -2637,8 +2667,8 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * @summary Unmute FID
  *
  * @param {object} params
- * @param {number} params.fid  - The unique identifier of a farcaster user (unsigned integer)
- * @param {number} params.mutedFid  - The unique identifier of a farcaster user (unsigned integer)
+ * @param {number} params.fid  - The unique identifier of a farcaster user or app (unsigned integer)
+ * @param {number} params.mutedFid  - The unique identifier of a farcaster user or app (unsigned integer)
  *
  * @returns {Promise<MuteResponse>} A promise that resolves to a `MuteResponse` object.
  *
@@ -2704,8 +2734,8 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * @summary Mute FID
  *
  * @param {object} params
- * @param {number} params.fid  - The unique identifier of a farcaster user (unsigned integer)
- * @param {number} params.mutedFid  - The unique identifier of a farcaster user (unsigned integer)
+ * @param {number} params.fid  - The unique identifier of a farcaster user or app (unsigned integer)
+ * @param {number} params.mutedFid  - The unique identifier of a farcaster user or app (unsigned integer)
  *
  * @returns {Promise<MuteResponse>} A promise that resolves to a `MuteResponse` object.
  *
@@ -2884,7 +2914,7 @@ Object.assign(adjustedParams, _params);
 }
 
 /**
- * Creates a new token. This is an allowlisted API, reach out if you want access.
+ * Creates a new token.
  *
  * @summary Deploy fungible
  *
@@ -3081,7 +3111,7 @@ Object.assign(adjustedParams, params);
  * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {ReactionType} params.reactionType 
  * @param {string} params.target  - Target cast hash (hex string starting with 0x) OR a valid URL.
- * @param {number} params.targetAuthorFid [optional]  - The unique identifier of a farcaster user (unsigned integer)
+ * @param {number} params.targetAuthorFid [optional]  - The unique identifier of a farcaster user or app (unsigned integer)
  * @param {string} params.idem [optional]  - An Idempotency key is a unique identifier for the request. **Note:**  1) This is used to prevent duplicate requests. Use the same idem key on retry attempts. 2) This should be a unique identifier for each request. 3) Recommended format is a 16-character string generated by the developer at the time of making this request.
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
@@ -3194,7 +3224,7 @@ Object.assign(adjustedParams, params);
  * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {ReactionType} params.reactionType 
  * @param {string} params.target  - Target cast hash (hex string starting with 0x) OR a valid URL.
- * @param {number} params.targetAuthorFid [optional]  - The unique identifier of a farcaster user (unsigned integer)
+ * @param {number} params.targetAuthorFid [optional]  - The unique identifier of a farcaster user or app (unsigned integer)
  * @param {string} params.idem [optional]  - An Idempotency key is a unique identifier for the request. **Note:**  1) This is used to prevent duplicate requests. Use the same idem key on retry attempts. 2) This should be a unique identifier for each request. 3) Recommended format is a 16-character string generated by the developer at the time of making this request.
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
@@ -3409,7 +3439,7 @@ Object.assign(adjustedParams, params);
  * @param {object} params
  * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {string} params.signature  - Signature generated by the custody address of the app. Signed data includes app_fid, deadline, signer’s public key
- * @param {number} params.appFid  - The unique identifier of a farcaster user (unsigned integer)
+ * @param {number} params.appFid  - The unique identifier of a farcaster user or app (unsigned integer)
  * @param {number} params.deadline  - unix timestamp in seconds that controls how long the signed key request is valid for. (24 hours from now is recommended)
  * @param {string} params.redirectUrl [optional]  - Url to redirect to after the signer is approved.  **Note** : This should only be used when requesting a signer from a native mobile application.
  * @param {SignedKeyRequestSponsor} params.sponsor [optional] 
@@ -3450,7 +3480,7 @@ Object.assign(adjustedParams, _params);
  * @param {object} params
  * @param {string} params.publicKey  - Ed25519 public key
  * @param {string} params.signature  - Signature generated by the custody address of the app. Signed data includes app_fid, deadline, signer’s public key
- * @param {number} params.appFid  - The unique identifier of a farcaster user (unsigned integer)
+ * @param {number} params.appFid  - The unique identifier of a farcaster user or app (unsigned integer)
  * @param {number} params.deadline  - unix timestamp in seconds that controls how long the signed key request is valid for. (24 hours from now is recommended)
  * @param {string} params.redirectUrl [optional]  - Url to redirect to after the signer is approved.  **Note** : This should only be used when requesting a signer from a native mobile application.
  * @param {SignedKeyRequestSponsor} params.sponsor [optional] 
