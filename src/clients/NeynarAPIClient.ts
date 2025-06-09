@@ -31,7 +31,7 @@ import { StorageApi } from '../api/apis/storage-api';
 import { SubscribersApi } from '../api/apis/subscribers-api';
 import { UserApi } from '../api/apis/user-api';
 import { WebhookApi } from '../api/apis/webhook-api';
-import type { AddVerificationReqBody, AppHostEventType, AppHostGetEventResponse, AppHostPostEventBody, AppHostPostEventResponse, AppHostUserStateResponse, AuthorizationUrlResponse, AuthorizationUrlResponseType, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUserAddressType, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastComposerType, CastConversationSortType, CastEmbedCrawlResponse, CastParamType, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, ChannelType, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeveloperManagedSigner, EmbedType, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FeedTrendingProvider, FeedType, FetchBulkCastsSortTypeEnum, FetchCastMetricsIntervalEnum, FetchFrameCatalogCategoriesEnum, FetchFrameMetaTagsFromUrl200Response, FetchRelevantFrames200Response, FetchRepliesAndRecastsForUserFilterEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedTimeWindowEnum, FetchUserInteractions200Response, FilterType, FnameAvailabilityResponse, FollowReqBody, FollowSortType, FollowersResponse, ForYouProvider, Frame, FrameAction, FrameActionReqBody, FrameCatalogResponse, FrameDeveloperManagedActionReqBody, FrameNotificationTokens, FramePayTransactionRequestBody, FrameSignaturePacket, FrameType, FrameValidateAnalyticsResponse, FrameValidateListResponse, FungibleOwnerRelevantNetwork, GetNotificationCampaignStats200Response, InviteChannelMemberReqBody, LookupCastConversationFoldEnum, MarkNotificationsAsSeenReqBody, MiniAppTimeWindow, MuteListResponse, MuteReqBody, MuteResponse, Network, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, ReactionsType, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyPreRegistrationCallsInner, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchSortType, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionProvider, SubscriptionProviders, SubscriptionsResponse, TransactionFrameResponse, TransactionSendFungiblesRequest, TransactionSendFungiblesResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, ValidateFrameAggregateWindow, ValidateFrameAnalyticsType, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
+import type { AddVerificationReqBody, AppHostGetEventEventEnum, AppHostGetEventResponse, AppHostPostEventReqBody, AppHostPostEventResponse, AppHostUserStateResponse, AuthorizationUrlResponse, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastEmbedCrawlResponse, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeveloperManagedSigner, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FetchAllNotificationsTypeEnum, FetchAuthorizationUrlResponseTypeEnum, FetchBulkCastsSortTypeEnum, FetchBulkChannelsTypeEnum, FetchBulkUsersByEthOrSolAddressAddressTypesEnum, FetchCastMetricsIntervalEnum, FetchCastReactionsTypesEnum, FetchComposerActionsListEnum, FetchFeedEmbedTypesEnum, FetchFeedFeedTypeEnum, FetchFeedFilterTypeEnum, FetchFeedForYouProviderEnum, FetchFrameCatalogCategoriesEnum, FetchFrameCatalogTimeWindowEnum, FetchFrameMetaTagsFromUrl200Response, FetchRelevantFrames200Response, FetchRelevantFramesTimeWindowEnum, FetchRelevantFungibleOwnersNetworkEnum, FetchRepliesAndRecastsForUserFilterEnum, FetchSubscribedToForFidSubscriptionProviderEnum, FetchSubscribersForFidSubscriptionProviderEnum, FetchSubscriptionsForFidSubscriptionProviderEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedProviderEnum, FetchTrendingFeedTimeWindowEnum, FetchUserBalanceNetworksEnum, FetchUserFollowersSortTypeEnum, FetchUserFollowingSortTypeEnum, FetchUserInteractions200Response, FetchUserInteractionsTypeEnum, FetchUserReactionsTypeEnum, FetchValidateFrameAnalyticsAggregateWindowEnum, FetchValidateFrameAnalyticsAnalyticsTypeEnum, FnameAvailabilityResponse, FollowReqBody, FollowersResponse, Frame, FrameAction, FrameActionReqBody, FrameCatalogResponse, FrameDeveloperManagedActionReqBody, FrameNotificationTokens, FramePayTransactionReqBody, FramePayTransactionReqBodyTransaction, FrameSignaturePacket, FrameValidateAnalyticsResponse, FrameValidateListResponse, GetNotificationCampaignStats200Response, InviteChannelMemberReqBody, LookupCastByHashOrWarpcastUrlTypeEnum, LookupCastConversationFoldEnum, LookupCastConversationSortTypeEnum, LookupCastConversationTypeEnum, LookupChannelTypeEnum, LookupNeynarFrameTypeEnum, MarkNotificationsAsSeenReqBody, MuteListResponse, MuteReqBody, MuteResponse, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyPreRegistrationCallsInner, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchCastsSortTypeEnum, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionsResponse, TransactionFrameConfig, TransactionFrameResponse, TransactionSendFungiblesRecipient, TransactionSendFungiblesReqBody, TransactionSendFungiblesReqBodyNetworkEnum, TransactionSendFungiblesResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
 
 const { version: sdkVersion } = require("../../package.json");
 
@@ -231,7 +231,7 @@ const client = new NeynarAPIClient(config);\n`);
  *   console.log('response:', response);
  * });
  *
- * For more information, refer to the [API documentation](https://docs.neynar.com/docs/farcaster-actions-spec)
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-farcaster-action)
  *
  */
 public async publishFarcasterAction(params: { signerUuid: string, baseUrl: string, action: FarcasterActionReqBodyAction }): Promise<{ [key: string]: any; }> {
@@ -249,22 +249,30 @@ Object.assign(adjustedParams, _params);
  * @summary Create transaction pay mini app
  *
  * @param {object} params
- * @param {FramePayTransactionRequestBody} params.framePayTransactionRequestBody 
+ * @param {FramePayTransactionReqBodyTransaction} params.transaction 
+ * @param {TransactionFrameConfig} params.config 
+ * @param {string} params.idem [optional]  - An Idempotency key is a unique identifier for the request. **Note:**  1) This is used to prevent duplicate requests. Use the same idem key on retry attempts. 2) This should be a unique identifier for each request. 3) Recommended format is a 16-character string generated by the developer at the time of making this request.
  *
  * @returns {Promise<TransactionFrameResponse>} A promise that resolves to a `TransactionFrameResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const framePayTransactionRequestBody = 
+ * const transaction = 
+ * const config = 
+ * const idem = 
  *
- * client.createTransactionPayFrame({ framePayTransactionRequestBody }).then(response => {
+ * client.createTransactionPayFrame({transaction, config, idem}).then(response => {
  *   console.log('response:', response);
  * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/create-transaction-pay-frame)
+ *
  */
-public async createTransactionPayFrame(params: { framePayTransactionRequestBody: FramePayTransactionRequestBody }): Promise<TransactionFrameResponse> {
+public async createTransactionPayFrame(params: { transaction: FramePayTransactionReqBodyTransaction, config: TransactionFrameConfig, idem?: string }): Promise<TransactionFrameResponse> {
   const adjustedParams: any = {};
-Object.assign(adjustedParams, params);
+const _params = { framePayTransactionReqBody: camelCaseToSnakeCaseKeys(params) };
+Object.assign(adjustedParams, _params);
 
   const response = await this.apis.agentsApi.createTransactionPayFrame(adjustedParams);
   return response.data;
@@ -277,7 +285,7 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {number[]} params.fids  - Comma separated list of two FIDs
- * @param {Array<NotificationType>} params.type [optional]  - Comma seperated list of Interaction type to fetch
+ * @param {Array<FetchUserInteractionsTypeEnum>} params.type [optional]  - Comma seperated list of Interaction type to fetch
  *
  * @returns {Promise<FetchUserInteractions200Response>} A promise that resolves to a `FetchUserInteractions200Response` object.
  *
@@ -290,8 +298,11 @@ Object.assign(adjustedParams, params);
  * client.fetchUserInteractions({ fids, type }).then(response => {
  *   console.log('response:', response);
  * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-interactions)
+ *
  */
-public async fetchUserInteractions(params: { fids: number[], type?: Array<NotificationType> }): Promise<FetchUserInteractions200Response> {
+public async fetchUserInteractions(params: { fids: number[], type?: Array<FetchUserInteractionsTypeEnum> }): Promise<FetchUserInteractions200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
@@ -311,7 +322,7 @@ if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
  * @summary Cast conversation summary
  *
  * @param {object} params
- * @param {string} params.identifier  - Cast identifier (Its either a url or a hash)
+ * @param {string} params.identifier  - Cast identifier (It's either a URL or a hash))
  * @param {number} params.limit [optional]  - Number of casts to consider in a summary up to a point of target cast (Default: 20, Maximum: 50)
  * @param {string} params.prompt [optional]  - Additional prompt used to generate a summary
  *
@@ -347,7 +358,7 @@ Object.assign(adjustedParams, params);
  * @param {object} params
  * @param {string} params.appDomain  - The domain of the mini app
  * @param {number} params.fid  - The FID of the user who initiated the event
- * @param {AppHostEventType} params.event  - The type of event
+ * @param {AppHostGetEventEventEnum} params.event  - The type of event
  *
  * @returns {Promise<AppHostGetEventResponse>} A promise that resolves to a `AppHostGetEventResponse` object.
  *
@@ -361,8 +372,11 @@ Object.assign(adjustedParams, params);
  * client.appHostGetEvent({ appDomain, fid, event }).then(response => {
  *   console.log('response:', response);
  * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/app-host-get-event)
+ *
  */
-public async appHostGetEvent(params: { appDomain: string, fid: number, event: AppHostEventType }): Promise<AppHostGetEventResponse> {
+public async appHostGetEvent(params: { appDomain: string, fid: number, event: AppHostGetEventEventEnum }): Promise<AppHostGetEventResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -388,6 +402,9 @@ Object.assign(adjustedParams, params);
  * client.appHostGetUserState({ fid }).then(response => {
  *   console.log('response:', response);
  * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/app-host-get-user-state)
+ *
  */
 public async appHostGetUserState(params: { fid: number }): Promise<AppHostUserStateResponse> {
   const adjustedParams: any = {};
@@ -403,22 +420,26 @@ Object.assign(adjustedParams, params);
  * @summary Process app host event
  *
  * @param {object} params
- * @param {AppHostPostEventBody} params.appHostPostEventBody 
+ * @param {any} params.appHostPostEventReqBody 
  *
  * @returns {Promise<AppHostPostEventResponse>} A promise that resolves to a `AppHostPostEventResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const appHostPostEventBody = 
+ * const appHostPostEventReqBody = 
  *
- * client.appHostPostEvent({ appHostPostEventBody }).then(response => {
+ * client.appHostPostEvent({appHostPostEventReqBody}).then(response => {
  *   console.log('response:', response);
  * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/app-host-post-event)
+ *
  */
-public async appHostPostEvent(params: { appHostPostEventBody: AppHostPostEventBody }): Promise<AppHostPostEventResponse> {
+public async appHostPostEvent(params: { appHostPostEventReqBody }): Promise<AppHostPostEventResponse> {
   const adjustedParams: any = {};
-Object.assign(adjustedParams, params);
+const _params = { appHostPostEventReqBody: camelCaseToSnakeCaseKeys(params) };
+Object.assign(adjustedParams, _params);
 
   const response = await this.apis.appHostApi.appHostPostEvent(adjustedParams);
   return response.data;
@@ -621,7 +642,7 @@ Object.assign(adjustedParams, _params);
 }
 
 /**
- * Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved)
+ * Delete an existing cast.  (In order to delete a cast `signer_uuid` must be approved)
  *
  * @summary Delete a cast
  *
@@ -697,7 +718,7 @@ if (adjustedParams.casts && Array.isArray(adjustedParams.casts)) {
  * @summary Fetch composer actions
  *
  * @param {object} params
- * @param {CastComposerType} params.list  - Type of list to fetch.
+ * @param {FetchComposerActionsListEnum} params.list  - Type of list to fetch.
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 25, Maximum: 25)
  * @param {string} params.cursor [optional]  - Pagination cursor.
  *
@@ -716,7 +737,7 @@ if (adjustedParams.casts && Array.isArray(adjustedParams.casts)) {
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-composer-actions)
  *
  */
-public async fetchComposerActions(params: { list: CastComposerType, limit?: number, cursor?: string }): Promise<CastComposerActionsListResponse> {
+public async fetchComposerActions(params: { list: FetchComposerActionsListEnum, limit?: number, cursor?: string }): Promise<CastComposerActionsListResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -761,7 +782,7 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {string} params.identifier  - Cast identifier (Its either a url or a hash)
- * @param {CastParamType} params.type 
+ * @param {LookupCastByHashOrWarpcastUrlTypeEnum} params.type  - The query param accepted by the API. Sent along with identifier param. url - Cast identifier is a url hash - Cast identifier is a hash
  * @param {number} params.viewerFid [optional]  - adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
  *
  * @returns {Promise<CastResponse>} A promise that resolves to a `CastResponse` object.
@@ -780,7 +801,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-cast-by-hash-or-warpcast-url)
  *
  */
-public async lookupCastByHashOrWarpcastUrl(params: { identifier: string, type: CastParamType, viewerFid?: number }): Promise<CastResponse> {
+public async lookupCastByHashOrWarpcastUrl(params: { identifier: string, type: LookupCastByHashOrWarpcastUrlTypeEnum, viewerFid?: number }): Promise<CastResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
@@ -795,12 +816,12 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * @summary Conversation for a cast
  *
  * @param {object} params
- * @param {string} params.identifier  - Cast identifier (Its either a url or a hash)
- * @param {CastParamType} params.type 
+ * @param {string} params.identifier  - Cast identifier (It's either a URL or a hash)
+ * @param {LookupCastConversationTypeEnum} params.type  - The query param accepted by the API. Sent along with identifier param. url - Cast identifier is a url hash - Cast identifier is a hash
  * @param {number} params.replyDepth [optional]  - The depth of replies in the conversation that will be returned (default 2)
  * @param {boolean} params.includeChronologicalParentCasts [optional]  - Include all parent casts in chronological order
  * @param {number} params.viewerFid [optional]  - Providing this will return a conversation that respects this user's mutes and blocks and includes `viewer_context`.
- * @param {CastConversationSortType} params.sortType [optional]  - Sort type for the ordering of descendants. Default is `chron`
+ * @param {LookupCastConversationSortTypeEnum} params.sortType [optional]  - Sort type for the ordering of descendants. Default is `chron`
  * @param {LookupCastConversationFoldEnum} params.fold [optional]  - Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding.
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 20, Maximum: 50)
  * @param {string} params.cursor [optional]  - Pagination cursor.
@@ -826,7 +847,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-cast-conversation)
  *
  */
-public async lookupCastConversation(params: { identifier: string, type: CastParamType, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: CastConversationSortType, fold?: LookupCastConversationFoldEnum, limit?: number, cursor?: string }): Promise<Conversation> {
+public async lookupCastConversation(params: { identifier: string, type: LookupCastConversationTypeEnum, replyDepth?: number, includeChronologicalParentCasts?: boolean, viewerFid?: number, sortType?: LookupCastConversationSortTypeEnum, fold?: LookupCastConversationFoldEnum, limit?: number, cursor?: string }): Promise<Conversation> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
@@ -886,7 +907,7 @@ Object.assign(adjustedParams, _params);
  * @param {object} params
  * @param {string} params.q  - Query string to search for casts. Supported operators:  | Operator  | Description                                                                                              | | --------- | -------------------------------------------------------------------------------------------------------- | | `+`       | Acts as the AND operator. This is the default operator between terms and can usually be omitted.         | | `|`      | Acts as the OR operator.                                                                                 | | `*`       | When used at the end of a term, signifies a prefix query.                                                  | | `"`       | Wraps several terms into a phrase (for example, `"star wars"`).                                          | | `(`, `)`  | Wrap a clause for precedence (for example, `star + (wars | trek)`).                                     | | `~n`      | When used after a term (for example, `satr~3`), sets `fuzziness`. When used after a phrase, sets `slop`. | | `-`       | Negates the term.                                                                                        | | `before:` | Search for casts before a specific date. (e.g. `before:2025-04-20`)                                       | | `after:`  | Search for casts after a specific date. (e.g. `after:2025-04-20`)                                         |
  * @param {SearchCastsModeEnum} params.mode [optional]  - Choices are: - `literal` - Searches for the words in the query string (default) - `semantic` - Searches for the meaning of the query string - `hybrid` - Combines both literal and semantic results
- * @param {SearchSortType} params.sortType [optional]  - Choices are: - `desc_chron` - All casts sorted by time (default) - `algorithmic` - Casts sorted by engagement and time
+ * @param {SearchCastsSortTypeEnum} params.sortType [optional]  - Choices are: - `desc_chron` - All casts sorted by time (default) - `algorithmic` - Casts sorted by engagement and time
  * @param {number} params.authorFid [optional]  - Fid of the user whose casts you want to search
  * @param {number} params.viewerFid [optional]  - Providing this will return search results that respects this user's mutes and blocks and includes `viewer_context`.
  * @param {string} params.parentUrl [optional]  - Parent URL of the casts you want to search
@@ -917,7 +938,7 @@ Object.assign(adjustedParams, _params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/search-casts)
  *
  */
-public async searchCasts(params: { q: string, mode?: SearchCastsModeEnum, sortType?: SearchSortType, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string }): Promise<CastsSearchResponse> {
+public async searchCasts(params: { q: string, mode?: SearchCastsModeEnum, sortType?: SearchCastsSortTypeEnum, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string }): Promise<CastsSearchResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
@@ -964,7 +985,7 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {string[]} params.ids  - Comma separated list of channel IDs or parent_urls, up to 100 at a time
- * @param {ChannelType} params.type [optional]  - Type of identifier being used to query the channels. Defaults to ID.
+ * @param {FetchBulkChannelsTypeEnum} params.type [optional]  - Type of identifier being used to query the channels. Defaults to ID.
  * @param {number} params.viewerFid [optional]  - FID of the user viewing the channels.
  *
  * @returns {Promise<ChannelResponseBulk>} A promise that resolves to a `ChannelResponseBulk` object.
@@ -983,7 +1004,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-channels)
  *
  */
-public async fetchBulkChannels(params: { ids: string[], type?: ChannelType, viewerFid?: number }): Promise<ChannelResponseBulk> {
+public async fetchBulkChannels(params: { ids: string[], type?: FetchBulkChannelsTypeEnum, viewerFid?: number }): Promise<ChannelResponseBulk> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 if (adjustedParams.ids && Array.isArray(adjustedParams.ids)) {
@@ -1343,7 +1364,7 @@ Object.assign(adjustedParams, _params);
  *
  * @param {object} params
  * @param {string} params.id  - Channel ID for the channel being queried
- * @param {ChannelType} params.type [optional]  - Type of identifier being used to query the channel. Defaults to ID.
+ * @param {LookupChannelTypeEnum} params.type [optional]  - Type of identifier being used to query the channel. Defaults to ID.
  * @param {number} params.viewerFid [optional]  - FID of the user viewing the channel.
  *
  * @returns {Promise<ChannelResponse>} A promise that resolves to a `ChannelResponse` object.
@@ -1362,7 +1383,7 @@ Object.assign(adjustedParams, _params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-channel)
  *
  */
-public async lookupChannel(params: { id: string, type?: ChannelType, viewerFid?: number }): Promise<ChannelResponse> {
+public async lookupChannel(params: { id: string, type?: LookupChannelTypeEnum, viewerFid?: number }): Promise<ChannelResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -1560,15 +1581,15 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * @summary By filters
  *
  * @param {object} params
- * @param {FeedType} params.feedType  - Defaults to following (requires FID or address). If set to filter (requires filter_type)
- * @param {FilterType} params.filterType [optional]  - Used when feed_type=filter. Can be set to FIDs (requires FIDs) or parent_url (requires parent_url) or channel_id (requires channel_id)
+ * @param {FetchFeedFeedTypeEnum} params.feedType [optional]  - Defaults to following (requires FID or address). If set to filter (requires filter_type)
+ * @param {FetchFeedFilterTypeEnum} params.filterType [optional]  - Used when feed_type=filter. Can be set to FIDs (requires FIDs) or parent_url (requires parent_url) or channel_id (requires channel_id)
  * @param {number} params.fid [optional]  - (Optional) FID of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type
- * @param {string} params.fids [optional]  - Used when filter_type=FIDs . Create a feed based on a list of FIDs. Max array size is 100. Requires feed_type and filter_type.
+ * @param {number[]} params.fids [optional]  - Used when filter_type=FIDs . Create a feed based on a list of FIDs. Max array size is 100. Requires feed_type and filter_type.
  * @param {string} params.parentUrl [optional]  - Used when filter_type=parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type.
  * @param {string} params.channelId [optional]  - Used when filter_type=channel_id can be used to fetch casts under a channel. Requires feed_type and filter_type.
  * @param {boolean} params.membersOnly [optional]  - Used when filter_type=channel_id. Only include casts from members of the channel. True by default.
  * @param {string} params.embedUrl [optional]  - Used when filter_type=embed_url. Casts with embedded URLs prefixed by this embed_url param will be returned. We normalize your given URL prefix and prepend 'https://' if no protocol is included. Requires feed_type and filter_type.
- * @param {Array<EmbedType>} params.embedTypes [optional]  - Used when filter_type=embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type.
+ * @param {Array<FetchFeedEmbedTypesEnum>} params.embedTypes [optional]  - Used when filter_type=embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type.
  * @param {boolean} params.withRecasts [optional]  - Include recasts in the response, true by default
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 25, Maximum: 100)
  * @param {string} params.cursor [optional]  - Pagination cursor.
@@ -1599,10 +1620,16 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-feed)
  *
  */
-public async fetchFeed(params: { feedType: FeedType, filterType?: FilterType, fid?: number, fids?: string, parentUrl?: string, channelId?: string, membersOnly?: boolean, embedUrl?: string, embedTypes?: Array<EmbedType>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number }): Promise<FeedResponse> {
+public async fetchFeed(params: { feedType?: FetchFeedFeedTypeEnum, filterType?: FetchFeedFilterTypeEnum, fid?: number, fids?: number[], parentUrl?: string, channelId?: string, membersOnly?: boolean, embedUrl?: string, embedTypes?: Array<FetchFeedEmbedTypesEnum>, withRecasts?: boolean, limit?: number, cursor?: string, viewerFid?: number }): Promise<FeedResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
+if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
+  adjustedParams.fids = adjustedParams.fids.map(value => (String(value)));
+}
+if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
+  adjustedParams.fids = adjustedParams.fids.join(",");
+}
 
   const response = await this.apis.feedApi.fetchFeed(adjustedParams);
   return response.data;
@@ -1618,7 +1645,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * @param {boolean} params.withRecasts [optional]  - Include recasts in the response, true by default
  * @param {number} params.viewerFid [optional]  - Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`.
  * @param {boolean} params.withReplies [optional]  - Include replies in the response, false by default
- * @param {boolean} params.membersOnly [optional]  - Only include casts from members of the channel. True by default.
+ * @param {boolean} params.membersOnly [optional]  - Used when filter_type=channel_id. Only include casts from members of the channel. True by default.
  * @param {number[]} params.fids [optional]  - Comma separated list of FIDs to filter the feed by, up to 10 at a time
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 25, Maximum: 100)
  * @param {string} params.cursor [optional]  - Pagination cursor.
@@ -1714,7 +1741,7 @@ if (adjustedParams.parentUrls && Array.isArray(adjustedParams.parentUrls)) {
  * @param {object} params
  * @param {number} params.fid  - FID of user whose feed you want to create
  * @param {number} params.viewerFid [optional]  - Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`.
- * @param {ForYouProvider} params.provider [optional] 
+ * @param {FetchFeedForYouProviderEnum} params.provider [optional]  - The provider of the For You feed.
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 25, Maximum: 50)
  * @param {string} params.cursor [optional]  - Pagination cursor.
  * @param {string} params.providerMetadata [optional]  - provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use.
@@ -1737,7 +1764,7 @@ if (adjustedParams.parentUrls && Array.isArray(adjustedParams.parentUrls)) {
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-feed-for-you)
  *
  */
-public async fetchFeedForYou(params: { fid: number, viewerFid?: number, provider?: ForYouProvider, limit?: number, cursor?: string, providerMetadata?: string }): Promise<FeedResponse> {
+public async fetchFeedForYou(params: { fid: number, viewerFid?: number, provider?: FetchFeedForYouProviderEnum, limit?: number, cursor?: string, providerMetadata?: string }): Promise<FeedResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
@@ -1787,7 +1814,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  *
  * @param {object} params
  * @param {number} params.fid  - FID of user whose feed you want to create
- * @param {number} params.viewerFid [optional] 
+ * @param {number} params.viewerFid [optional]  - The unique identifier of a farcaster user or app (unsigned integer)
  *
  * @returns {Promise<BulkCastsResponse>} A promise that resolves to a `BulkCastsResponse` object.
  *
@@ -1819,7 +1846,7 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {number} params.fid  - FID of user whose replies and recasts you want to fetch
- * @param {FetchRepliesAndRecastsForUserFilterEnum} params.filter [optional]  - filter to fetch only replies or recasts
+ * @param {FetchRepliesAndRecastsForUserFilterEnum} params.filter [optional]  - Filter to fetch only replies or recasts
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 25, Maximum: 50)
  * @param {string} params.cursor [optional]  - Pagination cursor.
  * @param {number} params.viewerFid [optional]  - Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`.
@@ -1861,7 +1888,7 @@ Object.assign(adjustedParams, params);
  * @param {FetchTrendingFeedTimeWindowEnum} params.timeWindow [optional]  - Time window for trending casts (7d window for channel feeds only)
  * @param {string} params.channelId [optional]  - Channel ID to filter trending casts. Less active channels might have no casts in the time window selected. Provide either `channel_id` or `parent_url`, not both.
  * @param {string} params.parentUrl [optional]  - Parent URL to filter trending casts. Less active channels might have no casts in the time window selected. Provide either `channel_id` or `parent_url`, not both.
- * @param {FeedTrendingProvider} params.provider [optional]  - The provider of the trending casts feed.
+ * @param {FetchTrendingFeedProviderEnum} params.provider [optional]  - The provider of the trending casts feed.
  * @param {string} params.providerMetadata [optional]  - provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use.
  *
  * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object.
@@ -1884,7 +1911,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-trending-feed)
  *
  */
-public async fetchTrendingFeed(params: { limit?: number, cursor?: string, viewerFid?: number, timeWindow?: FetchTrendingFeedTimeWindowEnum, channelId?: string, parentUrl?: string, provider?: FeedTrendingProvider, providerMetadata?: string }): Promise<FeedResponse> {
+public async fetchTrendingFeed(params: { limit?: number, cursor?: string, viewerFid?: number, timeWindow?: FetchTrendingFeedTimeWindowEnum, channelId?: string, parentUrl?: string, provider?: FetchTrendingFeedProviderEnum, providerMetadata?: string }): Promise<FeedResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
@@ -2037,7 +2064,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * @param {object} params
  * @param {number} params.fid  - User who's profile you are looking at
  * @param {number} params.viewerFid [optional]  - Providing this will return a list of followers that respects this user's mutes and blocks and includes `viewer_context`.
- * @param {FollowSortType} params.sortType [optional]  - Sort type for fetch followers. Default is `desc_chron`
+ * @param {FetchUserFollowersSortTypeEnum} params.sortType [optional]  - Sort type for fetch followers. Default is `desc_chron`
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 20, Maximum: 100)
  * @param {string} params.cursor [optional]  - Pagination cursor.
  *
@@ -2058,7 +2085,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-followers)
  *
  */
-public async fetchUserFollowers(params: { fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string }): Promise<FollowersResponse> {
+public async fetchUserFollowers(params: { fid: number, viewerFid?: number, sortType?: FetchUserFollowersSortTypeEnum, limit?: number, cursor?: string }): Promise<FollowersResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
@@ -2075,7 +2102,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * @param {object} params
  * @param {number} params.fid  - FID of the user whose following you want to fetch.
  * @param {number} params.viewerFid [optional]  - Providing this will return a list of users that respects this user's mutes and blocks and includes `viewer_context`.
- * @param {FollowSortType} params.sortType [optional]  - Optional parameter to sort the users based on different criteria.
+ * @param {FetchUserFollowingSortTypeEnum} params.sortType [optional]  - Optional parameter to sort the users based on different criteria.
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 25, Maximum: 100)
  * @param {string} params.cursor [optional]  - Pagination cursor.
  *
@@ -2096,7 +2123,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-following)
  *
  */
-public async fetchUserFollowing(params: { fid: number, viewerFid?: number, sortType?: FollowSortType, limit?: number, cursor?: string }): Promise<FollowersResponse> {
+public async fetchUserFollowing(params: { fid: number, viewerFid?: number, sortType?: FetchUserFollowingSortTypeEnum, limit?: number, cursor?: string }): Promise<FollowersResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
@@ -2144,8 +2171,8 @@ Object.assign(adjustedParams, _params);
  * @param {object} params
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 100, Maximum: 100)
  * @param {string} params.cursor [optional]  - Pagination cursor
- * @param {MiniAppTimeWindow} params.timeWindow [optional]  - Time window used to calculate the change in trending score for each mini app, used to sort mini app results
- * @param {Array<FetchFrameCatalogCategoriesEnum>} params.categories [optional]  - Comma separated list of categories to include in the results.  Includes all if left blank.  Example: `categories=games,social` OR: `categories=games&categories=social`
+ * @param {FetchFrameCatalogTimeWindowEnum} params.timeWindow [optional]  - Time window used to calculate the change in trending score for each mini app, used to sort mini app results
+ * @param {Array<FetchFrameCatalogCategoriesEnum>} params.categories [optional]  - Comma separated list of categories to include in the results. Includes all if left blank. Example: categories=games,social OR categories=games&categories=social
  *
  * @returns {Promise<FrameCatalogResponse>} A promise that resolves to a `FrameCatalogResponse` object.
  *
@@ -2159,8 +2186,11 @@ Object.assign(adjustedParams, _params);
  * client.fetchFrameCatalog({ limit, timeWindow, categories }).then(response => {
  *   console.log('response:', response);
  * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-frame-catalog)
+ *
  */
-public async fetchFrameCatalog(params: { limit?: number, cursor?: string, timeWindow?: MiniAppTimeWindow, categories?: Array<FetchFrameCatalogCategoriesEnum> }): Promise<FrameCatalogResponse> {
+public async fetchFrameCatalog(params: { limit?: number, cursor?: string, timeWindow?: FetchFrameCatalogTimeWindowEnum, categories?: Array<FetchFrameCatalogCategoriesEnum> }): Promise<FrameCatalogResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -2224,7 +2254,7 @@ public async fetchNeynarFrames(): Promise<Array<NeynarFrame>> {
 /**
  * Returns a list of notifications tokens related to a mini app
  *
- * @summary List of mini app notification tokens 
+ * @summary List of mini app notification tokens
  *
  * @param {object} params
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 20, Maximum: 100)
@@ -2267,7 +2297,7 @@ if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
  *
  * @param {object} params
  * @param {number} params.viewerFid  - FID of the user to fetch relevant mini apps for
- * @param {MiniAppTimeWindow} params.timeWindow [optional]  - Time window used to limit statistics used to calculate mini app relevance
+ * @param {FetchRelevantFramesTimeWindowEnum} params.timeWindow [optional]  - Time window used to limit statistics used to calculate mini app relevance
  *
  * @returns {Promise<FetchRelevantFrames200Response>} A promise that resolves to a `FetchRelevantFrames200Response` object.
  *
@@ -2281,10 +2311,10 @@ if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
  *   console.log('response:', response);
  * });
  *
- * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-frame-relevant)
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-relevant-frames)
  *
  */
-public async fetchRelevantFrames(params: { viewerFid: number, timeWindow?: MiniAppTimeWindow }): Promise<FetchRelevantFrames200Response> {
+public async fetchRelevantFrames(params: { viewerFid: number, timeWindow?: FetchRelevantFramesTimeWindowEnum }): Promise<FetchRelevantFrames200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -2298,11 +2328,11 @@ Object.assign(adjustedParams, params);
  * @summary Analytics for the mini app
  *
  * @param {object} params
- * @param {string} params.frameUrl 
- * @param {ValidateFrameAnalyticsType} params.analyticsType 
+ * @param {string} params.frameUrl  - URL of the mini app to fetch analytics for
+ * @param {FetchValidateFrameAnalyticsAnalyticsTypeEnum} params.analyticsType  - Type of analytics to fetch
  * @param {string} params.start 
  * @param {string} params.stop 
- * @param {ValidateFrameAggregateWindow} params.aggregateWindow [optional]  - Required for `analytics_type=interactions-per-cast`
+ * @param {FetchValidateFrameAnalyticsAggregateWindowEnum} params.aggregateWindow [optional]  - Required for `analytics_type=interactions-per-cast`
  *
  * @returns {Promise<FrameValidateAnalyticsResponse>} A promise that resolves to a `FrameValidateAnalyticsResponse` object.
  *
@@ -2322,7 +2352,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-validate-frame-analytics)
  *
  */
-public async fetchValidateFrameAnalytics(params: { frameUrl: string, analyticsType: ValidateFrameAnalyticsType, start: string, stop: string, aggregateWindow?: ValidateFrameAggregateWindow }): Promise<FrameValidateAnalyticsResponse> {
+public async fetchValidateFrameAnalytics(params: { frameUrl: string, analyticsType: FetchValidateFrameAnalyticsAnalyticsTypeEnum, start: string, stop: string, aggregateWindow?: FetchValidateFrameAnalyticsAggregateWindowEnum }): Promise<FrameValidateAnalyticsResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -2360,7 +2390,7 @@ public async fetchValidateFrameList(): Promise<FrameValidateListResponse> {
  *
  * @param {object} params
  * @param {string} params.campaignId [optional]  - An ID of a specific notification campaign to query
- * @param {number} params.limit [optional]  - The number of results to return (Default: 100,
+ * @param {number} params.limit [optional]  - The number of results to return (Default: 100, Maximum: 1000)
  * @param {string} params.cursor [optional]  - Pagination cursor
  *
  * @returns {Promise<GetNotificationCampaignStats200Response>} A promise that resolves to a `GetNotificationCampaignStats200Response` object.
@@ -2374,6 +2404,9 @@ public async fetchValidateFrameList(): Promise<FrameValidateListResponse> {
  * client.getNotificationCampaignStats({ campaignId, limit }).then(response => {
  *   console.log('response:', response);
  * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-notification-campaign-stats)
+ *
  */
 public async getNotificationCampaignStats(params: { campaignId?: string, limit?: number, cursor?: string }): Promise<GetNotificationCampaignStats200Response> {
   const adjustedParams: any = {};
@@ -2401,6 +2434,9 @@ Object.assign(adjustedParams, params);
  * client.getTransactionPayFrame({ id }).then(response => {
  *   console.log('response:', response);
  * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-transaction-pay-frame)
+ *
  */
 public async getTransactionPayFrame(params: { id: string }): Promise<TransactionFrameResponse> {
   const adjustedParams: any = {};
@@ -2416,7 +2452,7 @@ Object.assign(adjustedParams, params);
  * @summary Mini app by UUID or URL
  *
  * @param {object} params
- * @param {FrameType} params.type 
+ * @param {LookupNeynarFrameTypeEnum} params.type  - Type of identifier (either 'uuid' or 'url')
  * @param {string} params.uuid [optional]  - UUID of the mini app to fetch
  * @param {string} params.url [optional]  - URL of the Neynar mini app to fetch
  *
@@ -2436,7 +2472,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-neynar-frame)
  *
  */
-public async lookupNeynarFrame(params: { type: FrameType, uuid?: string, url?: string }): Promise<NeynarFrame> {
+public async lookupNeynarFrame(params: { type: LookupNeynarFrameTypeEnum, uuid?: string, url?: string }): Promise<NeynarFrame> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -2445,7 +2481,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Post mini app actions, cast actions or cast composer actions to the server  \\ (In order to post any of these actions, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds for mini apps.
+ * Post mini app actions, cast actions or cast composer actions to the server (In order to post any of these actions, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds for mini apps.
  *
  * @summary Post a mini app action, cast action or a cast composer action
  *
@@ -2521,8 +2557,8 @@ Object.assign(adjustedParams, _params);
  *
  * @param {object} params
  * @param {Array<number>} params.targetFids  - An array of target FIDs to whom the notifications should be sent. Each FID must be a positive integer. Pass an empty array to send notifications to all FIDs with notifications enabled for the mini app.
- * @param {SendFrameNotificationsReqBodyNotification} params.notification 
  * @param {SendFrameNotificationsReqBodyFilters} params.filters [optional] 
+ * @param {SendFrameNotificationsReqBodyNotification} params.notification 
  *
  * @returns {Promise<SendFrameNotificationsResponse>} A promise that resolves to a `SendFrameNotificationsResponse` object.
  *
@@ -2530,17 +2566,17 @@ Object.assign(adjustedParams, _params);
  *
  * // Fill in the appropriate values
  * const targetFids = 
- * const notification = 
  * const filters = 
+ * const notification = 
  *
- * client.publishFrameNotifications({targetFids, notification, filters}).then(response => {
+ * client.publishFrameNotifications({targetFids, filters, notification}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-frame-notifications)
  *
  */
-public async publishFrameNotifications(params: { targetFids: Array<number>, notification: SendFrameNotificationsReqBodyNotification, filters?: SendFrameNotificationsReqBodyFilters }): Promise<SendFrameNotificationsResponse> {
+public async publishFrameNotifications(params: { targetFids: Array<number>, filters?: SendFrameNotificationsReqBodyFilters, notification: SendFrameNotificationsReqBodyNotification }): Promise<SendFrameNotificationsResponse> {
   const adjustedParams: any = {};
 const _params = { sendFrameNotificationsReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -2651,7 +2687,7 @@ Object.assign(adjustedParams, _params);
 }
 
 /**
- * Validates a mini app against by an interacting user against a Farcaster Hub \\ (In order to validate a mini app, message bytes from Frame Action must be provided in hex)
+ * Validates a mini app against by an interacting user against a Farcaster Hub (In order to validate a mini app, message bytes from Frame Action must be provided in hex)
  *
  * @summary Validate mini app action
  *
@@ -2856,7 +2892,7 @@ Object.assign(adjustedParams, _params);
  *
  * @param {object} params
  * @param {number} params.fid  - FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
- * @param {Array<NotificationType>} params.type [optional]  - Notification type to fetch. Comma separated values of follows, recasts, likes, mentions, replies.
+ * @param {Array<FetchAllNotificationsTypeEnum>} params.type [optional]  - Notification type to fetch. Comma separated values of follows, recasts, likes, mentions, replies.
  * @param {boolean} params.priorityMode [optional]  - When true, only returns notifications from power badge users and users that the user follows.
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 15, Maximum: 25)
  * @param {string} params.cursor [optional]  - Pagination cursor.
@@ -2878,7 +2914,7 @@ Object.assign(adjustedParams, _params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-all-notifications)
  *
  */
-public async fetchAllNotifications(params: { fid: number, type?: Array<NotificationType>, priorityMode?: boolean, limit?: number, cursor?: string }): Promise<NotificationsResponse> {
+public async fetchAllNotifications(params: { fid: number, type?: Array<FetchAllNotificationsTypeEnum>, priorityMode?: boolean, limit?: number, cursor?: string }): Promise<NotificationsResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -2974,7 +3010,6 @@ if (adjustedParams.parentUrls && Array.isArray(adjustedParams.parentUrls)) {
  * @param {object} params
  * @param {string} params.signerUuid [optional]  - The UUID of a signer with at least one write permission.  Required unless a valid Authorization Bearer token is provided in the header.
  * @param {NotificationType} params.type [optional] 
- * @param {string} params.authorization [optional]  - Optional Bearer token for certain endpoints. The token format is described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication).
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
  *
@@ -2983,26 +3018,26 @@ if (adjustedParams.parentUrls && Array.isArray(adjustedParams.parentUrls)) {
  * // Fill in the appropriate values
  * const signerUuid = 
  * const type = 
- * const authorization = 
  *
- * client.markNotificationsAsSeen({signerUuid, type, authorization}).then(response => {
+ * client.markNotificationsAsSeen({signerUuid, type}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/mark-notifications-as-seen)
  *
  */
-public async markNotificationsAsSeen(params: { signerUuid?: string, type?: NotificationType, authorization?: string }): Promise<OperationResponse> {
+public async markNotificationsAsSeen(params: { signerUuid?: string, type?: NotificationType }): Promise<OperationResponse> {
   const adjustedParams: any = {};
 const _params = { markNotificationsAsSeenReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
+adjustedParams['authorization'] = this.config.baseOptions?.headers?.['authorization'];
 
   const response = await this.apis.notificationsApi.markNotificationsAsSeen(adjustedParams);
   return response.data;
 }
 
 /**
- * Creates a new token.
+ * Creates a new token. This is an allowlisted API, reach out if you want access.
  *
  * @summary Deploy fungible
  *
@@ -3010,7 +3045,7 @@ Object.assign(adjustedParams, _params);
  * @param {string} params.owner  - Ethereum address of the one who is creating the token
  * @param {string} params.symbol  - Symbol/Ticker for the token
  * @param {string} params.name  - Name of the token
- * @param {File} params.metadataMedia [optional]  - Media file associated with the token.  Supported formats are image/jpeg, image/gif and image/png
+ * @param {File | null} params.metadataMedia [optional]  - Media file associated with the token.  Supported formats are image/jpeg, image/gif and image/png
  * @param {string} params.metadataDescription [optional]  - Description of the token
  * @param {DeployFungibleMetadataNsfwEnum} params.metadataNsfw [optional]  - Indicates if the token is NSFW (Not Safe For Work).
  * @param {string} params.metadataWebsiteLink [optional]  - Website link related to the token
@@ -3045,7 +3080,7 @@ Object.assign(adjustedParams, _params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/deploy-fungible)
  *
  */
-public async deployFungible(params: { owner: string, symbol: string, name: string, metadataMedia?: File, metadataDescription?: string, metadataNsfw?: DeployFungibleMetadataNsfwEnum, metadataWebsiteLink?: string, metadataTwitter?: string, metadataDiscord?: string, metadataTelegram?: string, network?: DeployFungibleNetworkEnum, factory?: DeployFungibleFactoryEnum }): Promise<DeployFungibleResponse> {
+public async deployFungible(params: { owner: string, symbol: string, name: string, metadataMedia?: File | null, metadataDescription?: string, metadataNsfw?: DeployFungibleMetadataNsfwEnum, metadataWebsiteLink?: string, metadataTwitter?: string, metadataDiscord?: string, metadataTelegram?: string, network?: DeployFungibleNetworkEnum, factory?: DeployFungibleFactoryEnum }): Promise<DeployFungibleResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3060,7 +3095,7 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {string} params.contractAddress  - Contract address of the fungible asset
- * @param {FungibleOwnerRelevantNetwork} params.network  - Network of the fungible asset.
+ * @param {FetchRelevantFungibleOwnersNetworkEnum} params.network  - Network of the fungible asset.
  * @param {number} params.viewerFid [optional]  - If you provide a viewer_fid, the response will include token holders from the user's network, respecting their mutes and blocks and including viewer_context; if not provided, the response will show top token holders across the network—both sets can be combined to generate a longer list if desired.
  *
  * @returns {Promise<RelevantFungibleOwnersResponse>} A promise that resolves to a `RelevantFungibleOwnersResponse` object.
@@ -3079,7 +3114,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-relevant-fungible-owners)
  *
  */
-public async fetchRelevantFungibleOwners(params: { contractAddress: string, network: FungibleOwnerRelevantNetwork, viewerFid?: number }): Promise<RelevantFungibleOwnersResponse> {
+public async fetchRelevantFungibleOwners(params: { contractAddress: string, network: FetchRelevantFungibleOwnersNetworkEnum, viewerFid?: number }): Promise<RelevantFungibleOwnersResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3094,7 +3129,7 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {number} params.fid  - FID of the user to fetch
- * @param {Array<Network>} params.networks  - Comma separated list of networks to fetch balances for
+ * @param {Array<FetchUserBalanceNetworksEnum>} params.networks  - Comma separated list of networks to fetch balances for
  *
  * @returns {Promise<BalanceResponse>} A promise that resolves to a `BalanceResponse` object.
  *
@@ -3111,7 +3146,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-balance)
  *
  */
-public async fetchUserBalance(params: { fid: number, networks: Array<Network> }): Promise<BalanceResponse> {
+public async fetchUserBalance(params: { fid: number, networks: Array<FetchUserBalanceNetworksEnum> }): Promise<BalanceResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3120,36 +3155,36 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Register a new farcaster account onchain. Optionally you can pass in signers along to register a new account and create multiple signers in a single transaction
+ * Register a new farcaster account onchain. Optionally you can pass in signers to register a new account and create multiple signers in a single transaction
  *
  * @summary Register Farcaster account onchain
  *
  * @param {object} params
+ * @param {string} params.idem [optional]  - An Idempotency key is a unique identifier for the request. **Note:**  1) Pre-registration calls must be idempotent when using idempotency keys. 2) This is used to prevent duplicate requests. Use the same idem key on retry attempts. 3) This should be a unique identifier for each request. 4) Recommended format is a 16-character string generated by the developer at the time of making this request.
+ * @param {Array<RegisterUserOnChainReqBodyPreRegistrationCallsInner>} params.preRegistrationCalls [optional] 
  * @param {RegisterUserOnChainReqBodyRegistration} params.registration 
  * @param {number} params.storageUnits [optional] 
  * @param {Array<RegisterUserOnChainReqBodySignersInner>} params.signers [optional] 
- * @param {Array<RegisterUserOnChainReqBodyPreRegistrationCallsInner>} params.preRegistrationCalls [optional] 
- * @param {string} params.idem [optional] 
  *
  * @returns {Promise<RegisterUserOnChainResponse>} A promise that resolves to a `RegisterUserOnChainResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
+ * const idem = 
+ * const preRegistrationCalls = 
  * const registration = 
  * const storageUnits = 
  * const signers = 
- * const preRegistrationCalls = 
- * const idem = 
  *
- * client.registerAccountOnchain({registration, storageUnits, signers, preRegistrationCalls, idem}).then(response => {
+ * client.registerAccountOnchain({idem, preRegistrationCalls, registration, storageUnits, signers}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/register-account-onchain)
  *
  */
-public async registerAccountOnchain(params: { registration: RegisterUserOnChainReqBodyRegistration, storageUnits?: number, signers?: Array<RegisterUserOnChainReqBodySignersInner>, preRegistrationCalls?: Array<RegisterUserOnChainReqBodyPreRegistrationCallsInner>, idem?: string }): Promise<RegisterUserOnChainResponse> {
+public async registerAccountOnchain(params: { idem?: string, preRegistrationCalls?: Array<RegisterUserOnChainReqBodyPreRegistrationCallsInner>, registration: RegisterUserOnChainReqBodyRegistration, storageUnits?: number, signers?: Array<RegisterUserOnChainReqBodySignersInner> }): Promise<RegisterUserOnChainResponse> {
   const adjustedParams: any = {};
 const _params = { registerUserOnChainReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -3164,34 +3199,38 @@ Object.assign(adjustedParams, _params);
  * @summary Send fungibles
  *
  * @param {object} params
- * @param {string} params.xWalletId  - Wallet ID to use for transactions
- * @param {TransactionSendFungiblesRequest} params.transactionSendFungiblesRequest 
+ * @param {TransactionSendFungiblesReqBodyNetworkEnum} params.network 
+ * @param {string} params.fungibleContractAddress [optional]  - Contract address of the fungible token to send. If not provided, the default is the native token of the network.
+ * @param {Array<TransactionSendFungiblesRecipient>} params.recipients 
  *
  * @returns {Promise<TransactionSendFungiblesResponse>} A promise that resolves to a `TransactionSendFungiblesResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const xWalletId = 
- * const transactionSendFungiblesRequest = 
+ * const network = 
+ * const fungibleContractAddress = 
+ * const recipients = 
  *
- * client.sendFungiblesToUsers({ xWalletId, transactionSendFungiblesRequest }).then(response => {
+ * client.sendFungiblesToUsers({network, fungibleContractAddress, recipients}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/send-fungibles-to-users)
  *
  */
-public async sendFungiblesToUsers(params: { xWalletId: string, transactionSendFungiblesRequest: TransactionSendFungiblesRequest }): Promise<TransactionSendFungiblesResponse> {
+public async sendFungiblesToUsers(params: { network: TransactionSendFungiblesReqBodyNetworkEnum, fungibleContractAddress?: string, recipients: Array<TransactionSendFungiblesRecipient> }): Promise<TransactionSendFungiblesResponse> {
   const adjustedParams: any = {};
-Object.assign(adjustedParams, params);
+const _params = { transactionSendFungiblesReqBody: camelCaseToSnakeCaseKeys(params) };
+Object.assign(adjustedParams, _params);
+adjustedParams['xWalletId'] = this.config.baseOptions?.headers?.['x-wallet-id'];
 
   const response = await this.apis.onchainApi.sendFungiblesToUsers(adjustedParams);
   return response.data;
 }
 
 /**
- * Delete a reaction (like or recast) to a cast \\ (In order to delete a reaction `signer_uuid` must be approved)
+ * Delete a reaction (like or recast) to a cast  (In order to delete a reaction `signer_uuid` must be approved)
  *
  * @summary Delete reaction
  *
@@ -3235,8 +3274,8 @@ Object.assign(adjustedParams, _params);
  * @summary Reactions for cast
  *
  * @param {object} params
- * @param {string} params.hash 
- * @param {Array<ReactionsType>} params.types  - Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: 'likes' and 'recasts'. By default api returns both. To select multiple types, use a comma-separated list of these values.
+ * @param {string} params.hash  - Cast Hash
+ * @param {Array<FetchCastReactionsTypesEnum>} params.types  - Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: 'likes' and 'recasts'. By default api returns both. To select multiple types, use a comma-separated list of these values.
  * @param {number} params.viewerFid [optional]  - Providing this will return a list of reactions that respects this user's mutes and blocks and includes `viewer_context`.
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 25, Maximum: 100)
  * @param {string} params.cursor [optional]  - Pagination cursor.
@@ -3258,7 +3297,7 @@ Object.assign(adjustedParams, _params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-cast-reactions)
  *
  */
-public async fetchCastReactions(params: { hash: string, types: Array<ReactionsType>, viewerFid?: number, limit?: number, cursor?: string }): Promise<ReactionsCastResponse> {
+public async fetchCastReactions(params: { hash: string, types: Array<FetchCastReactionsTypesEnum>, viewerFid?: number, limit?: number, cursor?: string }): Promise<ReactionsCastResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3272,8 +3311,8 @@ Object.assign(adjustedParams, params);
  * @summary Reactions for user
  *
  * @param {object} params
- * @param {number} params.fid 
- * @param {ReactionsType} params.type  - Type of reaction to fetch (likes or recasts or all)
+ * @param {number} params.fid  - The unique identifier of a farcaster user or app (unsigned integer)
+ * @param {FetchUserReactionsTypeEnum} params.type  - Type of reaction to fetch (likes or recasts or all)
  * @param {number} params.viewerFid [optional]  - Providing this will return a list of reactions that respects this user's mutes and blocks and includes `viewer_context`.
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 25, Maximum: 100)
  * @param {string} params.cursor [optional]  - Pagination cursor.
@@ -3295,7 +3334,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-user-reactions)
  *
  */
-public async fetchUserReactions(params: { fid: number, type: ReactionsType, viewerFid?: number, limit?: number, cursor?: string }): Promise<ReactionsResponse> {
+public async fetchUserReactions(params: { fid: number, type: FetchUserReactionsTypeEnum, viewerFid?: number, limit?: number, cursor?: string }): Promise<ReactionsResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3304,7 +3343,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Post a reaction (like or recast) to a given cast \\ (In order to post a reaction `signer_uuid` must be approved)
+ * Post a reaction (like or recast) to a given cast  (In order to post a reaction `signer_uuid` must be approved)
  *
  * @summary Post a reaction
  *
@@ -3343,7 +3382,7 @@ Object.assign(adjustedParams, _params);
 }
 
 /**
- * Creates a signer and returns the signer status. \\ **Note**: While tesing please reuse the signer, it costs money to approve a signer.
+ * Creates a signer and returns the signer status.   **Note**: While tesing please reuse the signer, it costs money to approve a signer.
  *
  * @summary Create signer
  *
@@ -3372,7 +3411,7 @@ public async createSigner(): Promise<Signer> {
  *
  * @param {object} params
  * @param {string} params.clientId 
- * @param {AuthorizationUrlResponseType} params.responseType 
+ * @param {FetchAuthorizationUrlResponseTypeEnum} params.responseType 
  *
  * @returns {Promise<AuthorizationUrlResponse>} A promise that resolves to a `AuthorizationUrlResponse` object.
  *
@@ -3389,7 +3428,7 @@ public async createSigner(): Promise<Signer> {
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-authorization-url)
  *
  */
-public async fetchAuthorizationUrl(params: { clientId: string, responseType: AuthorizationUrlResponseType }): Promise<AuthorizationUrlResponse> {
+public async fetchAuthorizationUrl(params: { clientId: string, responseType: FetchAuthorizationUrlResponseTypeEnum }): Promise<AuthorizationUrlResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3403,7 +3442,7 @@ Object.assign(adjustedParams, params);
  * @summary List signers
  *
  * @param {object} params
- * @param {string} params.message  - A Sign-In with Ethereum (SIWE) message that the user's Ethereum wallet signs. This message includes details such as the domain, address, statement, URI, nonce, and other relevant information following the EIP-4361 standard. It should be structured and URL-encoded.  example:  example.com wants you to sign in with your Ethereum account:n0x23A...F232nnSign in to continue.nnURI: example.comnVersion: 1nChain ID: 1nNonce: xyz123nIssued At: 2021-09-01T14:52:07Z  Note: This is just an example message (So, message is invalid, since we don't want any signers related to NEYNAR_API_DOCS to be exposed).   [Checkout fetch-signers API documentation for more details.](https://docs.neynar.com/docs/fetch-signers-1)
+ * @param {string} params.message  - A Sign-In with Ethereum (SIWE) message that the user's Ethereum wallet signs. This message includes details such as the domain, address, statement, URI, nonce, and other relevant information following the EIP-4361 standard. It should be structured and URL-encoded.
  * @param {string} params.signature  - The digital signature produced by signing the provided SIWE message with the user's Ethereum private key. This signature is used to verify the authenticity of the message and the identity of the signer.
  *
  * @returns {Promise<SignerListResponse>} A promise that resolves to a `SignerListResponse` object.
@@ -3435,7 +3474,7 @@ Object.assign(adjustedParams, params);
  * @summary Status by public key
  *
  * @param {object} params
- * @param {string} params.publicKey 
+ * @param {string} params.publicKey  - Ed25519 public key
  *
  * @returns {Promise<DeveloperManagedSigner>} A promise that resolves to a `DeveloperManagedSigner` object.
  *
@@ -3465,7 +3504,7 @@ Object.assign(adjustedParams, params);
  * @summary Status
  *
  * @param {object} params
- * @param {string} params.signerUuid 
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  *
  * @returns {Promise<Signer>} A promise that resolves to a `Signer` object.
  *
@@ -3526,10 +3565,10 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
- * @param {string} params.signature  - Signature generated by the custody address of the app. Signed data includes app_fid, deadline, signer’s public key
+ * @param {string} params.signature  - Signature generated by the custody address of the app. Signed data includes app_fid, deadline, signer's public key
  * @param {number} params.appFid  - The unique identifier of a farcaster user or app (unsigned integer)
  * @param {number} params.deadline  - unix timestamp in seconds that controls how long the signed key request is valid for. (24 hours from now is recommended)
- * @param {string} params.redirectUrl [optional]  - Url to redirect to after the signer is approved.  **Note** : This should only be used when requesting a signer from a native mobile application.
+ * @param {string} params.redirectUrl [optional]  - Url to redirect to after the signer is approved. **Note** : This should only be used when requesting a signer from a native mobile application.
  * @param {SignedKeyRequestSponsor} params.sponsor [optional] 
  *
  * @returns {Promise<Signer>} A promise that resolves to a `Signer` object.
@@ -3567,10 +3606,10 @@ Object.assign(adjustedParams, _params);
  *
  * @param {object} params
  * @param {string} params.publicKey  - Ed25519 public key
- * @param {string} params.signature  - Signature generated by the custody address of the app. Signed data includes app_fid, deadline, signer’s public key
+ * @param {string} params.signature  - Signature generated by the custody address of the app. Signed data includes app_fid, deadline, signer's public key
  * @param {number} params.appFid  - The unique identifier of a farcaster user or app (unsigned integer)
  * @param {number} params.deadline  - unix timestamp in seconds that controls how long the signed key request is valid for. (24 hours from now is recommended)
- * @param {string} params.redirectUrl [optional]  - Url to redirect to after the signer is approved.  **Note** : This should only be used when requesting a signer from a native mobile application.
+ * @param {string} params.redirectUrl [optional]  - Url to redirect to after the signer is approved. **Note** : This should only be used when requesting a signer from a native mobile application.
  * @param {SignedKeyRequestSponsor} params.sponsor [optional] 
  *
  * @returns {Promise<DeveloperManagedSigner>} A promise that resolves to a `DeveloperManagedSigner` object.
@@ -3642,7 +3681,7 @@ Object.assign(adjustedParams, _params);
  * @summary Allocation of user
  *
  * @param {object} params
- * @param {number} params.fid 
+ * @param {number} params.fid  - The unique identifier of a farcaster user or app (unsigned integer)
  *
  * @returns {Promise<StorageAllocationsResponse>} A promise that resolves to a `StorageAllocationsResponse` object.
  *
@@ -3672,7 +3711,7 @@ Object.assign(adjustedParams, params);
  * @summary Usage of user
  *
  * @param {object} params
- * @param {number} params.fid 
+ * @param {number} params.fid  - The unique identifier of a farcaster user or app (unsigned integer)
  *
  * @returns {Promise<StorageUsageResponse>} A promise that resolves to a `StorageUsageResponse` object.
  *
@@ -3702,9 +3741,9 @@ Object.assign(adjustedParams, params);
  * @summary Subscribed to
  *
  * @param {object} params
- * @param {number} params.fid 
- * @param {SubscriptionProvider} params.subscriptionProvider 
- * @param {number} params.viewerFid [optional] 
+ * @param {number} params.fid  - The unique identifier of a farcaster user or app (unsigned integer)
+ * @param {FetchSubscribedToForFidSubscriptionProviderEnum} params.subscriptionProvider  - The provider of the subscription.
+ * @param {number} params.viewerFid [optional]  - The unique identifier of a farcaster user or app (unsigned integer)
  *
  * @returns {Promise<SubscribedToResponse>} A promise that resolves to a `SubscribedToResponse` object.
  *
@@ -3722,7 +3761,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscribed-to-for-fid)
  *
  */
-public async fetchSubscribedToForFid(params: { fid: number, subscriptionProvider: SubscriptionProvider, viewerFid?: number }): Promise<SubscribedToResponse> {
+public async fetchSubscribedToForFid(params: { fid: number, subscriptionProvider: FetchSubscribedToForFidSubscriptionProviderEnum, viewerFid?: number }): Promise<SubscribedToResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3736,9 +3775,9 @@ Object.assign(adjustedParams, params);
  * @summary Subscribers of a user
  *
  * @param {object} params
- * @param {number} params.fid 
- * @param {SubscriptionProviders} params.subscriptionProvider 
- * @param {number} params.viewerFid [optional] 
+ * @param {number} params.fid  - The unique identifier of a farcaster user or app (unsigned integer)
+ * @param {FetchSubscribersForFidSubscriptionProviderEnum} params.subscriptionProvider  - The provider of the subscription.
+ * @param {number} params.viewerFid [optional]  - The unique identifier of a farcaster user or app (unsigned integer)
  *
  * @returns {Promise<SubscribersResponse>} A promise that resolves to a `SubscribersResponse` object.
  *
@@ -3756,7 +3795,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscribers-for-fid)
  *
  */
-public async fetchSubscribersForFid(params: { fid: number, subscriptionProvider: SubscriptionProviders, viewerFid?: number }): Promise<SubscribersResponse> {
+public async fetchSubscribersForFid(params: { fid: number, subscriptionProvider: FetchSubscribersForFidSubscriptionProviderEnum, viewerFid?: number }): Promise<SubscribersResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3807,8 +3846,8 @@ if (adjustedParams.addresses && Array.isArray(adjustedParams.addresses)) {
  * @summary Subscriptions created by FID
  *
  * @param {object} params
- * @param {number} params.fid 
- * @param {SubscriptionProvider} params.subscriptionProvider 
+ * @param {number} params.fid  - The unique identifier of a farcaster user or app (unsigned integer)
+ * @param {FetchSubscriptionsForFidSubscriptionProviderEnum} params.subscriptionProvider  - The provider of the subscription.
  *
  * @returns {Promise<SubscriptionsResponse>} A promise that resolves to a `SubscriptionsResponse` object.
  *
@@ -3825,7 +3864,7 @@ if (adjustedParams.addresses && Array.isArray(adjustedParams.addresses)) {
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-subscriptions-for-fid)
  *
  */
-public async fetchSubscriptionsForFid(params: { fid: number, subscriptionProvider: SubscriptionProvider }): Promise<SubscriptionsResponse> {
+public async fetchSubscriptionsForFid(params: { fid: number, subscriptionProvider: FetchSubscriptionsForFidSubscriptionProviderEnum }): Promise<SubscriptionsResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3834,7 +3873,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Removes verification for an eth address for the user \\ (In order to delete verification `signer_uuid` must be approved)
+ * Removes verification for an eth address for the user  (In order to delete verification `signer_uuid` must be approved)
  *
  * @summary Delete verification
  *
@@ -3842,6 +3881,7 @@ Object.assign(adjustedParams, params);
  * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
  * @param {string} params.address  - Ethereum address
  * @param {string} params.blockHash 
+ * @param {string} params.ethSignature 
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
  *
@@ -3851,15 +3891,16 @@ Object.assign(adjustedParams, params);
  * const signerUuid = 
  * const address = 
  * const blockHash = 
+ * const ethSignature = 
  *
- * client.deleteVerification({signerUuid, address, blockHash}).then(response => {
+ * client.deleteVerification({signerUuid, address, blockHash, ethSignature}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-verification)
  *
  */
-public async deleteVerification(params: { signerUuid: string, address: string, blockHash: string }): Promise<OperationResponse> {
+public async deleteVerification(params: { signerUuid: string, address: string, blockHash: string, ethSignature: string }): Promise<OperationResponse> {
   const adjustedParams: any = {};
 const _params = { removeVerificationReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -3875,7 +3916,7 @@ Object.assign(adjustedParams, _params);
  *
  * @param {object} params
  * @param {number[]} params.fids  - Comma separated list of FIDs, up to 100 at a time
- * @param {number} params.viewerFid [optional] 
+ * @param {number} params.viewerFid [optional]  - The unique identifier of a farcaster user or app (unsigned integer)
  *
  * @returns {Promise<BulkUsersResponse>} A promise that resolves to a `BulkUsersResponse` object.
  *
@@ -3914,8 +3955,8 @@ if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
  *
  * @param {object} params
  * @param {string[]} params.addresses  - Comma separated list of Ethereum addresses, up to 350 at a time
- * @param {Array<BulkUserAddressType>} params.addressTypes [optional]  - Customize which address types the request should search for. This is a comma-separated string that can include the following values: 'custody_address' and 'verified_address'. By default api returns both. To select multiple types, use a comma-separated list of these values.
- * @param {number} params.viewerFid [optional] 
+ * @param {Array<FetchBulkUsersByEthOrSolAddressAddressTypesEnum>} params.addressTypes [optional]  - Customize which address types the request should search for. This is a comma-separated string that can include the following values: 'custody_address' and 'verified_address'. By default api returns both. To select multiple types, use a comma-separated list of these values.
+ * @param {number} params.viewerFid [optional]  - The unique identifier of a farcaster user or app (unsigned integer)
  *
  * @returns {Promise<BulkUsersByAddressResponse>} A promise that resolves to a `BulkUsersByAddressResponse` object.
  *
@@ -3933,7 +3974,7 @@ if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-bulk-users-by-eth-or-sol-address)
  *
  */
-public async fetchBulkUsersByEthOrSolAddress(params: { addresses: string[], addressTypes?: Array<BulkUserAddressType>, viewerFid?: number }): Promise<BulkUsersByAddressResponse> {
+public async fetchBulkUsersByEthOrSolAddress(params: { addresses: string[], addressTypes?: Array<FetchBulkUsersByEthOrSolAddressAddressTypesEnum>, viewerFid?: number }): Promise<BulkUsersByAddressResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
@@ -3951,7 +3992,7 @@ if (adjustedParams.addresses && Array.isArray(adjustedParams.addresses)) {
  * @summary Power users
  *
  * @param {object} params
- * @param {number} params.viewerFid [optional] 
+ * @param {number} params.viewerFid [optional]  - The unique identifier of a farcaster user or app (unsigned integer)
  * @param {number} params.limit [optional]  - Number of power users to fetch (Default: 25, Maximum: 100)
  * @param {string} params.cursor [optional]  - Pagination cursor.
  *
@@ -4046,7 +4087,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
 }
 
 /**
- * Follow a user \\ (In order to follow a user `signer_uuid` must be approved)
+ * Follow a user  (In order to follow a user `signer_uuid` must be approved)
  *
  * @summary Follow user
  *
@@ -4143,7 +4184,7 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {string} params.username  - Username of the user to fetch
- * @param {number} params.viewerFid [optional] 
+ * @param {number} params.viewerFid [optional]  - The unique identifier of a farcaster user or app (unsigned integer)
  *
  * @returns {Promise<UserResponse>} A promise that resolves to a `UserResponse` object.
  *
@@ -4203,7 +4244,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
 }
 
 /**
- * Adds verification for an eth address or contract for the user \\ (In order to add verification `signer_uuid` must be approved)
+ * Adds verification for an eth address or contract for the user  (In order to add verification `signer_uuid` must be approved)
  *
  * @summary Add verification
  *
@@ -4244,7 +4285,7 @@ Object.assign(adjustedParams, _params);
 }
 
 /**
- * Register account on farcaster.  **Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user.
+ * Register account on farcaster.   **Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user.
  *
  * @summary Register new account
  *
@@ -4321,7 +4362,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
 }
 
 /**
- * Unfollow a user \\ (In order to unfollow a user `signer_uuid` must be approved)
+ * Unfollow a user  (In order to unfollow a user `signer_uuid` must be approved)
  *
  * @summary Unfollow user
  *
@@ -4354,7 +4395,7 @@ Object.assign(adjustedParams, _params);
 }
 
 /**
- * Update user profile \\ (In order to update user\'s profile `signer_uuid` must be approved)
+ * Update user profile  (In order to update user\'s profile `signer_uuid` must be approved)
  *
  * @summary Update user profile
  *
