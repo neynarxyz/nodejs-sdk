@@ -15,19 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { Channel } from './channel';
+import type { AppHostPostEventReqBodyOneOfSignedMessageOneOf } from './app-host-post-event-req-body-one-of-signed-message-one-of';
 
 /**
- * 
+ * @type AppHostPostEventReqBodyOneOfSignedMessage
+ * JFS-signed message containing the event payload. The message must be properly signed and contain valid event information.  Can be provided as a single string or json object.
  * @export
- * @interface ChannelResponse
  */
-export interface ChannelResponse {
-    /**
-     * 
-     * @type {Channel}
-     * @memberof ChannelResponse
-     */
-    'channel': Channel;
-}
+export type AppHostPostEventReqBodyOneOfSignedMessage = AppHostPostEventReqBodyOneOfSignedMessageOneOf | string;
+
 

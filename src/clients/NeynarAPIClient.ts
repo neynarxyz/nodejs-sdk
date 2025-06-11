@@ -353,7 +353,7 @@ Object.assign(adjustedParams, params);
 /**
  * Returns event object for app host events. Used if the app host intends to sign the event message instead of using Neynar-hosted signers.
  *
- * @summary Get app host event
+ * @summary Generate event
  *
  * @param {object} params
  * @param {string} params.appDomain  - The domain of the mini app
@@ -387,7 +387,7 @@ Object.assign(adjustedParams, params);
 /**
  * Returns the current notification state for a specific user across all mini app domains in this app host. Shows which domains have notifications enabled.
  *
- * @summary Get the user\'s notification subscriptions
+ * @summary Enabled notifications
  *
  * @param {object} params
  * @param {number} params.fid  - The FID of the user
@@ -417,7 +417,7 @@ Object.assign(adjustedParams, params);
 /**
  * Post an app_host event to the domain\'s webhook. Events such as enabling or disabling notifications for a user. Provide either a signed message or the signer UUID of an authorized neynar-hosted signers.
  *
- * @summary Process app host event
+ * @summary Send event
  *
  * @param {object} params
  * @param {any} params.appHostPostEventReqBody 
