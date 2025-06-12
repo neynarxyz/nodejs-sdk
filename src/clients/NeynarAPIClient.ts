@@ -12,6 +12,7 @@ import {isApiErrorResponse} from '../utils';
 import { ActionApi } from '../api/apis/action-api';
 import { AgentsApi } from '../api/apis/agents-api';
 import { AppHostApi } from '../api/apis/app-host-api';
+import { AuthAddressApi } from '../api/apis/auth-address-api';
 import { BanApi } from '../api/apis/ban-api';
 import { BlockApi } from '../api/apis/block-api';
 import { CastApi } from '../api/apis/cast-api';
@@ -31,7 +32,7 @@ import { StorageApi } from '../api/apis/storage-api';
 import { SubscribersApi } from '../api/apis/subscribers-api';
 import { UserApi } from '../api/apis/user-api';
 import { WebhookApi } from '../api/apis/webhook-api';
-import type { AddVerificationReqBody, AppHostGetEventEventEnum, AppHostGetEventResponse, AppHostPostEventReqBody, AppHostPostEventResponse, AppHostUserStateResponse, AuthorizationUrlResponse, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastEmbedCrawlResponse, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeveloperManagedSigner, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FetchAllNotificationsTypeEnum, FetchAuthorizationUrlResponseTypeEnum, FetchBulkCastsSortTypeEnum, FetchBulkChannelsTypeEnum, FetchBulkUsersByEthOrSolAddressAddressTypesEnum, FetchCastMetricsIntervalEnum, FetchCastReactionsTypesEnum, FetchComposerActionsListEnum, FetchFeedEmbedTypesEnum, FetchFeedFeedTypeEnum, FetchFeedFilterTypeEnum, FetchFeedForYouProviderEnum, FetchFrameCatalogCategoriesEnum, FetchFrameCatalogTimeWindowEnum, FetchFrameMetaTagsFromUrl200Response, FetchRelevantFrames200Response, FetchRelevantFramesTimeWindowEnum, FetchRelevantFungibleOwnersNetworkEnum, FetchRepliesAndRecastsForUserFilterEnum, FetchSubscribedToForFidSubscriptionProviderEnum, FetchSubscribersForFidSubscriptionProviderEnum, FetchSubscriptionsForFidSubscriptionProviderEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedProviderEnum, FetchTrendingFeedTimeWindowEnum, FetchUserBalanceNetworksEnum, FetchUserFollowersSortTypeEnum, FetchUserFollowingSortTypeEnum, FetchUserInteractions200Response, FetchUserInteractionsTypeEnum, FetchUserReactionsTypeEnum, FetchValidateFrameAnalyticsAggregateWindowEnum, FetchValidateFrameAnalyticsAnalyticsTypeEnum, FnameAvailabilityResponse, FollowReqBody, FollowersResponse, Frame, FrameAction, FrameActionReqBody, FrameCatalogResponse, FrameDeveloperManagedActionReqBody, FrameNotificationTokens, FramePayTransactionReqBody, FramePayTransactionReqBodyTransaction, FrameSignaturePacket, FrameValidateAnalyticsResponse, FrameValidateListResponse, GetNotificationCampaignStats200Response, InviteChannelMemberReqBody, LookupCastByHashOrWarpcastUrlTypeEnum, LookupCastConversationFoldEnum, LookupCastConversationSortTypeEnum, LookupCastConversationTypeEnum, LookupChannelTypeEnum, LookupNeynarFrameTypeEnum, MarkNotificationsAsSeenReqBody, MuteListResponse, MuteReqBody, MuteResponse, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyPreRegistrationCallsInner, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchCastsSortTypeEnum, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionsResponse, TransactionFrameConfig, TransactionFrameResponse, TransactionSendFungiblesRecipient, TransactionSendFungiblesReqBody, TransactionSendFungiblesReqBodyNetworkEnum, TransactionSendFungiblesResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
+import type { AddVerificationReqBody, AppHostGetEventEventEnum, AppHostGetEventResponse, AppHostPostEventReqBody, AppHostPostEventResponse, AppHostUserStateResponse, AuthorizationUrlResponse, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastEmbedCrawlResponse, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeveloperManagedSigner, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FetchAllNotificationsTypeEnum, FetchAuthorizationUrlResponseTypeEnum, FetchBulkCastsSortTypeEnum, FetchBulkChannelsTypeEnum, FetchBulkUsersByEthOrSolAddressAddressTypesEnum, FetchCastMetricsIntervalEnum, FetchCastReactionsTypesEnum, FetchComposerActionsListEnum, FetchFeedEmbedTypesEnum, FetchFeedFeedTypeEnum, FetchFeedFilterTypeEnum, FetchFeedForYouProviderEnum, FetchFrameCatalogCategoriesEnum, FetchFrameCatalogTimeWindowEnum, FetchFrameMetaTagsFromUrl200Response, FetchRelevantFrames200Response, FetchRelevantFramesTimeWindowEnum, FetchRelevantFungibleOwnersNetworkEnum, FetchRepliesAndRecastsForUserFilterEnum, FetchSubscribedToForFidSubscriptionProviderEnum, FetchSubscribersForFidSubscriptionProviderEnum, FetchSubscriptionsForFidSubscriptionProviderEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedProviderEnum, FetchTrendingFeedTimeWindowEnum, FetchUserBalanceNetworksEnum, FetchUserFollowersSortTypeEnum, FetchUserFollowingSortTypeEnum, FetchUserInteractions200Response, FetchUserInteractionsTypeEnum, FetchUserReactionsTypeEnum, FetchValidateFrameAnalyticsAggregateWindowEnum, FetchValidateFrameAnalyticsAnalyticsTypeEnum, FnameAvailabilityResponse, FollowReqBody, FollowersResponse, Frame, FrameAction, FrameActionReqBody, FrameCatalogResponse, FrameDeveloperManagedActionReqBody, FrameNotificationTokens, FramePayTransactionReqBody, FramePayTransactionReqBodyTransaction, FrameSignaturePacket, FrameValidateAnalyticsResponse, FrameValidateListResponse, GetNotificationCampaignStats200Response, InviteChannelMemberReqBody, LookupCastByHashOrWarpcastUrlTypeEnum, LookupCastConversationFoldEnum, LookupCastConversationSortTypeEnum, LookupCastConversationTypeEnum, LookupChannelTypeEnum, LookupNeynarFrameTypeEnum, MarkNotificationsAsSeenReqBody, MuteListResponse, MuteReqBody, MuteResponse, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, RegisterAuthAddressDeveloperManaged200Response, RegisterAuthAddressDeveloperManagedRequest, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyPreRegistrationCallsInner, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchCastsSortTypeEnum, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionsResponse, TransactionFrameConfig, TransactionFrameResponse, TransactionSendFungiblesRecipient, TransactionSendFungiblesReqBody, TransactionSendFungiblesReqBodyNetworkEnum, TransactionSendFungiblesResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
 
 const { version: sdkVersion } = require("../../package.json");
 
@@ -88,6 +89,7 @@ export class NeynarAPIClient {
     actionApi: ActionApi;
     agentsApi: AgentsApi;
     appHostApi: AppHostApi;
+    authAddressApi: AuthAddressApi;
     banApi: BanApi;
     blockApi: BlockApi;
     castApi: CastApi;
@@ -176,6 +178,7 @@ const client = new NeynarAPIClient(config);\n`);
       actionApi: new ActionApi(this.config, undefined, axiosInstance),
       agentsApi: new AgentsApi(this.config, undefined, axiosInstance),
       appHostApi: new AppHostApi(this.config, undefined, axiosInstance),
+      authAddressApi: new AuthAddressApi(this.config, undefined, axiosInstance),
       banApi: new BanApi(this.config, undefined, axiosInstance),
       blockApi: new BlockApi(this.config, undefined, axiosInstance),
       castApi: new CastApi(this.config, undefined, axiosInstance),
@@ -353,7 +356,7 @@ Object.assign(adjustedParams, params);
 /**
  * Returns event object for app host events. Used if the app host intends to sign the event message instead of using Neynar-hosted signers.
  *
- * @summary Get app host event
+ * @summary Generate event
  *
  * @param {object} params
  * @param {string} params.appDomain  - The domain of the mini app
@@ -387,7 +390,7 @@ Object.assign(adjustedParams, params);
 /**
  * Returns the current notification state for a specific user across all mini app domains in this app host. Shows which domains have notifications enabled.
  *
- * @summary Get the user\'s notification subscriptions
+ * @summary Enabled notifications
  *
  * @param {object} params
  * @param {number} params.fid  - The FID of the user
@@ -417,7 +420,7 @@ Object.assign(adjustedParams, params);
 /**
  * Post an app_host event to the domain\'s webhook. Events such as enabling or disabling notifications for a user. Provide either a signed message or the signer UUID of an authorized neynar-hosted signers.
  *
- * @summary Process app host event
+ * @summary Send event
  *
  * @param {object} params
  * @param {any} params.appHostPostEventReqBody 
@@ -442,6 +445,36 @@ const _params = { appHostPostEventReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
 
   const response = await this.apis.appHostApi.appHostPostEvent(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Allow apps to register an Ethereum addresses as authorized \"auth addresses\" for a user\'s Farcaster account, enabling seamless Sign-In With Farcaster (SIWF) across applications without repeated custody wallet authorizations.
+ *
+ * @summary Register Auth Address (Developer Managed)
+ *
+ * @param {object} params
+ * @param {RegisterAuthAddressDeveloperManagedRequest} params.registerAuthAddressDeveloperManagedRequest 
+ *
+ * @returns {Promise<RegisterAuthAddressDeveloperManaged200Response>} A promise that resolves to a `RegisterAuthAddressDeveloperManaged200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const registerAuthAddressDeveloperManagedRequest = 
+ *
+ * client.registerAuthAddressDeveloperManaged({ registerAuthAddressDeveloperManagedRequest }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/register-auth-address-developer-managed)
+ *
+ */
+public async registerAuthAddressDeveloperManaged(params: { registerAuthAddressDeveloperManagedRequest: RegisterAuthAddressDeveloperManagedRequest }): Promise<RegisterAuthAddressDeveloperManaged200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.authAddressApi.registerAuthAddressDeveloperManaged(adjustedParams);
   return response.data;
 }
 

@@ -5,6 +5,7 @@ api.ts
 apis/action-api.ts
 apis/agents-api.ts
 apis/app-host-api.ts
+apis/auth-address-api.ts
 apis/ban-api.ts
 apis/block-api.ts
 apis/cast-api.ts
@@ -35,6 +36,8 @@ models/address-balance.ts
 models/app-host-event-type.ts
 models/app-host-get-event-response-notification-details.ts
 models/app-host-get-event-response.ts
+models/app-host-post-event-req-body-one-of-signed-message-one-of.ts
+models/app-host-post-event-req-body-one-of-signed-message.ts
 models/app-host-post-event-req-body-one-of.ts
 models/app-host-post-event-req-body-one-of1.ts
 models/app-host-post-event-req-body.ts
@@ -120,7 +123,6 @@ models/embed.ts
 models/error-res.ts
 models/farcaster-action-req-body-action.ts
 models/farcaster-action-req-body.ts
-models/farcaster-manifest-account-association.ts
 models/farcaster-manifest-frame.ts
 models/farcaster-manifest.ts
 models/feed-response.ts
@@ -224,6 +226,8 @@ models/reaction-with-cast-info.ts
 models/reaction-with-user-info.ts
 models/reactions-cast-response.ts
 models/reactions-response.ts
+models/register-auth-address-developer-managed-request.ts
+models/register-auth-address-developer-managed200-response.ts
 models/register-developer-managed-signed-key-req-body.ts
 models/register-signer-key-req-body.ts
 models/register-user-on-chain-req-body-pre-registration-calls-inner.ts
@@ -246,6 +250,7 @@ models/send-frame-notifications-req-body.ts
 models/send-frame-notifications-response.ts
 models/shared-signer-permission.ts
 models/signed-key-request-sponsor.ts
+models/signed-key-request-sponsor1.ts
 models/signer-list-response.ts
 models/signer.ts
 models/storage-allocation.ts
