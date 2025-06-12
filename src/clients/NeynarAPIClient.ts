@@ -32,7 +32,7 @@ import { StorageApi } from '../api/apis/storage-api';
 import { SubscribersApi } from '../api/apis/subscribers-api';
 import { UserApi } from '../api/apis/user-api';
 import { WebhookApi } from '../api/apis/webhook-api';
-import type { AddVerificationReqBody, AppHostGetEventEventEnum, AppHostGetEventResponse, AppHostPostEventReqBody, AppHostPostEventResponse, AppHostUserStateResponse, AuthorizationUrlResponse, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastEmbedCrawlResponse, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeveloperManagedSigner, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FetchAllNotificationsTypeEnum, FetchAuthorizationUrlResponseTypeEnum, FetchBulkCastsSortTypeEnum, FetchBulkChannelsTypeEnum, FetchBulkUsersByEthOrSolAddressAddressTypesEnum, FetchCastMetricsIntervalEnum, FetchCastReactionsTypesEnum, FetchComposerActionsListEnum, FetchFeedEmbedTypesEnum, FetchFeedFeedTypeEnum, FetchFeedFilterTypeEnum, FetchFeedForYouProviderEnum, FetchFrameCatalogCategoriesEnum, FetchFrameCatalogTimeWindowEnum, FetchFrameMetaTagsFromUrl200Response, FetchRelevantFrames200Response, FetchRelevantFramesTimeWindowEnum, FetchRelevantFungibleOwnersNetworkEnum, FetchRepliesAndRecastsForUserFilterEnum, FetchSubscribedToForFidSubscriptionProviderEnum, FetchSubscribersForFidSubscriptionProviderEnum, FetchSubscriptionsForFidSubscriptionProviderEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedProviderEnum, FetchTrendingFeedTimeWindowEnum, FetchUserBalanceNetworksEnum, FetchUserFollowersSortTypeEnum, FetchUserFollowingSortTypeEnum, FetchUserInteractions200Response, FetchUserInteractionsTypeEnum, FetchUserReactionsTypeEnum, FetchValidateFrameAnalyticsAggregateWindowEnum, FetchValidateFrameAnalyticsAnalyticsTypeEnum, FnameAvailabilityResponse, FollowReqBody, FollowersResponse, Frame, FrameAction, FrameActionReqBody, FrameCatalogResponse, FrameDeveloperManagedActionReqBody, FrameNotificationTokens, FramePayTransactionReqBody, FramePayTransactionReqBodyTransaction, FrameSignaturePacket, FrameValidateAnalyticsResponse, FrameValidateListResponse, GetNotificationCampaignStats200Response, InviteChannelMemberReqBody, LookupCastByHashOrWarpcastUrlTypeEnum, LookupCastConversationFoldEnum, LookupCastConversationSortTypeEnum, LookupCastConversationTypeEnum, LookupChannelTypeEnum, LookupNeynarFrameTypeEnum, MarkNotificationsAsSeenReqBody, MuteListResponse, MuteReqBody, MuteResponse, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, RegisterAuthAddressDeveloperManaged200Response, RegisterAuthAddressDeveloperManagedRequest, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyPreRegistrationCallsInner, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchCastsSortTypeEnum, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionsResponse, TransactionFrameConfig, TransactionFrameResponse, TransactionSendFungiblesRecipient, TransactionSendFungiblesReqBody, TransactionSendFungiblesReqBodyNetworkEnum, TransactionSendFungiblesResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserPowerLiteResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
+import type { AddVerificationReqBody, AppHostGetEventEventEnum, AppHostGetEventResponse, AppHostPostEventReqBody, AppHostPostEventResponse, AppHostUserStateResponse, AuthorizationUrlResponse, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastEmbedCrawlResponse, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeveloperManagedSigner, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FetchAllNotificationsTypeEnum, FetchAuthorizationUrlResponseTypeEnum, FetchBulkCastsSortTypeEnum, FetchBulkChannelsTypeEnum, FetchBulkUsersByEthOrSolAddressAddressTypesEnum, FetchCastMetricsIntervalEnum, FetchCastReactionsTypesEnum, FetchComposerActionsListEnum, FetchFeedEmbedTypesEnum, FetchFeedFeedTypeEnum, FetchFeedFilterTypeEnum, FetchFeedForYouProviderEnum, FetchFrameCatalogCategoriesEnum, FetchFrameCatalogTimeWindowEnum, FetchFrameMetaTagsFromUrl200Response, FetchRelevantFrames200Response, FetchRelevantFramesTimeWindowEnum, FetchRelevantFungibleOwnersNetworkEnum, FetchRepliesAndRecastsForUserFilterEnum, FetchSubscribedToForFidSubscriptionProviderEnum, FetchSubscribersForFidSubscriptionProviderEnum, FetchSubscriptionsForFidSubscriptionProviderEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedProviderEnum, FetchTrendingFeedTimeWindowEnum, FetchUserBalanceNetworksEnum, FetchUserFollowersSortTypeEnum, FetchUserFollowingSortTypeEnum, FetchUserInteractions200Response, FetchUserInteractionsTypeEnum, FetchUserReactionsTypeEnum, FetchValidateFrameAnalyticsAggregateWindowEnum, FetchValidateFrameAnalyticsAnalyticsTypeEnum, FnameAvailabilityResponse, FollowReqBody, FollowersResponse, Frame, FrameAction, FrameActionReqBody, FrameCatalogResponse, FrameDeveloperManagedActionReqBody, FrameNotificationTokens, FramePayTransactionReqBody, FramePayTransactionReqBodyTransaction, FrameSignaturePacket, FrameValidateAnalyticsResponse, FrameValidateListResponse, GetNotificationCampaignStats200Response, InviteChannelMemberReqBody, LookupCastByHashOrWarpcastUrlTypeEnum, LookupCastConversationFoldEnum, LookupCastConversationSortTypeEnum, LookupCastConversationTypeEnum, LookupChannelTypeEnum, LookupNeynarFrameTypeEnum, MarkNotificationsAsSeenReqBody, MuteListResponse, MuteReqBody, MuteResponse, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, RegisterAuthAddressDeveloperManaged200Response, RegisterAuthAddressDeveloperManagedRequest, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyPreRegistrationCallsInner, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchCastsSortTypeEnum, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionsResponse, TransactionFrameConfig, TransactionFrameResponse, TransactionSendFungiblesRecipient, TransactionSendFungiblesReqBody, TransactionSendFungiblesReqBodyNetworkEnum, TransactionSendFungiblesResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
 
 const { version: sdkVersion } = require("../../package.json");
 
@@ -945,7 +945,6 @@ Object.assign(adjustedParams, _params);
  * @param {number} params.viewerFid [optional]  - Providing this will return search results that respects this user's mutes and blocks and includes `viewer_context`.
  * @param {string} params.parentUrl [optional]  - Parent URL of the casts you want to search
  * @param {string} params.channelId [optional]  - Channel ID of the casts you want to search
- * @param {boolean} params.priorityMode [optional]  - When true, only returns search results from power badge users and users that the viewer follows (if viewer_fid is provided).
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 25, Maximum: 100)
  * @param {string} params.cursor [optional]  - Pagination cursor
  *
@@ -961,17 +960,16 @@ Object.assign(adjustedParams, _params);
  * const viewerFid = 
  * const parentUrl = 
  * const channelId = 
- * const priorityMode = 
  * const limit = 
  *
- * client.searchCasts({ q, mode, sortType, authorFid, viewerFid, parentUrl, channelId, priorityMode, limit }).then(response => {
+ * client.searchCasts({ q, mode, sortType, authorFid, viewerFid, parentUrl, channelId, limit }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/search-casts)
  *
  */
-public async searchCasts(params: { q: string, mode?: SearchCastsModeEnum, sortType?: SearchCastsSortTypeEnum, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, priorityMode?: boolean, limit?: number, cursor?: string }): Promise<CastsSearchResponse> {
+public async searchCasts(params: { q: string, mode?: SearchCastsModeEnum, sortType?: SearchCastsSortTypeEnum, authorFid?: number, viewerFid?: number, parentUrl?: string, channelId?: string, limit?: number, cursor?: string }): Promise<CastsSearchResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
@@ -2926,7 +2924,6 @@ Object.assign(adjustedParams, _params);
  * @param {object} params
  * @param {number} params.fid  - FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
  * @param {Array<FetchAllNotificationsTypeEnum>} params.type [optional]  - Notification type to fetch. Comma separated values of follows, recasts, likes, mentions, replies.
- * @param {boolean} params.priorityMode [optional]  - When true, only returns notifications from power badge users and users that the user follows.
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 15, Maximum: 25)
  * @param {string} params.cursor [optional]  - Pagination cursor.
  *
@@ -2937,19 +2934,19 @@ Object.assign(adjustedParams, _params);
  * // Fill in the appropriate values
  * const fid = 
  * const type = 
- * const priorityMode = 
  * const limit = 
  *
- * client.fetchAllNotifications({ fid, type, priorityMode, limit }).then(response => {
+ * client.fetchAllNotifications({ fid, type, limit }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-all-notifications)
  *
  */
-public async fetchAllNotifications(params: { fid: number, type?: Array<FetchAllNotificationsTypeEnum>, priorityMode?: boolean, limit?: number, cursor?: string }): Promise<NotificationsResponse> {
+public async fetchAllNotifications(params: { fid: number, type?: Array<FetchAllNotificationsTypeEnum>, limit?: number, cursor?: string }): Promise<NotificationsResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.notificationsApi.fetchAllNotifications(adjustedParams);
   return response.data;
@@ -2963,7 +2960,6 @@ Object.assign(adjustedParams, params);
  * @param {object} params
  * @param {number} params.fid  - FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
  * @param {string[]} params.channelIds  - Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
- * @param {boolean} params.priorityMode [optional]  - When true, only returns notifications from power badge users and users that the user follows.
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 15, Maximum: 25)
  * @param {string} params.cursor [optional]  - Pagination cursor.
  *
@@ -2974,19 +2970,19 @@ Object.assign(adjustedParams, params);
  * // Fill in the appropriate values
  * const fid = 
  * const channelIds = 
- * const priorityMode = 
  * const limit = 
  *
- * client.fetchChannelNotificationsForUser({ fid, channelIds, priorityMode, limit }).then(response => {
+ * client.fetchChannelNotificationsForUser({ fid, channelIds, limit }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-channel-notifications-for-user)
  *
  */
-public async fetchChannelNotificationsForUser(params: { fid: number, channelIds: string[], priorityMode?: boolean, limit?: number, cursor?: string }): Promise<NotificationsResponse> {
+public async fetchChannelNotificationsForUser(params: { fid: number, channelIds: string[], limit?: number, cursor?: string }): Promise<NotificationsResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 if (adjustedParams.channelIds && Array.isArray(adjustedParams.channelIds)) {
   adjustedParams.channelIds = adjustedParams.channelIds.join(",");
 }
@@ -3003,7 +2999,6 @@ if (adjustedParams.channelIds && Array.isArray(adjustedParams.channelIds)) {
  * @param {object} params
  * @param {number} params.fid  - FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
  * @param {string[]} params.parentUrls  - Comma separated parent_urls
- * @param {boolean} params.priorityMode [optional]  - When true, only returns notifications from power badge users and users that the user follows.
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 15, Maximum: 25)
  * @param {string} params.cursor [optional]  - Pagination cursor.
  *
@@ -3014,19 +3009,19 @@ if (adjustedParams.channelIds && Array.isArray(adjustedParams.channelIds)) {
  * // Fill in the appropriate values
  * const fid = 
  * const parentUrls = 
- * const priorityMode = 
  * const limit = 
  *
- * client.fetchNotificationsByParentUrlForUser({ fid, parentUrls, priorityMode, limit }).then(response => {
+ * client.fetchNotificationsByParentUrlForUser({ fid, parentUrls, limit }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-notifications-by-parent-url-for-user)
  *
  */
-public async fetchNotificationsByParentUrlForUser(params: { fid: number, parentUrls: string[], priorityMode?: boolean, limit?: number, cursor?: string }): Promise<NotificationsResponse> {
+public async fetchNotificationsByParentUrlForUser(params: { fid: number, parentUrls: string[], limit?: number, cursor?: string }): Promise<NotificationsResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 if (adjustedParams.parentUrls && Array.isArray(adjustedParams.parentUrls)) {
   adjustedParams.parentUrls = adjustedParams.parentUrls.join(",");
 }
@@ -3122,7 +3117,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Fetch a list of relevant owners for a specific FID. This usually shows on a fungible asset page as \"X, Y, Z and N others you know own this asset\".
+ * Fetch a list of relevant owners for a on chain asset. If a viewer is provided, only relevant holders will be shown. This usually shows on a fungible asset page as \"X, Y, Z and N others you know own this asset\".
  *
  * @summary Relevant owners
  *
@@ -4016,68 +4011,6 @@ if (adjustedParams.addresses && Array.isArray(adjustedParams.addresses)) {
 }
 
   const response = await this.apis.userApi.fetchBulkUsersByEthOrSolAddress(adjustedParams);
-  return response.data;
-}
-
-/**
- * Fetches power users based on Warpcast power badges. Information is updated once a day.
- *
- * @summary Power users
- *
- * @param {object} params
- * @param {number} params.viewerFid [optional]  - The unique identifier of a farcaster user or app (unsigned integer)
- * @param {number} params.limit [optional]  - Number of power users to fetch (Default: 25, Maximum: 100)
- * @param {string} params.cursor [optional]  - Pagination cursor.
- *
- * @returns {Promise<UsersResponse>} A promise that resolves to a `UsersResponse` object.
- *
- * @example
- *
- * // Fill in the appropriate values
- * const viewerFid = 
- * const limit = 
- *
- * client.fetchPowerUsers({ viewerFid, limit }).then(response => {
- *   console.log('response:', response);
- * });
- *
- * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-power-users)
- *
- */
-public async fetchPowerUsers(params: { viewerFid?: number, limit?: number, cursor?: string }): Promise<UsersResponse> {
-  const adjustedParams: any = {};
-Object.assign(adjustedParams, params);
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
-
-  const response = await this.apis.userApi.fetchPowerUsers(adjustedParams);
-  return response.data;
-}
-
-/**
- * Fetches power users and respond in a backwards compatible format to Warpcast\'s deprecated power badge endpoint.
- *
- * @summary Power user FIDs
- *
- * @param {object} params
- *
- * @returns {Promise<UserPowerLiteResponse>} A promise that resolves to a `UserPowerLiteResponse` object.
- *
- * @example
- *
- * // Fill in the appropriate values
- *
- * client.fetchPowerUsersLite().then(response => {
- *   console.log('response:', response);
- * });
- *
- * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-power-users-lite)
- *
- */
-public async fetchPowerUsersLite(): Promise<UserPowerLiteResponse> {
-  const adjustedParams: any = {};
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
-
-  const response = await this.apis.userApi.fetchPowerUsersLite(adjustedParams);
   return response.data;
 }
 
