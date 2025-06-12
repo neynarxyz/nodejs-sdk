@@ -226,9 +226,9 @@ models/reaction-with-cast-info.ts
 models/reaction-with-user-info.ts
 models/reactions-cast-response.ts
 models/reactions-response.ts
-models/register-auth-address-developer-managed-request.ts
-models/register-auth-address-developer-managed200-response.ts
 models/register-developer-managed-signed-key-req-body.ts
+models/register-signed-key-for-developer-managed-auth-address-request.ts
+models/register-signed-key-for-developer-managed-auth-address200-response.ts
 models/register-signer-key-req-body.ts
 models/register-user-on-chain-req-body-pre-registration-calls-inner.ts
 models/register-user-on-chain-req-body-registration.ts
