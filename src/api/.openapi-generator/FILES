@@ -180,6 +180,11 @@ models/invite-channel-member-req-body.ts
 models/location-address.ts
 models/location.ts
 models/mark-notifications-as-seen-req-body.ts
+models/mint-nft-request-recipients-inner.ts
+models/mint-nft-request.ts
+models/mint-nft200-response-transactions-inner-receipt.ts
+models/mint-nft200-response-transactions-inner.ts
+models/mint-nft200-response.ts
 models/mute-list-response.ts
 models/mute-record.ts
 models/mute-req-body.ts
@@ -226,9 +231,9 @@ models/reaction-with-cast-info.ts
 models/reaction-with-user-info.ts
 models/reactions-cast-response.ts
 models/reactions-response.ts
-models/register-auth-address-developer-managed-request.ts
-models/register-auth-address-developer-managed200-response.ts
 models/register-developer-managed-signed-key-req-body.ts
+models/register-signed-key-for-developer-managed-auth-address-request.ts
+models/register-signed-key-for-developer-managed-auth-address200-response.ts
 models/register-signer-key-req-body.ts
 models/register-user-on-chain-req-body-pre-registration-calls-inner.ts
 models/register-user-on-chain-req-body-registration.ts
@@ -253,6 +258,8 @@ models/signed-key-request-sponsor.ts
 models/signed-key-request-sponsor1.ts
 models/signer-list-response.ts
 models/signer.ts
+models/simulate-nft-mint200-response-inner-recipient.ts
+models/simulate-nft-mint200-response-inner.ts
 models/storage-allocation.ts
 models/storage-allocations-response.ts
 models/storage-object.ts
