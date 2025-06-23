@@ -117,6 +117,7 @@ models/signer-event-body.ts
 models/signer-event-type.ts
 models/signer-migrated-event-body.ts
 models/storage-limit.ts
+models/storage-limits-response-unit-details.ts
 models/storage-limits-response.ts
 models/storage-rent-event-body.ts
 models/store-type.ts
