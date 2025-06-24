@@ -51,6 +51,8 @@ models/ban-list-response.ts
 models/ban-record.ts
 models/ban-req-body.ts
 models/ban-response.ts
+models/best-friends-response-users-inner.ts
+models/best-friends-response.ts
 models/block-list-response.ts
 models/block-record.ts
 models/block-req-body.ts
@@ -79,7 +81,6 @@ models/casts-metrics-response.ts
 models/casts-metrics.ts
 models/casts-response-result.ts
 models/casts-response.ts
-models/casts-search-response-result.ts
 models/casts-search-response.ts
 models/channel-activity.ts
 models/channel-dehydrated.ts
@@ -126,6 +127,8 @@ models/farcaster-action-req-body.ts
 models/farcaster-manifest-frame.ts
 models/farcaster-manifest.ts
 models/feed-response.ts
+models/fetch-cast-quotes-identifier-parameter.ts
+models/fetch-cast-quotes200-response.ts
 models/fetch-feed-for-you400-response.ts
 models/fetch-frame-meta-tags-from-url200-response.ts
 models/fetch-relevant-frames200-response-relevant-frames-inner.ts
@@ -180,6 +183,11 @@ models/invite-channel-member-req-body.ts
 models/location-address.ts
 models/location.ts
 models/mark-notifications-as-seen-req-body.ts
+models/mint-nft-request-recipients-inner.ts
+models/mint-nft-request.ts
+models/mint-nft200-response-transactions-inner-receipt.ts
+models/mint-nft200-response-transactions-inner.ts
+models/mint-nft200-response.ts
 models/mute-list-response.ts
 models/mute-record.ts
 models/mute-req-body.ts
@@ -226,9 +234,9 @@ models/reaction-with-cast-info.ts
 models/reaction-with-user-info.ts
 models/reactions-cast-response.ts
 models/reactions-response.ts
-models/register-auth-address-developer-managed-request.ts
-models/register-auth-address-developer-managed200-response.ts
+models/register-auth-address-developer-managed-signed-key-req-body.ts
 models/register-developer-managed-signed-key-req-body.ts
+models/register-signed-key-for-developer-managed-auth-address200-response.ts
 models/register-signer-key-req-body.ts
 models/register-user-on-chain-req-body-pre-registration-calls-inner.ts
 models/register-user-on-chain-req-body-registration.ts
@@ -250,9 +258,10 @@ models/send-frame-notifications-req-body.ts
 models/send-frame-notifications-response.ts
 models/shared-signer-permission.ts
 models/signed-key-request-sponsor.ts
-models/signed-key-request-sponsor1.ts
 models/signer-list-response.ts
 models/signer.ts
+models/simulate-nft-mint200-response-inner-recipient.ts
+models/simulate-nft-mint200-response-inner.ts
 models/storage-allocation.ts
 models/storage-allocations-response.ts
 models/storage-object.ts
@@ -299,6 +308,8 @@ models/user-experimental.ts
 models/user-fidresponse.ts
 models/user-power-lite-response-result.ts
 models/user-power-lite-response.ts
+models/user-pro.ts
+models/user-profile-banner.ts
 models/user-profile-bio.ts
 models/user-profile.ts
 models/user-response.ts
