@@ -13,19 +13,15 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { SimulateNftMintResponseInner } from './simulate-nft-mint-response-inner';
 
 /**
  * 
  * @export
- * @enum {string}
+ * @interface SimulateNftMintResponse
  */
-
-export const TransactionFrameStatus = {
-    Created: 'created',
-    Completed: 'completed'
-} as const;
-
-export type TransactionFrameStatus = typeof TransactionFrameStatus[keyof typeof TransactionFrameStatus];
-
-
+export interface SimulateNftMintResponse extends Array<SimulateNftMintResponseInner> {
+}
 
