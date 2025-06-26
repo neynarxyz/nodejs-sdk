@@ -1,16 +1,4 @@
-import { Cast, User } from "../api";
-
-interface UserDehydrated {
-  fid: number;
-  object: "user_dehydrated";
-  username: string;
-}
-
-interface CastDehydrated {
-  hash: string;
-  author: UserDehydrated;
-  object: "cast_dehydrated";
-}
+import type { Cast, User, CastDehydrated, UserDehydrated } from "../api";
 
 export interface WebhookFollowCreated {
   data: {
