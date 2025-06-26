@@ -16,6 +16,12 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import type { StorageLimit } from './storage-limit';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { StorageLimitsResponseTierSubscriptionsInner } from './storage-limits-response-tier-subscriptions-inner';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { StorageLimitsResponseUnitDetails } from './storage-limits-response-unit-details';
 
 /**
  * 
@@ -29,5 +35,23 @@ export interface StorageLimitsResponse {
      * @memberof StorageLimitsResponse
      */
     'limits': Array<StorageLimit>;
+    /**
+     * Total storage units bought by the user.
+     * @type {number}
+     * @memberof StorageLimitsResponse
+     */
+    'units': number;
+    /**
+     * 
+     * @type {StorageLimitsResponseUnitDetails}
+     * @memberof StorageLimitsResponse
+     */
+    'unitDetails': StorageLimitsResponseUnitDetails;
+    /**
+     * List of subscription tiers for the user. Each entry describes a subscription tier and its expiration.
+     * @type {Array<StorageLimitsResponseTierSubscriptionsInner>}
+     * @memberof StorageLimitsResponse
+     */
+    'tier_subscriptions'?: Array<StorageLimitsResponseTierSubscriptionsInner>;
 }
 
