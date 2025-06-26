@@ -96,6 +96,8 @@ export * from './signer-event-type';
 export * from './signer-migrated-event-body';
 export * from './storage-limit';
 export * from './storage-limits-response';
+export * from './storage-limits-response-tier-subscriptions-inner';
+export * from './storage-limits-response-unit-details';
 export * from './storage-rent-event-body';
 export * from './store-type';
 export * from './url-embed';
