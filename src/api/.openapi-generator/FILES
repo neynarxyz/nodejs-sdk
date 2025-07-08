@@ -127,7 +127,6 @@ models/farcaster-action-req-body.ts
 models/farcaster-manifest-frame.ts
 models/farcaster-manifest.ts
 models/feed-response.ts
-models/fetch-cast-quotes-identifier-parameter.ts
 models/fetch-cast-quotes200-response.ts
 models/fetch-feed-for-you400-response.ts
 models/fetch-frame-meta-tags-from-url200-response.ts

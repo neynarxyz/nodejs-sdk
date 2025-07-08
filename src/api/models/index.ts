@@ -96,7 +96,6 @@ export * from './farcaster-manifest';
 export * from './farcaster-manifest-frame';
 export * from './feed-response';
 export * from './fetch-cast-quotes200-response';
-export * from './fetch-cast-quotes-identifier-parameter';
 export * from './fetch-feed-for-you400-response';
 export * from './fetch-frame-meta-tags-from-url200-response';
 export * from './fetch-relevant-frames200-response';
