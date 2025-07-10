@@ -142,6 +142,7 @@ export * from './frame-validate-list-response';
 export * from './get-notification-campaign-stats200-response';
 export * from './get-notification-campaign-stats200-response-notification-campaigns-inner';
 export * from './get-notification-campaign-stats200-response-notification-campaigns-inner-stats';
+export * from './get-notification-campaign-stats200-response-notification-campaigns-inner-stats-error-breakdown';
 export * from './html-metadata';
 export * from './html-metadata-oembed';
 export * from './image-object';

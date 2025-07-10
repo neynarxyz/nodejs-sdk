@@ -171,6 +171,7 @@ models/frame-validate-analytics-response.ts
 models/frame-validate-analytics-total-interactors.ts
 models/frame-validate-list-response.ts
 models/frame.ts
+models/get-notification-campaign-stats200-response-notification-campaigns-inner-stats-error-breakdown.ts
 models/get-notification-campaign-stats200-response-notification-campaigns-inner-stats.ts
 models/get-notification-campaign-stats200-response-notification-campaigns-inner.ts
 models/get-notification-campaign-stats200-response.ts
