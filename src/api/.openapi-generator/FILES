@@ -36,7 +36,6 @@ models/address-balance.ts
 models/app-host-event-type.ts
 models/app-host-get-event-response-notification-details.ts
 models/app-host-get-event-response.ts
-models/app-host-post-event-req-body-one-of-signed-message-one-of.ts
 models/app-host-post-event-req-body-one-of-signed-message.ts
 models/app-host-post-event-req-body-one-of.ts
 models/app-host-post-event-req-body-one-of1.ts
@@ -121,6 +120,7 @@ models/embed-url-metadata-video.ts
 models/embed-url-metadata.ts
 models/embed-url.ts
 models/embed.ts
+models/encoded-json-farcaster-signature.ts
 models/error-res.ts
 models/farcaster-action-req-body-action.ts
 models/farcaster-action-req-body.ts
