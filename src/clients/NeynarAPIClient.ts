@@ -1584,6 +1584,7 @@ Object.assign(adjustedParams, _params);
  * @param {string} params.q  - Channel ID or name for the channel being queried
  * @param {number} params.limit [optional]  - Number of results to fetch (Default: 20, Maximum: 200)
  * @param {string} params.cursor [optional]  - Pagination cursor.
+ * @param {number} params.viewerFid [optional]  - FID of the user viewing the channels.
  *
  * @returns {Promise<ChannelSearchResponse>} A promise that resolves to a `ChannelSearchResponse` object.
  *
@@ -1592,15 +1593,16 @@ Object.assign(adjustedParams, _params);
  * // Fill in the appropriate values
  * const q = 
  * const limit = 
+ * const viewerFid = 
  *
- * client.searchChannels({ q, limit }).then(response => {
+ * client.searchChannels({ q, limit, viewerFid }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/search-channels)
  *
  */
-public async searchChannels(params: { q: string, limit?: number, cursor?: string }): Promise<ChannelSearchResponse> {
+public async searchChannels(params: { q: string, limit?: number, cursor?: string, viewerFid?: number }): Promise<ChannelSearchResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
