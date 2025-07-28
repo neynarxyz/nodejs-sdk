@@ -130,6 +130,8 @@ models/feed-response.ts
 models/fetch-cast-quotes200-response.ts
 models/fetch-feed-for-you400-response.ts
 models/fetch-frame-meta-tags-from-url200-response.ts
+models/fetch-relevant-frames200-response-relevant-frames-inner-frame-metadata.ts
+models/fetch-relevant-frames200-response-relevant-frames-inner-frame.ts
 models/fetch-relevant-frames200-response-relevant-frames-inner.ts
 models/fetch-relevant-frames200-response.ts
 models/fetch-user-interactions200-response.ts
@@ -158,7 +160,6 @@ models/frame-transaction.ts
 models/frame-v1-input.ts
 models/frame-v1-state.ts
 models/frame-v1.ts
-models/frame-v2-metadata.ts
 models/frame-v2-with-full-author.ts
 models/frame-v2.ts
 models/frame-validate-analytics-input-text-input-texts-inner.ts

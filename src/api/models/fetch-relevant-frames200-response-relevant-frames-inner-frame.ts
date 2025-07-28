@@ -24,51 +24,51 @@ import type { FetchRelevantFrames200ResponseRelevantFramesInnerFrameMetadata } f
 import type { User } from './user';
 
 /**
- * Mini app v2 object with full user object
+ * FrameV2 object
  * @export
- * @interface FrameV2WithFullAuthor
+ * @interface FetchRelevantFrames200ResponseRelevantFramesInnerFrame
  */
-export interface FrameV2WithFullAuthor {
+export interface FetchRelevantFrames200ResponseRelevantFramesInnerFrame {
     /**
      * Version of the mini app, \'next\' for v2, \'vNext\' for v1
      * @type {string}
-     * @memberof FrameV2WithFullAuthor
+     * @memberof FetchRelevantFrames200ResponseRelevantFramesInnerFrame
      */
     'version': string;
     /**
      * URL of the image
      * @type {string}
-     * @memberof FrameV2WithFullAuthor
+     * @memberof FetchRelevantFrames200ResponseRelevantFramesInnerFrame
      */
     'image': string;
     /**
      * Launch URL of the mini app
      * @type {string}
-     * @memberof FrameV2WithFullAuthor
+     * @memberof FetchRelevantFrames200ResponseRelevantFramesInnerFrame
      */
     'frames_url': string;
     /**
      * Button title of a mini app
      * @type {string}
-     * @memberof FrameV2WithFullAuthor
+     * @memberof FetchRelevantFrames200ResponseRelevantFramesInnerFrame
      */
     'title'?: string;
     /**
      * 
      * @type {FarcasterManifest}
-     * @memberof FrameV2WithFullAuthor
+     * @memberof FetchRelevantFrames200ResponseRelevantFramesInnerFrame
      */
     'manifest'?: FarcasterManifest;
     /**
      * 
      * @type {User}
-     * @memberof FrameV2WithFullAuthor
+     * @memberof FetchRelevantFrames200ResponseRelevantFramesInnerFrame
      */
     'author'?: User;
     /**
      * 
      * @type {FetchRelevantFrames200ResponseRelevantFramesInnerFrameMetadata}
-     * @memberof FrameV2WithFullAuthor
+     * @memberof FetchRelevantFrames200ResponseRelevantFramesInnerFrame
      */
     'metadata'?: FetchRelevantFrames200ResponseRelevantFramesInnerFrameMetadata;
 }
