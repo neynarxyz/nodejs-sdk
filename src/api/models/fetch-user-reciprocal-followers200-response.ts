@@ -15,28 +15,28 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { Channel } from './channel';
+import type { NextCursor } from './next-cursor';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { NextCursor } from './next-cursor';
+import type { ReciprocalFollower } from './reciprocal-follower';
 
 /**
  * 
  * @export
- * @interface ChannelListResponse
+ * @interface FetchUserReciprocalFollowers200Response
  */
-export interface ChannelListResponse {
+export interface FetchUserReciprocalFollowers200Response {
     /**
      * 
-     * @type {Array<Channel>}
-     * @memberof ChannelListResponse
+     * @type {Array<ReciprocalFollower>}
+     * @memberof FetchUserReciprocalFollowers200Response
      */
-    'channels': Array<Channel>;
+    'users': Array<ReciprocalFollower>;
     /**
      * 
      * @type {NextCursor}
-     * @memberof ChannelListResponse
+     * @memberof FetchUserReciprocalFollowers200Response
      */
-    'next'?: NextCursor;
+    'next': NextCursor;
 }
 

@@ -135,6 +135,7 @@ models/fetch-relevant-frames200-response-relevant-frames-inner-frame.ts
 models/fetch-relevant-frames200-response-relevant-frames-inner.ts
 models/fetch-relevant-frames200-response.ts
 models/fetch-user-interactions200-response.ts
+models/fetch-user-reciprocal-followers200-response.ts
 models/fname-availability-response.ts
 models/follow-req-body.ts
 models/follow-response.ts
@@ -236,6 +237,7 @@ models/reaction-with-cast-info.ts
 models/reaction-with-user-info.ts
 models/reactions-cast-response.ts
 models/reactions-response.ts
+models/reciprocal-follower.ts
 models/register-auth-address-developer-managed-signed-key-req-body.ts
 models/register-developer-managed-signed-key-req-body.ts
 models/register-signed-key-for-developer-managed-auth-address200-response.ts

@@ -15,37 +15,38 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { Location } from './location';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { UserProfileBanner } from './user-profile-banner';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { UserProfileBio } from './user-profile-bio';
+import type { User } from './user';
 
 /**
  * 
  * @export
- * @interface UserProfile
+ * @interface ReciprocalFollower
  */
-export interface UserProfile {
+export interface ReciprocalFollower {
     /**
      * 
-     * @type {UserProfileBio}
-     * @memberof UserProfile
+     * @type {string}
+     * @memberof ReciprocalFollower
      */
-    'bio': UserProfileBio;
+    'object': ReciprocalFollowerObjectEnum;
     /**
      * 
-     * @type {Location}
-     * @memberof UserProfile
+     * @type {User}
+     * @memberof ReciprocalFollower
      */
-    'location'?: Location;
+    'user': User;
     /**
      * 
-     * @type {UserProfileBanner}
-     * @memberof UserProfile
+     * @type {string}
+     * @memberof ReciprocalFollower
      */
-    'banner'?: UserProfileBanner;
+    'timestamp': string;
 }
+
+export const ReciprocalFollowerObjectEnum = {
+    ReciprocalFollower: 'reciprocal_follower'
+} as const;
+
+export type ReciprocalFollowerObjectEnum = typeof ReciprocalFollowerObjectEnum[keyof typeof ReciprocalFollowerObjectEnum];
+
 
