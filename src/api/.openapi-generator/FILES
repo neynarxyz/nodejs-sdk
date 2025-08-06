@@ -307,6 +307,7 @@ models/trending-channel-response.ts
 models/update-user-req-body-location.ts
 models/update-user-req-body-verified-accounts.ts
 models/update-user-req-body.ts
+models/user-auth-addresses-inner.ts
 models/user-dehydrated.ts
 models/user-experimental.ts
 models/user-fidresponse.ts

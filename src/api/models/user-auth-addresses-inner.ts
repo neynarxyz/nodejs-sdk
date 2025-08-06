@@ -13,30 +13,27 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { UserDehydrated } from './user-dehydrated';
 
 /**
- * NFT mint recipient. Exactly one of \"address\" or \"fid\" must be set.
+ * 
  * @export
- * @interface MintNftRequestRecipientsInner
+ * @interface UserAuthAddressesInner
  */
-export interface MintNftRequestRecipientsInner {
+export interface UserAuthAddressesInner {
     /**
      * Ethereum address
      * @type {string}
-     * @memberof MintNftRequestRecipientsInner
+     * @memberof UserAuthAddressesInner
      */
-    'address'?: string;
+    'address': string;
     /**
-     * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof MintNftRequestRecipientsInner
+     * 
+     * @type {UserDehydrated}
+     * @memberof UserAuthAddressesInner
      */
-    'fid'?: number;
-    /**
-     * Quantity to mint (must be at least 1).
-     * @type {number}
-     * @memberof MintNftRequestRecipientsInner
-     */
-    'quantity'?: number;
+    'app': UserDehydrated;
 }
 

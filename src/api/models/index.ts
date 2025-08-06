@@ -275,6 +275,7 @@ export * from './update-user-req-body';
 export * from './update-user-req-body-location';
 export * from './update-user-req-body-verified-accounts';
 export * from './user';
+export * from './user-auth-addresses-inner';
 export * from './user-dehydrated';
 export * from './user-experimental';
 export * from './user-fidresponse';
