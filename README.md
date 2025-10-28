@@ -4,7 +4,7 @@
 
 ## Usage
 
-Please refer to our [Getting Started Tutorial](https://docs.neynar.com/reference/quickstart)
+Please refer to our [Getting Started Tutorial](https://docs.neynar.com/docs/getting-started-with-neynar)
 
 <!-- TODO: Add migration guide link here-->
 
