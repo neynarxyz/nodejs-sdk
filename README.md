@@ -4,7 +4,7 @@
 
 ## Usage
 
-Please refer to our [Getting Started Guide](https://docs.neynar.com/reference/getting-started-with-sdk)
+Please refer to our [Getting Started Tutorial](https://docs.neynar.com/docs/getting-started-with-neynar#set-up-neynar-sdk)
 
 <!-- TODO: Add migration guide link here-->
 
