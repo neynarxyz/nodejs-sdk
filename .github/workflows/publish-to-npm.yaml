@@ -39,8 +39,12 @@ jobs:
 
       - name: Create GitHub Release
         run: |
-          gh release create "v${{ steps.package-version.outputs.version }}" \
-            --title "v${{ steps.package-version.outputs.version }}" \
-            --generate-notes
+          if gh release view "v${{ steps.package-version.outputs.version }}" &> /dev/null; then
+            echo "Release v${{ steps.package-version.outputs.version }} already exists"
+          else
+            gh release create "v${{ steps.package-version.outputs.version }}" \
+              --title "v${{ steps.package-version.outputs.version }}" \
+              --generate-notes
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
