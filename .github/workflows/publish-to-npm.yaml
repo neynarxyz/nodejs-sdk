@@ -32,3 +32,19 @@ jobs:
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Extract version from package.json
+        id: package-version
+        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        run: |
+          if gh release view "v${{ steps.package-version.outputs.version }}" &> /dev/null; then
+            echo "Release v${{ steps.package-version.outputs.version }} already exists"
+          else
+            gh release create "v${{ steps.package-version.outputs.version }}" \
+              --title "v${{ steps.package-version.outputs.version }}" \
+              --generate-notes
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
