@@ -29,10 +29,11 @@ import { OnchainApi } from '../api/apis/onchain-api';
 import { ReactionApi } from '../api/apis/reaction-api';
 import { SignerApi } from '../api/apis/signer-api';
 import { StorageApi } from '../api/apis/storage-api';
+import { StudioApi } from '../api/apis/studio-api';
 import { SubscribersApi } from '../api/apis/subscribers-api';
 import { UserApi } from '../api/apis/user-api';
 import { WebhookApi } from '../api/apis/webhook-api';
-import type { AddVerificationReqBody, AppHostGetEventEventEnum, AppHostGetEventResponse, AppHostPostEventReqBody, AppHostPostEventResponse, AppHostUserStateResponse, AuthorizationUrlResponse, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BestFriendsResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastComposerActionsListResponse, CastEmbedCrawlResponse, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, Conversation, ConversationSummary, DeleteCastReqBody, DeleteFrameReqBody, DeleteFrameResponse, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeveloperManagedSigner, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FetchAllNotificationsTypeEnum, FetchAuthorizationUrlResponseTypeEnum, FetchBulkCastsSortTypeEnum, FetchBulkChannelsTypeEnum, FetchBulkUsersByEthOrSolAddressAddressTypesEnum, FetchCastMetricsIntervalEnum, FetchCastQuotes200Response, FetchCastQuotesTypeEnum, FetchCastReactionsTypesEnum, FetchComposerActionsListEnum, FetchFeedEmbedTypesEnum, FetchFeedFeedTypeEnum, FetchFeedFilterTypeEnum, FetchFeedForYouProviderEnum, FetchFrameCatalogCategoriesEnum, FetchFrameCatalogNetworksEnum, FetchFrameCatalogTimeWindowEnum, FetchFrameMetaTagsFromUrl200Response, FetchRelevantFrames200Response, FetchRelevantFramesNetworksEnum, FetchRelevantFramesTimeWindowEnum, FetchRelevantFungibleOwnersNetworkEnum, FetchRepliesAndRecastsForUserFilterEnum, FetchSubscribedToForFidSubscriptionProviderEnum, FetchSubscribersForFidSubscriptionProviderEnum, FetchSubscriptionsForFidSubscriptionProviderEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedProviderEnum, FetchTrendingFeedTimeWindowEnum, FetchUserBalanceNetworksEnum, FetchUserFollowersSortTypeEnum, FetchUserFollowingSortTypeEnum, FetchUserInteractions200Response, FetchUserInteractionsTypeEnum, FetchUserReactionsTypeEnum, FetchUserReciprocalFollowers200Response, FetchUserReciprocalFollowersSortTypeEnum, FetchValidateFrameAnalyticsAggregateWindowEnum, FetchValidateFrameAnalyticsAnalyticsTypeEnum, FnameAvailabilityResponse, FollowReqBody, FollowersResponse, Frame, FrameAction, FrameActionReqBody, FrameCatalogResponse, FrameDeveloperManagedActionReqBody, FrameNotificationTokens, FramePayTransactionReqBody, FramePayTransactionReqBodyTransaction, FrameSignaturePacket, FrameValidateAnalyticsResponse, FrameValidateListResponse, GetNotificationCampaignStats200Response, InviteChannelMemberReqBody, LookupCastByHashOrUrlTypeEnum, LookupCastConversationFoldEnum, LookupCastConversationSortTypeEnum, LookupCastConversationTypeEnum, LookupChannelTypeEnum, LookupNeynarFrameTypeEnum, MarkNotificationsAsSeenReqBody, MintNft200Response, MintNftRequest, MuteListResponse, MuteReqBody, MuteResponse, NeynarFrame, NeynarFrameCreationReqBody, NeynarFramePage, NeynarFrameUpdateReqBody, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, RegisterAuthAddressDeveloperManagedSignedKeyReqBody, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignedKeyForDeveloperManagedAuthAddress200Response, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyPreRegistrationCallsInner, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchCastsSortTypeEnum, SearchFramesNetworksEnum, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, SimulateNftMintNetworkEnum, SimulateNftMintResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionsResponse, TransactionFrameConfig, TransactionFrameResponse, TransactionSendFungiblesRecipient, TransactionSendFungiblesReqBody, TransactionSendFungiblesReqBodyNetworkEnum, TransactionSendFungiblesResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UserFIDResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, ValidateFrameActionReqBody, ValidateFrameActionResponse, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
+import type { AddVerificationReqBody, AppHostGetEventEventEnum, AppHostGetEventResponse, AppHostPostEventReqBody, AppHostPostEventResponse, AppHostUserStateResponse, AssociateDeployment200Response, AssociateDeploymentRequest, AuthorizationUrlResponse, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BestFriendsResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastEmbedCrawlResponse, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, Conversation, ConversationSummary, CreateDeploymentRequest, DeleteCastReqBody, DeleteDeployment200Response, DeleteDeploymentRequest, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeveloperManagedSigner, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FetchAllNotificationsTypeEnum, FetchAuthorizationUrlResponseTypeEnum, FetchBulkCastsSortTypeEnum, FetchBulkChannelsTypeEnum, FetchBulkUsersByEthOrSolAddressAddressTypesEnum, FetchCastMetricsIntervalEnum, FetchCastQuotes200Response, FetchCastQuotesTypeEnum, FetchCastReactionsTypesEnum, FetchFeedEmbedTypesEnum, FetchFeedFeedTypeEnum, FetchFeedFilterTypeEnum, FetchFeedForYouProviderEnum, FetchFrameCatalogCategoriesEnum, FetchFrameCatalogNetworksEnum, FetchFrameCatalogTimeWindowEnum, FetchRelevantFrames200Response, FetchRelevantFramesNetworksEnum, FetchRelevantFramesTimeWindowEnum, FetchRelevantFungibleOwnersNetworkEnum, FetchRepliesAndRecastsForUserFilterEnum, FetchSubscribedToForFidSubscriptionProviderEnum, FetchSubscribersForFidSubscriptionProviderEnum, FetchSubscriptionsForFidSubscriptionProviderEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedProviderEnum, FetchTrendingFeedTimeWindowEnum, FetchTrendingFungibles200Response, FetchTrendingFungiblesNetworkEnum, FetchTrendingFungiblesTimeWindowEnum, FetchUserBalanceNetworksEnum, FetchUserFollowersSortTypeEnum, FetchUserFollowingSortTypeEnum, FetchUserInteractions200Response, FetchUserInteractionsTypeEnum, FetchUserReactionsTypeEnum, FetchUserReciprocalFollowers200Response, FetchUserReciprocalFollowersSortTypeEnum, FnameAvailabilityResponse, FollowReqBody, FollowersResponse, FrameCatalogResponse, FrameNotificationTokens, FramePayTransactionReqBody, FramePayTransactionReqBodyTransaction, FungiblesResponseSchema, GetConversationMessages200Response, GetDeploymentFile200Response, GetDeploymentLogs200Response, GetNotificationCampaignStats200Response, InviteChannelMemberReqBody, ListConversations200Response, ListDeploymentFiles200Response, ListDeployments200ResponseInner, LookupCastByHashOrUrlTypeEnum, LookupCastConversationFoldEnum, LookupCastConversationSortTypeEnum, LookupCastConversationTypeEnum, LookupChannelTypeEnum, MarkNotificationsAsSeenReqBody, MintNft200Response, MintNftRequest, MuteListResponse, MuteReqBody, MuteResponse, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, PromptDeployment200Response, PromptDeploymentRequest, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, RegisterAuthAddressDeveloperManagedSignedKeyReqBody, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignedKeyForDeveloperManagedAuthAddress200Response, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyPreRegistrationCallsInner, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserReqBodySigner, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchCastsSortTypeEnum, SearchFramesNetworksEnum, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, SimulateNftMintNetworkEnum, SimulateNftMintResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionsResponse, TransactionFrameConfig, TransactionFrameResponse, TransactionSendFungiblesRecipient, TransactionSendFungiblesReqBody, TransactionSendFungiblesReqBodyNetworkEnum, TransactionSendFungiblesResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UploadImage200Response, UploadImageUrlRequest, UserFIDResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
 
 const { version: sdkVersion } = require("../../package.json");
 
@@ -106,6 +107,7 @@ export class NeynarAPIClient {
     reactionApi: ReactionApi;
     signerApi: SignerApi;
     storageApi: StorageApi;
+    studioApi: StudioApi;
     subscribersApi: SubscribersApi;
     userApi: UserApi;
     webhookApi: WebhookApi;
@@ -195,6 +197,7 @@ const client = new NeynarAPIClient(config);\n`);
       reactionApi: new ReactionApi(this.config, undefined, axiosInstance),
       signerApi: new SignerApi(this.config, undefined, axiosInstance),
       storageApi: new StorageApi(this.config, undefined, axiosInstance),
+      studioApi: new StudioApi(this.config, undefined, axiosInstance),
       subscribersApi: new SubscribersApi(this.config, undefined, axiosInstance),
       userApi: new UserApi(this.config, undefined, axiosInstance),
       webhookApi: new WebhookApi(this.config, undefined, axiosInstance),
@@ -825,39 +828,6 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
 }
 
 /**
- * Fetches all composer actions on Warpcast. You can filter by top or featured.
- *
- * @summary Fetch composer actions
- *
- * @param {object} params
- * @param {FetchComposerActionsListEnum} params.list  - Type of list to fetch.
- * @param {number} params.limit [optional]  - Number of results to fetch (Default: 25, Maximum: 25)
- * @param {string} params.cursor [optional]  - Pagination cursor.
- *
- * @returns {Promise<CastComposerActionsListResponse>} A promise that resolves to a `CastComposerActionsListResponse` object.
- *
- * @example
- *
- * // Fill in the appropriate values
- * const list = 
- * const limit = 
- *
- * client.fetchComposerActions({ list, limit }).then(response => {
- *   console.log('response:', response);
- * });
- *
- * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-composer-actions)
- *
- */
-public async fetchComposerActions(params: { list: FetchComposerActionsListEnum, limit?: number, cursor?: string }): Promise<CastComposerActionsListResponse> {
-  const adjustedParams: any = {};
-Object.assign(adjustedParams, params);
-
-  const response = await this.apis.castApi.fetchComposerActions(adjustedParams);
-  return response.data;
-}
-
-/**
  * Crawls the given URL and returns metadata useful when embedding the URL in a cast.
  *
  * @summary Embedded URL metadata
@@ -1017,7 +987,7 @@ Object.assign(adjustedParams, _params);
  * @summary Search for casts
  *
  * @param {object} params
- * @param {string} params.q  - Query string to search for casts. Supported operators:  | Operator  | Description                                                                                              | | --------- | -------------------------------------------------------------------------------------------------------- | | `+`       | Acts as the AND operator. This is the default operator between terms and can usually be omitted.         | | `|`      | Acts as the OR operator.                                                                                 | | `*`       | When used at the end of a term, signifies a prefix query.                                                  | | `"`       | Wraps several terms into a phrase (for example, `"star wars"`).                                          | | `(`, `)`  | Wrap a clause for precedence (for example, `star + (wars | trek)`).                                     | | `~n`      | When used after a term (for example, `satr~3`), sets `fuzziness`. When used after a phrase, sets `slop`. | | `-`       | Negates the term.                                                                                        | | `before:` | Search for casts before a specific date. (e.g. `before:2025-04-20`)                                       | | `after:`  | Search for casts after a specific date. (e.g. `after:2025-04-20`)                                         |
+ * @param {string} params.q  - Query string to search for casts. Supported operators:  | Operator  | Description                                                                                              | | --------- | -------------------------------------------------------------------------------------------------------- | | `+`       | Acts as the AND operator. This is the default operator between terms and can usually be omitted.         | | `|`      | Acts as the OR operator.                                                                                 | | `*`       | When used at the end of a term, signifies a prefix query.                                                  | | `"`       | Wraps several terms into a phrase (for example, `"star wars"`).                                          | | `(`, `)`  | Wrap a clause for precedence (for example, `star + (wars | trek)`).                                     | | `~n`      | When used after a term (for example, `satr~3`), sets `fuzziness`. When used after a phrase, sets `slop`. | | `-`       | Negates the term.                                                                                        | | `before:` | Search for casts before a specific date. (e.g. `before:2025-04-20` or `before:2025-04-20T23:59:59`)      | | `after:`  | Search for casts after a specific date. (e.g. `after:2025-04-20` or `after:2025-04-20T00:00:00`)         |
  * @param {SearchCastsModeEnum} params.mode [optional]  - Choices are: - `literal` - Searches for the words in the query string (default) - `semantic` - Searches for the meaning of the query string - `hybrid` - Combines both literal and semantic results
  * @param {SearchCastsSortTypeEnum} params.sortType [optional]  - Choices are: - `desc_chron` - All casts sorted by time in a descending order (default) - `chron` - All casts sorted by time in ascending order - `algorithmic` - Casts sorted by engagement and time
  * @param {number} params.authorFid [optional]  - Fid of the user whose casts you want to search
@@ -1884,40 +1854,6 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
 }
 
 /**
- * Fetch feed of casts with mini apps, reverse chronological order
- *
- * @summary Casts with mini apps
- *
- * @param {object} params
- * @param {number} params.limit [optional]  - Number of results to fetch (Default: 25, Maximum: 100)
- * @param {number} params.viewerFid [optional]  - Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`.
- * @param {string} params.cursor [optional]  - Pagination cursor.
- *
- * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object.
- *
- * @example
- *
- * // Fill in the appropriate values
- * const limit = 
- * const viewerFid = 
- *
- * client.fetchFramesOnlyFeed({ limit, viewerFid }).then(response => {
- *   console.log('response:', response);
- * });
- *
- * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-frames-only-feed)
- *
- */
-public async fetchFramesOnlyFeed(params: { limit?: number, viewerFid?: number, cursor?: string }): Promise<FeedResponse> {
-  const adjustedParams: any = {};
-Object.assign(adjustedParams, params);
-adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
-
-  const response = await this.apis.feedApi.fetchFramesOnlyFeed(adjustedParams);
-  return response.data;
-}
-
-/**
  * Fetch 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
  *
  * @summary 10 most popular casts
@@ -2281,37 +2217,6 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
 }
 
 /**
- * Delete an existing mini app, if it was made by the developer (identified by API key)
- *
- * @summary Delete mini app
- *
- * @param {object} params
- * @param {string} params.uuid [optional] 
- *
- * @returns {Promise<DeleteFrameResponse>} A promise that resolves to a `DeleteFrameResponse` object.
- *
- * @example
- *
- * // Fill in the appropriate values
- * const uuid = 
- *
- * client.deleteNeynarFrame({uuid}).then(response => {
- *   console.log('response:', response);
- * });
- *
- * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-neynar-frame)
- *
- */
-public async deleteNeynarFrame(params: { uuid?: string }): Promise<DeleteFrameResponse> {
-  const adjustedParams: any = {};
-const _params = { deleteFrameReqBody: camelCaseToSnakeCaseKeys(params) };
-Object.assign(adjustedParams, _params);
-
-  const response = await this.apis.frameApi.deleteNeynarFrame(adjustedParams);
-  return response.data;
-}
-
-/**
  * A curated list of featured mini apps
  *
  * @summary Mini apps catalog
@@ -2345,59 +2250,6 @@ public async fetchFrameCatalog(params: { limit?: number, cursor?: string, timeWi
 Object.assign(adjustedParams, params);
 
   const response = await this.apis.frameApi.fetchFrameCatalog(adjustedParams);
-  return response.data;
-}
-
-/**
- * Fetches the mini app meta tags from the URL
- *
- * @summary Meta tags from URL
- *
- * @param {object} params
- * @param {string} params.url  - The mini app URL to crawl
- *
- * @returns {Promise<FetchFrameMetaTagsFromUrl200Response>} A promise that resolves to a `FetchFrameMetaTagsFromUrl200Response` object.
- *
- * @example
- *
- * // Fill in the appropriate values
- * const url = 
- *
- * client.fetchFrameMetaTagsFromUrl({ url }).then(response => {
- *   console.log('response:', response);
- * });
- *
- * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-frame-meta-tags-from-url)
- *
- */
-public async fetchFrameMetaTagsFromUrl(params: { url: string }): Promise<FetchFrameMetaTagsFromUrl200Response> {
-  const adjustedParams: any = {};
-Object.assign(adjustedParams, params);
-
-  const response = await this.apis.frameApi.fetchFrameMetaTagsFromUrl(adjustedParams);
-  return response.data;
-}
-
-/**
- * Fetch a list of mini apps made by the developer (identified by API key)
- *
- * @summary List of mini apps
- *
- *
- * @returns {Promise<Array<NeynarFrame>>} A promise that resolves to a `Array<NeynarFrame>` object.
- *
- * @example
- *
- * client.fetchNeynarFrames().then(response => {
- *   console.log('response:', response);
- * });
- *
- * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-neynar-frames)
- *
- */
-public async fetchNeynarFrames(): Promise<Array<NeynarFrame>> {
-  
-  const response = await this.apis.frameApi.fetchNeynarFrames();
   return response.data;
 }
 
@@ -2475,67 +2327,6 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Fetch analytics for total-interactors, interactors, nteractions-per-cast and input-text.
- *
- * @summary Analytics for the mini app
- *
- * @param {object} params
- * @param {string} params.frameUrl  - URL of the mini app to fetch analytics for
- * @param {FetchValidateFrameAnalyticsAnalyticsTypeEnum} params.analyticsType  - Type of analytics to fetch
- * @param {string} params.start 
- * @param {string} params.stop 
- * @param {FetchValidateFrameAnalyticsAggregateWindowEnum} params.aggregateWindow [optional]  - Required for `analytics_type=interactions-per-cast`
- *
- * @returns {Promise<FrameValidateAnalyticsResponse>} A promise that resolves to a `FrameValidateAnalyticsResponse` object.
- *
- * @example
- *
- * // Fill in the appropriate values
- * const frameUrl = 
- * const analyticsType = 
- * const start = 
- * const stop = 
- * const aggregateWindow = 
- *
- * client.fetchValidateFrameAnalytics({ frameUrl, analyticsType, start, stop, aggregateWindow }).then(response => {
- *   console.log('response:', response);
- * });
- *
- * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-validate-frame-analytics)
- *
- */
-public async fetchValidateFrameAnalytics(params: { frameUrl: string, analyticsType: FetchValidateFrameAnalyticsAnalyticsTypeEnum, start: string, stop: string, aggregateWindow?: FetchValidateFrameAnalyticsAggregateWindowEnum }): Promise<FrameValidateAnalyticsResponse> {
-  const adjustedParams: any = {};
-Object.assign(adjustedParams, params);
-
-  const response = await this.apis.frameApi.fetchValidateFrameAnalytics(adjustedParams);
-  return response.data;
-}
-
-/**
- * Fetch a list of all the mini apps validated by a user
- *
- * @summary All mini apps validated by user
- *
- *
- * @returns {Promise<FrameValidateListResponse>} A promise that resolves to a `FrameValidateListResponse` object.
- *
- * @example
- *
- * client.fetchValidateFrameList().then(response => {
- *   console.log('response:', response);
- * });
- *
- * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-validate-frame-list)
- *
- */
-public async fetchValidateFrameList(): Promise<FrameValidateListResponse> {
-  
-  const response = await this.apis.frameApi.fetchValidateFrameList();
-  return response.data;
-}
-
-/**
  * Retrieve notification delivery and opened stats for notification campaigns
  *
  * @summary Get notification campaign stats
@@ -2599,116 +2390,12 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Fetch a mini app either by UUID or Neynar URL
- *
- * @summary Mini app by UUID or URL
- *
- * @param {object} params
- * @param {LookupNeynarFrameTypeEnum} params.type  - Type of identifier (either 'uuid' or 'url')
- * @param {string} params.uuid [optional]  - UUID of the mini app to fetch
- * @param {string} params.url [optional]  - URL of the Neynar mini app to fetch
- *
- * @returns {Promise<NeynarFrame>} A promise that resolves to a `NeynarFrame` object.
- *
- * @example
- *
- * // Fill in the appropriate values
- * const type = 
- * const uuid = 
- * const url = 
- *
- * client.lookupNeynarFrame({ type, uuid, url }).then(response => {
- *   console.log('response:', response);
- * });
- *
- * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-neynar-frame)
- *
- */
-public async lookupNeynarFrame(params: { type: LookupNeynarFrameTypeEnum, uuid?: string, url?: string }): Promise<NeynarFrame> {
-  const adjustedParams: any = {};
-Object.assign(adjustedParams, params);
-
-  const response = await this.apis.frameApi.lookupNeynarFrame(adjustedParams);
-  return response.data;
-}
-
-/**
- * Post mini app actions, cast actions or cast composer actions to the server (In order to post any of these actions, you need to have an approved `signer_uuid`)  The POST request to the post_url has a timeout of 5 seconds for mini apps.
- *
- * @summary Post a mini app action, cast action or a cast composer action
- *
- * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
- * @param {string} params.castHash [optional] 
- * @param {FrameAction} params.action 
- *
- * @returns {Promise<Frame>} A promise that resolves to a `Frame` object.
- *
- * @example
- *
- * // Fill in the appropriate values
- * const signerUuid = 
- * const castHash = 
- * const action = 
- *
- * client.postFrameAction({signerUuid, castHash, action}).then(response => {
- *   console.log('response:', response);
- * });
- *
- * For more information, refer to the [API documentation](https://docs.neynar.com/reference/post-frame-action)
- *
- */
-public async postFrameAction(params: { signerUuid: string, castHash?: string, action: FrameAction }): Promise<Frame> {
-  const adjustedParams: any = {};
-const _params = { frameActionReqBody: camelCaseToSnakeCaseKeys(params) };
-Object.assign(adjustedParams, _params);
-
-  const response = await this.apis.frameApi.postFrameAction(adjustedParams);
-  return response.data;
-}
-
-/**
- * Post a mini app action that has been signed with a developer managed signer  The POST request to the post_url has a timeout of 5 seconds.
- *
- * @summary Signature packet
- *
- * @param {object} params
- * @param {string} params.castHash [optional] 
- * @param {FrameAction} params.action 
- * @param {FrameSignaturePacket} params.signaturePacket 
- *
- * @returns {Promise<Frame>} A promise that resolves to a `Frame` object.
- *
- * @example
- *
- * // Fill in the appropriate values
- * const castHash = 
- * const action = 
- * const signaturePacket = 
- *
- * client.postFrameActionDeveloperManaged({castHash, action, signaturePacket}).then(response => {
- *   console.log('response:', response);
- * });
- *
- * For more information, refer to the [API documentation](https://docs.neynar.com/reference/post-frame-action-developer-managed)
- *
- */
-public async postFrameActionDeveloperManaged(params: { castHash?: string, action: FrameAction, signaturePacket: FrameSignaturePacket }): Promise<Frame> {
-  const adjustedParams: any = {};
-const _params = { frameDeveloperManagedActionReqBody: camelCaseToSnakeCaseKeys(params) };
-Object.assign(adjustedParams, _params);
-
-  const response = await this.apis.frameApi.postFrameActionDeveloperManaged(adjustedParams);
-  return response.data;
-}
-
-/**
  * Send notifications to interactors of a mini app
  *
  * @summary Send notifications
  *
  * @param {object} params
- * @param {Array<number>} params.targetFids  - An array of target FIDs to whom the notifications should be sent. Each FID must be a positive integer. Pass an empty array to send notifications to all FIDs with notifications enabled for the mini app.
+ * @param {Array<number>} params.targetFids [optional]  - An array of target FIDs to whom the notifications should be sent. Each FID must be a positive integer. Pass an empty array to send notifications to all FIDs with notifications enabled for the mini app.
  * @param {SendFrameNotificationsReqBodyFilters} params.filters [optional] 
  * @param {SendFrameNotificationsReqBodyNotification} params.notification 
  *
@@ -2728,45 +2415,12 @@ Object.assign(adjustedParams, _params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-frame-notifications)
  *
  */
-public async publishFrameNotifications(params: { targetFids: Array<number>, filters?: SendFrameNotificationsReqBodyFilters, notification: SendFrameNotificationsReqBodyNotification }): Promise<SendFrameNotificationsResponse> {
+public async publishFrameNotifications(params: { targetFids?: Array<number>, filters?: SendFrameNotificationsReqBodyFilters, notification: SendFrameNotificationsReqBodyNotification }): Promise<SendFrameNotificationsResponse> {
   const adjustedParams: any = {};
 const _params = { sendFrameNotificationsReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
 
   const response = await this.apis.frameApi.publishFrameNotifications(adjustedParams);
-  return response.data;
-}
-
-/**
- * Create a new mini app with a list of pages.
- *
- * @summary Create mini app
- *
- * @param {object} params
- * @param {string} params.name  - The name of the mini app.
- * @param {Array<NeynarFramePage>} params.pages 
- *
- * @returns {Promise<NeynarFrame>} A promise that resolves to a `NeynarFrame` object.
- *
- * @example
- *
- * // Fill in the appropriate values
- * const name = 
- * const pages = 
- *
- * client.publishNeynarFrame({name, pages}).then(response => {
- *   console.log('response:', response);
- * });
- *
- * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-neynar-frame)
- *
- */
-public async publishNeynarFrame(params: { name: string, pages: Array<NeynarFramePage> }): Promise<NeynarFrame> {
-  const adjustedParams: any = {};
-const _params = { neynarFrameCreationReqBody: camelCaseToSnakeCaseKeys(params) };
-Object.assign(adjustedParams, _params);
-
-  const response = await this.apis.frameApi.publishNeynarFrame(adjustedParams);
   return response.data;
 }
 
@@ -2802,80 +2456,6 @@ public async searchFrames(params: { q: string, limit?: number, cursor?: string, 
 Object.assign(adjustedParams, params);
 
   const response = await this.apis.frameApi.searchFrames(adjustedParams);
-  return response.data;
-}
-
-/**
- * Update an existing mini app with a list of pages, if it was made by the developer (identified by API key)
- *
- * @summary Update mini app
- *
- * @param {object} params
- * @param {string} params.uuid  - The UUID of the mini app to update.
- * @param {string} params.name [optional]  - The name of the mini app.
- * @param {Array<NeynarFramePage>} params.pages 
- *
- * @returns {Promise<NeynarFrame>} A promise that resolves to a `NeynarFrame` object.
- *
- * @example
- *
- * // Fill in the appropriate values
- * const uuid = 
- * const name = 
- * const pages = 
- *
- * client.updateNeynarFrame({uuid, name, pages}).then(response => {
- *   console.log('response:', response);
- * });
- *
- * For more information, refer to the [API documentation](https://docs.neynar.com/reference/update-neynar-frame)
- *
- */
-public async updateNeynarFrame(params: { uuid: string, name?: string, pages: Array<NeynarFramePage> }): Promise<NeynarFrame> {
-  const adjustedParams: any = {};
-const _params = { neynarFrameUpdateReqBody: camelCaseToSnakeCaseKeys(params) };
-Object.assign(adjustedParams, _params);
-
-  const response = await this.apis.frameApi.updateNeynarFrame(adjustedParams);
-  return response.data;
-}
-
-/**
- * Validates a mini app against by an interacting user against a Farcaster Hub (In order to validate a mini app, message bytes from Frame Action must be provided in hex)
- *
- * @summary Validate mini app action
- *
- * @param {object} params
- * @param {string} params.messageBytesInHex  - Hexadecimal string of message bytes.
- * @param {boolean} params.castReactionContext [optional]  - Adds viewer_context inside the cast object to indicate whether the interactor reacted to the cast housing the mini app.
- * @param {boolean} params.followContext [optional]  - Adds viewer_context inside the user (interactor) object to indicate whether the interactor follows or is followed by the cast author.
- * @param {boolean} params.signerContext [optional]  - Adds context about the app used by the user inside `frame.action`.
- * @param {boolean} params.channelFollowContext [optional]  - Adds context about the channel that the cast belongs to inside of the cast object.
- *
- * @returns {Promise<ValidateFrameActionResponse>} A promise that resolves to a `ValidateFrameActionResponse` object.
- *
- * @example
- *
- * // Fill in the appropriate values
- * const messageBytesInHex = 
- * const castReactionContext = 
- * const followContext = 
- * const signerContext = 
- * const channelFollowContext = 
- *
- * client.validateFrameAction({messageBytesInHex, castReactionContext, followContext, signerContext, channelFollowContext}).then(response => {
- *   console.log('response:', response);
- * });
- *
- * For more information, refer to the [API documentation](https://docs.neynar.com/reference/validate-frame-action)
- *
- */
-public async validateFrameAction(params: { messageBytesInHex: string, castReactionContext?: boolean, followContext?: boolean, signerContext?: boolean, channelFollowContext?: boolean }): Promise<ValidateFrameActionResponse> {
-  const adjustedParams: any = {};
-const _params = { validateFrameActionReqBody: camelCaseToSnakeCaseKeys(params) };
-Object.assign(adjustedParams, _params);
-
-  const response = await this.apis.frameApi.validateFrameAction(adjustedParams);
   return response.data;
 }
 
@@ -3240,6 +2820,36 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Fetch details for fungible assets identified by fungible identifiers.
+ *
+ * @summary Fetch fungibles
+ *
+ * @param {object} params
+ * @param {string} params.fungibles  - Comma-separated fungible identifiers
+ *
+ * @returns {Promise<FungiblesResponseSchema>} A promise that resolves to a `FungiblesResponseSchema` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const fungibles = 
+ *
+ * client.fetchFungibles({ fungibles }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-fungibles)
+ *
+ */
+public async fetchFungibles(params: { fungibles: string }): Promise<FungiblesResponseSchema> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.onchainApi.fetchFungibles(adjustedParams);
+  return response.data;
+}
+
+/**
  * Fetch a list of relevant owners for a on chain asset. If a viewer is provided, only relevant holders will be shown. This usually shows on a fungible asset page as \"X, Y, Z and N others you know own this asset\".
  *
  * @summary Relevant owners
@@ -3270,6 +2880,38 @@ public async fetchRelevantFungibleOwners(params: { contractAddress: string, netw
 Object.assign(adjustedParams, params);
 
   const response = await this.apis.onchainApi.fetchRelevantFungibleOwners(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Fetch trending fungibles based on buy activity from watched addresses. Returns fungibles ranked by USD buy volume and buy count within the specified time window.
+ *
+ * @summary Trending fungibles
+ *
+ * @param {object} params
+ * @param {FetchTrendingFungiblesNetworkEnum} params.network 
+ * @param {FetchTrendingFungiblesTimeWindowEnum} params.timeWindow [optional]  - Time window for trending calculations e.g. "1h", "6h", "12h", "24h", "7d"
+ *
+ * @returns {Promise<FetchTrendingFungibles200Response>} A promise that resolves to a `FetchTrendingFungibles200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const network = 
+ * const timeWindow = 
+ *
+ * client.fetchTrendingFungibles({ network, timeWindow }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-trending-fungibles)
+ *
+ */
+public async fetchTrendingFungibles(params: { network: FetchTrendingFungiblesNetworkEnum, timeWindow?: FetchTrendingFungiblesTimeWindowEnum }): Promise<FetchTrendingFungibles200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.onchainApi.fetchTrendingFungibles(adjustedParams);
   return response.data;
 }
 
@@ -3952,6 +3594,454 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Associates a generated miniapp with a Farcaster account using a JFS-signed domain association. Requires API key authentication.
+ *
+ * @summary Set account association
+ *
+ * @param {object} params
+ * @param {AssociateDeploymentRequest} params.associateDeploymentRequest 
+ *
+ * @returns {Promise<AssociateDeployment200Response>} A promise that resolves to a `AssociateDeployment200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const associateDeploymentRequest = 
+ *
+ * client.associateDeployment({ associateDeploymentRequest }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/associate-deployment)
+ *
+ */
+public async associateDeployment(params: { associateDeploymentRequest: AssociateDeploymentRequest }): Promise<AssociateDeployment200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.associateDeployment(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Creates and deploys an instance of the miniapp generator for a user. Requires authentication via API key in the request header.
+ *
+ * @summary Create a miniapp generator deployment
+ *
+ * @param {object} params
+ * @param {CreateDeploymentRequest} params.createDeploymentRequest 
+ *
+ * @returns {Promise<ListDeployments200ResponseInner>} A promise that resolves to a `ListDeployments200ResponseInner` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const createDeploymentRequest = 
+ *
+ * client.createDeployment({ createDeploymentRequest }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/create-deployment)
+ *
+ */
+public async createDeployment(params: { createDeploymentRequest: CreateDeploymentRequest }): Promise<ListDeployments200ResponseInner> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.createDeployment(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Deletes a specific miniapp generator deployment or all deployments for a FID. If name is provided, deletes single deployment. If only FID is provided, deletes all deployments for that FID. Requires API key authentication.
+ *
+ * @summary Delete deployment(s)
+ *
+ * @param {object} params
+ * @param {DeleteDeploymentRequest} params.deleteDeploymentRequest 
+ *
+ * @returns {Promise<DeleteDeployment200Response>} A promise that resolves to a `DeleteDeployment200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const deleteDeploymentRequest = 
+ *
+ * client.deleteDeployment({ deleteDeploymentRequest }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-deployment)
+ *
+ */
+public async deleteDeployment(params: { deleteDeploymentRequest: DeleteDeploymentRequest }): Promise<DeleteDeployment200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.deleteDeployment(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Retrieves all messages in a specific conversation. Requires API key authentication.
+ *
+ * @summary Get messages in a conversation
+ *
+ * @param {object} params
+ * @param {number} params.fid  - Farcaster ID of the user
+ * @param {string} params.name  - Kubernetes deployment name
+ * @param {string} params.conversationId  - Conversation ID
+ * @param {boolean | null} params.includeDeleted [optional]  - Include deleted messages in the response. Defaults to false.
+ *
+ * @returns {Promise<GetConversationMessages200Response>} A promise that resolves to a `GetConversationMessages200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const fid = 
+ * const name = 
+ * const conversationId = 
+ * const includeDeleted = 
+ *
+ * client.getConversationMessages({ fid, name, conversationId, includeDeleted }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-conversation-messages)
+ *
+ */
+public async getConversationMessages(params: { fid: number, name: string, conversationId: string, includeDeleted?: boolean | null }): Promise<GetConversationMessages200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.getConversationMessages(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Fetches info about a miniapp generator deployment by its name and creator\'s Farcaster ID. Requires API key authentication.
+ *
+ * @summary Get deployment info
+ *
+ * @param {object} params
+ * @param {number} params.fid  - Farcaster ID of the user
+ * @param {string} params.name  - Kubernetes deployment name
+ *
+ * @returns {Promise<ListDeployments200ResponseInner>} A promise that resolves to a `ListDeployments200ResponseInner` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const fid = 
+ * const name = 
+ *
+ * client.getDeployment({ fid, name }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-deployment)
+ *
+ */
+public async getDeployment(params: { fid: number, name: string }): Promise<ListDeployments200ResponseInner> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.getDeployment(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Retrieves the contents of a specific file from the generated app. Requires Studio admin authentication.
+ *
+ * @summary Get deployment file contents
+ *
+ * @param {object} params
+ * @param {number} params.fid  - Farcaster ID of the user
+ * @param {string} params.name  - Kubernetes deployment name
+ * @param {string} params.filePath  - File path relative to gen/
+ *
+ * @returns {Promise<GetDeploymentFile200Response>} A promise that resolves to a `GetDeploymentFile200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const fid = 
+ * const name = 
+ * const filePath = 
+ *
+ * client.getDeploymentFile({ fid, name, filePath }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-deployment-file)
+ *
+ */
+public async getDeploymentFile(params: { fid: number, name: string, filePath: string }): Promise<GetDeploymentFile200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.getDeploymentFile(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Retrieves the server.log file from a miniapp-generator deployment. Requires Studio admin authentication.
+ *
+ * @summary Get deployment logs
+ *
+ * @param {object} params
+ * @param {number} params.fid  - Farcaster ID of the user
+ * @param {string} params.name  - Kubernetes deployment name
+ *
+ * @returns {Promise<GetDeploymentLogs200Response>} A promise that resolves to a `GetDeploymentLogs200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const fid = 
+ * const name = 
+ *
+ * client.getDeploymentLogs({ fid, name }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-deployment-logs)
+ *
+ */
+public async getDeploymentLogs(params: { fid: number, name: string }): Promise<GetDeploymentLogs200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.getDeploymentLogs(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Lists all conversations for a specific deployment. Requires API key authentication.
+ *
+ * @summary List conversations for a deployment
+ *
+ * @param {object} params
+ * @param {number} params.fid [optional]  - Farcaster ID of the user. Required for non-admin users. Studio admins can omit to query all conversations.
+ * @param {string} params.name [optional]  - Kubernetes deployment name. If provided, filters conversations to this deployment only.
+ * @param {boolean | null} params.includeDeleted [optional]  - Include deleted conversations in the response. Defaults to false.
+ *
+ * @returns {Promise<ListConversations200Response>} A promise that resolves to a `ListConversations200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const fid = 
+ * const name = 
+ * const includeDeleted = 
+ *
+ * client.listConversations({ fid, name, includeDeleted }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/list-conversations)
+ *
+ */
+public async listConversations(params: { fid?: number, name?: string, includeDeleted?: boolean | null }): Promise<ListConversations200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.listConversations(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Lists files in a directory of the generated app. Requires Studio admin authentication.
+ *
+ * @summary List deployment files
+ *
+ * @param {object} params
+ * @param {number} params.fid  - Farcaster ID of the user
+ * @param {string} params.name  - Kubernetes deployment name
+ * @param {string} params.directory [optional]  - Directory path relative to gen/ (defaults to root)
+ *
+ * @returns {Promise<ListDeploymentFiles200Response>} A promise that resolves to a `ListDeploymentFiles200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const fid = 
+ * const name = 
+ * const directory = 
+ *
+ * client.listDeploymentFiles({ fid, name, directory }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/list-deployment-files)
+ *
+ */
+public async listDeploymentFiles(params: { fid: number, name: string, directory?: string }): Promise<ListDeploymentFiles200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.listDeploymentFiles(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Lists all miniapp generator deployments for a user. Requires API key authentication.
+ *
+ * @summary List deployments
+ *
+ * @param {object} params
+ * @param {number} params.fid [optional]  - Farcaster ID of the user. Required for non-admin users. Studio admins can omit to query all deployments.
+ * @param {number} params.limit [optional]  - Maximum number of deployments to return. Defaults to 50, max 1000. (Default: 50, Maximum: 1000)
+ * @param {number | null} params.offset [optional]  - Number of deployments to skip for pagination. Defaults to 0.
+ * @param {boolean | null} params.includeDeleted [optional]  - Include deleted deployments in the response. Defaults to false.
+ *
+ * @returns {Promise<Array<ListDeployments200ResponseInner>>} A promise that resolves to a `Array<ListDeployments200ResponseInner>` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const fid = 
+ * const limit = 
+ * const offset = 
+ * const includeDeleted = 
+ *
+ * client.listDeployments({ fid, limit, offset, includeDeleted }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/list-deployments)
+ *
+ */
+public async listDeployments(params: { fid?: number, limit?: number, offset?: number | null, includeDeleted?: boolean | null }): Promise<Array<ListDeployments200ResponseInner>> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.listDeployments(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Sends a prompt to a specific miniapp generator deployment. Requires authentication via API key in the request header.
+ *
+ * @summary Prompt a deployment
+ *
+ * @param {object} params
+ * @param {PromptDeploymentRequest} params.promptDeploymentRequest 
+ *
+ * @returns {Promise<PromptDeployment200Response>} A promise that resolves to a `PromptDeployment200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const promptDeploymentRequest = 
+ *
+ * client.promptDeployment({ promptDeploymentRequest }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/prompt-deployment)
+ *
+ */
+public async promptDeployment(params: { promptDeploymentRequest: PromptDeploymentRequest }): Promise<PromptDeployment200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.promptDeployment(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Sends a prompt to a specific miniapp generator deployment and returns a streaming response using Server-Sent Events. The response is a continuous stream of Server-Sent Events, not a single JSON payload. Each event contains a JSON object with type, message, and other fields specific to the message type. Requires authentication via API key in the request header.
+ *
+ * @summary Prompt a deployment with streaming response
+ *
+ * @param {object} params
+ * @param {PromptDeploymentRequest} params.promptDeploymentRequest 
+ *
+ * @returns {Promise<void>} A promise that resolves to a `void` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const promptDeploymentRequest = 
+ *
+ * client.promptDeploymentStream({ promptDeploymentRequest }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/prompt-deployment-stream)
+ *
+ */
+public async promptDeploymentStream(params: { promptDeploymentRequest: PromptDeploymentRequest }): Promise<void> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.promptDeploymentStream(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Uploads an image file to the generated miniapp public folder. The image will be accessible as a static asset on the deployed miniapp. Requires API key authentication.
+ *
+ * @summary Upload image to deployment
+ *
+ * @param {object} params
+ * @param {UploadImageUrlRequest} params.uploadImageUrlRequest 
+ *
+ * @returns {Promise<UploadImage200Response>} A promise that resolves to a `UploadImage200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const uploadImageUrlRequest = 
+ *
+ * client.uploadImage({ uploadImageUrlRequest }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/upload-image)
+ *
+ */
+public async uploadImage(params: { uploadImageUrlRequest: UploadImageUrlRequest }): Promise<UploadImage200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.uploadImage(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Downloads an image from the provided URL and saves it to the generated miniapp public folder. The image will be accessible as a static asset on the deployed miniapp. Requires API key authentication.
+ *
+ * @summary Upload image from URL to deployment
+ *
+ * @param {object} params
+ * @param {UploadImageUrlRequest} params.uploadImageUrlRequest 
+ *
+ * @returns {Promise<UploadImage200Response>} A promise that resolves to a `UploadImage200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const uploadImageUrlRequest = 
+ *
+ * client.uploadImageUrl({ uploadImageUrlRequest }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/upload-image-url)
+ *
+ */
+public async uploadImageUrl(params: { uploadImageUrlRequest: UploadImageUrlRequest }): Promise<UploadImage200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.uploadImageUrl(adjustedParams);
+  return response.data;
+}
+
+/**
  * Fetch what FIDs and contracts a FID is subscribed to.
  *
  * @summary Subscribed to
@@ -4477,6 +4567,7 @@ Object.assign(adjustedParams, _params);
  * @summary Register new account
  *
  * @param {object} params
+ * @param {RegisterUserReqBodySigner} params.signer [optional] 
  * @param {string} params.signature 
  * @param {number} params.fid 
  * @param {string} params.requestedUserCustodyAddress 
@@ -4489,6 +4580,7 @@ Object.assign(adjustedParams, _params);
  * @example
  *
  * // Fill in the appropriate values
+ * const signer = 
  * const signature = 
  * const fid = 
  * const requestedUserCustodyAddress = 
@@ -4496,14 +4588,14 @@ Object.assign(adjustedParams, _params);
  * const fname = 
  * const metadata = 
  *
- * client.registerAccount({signature, fid, requestedUserCustodyAddress, deadline, fname, metadata}).then(response => {
+ * client.registerAccount({signer, signature, fid, requestedUserCustodyAddress, deadline, fname, metadata}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/register-account)
  *
  */
-public async registerAccount(params: { signature: string, fid: number, requestedUserCustodyAddress: string, deadline: number, fname?: string, metadata?: RegisterUserReqBodyMetadata }): Promise<RegisterUserResponse> {
+public async registerAccount(params: { signer?: RegisterUserReqBodySigner, signature: string, fid: number, requestedUserCustodyAddress: string, deadline: number, fname?: string, metadata?: RegisterUserReqBodyMetadata }): Promise<RegisterUserResponse> {
   const adjustedParams: any = {};
 const _params = { registerUserReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -4594,7 +4686,9 @@ Object.assign(adjustedParams, _params);
  * @param {string} params.username [optional] 
  * @param {string} params.displayName [optional] 
  * @param {UpdateUserReqBodyLocation} params.location [optional] 
- * @param {string} params.banner [optional] 
+ * @param {string} params.banner [optional]  - Requires pro subscription.
+ * @param {string} params.primaryEthAddress [optional]  - Must be one of the verified addresses.
+ * @param {string} params.primarySolAddress [optional]  - Must be one of the verified addresses.
  * @param {UpdateUserReqBodyVerifiedAccounts} params.verifiedAccounts [optional] 
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
@@ -4610,16 +4704,18 @@ Object.assign(adjustedParams, _params);
  * const displayName = 
  * const location = 
  * const banner = 
+ * const primaryEthAddress = 
+ * const primarySolAddress = 
  * const verifiedAccounts = 
  *
- * client.updateUser({signerUuid, bio, pfpUrl, url, username, displayName, location, banner, verifiedAccounts}).then(response => {
+ * client.updateUser({signerUuid, bio, pfpUrl, url, username, displayName, location, banner, primaryEthAddress, primarySolAddress, verifiedAccounts}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/update-user)
  *
  */
-public async updateUser(params: { signerUuid: string, bio?: string, pfpUrl?: string, url?: string, username?: string, displayName?: string, location?: UpdateUserReqBodyLocation, banner?: string, verifiedAccounts?: UpdateUserReqBodyVerifiedAccounts }): Promise<OperationResponse> {
+public async updateUser(params: { signerUuid: string, bio?: string, pfpUrl?: string, url?: string, username?: string, displayName?: string, location?: UpdateUserReqBodyLocation, banner?: string, primaryEthAddress?: string, primarySolAddress?: string, verifiedAccounts?: UpdateUserReqBodyVerifiedAccounts }): Promise<OperationResponse> {
   const adjustedParams: any = {};
 const _params = { updateUserReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
