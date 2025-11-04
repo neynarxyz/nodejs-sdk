@@ -54,7 +54,12 @@ export interface WebhookCastCreated {
   data: Cast;
   type: "cast.created";
   created_at: number;
-  event_timestamp: string;
+}
+
+export interface WebhookCastDeleted {
+  data: Cast;
+  type: "cast.deleted";
+  created_at: number;
 }
 
 export interface WebhookUserCreated {
