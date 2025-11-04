@@ -258,6 +258,8 @@ models/signer-uuid-body.ts
 models/signer.ts
 models/simulate-nft-mint-response-inner.ts
 models/simulate-nft-mint-response.ts
+models/start-app-request.ts
+models/start-app200-response.ts
 models/storage-allocation.ts
 models/storage-allocations-response.ts
 models/storage-object.ts

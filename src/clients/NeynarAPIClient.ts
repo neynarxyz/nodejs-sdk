@@ -33,7 +33,7 @@ import { StudioApi } from '../api/apis/studio-api';
 import { SubscribersApi } from '../api/apis/subscribers-api';
 import { UserApi } from '../api/apis/user-api';
 import { WebhookApi } from '../api/apis/webhook-api';
-import type { AddVerificationReqBody, AppHostGetEventEventEnum, AppHostGetEventResponse, AppHostPostEventReqBody, AppHostPostEventResponse, AppHostUserStateResponse, AssociateDeployment200Response, AssociateDeploymentRequest, AuthorizationUrlResponse, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BestFriendsResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastEmbedCrawlResponse, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, Conversation, ConversationSummary, CreateDeploymentRequest, DeleteCastReqBody, DeleteDeployment200Response, DeleteDeploymentRequest, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeveloperManagedSigner, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FetchAllNotificationsTypeEnum, FetchAuthorizationUrlResponseTypeEnum, FetchBulkCastsSortTypeEnum, FetchBulkChannelsTypeEnum, FetchBulkUsersByEthOrSolAddressAddressTypesEnum, FetchCastMetricsIntervalEnum, FetchCastQuotes200Response, FetchCastQuotesTypeEnum, FetchCastReactionsTypesEnum, FetchFeedEmbedTypesEnum, FetchFeedFeedTypeEnum, FetchFeedFilterTypeEnum, FetchFeedForYouProviderEnum, FetchFrameCatalogCategoriesEnum, FetchFrameCatalogNetworksEnum, FetchFrameCatalogTimeWindowEnum, FetchRelevantFrames200Response, FetchRelevantFramesNetworksEnum, FetchRelevantFramesTimeWindowEnum, FetchRelevantFungibleOwnersNetworkEnum, FetchRepliesAndRecastsForUserFilterEnum, FetchSubscribedToForFidSubscriptionProviderEnum, FetchSubscribersForFidSubscriptionProviderEnum, FetchSubscriptionsForFidSubscriptionProviderEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedProviderEnum, FetchTrendingFeedTimeWindowEnum, FetchTrendingFungibles200Response, FetchTrendingFungiblesNetworkEnum, FetchTrendingFungiblesTimeWindowEnum, FetchUserBalanceNetworksEnum, FetchUserFollowersSortTypeEnum, FetchUserFollowingSortTypeEnum, FetchUserInteractions200Response, FetchUserInteractionsTypeEnum, FetchUserReactionsTypeEnum, FetchUserReciprocalFollowers200Response, FetchUserReciprocalFollowersSortTypeEnum, FnameAvailabilityResponse, FollowReqBody, FollowersResponse, FrameCatalogResponse, FrameNotificationTokens, FramePayTransactionReqBody, FramePayTransactionReqBodyTransaction, FungiblesResponseSchema, GetConversationMessages200Response, GetDeploymentFile200Response, GetDeploymentLogs200Response, GetNotificationCampaignStats200Response, InviteChannelMemberReqBody, ListConversations200Response, ListDeploymentFiles200Response, ListDeployments200ResponseInner, LookupCastByHashOrUrlTypeEnum, LookupCastConversationFoldEnum, LookupCastConversationSortTypeEnum, LookupCastConversationTypeEnum, LookupChannelTypeEnum, MarkNotificationsAsSeenReqBody, MintNft200Response, MintNftRequest, MuteListResponse, MuteReqBody, MuteResponse, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, PromptDeployment200Response, PromptDeploymentRequest, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, RegisterAuthAddressDeveloperManagedSignedKeyReqBody, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignedKeyForDeveloperManagedAuthAddress200Response, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyPreRegistrationCallsInner, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserReqBodySigner, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchCastsSortTypeEnum, SearchFramesNetworksEnum, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, SimulateNftMintNetworkEnum, SimulateNftMintResponse, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionsResponse, TransactionFrameConfig, TransactionFrameResponse, TransactionSendFungiblesRecipient, TransactionSendFungiblesReqBody, TransactionSendFungiblesReqBodyNetworkEnum, TransactionSendFungiblesResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UploadImage200Response, UploadImageUrlRequest, UserFIDResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
+import type { AddVerificationReqBody, AppHostGetEventEventEnum, AppHostGetEventResponse, AppHostPostEventReqBody, AppHostPostEventResponse, AppHostUserStateResponse, AssociateDeployment200Response, AssociateDeploymentRequest, AuthorizationUrlResponse, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BestFriendsResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastEmbedCrawlResponse, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, Conversation, ConversationSummary, CreateDeploymentRequest, DeleteCastReqBody, DeleteDeployment200Response, DeleteDeploymentRequest, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeveloperManagedSigner, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FetchAllNotificationsTypeEnum, FetchAuthorizationUrlResponseTypeEnum, FetchBulkCastsSortTypeEnum, FetchBulkChannelsTypeEnum, FetchBulkUsersByEthOrSolAddressAddressTypesEnum, FetchCastMetricsIntervalEnum, FetchCastQuotes200Response, FetchCastQuotesTypeEnum, FetchCastReactionsTypesEnum, FetchFeedEmbedTypesEnum, FetchFeedFeedTypeEnum, FetchFeedFilterTypeEnum, FetchFeedForYouProviderEnum, FetchFrameCatalogCategoriesEnum, FetchFrameCatalogNetworksEnum, FetchFrameCatalogTimeWindowEnum, FetchRelevantFrames200Response, FetchRelevantFramesNetworksEnum, FetchRelevantFramesTimeWindowEnum, FetchRelevantFungibleOwnersNetworkEnum, FetchRepliesAndRecastsForUserFilterEnum, FetchSubscribedToForFidSubscriptionProviderEnum, FetchSubscribersForFidSubscriptionProviderEnum, FetchSubscriptionsForFidSubscriptionProviderEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedProviderEnum, FetchTrendingFeedTimeWindowEnum, FetchTrendingFungibles200Response, FetchTrendingFungiblesNetworkEnum, FetchTrendingFungiblesTimeWindowEnum, FetchUserBalanceNetworksEnum, FetchUserFollowersSortTypeEnum, FetchUserFollowingSortTypeEnum, FetchUserInteractions200Response, FetchUserInteractionsTypeEnum, FetchUserReactionsTypeEnum, FetchUserReciprocalFollowers200Response, FetchUserReciprocalFollowersSortTypeEnum, FnameAvailabilityResponse, FollowReqBody, FollowersResponse, FrameCatalogResponse, FrameNotificationTokens, FramePayTransactionReqBody, FramePayTransactionReqBodyTransaction, FungiblesResponseSchema, GetConversationMessages200Response, GetDeploymentFile200Response, GetDeploymentLogs200Response, GetNotificationCampaignStats200Response, InviteChannelMemberReqBody, ListConversations200Response, ListDeploymentFiles200Response, ListDeployments200ResponseInner, LookupCastByHashOrUrlTypeEnum, LookupCastConversationFoldEnum, LookupCastConversationSortTypeEnum, LookupCastConversationTypeEnum, LookupChannelTypeEnum, MarkNotificationsAsSeenReqBody, MintNft200Response, MintNftRequest, MuteListResponse, MuteReqBody, MuteResponse, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, PromptDeployment200Response, PromptDeploymentRequest, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, RegisterAuthAddressDeveloperManagedSignedKeyReqBody, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignedKeyForDeveloperManagedAuthAddress200Response, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyPreRegistrationCallsInner, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserReqBodySigner, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchCastsSortTypeEnum, SearchFramesNetworksEnum, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, SimulateNftMintNetworkEnum, SimulateNftMintResponse, StartApp200Response, StartAppRequest, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionsResponse, TransactionFrameConfig, TransactionFrameResponse, TransactionSendFungiblesRecipient, TransactionSendFungiblesReqBody, TransactionSendFungiblesReqBodyNetworkEnum, TransactionSendFungiblesResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UploadImage200Response, UploadImageUrlRequest, UserFIDResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
 
 const { version: sdkVersion } = require("../../package.json");
 
@@ -3689,7 +3689,7 @@ Object.assign(adjustedParams, params);
  * @summary Get messages in a conversation
  *
  * @param {object} params
- * @param {number} params.fid  - Farcaster ID of the user
+ * @param {number | null} params.fid  - Farcaster ID of the user
  * @param {string} params.name  - Kubernetes deployment name
  * @param {string} params.conversationId  - Conversation ID
  * @param {boolean | null} params.includeDeleted [optional]  - Include deleted messages in the response. Defaults to false.
@@ -3711,7 +3711,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-conversation-messages)
  *
  */
-public async getConversationMessages(params: { fid: number, name: string, conversationId: string, includeDeleted?: boolean | null }): Promise<GetConversationMessages200Response> {
+public async getConversationMessages(params: { fid: number | null, name: string, conversationId: string, includeDeleted?: boolean | null }): Promise<GetConversationMessages200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3757,7 +3757,7 @@ Object.assign(adjustedParams, params);
  * @summary Get deployment file contents
  *
  * @param {object} params
- * @param {number} params.fid  - Farcaster ID of the user
+ * @param {number | null} params.fid  - Farcaster ID of the user
  * @param {string} params.name  - Kubernetes deployment name
  * @param {string} params.filePath  - File path relative to gen/
  *
@@ -3777,7 +3777,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-deployment-file)
  *
  */
-public async getDeploymentFile(params: { fid: number, name: string, filePath: string }): Promise<GetDeploymentFile200Response> {
+public async getDeploymentFile(params: { fid: number | null, name: string, filePath: string }): Promise<GetDeploymentFile200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3791,7 +3791,7 @@ Object.assign(adjustedParams, params);
  * @summary Get deployment logs
  *
  * @param {object} params
- * @param {number} params.fid  - Farcaster ID of the user
+ * @param {number | null} params.fid  - Farcaster ID of the user
  * @param {string} params.name  - Kubernetes deployment name
  *
  * @returns {Promise<GetDeploymentLogs200Response>} A promise that resolves to a `GetDeploymentLogs200Response` object.
@@ -3809,7 +3809,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-deployment-logs)
  *
  */
-public async getDeploymentLogs(params: { fid: number, name: string }): Promise<GetDeploymentLogs200Response> {
+public async getDeploymentLogs(params: { fid: number | null, name: string }): Promise<GetDeploymentLogs200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3823,7 +3823,7 @@ Object.assign(adjustedParams, params);
  * @summary List conversations for a deployment
  *
  * @param {object} params
- * @param {number} params.fid [optional]  - Farcaster ID of the user. Required for non-admin users. Studio admins can omit to query all conversations.
+ * @param {number | null} params.fid [optional]  - Farcaster ID of the user. Required for non-admin users. Studio admins can omit to query all conversations.
  * @param {string} params.name [optional]  - Kubernetes deployment name. If provided, filters conversations to this deployment only.
  * @param {boolean | null} params.includeDeleted [optional]  - Include deleted conversations in the response. Defaults to false.
  *
@@ -3843,7 +3843,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/list-conversations)
  *
  */
-public async listConversations(params: { fid?: number, name?: string, includeDeleted?: boolean | null }): Promise<ListConversations200Response> {
+public async listConversations(params: { fid?: number | null, name?: string, includeDeleted?: boolean | null }): Promise<ListConversations200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3857,7 +3857,7 @@ Object.assign(adjustedParams, params);
  * @summary List deployment files
  *
  * @param {object} params
- * @param {number} params.fid  - Farcaster ID of the user
+ * @param {number | null} params.fid  - Farcaster ID of the user
  * @param {string} params.name  - Kubernetes deployment name
  * @param {string} params.directory [optional]  - Directory path relative to gen/ (defaults to root)
  *
@@ -3877,7 +3877,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/list-deployment-files)
  *
  */
-public async listDeploymentFiles(params: { fid: number, name: string, directory?: string }): Promise<ListDeploymentFiles200Response> {
+public async listDeploymentFiles(params: { fid: number | null, name: string, directory?: string }): Promise<ListDeploymentFiles200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3891,7 +3891,7 @@ Object.assign(adjustedParams, params);
  * @summary List deployments
  *
  * @param {object} params
- * @param {number} params.fid [optional]  - Farcaster ID of the user. Required for non-admin users. Studio admins can omit to query all deployments.
+ * @param {number | null} params.fid [optional]  - Farcaster ID of the user. Required for non-admin users. Studio admins can omit to query all deployments.
  * @param {number} params.limit [optional]  - Maximum number of deployments to return. Defaults to 50, max 1000. (Default: 50, Maximum: 1000)
  * @param {number | null} params.offset [optional]  - Number of deployments to skip for pagination. Defaults to 0.
  * @param {boolean | null} params.includeDeleted [optional]  - Include deleted deployments in the response. Defaults to false.
@@ -3913,7 +3913,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/list-deployments)
  *
  */
-public async listDeployments(params: { fid?: number, limit?: number, offset?: number | null, includeDeleted?: boolean | null }): Promise<Array<ListDeployments200ResponseInner>> {
+public async listDeployments(params: { fid?: number | null, limit?: number, offset?: number | null, includeDeleted?: boolean | null }): Promise<Array<ListDeployments200ResponseInner>> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3978,6 +3978,66 @@ public async promptDeploymentStream(params: { promptDeploymentRequest: PromptDep
 Object.assign(adjustedParams, params);
 
   const response = await this.apis.studioApi.promptDeploymentStream(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Starts the Next.js development server for the generated miniapp. Requires Studio admin authentication.
+ *
+ * @summary Start generated miniapp
+ *
+ * @param {object} params
+ * @param {StartAppRequest} params.startAppRequest 
+ *
+ * @returns {Promise<StartApp200Response>} A promise that resolves to a `StartApp200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const startAppRequest = 
+ *
+ * client.startApp({ startAppRequest }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/start-app)
+ *
+ */
+public async startApp(params: { startAppRequest: StartAppRequest }): Promise<StartApp200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.startApp(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Stops the Next.js development server for the generated miniapp. Requires Studio admin authentication.
+ *
+ * @summary Stop generated miniapp
+ *
+ * @param {object} params
+ * @param {StartAppRequest} params.startAppRequest 
+ *
+ * @returns {Promise<StartApp200Response>} A promise that resolves to a `StartApp200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const startAppRequest = 
+ *
+ * client.stopApp({ startAppRequest }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/stop-app)
+ *
+ */
+public async stopApp(params: { startAppRequest: StartAppRequest }): Promise<StartApp200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.stopApp(adjustedParams);
   return response.data;
 }
 

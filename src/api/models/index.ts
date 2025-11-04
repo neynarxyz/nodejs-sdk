@@ -224,6 +224,8 @@ export * from './signer-list-response';
 export * from './signer-uuid-body';
 export * from './simulate-nft-mint-response';
 export * from './simulate-nft-mint-response-inner';
+export * from './start-app200-response';
+export * from './start-app-request';
 export * from './storage-allocation';
 export * from './storage-allocations-response';
 export * from './storage-object';

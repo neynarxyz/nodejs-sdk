@@ -13,21 +13,24 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { FetchTrendingFungibles200ResponseTrendingInner } from './fetch-trending-fungibles200-response-trending-inner';
 
 /**
  * 
  * @export
- * @interface FetchTrendingFungibles200Response
+ * @interface StartAppRequest
  */
-export interface FetchTrendingFungibles200Response {
+export interface StartAppRequest {
     /**
-     * 
-     * @type {Array<FetchTrendingFungibles200ResponseTrendingInner>}
-     * @memberof FetchTrendingFungibles200Response
+     * Farcaster ID of the user
+     * @type {number}
+     * @memberof StartAppRequest
      */
-    'trending': Array<FetchTrendingFungibles200ResponseTrendingInner>;
+    'fid': number;
+    /**
+     * Kubernetes deployment name
+     * @type {string}
+     * @memberof StartAppRequest
+     */
+    'name': string;
 }
 

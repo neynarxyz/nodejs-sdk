@@ -13,21 +13,24 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { FetchTrendingFungibles200ResponseTrendingInner } from './fetch-trending-fungibles200-response-trending-inner';
 
 /**
  * 
  * @export
- * @interface FetchTrendingFungibles200Response
+ * @interface StartApp200Response
  */
-export interface FetchTrendingFungibles200Response {
+export interface StartApp200Response {
     /**
      * 
-     * @type {Array<FetchTrendingFungibles200ResponseTrendingInner>}
-     * @memberof FetchTrendingFungibles200Response
+     * @type {boolean}
+     * @memberof StartApp200Response
      */
-    'trending': Array<FetchTrendingFungibles200ResponseTrendingInner>;
+    'success': boolean;
+    /**
+     * Status message
+     * @type {string}
+     * @memberof StartApp200Response
+     */
+    'message': string;
 }
 
