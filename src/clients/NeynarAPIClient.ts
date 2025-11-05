@@ -3727,7 +3727,7 @@ Object.assign(adjustedParams, params);
  * @summary Get deployment info
  *
  * @param {object} params
- * @param {number} params.fid  - Farcaster ID of the user
+ * @param {number | null} params.fid  - Farcaster ID of the user
  * @param {string} params.name  - Kubernetes deployment name
  *
  * @returns {Promise<ListDeployments200ResponseInner>} A promise that resolves to a `ListDeployments200ResponseInner` object.
@@ -3745,7 +3745,7 @@ Object.assign(adjustedParams, params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-deployment)
  *
  */
-public async getDeployment(params: { fid: number, name: string }): Promise<ListDeployments200ResponseInner> {
+public async getDeployment(params: { fid: number | null, name: string }): Promise<ListDeployments200ResponseInner> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
