@@ -2826,6 +2826,7 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {string} params.fungibles  - Comma-separated fungible identifiers
+ * @param {number | null} params.viewerFid [optional]  - Optional FID of the viewer to personalize cast count filtering
  *
  * @returns {Promise<FungiblesResponseSchema>} A promise that resolves to a `FungiblesResponseSchema` object.
  *
@@ -2833,15 +2834,16 @@ Object.assign(adjustedParams, params);
  *
  * // Fill in the appropriate values
  * const fungibles = 
+ * const viewerFid = 
  *
- * client.fetchFungibles({ fungibles }).then(response => {
+ * client.fetchFungibles({ fungibles, viewerFid }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-fungibles)
  *
  */
-public async fetchFungibles(params: { fungibles: string }): Promise<FungiblesResponseSchema> {
+public async fetchFungibles(params: { fungibles: string, viewerFid?: number | null }): Promise<FungiblesResponseSchema> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
