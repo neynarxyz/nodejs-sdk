@@ -6,6 +6,10 @@ on:
       - main
     paths:
       - package.json
+
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
