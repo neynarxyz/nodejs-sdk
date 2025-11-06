@@ -2846,6 +2846,7 @@ Object.assign(adjustedParams, params);
 public async fetchFungibles(params: { fungibles: string, viewerFid?: number | null }): Promise<FungiblesResponseSchema> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
+adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.onchainApi.fetchFungibles(adjustedParams);
   return response.data;
