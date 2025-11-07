@@ -75,3 +75,46 @@ export interface WebhookUserUpdated {
   created_at: number;
   event_timestamp: string;
 }
+
+export interface FungibleBalance {
+  object: 'fungible_balance';
+  token: {
+    object: 'token';
+    address: string;
+    decimals: number;
+    symbol: string;
+    name: string;
+    image_url?: string;
+    total_supply?: string;
+  };
+  balance: {
+    in_usd: number | null;
+    in_token: string | null;
+  };
+}
+
+export interface TradeWebhookPayload {
+  type: 'trade.created';
+  data: {
+    object: 'trade';
+    trader: UserDehydrated | null;
+    pool?: {
+      object: 'pool';
+      address: string;
+      protocol_family?: string;
+      protocol_version?: string;
+    };
+    transaction: {
+      hash: string;
+      network: {
+        object: 'network';
+        name: string;
+      };
+      net_transfer?: {
+        object: 'net_transfer';
+        receiving_fungible: FungibleBalance;
+        sending_fungible: FungibleBalance;
+      };
+    };
+  };
+}
