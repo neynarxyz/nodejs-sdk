@@ -79,7 +79,7 @@ export interface WebhookUserUpdated {
 export interface FungibleBalance {
   object: 'fungible_balance';
   token: {
-    object: 'token';
+    object: 'fungible';
     address: string;
     decimals: number;
     symbol: string;
@@ -110,7 +110,7 @@ export interface TradeWebhookPayload {
         object: 'network';
         name: string;
       };
-      net_transfer?: {
+      net_transfer: {
         object: 'net_transfer';
         receiving_fungible: FungibleBalance;
         sending_fungible: FungibleBalance;
