@@ -108,9 +108,6 @@ models/delete-deployment200-response.ts
 models/deploy-fungible-response-contract-fungible.ts
 models/deploy-fungible-response-contract.ts
 models/deploy-fungible-response.ts
-models/deploy-to-vercel-request.ts
-models/deploy-to-vercel200-response.ts
-models/deploy-to-vercel400-response.ts
 models/developer-managed-signer.ts
 models/embed-cast-deep-cast-id.ts
 models/embed-cast-deep.ts
@@ -328,9 +325,6 @@ models/user-viewer-context.ts
 models/user.ts
 models/users-active-channels-response.ts
 models/users-response.ts
-models/vercel-deployment-logs200-response-logs-inner.ts
-models/vercel-deployment-logs200-response.ts
-models/vercel-deployment-status200-response.ts
 models/verification-chain-id.ts
 models/verification-type.ts
 models/video-object.ts
