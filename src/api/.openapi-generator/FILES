@@ -129,6 +129,12 @@ models/farcaster-manifest.ts
 models/feed-response.ts
 models/fetch-cast-quotes200-response.ts
 models/fetch-feed-for-you400-response.ts
+models/fetch-fungible-trades200-response-trades-inner-pool.ts
+models/fetch-fungible-trades200-response-trades-inner-transaction-net-transfer.ts
+models/fetch-fungible-trades200-response-trades-inner-transaction-network.ts
+models/fetch-fungible-trades200-response-trades-inner-transaction.ts
+models/fetch-fungible-trades200-response-trades-inner.ts
+models/fetch-fungible-trades200-response.ts
 models/fetch-relevant-frames200-response-relevant-frames-inner-frame-metadata.ts
 models/fetch-relevant-frames200-response-relevant-frames-inner-frame.ts
 models/fetch-relevant-frames200-response-relevant-frames-inner.ts
@@ -158,6 +164,8 @@ models/frame-v1.ts
 models/frame-v2-with-full-author.ts
 models/frame-v2.ts
 models/frame.ts
+models/fungible-balance-balance.ts
+models/fungible-balance.ts
 models/fungible.ts
 models/fungibles-response-schema.ts
 models/get-conversation-messages200-response-messages-inner.ts
