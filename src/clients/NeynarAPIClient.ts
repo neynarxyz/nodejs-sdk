@@ -33,7 +33,7 @@ import { StudioApi } from '../api/apis/studio-api';
 import { SubscribersApi } from '../api/apis/subscribers-api';
 import { UserApi } from '../api/apis/user-api';
 import { WebhookApi } from '../api/apis/webhook-api';
-import type { AddVerificationReqBody, AppHostGetEventEventEnum, AppHostGetEventResponse, AppHostPostEventReqBody, AppHostPostEventResponse, AppHostUserStateResponse, AssociateDeployment200Response, AssociateDeploymentRequest, AuthorizationUrlResponse, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BestFriendsResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastEmbedCrawlResponse, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, Conversation, ConversationSummary, CreateDeploymentRequest, DeleteCastReqBody, DeleteDeployment200Response, DeleteDeploymentRequest, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeveloperManagedSigner, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FetchAllNotificationsTypeEnum, FetchAuthorizationUrlResponseTypeEnum, FetchBulkCastsSortTypeEnum, FetchBulkChannelsTypeEnum, FetchBulkUsersByEthOrSolAddressAddressTypesEnum, FetchCastMetricsIntervalEnum, FetchCastQuotes200Response, FetchCastQuotesTypeEnum, FetchCastReactionsTypesEnum, FetchFeedEmbedTypesEnum, FetchFeedFeedTypeEnum, FetchFeedFilterTypeEnum, FetchFeedForYouProviderEnum, FetchFrameCatalogCategoriesEnum, FetchFrameCatalogNetworksEnum, FetchFrameCatalogTimeWindowEnum, FetchFungibleTrades200Response, FetchFungibleTradesNetworkEnum, FetchFungibleTradesTimeWindowEnum, FetchRelevantFrames200Response, FetchRelevantFramesNetworksEnum, FetchRelevantFramesTimeWindowEnum, FetchRelevantFungibleOwnersNetworkEnum, FetchRepliesAndRecastsForUserFilterEnum, FetchSubscribedToForFidSubscriptionProviderEnum, FetchSubscribersForFidSubscriptionProviderEnum, FetchSubscriptionsForFidSubscriptionProviderEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedProviderEnum, FetchTrendingFeedTimeWindowEnum, FetchTrendingFungibles200Response, FetchTrendingFungiblesNetworkEnum, FetchTrendingFungiblesTimeWindowEnum, FetchUserBalanceNetworksEnum, FetchUserFollowersSortTypeEnum, FetchUserFollowingSortTypeEnum, FetchUserInteractions200Response, FetchUserInteractionsTypeEnum, FetchUserReactionsTypeEnum, FetchUserReciprocalFollowers200Response, FetchUserReciprocalFollowersSortTypeEnum, FnameAvailabilityResponse, FollowReqBody, FollowersResponse, FrameCatalogResponse, FrameNotificationTokens, FramePayTransactionReqBody, FramePayTransactionReqBodyTransaction, FungiblesResponseSchema, GetConversationMessages200Response, GetDeploymentFile200Response, GetDeploymentLogs200Response, GetNotificationCampaignStats200Response, InviteChannelMemberReqBody, ListConversations200Response, ListDeploymentFiles200Response, ListDeployments200ResponseInner, LookupCastByHashOrUrlTypeEnum, LookupCastConversationFoldEnum, LookupCastConversationSortTypeEnum, LookupCastConversationTypeEnum, LookupChannelTypeEnum, MarkNotificationsAsSeenReqBody, MintNft200Response, MintNftRequest, MuteListResponse, MuteReqBody, MuteResponse, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, PromptDeployment200Response, PromptDeploymentRequest, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, RegisterAuthAddressDeveloperManagedSignedKeyReqBody, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignedKeyForDeveloperManagedAuthAddress200Response, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyPreRegistrationCallsInner, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserReqBodySigner, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchCastsSortTypeEnum, SearchFramesNetworksEnum, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, SimulateNftMintNetworkEnum, SimulateNftMintResponse, StartApp200Response, StartAppRequest, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionsResponse, TransactionFrameConfig, TransactionFrameResponse, TransactionSendFungiblesRecipient, TransactionSendFungiblesReqBody, TransactionSendFungiblesReqBodyNetworkEnum, TransactionSendFungiblesResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UploadImage200Response, UploadImageUrlRequest, UserFIDResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
+import type { AddVerificationReqBody, AppHostGetEventEventEnum, AppHostGetEventResponse, AppHostPostEventReqBody, AppHostPostEventResponse, AppHostUserStateResponse, AssociateDeployment200Response, AssociateDeploymentRequest, AuthorizationUrlResponse, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BestFriendsResponse, BlockListResponse, BlockReqBody, BulkCastsResponse, BulkFollowResponse, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastEmbedCrawlResponse, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, Conversation, ConversationSummary, CreateDeploymentRequest, DeleteCastReqBody, DeleteDeployment200Response, DeleteDeploymentRequest, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeployToVercel200Response, DeployToVercelRequest, DeveloperManagedSigner, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FetchAllNotificationsTypeEnum, FetchAuthorizationUrlResponseTypeEnum, FetchBulkCastsSortTypeEnum, FetchBulkChannelsTypeEnum, FetchBulkUsersByEthOrSolAddressAddressTypesEnum, FetchCastMetricsIntervalEnum, FetchCastQuotes200Response, FetchCastQuotesTypeEnum, FetchCastReactionsTypesEnum, FetchFeedEmbedTypesEnum, FetchFeedFeedTypeEnum, FetchFeedFilterTypeEnum, FetchFeedForYouProviderEnum, FetchFrameCatalogCategoriesEnum, FetchFrameCatalogNetworksEnum, FetchFrameCatalogTimeWindowEnum, FetchFungibleTrades200Response, FetchFungibleTradesNetworkEnum, FetchFungibleTradesTimeWindowEnum, FetchRelevantFrames200Response, FetchRelevantFramesNetworksEnum, FetchRelevantFramesTimeWindowEnum, FetchRelevantFungibleOwnersNetworkEnum, FetchRepliesAndRecastsForUserFilterEnum, FetchSubscribedToForFidSubscriptionProviderEnum, FetchSubscribersForFidSubscriptionProviderEnum, FetchSubscriptionsForFidSubscriptionProviderEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedProviderEnum, FetchTrendingFeedTimeWindowEnum, FetchTrendingFungibles200Response, FetchTrendingFungiblesNetworkEnum, FetchTrendingFungiblesTimeWindowEnum, FetchUserBalanceNetworksEnum, FetchUserFollowersSortTypeEnum, FetchUserFollowingSortTypeEnum, FetchUserInteractions200Response, FetchUserInteractionsTypeEnum, FetchUserReactionsTypeEnum, FetchUserReciprocalFollowers200Response, FetchUserReciprocalFollowersSortTypeEnum, FnameAvailabilityResponse, FollowReqBody, FollowersResponse, FrameCatalogResponse, FrameNotificationTokens, FramePayTransactionReqBody, FramePayTransactionReqBodyTransaction, FungiblesResponseSchema, GetConversationMessages200Response, GetDeploymentFile200Response, GetDeploymentLogs200Response, GetNotificationCampaignStats200Response, InviteChannelMemberReqBody, ListConversations200Response, ListDeploymentFiles200Response, ListDeployments200ResponseInner, LookupCastByHashOrUrlTypeEnum, LookupCastConversationFoldEnum, LookupCastConversationSortTypeEnum, LookupCastConversationTypeEnum, LookupChannelTypeEnum, MarkNotificationsAsSeenReqBody, MintNft200Response, MintNftRequest, MuteListResponse, MuteReqBody, MuteResponse, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, PromptDeployment200Response, PromptDeploymentRequest, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, RegisterAuthAddressDeveloperManagedSignedKeyReqBody, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignedKeyForDeveloperManagedAuthAddress200Response, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyPreRegistrationCallsInner, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserReqBodySigner, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchCastsSortTypeEnum, SearchFramesNetworksEnum, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, SimulateNftMintNetworkEnum, SimulateNftMintResponse, StartApp200Response, StartAppRequest, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionsResponse, TransactionFrameConfig, TransactionFrameResponse, TransactionSendFungiblesRecipient, TransactionSendFungiblesReqBody, TransactionSendFungiblesReqBodyNetworkEnum, TransactionSendFungiblesResponse, TrendingChannelResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UploadImage200Response, UploadImageUrlRequest, UserFIDResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, VercelDeploymentLogs200Response, VercelDeploymentStatus200Response, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
 
 const { version: sdkVersion } = require("../../package.json");
 
@@ -3723,6 +3723,36 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Publishes the generated miniapp to Vercel via GitHub. Creates a GitHub repository, pushes code, creates a Vercel project linked to GitHub, and triggers deployment. Requires API key authentication.
+ *
+ * @summary Deploy miniapp to Vercel
+ *
+ * @param {object} params
+ * @param {DeployToVercelRequest} params.deployToVercelRequest 
+ *
+ * @returns {Promise<DeployToVercel200Response>} A promise that resolves to a `DeployToVercel200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const deployToVercelRequest = 
+ *
+ * client.deployToVercel({ deployToVercelRequest }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/deploy-to-vercel)
+ *
+ */
+public async deployToVercel(params: { deployToVercelRequest: DeployToVercelRequest }): Promise<DeployToVercel200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.deployToVercel(adjustedParams);
+  return response.data;
+}
+
+/**
  * Retrieves all messages in a specific conversation. Requires API key authentication.
  *
  * @summary Get messages in a conversation
@@ -4137,6 +4167,72 @@ public async uploadImageUrl(params: { uploadImageUrlRequest: UploadImageUrlReque
 Object.assign(adjustedParams, params);
 
   const response = await this.apis.studioApi.uploadImageUrl(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Retrieves the build logs for a Vercel deployment. Useful for debugging failed deployments. Requires Studio admin authentication.
+ *
+ * @summary Get Vercel deployment build logs
+ *
+ * @param {object} params
+ * @param {number | null} params.fid  - Farcaster ID of the user
+ * @param {string} params.name  - Deployment name used to identify the Vercel project
+ * @param {number} params.limit [optional]  - Maximum number of log events to return. Defaults to 100.
+ *
+ * @returns {Promise<VercelDeploymentLogs200Response>} A promise that resolves to a `VercelDeploymentLogs200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const fid = 
+ * const name = 
+ * const limit = 
+ *
+ * client.vercelDeploymentLogs({ fid, name, limit }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/vercel-deployment-logs)
+ *
+ */
+public async vercelDeploymentLogs(params: { fid: number | null, name: string, limit?: number }): Promise<VercelDeploymentLogs200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.vercelDeploymentLogs(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Retrieves the status of a Vercel deployment for a miniapp. Looks up the Vercel project ID from the deployment and queries Vercel API for deployment status. Requires API key authentication.
+ *
+ * @summary Get Vercel deployment status
+ *
+ * @param {object} params
+ * @param {number | null} params.fid  - Farcaster ID of the user
+ * @param {string} params.name  - Deployment name used to identify the Vercel project
+ *
+ * @returns {Promise<VercelDeploymentStatus200Response>} A promise that resolves to a `VercelDeploymentStatus200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const fid = 
+ * const name = 
+ *
+ * client.vercelDeploymentStatus({ fid, name }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/vercel-deployment-status)
+ *
+ */
+public async vercelDeploymentStatus(params: { fid: number | null, name: string }): Promise<VercelDeploymentStatus200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.vercelDeploymentStatus(adjustedParams);
   return response.data;
 }
 
