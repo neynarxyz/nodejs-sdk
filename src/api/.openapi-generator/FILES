@@ -224,8 +224,7 @@ models/post-cast-req-body.ts
 models/post-cast-response-cast-author.ts
 models/post-cast-response-cast.ts
 models/post-cast-response.ts
-models/prompt-deployment-request.ts
-models/prompt-deployment200-response.ts
+models/prompt-deployment-stream-request.ts
 models/reaction-for-cast.ts
 models/reaction-like.ts
 models/reaction-recast.ts
