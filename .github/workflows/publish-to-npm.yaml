@@ -1,4 +1,4 @@
-name: "Publish v2 to npm 🚀"
+name: "Publish to npm 🚀"
 
 on:
   push:
@@ -8,7 +8,8 @@ on:
       - package.json
 
 permissions:
-  contents: write
+  id-token: write  # Required for OIDC
+  contents: read
 
 jobs:
   build:
@@ -16,26 +17,22 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: "20"
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
-        run: npm install --ignore-scripts
+        run: npm install -g npm@latest
 
       - name: Build
         run: npm run build
 
-      - name: Set npm Config
-        run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
-
       - name: Publish v2 to npm
         run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Extract version from package.json
         id: package-version
