@@ -1935,7 +1935,6 @@ Object.assign(adjustedParams, params);
  * @param {string} params.channelId [optional]  - Channel ID to filter trending casts. Less active channels might have no casts in the time window selected. Provide either `channel_id` or `parent_url`, not both.
  * @param {string} params.parentUrl [optional]  - Parent URL to filter trending casts. Less active channels might have no casts in the time window selected. Provide either `channel_id` or `parent_url`, not both.
  * @param {FetchTrendingFeedProviderEnum} params.provider [optional]  - The provider of the trending casts feed.
- * @param {string} params.providerMetadata [optional]  - provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use.
  *
  * @returns {Promise<FeedResponse>} A promise that resolves to a `FeedResponse` object.
  *
@@ -1948,16 +1947,15 @@ Object.assign(adjustedParams, params);
  * const channelId = 
  * const parentUrl = 
  * const provider = 
- * const providerMetadata = 
  *
- * client.fetchTrendingFeed({ limit, viewerFid, timeWindow, channelId, parentUrl, provider, providerMetadata }).then(response => {
+ * client.fetchTrendingFeed({ limit, viewerFid, timeWindow, channelId, parentUrl, provider }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/fetch-trending-feed)
  *
  */
-public async fetchTrendingFeed(params: { limit?: number, cursor?: string, viewerFid?: number, timeWindow?: FetchTrendingFeedTimeWindowEnum, channelId?: string, parentUrl?: string, provider?: FetchTrendingFeedProviderEnum, providerMetadata?: string }): Promise<FeedResponse> {
+public async fetchTrendingFeed(params: { limit?: number, cursor?: string, viewerFid?: number, timeWindow?: FetchTrendingFeedTimeWindowEnum, channelId?: string, parentUrl?: string, provider?: FetchTrendingFeedProviderEnum }): Promise<FeedResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
