@@ -148,6 +148,7 @@ models/fetch-trending-fungibles200-response-trending-inner.ts
 models/fetch-trending-fungibles200-response.ts
 models/fetch-user-interactions200-response.ts
 models/fetch-user-reciprocal-followers200-response.ts
+models/fetch-verifications200-response.ts
 models/fname-availability-response.ts
 models/follow-req-body.ts
 models/follow-response.ts
@@ -225,6 +226,7 @@ models/post-cast-response-cast-author.ts
 models/post-cast-response-cast.ts
 models/post-cast-response.ts
 models/prompt-deployment-stream-request.ts
+models/protocol.ts
 models/reaction-for-cast.ts
 models/reaction-like.ts
 models/reaction-recast.ts
@@ -340,6 +342,7 @@ models/vercel-deployment-logs200-response.ts
 models/vercel-deployment-status200-response.ts
 models/verification-chain-id.ts
 models/verification-type.ts
+models/verification.ts
 models/video-object.ts
 models/webhook-delete-req-body.ts
 models/webhook-list-response.ts
