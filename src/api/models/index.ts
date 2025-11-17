@@ -276,6 +276,8 @@ export * from './transaction-send-fungibles-req-body';
 export * from './transaction-send-fungibles-response';
 export * from './transaction-send-tx-info';
 export * from './trending-channel-response';
+export * from './trending-topic';
+export * from './trending-topics-response';
 export * from './update-user207-response';
 export * from './update-user207-response-errors-inner';
 export * from './update-user-req-body';

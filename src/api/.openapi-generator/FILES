@@ -24,6 +24,7 @@ apis/signer-api.ts
 apis/storage-api.ts
 apis/studio-api.ts
 apis/subscribers-api.ts
+apis/topic-api.ts
 apis/user-api.ts
 apis/webhook-api.ts
 base.ts
@@ -310,6 +311,8 @@ models/transaction-send-fungibles-req-body.ts
 models/transaction-send-fungibles-response.ts
 models/transaction-send-tx-info.ts
 models/trending-channel-response.ts
+models/trending-topic.ts
+models/trending-topics-response.ts
 models/update-user-req-body-location.ts
 models/update-user-req-body-verified-accounts.ts
 models/update-user-req-body.ts
