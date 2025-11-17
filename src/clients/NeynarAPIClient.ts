@@ -4494,7 +4494,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
 }
 
 /**
- * Fetch all verifications for a given FID
+ * Fetch all Ethereum and Solana verified addresses for a farcaster user
  *
  * @summary Fetch verifications
  *
