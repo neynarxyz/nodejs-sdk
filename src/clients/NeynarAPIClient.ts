@@ -3797,9 +3797,10 @@ Object.assign(adjustedParams, params);
  * @summary Get messages in a conversation
  *
  * @param {object} params
- * @param {number | null} params.fid  - Farcaster ID of the user
  * @param {string} params.name  - Kubernetes deployment name
  * @param {string} params.conversationId  - Conversation ID
+ * @param {number | null} params.fid [optional]  - Farcaster ID of the user; if not provided, namespace must be provided
+ * @param {string} params.namespace [optional]  - Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID.
  * @param {boolean | null} params.includeDeleted [optional]  - Include deleted messages in the response. Defaults to false.
  *
  * @returns {Promise<GetConversationMessages200Response>} A promise that resolves to a `GetConversationMessages200Response` object.
@@ -3807,19 +3808,20 @@ Object.assign(adjustedParams, params);
  * @example
  *
  * // Fill in the appropriate values
- * const fid = 
  * const name = 
  * const conversationId = 
+ * const fid = 
+ * const namespace = 
  * const includeDeleted = 
  *
- * client.getConversationMessages({ fid, name, conversationId, includeDeleted }).then(response => {
+ * client.getConversationMessages({ name, conversationId, fid, namespace, includeDeleted }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-conversation-messages)
  *
  */
-public async getConversationMessages(params: { fid: number | null, name: string, conversationId: string, includeDeleted?: boolean | null }): Promise<GetConversationMessages200Response> {
+public async getConversationMessages(params: { name: string, conversationId: string, fid?: number | null, namespace?: string, includeDeleted?: boolean | null }): Promise<GetConversationMessages200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3833,25 +3835,27 @@ Object.assign(adjustedParams, params);
  * @summary Get deployment info
  *
  * @param {object} params
- * @param {number | null} params.fid  - Farcaster ID of the user
  * @param {string} params.name  - Kubernetes deployment name
+ * @param {number | null} params.fid [optional]  - Farcaster ID of the user; if not provided, namespace must be provided
+ * @param {string} params.namespace [optional]  - Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID.
  *
  * @returns {Promise<ListDeployments200ResponseInner>} A promise that resolves to a `ListDeployments200ResponseInner` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const fid = 
  * const name = 
+ * const fid = 
+ * const namespace = 
  *
- * client.getDeployment({ fid, name }).then(response => {
+ * client.getDeployment({ name, fid, namespace }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-deployment)
  *
  */
-public async getDeployment(params: { fid: number | null, name: string }): Promise<ListDeployments200ResponseInner> {
+public async getDeployment(params: { name: string, fid?: number | null, namespace?: string }): Promise<ListDeployments200ResponseInner> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3865,27 +3869,29 @@ Object.assign(adjustedParams, params);
  * @summary Get deployment file contents
  *
  * @param {object} params
- * @param {number | null} params.fid  - Farcaster ID of the user
  * @param {string} params.name  - Kubernetes deployment name
  * @param {string} params.filePath  - File path relative to gen/
+ * @param {number | null} params.fid [optional]  - Farcaster ID of the user; if not provided, namespace must be provided
+ * @param {string} params.namespace [optional]  - Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID.
  *
  * @returns {Promise<GetDeploymentFile200Response>} A promise that resolves to a `GetDeploymentFile200Response` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const fid = 
  * const name = 
  * const filePath = 
+ * const fid = 
+ * const namespace = 
  *
- * client.getDeploymentFile({ fid, name, filePath }).then(response => {
+ * client.getDeploymentFile({ name, filePath, fid, namespace }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-deployment-file)
  *
  */
-public async getDeploymentFile(params: { fid: number | null, name: string, filePath: string }): Promise<GetDeploymentFile200Response> {
+public async getDeploymentFile(params: { name: string, filePath: string, fid?: number | null, namespace?: string }): Promise<GetDeploymentFile200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3899,25 +3905,27 @@ Object.assign(adjustedParams, params);
  * @summary Get deployment logs
  *
  * @param {object} params
- * @param {number | null} params.fid  - Farcaster ID of the user
  * @param {string} params.name  - Kubernetes deployment name
+ * @param {number | null} params.fid [optional]  - Farcaster ID of the user; if not provided, namespace must be provided
+ * @param {string} params.namespace [optional]  - Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID.
  *
  * @returns {Promise<GetDeploymentLogs200Response>} A promise that resolves to a `GetDeploymentLogs200Response` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const fid = 
  * const name = 
+ * const fid = 
+ * const namespace = 
  *
- * client.getDeploymentLogs({ fid, name }).then(response => {
+ * client.getDeploymentLogs({ name, fid, namespace }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-deployment-logs)
  *
  */
-public async getDeploymentLogs(params: { fid: number | null, name: string }): Promise<GetDeploymentLogs200Response> {
+public async getDeploymentLogs(params: { name: string, fid?: number | null, namespace?: string }): Promise<GetDeploymentLogs200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3965,8 +3973,9 @@ Object.assign(adjustedParams, params);
  * @summary List deployment files
  *
  * @param {object} params
- * @param {number | null} params.fid  - Farcaster ID of the user
  * @param {string} params.name  - Kubernetes deployment name
+ * @param {number | null} params.fid [optional]  - Farcaster ID of the user; if not provided, namespace must be provided
+ * @param {string} params.namespace [optional]  - Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID.
  * @param {string} params.directory [optional]  - Directory path relative to gen/ (defaults to root)
  *
  * @returns {Promise<ListDeploymentFiles200Response>} A promise that resolves to a `ListDeploymentFiles200Response` object.
@@ -3974,18 +3983,19 @@ Object.assign(adjustedParams, params);
  * @example
  *
  * // Fill in the appropriate values
- * const fid = 
  * const name = 
+ * const fid = 
+ * const namespace = 
  * const directory = 
  *
- * client.listDeploymentFiles({ fid, name, directory }).then(response => {
+ * client.listDeploymentFiles({ name, fid, namespace, directory }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/list-deployment-files)
  *
  */
-public async listDeploymentFiles(params: { fid: number | null, name: string, directory?: string }): Promise<ListDeploymentFiles200Response> {
+public async listDeploymentFiles(params: { name: string, fid?: number | null, namespace?: string, directory?: string }): Promise<ListDeploymentFiles200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -4185,8 +4195,9 @@ Object.assign(adjustedParams, params);
  * @summary Get Vercel deployment build logs
  *
  * @param {object} params
- * @param {number | null} params.fid  - Farcaster ID of the user
  * @param {string} params.name  - Deployment name used to identify the Vercel project
+ * @param {number | null} params.fid [optional]  - Farcaster ID of the user
+ * @param {string} params.namespace [optional]  - K8s Namespace name
  * @param {number} params.limit [optional]  - Maximum number of log events to return. Defaults to 100.
  *
  * @returns {Promise<VercelDeploymentLogs200Response>} A promise that resolves to a `VercelDeploymentLogs200Response` object.
@@ -4194,18 +4205,19 @@ Object.assign(adjustedParams, params);
  * @example
  *
  * // Fill in the appropriate values
- * const fid = 
  * const name = 
+ * const fid = 
+ * const namespace = 
  * const limit = 
  *
- * client.vercelDeploymentLogs({ fid, name, limit }).then(response => {
+ * client.vercelDeploymentLogs({ name, fid, namespace, limit }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/vercel-deployment-logs)
  *
  */
-public async vercelDeploymentLogs(params: { fid: number | null, name: string, limit?: number }): Promise<VercelDeploymentLogs200Response> {
+public async vercelDeploymentLogs(params: { name: string, fid?: number | null, namespace?: string, limit?: number }): Promise<VercelDeploymentLogs200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -4219,25 +4231,27 @@ Object.assign(adjustedParams, params);
  * @summary Get Vercel deployment status
  *
  * @param {object} params
- * @param {number | null} params.fid  - Farcaster ID of the user
  * @param {string} params.name  - Deployment name used to identify the Vercel project
+ * @param {number | null} params.fid [optional]  - Farcaster ID of the user; if not provided, namespace must be provided
+ * @param {string} params.namespace [optional]  - K8s Namespace name
  *
  * @returns {Promise<VercelDeploymentStatus200Response>} A promise that resolves to a `VercelDeploymentStatus200Response` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const fid = 
  * const name = 
+ * const fid = 
+ * const namespace = 
  *
- * client.vercelDeploymentStatus({ fid, name }).then(response => {
+ * client.vercelDeploymentStatus({ name, fid, namespace }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/vercel-deployment-status)
  *
  */
-public async vercelDeploymentStatus(params: { fid: number | null, name: string }): Promise<VercelDeploymentStatus200Response> {
+public async vercelDeploymentStatus(params: { name: string, fid?: number | null, namespace?: string }): Promise<VercelDeploymentStatus200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
