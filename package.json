@@ -1,6 +1,6 @@
 {
   "name": "@neynar/nodejs-sdk",
-  "version": "3.101.0",
+  "version": "3.103.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/neynarxyz/nodejs-sdk.git"
