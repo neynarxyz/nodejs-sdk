@@ -158,6 +158,7 @@ export * from './list-deployments400-response';
 export * from './location';
 export * from './location-address';
 export * from './mark-notifications-as-seen-req-body';
+export * from './miniapp-domain-response';
 export * from './mint-nft200-response';
 export * from './mint-nft200-response-transactions-inner';
 export * from './mint-nft200-response-transactions-inner-receipt';

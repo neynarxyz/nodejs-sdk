@@ -4580,7 +4580,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
 }
 
 /**
- * Fetch all Ethereum and Solana verified addresses for a farcaster user
+ * Fetch all Ethereum and Solana verified addresses for a Farcaster user. Use this endpoint to identify which wallets are associated with which Farcaster applications for the specified user.
  *
  * @summary Fetch verifications
  *
