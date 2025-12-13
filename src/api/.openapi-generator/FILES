@@ -103,6 +103,12 @@ models/conversation-summary-summary.ts
 models/conversation-summary.ts
 models/conversation.ts
 models/create-deployment-request.ts
+models/create-x402-signature-request-payment-requirements-accepts-inner.ts
+models/create-x402-signature-request-payment-requirements.ts
+models/create-x402-signature-request.ts
+models/create-x402-signature200-response-payload-authorization.ts
+models/create-x402-signature200-response-payload.ts
+models/create-x402-signature200-response.ts
 models/delete-cast-req-body.ts
 models/delete-deployment-request.ts
 models/delete-deployment200-response.ts
