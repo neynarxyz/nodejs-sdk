@@ -17,38 +17,34 @@
 /**
  * 
  * @export
- * @interface ImageObject
+ * @interface GetDevStatus200ResponseDevStatus
  */
-export interface ImageObject {
+export interface GetDevStatus200ResponseDevStatus {
+    [key: string]: any;
+
     /**
      * 
      * @type {string}
-     * @memberof ImageObject
+     * @memberof GetDevStatus200ResponseDevStatus
      */
-    'height'?: string;
+    'started': string | null;
     /**
      * 
      * @type {string}
-     * @memberof ImageObject
+     * @memberof GetDevStatus200ResponseDevStatus
      */
-    'type'?: string;
+    'last_updated': string | null;
     /**
      * 
      * @type {string}
-     * @memberof ImageObject
+     * @memberof GetDevStatus200ResponseDevStatus
      */
-    'url': string;
+    'completed': string | null;
     /**
      * 
-     * @type {string}
-     * @memberof ImageObject
+     * @type {{ [key: string]: { [key: string]: any; }; }}
+     * @memberof GetDevStatus200ResponseDevStatus
      */
-    'width'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ImageObject
-     */
-    'alt'?: string;
+    'phases': { [key: string]: { [key: string]: any; }; };
 }
 

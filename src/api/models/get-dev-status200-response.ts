@@ -15,28 +15,25 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { BanRecord } from './ban-record';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { NextCursor } from './next-cursor';
+import type { GetDevStatus200ResponseDevStatus } from './get-dev-status200-response-dev-status';
 
 /**
  * 
  * @export
- * @interface BanListResponse
+ * @interface GetDevStatus200Response
  */
-export interface BanListResponse {
+export interface GetDevStatus200Response {
     /**
      * 
-     * @type {Array<BanRecord>}
-     * @memberof BanListResponse
+     * @type {boolean}
+     * @memberof GetDevStatus200Response
      */
-    'bans': Array<BanRecord>;
+    'success': boolean;
     /**
      * 
-     * @type {NextCursor}
-     * @memberof BanListResponse
+     * @type {GetDevStatus200ResponseDevStatus}
+     * @memberof GetDevStatus200Response
      */
-    'next': NextCursor;
+    'dev_status': GetDevStatus200ResponseDevStatus;
 }
 

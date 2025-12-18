@@ -183,6 +183,8 @@ models/get-conversation-messages200-response-messages-inner.ts
 models/get-conversation-messages200-response.ts
 models/get-deployment-file200-response.ts
 models/get-deployment-logs200-response.ts
+models/get-dev-status200-response-dev-status.ts
+models/get-dev-status200-response.ts
 models/get-notification-campaign-stats200-response.ts
 models/html-metadata-oembed.ts
 models/html-metadata.ts
