@@ -3090,7 +3090,7 @@ adjustedParams['xWalletId'] = this.config.baseOptions?.headers?.['x-wallet-id'];
 }
 
 /**
- * Register a new farcaster account onchain. Optionally you can pass in signers to register a new account and create multiple signers in a single transaction
+ * Register a new farcaster account onchain. Optionally you can pass in signers to register a new account and create multiple signers in a single transaction. Requires x-wallet-id header.
  *
  * @summary Register Farcaster account onchain
  *
@@ -3123,6 +3123,7 @@ public async registerAccountOnchain(params: { idem?: string, preRegistrationCall
   const adjustedParams: any = {};
 const _params = { registerUserOnChainReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
+adjustedParams['xWalletId'] = this.config.baseOptions?.headers?.['x-wallet-id'];
 
   const response = await this.apis.onchainApi.registerAccountOnchain(adjustedParams);
   return response.data;
@@ -3610,7 +3611,7 @@ Object.assign(adjustedParams, _params);
 }
 
 /**
- * This api will help you rent units of storage for an year for a specific FID. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links.
+ * This api will help you rent units of storage for an year for a specific FID. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. Requires x-wallet-id header.
  *
  * @summary Buy storage
  *
@@ -3639,6 +3640,7 @@ public async buyStorage(params: { fid: number, units?: number, idem?: string }):
   const adjustedParams: any = {};
 const _params = { buyStorageReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
+adjustedParams['xWalletId'] = this.config.baseOptions?.headers?.['x-wallet-id'];
 
   const response = await this.apis.storageApi.buyStorage(adjustedParams);
   return response.data;
