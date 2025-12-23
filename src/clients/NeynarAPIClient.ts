@@ -4710,7 +4710,7 @@ Object.assign(adjustedParams, _params);
 }
 
 /**
- * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-account)
+ * Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-account).
  *
  * @summary Fetch fresh FID
  *
@@ -4731,6 +4731,7 @@ Object.assign(adjustedParams, _params);
  */
 public async getFreshAccountFID(): Promise<UserFIDResponse> {
   const adjustedParams: any = {};
+adjustedParams['xWalletId'] = this.config.baseOptions?.headers?.['x-wallet-id'];
 adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-neynar-experimental'];
 
   const response = await this.apis.userApi.getFreshAccountFID(adjustedParams);
@@ -4908,7 +4909,7 @@ Object.assign(adjustedParams, _params);
 }
 
 /**
- * Register account on farcaster.   **Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user.
+ * Register account on farcaster. Optionally provide x-wallet-id header to use your own wallet.   **Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user.
  *
  * @summary Register new account
  *
@@ -4945,6 +4946,7 @@ public async registerAccount(params: { signer?: RegisterUserReqBodySigner, signa
   const adjustedParams: any = {};
 const _params = { registerUserReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
+adjustedParams['xWalletId'] = this.config.baseOptions?.headers?.['x-wallet-id'];
 
   const response = await this.apis.userApi.registerAccount(adjustedParams);
   return response.data;
