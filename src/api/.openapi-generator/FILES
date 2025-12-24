@@ -57,6 +57,7 @@ models/best-friends-response.ts
 models/block-list-response.ts
 models/block-record.ts
 models/block-req-body.ts
+models/build-request.ts
 models/bulk-casts-response.ts
 models/bulk-follow-response.ts
 models/bulk-users-by-address-response.ts
@@ -183,7 +184,8 @@ models/get-conversation-messages200-response-messages-inner.ts
 models/get-conversation-messages200-response.ts
 models/get-deployment-file200-response.ts
 models/get-deployment-logs200-response.ts
-models/get-dev-status200-response-dev-status.ts
+models/get-dev-status200-response-one-of.ts
+models/get-dev-status200-response-one-of1.ts
 models/get-dev-status200-response.ts
 models/get-notification-campaign-stats200-response.ts
 models/html-metadata-oembed.ts
