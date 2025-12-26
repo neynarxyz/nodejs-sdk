@@ -149,7 +149,6 @@ export * from './fungibles-response-schema';
 export * from './get-conversation-messages200-response';
 export * from './get-conversation-messages200-response-messages-inner';
 export * from './get-deployment-file200-response';
-export * from './get-deployment-logs200-response';
 export * from './get-dev-status200-response';
 export * from './get-dev-status200-response-one-of';
 export * from './get-dev-status200-response-one-of1';

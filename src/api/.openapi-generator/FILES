@@ -183,7 +183,6 @@ models/fungibles-response-schema.ts
 models/get-conversation-messages200-response-messages-inner.ts
 models/get-conversation-messages200-response.ts
 models/get-deployment-file200-response.ts
-models/get-deployment-logs200-response.ts
 models/get-dev-status200-response-one-of.ts
 models/get-dev-status200-response-one-of1.ts
 models/get-dev-status200-response.ts
