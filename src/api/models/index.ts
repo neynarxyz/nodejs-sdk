@@ -185,7 +185,6 @@ export * from './notification';
 export * from './notification-campaign';
 export * from './notification-campaign-stats';
 export * from './notification-campaign-stats-error-breakdown';
-export * from './notification-delivery';
 export * from './notification-type';
 export * from './notifications-response';
 export * from './oembed-link-data';

@@ -219,7 +219,6 @@ models/nonce-response.ts
 models/notification-campaign-stats-error-breakdown.ts
 models/notification-campaign-stats.ts
 models/notification-campaign.ts
-models/notification-delivery.ts
 models/notification-type.ts
 models/notification.ts
 models/notifications-response.ts
