@@ -3797,7 +3797,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Deletes a specific miniapp generator deployment or all deployments for a FID. If name is provided, deletes single deployment. If only FID is provided, deletes all deployments for that FID. Requires API key authentication.
+ * Deletes a specific miniapp generator deployment or all deployments for a FID. If deployment_id or name is provided, deletes single deployment. If only FID is provided, deletes all deployments for that FID. Requires API key authentication.
  *
  * @summary Delete deployment(s)
  *
@@ -3862,9 +3862,10 @@ Object.assign(adjustedParams, params);
  * @summary Get messages in a conversation
  *
  * @param {object} params
- * @param {string} params.name  - Kubernetes deployment name
  * @param {string} params.conversationId  - Conversation ID
+ * @param {string} params.deploymentId [optional]  - Deployment ID (UUID). Required if name not provided.
  * @param {number | null} params.fid [optional]  - Farcaster ID of the user; if not provided, namespace must be provided
+ * @param {string} params.name [optional]  - Kubernetes deployment name. Required if deployment_id not provided.
  * @param {string} params.namespace [optional]  - Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID.
  * @param {boolean | null} params.includeDeleted [optional]  - Include deleted messages in the response. Defaults to false.
  *
@@ -3873,20 +3874,21 @@ Object.assign(adjustedParams, params);
  * @example
  *
  * // Fill in the appropriate values
- * const name = 
  * const conversationId = 
+ * const deploymentId = 
  * const fid = 
+ * const name = 
  * const namespace = 
  * const includeDeleted = 
  *
- * client.getConversationMessages({ name, conversationId, fid, namespace, includeDeleted }).then(response => {
+ * client.getConversationMessages({ conversationId, deploymentId, fid, name, namespace, includeDeleted }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-conversation-messages)
  *
  */
-public async getConversationMessages(params: { name: string, conversationId: string, fid?: number | null, namespace?: string, includeDeleted?: boolean | null }): Promise<GetConversationMessages200Response> {
+public async getConversationMessages(params: { conversationId: string, deploymentId?: string, fid?: number | null, name?: string, namespace?: string, includeDeleted?: boolean | null }): Promise<GetConversationMessages200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3895,13 +3897,14 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Fetches info about a miniapp generator deployment by its name and creator\'s Farcaster ID. Requires API key authentication.
+ * Fetches info about a miniapp generator deployment by its deployment_id or name and creator\'s Farcaster ID. Requires API key authentication.
  *
  * @summary Get deployment info
  *
  * @param {object} params
- * @param {string} params.name  - Kubernetes deployment name
+ * @param {string} params.deploymentId [optional]  - Deployment ID (UUID). Required if name not provided.
  * @param {number | null} params.fid [optional]  - Farcaster ID of the user; if not provided, namespace must be provided
+ * @param {string} params.name [optional]  - Kubernetes deployment name. Required if deployment_id not provided.
  * @param {string} params.namespace [optional]  - Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID.
  *
  * @returns {Promise<ListDeployments200ResponseInner>} A promise that resolves to a `ListDeployments200ResponseInner` object.
@@ -3909,18 +3912,19 @@ Object.assign(adjustedParams, params);
  * @example
  *
  * // Fill in the appropriate values
- * const name = 
+ * const deploymentId = 
  * const fid = 
+ * const name = 
  * const namespace = 
  *
- * client.getDeployment({ name, fid, namespace }).then(response => {
+ * client.getDeployment({ deploymentId, fid, name, namespace }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-deployment)
  *
  */
-public async getDeployment(params: { name: string, fid?: number | null, namespace?: string }): Promise<ListDeployments200ResponseInner> {
+public async getDeployment(params: { deploymentId?: string, fid?: number | null, name?: string, namespace?: string }): Promise<ListDeployments200ResponseInner> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3934,9 +3938,10 @@ Object.assign(adjustedParams, params);
  * @summary Get deployment file contents
  *
  * @param {object} params
- * @param {string} params.name  - Kubernetes deployment name
  * @param {string} params.filePath  - File path relative to gen/
+ * @param {string} params.deploymentId [optional]  - Deployment ID (UUID). Required if name not provided.
  * @param {number | null} params.fid [optional]  - Farcaster ID of the user; if not provided, namespace must be provided
+ * @param {string} params.name [optional]  - Kubernetes deployment name. Required if deployment_id not provided.
  * @param {string} params.namespace [optional]  - Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID.
  *
  * @returns {Promise<GetDeploymentFile200Response>} A promise that resolves to a `GetDeploymentFile200Response` object.
@@ -3944,19 +3949,20 @@ Object.assign(adjustedParams, params);
  * @example
  *
  * // Fill in the appropriate values
- * const name = 
  * const filePath = 
+ * const deploymentId = 
  * const fid = 
+ * const name = 
  * const namespace = 
  *
- * client.getDeploymentFile({ name, filePath, fid, namespace }).then(response => {
+ * client.getDeploymentFile({ filePath, deploymentId, fid, name, namespace }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-deployment-file)
  *
  */
-public async getDeploymentFile(params: { name: string, filePath: string, fid?: number | null, namespace?: string }): Promise<GetDeploymentFile200Response> {
+public async getDeploymentFile(params: { filePath: string, deploymentId?: string, fid?: number | null, name?: string, namespace?: string }): Promise<GetDeploymentFile200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3970,25 +3976,27 @@ Object.assign(adjustedParams, params);
  * @summary Get dev status of a miniapp
  *
  * @param {object} params
- * @param {string} params.namespace  - Kubernetes namespace name
- * @param {string} params.name  - Kubernetes deployment name
+ * @param {string} params.deploymentId [optional]  - Deployment ID
+ * @param {string} params.namespace [optional]  - Kubernetes namespace name
+ * @param {string} params.name [optional]  - Kubernetes deployment name
  *
  * @returns {Promise<GetDevStatus200Response>} A promise that resolves to a `GetDevStatus200Response` object.
  *
  * @example
  *
  * // Fill in the appropriate values
+ * const deploymentId = 
  * const namespace = 
  * const name = 
  *
- * client.getDevStatus({ namespace, name }).then(response => {
+ * client.getDevStatus({ deploymentId, namespace, name }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-dev-status)
  *
  */
-public async getDevStatus(params: { namespace: string, name: string }): Promise<GetDevStatus200Response> {
+public async getDevStatus(params: { deploymentId?: string, namespace?: string, name?: string }): Promise<GetDevStatus200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -4002,6 +4010,7 @@ Object.assign(adjustedParams, params);
  * @summary List conversations for a deployment
  *
  * @param {object} params
+ * @param {string} params.deploymentId [optional]  - Deployment ID (UUID). If provided, filters conversations to this deployment only.
  * @param {number | null} params.fid [optional]  - Farcaster ID of the user. Required for non-admin users. Studio admins can omit to query all conversations.
  * @param {string} params.name [optional]  - Kubernetes deployment name. If provided, filters conversations to this deployment only.
  * @param {boolean | null} params.includeDeleted [optional]  - Include deleted conversations in the response. Defaults to false.
@@ -4011,18 +4020,19 @@ Object.assign(adjustedParams, params);
  * @example
  *
  * // Fill in the appropriate values
+ * const deploymentId = 
  * const fid = 
  * const name = 
  * const includeDeleted = 
  *
- * client.listConversations({ fid, name, includeDeleted }).then(response => {
+ * client.listConversations({ deploymentId, fid, name, includeDeleted }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/list-conversations)
  *
  */
-public async listConversations(params: { fid?: number | null, name?: string, includeDeleted?: boolean | null }): Promise<ListConversations200Response> {
+public async listConversations(params: { deploymentId?: string, fid?: number | null, name?: string, includeDeleted?: boolean | null }): Promise<ListConversations200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -4036,8 +4046,9 @@ Object.assign(adjustedParams, params);
  * @summary List deployment files
  *
  * @param {object} params
- * @param {string} params.name  - Kubernetes deployment name
+ * @param {string} params.deploymentId [optional]  - Deployment ID (UUID). Required if name not provided.
  * @param {number | null} params.fid [optional]  - Farcaster ID of the user; if not provided, namespace must be provided
+ * @param {string} params.name [optional]  - Kubernetes deployment name. Required if deployment_id not provided.
  * @param {string} params.namespace [optional]  - Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID.
  * @param {string} params.directory [optional]  - Directory path relative to gen/ (defaults to root)
  *
@@ -4046,19 +4057,20 @@ Object.assign(adjustedParams, params);
  * @example
  *
  * // Fill in the appropriate values
- * const name = 
+ * const deploymentId = 
  * const fid = 
+ * const name = 
  * const namespace = 
  * const directory = 
  *
- * client.listDeploymentFiles({ name, fid, namespace, directory }).then(response => {
+ * client.listDeploymentFiles({ deploymentId, fid, name, namespace, directory }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/list-deployment-files)
  *
  */
-public async listDeploymentFiles(params: { name: string, fid?: number | null, namespace?: string, directory?: string }): Promise<ListDeploymentFiles200Response> {
+public async listDeploymentFiles(params: { deploymentId?: string, fid?: number | null, name?: string, namespace?: string, directory?: string }): Promise<ListDeploymentFiles200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -4258,9 +4270,10 @@ Object.assign(adjustedParams, params);
  * @summary Get Vercel deployment build logs
  *
  * @param {object} params
- * @param {string} params.name  - Deployment name used to identify the Vercel project
+ * @param {string} params.deploymentId [optional]  - Deployment ID (UUID). Required if name not provided.
  * @param {number | null} params.fid [optional]  - Farcaster ID of the user
  * @param {string} params.namespace [optional]  - K8s Namespace name
+ * @param {string} params.name [optional]  - Deployment name used to identify the Vercel project. Required if deployment_id not provided.
  * @param {number} params.limit [optional]  - Maximum number of log events to return. Defaults to 100.
  *
  * @returns {Promise<VercelDeploymentLogs200Response>} A promise that resolves to a `VercelDeploymentLogs200Response` object.
@@ -4268,19 +4281,20 @@ Object.assign(adjustedParams, params);
  * @example
  *
  * // Fill in the appropriate values
- * const name = 
+ * const deploymentId = 
  * const fid = 
  * const namespace = 
+ * const name = 
  * const limit = 
  *
- * client.vercelDeploymentLogs({ name, fid, namespace, limit }).then(response => {
+ * client.vercelDeploymentLogs({ deploymentId, fid, namespace, name, limit }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/vercel-deployment-logs)
  *
  */
-public async vercelDeploymentLogs(params: { name: string, fid?: number | null, namespace?: string, limit?: number }): Promise<VercelDeploymentLogs200Response> {
+public async vercelDeploymentLogs(params: { deploymentId?: string, fid?: number | null, namespace?: string, name?: string, limit?: number }): Promise<VercelDeploymentLogs200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -4294,27 +4308,29 @@ Object.assign(adjustedParams, params);
  * @summary Get Vercel deployment status
  *
  * @param {object} params
- * @param {string} params.name  - Deployment name used to identify the Vercel project
+ * @param {string} params.deploymentId [optional]  - Deployment ID (UUID). Required if name not provided.
  * @param {number | null} params.fid [optional]  - Farcaster ID of the user; if not provided, namespace must be provided
  * @param {string} params.namespace [optional]  - K8s Namespace name
+ * @param {string} params.name [optional]  - Deployment name used to identify the Vercel project. Required if deployment_id not provided.
  *
  * @returns {Promise<VercelDeploymentStatus200Response>} A promise that resolves to a `VercelDeploymentStatus200Response` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const name = 
+ * const deploymentId = 
  * const fid = 
  * const namespace = 
+ * const name = 
  *
- * client.vercelDeploymentStatus({ name, fid, namespace }).then(response => {
+ * client.vercelDeploymentStatus({ deploymentId, fid, namespace, name }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/vercel-deployment-status)
  *
  */
-public async vercelDeploymentStatus(params: { name: string, fid?: number | null, namespace?: string }): Promise<VercelDeploymentStatus200Response> {
+public async vercelDeploymentStatus(params: { deploymentId?: string, fid?: number | null, namespace?: string, name?: string }): Promise<VercelDeploymentStatus200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
