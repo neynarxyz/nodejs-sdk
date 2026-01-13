@@ -113,6 +113,7 @@ models/create-x402-signature200-response.ts
 models/delete-cast-req-body.ts
 models/delete-deployment-request.ts
 models/delete-deployment200-response.ts
+models/delete-secrets-request.ts
 models/deploy-fungible-response-contract-fungible.ts
 models/deploy-fungible-response-contract.ts
 models/deploy-fungible-response.ts
@@ -199,6 +200,8 @@ models/list-deployment-files200-response.ts
 models/list-deployments200-response-inner-production-app-status.ts
 models/list-deployments200-response-inner.ts
 models/list-deployments400-response.ts
+models/list-secrets200-response-secrets-inner.ts
+models/list-secrets200-response.ts
 models/location-address.ts
 models/location.ts
 models/mark-notifications-as-seen-req-body.ts
@@ -330,6 +333,9 @@ models/update-user207-response-errors-inner.ts
 models/update-user207-response.ts
 models/upload-image-url-request.ts
 models/upload-image200-response.ts
+models/upsert-secrets-request-secrets-inner.ts
+models/upsert-secrets-request.ts
+models/upsert-secrets200-response.ts
 models/user-auth-addresses-inner.ts
 models/user-dehydrated.ts
 models/user-experimental.ts
