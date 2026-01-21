@@ -4001,13 +4001,12 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Retrieves the dev-status.json file from a miniapp deployment, which tracks the progress of app development phases. Requires Studio admin authentication or FID ownership validation.
+ * Retrieves the dev-status.json file from a miniapp deployment, which tracks the progress of app development phases. Requires API key authentication.
  *
  * @summary Get dev status of a miniapp
  *
  * @param {object} params
  * @param {string} params.deploymentId [optional]  - Deployment ID
- * @param {number | null} params.fid [optional]  - Farcaster ID of the user. Required for non-admin users to verify ownership.
  * @param {string} params.namespace [optional]  - Kubernetes namespace name
  * @param {string} params.name [optional]  - Kubernetes deployment name
  *
@@ -4017,18 +4016,17 @@ Object.assign(adjustedParams, params);
  *
  * // Fill in the appropriate values
  * const deploymentId = 
- * const fid = 
  * const namespace = 
  * const name = 
  *
- * client.getDevStatus({ deploymentId, fid, namespace, name }).then(response => {
+ * client.getDevStatus({ deploymentId, namespace, name }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-dev-status)
  *
  */
-public async getDevStatus(params: { deploymentId?: string, fid?: number | null, namespace?: string, name?: string }): Promise<GetDevStatus200Response> {
+public async getDevStatus(params: { deploymentId?: string, namespace?: string, name?: string }): Promise<GetDevStatus200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
