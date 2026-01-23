@@ -147,6 +147,7 @@ export * from './fungible';
 export * from './fungible-balance';
 export * from './fungible-balance-balance';
 export * from './fungibles-response-schema';
+export * from './get-account-association200-response';
 export * from './get-conversation-messages200-response';
 export * from './get-conversation-messages200-response-messages-inner';
 export * from './get-deployment-file200-response';

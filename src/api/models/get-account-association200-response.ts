@@ -13,27 +13,30 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { UpdateUser207ResponseErrorsInner } from './update-user207-response-errors-inner';
 
 /**
  * 
  * @export
- * @interface UpdateUser207Response
+ * @interface GetAccountAssociation200Response
  */
-export interface UpdateUser207Response {
+export interface GetAccountAssociation200Response {
     /**
-     * 
-     * @type {boolean}
-     * @memberof UpdateUser207Response
+     * Base64URL encoded JFS header
+     * @type {string}
+     * @memberof GetAccountAssociation200Response
      */
-    'success': boolean;
+    'header': string;
     /**
-     * 
-     * @type {Array<UpdateUser207ResponseErrorsInner>}
-     * @memberof UpdateUser207Response
+     * Base64URL encoded JFS payload
+     * @type {string}
+     * @memberof GetAccountAssociation200Response
      */
-    'errors': Array<UpdateUser207ResponseErrorsInner>;
+    'payload': string;
+    /**
+     * Base64URL encoded JFS signature
+     * @type {string}
+     * @memberof GetAccountAssociation200Response
+     */
+    'signature': string;
 }
 
