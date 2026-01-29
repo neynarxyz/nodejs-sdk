@@ -113,6 +113,8 @@ models/create-x402-signature200-response.ts
 models/delete-cast-req-body.ts
 models/delete-deployment-request.ts
 models/delete-deployment200-response.ts
+models/delete-rows-request.ts
+models/delete-rows200-response.ts
 models/delete-secrets-request.ts
 models/deploy-fungible-response-contract-fungible.ts
 models/deploy-fungible-response-contract.ts
@@ -133,6 +135,8 @@ models/embed-url.ts
 models/embed.ts
 models/encoded-json-farcaster-signature.ts
 models/error-res.ts
+models/execute-sql-request.ts
+models/execute-sql200-response.ts
 models/farcaster-action-req-body-action.ts
 models/farcaster-action-req-body.ts
 models/farcaster-fungible.ts
@@ -189,10 +193,16 @@ models/get-dev-status200-response-one-of.ts
 models/get-dev-status200-response-one-of1.ts
 models/get-dev-status200-response.ts
 models/get-notification-campaign-stats200-response.ts
+models/get-table-schema200-response-columns-inner.ts
+models/get-table-schema200-response-foreign-keys-inner.ts
+models/get-table-schema200-response-indexes-inner.ts
+models/get-table-schema200-response.ts
 models/html-metadata-oembed.ts
 models/html-metadata.ts
 models/image-object.ts
 models/index.ts
+models/insert-rows-request.ts
+models/insert-rows200-response.ts
 models/invite-channel-member-req-body.ts
 models/list-conversations200-response-conversations-inner.ts
 models/list-conversations200-response.ts
@@ -203,6 +213,9 @@ models/list-deployments200-response-inner.ts
 models/list-deployments400-response.ts
 models/list-secrets200-response-secrets-inner.ts
 models/list-secrets200-response.ts
+models/list-tables200-response-tables-inner.ts
+models/list-tables200-response.ts
+models/list-tables400-response.ts
 models/location-address.ts
 models/location.ts
 models/mark-notifications-as-seen-req-body.ts
@@ -242,6 +255,9 @@ models/post-cast-response-cast.ts
 models/post-cast-response.ts
 models/prompt-deployment-stream-request.ts
 models/protocol.ts
+models/query-table-request.ts
+models/query-table200-response-columns-inner.ts
+models/query-table200-response.ts
 models/reaction-for-cast.ts
 models/reaction-like.ts
 models/reaction-recast.ts
@@ -327,6 +343,8 @@ models/transaction-send-tx-info.ts
 models/trending-channel-response.ts
 models/trending-topic.ts
 models/trending-topics-response.ts
+models/update-rows-request.ts
+models/update-rows200-response.ts
 models/update-user-req-body-location.ts
 models/update-user-req-body-verified-accounts.ts
 models/update-user-req-body.ts

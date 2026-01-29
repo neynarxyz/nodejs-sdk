@@ -34,7 +34,7 @@ import { SubscribersApi } from '../api/apis/subscribers-api';
 import { TopicApi } from '../api/apis/topic-api';
 import { UserApi } from '../api/apis/user-api';
 import { WebhookApi } from '../api/apis/webhook-api';
-import type { AddVerificationReqBody, AppHostGetEventEventEnum, AppHostGetEventResponse, AppHostPostEventReqBody, AppHostPostEventResponse, AppHostUserStateResponse, AssociateDeployment200Response, AssociateDeploymentRequest, AuthorizationUrlResponse, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BestFriendsResponse, BlockListResponse, BlockReqBody, BuildRequest, BulkCastsResponse, BulkFollowResponse, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastEmbedCrawlResponse, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, Conversation, ConversationSummary, CreateDeploymentRequest, CreateX402Signature200Response, CreateX402SignatureRequest, DeleteCastReqBody, DeleteDeployment200Response, DeleteDeploymentRequest, DeleteSecretsRequest, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeployToVercel200Response, DeployToVercelRequest, DeveloperManagedSigner, ErrorRes, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FetchAllNotificationsTypeEnum, FetchAuthorizationUrlResponseTypeEnum, FetchBulkCastsSortTypeEnum, FetchBulkChannelsTypeEnum, FetchBulkUsersByEthOrSolAddressAddressTypesEnum, FetchCastMetricsIntervalEnum, FetchCastQuotes200Response, FetchCastQuotesTypeEnum, FetchCastReactionsTypesEnum, FetchFeedEmbedTypesEnum, FetchFeedFeedTypeEnum, FetchFeedFilterTypeEnum, FetchFeedForYouProviderEnum, FetchFrameCatalogCategoriesEnum, FetchFrameCatalogNetworksEnum, FetchFrameCatalogTimeWindowEnum, FetchFungibleTrades200Response, FetchFungibleTradesNetworkEnum, FetchFungibleTradesTimeWindowEnum, FetchRelevantFrames200Response, FetchRelevantFramesNetworksEnum, FetchRelevantFramesTimeWindowEnum, FetchRelevantFungibleOwnersNetworkEnum, FetchRepliesAndRecastsForUserFilterEnum, FetchSubscribedToForFidSubscriptionProviderEnum, FetchSubscribersForFidSubscriptionProviderEnum, FetchSubscriptionsForFidSubscriptionProviderEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedProviderEnum, FetchTrendingFeedTimeWindowEnum, FetchTrendingFungibles200Response, FetchTrendingFungiblesNetworkEnum, FetchTrendingFungiblesTimeWindowEnum, FetchUserBalanceNetworksEnum, FetchUserFollowersSortTypeEnum, FetchUserFollowingSortTypeEnum, FetchUserInteractions200Response, FetchUserInteractionsTypeEnum, FetchUserReactionsTypeEnum, FetchUserReciprocalFollowers200Response, FetchUserReciprocalFollowersSortTypeEnum, FetchVerifications200Response, FnameAvailabilityResponse, FollowReqBody, FollowersResponse, FrameCatalogResponse, FrameNotificationTokens, FramePayTransactionReqBody, FramePayTransactionReqBodyTransaction, FungiblesResponseSchema, GetAccountAssociation200Response, GetConversationMessages200Response, GetDeploymentFile200Response, GetDevStatus200Response, GetNotificationCampaignStats200Response, InviteChannelMemberReqBody, ListConversations200Response, ListDeploymentFiles200Response, ListDeployments200ResponseInner, ListSecrets200Response, LookupCastByHashOrUrlTypeEnum, LookupCastConversationFoldEnum, LookupCastConversationSortTypeEnum, LookupCastConversationTypeEnum, LookupChannelTypeEnum, MarkNotificationsAsSeenReqBody, MintNft200Response, MintNftRequest, MuteListResponse, MuteReqBody, MuteResponse, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, PromptDeploymentStreamRequest, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, RegisterAuthAddressDeveloperManagedSignedKeyReqBody, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignedKeyForDeveloperManagedAuthAddress200Response, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyPreRegistrationCallsInner, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserReqBodySigner, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchCastsSortTypeEnum, SearchFramesNetworksEnum, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, SimulateNftMintNetworkEnum, SimulateNftMintResponse, StartApp200Response, StartAppRequest, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionsResponse, TransactionFrameConfig, TransactionFrameResponse, TransactionSendFungiblesRecipient, TransactionSendFungiblesReqBody, TransactionSendFungiblesReqBodyNetworkEnum, TransactionSendFungiblesResponse, TrendingChannelResponse, TrendingTopicsResponse, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UploadImage200Response, UploadImageUrlRequest, UpsertSecrets200Response, UpsertSecretsRequest, UserFIDResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, VercelDeploymentLogs200Response, VercelDeploymentStatus200Response, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
+import type { AddVerificationReqBody, AppHostGetEventEventEnum, AppHostGetEventResponse, AppHostPostEventReqBody, AppHostPostEventResponse, AppHostUserStateResponse, AssociateDeployment200Response, AssociateDeploymentRequest, AuthorizationUrlResponse, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BestFriendsResponse, BlockListResponse, BlockReqBody, BuildRequest, BulkCastsResponse, BulkFollowResponse, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastEmbedCrawlResponse, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, Conversation, ConversationSummary, CreateDeploymentRequest, CreateX402Signature200Response, CreateX402SignatureRequest, DeleteCastReqBody, DeleteDeployment200Response, DeleteDeploymentRequest, DeleteRows200Response, DeleteRowsRequest, DeleteSecretsRequest, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeployToVercel200Response, DeployToVercelRequest, DeveloperManagedSigner, ErrorRes, ExecuteSql200Response, ExecuteSqlRequest, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FetchAllNotificationsTypeEnum, FetchAuthorizationUrlResponseTypeEnum, FetchBulkCastsSortTypeEnum, FetchBulkChannelsTypeEnum, FetchBulkUsersByEthOrSolAddressAddressTypesEnum, FetchCastMetricsIntervalEnum, FetchCastQuotes200Response, FetchCastQuotesTypeEnum, FetchCastReactionsTypesEnum, FetchFeedEmbedTypesEnum, FetchFeedFeedTypeEnum, FetchFeedFilterTypeEnum, FetchFeedForYouProviderEnum, FetchFrameCatalogCategoriesEnum, FetchFrameCatalogNetworksEnum, FetchFrameCatalogTimeWindowEnum, FetchFungibleTrades200Response, FetchFungibleTradesNetworkEnum, FetchFungibleTradesTimeWindowEnum, FetchRelevantFrames200Response, FetchRelevantFramesNetworksEnum, FetchRelevantFramesTimeWindowEnum, FetchRelevantFungibleOwnersNetworkEnum, FetchRepliesAndRecastsForUserFilterEnum, FetchSubscribedToForFidSubscriptionProviderEnum, FetchSubscribersForFidSubscriptionProviderEnum, FetchSubscriptionsForFidSubscriptionProviderEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedProviderEnum, FetchTrendingFeedTimeWindowEnum, FetchTrendingFungibles200Response, FetchTrendingFungiblesNetworkEnum, FetchTrendingFungiblesTimeWindowEnum, FetchUserBalanceNetworksEnum, FetchUserFollowersSortTypeEnum, FetchUserFollowingSortTypeEnum, FetchUserInteractions200Response, FetchUserInteractionsTypeEnum, FetchUserReactionsTypeEnum, FetchUserReciprocalFollowers200Response, FetchUserReciprocalFollowersSortTypeEnum, FetchVerifications200Response, FnameAvailabilityResponse, FollowReqBody, FollowersResponse, FrameCatalogResponse, FrameNotificationTokens, FramePayTransactionReqBody, FramePayTransactionReqBodyTransaction, FungiblesResponseSchema, GetAccountAssociation200Response, GetConversationMessages200Response, GetDeploymentFile200Response, GetDevStatus200Response, GetNotificationCampaignStats200Response, GetTableSchema200Response, InsertRows200Response, InsertRowsRequest, InviteChannelMemberReqBody, ListConversations200Response, ListDeploymentFiles200Response, ListDeployments200ResponseInner, ListSecrets200Response, ListTables200Response, LookupCastByHashOrUrlTypeEnum, LookupCastConversationFoldEnum, LookupCastConversationSortTypeEnum, LookupCastConversationTypeEnum, LookupChannelTypeEnum, MarkNotificationsAsSeenReqBody, MintNft200Response, MintNftRequest, MuteListResponse, MuteReqBody, MuteResponse, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, PromptDeploymentStreamRequest, QueryTable200Response, QueryTableRequest, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, RegisterAuthAddressDeveloperManagedSignedKeyReqBody, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignedKeyForDeveloperManagedAuthAddress200Response, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyPreRegistrationCallsInner, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserReqBodySigner, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchCastsSortTypeEnum, SearchFramesNetworksEnum, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, SimulateNftMintNetworkEnum, SimulateNftMintResponse, StartApp200Response, StartAppRequest, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionsResponse, TransactionFrameConfig, TransactionFrameResponse, TransactionSendFungiblesRecipient, TransactionSendFungiblesReqBody, TransactionSendFungiblesReqBodyNetworkEnum, TransactionSendFungiblesResponse, TrendingChannelResponse, TrendingTopicsResponse, UpdateRows200Response, UpdateRowsRequest, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UploadImage200Response, UploadImageUrlRequest, UpsertSecrets200Response, UpsertSecretsRequest, UserFIDResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, VercelDeploymentLogs200Response, VercelDeploymentStatus200Response, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
 
 const { version: sdkVersion } = require("../../package.json");
 
@@ -3827,6 +3827,38 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Deletes rows matching the WHERE conditions. WHERE clause is required to prevent accidental bulk deletes.
+ *
+ * @summary Delete rows from table
+ *
+ * @param {object} params
+ * @param {string} params.tableName 
+ * @param {DeleteRowsRequest} params.deleteRowsRequest 
+ *
+ * @returns {Promise<DeleteRows200Response>} A promise that resolves to a `DeleteRows200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const tableName = 
+ * const deleteRowsRequest = 
+ *
+ * client.deleteRows({ tableName, deleteRowsRequest }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-rows)
+ *
+ */
+public async deleteRows(params: { tableName: string, deleteRowsRequest: DeleteRowsRequest }): Promise<DeleteRows200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.deleteRows(adjustedParams);
+  return response.data;
+}
+
+/**
  * Deletes environment variables (secrets) from a deployment.
  *
  * @summary Delete deployment secrets
@@ -3883,6 +3915,36 @@ public async deployToVercel(params: { deployToVercelRequest: DeployToVercelReque
 Object.assign(adjustedParams, params);
 
   const response = await this.apis.studioApi.deployToVercel(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Executes a raw SQL query against the deployment database. Only SELECT, WITH, and EXPLAIN queries are allowed. Admin access required.
+ *
+ * @summary Execute raw SQL query (admin only)
+ *
+ * @param {object} params
+ * @param {ExecuteSqlRequest} params.executeSqlRequest 
+ *
+ * @returns {Promise<ExecuteSql200Response>} A promise that resolves to a `ExecuteSql200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const executeSqlRequest = 
+ *
+ * client.executeSql({ executeSqlRequest }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/execute-sql)
+ *
+ */
+public async executeSql(params: { executeSqlRequest: ExecuteSqlRequest }): Promise<ExecuteSql200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.executeSql(adjustedParams);
   return response.data;
 }
 
@@ -4069,6 +4131,72 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Retrieves the complete schema for a table including columns, indexes, and foreign keys.
+ *
+ * @summary Get table schema
+ *
+ * @param {object} params
+ * @param {string} params.tableName 
+ * @param {string} params.deploymentId  - Deployment ID (UUID)
+ * @param {number | null} params.fid [optional]  - Farcaster ID of the user. Required for non-admin users.
+ *
+ * @returns {Promise<GetTableSchema200Response>} A promise that resolves to a `GetTableSchema200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const tableName = 
+ * const deploymentId = 
+ * const fid = 
+ *
+ * client.getTableSchema({ tableName, deploymentId, fid }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-table-schema)
+ *
+ */
+public async getTableSchema(params: { tableName: string, deploymentId: string, fid?: number | null }): Promise<GetTableSchema200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.getTableSchema(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Inserts one or more rows into the specified table. Returns the inserted rows with generated values.
+ *
+ * @summary Insert rows into table
+ *
+ * @param {object} params
+ * @param {string} params.tableName 
+ * @param {InsertRowsRequest} params.insertRowsRequest 
+ *
+ * @returns {Promise<InsertRows200Response>} A promise that resolves to a `InsertRows200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const tableName = 
+ * const insertRowsRequest = 
+ *
+ * client.insertRows({ tableName, insertRowsRequest }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/insert-rows)
+ *
+ */
+public async insertRows(params: { tableName: string, insertRowsRequest: InsertRowsRequest }): Promise<InsertRows200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.insertRows(adjustedParams);
+  return response.data;
+}
+
+/**
  * Lists all conversations for a specific deployment. Requires API key authentication.
  *
  * @summary List conversations for a deployment
@@ -4211,6 +4339,38 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Lists all tables and views in the deployment database, excluding system tables.
+ *
+ * @summary List all tables in deployment database
+ *
+ * @param {object} params
+ * @param {string} params.deploymentId  - Deployment ID (UUID)
+ * @param {number | null} params.fid [optional]  - Farcaster ID of the user. Required for non-admin users.
+ *
+ * @returns {Promise<ListTables200Response>} A promise that resolves to a `ListTables200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const deploymentId = 
+ * const fid = 
+ *
+ * client.listTables({ deploymentId, fid }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/list-tables)
+ *
+ */
+public async listTables(params: { deploymentId: string, fid?: number | null }): Promise<ListTables200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.listTables(adjustedParams);
+  return response.data;
+}
+
+/**
  * Sends a prompt to a specific miniapp generator deployment and returns a streaming response using Server-Sent Events. The response is a continuous stream of Server-Sent Events, not a single JSON payload. Each event contains a JSON object with type, message, and other fields specific to the message type. Requires authentication via API key in the request header.
  *
  * @summary Prompt a deployment with streaming response
@@ -4237,6 +4397,36 @@ public async promptDeploymentStream(params: { promptDeploymentStreamRequest: Pro
 Object.assign(adjustedParams, params);
 
   const response = await this.apis.studioApi.promptDeploymentStream(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Query data from a table with pagination and sorting.
+ *
+ * @summary Query table data
+ *
+ * @param {object} params
+ * @param {QueryTableRequest} params.queryTableRequest 
+ *
+ * @returns {Promise<QueryTable200Response>} A promise that resolves to a `QueryTable200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const queryTableRequest = 
+ *
+ * client.queryTable({ queryTableRequest }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/query-table)
+ *
+ */
+public async queryTable(params: { queryTableRequest: QueryTableRequest }): Promise<QueryTable200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.queryTable(adjustedParams);
   return response.data;
 }
 
@@ -4297,6 +4487,38 @@ public async stopApp(params: { startAppRequest: StartAppRequest }): Promise<Star
 Object.assign(adjustedParams, params);
 
   const response = await this.apis.studioApi.stopApp(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Updates rows matching the WHERE conditions. WHERE clause is required to prevent accidental bulk updates.
+ *
+ * @summary Update rows in table
+ *
+ * @param {object} params
+ * @param {string} params.tableName 
+ * @param {UpdateRowsRequest} params.updateRowsRequest 
+ *
+ * @returns {Promise<UpdateRows200Response>} A promise that resolves to a `UpdateRows200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const tableName = 
+ * const updateRowsRequest = 
+ *
+ * client.updateRows({ tableName, updateRowsRequest }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/update-rows)
+ *
+ */
+public async updateRows(params: { tableName: string, updateRowsRequest: UpdateRowsRequest }): Promise<UpdateRows200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.updateRows(adjustedParams);
   return response.data;
 }
 
