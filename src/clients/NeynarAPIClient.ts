@@ -3707,7 +3707,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Associates a generated miniapp with a Farcaster account using a JFS-signed domain association. Requires API key authentication.
+ * Associates a generated miniapp with a Farcaster account using a JFS-signed domain association. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary Set account association
  *
@@ -3737,7 +3737,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Runs Next.js build process for the generated app. If build fails, automatically calls a build-fixer agent to resolve errors. Streams build output and agent responses via Server-Sent Events. Requires API key authentication.
+ * Runs Next.js build process for the generated app. If build fails, automatically calls a build-fixer agent to resolve errors. Streams build output and agent responses via Server-Sent Events. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary Build generated app with automatic error fixing
  *
@@ -3767,7 +3767,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Creates and deploys an instance of the miniapp generator for a user. Requires authentication via API key in the request header.
+ * Creates and deploys an instance of the miniapp generator for a user. Requires authentication via API key in the request header. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary Create a miniapp generator deployment
  *
@@ -3797,7 +3797,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Deletes a specific miniapp generator deployment or all deployments for a FID. If deployment_id or name is provided, deletes single deployment. If only FID is provided, deletes all deployments for that FID. Requires API key authentication.
+ * Deletes a specific miniapp generator deployment or all deployments for a FID. If deployment_id or name is provided, deletes single deployment. If only FID is provided, deletes all deployments for that FID. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary Delete deployment(s)
  *
@@ -3889,7 +3889,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Publishes the generated miniapp to Vercel via GitHub. Creates a GitHub repository, pushes code, creates a Vercel project linked to GitHub, and triggers deployment. Requires API key authentication.
+ * Publishes the generated miniapp to Vercel via GitHub. Creates a GitHub repository, pushes code, creates a Vercel project linked to GitHub, and triggers deployment. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary Deploy miniapp to Vercel
  *
@@ -3983,7 +3983,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Retrieves all messages in a specific conversation. Requires API key authentication.
+ * Retrieves all messages in a specific conversation. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary Get messages in a conversation
  *
@@ -4023,7 +4023,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Fetches info about a miniapp generator deployment by its deployment_id or name and creator\'s Farcaster ID. Requires API key authentication.
+ * Fetches info about a miniapp generator deployment by its deployment_id or name and creator\'s Farcaster ID. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary Get deployment info
  *
@@ -4059,7 +4059,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Retrieves the contents of a specific file from the generated app. Requires Studio admin authentication or FID ownership validation.
+ * Retrieves the contents of a specific file from the generated app. Requires Studio admin authentication or FID ownership validation. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary Get deployment file contents
  *
@@ -4097,7 +4097,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Retrieves the dev-status.json file from a miniapp deployment, which tracks the progress of app development phases. Requires API key authentication.
+ * Retrieves the dev-status.json file from a miniapp deployment, which tracks the progress of app development phases. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary Get dev status of a miniapp
  *
@@ -4197,7 +4197,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Lists all conversations for a specific deployment. Requires API key authentication.
+ * Lists all conversations for a specific deployment. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary List conversations for a deployment
  *
@@ -4233,7 +4233,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Lists files in a directory of the generated app. Requires Studio admin authentication or FID ownership validation.
+ * Lists files in a directory of the generated app. Requires Studio admin authentication or FID ownership validation. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary List deployment files
  *
@@ -4271,7 +4271,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Lists all miniapp generator deployments for a user. Requires API key authentication.
+ * Lists all miniapp generator deployments for a user. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary List deployments
  *
@@ -4371,7 +4371,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Sends a prompt to a specific miniapp generator deployment and returns a streaming response using Server-Sent Events. The response is a continuous stream of Server-Sent Events, not a single JSON payload. Each event contains a JSON object with type, message, and other fields specific to the message type. Requires authentication via API key in the request header.
+ * Sends a prompt to a specific miniapp generator deployment and returns a streaming response using Server-Sent Events. The response is a continuous stream of Server-Sent Events, not a single JSON payload. Each event contains a JSON object with type, message, and other fields specific to the message type. Requires authentication via API key in the request header. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary Prompt a deployment with streaming response
  *
@@ -4431,7 +4431,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Starts the Next.js development server for the generated miniapp. Requires Studio admin authentication.
+ * Starts the Next.js development server for the generated miniapp. Requires Studio admin authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary Start generated miniapp
  *
@@ -4461,7 +4461,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Stops the Next.js development server for the generated miniapp. Requires Studio admin authentication.
+ * Stops the Next.js development server for the generated miniapp. Requires Studio admin authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary Stop generated miniapp
  *
@@ -4523,7 +4523,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Uploads an image file to the generated miniapp public folder. The image will be accessible as a static asset on the deployed miniapp. Requires API key authentication.
+ * Uploads an image file to the generated miniapp public folder. The image will be accessible as a static asset on the deployed miniapp. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary Upload image to deployment
  *
@@ -4553,7 +4553,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Downloads an image from the provided URL and saves it to the generated miniapp public folder. The image will be accessible as a static asset on the deployed miniapp. Requires API key authentication.
+ * Downloads an image from the provided URL and saves it to the generated miniapp public folder. The image will be accessible as a static asset on the deployed miniapp. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary Upload image from URL to deployment
  *
@@ -4613,7 +4613,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Retrieves the build logs for a Vercel deployment. Useful for debugging failed deployments. Requires Studio admin authentication.
+ * Retrieves the build logs for a Vercel deployment. Useful for debugging failed deployments. Requires Studio admin authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary Get Vercel deployment build logs
  *
@@ -4651,7 +4651,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Retrieves the status of a Vercel deployment for a miniapp. Looks up the Vercel project ID from the deployment and queries Vercel API for deployment status. Requires API key authentication.
+ * Retrieves the status of a Vercel deployment for a miniapp. Looks up the Vercel project ID from the deployment and queries Vercel API for deployment status. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary Get Vercel deployment status
  *
