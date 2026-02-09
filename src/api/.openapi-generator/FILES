@@ -116,6 +116,11 @@ models/delete-deployment200-response.ts
 models/delete-rows-request.ts
 models/delete-rows200-response.ts
 models/delete-secrets-request.ts
+models/deploy-erc721-request-collection-config.ts
+models/deploy-erc721-request-mint-config.ts
+models/deploy-erc721-request.ts
+models/deploy-erc721201-response-collection.ts
+models/deploy-erc721201-response.ts
 models/deploy-fungible-response-contract-fungible.ts
 models/deploy-fungible-response-contract.ts
 models/deploy-fungible-response.ts
