@@ -52,6 +52,8 @@ models/ban-list-response.ts
 models/ban-record.ts
 models/ban-req-body.ts
 models/ban-response.ts
+models/batch-get-token-metadata200-response-tokens-inner.ts
+models/batch-get-token-metadata200-response.ts
 models/best-friends-response-users-inner.ts
 models/best-friends-response.ts
 models/block-list-response.ts
@@ -202,6 +204,11 @@ models/get-table-schema200-response-columns-inner.ts
 models/get-table-schema200-response-foreign-keys-inner.ts
 models/get-table-schema200-response-indexes-inner.ts
 models/get-table-schema200-response.ts
+models/get-token-metadata200-response-token.ts
+models/get-token-metadata200-response.ts
+models/get-wallet-balances200-response-balances-inner.ts
+models/get-wallet-balances200-response-next.ts
+models/get-wallet-balances200-response.ts
 models/html-metadata-oembed.ts
 models/html-metadata.ts
 models/image-object.ts

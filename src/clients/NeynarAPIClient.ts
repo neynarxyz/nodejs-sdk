@@ -34,7 +34,7 @@ import { SubscribersApi } from '../api/apis/subscribers-api';
 import { TopicApi } from '../api/apis/topic-api';
 import { UserApi } from '../api/apis/user-api';
 import { WebhookApi } from '../api/apis/webhook-api';
-import type { AddVerificationReqBody, AppHostGetEventEventEnum, AppHostGetEventResponse, AppHostPostEventReqBody, AppHostPostEventResponse, AppHostUserStateResponse, AssociateDeployment200Response, AssociateDeploymentRequest, AuthorizationUrlResponse, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BestFriendsResponse, BlockListResponse, BlockReqBody, BuildRequest, BulkCastsResponse, BulkFollowResponse, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastEmbedCrawlResponse, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, Conversation, ConversationSummary, CreateDeploymentRequest, CreateX402Signature200Response, CreateX402SignatureRequest, DeleteCastReqBody, DeleteDeployment200Response, DeleteDeploymentRequest, DeleteRows200Response, DeleteRowsRequest, DeleteSecretsRequest, DeployErc721201Response, DeployErc721Request, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeployToVercel200Response, DeployToVercelRequest, DeveloperManagedSigner, ErrorRes, ExecuteSql200Response, ExecuteSqlRequest, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FetchAllNotificationsTypeEnum, FetchAuthorizationUrlResponseTypeEnum, FetchBulkCastsSortTypeEnum, FetchBulkChannelsTypeEnum, FetchBulkUsersByEthOrSolAddressAddressTypesEnum, FetchCastMetricsIntervalEnum, FetchCastQuotes200Response, FetchCastQuotesTypeEnum, FetchCastReactionsTypesEnum, FetchFeedEmbedTypesEnum, FetchFeedFeedTypeEnum, FetchFeedFilterTypeEnum, FetchFeedForYouProviderEnum, FetchFrameCatalogCategoriesEnum, FetchFrameCatalogNetworksEnum, FetchFrameCatalogTimeWindowEnum, FetchFungibleTrades200Response, FetchFungibleTradesNetworkEnum, FetchFungibleTradesTimeWindowEnum, FetchRelevantFrames200Response, FetchRelevantFramesNetworksEnum, FetchRelevantFramesTimeWindowEnum, FetchRelevantFungibleOwnersNetworkEnum, FetchRepliesAndRecastsForUserFilterEnum, FetchSubscribedToForFidSubscriptionProviderEnum, FetchSubscribersForFidSubscriptionProviderEnum, FetchSubscriptionsForFidSubscriptionProviderEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedProviderEnum, FetchTrendingFeedTimeWindowEnum, FetchTrendingFungibles200Response, FetchTrendingFungiblesNetworkEnum, FetchTrendingFungiblesTimeWindowEnum, FetchUserBalanceNetworksEnum, FetchUserFollowersSortTypeEnum, FetchUserFollowingSortTypeEnum, FetchUserInteractions200Response, FetchUserInteractionsTypeEnum, FetchUserReactionsTypeEnum, FetchUserReciprocalFollowers200Response, FetchUserReciprocalFollowersSortTypeEnum, FetchVerifications200Response, FnameAvailabilityResponse, FollowReqBody, FollowersResponse, FrameCatalogResponse, FrameNotificationTokens, FramePayTransactionReqBody, FramePayTransactionReqBodyTransaction, FungiblesResponseSchema, GetAccountAssociation200Response, GetConversationMessages200Response, GetDeploymentFile200Response, GetDevStatus200Response, GetNotificationCampaignStats200Response, GetTableSchema200Response, InsertRows200Response, InsertRowsRequest, InviteChannelMemberReqBody, ListConversations200Response, ListDeploymentFiles200Response, ListDeployments200ResponseInner, ListSecrets200Response, ListTables200Response, LookupCastByHashOrUrlTypeEnum, LookupCastConversationFoldEnum, LookupCastConversationSortTypeEnum, LookupCastConversationTypeEnum, LookupChannelTypeEnum, MarkNotificationsAsSeenReqBody, MintNft200Response, MintNftRequest, MuteListResponse, MuteReqBody, MuteResponse, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, PromptDeploymentStreamRequest, QueryTable200Response, QueryTableRequest, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, RegisterAuthAddressDeveloperManagedSignedKeyReqBody, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignedKeyForDeveloperManagedAuthAddress200Response, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyPreRegistrationCallsInner, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserReqBodySigner, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchCastsSortTypeEnum, SearchFramesNetworksEnum, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, SimulateNftMintNetworkEnum, SimulateNftMintResponse, StartApp200Response, StartAppRequest, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionsResponse, TransactionFrameConfig, TransactionFrameResponse, TransactionSendFungiblesRecipient, TransactionSendFungiblesReqBody, TransactionSendFungiblesReqBodyNetworkEnum, TransactionSendFungiblesResponse, TrendingChannelResponse, TrendingTopicsResponse, UpdateRows200Response, UpdateRowsRequest, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UploadImage200Response, UploadImageUrlRequest, UpsertSecrets200Response, UpsertSecretsRequest, UserFIDResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, VercelDeploymentLogs200Response, VercelDeploymentStatus200Response, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
+import type { AddVerificationReqBody, AppHostGetEventEventEnum, AppHostGetEventResponse, AppHostPostEventReqBody, AppHostPostEventResponse, AppHostUserStateResponse, AssociateDeployment200Response, AssociateDeploymentRequest, AuthorizationUrlResponse, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BatchGetTokenMetadata200Response, BestFriendsResponse, BlockListResponse, BlockReqBody, BuildRequest, BulkCastsResponse, BulkFollowResponse, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CastEmbedCrawlResponse, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, Conversation, ConversationSummary, CreateDeploymentRequest, CreateX402Signature200Response, CreateX402SignatureRequest, DeleteCastReqBody, DeleteDeployment200Response, DeleteDeploymentRequest, DeleteRows200Response, DeleteRowsRequest, DeleteSecretsRequest, DeployErc721201Response, DeployErc721Request, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeployToVercel200Response, DeployToVercelRequest, DeveloperManagedSigner, ErrorRes, ExecuteSql200Response, ExecuteSqlRequest, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FetchAllNotificationsTypeEnum, FetchAuthorizationUrlResponseTypeEnum, FetchBulkCastsSortTypeEnum, FetchBulkChannelsTypeEnum, FetchBulkUsersByEthOrSolAddressAddressTypesEnum, FetchCastMetricsIntervalEnum, FetchCastQuotes200Response, FetchCastQuotesTypeEnum, FetchCastReactionsTypesEnum, FetchFeedEmbedTypesEnum, FetchFeedFeedTypeEnum, FetchFeedFilterTypeEnum, FetchFeedForYouProviderEnum, FetchFrameCatalogCategoriesEnum, FetchFrameCatalogNetworksEnum, FetchFrameCatalogTimeWindowEnum, FetchFungibleTrades200Response, FetchFungibleTradesNetworkEnum, FetchFungibleTradesTimeWindowEnum, FetchRelevantFrames200Response, FetchRelevantFramesNetworksEnum, FetchRelevantFramesTimeWindowEnum, FetchRelevantFungibleOwnersNetworkEnum, FetchRepliesAndRecastsForUserFilterEnum, FetchSubscribedToForFidSubscriptionProviderEnum, FetchSubscribersForFidSubscriptionProviderEnum, FetchSubscriptionsForFidSubscriptionProviderEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedProviderEnum, FetchTrendingFeedTimeWindowEnum, FetchTrendingFungibles200Response, FetchTrendingFungiblesNetworkEnum, FetchTrendingFungiblesTimeWindowEnum, FetchUserBalanceNetworksEnum, FetchUserFollowersSortTypeEnum, FetchUserFollowingSortTypeEnum, FetchUserInteractions200Response, FetchUserInteractionsTypeEnum, FetchUserReactionsTypeEnum, FetchUserReciprocalFollowers200Response, FetchUserReciprocalFollowersSortTypeEnum, FetchVerifications200Response, FnameAvailabilityResponse, FollowReqBody, FollowersResponse, FrameCatalogResponse, FrameNotificationTokens, FramePayTransactionReqBody, FramePayTransactionReqBodyTransaction, FungiblesResponseSchema, GetAccountAssociation200Response, GetConversationMessages200Response, GetDeploymentFile200Response, GetDevStatus200Response, GetNotificationCampaignStats200Response, GetTableSchema200Response, GetTokenMetadata200Response, GetWalletBalances200Response, InsertRows200Response, InsertRowsRequest, InviteChannelMemberReqBody, ListConversations200Response, ListDeploymentFiles200Response, ListDeployments200ResponseInner, ListSecrets200Response, ListTables200Response, LookupCastByHashOrUrlTypeEnum, LookupCastConversationFoldEnum, LookupCastConversationSortTypeEnum, LookupCastConversationTypeEnum, LookupChannelTypeEnum, MarkNotificationsAsSeenReqBody, MintNft200Response, MintNftRequest, MuteListResponse, MuteReqBody, MuteResponse, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, PromptDeploymentStreamRequest, QueryTable200Response, QueryTableRequest, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, RegisterAuthAddressDeveloperManagedSignedKeyReqBody, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignedKeyForDeveloperManagedAuthAddress200Response, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyPreRegistrationCallsInner, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserReqBodySigner, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchCastsSortTypeEnum, SearchFramesNetworksEnum, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, Signer, SignerListResponse, SimulateNftMintNetworkEnum, SimulateNftMintResponse, StartApp200Response, StartAppRequest, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionsResponse, TransactionFrameConfig, TransactionFrameResponse, TransactionSendFungiblesRecipient, TransactionSendFungiblesReqBody, TransactionSendFungiblesReqBodyNetworkEnum, TransactionSendFungiblesResponse, TrendingChannelResponse, TrendingTopicsResponse, UpdateRows200Response, UpdateRowsRequest, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, UploadImage200Response, UploadImageUrlRequest, UpsertSecrets200Response, UpsertSecretsRequest, UserFIDResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, VercelDeploymentLogs200Response, VercelDeploymentStatus200Response, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
 
 const { version: sdkVersion } = require("../../package.json");
 
@@ -2807,6 +2807,44 @@ adjustedParams['authorization'] = this.config.baseOptions?.headers?.['authorizat
 }
 
 /**
+ * Fetch metadata for multiple tokens in a single request. Provide comma-separated networks and addresses in the same order. Maximum 100 tokens per request.
+ *
+ * @summary Batch get token metadata
+ *
+ * @param {object} params
+ * @param {string[]} params.networks  - Comma-separated list of blockchain networks. Each value must be a valid network (ethereum, optimism, base, arbitrum).
+ * @param {string[]} params.addresses  - Comma-separated list of token contract addresses corresponding to each network
+ *
+ * @returns {Promise<BatchGetTokenMetadata200Response>} A promise that resolves to a `BatchGetTokenMetadata200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const networks = 
+ * const addresses = 
+ *
+ * client.batchGetTokenMetadata({ networks, addresses }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/batch-get-token-metadata)
+ *
+ */
+public async batchGetTokenMetadata(params: { networks: string[], addresses: string[] }): Promise<BatchGetTokenMetadata200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+if (adjustedParams.networks && Array.isArray(adjustedParams.networks)) {
+  adjustedParams.networks = adjustedParams.networks.join(",");
+}
+if (adjustedParams.addresses && Array.isArray(adjustedParams.addresses)) {
+  adjustedParams.addresses = adjustedParams.addresses.join(",");
+}
+
+  const response = await this.apis.onchainApi.batchGetTokenMetadata(adjustedParams);
+  return response.data;
+}
+
+/**
  * Create a signature for a given x402 resource using the specified wallet.
  *
  * @summary Create x402 signature
@@ -2997,7 +3035,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * @summary Relevant owners
  *
  * @param {object} params
- * @param {string} params.contractAddress  - Contract address of the fungible asset
+ * @param {string} params.contractAddress  - Contract address of the fungible asset (Ethereum or Solana)
  * @param {FetchRelevantFungibleOwnersNetworkEnum} params.network  - Network of the fungible asset.
  * @param {number} params.viewerFid [optional]  - If you provide a viewer_fid, the response will include token holders from the user's network, respecting their mutes and blocks and including viewer_context; if not provided, the response will show top token holders across the network—both sets can be combined to generate a longer list if desired.
  *
@@ -3086,6 +3124,82 @@ public async fetchUserBalance(params: { fid: number, networks: Array<FetchUserBa
 Object.assign(adjustedParams, params);
 
   const response = await this.apis.onchainApi.fetchUserBalance(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Fetch metadata for a specific token including price, market data, and basic information. Data is fetched from onchain-indexer with fallback to third-party providers.
+ *
+ * @summary Get token metadata
+ *
+ * @param {object} params
+ * @param {string[]} params.networks  - Comma-separated list of blockchain networks. Each value must be a valid network (ethereum, optimism, base, arbitrum).
+ * @param {string[]} params.addresses  - Comma-separated list of token contract addresses corresponding to each network
+ *
+ * @returns {Promise<GetTokenMetadata200Response>} A promise that resolves to a `GetTokenMetadata200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const networks = 
+ * const addresses = 
+ *
+ * client.getTokenMetadata({ networks, addresses }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-token-metadata)
+ *
+ */
+public async getTokenMetadata(params: { networks: string[], addresses: string[] }): Promise<GetTokenMetadata200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+if (adjustedParams.networks && Array.isArray(adjustedParams.networks)) {
+  adjustedParams.networks = adjustedParams.networks.join(",");
+}
+if (adjustedParams.addresses && Array.isArray(adjustedParams.addresses)) {
+  adjustedParams.addresses = adjustedParams.addresses.join(",");
+}
+
+  const response = await this.apis.onchainApi.getTokenMetadata(adjustedParams);
+  return response.data;
+}
+
+/**
+ * Fetch all token balances for a wallet address across multiple networks. Results are paginated.
+ *
+ * @summary Get wallet token balances
+ *
+ * @param {object} params
+ * @param {string[]} params.networks  - Comma-separated list of networks to query. Each value must be a valid network (ethereum, optimism, base, arbitrum).
+ * @param {string} params.address  - Ethereum address
+ * @param {number} params.limit [optional]  - Number of results to return (max 100) (Default: 50, Maximum: 100)
+ * @param {string} params.cursor [optional]  - Pagination cursor.
+ *
+ * @returns {Promise<GetWalletBalances200Response>} A promise that resolves to a `GetWalletBalances200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const networks = 
+ * const address = 
+ * const limit = 
+ *
+ * client.getWalletBalances({ networks, address, limit }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/get-wallet-balances)
+ *
+ */
+public async getWalletBalances(params: { networks: string[], address: string, limit?: number, cursor?: string }): Promise<GetWalletBalances200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+if (adjustedParams.networks && Array.isArray(adjustedParams.networks)) {
+  adjustedParams.networks = adjustedParams.networks.join(",");
+}
+
+  const response = await this.apis.onchainApi.getWalletBalances(adjustedParams);
   return response.data;
 }
 
@@ -4967,7 +5081,7 @@ if (adjustedParams.fids && Array.isArray(adjustedParams.fids)) {
  * @summary By Eth or Sol addresses
  *
  * @param {object} params
- * @param {string[]} params.addresses  - Comma separated list of Ethereum addresses, up to 350 at a time
+ * @param {string[]} params.addresses  - Comma separated list of Ethereum or Solana addresses, up to 350 at a time
  * @param {Array<FetchBulkUsersByEthOrSolAddressAddressTypesEnum>} params.addressTypes [optional]  - Customize which address types the request should search for. This is a comma-separated string that can include the following values: 'custody_address' and 'verified_address'. By default api returns both. To select multiple types, use a comma-separated list of these values.
  * @param {number} params.viewerFid [optional] 
  *
