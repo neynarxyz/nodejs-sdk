@@ -4576,6 +4576,36 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Restarts the Next.js development server for the generated miniapp (stops then starts without restarting the pod). Requires Studio admin authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.
+ *
+ * @summary Restart generated miniapp dev server
+ *
+ * @param {object} params
+ * @param {StartAppRequest} params.startAppRequest 
+ *
+ * @returns {Promise<StartApp200Response>} A promise that resolves to a `StartApp200Response` object.
+ *
+ * @example
+ *
+ * // Fill in the appropriate values
+ * const startAppRequest = 
+ *
+ * client.restartApp({ startAppRequest }).then(response => {
+ *   console.log('response:', response);
+ * });
+ *
+ * For more information, refer to the [API documentation](https://docs.neynar.com/reference/restart-app)
+ *
+ */
+public async restartApp(params: { startAppRequest: StartAppRequest }): Promise<StartApp200Response> {
+  const adjustedParams: any = {};
+Object.assign(adjustedParams, params);
+
+  const response = await this.apis.studioApi.restartApp(adjustedParams);
+  return response.data;
+}
+
+/**
  * Starts the Next.js development server for the generated miniapp. Requires Studio admin authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary Start generated miniapp
