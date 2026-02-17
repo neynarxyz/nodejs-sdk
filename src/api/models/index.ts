@@ -250,6 +250,7 @@ export * from './reaction-with-user-info';
 export * from './reactions-cast-response';
 export * from './reactions-response';
 export * from './reciprocal-follower';
+export * from './recover-request';
 export * from './register-auth-address-developer-managed-signed-key-req-body';
 export * from './register-developer-managed-signed-key-req-body';
 export * from './register-signed-key-for-developer-managed-auth-address200-response';

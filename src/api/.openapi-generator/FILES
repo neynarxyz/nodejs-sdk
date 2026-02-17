@@ -285,6 +285,7 @@ models/reaction-with-user-info.ts
 models/reactions-cast-response.ts
 models/reactions-response.ts
 models/reciprocal-follower.ts
+models/recover-request.ts
 models/register-auth-address-developer-managed-signed-key-req-body.ts
 models/register-developer-managed-signed-key-req-body.ts
 models/register-signed-key-for-developer-managed-auth-address200-response.ts

@@ -15,17 +15,28 @@
 
 
 /**
- * Blockchain protocol for the linked wallet: evm for Ethereum/EVM-compatible chains (Base, Optimism, etc.) and solana for Solana
+ * 
  * @export
- * @enum {string}
+ * @interface RecoverRequest
  */
-
-export const Protocol = {
-    Evm: 'evm',
-    Solana: 'solana'
-} as const;
-
-export type Protocol = typeof Protocol[keyof typeof Protocol];
-
-
+export interface RecoverRequest {
+    /**
+     * Deployment ID
+     * @type {string}
+     * @memberof RecoverRequest
+     */
+    'deployment_id'?: string;
+    /**
+     * Kubernetes deployment name
+     * @type {string}
+     * @memberof RecoverRequest
+     */
+    'name'?: string;
+    /**
+     * Kubernetes namespace
+     * @type {string}
+     * @memberof RecoverRequest
+     */
+    'namespace'?: string;
+}
 
