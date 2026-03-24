@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { User } from './user';
 
-/**
- * 
- * @export
- * @interface UserResponse
- */
 export interface UserResponse {
-    /**
-     * 
-     * @type {User}
-     * @memberof UserResponse
-     */
     'user': User;
 }
 

@@ -17,16 +17,9 @@
 // @ts-ignore
 import type { VerificationRemoveBody } from './verification-remove-body';
 
-/**
- * 
- * @export
- * @interface MessageDataVerificationRemoveAllOf
- */
 export interface MessageDataVerificationRemoveAllOf {
     /**
      * Contains the blockchain address for which the verification should be removed from the user\'s profile.
-     * @type {VerificationRemoveBody}
-     * @memberof MessageDataVerificationRemoveAllOf
      */
     'verificationRemoveBody': VerificationRemoveBody;
 }

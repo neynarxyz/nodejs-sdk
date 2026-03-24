@@ -40,7 +40,6 @@ import type { StorageRentEventBody } from './storage-rent-event-body';
 
 /**
  * @type OnChainEvent
- * @export
  */
 export type OnChainEvent = { type: 'EVENT_TYPE_ID_REGISTER' } & OnChainEventIdRegister | { type: 'EVENT_TYPE_SIGNER' } & OnChainEventSigner | { type: 'EVENT_TYPE_SIGNER_MIGRATED' } & OnChainEventSignerMigrated | { type: 'EVENT_TYPE_STORAGE_RENT' } & OnChainEventStorageRent;
 

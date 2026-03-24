@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface MuteReqBody
- */
 export interface MuteReqBody {
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof MuteReqBody
      */
     'fid': number;
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof MuteReqBody
      */
     'muted_fid': number;
 }

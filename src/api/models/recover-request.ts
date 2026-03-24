@@ -14,28 +14,17 @@
 
 
 
-/**
- * 
- * @export
- * @interface RecoverRequest
- */
 export interface RecoverRequest {
     /**
      * Deployment ID
-     * @type {string}
-     * @memberof RecoverRequest
      */
     'deployment_id'?: string;
     /**
      * Kubernetes deployment name
-     * @type {string}
-     * @memberof RecoverRequest
      */
     'name'?: string;
     /**
      * Kubernetes namespace
-     * @type {string}
-     * @memberof RecoverRequest
      */
     'namespace'?: string;
 }

@@ -17,16 +17,9 @@
 // @ts-ignore
 import type { FrameActionBody } from './frame-action-body';
 
-/**
- * 
- * @export
- * @interface MessageDataFrameActionAllOf
- */
 export interface MessageDataFrameActionAllOf {
     /**
      * Contains the details of the frame interaction, including which button was pressed and the associated cast and URL.
-     * @type {FrameActionBody}
-     * @memberof MessageDataFrameActionAllOf
      */
     'frameActionBody': FrameActionBody;
 }

@@ -14,53 +14,16 @@
 
 
 
-/**
- * 
- * @export
- * @interface FrameNotificationTokensNotificationTokensInner
- */
 export interface FrameNotificationTokensNotificationTokensInner {
-    /**
-     * 
-     * @type {string}
-     * @memberof FrameNotificationTokensNotificationTokensInner
-     */
     'object'?: FrameNotificationTokensNotificationTokensInnerObjectEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof FrameNotificationTokensNotificationTokensInner
-     */
     'url'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FrameNotificationTokensNotificationTokensInner
-     */
     'token'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FrameNotificationTokensNotificationTokensInner
-     */
     'status'?: FrameNotificationTokensNotificationTokensInnerStatusEnum;
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof FrameNotificationTokensNotificationTokensInner
      */
     'fid'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof FrameNotificationTokensNotificationTokensInner
-     */
     'created_at'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FrameNotificationTokensNotificationTokensInner
-     */
     'updated_at'?: string;
 }
 

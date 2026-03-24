@@ -17,29 +17,15 @@
 // @ts-ignore
 import type { FarcasterActionReqBodyAction } from './farcaster-action-req-body-action';
 
-/**
- * 
- * @export
- * @interface FarcasterActionReqBody
- */
 export interface FarcasterActionReqBody {
     /**
      * The signer_uuid of the user on behalf of whom the action is being performed.
-     * @type {string}
-     * @memberof FarcasterActionReqBody
      */
     'signer_uuid': string;
     /**
      * The base URL of the app on which the action is being performed.
-     * @type {string}
-     * @memberof FarcasterActionReqBody
      */
     'base_url': string;
-    /**
-     * 
-     * @type {FarcasterActionReqBodyAction}
-     * @memberof FarcasterActionReqBody
-     */
     'action': FarcasterActionReqBodyAction;
 }
 

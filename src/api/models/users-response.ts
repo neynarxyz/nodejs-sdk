@@ -20,23 +20,8 @@ import type { NextCursor } from './next-cursor';
 // @ts-ignore
 import type { User } from './user';
 
-/**
- * 
- * @export
- * @interface UsersResponse
- */
 export interface UsersResponse {
-    /**
-     * 
-     * @type {Array<User>}
-     * @memberof UsersResponse
-     */
     'users': Array<User>;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof UsersResponse
-     */
     'next': NextCursor;
 }
 

@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface FarcasterActionReqBodyAction
- */
 export interface FarcasterActionReqBodyAction {
     /**
      * The type of action being performed.
-     * @type {string}
-     * @memberof FarcasterActionReqBodyAction
      */
     'type': string;
     /**
      * The payload of the action being performed.
-     * @type {object}
-     * @memberof FarcasterActionReqBodyAction
      */
     'payload'?: object;
 }

@@ -17,41 +17,11 @@
 // @ts-ignore
 import type { WebhookSubscriptionFilters } from './webhook-subscription-filters';
 
-/**
- * 
- * @export
- * @interface WebhookSubscription
- */
 export interface WebhookSubscription {
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookSubscription
-     */
     'object': WebhookSubscriptionObjectEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookSubscription
-     */
     'subscription_id': string;
-    /**
-     * 
-     * @type {WebhookSubscriptionFilters}
-     * @memberof WebhookSubscription
-     */
     'filters': WebhookSubscriptionFilters;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookSubscription
-     */
     'created_at': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookSubscription
-     */
     'updated_at': string;
 }
 

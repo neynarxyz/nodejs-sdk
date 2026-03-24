@@ -17,47 +17,12 @@
 // @ts-ignore
 import type { ErrorResponseMetadata } from './error-response-metadata';
 
-/**
- * 
- * @export
- * @interface ErrorResponse
- */
 export interface ErrorResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof ErrorResponse
-     */
     'errCode': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ErrorResponse
-     */
     'presentable': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ErrorResponse
-     */
     'name': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ErrorResponse
-     */
     'code': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ErrorResponse
-     */
     'details': string;
-    /**
-     * 
-     * @type {ErrorResponseMetadata}
-     * @memberof ErrorResponse
-     */
     'metadata': ErrorResponseMetadata;
 }
 

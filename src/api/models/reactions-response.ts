@@ -20,23 +20,8 @@ import type { NextCursor } from './next-cursor';
 // @ts-ignore
 import type { ReactionWithCastInfo } from './reaction-with-cast-info';
 
-/**
- * 
- * @export
- * @interface ReactionsResponse
- */
 export interface ReactionsResponse {
-    /**
-     * 
-     * @type {Array<ReactionWithCastInfo>}
-     * @memberof ReactionsResponse
-     */
     'reactions': Array<ReactionWithCastInfo>;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof ReactionsResponse
-     */
     'next': NextCursor;
 }
 

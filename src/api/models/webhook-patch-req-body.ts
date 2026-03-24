@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface WebhookPatchReqBody
- */
 export interface WebhookPatchReqBody {
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookPatchReqBody
-     */
     'webhook_id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookPatchReqBody
-     */
     'active': WebhookPatchReqBodyActiveEnum;
 }
 

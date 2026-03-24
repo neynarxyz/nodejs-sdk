@@ -14,52 +14,33 @@
 
 
 
-/**
- * 
- * @export
- * @interface GetConversationMessages200ResponseMessagesInner
- */
 export interface GetConversationMessages200ResponseMessagesInner {
     /**
      * Message ID
-     * @type {string}
-     * @memberof GetConversationMessages200ResponseMessagesInner
      */
     'id': string;
     /**
      * Creation timestamp
-     * @type {string}
-     * @memberof GetConversationMessages200ResponseMessagesInner
      */
     'created_at': string;
     /**
      * Conversation ID
-     * @type {string}
-     * @memberof GetConversationMessages200ResponseMessagesInner
      */
     'conversation_id': string;
     /**
      * Message content
-     * @type {string}
-     * @memberof GetConversationMessages200ResponseMessagesInner
      */
     'message': string;
     /**
      * Message origin
-     * @type {string}
-     * @memberof GetConversationMessages200ResponseMessagesInner
      */
     'origin': GetConversationMessages200ResponseMessagesInnerOriginEnum;
     /**
      * Message type
-     * @type {string}
-     * @memberof GetConversationMessages200ResponseMessagesInner
      */
     'type'?: string;
     /**
      * Message subtype
-     * @type {string}
-     * @memberof GetConversationMessages200ResponseMessagesInner
      */
     'subtype'?: string;
 }

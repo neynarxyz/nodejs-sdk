@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { VerificationAllOfData } from './verification-all-of-data';
 
-/**
- * 
- * @export
- * @interface VerificationAllOf
- */
 export interface VerificationAllOf {
-    /**
-     * 
-     * @type {VerificationAllOfData}
-     * @memberof VerificationAllOf
-     */
     'data': VerificationAllOfData;
 }
 

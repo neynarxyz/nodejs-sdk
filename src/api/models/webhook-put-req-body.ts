@@ -17,35 +17,10 @@
 // @ts-ignore
 import type { WebhookSubscriptionFilters } from './webhook-subscription-filters';
 
-/**
- * 
- * @export
- * @interface WebhookPutReqBody
- */
 export interface WebhookPutReqBody {
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookPutReqBody
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookPutReqBody
-     */
     'url': string;
-    /**
-     * 
-     * @type {WebhookSubscriptionFilters}
-     * @memberof WebhookPutReqBody
-     */
     'subscription'?: WebhookSubscriptionFilters;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookPutReqBody
-     */
     'webhook_id': string;
 }
 

@@ -14,22 +14,10 @@
 
 
 
-/**
- * 
- * @export
- * @interface StartApp200Response
- */
 export interface StartApp200Response {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof StartApp200Response
-     */
     'success': boolean;
     /**
      * Status message
-     * @type {string}
-     * @memberof StartApp200Response
      */
     'message': string;
 }

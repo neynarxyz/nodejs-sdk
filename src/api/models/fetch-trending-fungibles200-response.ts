@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { FetchTrendingFungibles200ResponseTrendingInner } from './fetch-trending-fungibles200-response-trending-inner';
 
-/**
- * 
- * @export
- * @interface FetchTrendingFungibles200Response
- */
 export interface FetchTrendingFungibles200Response {
-    /**
-     * 
-     * @type {Array<FetchTrendingFungibles200ResponseTrendingInner>}
-     * @memberof FetchTrendingFungibles200Response
-     */
     'trending': Array<FetchTrendingFungibles200ResponseTrendingInner>;
 }
 

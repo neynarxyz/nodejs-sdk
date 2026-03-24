@@ -25,7 +25,6 @@ import type { SignerEventBody } from './signer-event-body';
 
 /**
  * @type OnChainEventSigner
- * @export
  */
 export type OnChainEventSigner = OnChainEventCommon & OnChainEventSignerAllOf;
 

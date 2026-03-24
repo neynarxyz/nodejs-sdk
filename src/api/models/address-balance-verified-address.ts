@@ -17,23 +17,11 @@
 // @ts-ignore
 import type { Network } from './network';
 
-/**
- * 
- * @export
- * @interface AddressBalanceVerifiedAddress
- */
 export interface AddressBalanceVerifiedAddress {
     /**
      * The wallet address
-     * @type {string}
-     * @memberof AddressBalanceVerifiedAddress
      */
     'address': string;
-    /**
-     * 
-     * @type {Network}
-     * @memberof AddressBalanceVerifiedAddress
-     */
     'network': Network;
 }
 

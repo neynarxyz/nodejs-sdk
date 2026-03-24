@@ -14,16 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface UserPowerLiteResponseResult
- */
 export interface UserPowerLiteResponseResult {
     /**
      * List of FIDs
-     * @type {Array<number>}
-     * @memberof UserPowerLiteResponseResult
      */
     'fids': Array<number>;
 }

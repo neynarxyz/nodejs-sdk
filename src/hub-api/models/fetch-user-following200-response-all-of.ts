@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { LinkAdd } from './link-add';
 
-/**
- * 
- * @export
- * @interface FetchUserFollowing200ResponseAllOf
- */
 export interface FetchUserFollowing200ResponseAllOf {
-    /**
-     * 
-     * @type {Array<LinkAdd>}
-     * @memberof FetchUserFollowing200ResponseAllOf
-     */
     'messages': Array<LinkAdd>;
 }
 

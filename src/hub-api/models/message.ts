@@ -32,7 +32,6 @@ import type { SignatureScheme } from './signature-scheme';
 /**
  * @type Message
  * A Message is a delta operation on the Farcaster network that represents a state change. Messages are the fundamental unit of data in Farcaster and can represent various actions like: - Creating or removing casts (posts) - Adding or removing reactions - Following or unfollowing users - Updating profile data - Verifying Ethereum addresses  Each message contains: - A MessageData object with the actual content - A hash of the content for integrity verification - A cryptographic signature to prove authenticity - The signer\'s public key for verification  Messages are immutable once created and form an append-only log of all user actions on the network.
- * @export
  */
 export type Message = MessageAllOf & MessageCommon;
 

@@ -20,23 +20,8 @@ import type { Follower } from './follower';
 // @ts-ignore
 import type { NextCursor } from './next-cursor';
 
-/**
- * 
- * @export
- * @interface FollowersResponse
- */
 export interface FollowersResponse {
-    /**
-     * 
-     * @type {Array<Follower>}
-     * @memberof FollowersResponse
-     */
     'users': Array<Follower>;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof FollowersResponse
-     */
     'next': NextCursor;
 }
 

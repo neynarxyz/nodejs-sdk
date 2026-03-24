@@ -20,29 +20,15 @@ import type { TransactionFrameAction } from './transaction-frame-action';
 // @ts-ignore
 import type { TransactionFrameLineItem } from './transaction-frame-line-item';
 
-/**
- * 
- * @export
- * @interface TransactionFrameConfig
- */
 export interface TransactionFrameConfig {
     /**
      * Optional list of FIDs that are allowed to use this transaction mini app
-     * @type {Array<number>}
-     * @memberof TransactionFrameConfig
      */
     'allowlist_fids'?: Array<number>;
     /**
      * List of items included in the transaction
-     * @type {Array<TransactionFrameLineItem>}
-     * @memberof TransactionFrameConfig
      */
     'line_items': Array<TransactionFrameLineItem>;
-    /**
-     * 
-     * @type {TransactionFrameAction}
-     * @memberof TransactionFrameConfig
-     */
     'action'?: TransactionFrameAction;
 }
 

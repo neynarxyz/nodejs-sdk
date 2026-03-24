@@ -28,7 +28,6 @@ import type { MintNft200ResponseTransactionsInnerOneOfReceipt } from './mint-nft
 
 /**
  * @type MintNft200ResponseTransactionsInner
- * @export
  */
 export type MintNft200ResponseTransactionsInner = MintNft200ResponseTransactionsInnerOneOf | MintNft200ResponseTransactionsInnerOneOf1;
 

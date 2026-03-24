@@ -14,29 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface SubscriptionPrice
- */
 export interface SubscriptionPrice {
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionPrice
-     */
     'period_duration_seconds': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionPrice
-     */
     'tokens_per_period': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionPrice
-     */
     'initial_mint_price': string;
 }
 

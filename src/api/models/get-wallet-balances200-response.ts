@@ -20,23 +20,8 @@ import type { GetWalletBalances200ResponseBalancesInner } from './get-wallet-bal
 // @ts-ignore
 import type { GetWalletBalances200ResponseNext } from './get-wallet-balances200-response-next';
 
-/**
- * 
- * @export
- * @interface GetWalletBalances200Response
- */
 export interface GetWalletBalances200Response {
-    /**
-     * 
-     * @type {Array<GetWalletBalances200ResponseBalancesInner>}
-     * @memberof GetWalletBalances200Response
-     */
     'balances': Array<GetWalletBalances200ResponseBalancesInner>;
-    /**
-     * 
-     * @type {GetWalletBalances200ResponseNext}
-     * @memberof GetWalletBalances200Response
-     */
     'next': GetWalletBalances200ResponseNext;
 }
 

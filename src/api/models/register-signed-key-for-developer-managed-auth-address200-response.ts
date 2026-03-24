@@ -14,34 +14,15 @@
 
 
 
-/**
- * 
- * @export
- * @interface RegisterSignedKeyForDeveloperManagedAuthAddress200Response
- */
 export interface RegisterSignedKeyForDeveloperManagedAuthAddress200Response {
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof RegisterSignedKeyForDeveloperManagedAuthAddress200Response
      */
     'address': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RegisterSignedKeyForDeveloperManagedAuthAddress200Response
-     */
     'status': RegisterSignedKeyForDeveloperManagedAuthAddress200ResponseStatusEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof RegisterSignedKeyForDeveloperManagedAuthAddress200Response
-     */
     'auth_address_approval_url'?: string;
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof RegisterSignedKeyForDeveloperManagedAuthAddress200Response
      */
     'fid'?: number;
 }

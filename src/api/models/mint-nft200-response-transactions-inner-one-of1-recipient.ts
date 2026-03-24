@@ -16,26 +16,15 @@
 
 /**
  * Mint recipient that failed.
- * @export
- * @interface MintNft200ResponseTransactionsInnerOneOf1Recipient
  */
 export interface MintNft200ResponseTransactionsInnerOneOf1Recipient {
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof MintNft200ResponseTransactionsInnerOneOf1Recipient
      */
     'address'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MintNft200ResponseTransactionsInnerOneOf1Recipient
-     */
     'quantity': number;
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof MintNft200ResponseTransactionsInnerOneOf1Recipient
      */
     'fid'?: number;
 }

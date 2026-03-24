@@ -14,29 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface WebhookSubscriptionFiltersReaction
- */
 export interface WebhookSubscriptionFiltersReaction {
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof WebhookSubscriptionFiltersReaction
-     */
     'fids'?: Array<number>;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof WebhookSubscriptionFiltersReaction
-     */
     'target_fids'?: Array<number>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof WebhookSubscriptionFiltersReaction
-     */
     'target_cast_hashes'?: Array<string>;
 }
 

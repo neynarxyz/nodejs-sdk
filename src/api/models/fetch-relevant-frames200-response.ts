@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { FetchRelevantFrames200ResponseRelevantFramesInner } from './fetch-relevant-frames200-response-relevant-frames-inner';
 
-/**
- * 
- * @export
- * @interface FetchRelevantFrames200Response
- */
 export interface FetchRelevantFrames200Response {
-    /**
-     * 
-     * @type {Array<FetchRelevantFrames200ResponseRelevantFramesInner>}
-     * @memberof FetchRelevantFrames200Response
-     */
     'relevant_frames': Array<FetchRelevantFrames200ResponseRelevantFramesInner>;
 }
 

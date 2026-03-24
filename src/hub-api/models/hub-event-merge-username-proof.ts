@@ -17,29 +17,9 @@
 // @ts-ignore
 import type { MergeUserNameProofBody } from './merge-user-name-proof-body';
 
-/**
- * 
- * @export
- * @interface HubEventMergeUsernameProof
- */
 export interface HubEventMergeUsernameProof {
-    /**
-     * 
-     * @type {string}
-     * @memberof HubEventMergeUsernameProof
-     */
     'type': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof HubEventMergeUsernameProof
-     */
     'id': number;
-    /**
-     * 
-     * @type {MergeUserNameProofBody}
-     * @memberof HubEventMergeUsernameProof
-     */
     'mergeUsernameProofBody': MergeUserNameProofBody;
 }
 

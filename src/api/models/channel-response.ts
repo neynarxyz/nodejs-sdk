@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { Channel } from './channel';
 
-/**
- * 
- * @export
- * @interface ChannelResponse
- */
 export interface ChannelResponse {
-    /**
-     * 
-     * @type {Channel}
-     * @memberof ChannelResponse
-     */
     'channel': Channel;
 }
 

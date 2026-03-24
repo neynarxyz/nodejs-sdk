@@ -20,23 +20,8 @@ import type { FrameV2WithFullAuthor } from './frame-v2-with-full-author';
 // @ts-ignore
 import type { NextCursor } from './next-cursor';
 
-/**
- * 
- * @export
- * @interface FrameCatalogResponse
- */
 export interface FrameCatalogResponse {
-    /**
-     * 
-     * @type {Array<FrameV2WithFullAuthor>}
-     * @memberof FrameCatalogResponse
-     */
     'frames': Array<FrameV2WithFullAuthor>;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof FrameCatalogResponse
-     */
     'next': NextCursor;
 }
 

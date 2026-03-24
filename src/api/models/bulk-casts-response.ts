@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { Cast } from './cast';
 
-/**
- * 
- * @export
- * @interface BulkCastsResponse
- */
 export interface BulkCastsResponse {
-    /**
-     * 
-     * @type {Array<Cast>}
-     * @memberof BulkCastsResponse
-     */
     'casts': Array<Cast>;
 }
 

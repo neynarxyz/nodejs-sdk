@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { Notification } from './notification';
 
-/**
- * 
- * @export
- * @interface FetchUserInteractions200Response
- */
 export interface FetchUserInteractions200Response {
-    /**
-     * 
-     * @type {Array<Notification>}
-     * @memberof FetchUserInteractions200Response
-     */
     'interactions': Array<Notification>;
 }
 

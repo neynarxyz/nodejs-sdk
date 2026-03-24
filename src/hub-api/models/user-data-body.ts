@@ -19,20 +19,14 @@ import type { UserDataType } from './user-data-type';
 
 /**
  * Contains the data for updating a specific field of a user\'s profile metadata. Each update operation modifies one profile field at a time, allowing granular control over profile information.
- * @export
- * @interface UserDataBody
  */
 export interface UserDataBody {
     /**
      * Specifies which profile field is being updated (e.g., profile picture, display name, bio).
-     * @type {UserDataType}
-     * @memberof UserDataBody
      */
     'type': UserDataType;
     /**
      * The new value for the specified profile field. The format depends on the type: URLs for profile pictures, plain text for display names and bios, etc.
-     * @type {string}
-     * @memberof UserDataBody
      */
     'value': string;
 }

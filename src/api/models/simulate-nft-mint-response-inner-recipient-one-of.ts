@@ -14,28 +14,14 @@
 
 
 
-/**
- * 
- * @export
- * @interface SimulateNftMintResponseInnerRecipientOneOf
- */
 export interface SimulateNftMintResponseInnerRecipientOneOf {
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof SimulateNftMintResponseInnerRecipientOneOf
      */
     'address': string;
-    /**
-     * 
-     * @type {any}
-     * @memberof SimulateNftMintResponseInnerRecipientOneOf
-     */
     'fid'?: any;
     /**
      * Quantity to mint (must be at least 1). Defaults to 1.
-     * @type {number}
-     * @memberof SimulateNftMintResponseInnerRecipientOneOf
      */
     'quantity'?: number;
 }

@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface ListSecrets200ResponseSecretsInner
- */
 export interface ListSecrets200ResponseSecretsInner {
     /**
      * Environment variable name
-     * @type {string}
-     * @memberof ListSecrets200ResponseSecretsInner
      */
     'key': string;
     /**
      * Environment variable ID
-     * @type {string}
-     * @memberof ListSecrets200ResponseSecretsInner
      */
     'id': string;
 }

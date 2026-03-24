@@ -16,20 +16,14 @@
 
 /**
  * A unique identifier for a cast (post) in the Farcaster network, consisting of the creator\'s FID and a hash of the cast\'s content. This combination ensures global uniqueness across all casts.
- * @export
- * @interface CastId
  */
 export interface CastId {
     /**
      * The Farcaster ID (FID) of the user who created the cast. Required to uniquely identify the cast\'s author in the network.
-     * @type {number}
-     * @memberof CastId
      */
     'fid': number;
     /**
      * A unique hash that identifies a specific cast within the creator\'s posts. Generated using HASH_SCHEME_BLAKE3 of the cast\'s content.
-     * @type {string}
-     * @memberof CastId
      */
     'hash': string;
 }

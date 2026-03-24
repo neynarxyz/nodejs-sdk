@@ -20,35 +20,10 @@ import type { Message } from './message';
 // @ts-ignore
 import type { UserNameProof } from './user-name-proof';
 
-/**
- * 
- * @export
- * @interface MergeUserNameProofBody
- */
 export interface MergeUserNameProofBody {
-    /**
-     * 
-     * @type {UserNameProof}
-     * @memberof MergeUserNameProofBody
-     */
     'usernameProof'?: UserNameProof;
-    /**
-     * 
-     * @type {UserNameProof}
-     * @memberof MergeUserNameProofBody
-     */
     'deletedUsernameProof'?: UserNameProof;
-    /**
-     * 
-     * @type {Message}
-     * @memberof MergeUserNameProofBody
-     */
     'usernameProofMessage'?: Message;
-    /**
-     * 
-     * @type {Message}
-     * @memberof MergeUserNameProofBody
-     */
     'deletedUsernameProofMessage'?: Message;
 }
 

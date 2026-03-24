@@ -14,29 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface WebhookSubscriptionFiltersTrade
- */
 export interface WebhookSubscriptionFiltersTrade {
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof WebhookSubscriptionFiltersTrade
-     */
     'fids'?: Array<number>;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebhookSubscriptionFiltersTrade
-     */
     'minimum_trader_neynar_score'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebhookSubscriptionFiltersTrade
-     */
     'minimum_token_amount_usdc'?: number;
 }
 

@@ -20,23 +20,8 @@ import type { TransactionSendFungiblesReceipt } from './transaction-send-fungibl
 // @ts-ignore
 import type { TransactionSendTxInfo } from './transaction-send-tx-info';
 
-/**
- * 
- * @export
- * @interface TransactionSendFungiblesResponse
- */
 export interface TransactionSendFungiblesResponse {
-    /**
-     * 
-     * @type {Array<TransactionSendFungiblesReceipt>}
-     * @memberof TransactionSendFungiblesResponse
-     */
     'send_receipts': Array<TransactionSendFungiblesReceipt>;
-    /**
-     * 
-     * @type {Array<TransactionSendTxInfo>}
-     * @memberof TransactionSendFungiblesResponse
-     */
     'transactions': Array<TransactionSendTxInfo>;
 }
 

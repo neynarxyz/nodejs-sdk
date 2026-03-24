@@ -20,29 +20,9 @@ import type { NextCursor } from './next-cursor';
 // @ts-ignore
 import type { Notification } from './notification';
 
-/**
- * 
- * @export
- * @interface NotificationsResponse
- */
 export interface NotificationsResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof NotificationsResponse
-     */
     'unseen_notifications_count': number;
-    /**
-     * 
-     * @type {Array<Notification>}
-     * @memberof NotificationsResponse
-     */
     'notifications': Array<Notification>;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof NotificationsResponse
-     */
     'next': NextCursor;
 }
 

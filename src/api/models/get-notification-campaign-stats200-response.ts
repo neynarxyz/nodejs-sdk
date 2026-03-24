@@ -20,23 +20,8 @@ import type { NextCursor } from './next-cursor';
 // @ts-ignore
 import type { NotificationCampaign } from './notification-campaign';
 
-/**
- * 
- * @export
- * @interface GetNotificationCampaignStats200Response
- */
 export interface GetNotificationCampaignStats200Response {
-    /**
-     * 
-     * @type {Array<NotificationCampaign>}
-     * @memberof GetNotificationCampaignStats200Response
-     */
     'notificationCampaigns': Array<NotificationCampaign>;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof GetNotificationCampaignStats200Response
-     */
     'next': NextCursor;
 }
 

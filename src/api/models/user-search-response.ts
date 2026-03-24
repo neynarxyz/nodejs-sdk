@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { UserSearchResponseResult } from './user-search-response-result';
 
-/**
- * 
- * @export
- * @interface UserSearchResponse
- */
 export interface UserSearchResponse {
-    /**
-     * 
-     * @type {UserSearchResponseResult}
-     * @memberof UserSearchResponse
-     */
     'result': UserSearchResponseResult;
 }
 

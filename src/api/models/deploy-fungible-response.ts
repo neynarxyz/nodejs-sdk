@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { DeployFungibleResponseContract } from './deploy-fungible-response-contract';
 
-/**
- * 
- * @export
- * @interface DeployFungibleResponse
- */
 export interface DeployFungibleResponse {
-    /**
-     * 
-     * @type {DeployFungibleResponseContract}
-     * @memberof DeployFungibleResponse
-     */
     'contract'?: DeployFungibleResponseContract;
 }
 

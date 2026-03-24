@@ -31,7 +31,6 @@ import type { EmbedUrlMetadata } from './embed-url-metadata';
 
 /**
  * @type EmbedDeep
- * @export
  */
 export type EmbedDeep = EmbedCastDeep | EmbedUrl;
 

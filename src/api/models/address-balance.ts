@@ -22,27 +22,10 @@ import type { TokenBalance } from './token-balance';
 
 /**
  * The token balances associated with a wallet address
- * @export
- * @interface AddressBalance
  */
 export interface AddressBalance {
-    /**
-     * 
-     * @type {string}
-     * @memberof AddressBalance
-     */
     'object': AddressBalanceObjectEnum;
-    /**
-     * 
-     * @type {AddressBalanceVerifiedAddress}
-     * @memberof AddressBalance
-     */
     'verified_address': AddressBalanceVerifiedAddress;
-    /**
-     * 
-     * @type {Array<TokenBalance>}
-     * @memberof AddressBalance
-     */
     'token_balances': Array<TokenBalance>;
 }
 

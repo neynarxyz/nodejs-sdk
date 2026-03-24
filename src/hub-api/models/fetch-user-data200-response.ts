@@ -31,7 +31,6 @@ import type { UserDataAddAllOfData } from './user-data-add-all-of-data';
 
 /**
  * @type FetchUserData200Response
- * @export
  */
 export type FetchUserData200Response = FetchUserData200ResponseOneOf | UserDataAdd;
 

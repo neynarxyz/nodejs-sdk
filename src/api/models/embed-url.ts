@@ -17,23 +17,8 @@
 // @ts-ignore
 import type { EmbedUrlMetadata } from './embed-url-metadata';
 
-/**
- * 
- * @export
- * @interface EmbedUrl
- */
 export interface EmbedUrl {
-    /**
-     * 
-     * @type {string}
-     * @memberof EmbedUrl
-     */
     'url': string;
-    /**
-     * 
-     * @type {EmbedUrlMetadata}
-     * @memberof EmbedUrl
-     */
     'metadata'?: EmbedUrlMetadata;
 }
 

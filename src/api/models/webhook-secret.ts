@@ -14,47 +14,12 @@
 
 
 
-/**
- * 
- * @export
- * @interface WebhookSecret
- */
 export interface WebhookSecret {
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookSecret
-     */
     'uid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookSecret
-     */
     'value': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookSecret
-     */
     'expires_at': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookSecret
-     */
     'created_at': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookSecret
-     */
     'updated_at': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookSecret
-     */
     'deleted_at': string;
 }
 

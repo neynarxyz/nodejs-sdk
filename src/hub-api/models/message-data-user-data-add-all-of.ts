@@ -17,16 +17,9 @@
 // @ts-ignore
 import type { UserDataBody } from './user-data-body';
 
-/**
- * 
- * @export
- * @interface MessageDataUserDataAddAllOf
- */
 export interface MessageDataUserDataAddAllOf {
     /**
      * Contains the type of profile metadata being updated and its new value.
-     * @type {UserDataBody}
-     * @memberof MessageDataUserDataAddAllOf
      */
     'userDataBody': UserDataBody;
 }

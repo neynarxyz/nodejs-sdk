@@ -17,16 +17,9 @@
 // @ts-ignore
 import type { CastAdd } from './cast-add';
 
-/**
- * 
- * @export
- * @interface FetchCastsByParent200ResponseAllOf
- */
 export interface FetchCastsByParent200ResponseAllOf {
     /**
      * An array of reply casts to the specified parent cast, ordered by oldest first. Each cast includes its content, timestamp, and other metadata.
-     * @type {Array<CastAdd>}
-     * @memberof FetchCastsByParent200ResponseAllOf
      */
     'messages': Array<CastAdd>;
 }

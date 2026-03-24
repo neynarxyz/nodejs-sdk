@@ -16,27 +16,10 @@
 
 /**
  * Encoded JSON Farcaster signature
- * @export
- * @interface EncodedJsonFarcasterSignature
  */
 export interface EncodedJsonFarcasterSignature {
-    /**
-     * 
-     * @type {string}
-     * @memberof EncodedJsonFarcasterSignature
-     */
     'header': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EncodedJsonFarcasterSignature
-     */
     'payload': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EncodedJsonFarcasterSignature
-     */
     'signature': string;
 }
 

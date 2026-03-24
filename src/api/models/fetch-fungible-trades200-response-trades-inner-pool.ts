@@ -14,35 +14,10 @@
 
 
 
-/**
- * 
- * @export
- * @interface FetchFungibleTrades200ResponseTradesInnerPool
- */
 export interface FetchFungibleTrades200ResponseTradesInnerPool {
-    /**
-     * 
-     * @type {string}
-     * @memberof FetchFungibleTrades200ResponseTradesInnerPool
-     */
     'object': FetchFungibleTrades200ResponseTradesInnerPoolObjectEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof FetchFungibleTrades200ResponseTradesInnerPool
-     */
     'address': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FetchFungibleTrades200ResponseTradesInnerPool
-     */
     'protocol_family'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FetchFungibleTrades200ResponseTradesInnerPool
-     */
     'protocol_version'?: string;
 }
 

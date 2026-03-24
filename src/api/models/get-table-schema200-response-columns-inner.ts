@@ -14,46 +14,29 @@
 
 
 
-/**
- * 
- * @export
- * @interface GetTableSchema200ResponseColumnsInner
- */
 export interface GetTableSchema200ResponseColumnsInner {
     /**
      * Column name
-     * @type {string}
-     * @memberof GetTableSchema200ResponseColumnsInner
      */
     'name': string;
     /**
      * Column data type
-     * @type {string}
-     * @memberof GetTableSchema200ResponseColumnsInner
      */
     'type': string;
     /**
      * Whether the column allows NULL values
-     * @type {boolean}
-     * @memberof GetTableSchema200ResponseColumnsInner
      */
     'nullable': boolean;
     /**
      * Default value expression
-     * @type {string}
-     * @memberof GetTableSchema200ResponseColumnsInner
      */
     'defaultValue': string | null;
     /**
      * Whether the column is part of primary key
-     * @type {boolean}
-     * @memberof GetTableSchema200ResponseColumnsInner
      */
     'isPrimaryKey': boolean;
     /**
      * Ordinal position in table
-     * @type {number}
-     * @memberof GetTableSchema200ResponseColumnsInner
      */
     'position': number;
 }

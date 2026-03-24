@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { User } from './user';
 
-/**
- * 
- * @export
- * @interface BulkUsersResponse
- */
 export interface BulkUsersResponse {
-    /**
-     * 
-     * @type {Array<User>}
-     * @memberof BulkUsersResponse
-     */
     'users': Array<User>;
 }
 

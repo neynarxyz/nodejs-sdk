@@ -20,7 +20,6 @@ import type { EncodedJsonFarcasterSignature } from './encoded-json-farcaster-sig
 /**
  * @type SignedMessageBodySignedMessage
  * JFS-signed message containing the event payload. The message must be properly signed and contain valid event information.  Can be provided as a single string or json object.
- * @export
  */
 export type SignedMessageBodySignedMessage = EncodedJsonFarcasterSignature | string;
 

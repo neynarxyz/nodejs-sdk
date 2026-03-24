@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { SubscribedTo } from './subscribed-to';
 
-/**
- * 
- * @export
- * @interface SubscribedToResponse
- */
 export interface SubscribedToResponse {
-    /**
-     * 
-     * @type {Array<SubscribedTo>}
-     * @memberof SubscribedToResponse
-     */
     'subscribed_to'?: Array<SubscribedTo>;
 }
 

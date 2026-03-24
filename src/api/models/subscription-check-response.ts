@@ -17,11 +17,6 @@
 // @ts-ignore
 import type { SubscriptionCheckResponseValue } from './subscription-check-response-value';
 
-/**
- * 
- * @export
- * @interface SubscriptionCheckResponse
- */
 export interface SubscriptionCheckResponse {
     [key: string]: SubscriptionCheckResponseValue;
 

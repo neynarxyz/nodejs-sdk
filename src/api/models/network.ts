@@ -16,8 +16,6 @@
 
 /**
  * A blockchain network e.g. \"ethereum\", \"optimism\", \"base\", \"arbitrum\"
- * @export
- * @enum {string}
  */
 
 export const Network = {

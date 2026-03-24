@@ -20,41 +20,11 @@ import type { HashScheme } from './hash-scheme';
 // @ts-ignore
 import type { SignatureScheme } from './signature-scheme';
 
-/**
- * 
- * @export
- * @interface MessageCommon
- */
 export interface MessageCommon {
-    /**
-     * 
-     * @type {string}
-     * @memberof MessageCommon
-     */
     'hash': string;
-    /**
-     * 
-     * @type {HashScheme}
-     * @memberof MessageCommon
-     */
     'hashScheme': HashScheme;
-    /**
-     * 
-     * @type {string}
-     * @memberof MessageCommon
-     */
     'signature': string;
-    /**
-     * 
-     * @type {SignatureScheme}
-     * @memberof MessageCommon
-     */
     'signatureScheme': SignatureScheme;
-    /**
-     * 
-     * @type {string}
-     * @memberof MessageCommon
-     */
     'signer': string;
 }
 

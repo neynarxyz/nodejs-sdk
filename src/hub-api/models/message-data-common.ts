@@ -22,33 +22,17 @@ import type { MessageType } from './message-type';
 
 /**
  * Common properties shared by all Farcaster message types. These properties provide essential metadata about the message\'s origin, timing, and network context.
- * @export
- * @interface MessageDataCommon
  */
 export interface MessageDataCommon {
-    /**
-     * 
-     * @type {MessageType}
-     * @memberof MessageDataCommon
-     */
     'type'?: MessageType;
     /**
      * The unique identifier (FID) of the user who created this message. FIDs are assigned sequentially when users register on the network and cannot be changed.
-     * @type {number}
-     * @memberof MessageDataCommon
      */
     'fid': number;
     /**
      * Seconds since Farcaster Epoch (2021-01-01T00:00:00Z). Used to order messages chronologically and determine the most recent state. Must be within 10 minutes of the current time when the message is created.
-     * @type {number}
-     * @memberof MessageDataCommon
      */
     'timestamp': number;
-    /**
-     * 
-     * @type {FarcasterNetwork}
-     * @memberof MessageDataCommon
-     */
     'network': FarcasterNetwork;
 }
 

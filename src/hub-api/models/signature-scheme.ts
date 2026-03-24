@@ -16,13 +16,11 @@
 
 /**
  * Type of signature scheme used to sign the Message hash - SIGNATURE_SCHEME_ED25519: Ed25519 signature (default) - SIGNATURE_SCHEME_EIP712: ECDSA signature using EIP-712 scheme
- * @export
- * @enum {string}
  */
 
 export const SignatureScheme = {
-    Ed25519: 'SIGNATURE_SCHEME_ED25519',
-    Eip712: 'SIGNATURE_SCHEME_EIP712'
+    SignatureSchemeEd25519: 'SIGNATURE_SCHEME_ED25519',
+    SignatureSchemeEip712: 'SIGNATURE_SCHEME_EIP712'
 } as const;
 
 export type SignatureScheme = typeof SignatureScheme[keyof typeof SignatureScheme];

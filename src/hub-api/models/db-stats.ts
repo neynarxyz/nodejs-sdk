@@ -14,29 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface DbStats
- */
 export interface DbStats {
-    /**
-     * 
-     * @type {number}
-     * @memberof DbStats
-     */
     'numMessages': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DbStats
-     */
     'numFidEvents': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DbStats
-     */
     'numFnameEvents': number;
 }
 

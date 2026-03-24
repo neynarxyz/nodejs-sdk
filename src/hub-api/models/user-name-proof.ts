@@ -17,47 +17,18 @@
 // @ts-ignore
 import type { UserNameType } from './user-name-type';
 
-/**
- * 
- * @export
- * @interface UserNameProof
- */
 export interface UserNameProof {
     /**
      * Seconds since Unix Epoch which began on Jan 1, 1970 00:00:00 UTC
-     * @type {number}
-     * @memberof UserNameProof
      */
     'timestamp': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserNameProof
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserNameProof
-     */
     'owner': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserNameProof
-     */
     'signature': string;
     /**
      * The FID of the user who owns this username proof
-     * @type {number}
-     * @memberof UserNameProof
      */
     'fid': number;
-    /**
-     * 
-     * @type {UserNameType}
-     * @memberof UserNameProof
-     */
     'type': UserNameType;
 }
 

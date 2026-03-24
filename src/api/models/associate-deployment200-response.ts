@@ -14,22 +14,10 @@
 
 
 
-/**
- * 
- * @export
- * @interface AssociateDeployment200Response
- */
 export interface AssociateDeployment200Response {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof AssociateDeployment200Response
-     */
     'success': boolean;
     /**
      * Status message from the miniapp generator
-     * @type {string}
-     * @memberof AssociateDeployment200Response
      */
     'message': string;
 }

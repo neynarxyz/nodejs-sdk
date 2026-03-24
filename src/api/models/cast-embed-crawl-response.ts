@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { EmbedUrlMetadata } from './embed-url-metadata';
 
-/**
- * 
- * @export
- * @interface CastEmbedCrawlResponse
- */
 export interface CastEmbedCrawlResponse {
-    /**
-     * 
-     * @type {EmbedUrlMetadata}
-     * @memberof CastEmbedCrawlResponse
-     */
     'metadata': EmbedUrlMetadata;
 }
 

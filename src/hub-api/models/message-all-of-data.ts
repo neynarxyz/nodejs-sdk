@@ -73,7 +73,6 @@ import type { VerificationRemoveBody } from './verification-remove-body';
 
 /**
  * @type MessageAllOfData
- * @export
  */
 export type MessageAllOfData = { type: 'MESSAGE_TYPE_CAST_ADD' } & MessageDataCastAdd | { type: 'MESSAGE_TYPE_CAST_REMOVE' } & MessageDataCastRemove | { type: 'MESSAGE_TYPE_FRAME_ACTION' } & MessageDataFrameAction | { type: 'MESSAGE_TYPE_LINK_ADD' } & MessageDataLink | { type: 'MESSAGE_TYPE_LINK_REMOVE' } & MessageDataLink | { type: 'MESSAGE_TYPE_REACTION_ADD' } & MessageDataReaction | { type: 'MESSAGE_TYPE_REACTION_REMOVE' } & MessageDataReaction | { type: 'MESSAGE_TYPE_USERNAME_PROOF' } & MessageDataUsernameProof | { type: 'MESSAGE_TYPE_USER_DATA_ADD' } & MessageDataUserDataAdd | { type: 'MESSAGE_TYPE_VERIFICATION_ADD_ETH_ADDRESS' } & MessageDataVerificationAdd | { type: 'MESSAGE_TYPE_VERIFICATION_REMOVE' } & MessageDataVerificationRemove;
 

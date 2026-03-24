@@ -14,46 +14,29 @@
 
 
 
-/**
- * 
- * @export
- * @interface VercelDeploymentStatus200Response
- */
 export interface VercelDeploymentStatus200Response {
     /**
      * Whether the request succeeded
-     * @type {boolean}
-     * @memberof VercelDeploymentStatus200Response
      */
     'success': boolean;
     /**
      * Vercel project ID
-     * @type {string}
-     * @memberof VercelDeploymentStatus200Response
      */
     'project_id'?: string;
     /**
      * URL of the deployed Vercel app
-     * @type {string}
-     * @memberof VercelDeploymentStatus200Response
      */
     'deployment_url'?: string;
     /**
      * Current state of the deployment
-     * @type {string}
-     * @memberof VercelDeploymentStatus200Response
      */
     'deployment_state'?: string;
     /**
      * Timestamp when deployment was created
-     * @type {number}
-     * @memberof VercelDeploymentStatus200Response
      */
     'created_at'?: number;
     /**
      * Deployment target environment
-     * @type {string}
-     * @memberof VercelDeploymentStatus200Response
      */
     'target'?: string;
 }

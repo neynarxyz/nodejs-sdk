@@ -31,7 +31,6 @@ import type { MessageType } from './message-type';
 
 /**
  * @type CastAddAllOfData
- * @export
  */
 export type CastAddAllOfData = CastAddAllOfDataAllOf & MessageDataCastAdd;
 

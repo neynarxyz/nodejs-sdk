@@ -17,16 +17,9 @@
 // @ts-ignore
 import type { ListConversations200ResponseConversationsInner } from './list-conversations200-response-conversations-inner';
 
-/**
- * 
- * @export
- * @interface ListConversations200Response
- */
 export interface ListConversations200Response {
     /**
      * List of conversations
-     * @type {Array<ListConversations200ResponseConversationsInner>}
-     * @memberof ListConversations200Response
      */
     'conversations': Array<ListConversations200ResponseConversationsInner>;
 }

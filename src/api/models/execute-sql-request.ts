@@ -14,28 +14,17 @@
 
 
 
-/**
- * 
- * @export
- * @interface ExecuteSqlRequest
- */
 export interface ExecuteSqlRequest {
     /**
      * Deployment ID (UUID)
-     * @type {string}
-     * @memberof ExecuteSqlRequest
      */
     'deployment_id': string;
     /**
      * Farcaster ID (optional for admins)
-     * @type {number}
-     * @memberof ExecuteSqlRequest
      */
     'fid'?: number;
     /**
      * SQL query to execute
-     * @type {string}
-     * @memberof ExecuteSqlRequest
      */
     'sql': string;
 }

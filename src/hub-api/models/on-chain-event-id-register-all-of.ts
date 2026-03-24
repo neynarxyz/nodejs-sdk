@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { IdRegisterEventBody } from './id-register-event-body';
 
-/**
- * 
- * @export
- * @interface OnChainEventIdRegisterAllOf
- */
 export interface OnChainEventIdRegisterAllOf {
-    /**
-     * 
-     * @type {IdRegisterEventBody}
-     * @memberof OnChainEventIdRegisterAllOf
-     */
     'idRegisterEventBody': IdRegisterEventBody;
 }
 

@@ -20,53 +20,13 @@ import type { UpdateUserReqBodyLocation } from './update-user-req-body-location'
 // @ts-ignore
 import type { UpdateUserReqBodyVerifiedAccounts } from './update-user-req-body-verified-accounts';
 
-/**
- * 
- * @export
- * @interface RegisterUserReqBodyMetadata
- */
 export interface RegisterUserReqBodyMetadata {
-    /**
-     * 
-     * @type {string}
-     * @memberof RegisterUserReqBodyMetadata
-     */
     'bio'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RegisterUserReqBodyMetadata
-     */
     'pfp_url'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RegisterUserReqBodyMetadata
-     */
     'url'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RegisterUserReqBodyMetadata
-     */
     'username'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RegisterUserReqBodyMetadata
-     */
     'display_name'?: string;
-    /**
-     * 
-     * @type {UpdateUserReqBodyVerifiedAccounts}
-     * @memberof RegisterUserReqBodyMetadata
-     */
     'verified_accounts'?: UpdateUserReqBodyVerifiedAccounts;
-    /**
-     * 
-     * @type {UpdateUserReqBodyLocation}
-     * @memberof RegisterUserReqBodyMetadata
-     */
     'location'?: UpdateUserReqBodyLocation;
 }
 

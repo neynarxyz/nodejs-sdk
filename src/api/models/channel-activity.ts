@@ -17,41 +17,11 @@
 // @ts-ignore
 import type { Channel } from './channel';
 
-/**
- * 
- * @export
- * @interface ChannelActivity
- */
 export interface ChannelActivity {
-    /**
-     * 
-     * @type {string}
-     * @memberof ChannelActivity
-     */
     'object': ChannelActivityObjectEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChannelActivity
-     */
     'cast_count_1d': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChannelActivity
-     */
     'cast_count_7d': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChannelActivity
-     */
     'cast_count_30d': string;
-    /**
-     * 
-     * @type {Channel}
-     * @memberof ChannelActivity
-     */
     'channel': Channel;
 }
 

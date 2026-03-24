@@ -14,34 +14,15 @@
 
 
 
-/**
- * 
- * @export
- * @interface DeveloperManagedSigner
- */
 export interface DeveloperManagedSigner {
     /**
      * Ed25519 public key
-     * @type {string}
-     * @memberof DeveloperManagedSigner
      */
     'public_key': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeveloperManagedSigner
-     */
     'status': DeveloperManagedSignerStatusEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeveloperManagedSigner
-     */
     'signer_approval_url'?: string;
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof DeveloperManagedSigner
      */
     'fid'?: number;
 }

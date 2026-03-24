@@ -28,7 +28,6 @@ import type { PostCastReqBodyEmbedsOneOf2 } from './post-cast-req-body-embeds-on
 
 /**
  * @type PostCastReqBodyEmbeds
- * @export
  */
 export type PostCastReqBodyEmbeds = PostCastReqBodyEmbedsOneOf | PostCastReqBodyEmbedsOneOf1 | PostCastReqBodyEmbedsOneOf2;
 

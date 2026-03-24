@@ -14,28 +14,14 @@
 
 
 
-/**
- * 
- * @export
- * @interface SimulateNftMintResponseInnerRecipientOneOf1
- */
 export interface SimulateNftMintResponseInnerRecipientOneOf1 {
-    /**
-     * 
-     * @type {any}
-     * @memberof SimulateNftMintResponseInnerRecipientOneOf1
-     */
     'address'?: any;
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof SimulateNftMintResponseInnerRecipientOneOf1
      */
     'fid': number;
     /**
      * Quantity to mint (must be at least 1). Defaults to 1.
-     * @type {number}
-     * @memberof SimulateNftMintResponseInnerRecipientOneOf1
      */
     'quantity'?: number;
 }

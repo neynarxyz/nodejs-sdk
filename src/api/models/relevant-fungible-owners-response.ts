@@ -20,23 +20,8 @@ import type { User } from './user';
 // @ts-ignore
 import type { UserDehydrated } from './user-dehydrated';
 
-/**
- * 
- * @export
- * @interface RelevantFungibleOwnersResponse
- */
 export interface RelevantFungibleOwnersResponse {
-    /**
-     * 
-     * @type {Array<User>}
-     * @memberof RelevantFungibleOwnersResponse
-     */
     'top_relevant_fungible_owners_hydrated': Array<User>;
-    /**
-     * 
-     * @type {Array<UserDehydrated>}
-     * @memberof RelevantFungibleOwnersResponse
-     */
     'all_relevant_fungible_owners_dehydrated': Array<UserDehydrated>;
 }
 

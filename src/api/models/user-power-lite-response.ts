@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { UserPowerLiteResponseResult } from './user-power-lite-response-result';
 
-/**
- * 
- * @export
- * @interface UserPowerLiteResponse
- */
 export interface UserPowerLiteResponse {
-    /**
-     * 
-     * @type {UserPowerLiteResponseResult}
-     * @memberof UserPowerLiteResponse
-     */
     'result': UserPowerLiteResponseResult;
 }
 

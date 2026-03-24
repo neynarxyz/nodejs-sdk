@@ -22,27 +22,13 @@ import type { MintNft200ResponseTransactionsInnerOneOfRecipient } from './mint-n
 
 /**
  * Successful mint transaction.
- * @export
- * @interface MintNft200ResponseTransactionsInnerOneOf
  */
 export interface MintNft200ResponseTransactionsInnerOneOf {
-    /**
-     * 
-     * @type {MintNft200ResponseTransactionsInnerOneOfRecipient}
-     * @memberof MintNft200ResponseTransactionsInnerOneOf
-     */
     'recipient': MintNft200ResponseTransactionsInnerOneOfRecipient;
     /**
      * Hexadecimal number expressed as string with \'0x\' prefix
-     * @type {string}
-     * @memberof MintNft200ResponseTransactionsInnerOneOf
      */
     'transaction_hash': string;
-    /**
-     * 
-     * @type {MintNft200ResponseTransactionsInnerOneOfReceipt}
-     * @memberof MintNft200ResponseTransactionsInnerOneOf
-     */
     'receipt'?: MintNft200ResponseTransactionsInnerOneOfReceipt | null;
 }
 

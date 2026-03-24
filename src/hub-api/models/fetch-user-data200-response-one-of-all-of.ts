@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { UserDataAdd } from './user-data-add';
 
-/**
- * 
- * @export
- * @interface FetchUserData200ResponseOneOfAllOf
- */
 export interface FetchUserData200ResponseOneOfAllOf {
-    /**
-     * 
-     * @type {Array<UserDataAdd>}
-     * @memberof FetchUserData200ResponseOneOfAllOf
-     */
     'messages': Array<UserDataAdd>;
 }
 

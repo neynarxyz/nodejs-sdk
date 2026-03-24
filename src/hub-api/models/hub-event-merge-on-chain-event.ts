@@ -17,29 +17,9 @@
 // @ts-ignore
 import type { MergeOnChainEventBody } from './merge-on-chain-event-body';
 
-/**
- * 
- * @export
- * @interface HubEventMergeOnChainEvent
- */
 export interface HubEventMergeOnChainEvent {
-    /**
-     * 
-     * @type {string}
-     * @memberof HubEventMergeOnChainEvent
-     */
     'type': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof HubEventMergeOnChainEvent
-     */
     'id': number;
-    /**
-     * 
-     * @type {MergeOnChainEventBody}
-     * @memberof HubEventMergeOnChainEvent
-     */
     'mergeOnChainEventBody': MergeOnChainEventBody;
 }
 

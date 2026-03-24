@@ -20,23 +20,8 @@ import type { Follower } from './follower';
 // @ts-ignore
 import type { FollowerDehydrated } from './follower-dehydrated';
 
-/**
- * 
- * @export
- * @interface RelevantFollowersResponse
- */
 export interface RelevantFollowersResponse {
-    /**
-     * 
-     * @type {Array<Follower>}
-     * @memberof RelevantFollowersResponse
-     */
     'top_relevant_followers_hydrated': Array<Follower>;
-    /**
-     * 
-     * @type {Array<FollowerDehydrated>}
-     * @memberof RelevantFollowersResponse
-     */
     'all_relevant_followers_dehydrated': Array<FollowerDehydrated>;
 }
 

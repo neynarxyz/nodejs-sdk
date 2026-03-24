@@ -20,35 +20,13 @@ import type { ChannelMemberRole } from './channel-member-role';
 // @ts-ignore
 import type { User } from './user';
 
-/**
- * 
- * @export
- * @interface ChannelMemberInvite
- */
 export interface ChannelMemberInvite {
     /**
      * The unique identifier of a farcaster channel
-     * @type {string}
-     * @memberof ChannelMemberInvite
      */
     'channel_id': string;
-    /**
-     * 
-     * @type {ChannelMemberRole}
-     * @memberof ChannelMemberInvite
-     */
     'role': ChannelMemberRole;
-    /**
-     * 
-     * @type {User}
-     * @memberof ChannelMemberInvite
-     */
     'inviter': User;
-    /**
-     * 
-     * @type {User}
-     * @memberof ChannelMemberInvite
-     */
     'invited': User;
 }
 

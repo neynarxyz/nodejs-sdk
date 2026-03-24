@@ -14,130 +14,58 @@
 
 
 
-/**
- * 
- * @export
- * @interface FarcasterManifestFrame
- */
 export interface FarcasterManifestFrame {
-    /**
-     * 
-     * @type {string}
-     * @memberof FarcasterManifestFrame
-     */
     'version': FarcasterManifestFrameVersionEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof FarcasterManifestFrame
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FarcasterManifestFrame
-     */
     'home_url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FarcasterManifestFrame
-     */
     'icon_url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FarcasterManifestFrame
-     */
     'image_url'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FarcasterManifestFrame
-     */
     'button_title'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FarcasterManifestFrame
-     */
     'splash_image_url'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FarcasterManifestFrame
-     */
     'splash_background_color'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FarcasterManifestFrame
-     */
     'webhook_url'?: string;
     /**
      * Short subtitle for the configuration
-     * @type {string}
-     * @memberof FarcasterManifestFrame
      */
     'subtitle'?: string;
     /**
      * Detailed description of the configuration
-     * @type {string}
-     * @memberof FarcasterManifestFrame
      */
     'description'?: string;
     /**
      * URLs of screenshots showcasing the configuration
-     * @type {Array<string>}
-     * @memberof FarcasterManifestFrame
      */
     'screenshot_urls'?: Array<string>;
     /**
      * Primary category the configuration belongs to
-     * @type {string}
-     * @memberof FarcasterManifestFrame
      */
     'primary_category'?: string;
     /**
      * Tags associated with the configuration
-     * @type {Array<string>}
-     * @memberof FarcasterManifestFrame
      */
     'tags'?: Array<string>;
     /**
      * URL of the hero image displayed for the configuration
-     * @type {string}
-     * @memberof FarcasterManifestFrame
      */
     'hero_image_url'?: string;
     /**
      * Short tagline for the configuration
-     * @type {string}
-     * @memberof FarcasterManifestFrame
      */
     'tagline'?: string;
     /**
      * Title used for Open Graph previews
-     * @type {string}
-     * @memberof FarcasterManifestFrame
      */
     'og_title'?: string;
     /**
      * Description used for Open Graph previews
-     * @type {string}
-     * @memberof FarcasterManifestFrame
      */
     'og_description'?: string;
     /**
      * Image URL used for Open Graph previews
-     * @type {string}
-     * @memberof FarcasterManifestFrame
      */
     'og_image_url'?: string;
     /**
      * Whether search engines should not index this configuration
-     * @type {boolean}
-     * @memberof FarcasterManifestFrame
      */
     'noindex'?: boolean;
 }

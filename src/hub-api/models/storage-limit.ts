@@ -17,23 +17,8 @@
 // @ts-ignore
 import type { StoreType } from './store-type';
 
-/**
- * 
- * @export
- * @interface StorageLimit
- */
 export interface StorageLimit {
-    /**
-     * 
-     * @type {StoreType}
-     * @memberof StorageLimit
-     */
     'storeType': StoreType;
-    /**
-     * 
-     * @type {number}
-     * @memberof StorageLimit
-     */
     'limit': number;
 }
 

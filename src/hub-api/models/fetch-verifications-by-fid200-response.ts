@@ -17,23 +17,8 @@
 // @ts-ignore
 import type { Verification } from './verification';
 
-/**
- * 
- * @export
- * @interface FetchVerificationsByFid200Response
- */
 export interface FetchVerificationsByFid200Response {
-    /**
-     * 
-     * @type {Array<Verification>}
-     * @memberof FetchVerificationsByFid200Response
-     */
     'messages': Array<Verification>;
-    /**
-     * 
-     * @type {string}
-     * @memberof FetchVerificationsByFid200Response
-     */
     'nextPageToken': string;
 }
 

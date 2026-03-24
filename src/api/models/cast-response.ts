@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { Cast } from './cast';
 
-/**
- * 
- * @export
- * @interface CastResponse
- */
 export interface CastResponse {
-    /**
-     * 
-     * @type {Cast}
-     * @memberof CastResponse
-     */
     'cast': Cast;
 }
 

@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface StorageLimitsResponseTierSubscriptionsInner
- */
 export interface StorageLimitsResponseTierSubscriptionsInner {
     /**
      * The name of the subscription tier
-     * @type {string}
-     * @memberof StorageLimitsResponseTierSubscriptionsInner
      */
     'tier_type'?: StorageLimitsResponseTierSubscriptionsInnerTierTypeEnum;
     /**
      * Expiration time of the subscription tier as a Unix timestamp (seconds since epoch).
-     * @type {number}
-     * @memberof StorageLimitsResponseTierSubscriptionsInner
      */
     'expires_at'?: number;
 }

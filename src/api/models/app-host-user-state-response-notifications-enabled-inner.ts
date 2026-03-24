@@ -14,28 +14,17 @@
 
 
 
-/**
- * 
- * @export
- * @interface AppHostUserStateResponseNotificationsEnabledInner
- */
 export interface AppHostUserStateResponseNotificationsEnabledInner {
     /**
      * Domain of the mini app
-     * @type {string}
-     * @memberof AppHostUserStateResponseNotificationsEnabledInner
      */
     'domain': string;
     /**
      * Status of notifications for this domain (usually \'valid\')
-     * @type {string}
-     * @memberof AppHostUserStateResponseNotificationsEnabledInner
      */
     'status': string;
     /**
      * When the notification preference was last updated
-     * @type {string}
-     * @memberof AppHostUserStateResponseNotificationsEnabledInner
      */
     'updated_at': string;
 }

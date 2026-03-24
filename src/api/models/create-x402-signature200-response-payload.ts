@@ -17,23 +17,8 @@
 // @ts-ignore
 import type { CreateX402Signature200ResponsePayloadAuthorization } from './create-x402-signature200-response-payload-authorization';
 
-/**
- * 
- * @export
- * @interface CreateX402Signature200ResponsePayload
- */
 export interface CreateX402Signature200ResponsePayload {
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateX402Signature200ResponsePayload
-     */
     'signature': string;
-    /**
-     * 
-     * @type {CreateX402Signature200ResponsePayloadAuthorization}
-     * @memberof CreateX402Signature200ResponsePayload
-     */
     'authorization': CreateX402Signature200ResponsePayloadAuthorization;
 }
 

@@ -14,41 +14,11 @@
 
 
 
-/**
- * 
- * @export
- * @interface LocationAddress
- */
 export interface LocationAddress {
-    /**
-     * 
-     * @type {string}
-     * @memberof LocationAddress
-     */
     'city': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LocationAddress
-     */
     'state'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LocationAddress
-     */
     'state_code'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LocationAddress
-     */
     'country': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LocationAddress
-     */
     'country_code'?: string;
 }
 

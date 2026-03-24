@@ -14,58 +14,37 @@
 
 
 
-/**
- * 
- * @export
- * @interface PromptDeploymentStreamRequest
- */
 export interface PromptDeploymentStreamRequest {
     /**
      * Deployment ID (UUID). Required if name not provided.
-     * @type {string}
-     * @memberof PromptDeploymentStreamRequest
      */
     'deployment_id'?: string;
     /**
      * Farcaster ID of the user; if not provided, namespace must be provided
-     * @type {number}
-     * @memberof PromptDeploymentStreamRequest
      */
     'fid'?: number;
     /**
      * Kubernetes deployment name. Required if deployment_id not provided.
-     * @type {string}
-     * @memberof PromptDeploymentStreamRequest
      */
     'name'?: string;
     /**
      * Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID.
-     * @type {string}
-     * @memberof PromptDeploymentStreamRequest
      */
     'namespace'?: string;
     /**
      * Prompt string to send to the deployment
-     * @type {string}
-     * @memberof PromptDeploymentStreamRequest
      */
     'prompt': string;
     /**
      * Optional conversation ID to continue an existing chat. If not provided, a new conversation will be created.
-     * @type {string}
-     * @memberof PromptDeploymentStreamRequest
      */
     'conversation_id'?: string;
     /**
      * Optional Claude SDK session ID to resume an existing Claude Code session. Enables session-based conversation continuity.
-     * @type {string}
-     * @memberof PromptDeploymentStreamRequest
      */
     'session_id'?: string;
     /**
      * System prompt variant to use. Defaults to stable if not provided.
-     * @type {string}
-     * @memberof PromptDeploymentStreamRequest
      */
     'system_prompt_variant'?: PromptDeploymentStreamRequestSystemPromptVariantEnum;
 }

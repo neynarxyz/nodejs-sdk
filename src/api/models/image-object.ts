@@ -14,41 +14,11 @@
 
 
 
-/**
- * 
- * @export
- * @interface ImageObject
- */
 export interface ImageObject {
-    /**
-     * 
-     * @type {string}
-     * @memberof ImageObject
-     */
     'height'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ImageObject
-     */
     'type'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ImageObject
-     */
     'url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ImageObject
-     */
     'width'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ImageObject
-     */
     'alt'?: string;
 }
 

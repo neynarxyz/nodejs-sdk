@@ -14,34 +14,15 @@
 
 
 
-/**
- * 
- * @export
- * @interface TransactionSendTxInfo
- */
 export interface TransactionSendTxInfo {
-    /**
-     * 
-     * @type {string}
-     * @memberof TransactionSendTxInfo
-     */
     'network': TransactionSendTxInfoNetworkEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransactionSendTxInfo
-     */
     'transaction_hash': string;
     /**
      * Gas used for the transaction.
-     * @type {string}
-     * @memberof TransactionSendTxInfo
      */
     'gas_used': string;
     /**
      * Hash of the transaction that approved the transfer. This is only present if the fungible token is not native token of the network.
-     * @type {string}
-     * @memberof TransactionSendTxInfo
      */
     'approval_hash': string;
 }

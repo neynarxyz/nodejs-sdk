@@ -14,34 +14,21 @@
 
 
 
-/**
- * 
- * @export
- * @interface UploadImage200Response
- */
 export interface UploadImage200Response {
     /**
      * Whether the upload was successful
-     * @type {boolean}
-     * @memberof UploadImage200Response
      */
     'success': boolean;
     /**
      * Status message
-     * @type {string}
-     * @memberof UploadImage200Response
      */
     'message': string;
     /**
      * Uploaded filename
-     * @type {string}
-     * @memberof UploadImage200Response
      */
     'filename'?: string;
     /**
      * URL path to access the image
-     * @type {string}
-     * @memberof UploadImage200Response
      */
     'url'?: string;
 }

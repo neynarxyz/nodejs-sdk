@@ -20,23 +20,8 @@ import type { FrameNotificationTokensNotificationTokensInner } from './frame-not
 // @ts-ignore
 import type { NextCursor } from './next-cursor';
 
-/**
- * 
- * @export
- * @interface FrameNotificationTokens
- */
 export interface FrameNotificationTokens {
-    /**
-     * 
-     * @type {Array<FrameNotificationTokensNotificationTokensInner>}
-     * @memberof FrameNotificationTokens
-     */
     'notification_tokens': Array<FrameNotificationTokensNotificationTokensInner>;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof FrameNotificationTokens
-     */
     'next': NextCursor;
 }
 

@@ -17,29 +17,15 @@
 // @ts-ignore
 import type { UserVerifiedAddressesPrimary } from './user-verified-addresses-primary';
 
-/**
- * 
- * @export
- * @interface UserVerifiedAddresses
- */
 export interface UserVerifiedAddresses {
     /**
      * List of verified Ethereum addresses of the user sorted by oldest to most recent.
-     * @type {Array<string>}
-     * @memberof UserVerifiedAddresses
      */
     'eth_addresses': Array<string>;
     /**
      * List of verified Solana addresses of the user sorted by oldest to most recent.
-     * @type {Array<string>}
-     * @memberof UserVerifiedAddresses
      */
     'sol_addresses': Array<string>;
-    /**
-     * 
-     * @type {UserVerifiedAddressesPrimary}
-     * @memberof UserVerifiedAddresses
-     */
     'primary': UserVerifiedAddressesPrimary;
 }
 

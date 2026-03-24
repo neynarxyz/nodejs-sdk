@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface WebhookSubscriptionFiltersFollow
- */
 export interface WebhookSubscriptionFiltersFollow {
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof WebhookSubscriptionFiltersFollow
-     */
     'fids'?: Array<number>;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof WebhookSubscriptionFiltersFollow
-     */
     'target_fids'?: Array<number>;
 }
 

@@ -20,65 +20,15 @@ import type { StorageObject } from './storage-object';
 // @ts-ignore
 import type { UserDehydrated } from './user-dehydrated';
 
-/**
- * 
- * @export
- * @interface StorageUsageResponse
- */
 export interface StorageUsageResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof StorageUsageResponse
-     */
     'object'?: string;
-    /**
-     * 
-     * @type {UserDehydrated}
-     * @memberof StorageUsageResponse
-     */
     'user'?: UserDehydrated;
-    /**
-     * 
-     * @type {StorageObject}
-     * @memberof StorageUsageResponse
-     */
     'casts'?: StorageObject;
-    /**
-     * 
-     * @type {StorageObject}
-     * @memberof StorageUsageResponse
-     */
     'reactions'?: StorageObject;
-    /**
-     * 
-     * @type {StorageObject}
-     * @memberof StorageUsageResponse
-     */
     'links'?: StorageObject;
-    /**
-     * 
-     * @type {StorageObject}
-     * @memberof StorageUsageResponse
-     */
     'verified_addresses'?: StorageObject;
-    /**
-     * 
-     * @type {StorageObject}
-     * @memberof StorageUsageResponse
-     */
     'username_proofs'?: StorageObject;
-    /**
-     * 
-     * @type {StorageObject}
-     * @memberof StorageUsageResponse
-     */
     'signers'?: StorageObject;
-    /**
-     * 
-     * @type {number}
-     * @memberof StorageUsageResponse
-     */
     'total_active_units'?: number;
 }
 

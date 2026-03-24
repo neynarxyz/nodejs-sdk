@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface ListTables400Response
- */
 export interface ListTables400Response {
-    /**
-     * 
-     * @type {string}
-     * @memberof ListTables400Response
-     */
     'error': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListTables400Response
-     */
     'code'?: string;
 }
 

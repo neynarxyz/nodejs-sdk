@@ -14,58 +14,37 @@
 
 
 
-/**
- * 
- * @export
- * @interface QueryTableRequest
- */
 export interface QueryTableRequest {
     /**
      * Deployment ID (UUID)
-     * @type {string}
-     * @memberof QueryTableRequest
      */
     'deployment_id': string;
     /**
      * Farcaster ID of the user. Required for non-admin users.
-     * @type {number}
-     * @memberof QueryTableRequest
      */
     'fid'?: number;
     /**
      * Table name to query
-     * @type {string}
-     * @memberof QueryTableRequest
      */
     'table': string;
     /**
      * Columns to select (defaults to all)
-     * @type {Array<string>}
-     * @memberof QueryTableRequest
      */
     'columns'?: Array<string>;
     /**
      * Maximum rows to return (default: 100, max: 1000)
-     * @type {number}
-     * @memberof QueryTableRequest
      */
     'limit'?: number;
     /**
      * Number of rows to skip
-     * @type {number}
-     * @memberof QueryTableRequest
      */
     'offset'?: number;
     /**
      * Column to sort by
-     * @type {string}
-     * @memberof QueryTableRequest
      */
     'orderBy'?: string;
     /**
      * Sort direction
-     * @type {string}
-     * @memberof QueryTableRequest
      */
     'orderDirection'?: QueryTableRequestOrderDirectionEnum;
 }

@@ -14,28 +14,17 @@
 
 
 
-/**
- * 
- * @export
- * @interface ListDeploymentFiles200ResponseFilesInner
- */
 export interface ListDeploymentFiles200ResponseFilesInner {
     /**
      * File or directory name
-     * @type {string}
-     * @memberof ListDeploymentFiles200ResponseFilesInner
      */
     'name': string;
     /**
      * Full path relative to gen/
-     * @type {string}
-     * @memberof ListDeploymentFiles200ResponseFilesInner
      */
     'path': string;
     /**
      * Whether this is a directory
-     * @type {boolean}
-     * @memberof ListDeploymentFiles200ResponseFilesInner
      */
     'is_directory': boolean;
 }

@@ -17,29 +17,9 @@
 // @ts-ignore
 import type { PostCastResponseCastAuthor } from './post-cast-response-cast-author';
 
-/**
- * 
- * @export
- * @interface PostCastResponseCast
- */
 export interface PostCastResponseCast {
-    /**
-     * 
-     * @type {string}
-     * @memberof PostCastResponseCast
-     */
     'hash': string;
-    /**
-     * 
-     * @type {PostCastResponseCastAuthor}
-     * @memberof PostCastResponseCast
-     */
     'author': PostCastResponseCastAuthor;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostCastResponseCast
-     */
     'text': string;
 }
 

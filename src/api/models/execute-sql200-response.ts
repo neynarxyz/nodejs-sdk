@@ -17,34 +17,21 @@
 // @ts-ignore
 import type { QueryTable200ResponseColumnsInner } from './query-table200-response-columns-inner';
 
-/**
- * 
- * @export
- * @interface ExecuteSql200Response
- */
 export interface ExecuteSql200Response {
     /**
      * Column metadata
-     * @type {Array<QueryTable200ResponseColumnsInner>}
-     * @memberof ExecuteSql200Response
      */
     'columns': Array<QueryTable200ResponseColumnsInner>;
     /**
      * Query result rows
-     * @type {Array<{ [key: string]: any | null; }>}
-     * @memberof ExecuteSql200Response
      */
     'rows': Array<{ [key: string]: any | null; }>;
     /**
      * Number of rows returned
-     * @type {number}
-     * @memberof ExecuteSql200Response
      */
     'rowCount': number;
     /**
      * Query execution time in milliseconds
-     * @type {number}
-     * @memberof ExecuteSql200Response
      */
     'executionTimeMs': number;
 }

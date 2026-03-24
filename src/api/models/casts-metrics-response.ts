@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { CastsMetrics } from './casts-metrics';
 
-/**
- * 
- * @export
- * @interface CastsMetricsResponse
- */
 export interface CastsMetricsResponse {
-    /**
-     * 
-     * @type {Array<CastsMetrics>}
-     * @memberof CastsMetricsResponse
-     */
     'metrics': Array<CastsMetrics>;
 }
 

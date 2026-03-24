@@ -16,13 +16,11 @@
 
 /**
  * The notification type of a cast.
- * @export
- * @enum {string}
  */
 
 export const CastNotificationType = {
-    Mention: 'cast-mention',
-    Reply: 'cast-reply'
+    CastMention: 'cast-mention',
+    CastReply: 'cast-reply'
 } as const;
 
 export type CastNotificationType = typeof CastNotificationType[keyof typeof CastNotificationType];

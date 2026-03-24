@@ -20,29 +20,9 @@ import type { EncodedJsonFarcasterSignature } from './encoded-json-farcaster-sig
 // @ts-ignore
 import type { FarcasterManifestFrame } from './farcaster-manifest-frame';
 
-/**
- * 
- * @export
- * @interface FarcasterManifest
- */
 export interface FarcasterManifest {
-    /**
-     * 
-     * @type {EncodedJsonFarcasterSignature}
-     * @memberof FarcasterManifest
-     */
     'account_association': EncodedJsonFarcasterSignature;
-    /**
-     * 
-     * @type {FarcasterManifestFrame}
-     * @memberof FarcasterManifest
-     */
     'frame'?: FarcasterManifestFrame;
-    /**
-     * 
-     * @type {FarcasterManifestFrame}
-     * @memberof FarcasterManifest
-     */
     'miniapp'?: FarcasterManifestFrame;
 }
 

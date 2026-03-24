@@ -20,23 +20,8 @@ import type { ChannelActivity } from './channel-activity';
 // @ts-ignore
 import type { NextCursor } from './next-cursor';
 
-/**
- * 
- * @export
- * @interface TrendingChannelResponse
- */
 export interface TrendingChannelResponse {
-    /**
-     * 
-     * @type {Array<ChannelActivity>}
-     * @memberof TrendingChannelResponse
-     */
     'channels': Array<ChannelActivity>;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof TrendingChannelResponse
-     */
     'next': NextCursor;
 }
 

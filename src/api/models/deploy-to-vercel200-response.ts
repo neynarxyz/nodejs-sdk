@@ -14,34 +14,21 @@
 
 
 
-/**
- * 
- * @export
- * @interface DeployToVercel200Response
- */
 export interface DeployToVercel200Response {
     /**
      * Whether the deployment succeeded
-     * @type {boolean}
-     * @memberof DeployToVercel200Response
      */
     'success': boolean;
     /**
      * URL of the deployed Vercel app
-     * @type {string}
-     * @memberof DeployToVercel200Response
      */
     'deployment_url'?: string;
     /**
      * Vercel project ID
-     * @type {string}
-     * @memberof DeployToVercel200Response
      */
     'project_id'?: string;
     /**
      * Production URL under neynar.app domain
-     * @type {string}
-     * @memberof DeployToVercel200Response
      */
     'production_url'?: string;
 }

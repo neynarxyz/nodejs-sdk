@@ -20,23 +20,8 @@ import type { Channel } from './channel';
 // @ts-ignore
 import type { NextCursor } from './next-cursor';
 
-/**
- * 
- * @export
- * @interface ChannelListResponse
- */
 export interface ChannelListResponse {
-    /**
-     * 
-     * @type {Array<Channel>}
-     * @memberof ChannelListResponse
-     */
     'channels': Array<Channel>;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof ChannelListResponse
-     */
     'next'?: NextCursor;
 }
 

@@ -40,7 +40,6 @@ import type { UserDehydrated } from './user-dehydrated';
 
 /**
  * @type Frame
- * @export
  */
 export type Frame = { version: '0.0.0' } & FrameV2 | { version: '0.0.1' } & FrameV2 | { version: '1' } & FrameV2 | { version: 'next' } & FrameV2 | { version: 'vNext' } & FrameV1;
 

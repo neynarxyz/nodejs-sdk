@@ -14,28 +14,14 @@
 
 
 
-/**
- * 
- * @export
- * @interface MintNftRequestRecipientsInnerOneOf
- */
 export interface MintNftRequestRecipientsInnerOneOf {
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof MintNftRequestRecipientsInnerOneOf
      */
     'address': string;
-    /**
-     * 
-     * @type {any}
-     * @memberof MintNftRequestRecipientsInnerOneOf
-     */
     'fid'?: any;
     /**
      * Quantity to mint (must be at least 1). Defaults to 1.
-     * @type {number}
-     * @memberof MintNftRequestRecipientsInnerOneOf
      */
     'quantity'?: number;
 }

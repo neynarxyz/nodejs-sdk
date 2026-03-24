@@ -23,7 +23,6 @@ import type { SimulateNftMintResponseInnerRecipientOneOf1 } from './simulate-nft
 /**
  * @type SimulateNftMintResponseInnerRecipient
  * NFT mint recipient. Exactly one of \"address\" or \"fid\" must be set.
- * @export
  */
 export type SimulateNftMintResponseInnerRecipient = SimulateNftMintResponseInnerRecipientOneOf | SimulateNftMintResponseInnerRecipientOneOf1;
 

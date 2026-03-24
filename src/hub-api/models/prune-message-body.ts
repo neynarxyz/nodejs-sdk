@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { Message } from './message';
 
-/**
- * 
- * @export
- * @interface PruneMessageBody
- */
 export interface PruneMessageBody {
-    /**
-     * 
-     * @type {Message}
-     * @memberof PruneMessageBody
-     */
     'message': Message;
 }
 

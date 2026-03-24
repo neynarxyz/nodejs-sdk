@@ -14,40 +14,22 @@
 
 
 
-/**
- * 
- * @export
- * @interface TokenBalanceToken
- */
 export interface TokenBalanceToken {
-    /**
-     * 
-     * @type {string}
-     * @memberof TokenBalanceToken
-     */
     'object': TokenBalanceTokenObjectEnum;
     /**
      * The token name e.g. \"Ethereum\"
-     * @type {string}
-     * @memberof TokenBalanceToken
      */
     'name': string;
     /**
      * The token symbol e.g. \"ETH\"
-     * @type {string}
-     * @memberof TokenBalanceToken
      */
     'symbol': string;
     /**
      * The contract address of the token (omitted for native token)
-     * @type {string}
-     * @memberof TokenBalanceToken
      */
     'address'?: string;
     /**
      * The number of decimals the token uses
-     * @type {number}
-     * @memberof TokenBalanceToken
      */
     'decimals'?: number;
 }

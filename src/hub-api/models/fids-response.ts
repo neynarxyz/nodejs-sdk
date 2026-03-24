@@ -22,7 +22,6 @@ import type { PaginationResponse } from './pagination-response';
 
 /**
  * @type FidsResponse
- * @export
  */
 export type FidsResponse = FidsResponseAllOf & PaginationResponse;
 

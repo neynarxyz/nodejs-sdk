@@ -19,15 +19,8 @@ import type { FarcasterFungible } from './farcaster-fungible';
 
 /**
  * Response containing fungible details
- * @export
- * @interface FungiblesResponseSchema
  */
 export interface FungiblesResponseSchema {
-    /**
-     * 
-     * @type {Array<FarcasterFungible>}
-     * @memberof FungiblesResponseSchema
-     */
     'fungibles': Array<FarcasterFungible>;
 }
 

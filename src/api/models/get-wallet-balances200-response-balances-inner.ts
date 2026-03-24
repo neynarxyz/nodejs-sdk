@@ -17,64 +17,38 @@
 // @ts-ignore
 import type { Network } from './network';
 
-/**
- * 
- * @export
- * @interface GetWalletBalances200ResponseBalancesInner
- */
 export interface GetWalletBalances200ResponseBalancesInner {
-    /**
-     * 
-     * @type {Network}
-     * @memberof GetWalletBalances200ResponseBalancesInner
-     */
     'network': Network;
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof GetWalletBalances200ResponseBalancesInner
      */
     'address': string;
     /**
      * Token name
-     * @type {string}
-     * @memberof GetWalletBalances200ResponseBalancesInner
      */
     'name': string;
     /**
      * Token symbol
-     * @type {string}
-     * @memberof GetWalletBalances200ResponseBalancesInner
      */
     'symbol': string;
     /**
      * Token decimals
-     * @type {number}
-     * @memberof GetWalletBalances200ResponseBalancesInner
      */
     'decimals': number;
     /**
      * Raw token balance
-     * @type {string}
-     * @memberof GetWalletBalances200ResponseBalancesInner
      */
     'balance': string;
     /**
      * Balance value in USD
-     * @type {string}
-     * @memberof GetWalletBalances200ResponseBalancesInner
      */
     'balance_usd': string | null;
     /**
      * Token price in USD
-     * @type {string}
-     * @memberof GetWalletBalances200ResponseBalancesInner
      */
     'price_usd': string | null;
     /**
      * Token logo URL
-     * @type {string}
-     * @memberof GetWalletBalances200ResponseBalancesInner
      */
     'image_url': string | null;
 }

@@ -16,8 +16,6 @@
 
 /**
  * Defines the type of social connection between users. - follow: Establishes a following relationship where the user will receive updates from the target user in their feed
- * @export
- * @enum {string}
  */
 
 export const LinkType = {

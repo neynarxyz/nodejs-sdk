@@ -22,51 +22,14 @@ import type { Embed } from './embed';
 
 /**
  * Adds a new Cast
- * @export
- * @interface CastAddBody
  */
 export interface CastAddBody {
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof CastAddBody
-     */
     'embedsDeprecated': Array<string>;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof CastAddBody
-     */
     'mentions': Array<number>;
-    /**
-     * 
-     * @type {CastId}
-     * @memberof CastAddBody
-     */
     'parentCastId'?: CastId;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastAddBody
-     */
     'parentUrl'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastAddBody
-     */
     'text': string;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof CastAddBody
-     */
     'mentionsPositions': Array<number>;
-    /**
-     * 
-     * @type {Array<Embed>}
-     * @memberof CastAddBody
-     */
     'embeds': Array<Embed>;
 }
 

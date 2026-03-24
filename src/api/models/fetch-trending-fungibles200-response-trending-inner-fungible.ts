@@ -20,65 +20,33 @@ import type { FetchTrendingFungibles200ResponseTrendingInnerFungiblePrice } from
 // @ts-ignore
 import type { Network } from './network';
 
-/**
- * 
- * @export
- * @interface FetchTrendingFungibles200ResponseTrendingInnerFungible
- */
 export interface FetchTrendingFungibles200ResponseTrendingInnerFungible {
-    /**
-     * 
-     * @type {string}
-     * @memberof FetchTrendingFungibles200ResponseTrendingInnerFungible
-     */
     'object': FetchTrendingFungibles200ResponseTrendingInnerFungibleObjectEnum;
-    /**
-     * 
-     * @type {Network}
-     * @memberof FetchTrendingFungibles200ResponseTrendingInnerFungible
-     */
     'network': Network;
     /**
      * The token name e.g. \"Ethereum\"
-     * @type {string}
-     * @memberof FetchTrendingFungibles200ResponseTrendingInnerFungible
      */
     'name': string;
     /**
      * The token symbol e.g. \"ETH\"
-     * @type {string}
-     * @memberof FetchTrendingFungibles200ResponseTrendingInnerFungible
      */
     'symbol': string;
     /**
      * The contract address of the token
-     * @type {string}
-     * @memberof FetchTrendingFungibles200ResponseTrendingInnerFungible
      */
     'address': string;
     /**
      * The number of decimals the token uses
-     * @type {number}
-     * @memberof FetchTrendingFungibles200ResponseTrendingInnerFungible
      */
     'decimals': number;
     /**
      * The total supply of the token
-     * @type {string}
-     * @memberof FetchTrendingFungibles200ResponseTrendingInnerFungible
      */
     'total_supply': string | null;
     /**
      * The logo URL of the token
-     * @type {string}
-     * @memberof FetchTrendingFungibles200ResponseTrendingInnerFungible
      */
     'logo': string | null;
-    /**
-     * 
-     * @type {FetchTrendingFungibles200ResponseTrendingInnerFungiblePrice}
-     * @memberof FetchTrendingFungibles200ResponseTrendingInnerFungible
-     */
     'price'?: FetchTrendingFungibles200ResponseTrendingInnerFungiblePrice;
 }
 

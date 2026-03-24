@@ -22,26 +22,15 @@ import type { ReactionType } from './reaction-type';
 
 /**
  * Specifies the details of a reaction to content on Farcaster. A reaction must specify its type (like/recast) and either a target cast ID or URL to react to. Only one target (either castId or URL) should be specified per reaction.
- * @export
- * @interface ReactionBody
  */
 export interface ReactionBody {
-    /**
-     * 
-     * @type {ReactionType}
-     * @memberof ReactionBody
-     */
     'type': ReactionType;
     /**
      * The unique identifier of the cast being reacted to. Must be a valid CastId containing the creator\'s FID and the cast\'s hash.
-     * @type {CastId}
-     * @memberof ReactionBody
      */
     'targetCastId'?: CastId;
     /**
      * The URL being reacted to. Used when reacting to external content or when the cast ID is not available.
-     * @type {string}
-     * @memberof ReactionBody
      */
     'targetUrl'?: string;
 }

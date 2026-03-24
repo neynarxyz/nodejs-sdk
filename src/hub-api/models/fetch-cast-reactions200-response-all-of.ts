@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { Reaction } from './reaction';
 
-/**
- * 
- * @export
- * @interface FetchCastReactions200ResponseAllOf
- */
 export interface FetchCastReactions200ResponseAllOf {
-    /**
-     * 
-     * @type {Array<Reaction>}
-     * @memberof FetchCastReactions200ResponseAllOf
-     */
     'messages': Array<Reaction>;
 }
 

@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { UserDataAddAllOfData } from './user-data-add-all-of-data';
 
-/**
- * 
- * @export
- * @interface UserDataAddAllOf
- */
 export interface UserDataAddAllOf {
-    /**
-     * 
-     * @type {UserDataAddAllOfData}
-     * @memberof UserDataAddAllOf
-     */
     'data': UserDataAddAllOfData;
 }
 

@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface ChannelFollowReqBody
- */
 export interface ChannelFollowReqBody {
     /**
      * UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
-     * @type {string}
-     * @memberof ChannelFollowReqBody
      */
     'signer_uuid': string;
     /**
      * The unique identifier of a farcaster channel
-     * @type {string}
-     * @memberof ChannelFollowReqBody
      */
     'channel_id': string;
 }

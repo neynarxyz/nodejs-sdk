@@ -14,23 +14,11 @@
 
 
 
-/**
- * 
- * @export
- * @interface DeleteCastReqBody
- */
 export interface DeleteCastReqBody {
     /**
      * UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
-     * @type {string}
-     * @memberof DeleteCastReqBody
      */
     'signer_uuid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeleteCastReqBody
-     */
     'target_hash': string;
 }
 

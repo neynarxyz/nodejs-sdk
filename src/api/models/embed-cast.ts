@@ -20,24 +20,11 @@ import type { CastEmbedded } from './cast-embedded';
 // @ts-ignore
 import type { EmbedCastDeepCastId } from './embed-cast-deep-cast-id';
 
-/**
- * 
- * @export
- * @interface EmbedCast
- */
 export interface EmbedCast {
     /**
-     * 
-     * @type {EmbedCastDeepCastId}
-     * @memberof EmbedCast
      * @deprecated
      */
     'cast_id'?: EmbedCastDeepCastId;
-    /**
-     * 
-     * @type {CastEmbedded}
-     * @memberof EmbedCast
-     */
     'cast': CastEmbedded;
 }
 

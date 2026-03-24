@@ -17,22 +17,13 @@
 // @ts-ignore
 import type { VercelDeploymentLogs200ResponseLogsInner } from './vercel-deployment-logs200-response-logs-inner';
 
-/**
- * 
- * @export
- * @interface VercelDeploymentLogs200Response
- */
 export interface VercelDeploymentLogs200Response {
     /**
      * Whether the request succeeded
-     * @type {boolean}
-     * @memberof VercelDeploymentLogs200Response
      */
     'success': boolean;
     /**
      * Array of log events
-     * @type {Array<VercelDeploymentLogs200ResponseLogsInner>}
-     * @memberof VercelDeploymentLogs200Response
      */
     'logs': Array<VercelDeploymentLogs200ResponseLogsInner>;
 }

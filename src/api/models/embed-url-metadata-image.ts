@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface EmbedUrlMetadataImage
- */
 export interface EmbedUrlMetadataImage {
-    /**
-     * 
-     * @type {number}
-     * @memberof EmbedUrlMetadataImage
-     */
     'height_px'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EmbedUrlMetadataImage
-     */
     'width_px'?: number;
 }
 

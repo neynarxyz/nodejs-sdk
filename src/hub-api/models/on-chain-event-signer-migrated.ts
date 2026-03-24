@@ -25,7 +25,6 @@ import type { SignerMigratedEventBody } from './signer-migrated-event-body';
 
 /**
  * @type OnChainEventSignerMigrated
- * @export
  */
 export type OnChainEventSignerMigrated = OnChainEventCommon & OnChainEventSignerMigratedAllOf;
 

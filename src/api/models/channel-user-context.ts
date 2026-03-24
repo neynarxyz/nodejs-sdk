@@ -19,21 +19,12 @@ import type { ChannelMemberRole } from './channel-member-role';
 
 /**
  * Adds context on the viewer\'s or author\'s role in the channel.
- * @export
- * @interface ChannelUserContext
  */
 export interface ChannelUserContext {
     /**
      * Indicates if the user is following the channel.
-     * @type {boolean}
-     * @memberof ChannelUserContext
      */
     'following': boolean;
-    /**
-     * 
-     * @type {ChannelMemberRole}
-     * @memberof ChannelUserContext
-     */
     'role'?: ChannelMemberRole;
 }
 

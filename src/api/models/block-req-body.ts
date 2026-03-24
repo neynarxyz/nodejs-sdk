@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface BlockReqBody
- */
 export interface BlockReqBody {
     /**
      * UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
-     * @type {string}
-     * @memberof BlockReqBody
      */
     'signer_uuid': string;
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof BlockReqBody
      */
     'blocked_fid': number;
 }

@@ -14,34 +14,21 @@
 
 
 
-/**
- * 
- * @export
- * @interface RegisterUserOnChainReqBodyPreRegistrationCallsInner
- */
 export interface RegisterUserOnChainReqBodyPreRegistrationCallsInner {
     /**
      * Set it to true if you want to ignore the failure of this call. If set to false, the registration will fail if this call fails.
-     * @type {boolean}
-     * @memberof RegisterUserOnChainReqBodyPreRegistrationCallsInner
      */
     'allow_failure'?: boolean;
     /**
      * Call data payload (hex-encoded)
-     * @type {string}
-     * @memberof RegisterUserOnChainReqBodyPreRegistrationCallsInner
      */
     'data': string;
     /**
      * Must be on the allowed contract allowlist. Contact support for more details.
-     * @type {string}
-     * @memberof RegisterUserOnChainReqBodyPreRegistrationCallsInner
      */
     'target': string;
     /**
      * Value in wei to send with the transaction. This is not the amount of ETH that will be sent, but rather the value of the transaction.
-     * @type {number}
-     * @memberof RegisterUserOnChainReqBodyPreRegistrationCallsInner
      */
     'value'?: number;
 }

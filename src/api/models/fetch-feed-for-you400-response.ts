@@ -25,7 +25,6 @@ import type { ZodErrorErrorsInner } from './zod-error-errors-inner';
 
 /**
  * @type FetchFeedForYou400Response
- * @export
  */
 export type FetchFeedForYou400Response = ErrorRes | ZodError;
 

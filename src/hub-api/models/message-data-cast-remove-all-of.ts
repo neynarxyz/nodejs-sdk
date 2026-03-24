@@ -14,16 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface MessageDataCastRemoveAllOf
- */
 export interface MessageDataCastRemoveAllOf {
     /**
      * The unique hash identifier of the cast to be removed. Must be a cast that was previously created by the same FID specified in the message.
-     * @type {string}
-     * @memberof MessageDataCastRemoveAllOf
      */
     'targetHash': string;
 }

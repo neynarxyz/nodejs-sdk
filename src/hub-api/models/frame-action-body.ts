@@ -19,26 +19,18 @@ import type { CastId } from './cast-id';
 
 /**
  * Contains the data for a user\'s interaction with a Farcaster Frame. Frames are interactive elements within casts that can have up to 4 clickable buttons, allowing users to engage with content in predefined ways.
- * @export
- * @interface FrameActionBody
  */
 export interface FrameActionBody {
     /**
      * The URL associated with the frame action. This typically points to the frame\'s content or the destination that handles the interaction.
-     * @type {string}
-     * @memberof FrameActionBody
      */
     'url': string;
     /**
      * Identifies which button the user clicked in the frame. Frames can have up to 4 buttons, numbered from 1 to 4.
-     * @type {number}
-     * @memberof FrameActionBody
      */
     'buttonIndex': number;
     /**
      * The unique identifier of the cast containing the frame that was interacted with.
-     * @type {CastId}
-     * @memberof FrameActionBody
      */
     'castId': CastId;
 }

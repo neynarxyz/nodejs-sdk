@@ -14,35 +14,10 @@
 
 
 
-/**
- * 
- * @export
- * @interface VideoObject
- */
 export interface VideoObject {
-    /**
-     * 
-     * @type {string}
-     * @memberof VideoObject
-     */
     'height'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof VideoObject
-     */
     'type'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof VideoObject
-     */
     'url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof VideoObject
-     */
     'width'?: string;
 }
 

@@ -14,17 +14,7 @@
 
 
 
-/**
- * 
- * @export
- * @interface FidsResponseAllOf
- */
 export interface FidsResponseAllOf {
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof FidsResponseAllOf
-     */
     'fids': Array<number>;
 }
 

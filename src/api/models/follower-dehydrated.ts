@@ -17,23 +17,8 @@
 // @ts-ignore
 import type { UserDehydrated } from './user-dehydrated';
 
-/**
- * 
- * @export
- * @interface FollowerDehydrated
- */
 export interface FollowerDehydrated {
-    /**
-     * 
-     * @type {string}
-     * @memberof FollowerDehydrated
-     */
     'object': FollowerDehydratedObjectEnum;
-    /**
-     * 
-     * @type {UserDehydrated}
-     * @memberof FollowerDehydrated
-     */
     'user': UserDehydrated;
 }
 

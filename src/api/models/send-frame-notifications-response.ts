@@ -14,40 +14,25 @@
 
 
 
-/**
- * 
- * @export
- * @interface SendFrameNotificationsResponse
- */
 export interface SendFrameNotificationsResponse {
     /**
      * The unique identifier for the notification campaign.
-     * @type {string}
-     * @memberof SendFrameNotificationsResponse
      */
     'campaign_id': string;
     /**
      * The number of notifications successfully delivered.
-     * @type {number}
-     * @memberof SendFrameNotificationsResponse
      */
     'success_count': number | null;
     /**
      * The number of notifications that failed to deliver.
-     * @type {number}
-     * @memberof SendFrameNotificationsResponse
      */
     'failure_count': number | null;
     /**
      * The number of notifications not attempted (e.g., disabled tokens, invalid tokens).
-     * @type {number}
-     * @memberof SendFrameNotificationsResponse
      */
     'not_attempted_count': number | null;
     /**
      * List of FIDs that failed due to retryable errors (rate_limited, failed, http_error). Can be used to retry sending notifications to these users.
-     * @type {Array<number>}
-     * @memberof SendFrameNotificationsResponse
      */
     'retryable_fids'?: Array<number>;
 }

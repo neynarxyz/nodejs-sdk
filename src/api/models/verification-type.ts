@@ -16,8 +16,6 @@
 
 /**
  * Type of verification. 0 = EOA, 1 = contract
- * @export
- * @enum {number}
  */
 
 export const VerificationType = {

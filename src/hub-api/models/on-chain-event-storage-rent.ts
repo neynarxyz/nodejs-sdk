@@ -25,7 +25,6 @@ import type { StorageRentEventBody } from './storage-rent-event-body';
 
 /**
  * @type OnChainEventStorageRent
- * @export
  */
 export type OnChainEventStorageRent = OnChainEventCommon & OnChainEventStorageRentAllOf;
 

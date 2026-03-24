@@ -17,29 +17,9 @@
 // @ts-ignore
 import type { FungibleBalance } from './fungible-balance';
 
-/**
- * 
- * @export
- * @interface FetchFungibleTrades200ResponseTradesInnerTransactionNetTransfer
- */
 export interface FetchFungibleTrades200ResponseTradesInnerTransactionNetTransfer {
-    /**
-     * 
-     * @type {string}
-     * @memberof FetchFungibleTrades200ResponseTradesInnerTransactionNetTransfer
-     */
     'object': FetchFungibleTrades200ResponseTradesInnerTransactionNetTransferObjectEnum;
-    /**
-     * 
-     * @type {FungibleBalance}
-     * @memberof FetchFungibleTrades200ResponseTradesInnerTransactionNetTransfer
-     */
     'receiving_fungible': FungibleBalance;
-    /**
-     * 
-     * @type {FungibleBalance}
-     * @memberof FetchFungibleTrades200ResponseTradesInnerTransactionNetTransfer
-     */
     'sending_fungible': FungibleBalance;
 }
 

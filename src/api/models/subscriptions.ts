@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { Subscription } from './subscription';
 
-/**
- * 
- * @export
- * @interface Subscriptions
- */
 export interface Subscriptions {
-    /**
-     * 
-     * @type {Array<Subscription>}
-     * @memberof Subscriptions
-     */
     'subscriptions_created': Array<Subscription>;
 }
 

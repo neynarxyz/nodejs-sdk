@@ -17,23 +17,8 @@
 // @ts-ignore
 import type { UpdateUser207ResponseErrorsInner } from './update-user207-response-errors-inner';
 
-/**
- * 
- * @export
- * @interface UpdateUser207Response
- */
 export interface UpdateUser207Response {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UpdateUser207Response
-     */
     'success': boolean;
-    /**
-     * 
-     * @type {Array<UpdateUser207ResponseErrorsInner>}
-     * @memberof UpdateUser207Response
-     */
     'errors': Array<UpdateUser207ResponseErrorsInner>;
 }
 

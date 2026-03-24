@@ -25,51 +25,26 @@ import type { UserDehydrated } from './user-dehydrated';
 
 /**
  * Mini app v2 object
- * @export
- * @interface FrameV2
  */
 export interface FrameV2 {
     /**
      * Version of the mini app, \'next\' for v2, \'vNext\' for v1
-     * @type {string}
-     * @memberof FrameV2
      */
     'version': string;
     /**
      * URL of the image
-     * @type {string}
-     * @memberof FrameV2
      */
     'image': string;
     /**
      * Launch URL of the mini app
-     * @type {string}
-     * @memberof FrameV2
      */
     'frames_url': string;
     /**
      * Button title of a mini app
-     * @type {string}
-     * @memberof FrameV2
      */
     'title'?: string;
-    /**
-     * 
-     * @type {FarcasterManifest}
-     * @memberof FrameV2
-     */
     'manifest'?: FarcasterManifest;
-    /**
-     * 
-     * @type {UserDehydrated}
-     * @memberof FrameV2
-     */
     'author'?: UserDehydrated;
-    /**
-     * 
-     * @type {FetchRelevantFrames200ResponseRelevantFramesInnerFrameMetadata}
-     * @memberof FrameV2
-     */
     'metadata'?: FetchRelevantFrames200ResponseRelevantFramesInnerFrameMetadata;
 }
 

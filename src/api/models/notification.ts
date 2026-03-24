@@ -23,58 +23,16 @@ import type { Follower } from './follower';
 // @ts-ignore
 import type { ReactionWithUserInfo } from './reaction-with-user-info';
 
-/**
- * 
- * @export
- * @interface Notification
- */
 export interface Notification {
-    /**
-     * 
-     * @type {string}
-     * @memberof Notification
-     */
     'object': NotificationObjectEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof Notification
-     */
     'most_recent_timestamp': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Notification
-     */
     'type': NotificationTypeEnum;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Notification
-     */
     'seen': boolean;
-    /**
-     * 
-     * @type {Array<Follower>}
-     * @memberof Notification
-     */
     'follows'?: Array<Follower>;
-    /**
-     * 
-     * @type {Cast}
-     * @memberof Notification
-     */
     'cast'?: Cast;
-    /**
-     * 
-     * @type {Array<ReactionWithUserInfo>}
-     * @memberof Notification
-     */
     'reactions'?: Array<ReactionWithUserInfo>;
     /**
      * The number of notifications of this(follows, likes, recast) type bundled in a single notification.
-     * @type {number}
-     * @memberof Notification
      */
     'count'?: number;
 }

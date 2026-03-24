@@ -20,47 +20,12 @@ import type { Cast } from './cast';
 // @ts-ignore
 import type { UserDehydrated } from './user-dehydrated';
 
-/**
- * 
- * @export
- * @interface ReactionWithCastInfo
- */
 export interface ReactionWithCastInfo {
-    /**
-     * 
-     * @type {string}
-     * @memberof ReactionWithCastInfo
-     */
     'reaction_type': ReactionWithCastInfoReactionTypeEnum;
-    /**
-     * 
-     * @type {UserDehydrated}
-     * @memberof ReactionWithCastInfo
-     */
     'app'?: UserDehydrated;
-    /**
-     * 
-     * @type {Cast}
-     * @memberof ReactionWithCastInfo
-     */
     'cast': Cast;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReactionWithCastInfo
-     */
     'reaction_timestamp': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReactionWithCastInfo
-     */
     'object': ReactionWithCastInfoObjectEnum;
-    /**
-     * 
-     * @type {UserDehydrated}
-     * @memberof ReactionWithCastInfo
-     */
     'user': UserDehydrated;
 }
 

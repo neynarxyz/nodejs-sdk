@@ -20,23 +20,8 @@ import type { BanRecord } from './ban-record';
 // @ts-ignore
 import type { NextCursor } from './next-cursor';
 
-/**
- * 
- * @export
- * @interface BanListResponse
- */
 export interface BanListResponse {
-    /**
-     * 
-     * @type {Array<BanRecord>}
-     * @memberof BanListResponse
-     */
     'bans': Array<BanRecord>;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof BanListResponse
-     */
     'next': NextCursor;
 }
 

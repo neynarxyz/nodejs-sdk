@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { Signer } from './signer';
 
-/**
- * 
- * @export
- * @interface SignerListResponse
- */
 export interface SignerListResponse {
-    /**
-     * 
-     * @type {Array<Signer>}
-     * @memberof SignerListResponse
-     */
     'signers': Array<Signer>;
 }
 

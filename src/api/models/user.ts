@@ -35,118 +35,41 @@ import type { UserVerifiedAddresses } from './user-verified-addresses';
 // @ts-ignore
 import type { UserViewerContext } from './user-viewer-context';
 
-/**
- * 
- * @export
- * @interface User
- */
 export interface User {
-    /**
-     * 
-     * @type {string}
-     * @memberof User
-     */
     'object': UserObjectEnum;
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof User
      */
     'fid': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof User
-     */
     'username': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof User
-     */
     'display_name'?: string;
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof User
      */
     'custody_address': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof User
-     */
     'registered_at': string;
-    /**
-     * 
-     * @type {UserPro}
-     * @memberof User
-     */
     'pro'?: UserPro;
     /**
      * The URL of the user\'s profile picture
-     * @type {string}
-     * @memberof User
      */
     'pfp_url'?: string;
-    /**
-     * 
-     * @type {UserProfile}
-     * @memberof User
-     */
     'profile': UserProfile;
     /**
      * The number of followers the user has.
-     * @type {number}
-     * @memberof User
      */
     'follower_count': number;
     /**
      * The number of users the user is following.
-     * @type {number}
-     * @memberof User
      */
     'following_count': number;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof User
-     */
     'verifications': Array<string>;
-    /**
-     * 
-     * @type {Array<UserAuthAddressesInner>}
-     * @memberof User
-     */
     'auth_addresses': Array<UserAuthAddressesInner>;
-    /**
-     * 
-     * @type {UserVerifiedAddresses}
-     * @memberof User
-     */
     'verified_addresses': UserVerifiedAddresses;
-    /**
-     * 
-     * @type {Array<UserVerifiedAccountsInner>}
-     * @memberof User
-     */
     'verified_accounts': Array<UserVerifiedAccountsInner>;
-    /**
-     * 
-     * @type {UserExperimental}
-     * @memberof User
-     */
     'experimental'?: UserExperimental;
-    /**
-     * 
-     * @type {UserViewerContext}
-     * @memberof User
-     */
     'viewer_context'?: UserViewerContext;
     /**
      * Score that represents the probability that the account is not spam.
-     * @type {number}
-     * @memberof User
      */
     'score'?: number;
 }

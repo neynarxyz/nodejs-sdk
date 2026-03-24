@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface MuteResponse
- */
 export interface MuteResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MuteResponse
-     */
     'success': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof MuteResponse
-     */
     'message'?: string;
 }
 

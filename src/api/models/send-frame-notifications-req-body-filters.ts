@@ -19,33 +19,20 @@ import type { SendFrameNotificationsReqBodyFiltersNearLocation } from './send-fr
 
 /**
  * Filters to apply to the target_fids set. All filters are additive, so only users matching all filters will be notified.
- * @export
- * @interface SendFrameNotificationsReqBodyFilters
  */
 export interface SendFrameNotificationsReqBodyFilters {
     /**
      * Only send notifications to users who are not in the given FIDs.
-     * @type {Array<number>}
-     * @memberof SendFrameNotificationsReqBodyFilters
      */
     'exclude_fids'?: Array<number>;
     /**
      * Only send notifications to users who follow the given FID.
-     * @type {number}
-     * @memberof SendFrameNotificationsReqBodyFilters
      */
     'following_fid'?: number;
     /**
      * Only send notifications to users with a score greater than or equal to this value.
-     * @type {number}
-     * @memberof SendFrameNotificationsReqBodyFilters
      */
     'minimum_user_score'?: number;
-    /**
-     * 
-     * @type {SendFrameNotificationsReqBodyFiltersNearLocation}
-     * @memberof SendFrameNotificationsReqBodyFilters
-     */
     'near_location'?: SendFrameNotificationsReqBodyFiltersNearLocation;
 }
 

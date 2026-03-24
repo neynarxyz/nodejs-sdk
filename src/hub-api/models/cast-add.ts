@@ -31,7 +31,6 @@ import type { SignatureScheme } from './signature-scheme';
 
 /**
  * @type CastAdd
- * @export
  */
 export type CastAdd = CastAddAllOf & MessageCommon;
 

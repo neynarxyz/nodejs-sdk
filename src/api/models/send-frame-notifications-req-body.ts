@@ -20,29 +20,12 @@ import type { SendFrameNotificationsReqBodyFilters } from './send-frame-notifica
 // @ts-ignore
 import type { SendFrameNotificationsReqBodyNotification } from './send-frame-notifications-req-body-notification';
 
-/**
- * 
- * @export
- * @interface SendFrameNotificationsReqBody
- */
 export interface SendFrameNotificationsReqBody {
     /**
      * An array of target FIDs to whom the notifications should be sent. Each FID must be a positive integer. Pass an empty array to send notifications to all FIDs with notifications enabled for the mini app.
-     * @type {Array<number>}
-     * @memberof SendFrameNotificationsReqBody
      */
     'target_fids'?: Array<number>;
-    /**
-     * 
-     * @type {SendFrameNotificationsReqBodyFilters}
-     * @memberof SendFrameNotificationsReqBody
-     */
     'filters'?: SendFrameNotificationsReqBodyFilters;
-    /**
-     * 
-     * @type {SendFrameNotificationsReqBodyNotification}
-     * @memberof SendFrameNotificationsReqBody
-     */
     'notification': SendFrameNotificationsReqBodyNotification;
 }
 

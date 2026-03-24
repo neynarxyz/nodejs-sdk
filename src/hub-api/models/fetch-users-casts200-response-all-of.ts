@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { CastAdd } from './cast-add';
 
-/**
- * 
- * @export
- * @interface FetchUsersCasts200ResponseAllOf
- */
 export interface FetchUsersCasts200ResponseAllOf {
-    /**
-     * 
-     * @type {Array<CastAdd>}
-     * @memberof FetchUsersCasts200ResponseAllOf
-     */
     'messages': Array<CastAdd>;
 }
 

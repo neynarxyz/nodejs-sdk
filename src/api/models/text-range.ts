@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface TextRange
- */
 export interface TextRange {
-    /**
-     * 
-     * @type {number}
-     * @memberof TextRange
-     */
     'start': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TextRange
-     */
     'end': number;
 }
 

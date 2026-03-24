@@ -17,16 +17,9 @@
 // @ts-ignore
 import type { GetConversationMessages200ResponseMessagesInner } from './get-conversation-messages200-response-messages-inner';
 
-/**
- * 
- * @export
- * @interface GetConversationMessages200Response
- */
 export interface GetConversationMessages200Response {
     /**
      * List of messages
-     * @type {Array<GetConversationMessages200ResponseMessagesInner>}
-     * @memberof GetConversationMessages200Response
      */
     'messages': Array<GetConversationMessages200ResponseMessagesInner>;
 }

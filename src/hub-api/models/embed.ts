@@ -25,7 +25,6 @@ import type { UrlEmbed } from './url-embed';
 
 /**
  * @type Embed
- * @export
  */
 export type Embed = CastEmbed | UrlEmbed;
 

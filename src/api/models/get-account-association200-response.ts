@@ -14,28 +14,17 @@
 
 
 
-/**
- * 
- * @export
- * @interface GetAccountAssociation200Response
- */
 export interface GetAccountAssociation200Response {
     /**
      * Base64URL encoded JFS header
-     * @type {string}
-     * @memberof GetAccountAssociation200Response
      */
     'header': string;
     /**
      * Base64URL encoded JFS payload
-     * @type {string}
-     * @memberof GetAccountAssociation200Response
      */
     'payload': string;
     /**
      * Base64URL encoded JFS signature
-     * @type {string}
-     * @memberof GetAccountAssociation200Response
      */
     'signature': string;
 }

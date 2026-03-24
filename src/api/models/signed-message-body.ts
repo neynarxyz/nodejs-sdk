@@ -17,22 +17,10 @@
 // @ts-ignore
 import type { SignedMessageBodySignedMessage } from './signed-message-body-signed-message';
 
-/**
- * 
- * @export
- * @interface SignedMessageBody
- */
 export interface SignedMessageBody {
-    /**
-     * 
-     * @type {SignedMessageBodySignedMessage}
-     * @memberof SignedMessageBody
-     */
     'signed_message': SignedMessageBodySignedMessage;
     /**
      * Domain of the mini app
-     * @type {string}
-     * @memberof SignedMessageBody
      */
     'app_domain': string;
 }

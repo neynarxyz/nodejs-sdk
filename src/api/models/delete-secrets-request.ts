@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface DeleteSecretsRequest
- */
 export interface DeleteSecretsRequest {
     /**
      * Deployment ID to delete secrets from
-     * @type {string}
-     * @memberof DeleteSecretsRequest
      */
     'deployment_id': string;
     /**
      * Secret IDs to delete
-     * @type {Array<string>}
-     * @memberof DeleteSecretsRequest
      */
     'ids': Array<string>;
 }

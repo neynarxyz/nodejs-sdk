@@ -14,82 +14,32 @@
 
 
 
-/**
- * 
- * @export
- * @interface WebhookSubscriptionFiltersCast
- */
 export interface WebhookSubscriptionFiltersCast {
     /**
      * Exclude casts that matches these authors. **Note:** This is applied as an AND operation against rest of the filters. Rest of the filters are bundled as an OR operation.
-     * @type {Array<number>}
-     * @memberof WebhookSubscriptionFiltersCast
      */
     'exclude_author_fids'?: Array<number>;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof WebhookSubscriptionFiltersCast
-     */
     'author_fids'?: Array<number>;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof WebhookSubscriptionFiltersCast
-     */
     'mentioned_fids'?: Array<number>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof WebhookSubscriptionFiltersCast
-     */
     'parent_urls'?: Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof WebhookSubscriptionFiltersCast
-     */
     'root_parent_urls'?: Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof WebhookSubscriptionFiltersCast
-     */
     'parent_hashes'?: Array<string>;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof WebhookSubscriptionFiltersCast
-     */
     'parent_author_fids'?: Array<number>;
     /**
      * Regex pattern to match the text key of the cast. **Note:**  1) Regex must be parsed by Go\'s RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex) 2) Use backslashes to escape special characters. For example: (?i)\\\\$degen should be written as (?i)\\\\\\\\$degen
-     * @type {string}
-     * @memberof WebhookSubscriptionFiltersCast
      */
     'text'?: string;
     /**
      * Regex pattern to match the embeded_url (key embeds) of the cast. **Note:**  1) Regex must be parsed by Go\'s RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex) 2) Use backslashes to escape special characters. For example: \\\\b(farcaster|neynar)\\\\b should be written as \\\\\\\\b(farcaster|neynar)\\\\\\\\b
-     * @type {string}
-     * @memberof WebhookSubscriptionFiltersCast
      */
     'embeds'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebhookSubscriptionFiltersCast
-     */
     'minimum_author_score'?: number;
     /**
      * Filter for casts that contain embedded casts authored by these FIDs
-     * @type {Array<number>}
-     * @memberof WebhookSubscriptionFiltersCast
      */
     'embedded_cast_author_fids'?: Array<number>;
     /**
      * Filter for casts that quote/embed these specific cast hashes
-     * @type {Array<string>}
-     * @memberof WebhookSubscriptionFiltersCast
      */
     'embedded_cast_hashes'?: Array<string>;
 }

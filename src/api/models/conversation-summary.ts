@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { ConversationSummarySummary } from './conversation-summary-summary';
 
-/**
- * 
- * @export
- * @interface ConversationSummary
- */
 export interface ConversationSummary {
-    /**
-     * 
-     * @type {ConversationSummarySummary}
-     * @memberof ConversationSummary
-     */
     'summary': ConversationSummarySummary;
 }
 

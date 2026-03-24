@@ -16,21 +16,9 @@
 
 /**
  * Verified accounts of the user on other platforms, currently only X is supported.
- * @export
- * @interface UserVerifiedAccountsInner
  */
 export interface UserVerifiedAccountsInner {
-    /**
-     * 
-     * @type {string}
-     * @memberof UserVerifiedAccountsInner
-     */
     'platform'?: UserVerifiedAccountsInnerPlatformEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserVerifiedAccountsInner
-     */
     'username'?: string;
 }
 

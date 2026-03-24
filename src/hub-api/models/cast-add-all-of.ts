@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { CastAddAllOfData } from './cast-add-all-of-data';
 
-/**
- * 
- * @export
- * @interface CastAddAllOf
- */
 export interface CastAddAllOf {
-    /**
-     * 
-     * @type {CastAddAllOfData}
-     * @memberof CastAddAllOf
-     */
     'data': CastAddAllOfData;
 }
 

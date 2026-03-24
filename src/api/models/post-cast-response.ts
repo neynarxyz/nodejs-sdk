@@ -17,23 +17,8 @@
 // @ts-ignore
 import type { PostCastResponseCast } from './post-cast-response-cast';
 
-/**
- * 
- * @export
- * @interface PostCastResponse
- */
 export interface PostCastResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PostCastResponse
-     */
     'success': boolean;
-    /**
-     * 
-     * @type {PostCastResponseCast}
-     * @memberof PostCastResponse
-     */
     'cast': PostCastResponseCast;
 }
 

@@ -14,17 +14,7 @@
 
 
 
-/**
- * 
- * @export
- * @interface WebhookDeleteReqBody
- */
 export interface WebhookDeleteReqBody {
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookDeleteReqBody
-     */
     'webhook_id': string;
 }
 

@@ -25,7 +25,6 @@ import type { SignerEventBody } from './signer-event-body';
 
 /**
  * @type FetchUserOnChainSignersEvents200Response
- * @export
  */
 export type FetchUserOnChainSignersEvents200Response = FetchUserOnChainSignersEvents200ResponseOneOf | OnChainEventSigner;
 

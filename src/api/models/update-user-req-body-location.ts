@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface UpdateUserReqBodyLocation
- */
 export interface UpdateUserReqBodyLocation {
-    /**
-     * 
-     * @type {number}
-     * @memberof UpdateUserReqBodyLocation
-     */
     'latitude': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof UpdateUserReqBodyLocation
-     */
     'longitude': number;
 }
 

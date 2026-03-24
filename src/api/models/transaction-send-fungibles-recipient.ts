@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface TransactionSendFungiblesRecipient
- */
 export interface TransactionSendFungiblesRecipient {
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof TransactionSendFungiblesRecipient
      */
     'fid': number;
     /**
      * Amount to send (must be greater than 0)
-     * @type {number}
-     * @memberof TransactionSendFungiblesRecipient
      */
     'amount': number;
 }

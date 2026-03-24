@@ -17,22 +17,13 @@
 // @ts-ignore
 import type { UpsertSecretsRequestSecretsInner } from './upsert-secrets-request-secrets-inner';
 
-/**
- * 
- * @export
- * @interface UpsertSecretsRequest
- */
 export interface UpsertSecretsRequest {
     /**
      * Deployment ID to add secrets to
-     * @type {string}
-     * @memberof UpsertSecretsRequest
      */
     'deployment_id': string;
     /**
      * Secrets to create
-     * @type {Array<UpsertSecretsRequestSecretsInner>}
-     * @memberof UpsertSecretsRequest
      */
     'secrets': Array<UpsertSecretsRequestSecretsInner>;
 }

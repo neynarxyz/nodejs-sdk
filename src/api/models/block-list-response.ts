@@ -20,23 +20,8 @@ import type { BlockRecord } from './block-record';
 // @ts-ignore
 import type { NextCursor } from './next-cursor';
 
-/**
- * 
- * @export
- * @interface BlockListResponse
- */
 export interface BlockListResponse {
-    /**
-     * 
-     * @type {Array<BlockRecord>}
-     * @memberof BlockListResponse
-     */
     'blocks': Array<BlockRecord>;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof BlockListResponse
-     */
     'next': NextCursor;
 }
 

@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { GetTokenMetadata200ResponseToken } from './get-token-metadata200-response-token';
 
-/**
- * 
- * @export
- * @interface GetTokenMetadata200Response
- */
 export interface GetTokenMetadata200Response {
-    /**
-     * 
-     * @type {GetTokenMetadata200ResponseToken}
-     * @memberof GetTokenMetadata200Response
-     */
     'token': GetTokenMetadata200ResponseToken;
 }
 

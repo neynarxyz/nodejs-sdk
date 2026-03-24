@@ -20,23 +20,8 @@ import type { NextCursor } from './next-cursor';
 // @ts-ignore
 import type { ReciprocalFollower } from './reciprocal-follower';
 
-/**
- * 
- * @export
- * @interface FetchUserReciprocalFollowers200Response
- */
 export interface FetchUserReciprocalFollowers200Response {
-    /**
-     * 
-     * @type {Array<ReciprocalFollower>}
-     * @memberof FetchUserReciprocalFollowers200Response
-     */
     'users': Array<ReciprocalFollower>;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof FetchUserReciprocalFollowers200Response
-     */
     'next': NextCursor;
 }
 

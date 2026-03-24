@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { SignerMigratedEventBody } from './signer-migrated-event-body';
 
-/**
- * 
- * @export
- * @interface OnChainEventSignerMigratedAllOf
- */
 export interface OnChainEventSignerMigratedAllOf {
-    /**
-     * 
-     * @type {SignerMigratedEventBody}
-     * @memberof OnChainEventSignerMigratedAllOf
-     */
     'signerMigratedEventBody': SignerMigratedEventBody;
 }
 

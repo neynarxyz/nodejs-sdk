@@ -32,7 +32,6 @@ import type { UserDataBody } from './user-data-body';
 /**
  * @type MessageDataUserDataAdd
  * Represents a message that updates a user\'s profile metadata. This can include changes to profile picture, display name, bio, URL, or preferred username. Each update modifies a single profile field.
- * @export
  */
 export type MessageDataUserDataAdd = MessageDataCommon & MessageDataUserDataAddAllOf;
 

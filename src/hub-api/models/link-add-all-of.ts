@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { LinkAddAllOfData } from './link-add-all-of-data';
 
-/**
- * 
- * @export
- * @interface LinkAddAllOf
- */
 export interface LinkAddAllOf {
-    /**
-     * 
-     * @type {LinkAddAllOfData}
-     * @memberof LinkAddAllOf
-     */
     'data': LinkAddAllOfData;
 }
 

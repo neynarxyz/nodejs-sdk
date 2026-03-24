@@ -17,35 +17,10 @@
 // @ts-ignore
 import type { User } from './user';
 
-/**
- * 
- * @export
- * @interface BlockRecord
- */
 export interface BlockRecord {
-    /**
-     * 
-     * @type {string}
-     * @memberof BlockRecord
-     */
     'object': BlockRecordObjectEnum;
-    /**
-     * 
-     * @type {User}
-     * @memberof BlockRecord
-     */
     'blocked'?: User;
-    /**
-     * 
-     * @type {User}
-     * @memberof BlockRecord
-     */
     'blocker'?: User;
-    /**
-     * 
-     * @type {string}
-     * @memberof BlockRecord
-     */
     'blocked_at': string;
 }
 

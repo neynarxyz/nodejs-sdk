@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface DeployToVercel400Response
- */
 export interface DeployToVercel400Response {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof DeployToVercel400Response
-     */
     'success': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeployToVercel400Response
-     */
     'error': string;
 }
 

@@ -17,41 +17,11 @@
 // @ts-ignore
 import type { ChannelUserContext } from './channel-user-context';
 
-/**
- * 
- * @export
- * @interface ChannelDehydrated
- */
 export interface ChannelDehydrated {
-    /**
-     * 
-     * @type {string}
-     * @memberof ChannelDehydrated
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChannelDehydrated
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChannelDehydrated
-     */
     'object': ChannelDehydratedObjectEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChannelDehydrated
-     */
     'image_url'?: string;
-    /**
-     * 
-     * @type {ChannelUserContext}
-     * @memberof ChannelDehydrated
-     */
     'viewer_context'?: ChannelUserContext;
 }
 

@@ -14,16 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface FrameV1State
- */
 export interface FrameV1State {
     /**
      * State for the mini app in a serialized format
-     * @type {string}
-     * @memberof FrameV1State
      */
     'serialized'?: string;
 }

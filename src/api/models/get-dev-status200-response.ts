@@ -22,7 +22,6 @@ import type { GetDevStatus200ResponseOneOf1 } from './get-dev-status200-response
 
 /**
  * @type GetDevStatus200Response
- * @export
  */
 export type GetDevStatus200Response = GetDevStatus200ResponseOneOf | GetDevStatus200ResponseOneOf1;
 

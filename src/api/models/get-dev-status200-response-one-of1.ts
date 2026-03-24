@@ -14,61 +14,16 @@
 
 
 
-/**
- * 
- * @export
- * @interface GetDevStatus200ResponseOneOf1
- */
 export interface GetDevStatus200ResponseOneOf1 {
     [key: string]: any;
 
-    /**
-     * 
-     * @type {number}
-     * @memberof GetDevStatus200ResponseOneOf1
-     */
     'schema_version': GetDevStatus200ResponseOneOf1SchemaVersionEnum;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof GetDevStatus200ResponseOneOf1
-     */
     'ready_to_publish': boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof GetDevStatus200ResponseOneOf1
-     */
     'current_phase': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetDevStatus200ResponseOneOf1
-     */
     'started_at': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetDevStatus200ResponseOneOf1
-     */
     'last_updated_at': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetDevStatus200ResponseOneOf1
-     */
     'completed_at': string | null;
-    /**
-     * 
-     * @type {{ [key: string]: { [key: string]: any; }; }}
-     * @memberof GetDevStatus200ResponseOneOf1
-     */
     'phases': { [key: string]: { [key: string]: any; }; };
-    /**
-     * 
-     * @type {{ [key: string]: any | null; }}
-     * @memberof GetDevStatus200ResponseOneOf1
-     */
     'metadata': { [key: string]: any | null; };
 }
 

@@ -14,29 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface StorageRentEventBody
- */
 export interface StorageRentEventBody {
-    /**
-     * 
-     * @type {string}
-     * @memberof StorageRentEventBody
-     */
     'payer': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof StorageRentEventBody
-     */
     'units': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof StorageRentEventBody
-     */
     'expiry': number;
 }
 

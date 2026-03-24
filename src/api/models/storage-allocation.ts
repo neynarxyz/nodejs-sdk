@@ -17,41 +17,11 @@
 // @ts-ignore
 import type { UserDehydrated } from './user-dehydrated';
 
-/**
- * 
- * @export
- * @interface StorageAllocation
- */
 export interface StorageAllocation {
-    /**
-     * 
-     * @type {string}
-     * @memberof StorageAllocation
-     */
     'object'?: string;
-    /**
-     * 
-     * @type {UserDehydrated}
-     * @memberof StorageAllocation
-     */
     'user'?: UserDehydrated;
-    /**
-     * 
-     * @type {number}
-     * @memberof StorageAllocation
-     */
     'units'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof StorageAllocation
-     */
     'expiry'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof StorageAllocation
-     */
     'timestamp'?: string;
 }
 

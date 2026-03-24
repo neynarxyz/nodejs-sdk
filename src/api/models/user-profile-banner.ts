@@ -14,16 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface UserProfileBanner
- */
 export interface UserProfileBanner {
     /**
      * The URL of the user\'s banner image
-     * @type {string}
-     * @memberof UserProfileBanner
      */
     'url'?: string;
 }

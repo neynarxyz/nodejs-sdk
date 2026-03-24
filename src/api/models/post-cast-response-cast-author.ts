@@ -14,16 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface PostCastResponseCastAuthor
- */
 export interface PostCastResponseCastAuthor {
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof PostCastResponseCastAuthor
      */
     'fid': number;
 }

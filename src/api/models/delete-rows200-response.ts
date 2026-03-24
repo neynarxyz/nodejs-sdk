@@ -14,16 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface DeleteRows200Response
- */
 export interface DeleteRows200Response {
     /**
      * Number of rows deleted
-     * @type {number}
-     * @memberof DeleteRows200Response
      */
     'deletedCount': number;
 }

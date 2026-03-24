@@ -17,23 +17,8 @@
 // @ts-ignore
 import type { StorageAllocation } from './storage-allocation';
 
-/**
- * 
- * @export
- * @interface StorageAllocationsResponse
- */
 export interface StorageAllocationsResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof StorageAllocationsResponse
-     */
     'total_active_units'?: number;
-    /**
-     * 
-     * @type {Array<StorageAllocation>}
-     * @memberof StorageAllocationsResponse
-     */
     'allocations'?: Array<StorageAllocation>;
 }
 

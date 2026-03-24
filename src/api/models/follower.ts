@@ -20,29 +20,9 @@ import type { User } from './user';
 // @ts-ignore
 import type { UserDehydrated } from './user-dehydrated';
 
-/**
- * 
- * @export
- * @interface Follower
- */
 export interface Follower {
-    /**
-     * 
-     * @type {string}
-     * @memberof Follower
-     */
     'object': FollowerObjectEnum;
-    /**
-     * 
-     * @type {UserDehydrated}
-     * @memberof Follower
-     */
     'app'?: UserDehydrated;
-    /**
-     * 
-     * @type {User}
-     * @memberof Follower
-     */
     'user': User;
 }
 

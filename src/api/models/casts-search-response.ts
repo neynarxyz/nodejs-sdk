@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { FetchCastQuotes200Response } from './fetch-cast-quotes200-response';
 
-/**
- * 
- * @export
- * @interface CastsSearchResponse
- */
 export interface CastsSearchResponse {
-    /**
-     * 
-     * @type {FetchCastQuotes200Response}
-     * @memberof CastsSearchResponse
-     */
     'result': FetchCastQuotes200Response;
 }
 

@@ -16,92 +16,56 @@
 
 /**
  * Video OEmbed data
- * @export
- * @interface OembedVideoData
  */
 export interface OembedVideoData {
-    /**
-     * 
-     * @type {string}
-     * @memberof OembedVideoData
-     */
     'type': OembedVideoDataTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof OembedVideoData
-     */
     'version': string | null;
     /**
      * A text title, describing the resource.
-     * @type {string}
-     * @memberof OembedVideoData
      */
     'title'?: string | null;
     /**
      * The name of the author/owner of the resource.
-     * @type {string}
-     * @memberof OembedVideoData
      */
     'author_name'?: string | null;
     /**
      * A URL for the author/owner of the resource.
-     * @type {string}
-     * @memberof OembedVideoData
      */
     'author_url'?: string | null;
     /**
      * The name of the resource provider.
-     * @type {string}
-     * @memberof OembedVideoData
      */
     'provider_name'?: string | null;
     /**
      * The url of the resource provider.
-     * @type {string}
-     * @memberof OembedVideoData
      */
     'provider_url'?: string | null;
     /**
      * The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
-     * @type {string}
-     * @memberof OembedVideoData
      */
     'cache_age'?: string | null;
     /**
      * A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
-     * @type {string}
-     * @memberof OembedVideoData
      */
     'thumbnail_url'?: string | null;
     /**
      * The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
-     * @type {number}
-     * @memberof OembedVideoData
      */
     'thumbnail_width'?: number | null;
     /**
      * The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
-     * @type {number}
-     * @memberof OembedVideoData
      */
     'thumbnail_height'?: number | null;
     /**
      * The HTML required to embed a video player. The HTML should have no padding or margins. Consumers may wish to load the HTML in an off-domain iframe to avoid XSS vulnerabilities.
-     * @type {string}
-     * @memberof OembedVideoData
      */
     'html': string | null;
     /**
      * The width in pixels required to display the HTML.
-     * @type {number}
-     * @memberof OembedVideoData
      */
     'width': number | null;
     /**
      * The height in pixels required to display the HTML.
-     * @type {number}
-     * @memberof OembedVideoData
      */
     'height': number | null;
 }

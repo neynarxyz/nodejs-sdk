@@ -20,23 +20,8 @@ import type { ChannelMemberInvite } from './channel-member-invite';
 // @ts-ignore
 import type { NextCursor } from './next-cursor';
 
-/**
- * 
- * @export
- * @interface ChannelMemberInviteListResponse
- */
 export interface ChannelMemberInviteListResponse {
-    /**
-     * 
-     * @type {Array<ChannelMemberInvite>}
-     * @memberof ChannelMemberInviteListResponse
-     */
     'invites': Array<ChannelMemberInvite>;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof ChannelMemberInviteListResponse
-     */
     'next'?: NextCursor;
 }
 

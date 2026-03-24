@@ -14,34 +14,18 @@
 
 
 
-/**
- * 
- * @export
- * @interface RegisterUserOnChainReqBodyRegistration
- */
 export interface RegisterUserOnChainReqBodyRegistration {
-    /**
-     * 
-     * @type {number}
-     * @memberof RegisterUserOnChainReqBodyRegistration
-     */
     'deadline': number;
     /**
      * Hexadecimal number expressed as string with \'0x\' prefix
-     * @type {string}
-     * @memberof RegisterUserOnChainReqBodyRegistration
      */
     'signature': string;
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof RegisterUserOnChainReqBodyRegistration
      */
     'custody_address': string;
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof RegisterUserOnChainReqBodyRegistration
      */
     'recovery_address': string;
 }

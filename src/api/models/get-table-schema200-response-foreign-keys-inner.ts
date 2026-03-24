@@ -14,34 +14,21 @@
 
 
 
-/**
- * 
- * @export
- * @interface GetTableSchema200ResponseForeignKeysInner
- */
 export interface GetTableSchema200ResponseForeignKeysInner {
     /**
      * Constraint name
-     * @type {string}
-     * @memberof GetTableSchema200ResponseForeignKeysInner
      */
     'constraintName': string;
     /**
      * Local column name
-     * @type {string}
-     * @memberof GetTableSchema200ResponseForeignKeysInner
      */
     'columnName': string;
     /**
      * Referenced table name
-     * @type {string}
-     * @memberof GetTableSchema200ResponseForeignKeysInner
      */
     'referencedTable': string;
     /**
      * Referenced column name
-     * @type {string}
-     * @memberof GetTableSchema200ResponseForeignKeysInner
      */
     'referencedColumn': string;
 }

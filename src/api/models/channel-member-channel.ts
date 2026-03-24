@@ -37,7 +37,6 @@ import type { UserDehydrated } from './user-dehydrated';
 
 /**
  * @type ChannelMemberChannel
- * @export
  */
 export type ChannelMemberChannel = Channel | ChannelDehydrated;
 

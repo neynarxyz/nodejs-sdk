@@ -25,7 +25,6 @@ import type { Reaction } from './reaction';
 
 /**
  * @type FetchCastReactions200Response
- * @export
  */
 export type FetchCastReactions200Response = FetchCastReactions200ResponseAllOf & PaginationResponse;
 

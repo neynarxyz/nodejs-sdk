@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { OnChainEventSigner } from './on-chain-event-signer';
 
-/**
- * 
- * @export
- * @interface FetchUserOnChainSignersEvents200ResponseOneOf
- */
 export interface FetchUserOnChainSignersEvents200ResponseOneOf {
-    /**
-     * 
-     * @type {Array<OnChainEventSigner>}
-     * @memberof FetchUserOnChainSignersEvents200ResponseOneOf
-     */
     'events': Array<OnChainEventSigner>;
 }
 

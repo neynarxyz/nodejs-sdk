@@ -16,8 +16,6 @@
 
 /**
  * Type of transaction mini app
- * @export
- * @enum {string}
  */
 
 export const TransactionFrameType = {

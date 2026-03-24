@@ -17,28 +17,11 @@
 // @ts-ignore
 import type { Fungible } from './fungible';
 
-/**
- * 
- * @export
- * @interface FarcasterFungible
- */
 export interface FarcasterFungible {
-    /**
-     * 
-     * @type {string}
-     * @memberof FarcasterFungible
-     */
     'object': FarcasterFungibleObjectEnum;
-    /**
-     * 
-     * @type {Fungible}
-     * @memberof FarcasterFungible
-     */
     'fungible': Fungible;
     /**
      * The total number of comments on the token
-     * @type {number}
-     * @memberof FarcasterFungible
      */
     'cast_count': number;
 }

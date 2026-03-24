@@ -17,23 +17,11 @@
 // @ts-ignore
 import type { NotificationType } from './notification-type';
 
-/**
- * 
- * @export
- * @interface MarkNotificationsAsSeenReqBody
- */
 export interface MarkNotificationsAsSeenReqBody {
     /**
      * The UUID of a signer with at least one write permission.  Required unless a valid Authorization Bearer token is provided in the header.
-     * @type {string}
-     * @memberof MarkNotificationsAsSeenReqBody
      */
     'signer_uuid'?: string;
-    /**
-     * 
-     * @type {NotificationType}
-     * @memberof MarkNotificationsAsSeenReqBody
-     */
     'type'?: NotificationType;
 }
 

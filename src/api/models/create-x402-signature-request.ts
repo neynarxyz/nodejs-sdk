@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { CreateX402SignatureRequestPaymentRequirements } from './create-x402-signature-request-payment-requirements';
 
-/**
- * 
- * @export
- * @interface CreateX402SignatureRequest
- */
 export interface CreateX402SignatureRequest {
-    /**
-     * 
-     * @type {CreateX402SignatureRequestPaymentRequirements}
-     * @memberof CreateX402SignatureRequest
-     */
     'payment_requirements': CreateX402SignatureRequestPaymentRequirements;
 }
 

@@ -14,17 +14,7 @@
 
 
 
-/**
- * 
- * @export
- * @interface ListDeployments400Response
- */
 export interface ListDeployments400Response {
-    /**
-     * 
-     * @type {string}
-     * @memberof ListDeployments400Response
-     */
     'error': string;
 }
 

@@ -31,7 +31,6 @@ import type { VerificationAllOfData } from './verification-all-of-data';
 
 /**
  * @type Verification
- * @export
  */
 export type Verification = MessageCommon & VerificationAllOf;
 

@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { TransactionFrameDestination } from './transaction-frame-destination';
 
-/**
- * 
- * @export
- * @interface FramePayTransactionReqBodyTransaction
- */
 export interface FramePayTransactionReqBodyTransaction {
-    /**
-     * 
-     * @type {TransactionFrameDestination}
-     * @memberof FramePayTransactionReqBodyTransaction
-     */
     'to': TransactionFrameDestination;
 }
 

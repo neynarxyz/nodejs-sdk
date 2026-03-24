@@ -17,64 +17,23 @@
 // @ts-ignore
 import type { SimulateNftMintResponseInnerRecipient } from './simulate-nft-mint-response-inner-recipient';
 
-/**
- * 
- * @export
- * @interface SimulateNftMintResponseInner
- */
 export interface SimulateNftMintResponseInner {
-    /**
-     * 
-     * @type {SimulateNftMintResponseInnerRecipient}
-     * @memberof SimulateNftMintResponseInner
-     */
     'recipient': SimulateNftMintResponseInnerRecipient;
-    /**
-     * 
-     * @type {string}
-     * @memberof SimulateNftMintResponseInner
-     */
     'function_name': string;
-    /**
-     * 
-     * @type {Array<any | null>}
-     * @memberof SimulateNftMintResponseInner
-     */
     'args': Array<any | null>;
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof SimulateNftMintResponseInner
      */
     'to': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SimulateNftMintResponseInner
-     */
     'data': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SimulateNftMintResponseInner
-     */
     'value': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SimulateNftMintResponseInner
-     */
     'network': string;
     /**
      * Calldata for the mint transaction.
-     * @type {string}
-     * @memberof SimulateNftMintResponseInner
      */
     'calldata': string;
     /**
      * ABI for the mint function.
-     * @type {any}
-     * @memberof SimulateNftMintResponseInner
      */
     'abi'?: any | null;
 }

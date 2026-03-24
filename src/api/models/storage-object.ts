@@ -14,29 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface StorageObject
- */
 export interface StorageObject {
-    /**
-     * 
-     * @type {string}
-     * @memberof StorageObject
-     */
     'object'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof StorageObject
-     */
     'used'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof StorageObject
-     */
     'capacity'?: number;
 }
 

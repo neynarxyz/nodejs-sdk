@@ -14,23 +14,11 @@
 
 
 
-/**
- * 
- * @export
- * @interface ReactionLike
- */
 export interface ReactionLike {
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof ReactionLike
      */
     'fid': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReactionLike
-     */
     'fname': string;
 }
 

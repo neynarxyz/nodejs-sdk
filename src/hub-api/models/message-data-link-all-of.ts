@@ -17,16 +17,9 @@
 // @ts-ignore
 import type { LinkBody } from './link-body';
 
-/**
- * 
- * @export
- * @interface MessageDataLinkAllOf
- */
 export interface MessageDataLinkAllOf {
     /**
      * Contains the details of the social connection, including the type of relationship and the target user.
-     * @type {LinkBody}
-     * @memberof MessageDataLinkAllOf
      */
     'linkBody': LinkBody;
 }

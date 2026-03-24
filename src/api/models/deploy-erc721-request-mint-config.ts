@@ -14,40 +14,25 @@
 
 
 
-/**
- * 
- * @export
- * @interface DeployErc721RequestMintConfig
- */
 export interface DeployErc721RequestMintConfig {
     /**
      * Price per token in wei (0 = free mint)
-     * @type {string}
-     * @memberof DeployErc721RequestMintConfig
      */
     'price_per_token'?: string;
     /**
      * Max tokens per wallet (0 = unlimited)
-     * @type {number}
-     * @memberof DeployErc721RequestMintConfig
      */
     'max_per_wallet'?: number;
     /**
      * Max tokens per transaction (0 = unlimited)
-     * @type {number}
-     * @memberof DeployErc721RequestMintConfig
      */
     'max_per_tx'?: number;
     /**
      * Unix timestamp (defaults to current time)
-     * @type {number}
-     * @memberof DeployErc721RequestMintConfig
      */
     'start_timestamp'?: number;
     /**
      * Unix timestamp (defaults to no end date)
-     * @type {number}
-     * @memberof DeployErc721RequestMintConfig
      */
     'end_timestamp'?: number;
 }

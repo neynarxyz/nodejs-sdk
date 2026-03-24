@@ -14,16 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface CastEmbeddedParentAuthor
- */
 export interface CastEmbeddedParentAuthor {
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof CastEmbeddedParentAuthor
      */
     'fid': number | null;
 }

@@ -14,34 +14,21 @@
 
 
 
-/**
- * 
- * @export
- * @interface DeleteRowsRequest
- */
 export interface DeleteRowsRequest {
     /**
      * Deployment ID (UUID)
-     * @type {string}
-     * @memberof DeleteRowsRequest
      */
     'deployment_id': string;
     /**
      * Farcaster ID of the user. Required for non-admin users.
-     * @type {number}
-     * @memberof DeleteRowsRequest
      */
     'fid'?: number;
     /**
      * WHERE conditions (equality only, required)
-     * @type {{ [key: string]: any | null; }}
-     * @memberof DeleteRowsRequest
      */
     'where': { [key: string]: any | null; };
     /**
      * Maximum rows to delete (default: 1000)
-     * @type {number}
-     * @memberof DeleteRowsRequest
      */
     'limit'?: number;
 }

@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { Message } from './message';
 
-/**
- * 
- * @export
- * @interface RevokeMessageBody
- */
 export interface RevokeMessageBody {
-    /**
-     * 
-     * @type {Message}
-     * @memberof RevokeMessageBody
-     */
     'message': Message;
 }
 

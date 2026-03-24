@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface UpdateUserReqBodyVerifiedAccounts
- */
 export interface UpdateUserReqBodyVerifiedAccounts {
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserReqBodyVerifiedAccounts
-     */
     'x'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserReqBodyVerifiedAccounts
-     */
     'github'?: string;
 }
 

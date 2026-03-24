@@ -23,35 +23,10 @@ import type { ChannelMemberRole } from './channel-member-role';
 // @ts-ignore
 import type { ChannelMemberUser } from './channel-member-user';
 
-/**
- * 
- * @export
- * @interface ChannelMember
- */
 export interface ChannelMember {
-    /**
-     * 
-     * @type {string}
-     * @memberof ChannelMember
-     */
     'object': ChannelMemberObjectEnum;
-    /**
-     * 
-     * @type {ChannelMemberRole}
-     * @memberof ChannelMember
-     */
     'role': ChannelMemberRole;
-    /**
-     * 
-     * @type {ChannelMemberUser}
-     * @memberof ChannelMember
-     */
     'user': ChannelMemberUser;
-    /**
-     * 
-     * @type {ChannelMemberChannel}
-     * @memberof ChannelMember
-     */
     'channel': ChannelMemberChannel;
 }
 

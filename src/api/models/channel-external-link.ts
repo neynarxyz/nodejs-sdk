@@ -16,21 +16,9 @@
 
 /**
  * Channel\'s external link.
- * @export
- * @interface ChannelExternalLink
  */
 export interface ChannelExternalLink {
-    /**
-     * 
-     * @type {string}
-     * @memberof ChannelExternalLink
-     */
     'title'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChannelExternalLink
-     */
     'url'?: string;
 }
 

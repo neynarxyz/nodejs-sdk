@@ -14,29 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface BestFriendsResponseUsersInner
- */
 export interface BestFriendsResponseUsersInner {
-    /**
-     * 
-     * @type {number}
-     * @memberof BestFriendsResponseUsersInner
-     */
     'fid': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof BestFriendsResponseUsersInner
-     */
     'mutual_affinity_score': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof BestFriendsResponseUsersInner
-     */
     'username': string;
 }
 

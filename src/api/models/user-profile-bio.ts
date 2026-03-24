@@ -23,40 +23,16 @@ import type { TextRange } from './text-range';
 // @ts-ignore
 import type { UserDehydrated } from './user-dehydrated';
 
-/**
- * 
- * @export
- * @interface UserProfileBio
- */
 export interface UserProfileBio {
-    /**
-     * 
-     * @type {string}
-     * @memberof UserProfileBio
-     */
     'text': string;
-    /**
-     * 
-     * @type {Array<UserDehydrated>}
-     * @memberof UserProfileBio
-     */
     'mentioned_profiles'?: Array<UserDehydrated>;
     /**
      * Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.
-     * @type {Array<TextRange>}
-     * @memberof UserProfileBio
      */
     'mentioned_profiles_ranges'?: Array<TextRange>;
-    /**
-     * 
-     * @type {Array<ChannelDehydrated>}
-     * @memberof UserProfileBio
-     */
     'mentioned_channels'?: Array<ChannelDehydrated>;
     /**
      * Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_channels list.
-     * @type {Array<TextRange>}
-     * @memberof UserProfileBio
      */
     'mentioned_channels_ranges'?: Array<TextRange>;
 }

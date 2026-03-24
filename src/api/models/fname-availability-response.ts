@@ -14,17 +14,7 @@
 
 
 
-/**
- * 
- * @export
- * @interface FnameAvailabilityResponse
- */
 export interface FnameAvailabilityResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof FnameAvailabilityResponse
-     */
     'available': boolean;
 }
 

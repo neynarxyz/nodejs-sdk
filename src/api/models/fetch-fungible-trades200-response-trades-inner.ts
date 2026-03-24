@@ -23,35 +23,10 @@ import type { FetchFungibleTrades200ResponseTradesInnerTransaction } from './fet
 // @ts-ignore
 import type { UserDehydrated } from './user-dehydrated';
 
-/**
- * 
- * @export
- * @interface FetchFungibleTrades200ResponseTradesInner
- */
 export interface FetchFungibleTrades200ResponseTradesInner {
-    /**
-     * 
-     * @type {string}
-     * @memberof FetchFungibleTrades200ResponseTradesInner
-     */
     'object': FetchFungibleTrades200ResponseTradesInnerObjectEnum;
-    /**
-     * 
-     * @type {UserDehydrated}
-     * @memberof FetchFungibleTrades200ResponseTradesInner
-     */
     'trader': UserDehydrated;
-    /**
-     * 
-     * @type {FetchFungibleTrades200ResponseTradesInnerPool}
-     * @memberof FetchFungibleTrades200ResponseTradesInner
-     */
     'pool'?: FetchFungibleTrades200ResponseTradesInnerPool;
-    /**
-     * 
-     * @type {FetchFungibleTrades200ResponseTradesInnerTransaction}
-     * @memberof FetchFungibleTrades200ResponseTradesInner
-     */
     'transaction': FetchFungibleTrades200ResponseTradesInnerTransaction;
 }
 

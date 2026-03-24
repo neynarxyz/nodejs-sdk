@@ -17,58 +17,31 @@
 // @ts-ignore
 import type { Network } from './network';
 
-/**
- * 
- * @export
- * @interface Fungible
- */
 export interface Fungible {
-    /**
-     * 
-     * @type {string}
-     * @memberof Fungible
-     */
     'object': FungibleObjectEnum;
-    /**
-     * 
-     * @type {Network}
-     * @memberof Fungible
-     */
     'network': Network;
     /**
      * The token name e.g. \"Ethereum\"
-     * @type {string}
-     * @memberof Fungible
      */
     'name': string;
     /**
      * The token symbol e.g. \"ETH\"
-     * @type {string}
-     * @memberof Fungible
      */
     'symbol': string;
     /**
      * The contract address of the token
-     * @type {string}
-     * @memberof Fungible
      */
     'address': string;
     /**
      * The number of decimals the token uses
-     * @type {number}
-     * @memberof Fungible
      */
     'decimals': number;
     /**
      * The total supply of the token
-     * @type {string}
-     * @memberof Fungible
      */
     'total_supply': string | null;
     /**
      * The logo URL of the token
-     * @type {string}
-     * @memberof Fungible
      */
     'logo': string | null;
 }

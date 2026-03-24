@@ -14,35 +14,10 @@
 
 
 
-/**
- * 
- * @export
- * @interface RegisterUserReqBodySigner
- */
 export interface RegisterUserReqBodySigner {
-    /**
-     * 
-     * @type {string}
-     * @memberof RegisterUserReqBodySigner
-     */
     'uuid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RegisterUserReqBodySigner
-     */
     'signed_key_request_metadata_signature': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof RegisterUserReqBodySigner
-     */
     'app_fid': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RegisterUserReqBodySigner
-     */
     'deadline': number;
 }
 

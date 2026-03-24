@@ -17,34 +17,18 @@
 // @ts-ignore
 import type { Network } from './network';
 
-/**
- * 
- * @export
- * @interface TransactionFrameDestination
- */
 export interface TransactionFrameDestination {
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof TransactionFrameDestination
      */
     'address': string;
-    /**
-     * 
-     * @type {Network}
-     * @memberof TransactionFrameDestination
-     */
     'network': Network;
     /**
      * Token contract address for the payment (e.g. 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913 is USDC on Base)
-     * @type {string}
-     * @memberof TransactionFrameDestination
      */
     'token_contract_address': string;
     /**
      * Amount to send (must be greater than 0)
-     * @type {number}
-     * @memberof TransactionFrameDestination
      */
     'amount': number;
 }

@@ -16,38 +16,26 @@
 
 /**
  * Production app deployment status from Vercel
- * @export
- * @interface ListDeployments200ResponseInnerProductionAppStatus
  */
 export interface ListDeployments200ResponseInnerProductionAppStatus {
     /**
      * Vercel project ID
-     * @type {string}
-     * @memberof ListDeployments200ResponseInnerProductionAppStatus
      */
     'project_id': string;
     /**
      * Vercel deployment URL
-     * @type {string}
-     * @memberof ListDeployments200ResponseInnerProductionAppStatus
      */
     'deployment_url': string;
     /**
      * Deployment state (e.g., READY, BUILDING, ERROR)
-     * @type {string}
-     * @memberof ListDeployments200ResponseInnerProductionAppStatus
      */
     'deployment_state': string;
     /**
      * Deployment creation timestamp (Unix ms)
-     * @type {number}
-     * @memberof ListDeployments200ResponseInnerProductionAppStatus
      */
     'created_at': number;
     /**
      * Deployment target (e.g., production, preview)
-     * @type {string}
-     * @memberof ListDeployments200ResponseInnerProductionAppStatus
      */
     'target'?: string;
 }

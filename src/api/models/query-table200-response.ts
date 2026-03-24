@@ -17,46 +17,29 @@
 // @ts-ignore
 import type { QueryTable200ResponseColumnsInner } from './query-table200-response-columns-inner';
 
-/**
- * 
- * @export
- * @interface QueryTable200Response
- */
 export interface QueryTable200Response {
     /**
      * Column metadata
-     * @type {Array<QueryTable200ResponseColumnsInner>}
-     * @memberof QueryTable200Response
      */
     'columns': Array<QueryTable200ResponseColumnsInner>;
     /**
      * Query result rows
-     * @type {Array<{ [key: string]: any | null; }>}
-     * @memberof QueryTable200Response
      */
     'rows': Array<{ [key: string]: any | null; }>;
     /**
      * Total number of rows in table
-     * @type {number}
-     * @memberof QueryTable200Response
      */
     'totalCount': number;
     /**
      * Applied limit
-     * @type {number}
-     * @memberof QueryTable200Response
      */
     'limit': number;
     /**
      * Applied offset
-     * @type {number}
-     * @memberof QueryTable200Response
      */
     'offset': number;
     /**
      * Whether more rows are available
-     * @type {boolean}
-     * @memberof QueryTable200Response
      */
     'hasMore': boolean;
 }

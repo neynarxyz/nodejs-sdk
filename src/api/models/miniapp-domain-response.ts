@@ -19,68 +19,43 @@ import type { FarcasterManifest } from './farcaster-manifest';
 
 /**
  * Response containing domain information, metadata, and validation errors if any
- * @export
- * @interface MiniappDomainResponse
  */
 export interface MiniappDomainResponse {
     /**
      * Domain name
-     * @type {string}
-     * @memberof MiniappDomainResponse
      */
     'domain': string;
     /**
      * FID associated with the domain
-     * @type {number}
-     * @memberof MiniappDomainResponse
      */
     'fid': number;
-    /**
-     * 
-     * @type {FarcasterManifest}
-     * @memberof MiniappDomainResponse
-     */
     'manifest': FarcasterManifest;
     /**
      * Home URL metadata if available
-     * @type {{ [key: string]: any | null; }}
-     * @memberof MiniappDomainResponse
      */
     'home_url_metadata'?: { [key: string]: any | null; } | null;
     /**
      * Creation timestamp
-     * @type {string}
-     * @memberof MiniappDomainResponse
      */
     'created_at': string;
     /**
      * Last update timestamp
-     * @type {string}
-     * @memberof MiniappDomainResponse
      */
     'updated_at': string;
     /**
      * Whether the domain was found in the table before processing
-     * @type {boolean}
-     * @memberof MiniappDomainResponse
      */
     'was_found': boolean;
     /**
      * Whether the domain was refreshed/updated during this request
-     * @type {boolean}
-     * @memberof MiniappDomainResponse
      */
     'was_refreshed': boolean;
     /**
      * Validation errors from processing, if any
-     * @type {Array<string>}
-     * @memberof MiniappDomainResponse
      */
     'validation_errors'?: Array<string>;
     /**
      * High-level error message if processing failed
-     * @type {string}
-     * @memberof MiniappDomainResponse
      */
     'error_message'?: string;
 }

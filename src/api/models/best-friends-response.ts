@@ -20,23 +20,8 @@ import type { BestFriendsResponseUsersInner } from './best-friends-response-user
 // @ts-ignore
 import type { NextCursor } from './next-cursor';
 
-/**
- * 
- * @export
- * @interface BestFriendsResponse
- */
 export interface BestFriendsResponse {
-    /**
-     * 
-     * @type {Array<BestFriendsResponseUsersInner>}
-     * @memberof BestFriendsResponse
-     */
     'users': Array<BestFriendsResponseUsersInner>;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof BestFriendsResponse
-     */
     'next'?: NextCursor;
 }
 

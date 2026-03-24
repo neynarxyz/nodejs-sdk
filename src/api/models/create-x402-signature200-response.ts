@@ -17,35 +17,10 @@
 // @ts-ignore
 import type { CreateX402Signature200ResponsePayload } from './create-x402-signature200-response-payload';
 
-/**
- * 
- * @export
- * @interface CreateX402Signature200Response
- */
 export interface CreateX402Signature200Response {
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateX402Signature200Response
-     */
     'x402Version': CreateX402Signature200ResponseX402VersionEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateX402Signature200Response
-     */
     'scheme': CreateX402Signature200ResponseSchemeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateX402Signature200Response
-     */
     'network': CreateX402Signature200ResponseNetworkEnum;
-    /**
-     * 
-     * @type {CreateX402Signature200ResponsePayload}
-     * @memberof CreateX402Signature200Response
-     */
     'payload': CreateX402Signature200ResponsePayload;
 }
 

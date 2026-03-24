@@ -14,16 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface GetWalletBalances200ResponseNext
- */
 export interface GetWalletBalances200ResponseNext {
     /**
      * Pagination cursor for next page, null if no more results
-     * @type {string}
-     * @memberof GetWalletBalances200ResponseNext
      */
     'cursor': string | null;
 }

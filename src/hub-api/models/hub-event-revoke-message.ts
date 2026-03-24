@@ -17,29 +17,9 @@
 // @ts-ignore
 import type { RevokeMessageBody } from './revoke-message-body';
 
-/**
- * 
- * @export
- * @interface HubEventRevokeMessage
- */
 export interface HubEventRevokeMessage {
-    /**
-     * 
-     * @type {string}
-     * @memberof HubEventRevokeMessage
-     */
     'type': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof HubEventRevokeMessage
-     */
     'id': number;
-    /**
-     * 
-     * @type {RevokeMessageBody}
-     * @memberof HubEventRevokeMessage
-     */
     'revokeMessageBody': RevokeMessageBody;
 }
 

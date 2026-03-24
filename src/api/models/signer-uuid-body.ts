@@ -17,35 +17,19 @@
 // @ts-ignore
 import type { AppHostEventType } from './app-host-event-type';
 
-/**
- * 
- * @export
- * @interface SignerUuidBody
- */
 export interface SignerUuidBody {
     /**
      * UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
-     * @type {string}
-     * @memberof SignerUuidBody
      */
     'signer_uuid': string;
     /**
      * Domain of the mini app
-     * @type {string}
-     * @memberof SignerUuidBody
      */
     'app_domain': string;
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof SignerUuidBody
      */
     'fid': number;
-    /**
-     * 
-     * @type {AppHostEventType}
-     * @memberof SignerUuidBody
-     */
     'event': AppHostEventType;
 }
 

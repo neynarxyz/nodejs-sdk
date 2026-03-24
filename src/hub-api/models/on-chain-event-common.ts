@@ -14,65 +14,15 @@
 
 
 
-/**
- * 
- * @export
- * @interface OnChainEventCommon
- */
 export interface OnChainEventCommon {
-    /**
-     * 
-     * @type {string}
-     * @memberof OnChainEventCommon
-     */
     'type': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof OnChainEventCommon
-     */
     'chainId': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof OnChainEventCommon
-     */
     'blockNumber': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof OnChainEventCommon
-     */
     'blockHash': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof OnChainEventCommon
-     */
     'blockTimestamp': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof OnChainEventCommon
-     */
     'transactionHash': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof OnChainEventCommon
-     */
     'logIndex': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof OnChainEventCommon
-     */
     'txIndex': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof OnChainEventCommon
-     */
     'fid': number;
 }
 

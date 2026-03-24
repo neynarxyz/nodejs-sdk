@@ -17,29 +17,9 @@
 // @ts-ignore
 import type { User } from './user';
 
-/**
- * 
- * @export
- * @interface MuteRecord
- */
 export interface MuteRecord {
-    /**
-     * 
-     * @type {string}
-     * @memberof MuteRecord
-     */
     'object': MuteRecordObjectEnum;
-    /**
-     * 
-     * @type {User}
-     * @memberof MuteRecord
-     */
     'muted': User;
-    /**
-     * 
-     * @type {string}
-     * @memberof MuteRecord
-     */
     'muted_at': string;
 }
 

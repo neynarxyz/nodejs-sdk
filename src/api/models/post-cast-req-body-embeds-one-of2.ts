@@ -14,17 +14,7 @@
 
 
 
-/**
- * 
- * @export
- * @interface PostCastReqBodyEmbedsOneOf2
- */
 export interface PostCastReqBodyEmbedsOneOf2 {
-    /**
-     * 
-     * @type {string}
-     * @memberof PostCastReqBodyEmbedsOneOf2
-     */
     'url': string;
 }
 

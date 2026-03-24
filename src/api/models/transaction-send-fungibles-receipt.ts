@@ -14,34 +14,15 @@
 
 
 
-/**
- * 
- * @export
- * @interface TransactionSendFungiblesReceipt
- */
 export interface TransactionSendFungiblesReceipt {
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof TransactionSendFungiblesReceipt
      */
     'fid': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransactionSendFungiblesReceipt
-     */
     'amount': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransactionSendFungiblesReceipt
-     */
     'status': TransactionSendFungiblesReceiptStatusEnum;
     /**
      * Reason for failure (if status is failed)
-     * @type {string}
-     * @memberof TransactionSendFungiblesReceipt
      */
     'reason'?: string;
 }

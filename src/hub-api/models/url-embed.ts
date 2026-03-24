@@ -14,17 +14,7 @@
 
 
 
-/**
- * 
- * @export
- * @interface UrlEmbed
- */
 export interface UrlEmbed {
-    /**
-     * 
-     * @type {string}
-     * @memberof UrlEmbed
-     */
     'url': string;
 }
 

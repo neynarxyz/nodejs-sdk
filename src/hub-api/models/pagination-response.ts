@@ -14,16 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface PaginationResponse
- */
 export interface PaginationResponse {
     /**
      * Base64-encoded pagination token for fetching the next page of results. An empty value indicates there are no more pages to return. Used in conjunction with the pageSize parameter to implement pagination across large result sets.
-     * @type {string}
-     * @memberof PaginationResponse
      */
     'nextPageToken': string;
 }

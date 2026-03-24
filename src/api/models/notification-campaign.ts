@@ -17,41 +17,20 @@
 // @ts-ignore
 import type { NotificationCampaignStats } from './notification-campaign-stats';
 
-/**
- * 
- * @export
- * @interface NotificationCampaign
- */
 export interface NotificationCampaign {
     /**
      * The unique identifier for the notification campaign.
-     * @type {string}
-     * @memberof NotificationCampaign
      */
     'id': string;
     /**
      * The title of the notification campaign.
-     * @type {string}
-     * @memberof NotificationCampaign
      */
     'title': string;
     /**
      * The body text of the notification.
-     * @type {string}
-     * @memberof NotificationCampaign
      */
     'body': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof NotificationCampaign
-     */
     'created_at': string;
-    /**
-     * 
-     * @type {NotificationCampaignStats}
-     * @memberof NotificationCampaign
-     */
     'stats': NotificationCampaignStats;
 }
 

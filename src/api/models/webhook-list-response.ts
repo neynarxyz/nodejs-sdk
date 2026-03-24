@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { Webhook } from './webhook';
 
-/**
- * 
- * @export
- * @interface WebhookListResponse
- */
 export interface WebhookListResponse {
-    /**
-     * 
-     * @type {Array<Webhook>}
-     * @memberof WebhookListResponse
-     */
     'webhooks': Array<Webhook>;
 }
 

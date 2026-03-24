@@ -16,92 +16,56 @@
 
 /**
  * Rich OEmbed data
- * @export
- * @interface OembedRichData
  */
 export interface OembedRichData {
-    /**
-     * 
-     * @type {string}
-     * @memberof OembedRichData
-     */
     'type': OembedRichDataTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof OembedRichData
-     */
     'version': string | null;
     /**
      * A text title, describing the resource.
-     * @type {string}
-     * @memberof OembedRichData
      */
     'title'?: string | null;
     /**
      * The name of the author/owner of the resource.
-     * @type {string}
-     * @memberof OembedRichData
      */
     'author_name'?: string | null;
     /**
      * A URL for the author/owner of the resource.
-     * @type {string}
-     * @memberof OembedRichData
      */
     'author_url'?: string | null;
     /**
      * The name of the resource provider.
-     * @type {string}
-     * @memberof OembedRichData
      */
     'provider_name'?: string | null;
     /**
      * The url of the resource provider.
-     * @type {string}
-     * @memberof OembedRichData
      */
     'provider_url'?: string | null;
     /**
      * The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
-     * @type {string}
-     * @memberof OembedRichData
      */
     'cache_age'?: string | null;
     /**
      * A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
-     * @type {string}
-     * @memberof OembedRichData
      */
     'thumbnail_url'?: string | null;
     /**
      * The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
-     * @type {number}
-     * @memberof OembedRichData
      */
     'thumbnail_width'?: number | null;
     /**
      * The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
-     * @type {number}
-     * @memberof OembedRichData
      */
     'thumbnail_height'?: number | null;
     /**
      * The HTML required to display the resource. The HTML should have no padding or margins. Consumers may wish to load the HTML in an off-domain iframe to avoid XSS vulnerabilities. The markup should be valid XHTML 1.0 Basic.
-     * @type {string}
-     * @memberof OembedRichData
      */
     'html': string | null;
     /**
      * The width in pixels required to display the HTML.
-     * @type {number}
-     * @memberof OembedRichData
      */
     'width': number | null;
     /**
      * The height in pixels required to display the HTML.
-     * @type {number}
-     * @memberof OembedRichData
      */
     'height': number | null;
 }

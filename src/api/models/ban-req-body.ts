@@ -14,17 +14,7 @@
 
 
 
-/**
- * 
- * @export
- * @interface BanReqBody
- */
 export interface BanReqBody {
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof BanReqBody
-     */
     'fids': Array<number>;
 }
 

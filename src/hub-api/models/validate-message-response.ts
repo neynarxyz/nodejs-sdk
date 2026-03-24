@@ -17,23 +17,8 @@
 // @ts-ignore
 import type { Message } from './message';
 
-/**
- * 
- * @export
- * @interface ValidateMessageResponse
- */
 export interface ValidateMessageResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ValidateMessageResponse
-     */
     'valid': boolean;
-    /**
-     * 
-     * @type {Message}
-     * @memberof ValidateMessageResponse
-     */
     'message': Message;
 }
 

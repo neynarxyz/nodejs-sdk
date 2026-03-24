@@ -14,29 +14,12 @@
 
 
 
-/**
- * 
- * @export
- * @interface FollowResponse
- */
 export interface FollowResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof FollowResponse
-     */
     'success': boolean;
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof FollowResponse
      */
     'target_fid': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof FollowResponse
-     */
     'hash': string;
 }
 

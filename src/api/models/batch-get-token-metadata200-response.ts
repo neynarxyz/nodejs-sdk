@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { BatchGetTokenMetadata200ResponseTokensInner } from './batch-get-token-metadata200-response-tokens-inner';
 
-/**
- * 
- * @export
- * @interface BatchGetTokenMetadata200Response
- */
 export interface BatchGetTokenMetadata200Response {
-    /**
-     * 
-     * @type {Array<BatchGetTokenMetadata200ResponseTokensInner>}
-     * @memberof BatchGetTokenMetadata200Response
-     */
     'tokens': Array<BatchGetTokenMetadata200ResponseTokensInner>;
 }
 

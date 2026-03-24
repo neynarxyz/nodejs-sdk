@@ -14,11 +14,6 @@
 
 
 
-/**
- * 
- * @export
- * @enum {string}
- */
 
 export const SharedSignerPermission = {
     WriteAll: 'WRITE_ALL',

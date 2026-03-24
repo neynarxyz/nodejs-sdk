@@ -14,40 +14,25 @@
 
 
 
-/**
- * 
- * @export
- * @interface DeployToVercelRequest
- */
 export interface DeployToVercelRequest {
     /**
      * Deployment ID (UUID). Required if name not provided.
-     * @type {string}
-     * @memberof DeployToVercelRequest
      */
     'deployment_id'?: string;
     /**
      * Farcaster ID of the user; if not provided, namespace must be provided
-     * @type {number}
-     * @memberof DeployToVercelRequest
      */
     'fid'?: number;
     /**
      * Deployment name (used for both GitHub repo and Vercel project). Required if deployment_id not provided.
-     * @type {string}
-     * @memberof DeployToVercelRequest
      */
     'name'?: string;
     /**
      * Kubernetes namespace name
-     * @type {string}
-     * @memberof DeployToVercelRequest
      */
     'namespace'?: string;
     /**
      * Environment variables for the Vercel deployment
-     * @type {{ [key: string]: string; }}
-     * @memberof DeployToVercelRequest
      */
     'env'?: { [key: string]: string; };
 }

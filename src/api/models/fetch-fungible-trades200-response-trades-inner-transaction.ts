@@ -20,29 +20,9 @@ import type { FetchFungibleTrades200ResponseTradesInnerTransactionNetTransfer } 
 // @ts-ignore
 import type { FetchFungibleTrades200ResponseTradesInnerTransactionNetwork } from './fetch-fungible-trades200-response-trades-inner-transaction-network';
 
-/**
- * 
- * @export
- * @interface FetchFungibleTrades200ResponseTradesInnerTransaction
- */
 export interface FetchFungibleTrades200ResponseTradesInnerTransaction {
-    /**
-     * 
-     * @type {string}
-     * @memberof FetchFungibleTrades200ResponseTradesInnerTransaction
-     */
     'hash': string;
-    /**
-     * 
-     * @type {FetchFungibleTrades200ResponseTradesInnerTransactionNetwork}
-     * @memberof FetchFungibleTrades200ResponseTradesInnerTransaction
-     */
     'network': FetchFungibleTrades200ResponseTradesInnerTransactionNetwork;
-    /**
-     * 
-     * @type {FetchFungibleTrades200ResponseTradesInnerTransactionNetTransfer}
-     * @memberof FetchFungibleTrades200ResponseTradesInnerTransaction
-     */
     'net_transfer': FetchFungibleTrades200ResponseTradesInnerTransactionNetTransfer;
 }
 

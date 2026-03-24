@@ -17,23 +17,8 @@
 // @ts-ignore
 import type { FetchFungibleTrades200ResponseTradesInner } from './fetch-fungible-trades200-response-trades-inner';
 
-/**
- * 
- * @export
- * @interface FetchFungibleTrades200Response
- */
 export interface FetchFungibleTrades200Response {
-    /**
-     * 
-     * @type {string}
-     * @memberof FetchFungibleTrades200Response
-     */
     'object': FetchFungibleTrades200ResponseObjectEnum;
-    /**
-     * 
-     * @type {Array<FetchFungibleTrades200ResponseTradesInner>}
-     * @memberof FetchFungibleTrades200Response
-     */
     'trades': Array<FetchFungibleTrades200ResponseTradesInner>;
 }
 

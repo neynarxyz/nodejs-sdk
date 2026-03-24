@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 export interface ConfigurationParameters {
     apiKey: string;
     username?: string;

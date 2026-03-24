@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { MessageAllOfData } from './message-all-of-data';
 
-/**
- * 
- * @export
- * @interface MessageAllOf
- */
 export interface MessageAllOf {
-    /**
-     * 
-     * @type {MessageAllOfData}
-     * @memberof MessageAllOf
-     */
     'data': MessageAllOfData;
 }
 

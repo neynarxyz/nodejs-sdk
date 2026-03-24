@@ -22,27 +22,10 @@ import type { TokenBalanceToken } from './token-balance-token';
 
 /**
  * The token balance associated with a wallet address and a network
- * @export
- * @interface TokenBalance
  */
 export interface TokenBalance {
-    /**
-     * 
-     * @type {string}
-     * @memberof TokenBalance
-     */
     'object': TokenBalanceObjectEnum;
-    /**
-     * 
-     * @type {TokenBalanceToken}
-     * @memberof TokenBalance
-     */
     'token': TokenBalanceToken;
-    /**
-     * 
-     * @type {TokenBalanceBalance}
-     * @memberof TokenBalance
-     */
     'balance': TokenBalanceBalance;
 }
 

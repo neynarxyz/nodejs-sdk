@@ -25,51 +25,26 @@ import type { User } from './user';
 
 /**
  * FrameV2 object
- * @export
- * @interface FetchRelevantFrames200ResponseRelevantFramesInnerFrame
  */
 export interface FetchRelevantFrames200ResponseRelevantFramesInnerFrame {
     /**
      * Version of the mini app, \'next\' for v2, \'vNext\' for v1
-     * @type {string}
-     * @memberof FetchRelevantFrames200ResponseRelevantFramesInnerFrame
      */
     'version': string;
     /**
      * URL of the image
-     * @type {string}
-     * @memberof FetchRelevantFrames200ResponseRelevantFramesInnerFrame
      */
     'image': string;
     /**
      * Launch URL of the mini app
-     * @type {string}
-     * @memberof FetchRelevantFrames200ResponseRelevantFramesInnerFrame
      */
     'frames_url': string;
     /**
      * Button title of a mini app
-     * @type {string}
-     * @memberof FetchRelevantFrames200ResponseRelevantFramesInnerFrame
      */
     'title'?: string;
-    /**
-     * 
-     * @type {FarcasterManifest}
-     * @memberof FetchRelevantFrames200ResponseRelevantFramesInnerFrame
-     */
     'manifest'?: FarcasterManifest;
-    /**
-     * 
-     * @type {User}
-     * @memberof FetchRelevantFrames200ResponseRelevantFramesInnerFrame
-     */
     'author'?: User;
-    /**
-     * 
-     * @type {FetchRelevantFrames200ResponseRelevantFramesInnerFrameMetadata}
-     * @memberof FetchRelevantFrames200ResponseRelevantFramesInnerFrame
-     */
     'metadata'?: FetchRelevantFrames200ResponseRelevantFramesInnerFrameMetadata;
 }
 

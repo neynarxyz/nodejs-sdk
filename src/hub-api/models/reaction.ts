@@ -31,7 +31,6 @@ import type { SignatureScheme } from './signature-scheme';
 
 /**
  * @type Reaction
- * @export
  */
 export type Reaction = MessageCommon & ReactionAllOf;
 

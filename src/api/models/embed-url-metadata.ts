@@ -26,53 +26,13 @@ import type { Frame } from './frame';
 // @ts-ignore
 import type { HtmlMetadata } from './html-metadata';
 
-/**
- * 
- * @export
- * @interface EmbedUrlMetadata
- */
 export interface EmbedUrlMetadata {
-    /**
-     * 
-     * @type {string}
-     * @memberof EmbedUrlMetadata
-     */
     '_status': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EmbedUrlMetadata
-     */
     'content_type'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof EmbedUrlMetadata
-     */
     'content_length'?: number | null;
-    /**
-     * 
-     * @type {EmbedUrlMetadataImage}
-     * @memberof EmbedUrlMetadata
-     */
     'image'?: EmbedUrlMetadataImage;
-    /**
-     * 
-     * @type {EmbedUrlMetadataVideo}
-     * @memberof EmbedUrlMetadata
-     */
     'video'?: EmbedUrlMetadataVideo;
-    /**
-     * 
-     * @type {HtmlMetadata}
-     * @memberof EmbedUrlMetadata
-     */
     'html'?: HtmlMetadata;
-    /**
-     * 
-     * @type {Frame}
-     * @memberof EmbedUrlMetadata
-     */
     'frame'?: Frame;
 }
 

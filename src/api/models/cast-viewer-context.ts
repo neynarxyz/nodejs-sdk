@@ -16,20 +16,14 @@
 
 /**
  * Adds context on interactions the viewer has made with the cast.
- * @export
- * @interface CastViewerContext
  */
 export interface CastViewerContext {
     /**
      * Indicates if the viewer liked the cast.
-     * @type {boolean}
-     * @memberof CastViewerContext
      */
     'liked': boolean;
     /**
      * Indicates if the viewer recasted the cast.
-     * @type {boolean}
-     * @memberof CastViewerContext
      */
     'recasted': boolean;
 }

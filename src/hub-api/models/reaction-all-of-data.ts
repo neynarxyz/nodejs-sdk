@@ -31,7 +31,6 @@ import type { ReactionBody } from './reaction-body';
 
 /**
  * @type ReactionAllOfData
- * @export
  */
 export type ReactionAllOfData = CastAddAllOfDataAllOf & MessageDataReaction;
 

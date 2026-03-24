@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { UserNameProof } from './user-name-proof';
 
-/**
- * 
- * @export
- * @interface UsernameProofsResponse
- */
 export interface UsernameProofsResponse {
-    /**
-     * 
-     * @type {Array<UserNameProof>}
-     * @memberof UsernameProofsResponse
-     */
     'proofs': Array<UserNameProof>;
 }
 

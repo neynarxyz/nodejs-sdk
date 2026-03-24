@@ -14,17 +14,7 @@
 
 
 
-/**
- * 
- * @export
- * @interface SignerMigratedEventBody
- */
 export interface SignerMigratedEventBody {
-    /**
-     * 
-     * @type {number}
-     * @memberof SignerMigratedEventBody
-     */
     'migratedAt': number;
 }
 

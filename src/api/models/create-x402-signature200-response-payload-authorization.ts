@@ -14,47 +14,18 @@
 
 
 
-/**
- * 
- * @export
- * @interface CreateX402Signature200ResponsePayloadAuthorization
- */
 export interface CreateX402Signature200ResponsePayloadAuthorization {
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof CreateX402Signature200ResponsePayloadAuthorization
      */
     'from': string;
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof CreateX402Signature200ResponsePayloadAuthorization
      */
     'to': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateX402Signature200ResponsePayloadAuthorization
-     */
     'value': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateX402Signature200ResponsePayloadAuthorization
-     */
     'validAfter': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateX402Signature200ResponsePayloadAuthorization
-     */
     'validBefore': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateX402Signature200ResponsePayloadAuthorization
-     */
     'nonce': string;
 }
 

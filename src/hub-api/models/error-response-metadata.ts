@@ -14,17 +14,7 @@
 
 
 
-/**
- * 
- * @export
- * @interface ErrorResponseMetadata
- */
 export interface ErrorResponseMetadata {
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof ErrorResponseMetadata
-     */
     'errcode': Array<string>;
 }
 

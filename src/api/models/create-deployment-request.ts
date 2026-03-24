@@ -14,28 +14,17 @@
 
 
 
-/**
- * 
- * @export
- * @interface CreateDeploymentRequest
- */
 export interface CreateDeploymentRequest {
     /**
      * Farcaster ID of the user
-     * @type {number}
-     * @memberof CreateDeploymentRequest
      */
     'fid': number;
     /**
      * Environment variables for the deployment
-     * @type {{ [key: string]: string; }}
-     * @memberof CreateDeploymentRequest
      */
     'env'?: { [key: string]: string; };
     /**
      * Display name for the deployment
-     * @type {string}
-     * @memberof CreateDeploymentRequest
      */
     'display_name'?: string;
 }

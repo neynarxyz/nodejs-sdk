@@ -14,16 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface FrameV1Input
- */
 export interface FrameV1Input {
     /**
      * Input text for the mini app
-     * @type {string}
-     * @memberof FrameV1Input
      */
     'text'?: string;
 }

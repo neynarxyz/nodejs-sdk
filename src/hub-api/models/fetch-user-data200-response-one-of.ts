@@ -25,7 +25,6 @@ import type { UserDataAdd } from './user-data-add';
 
 /**
  * @type FetchUserData200ResponseOneOf
- * @export
  */
 export type FetchUserData200ResponseOneOf = FetchUserData200ResponseOneOfAllOf & PaginationResponse;
 

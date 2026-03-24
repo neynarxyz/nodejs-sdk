@@ -19,8 +19,6 @@ import type { SimulateNftMintResponseInner } from './simulate-nft-mint-response-
 
 /**
  * Calldata simulations for NFT minting.
- * @export
- * @interface SimulateNftMintResponse
  */
 export interface SimulateNftMintResponse extends Array<SimulateNftMintResponseInner> {
 }

@@ -31,7 +31,6 @@ import type { UserDataAddAllOfData } from './user-data-add-all-of-data';
 
 /**
  * @type UserDataAdd
- * @export
  */
 export type UserDataAdd = MessageCommon & UserDataAddAllOf;
 

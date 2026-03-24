@@ -14,34 +14,21 @@
 
 
 
-/**
- * 
- * @export
- * @interface DeleteDeploymentRequest
- */
 export interface DeleteDeploymentRequest {
     /**
      * Deployment ID (UUID). If provided, deletes this specific deployment.
-     * @type {string}
-     * @memberof DeleteDeploymentRequest
      */
     'deployment_id'?: string;
     /**
      * Farcaster ID of the user
-     * @type {number}
-     * @memberof DeleteDeploymentRequest
      */
     'fid': number;
     /**
      * Kubernetes deployment name. If not provided and deployment_id not provided, all deployments for the FID will be deleted
-     * @type {string}
-     * @memberof DeleteDeploymentRequest
      */
     'name'?: string;
     /**
      * Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID.
-     * @type {string}
-     * @memberof DeleteDeploymentRequest
      */
     'namespace'?: string;
 }

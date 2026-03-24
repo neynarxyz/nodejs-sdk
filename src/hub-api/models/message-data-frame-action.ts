@@ -32,7 +32,6 @@ import type { MessageType } from './message-type';
 /**
  * @type MessageDataFrameAction
  * Represents a user\'s interaction with a Farcaster Frame, which is an interactive element embedded within a cast. Frames allow users to engage with content through clickable buttons, creating interactive experiences within the Farcaster network.
- * @export
  */
 export type MessageDataFrameAction = MessageDataCommon & MessageDataFrameActionAllOf;
 

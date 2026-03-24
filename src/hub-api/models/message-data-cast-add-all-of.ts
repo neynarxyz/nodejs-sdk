@@ -17,16 +17,9 @@
 // @ts-ignore
 import type { CastAddBody } from './cast-add-body';
 
-/**
- * 
- * @export
- * @interface MessageDataCastAddAllOf
- */
 export interface MessageDataCastAddAllOf {
     /**
      * The content and metadata of the new cast, including the text, mentions, embeds, and any parent references for replies.
-     * @type {CastAddBody}
-     * @memberof MessageDataCastAddAllOf
      */
     'castAddBody': CastAddBody;
 }

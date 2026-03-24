@@ -14,17 +14,7 @@
 
 
 
-/**
- * 
- * @export
- * @interface FetchTrendingFungibles200ResponseTrendingInnerFungiblePrice
- */
 export interface FetchTrendingFungibles200ResponseTrendingInnerFungiblePrice {
-    /**
-     * 
-     * @type {string}
-     * @memberof FetchTrendingFungibles200ResponseTrendingInnerFungiblePrice
-     */
     'in_usd': string;
 }
 

@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface DeleteDeployment200Response
- */
 export interface DeleteDeployment200Response {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof DeleteDeployment200Response
-     */
     'success': boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeleteDeployment200Response
-     */
     'deletedCount'?: number;
 }
 

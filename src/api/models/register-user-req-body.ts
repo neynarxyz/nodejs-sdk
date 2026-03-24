@@ -20,53 +20,13 @@ import type { RegisterUserReqBodyMetadata } from './register-user-req-body-metad
 // @ts-ignore
 import type { RegisterUserReqBodySigner } from './register-user-req-body-signer';
 
-/**
- * 
- * @export
- * @interface RegisterUserReqBody
- */
 export interface RegisterUserReqBody {
-    /**
-     * 
-     * @type {RegisterUserReqBodySigner}
-     * @memberof RegisterUserReqBody
-     */
     'signer'?: RegisterUserReqBodySigner;
-    /**
-     * 
-     * @type {string}
-     * @memberof RegisterUserReqBody
-     */
     'signature': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof RegisterUserReqBody
-     */
     'fid': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof RegisterUserReqBody
-     */
     'requested_user_custody_address': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof RegisterUserReqBody
-     */
     'deadline': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof RegisterUserReqBody
-     */
     'fname'?: string;
-    /**
-     * 
-     * @type {RegisterUserReqBodyMetadata}
-     * @memberof RegisterUserReqBody
-     */
     'metadata'?: RegisterUserReqBodyMetadata;
 }
 

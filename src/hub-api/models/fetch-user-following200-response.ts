@@ -25,7 +25,6 @@ import type { PaginationResponse } from './pagination-response';
 
 /**
  * @type FetchUserFollowing200Response
- * @export
  */
 export type FetchUserFollowing200Response = FetchUserFollowing200ResponseAllOf & PaginationResponse;
 

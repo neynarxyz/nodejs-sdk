@@ -14,23 +14,11 @@
 
 
 
-/**
- * 
- * @export
- * @interface ReactionRecast
- */
 export interface ReactionRecast {
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof ReactionRecast
      */
     'fid': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReactionRecast
-     */
     'fname': string;
 }
 

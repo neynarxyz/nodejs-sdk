@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface GetDeploymentFile200Response
- */
 export interface GetDeploymentFile200Response {
     /**
      * File contents
-     * @type {string}
-     * @memberof GetDeploymentFile200Response
      */
     'content': string;
     /**
      * File path relative to gen/
-     * @type {string}
-     * @memberof GetDeploymentFile200Response
      */
     'path': string;
 }

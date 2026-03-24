@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { StorageRentEventBody } from './storage-rent-event-body';
 
-/**
- * 
- * @export
- * @interface OnChainEventStorageRentAllOf
- */
 export interface OnChainEventStorageRentAllOf {
-    /**
-     * 
-     * @type {StorageRentEventBody}
-     * @memberof OnChainEventStorageRentAllOf
-     */
     'storageRentEventBody': StorageRentEventBody;
 }
 

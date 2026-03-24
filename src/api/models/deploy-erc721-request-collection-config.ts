@@ -14,34 +14,18 @@
 
 
 
-/**
- * 
- * @export
- * @interface DeployErc721RequestCollectionConfig
- */
 export interface DeployErc721RequestCollectionConfig {
-    /**
-     * 
-     * @type {string}
-     * @memberof DeployErc721RequestCollectionConfig
-     */
     'contract_uri'?: string;
     /**
      * Max supply (0 = unlimited)
-     * @type {number}
-     * @memberof DeployErc721RequestCollectionConfig
      */
     'max_supply'?: number;
     /**
      * Royalty in basis points (500 = 5%, max 2500 = 25%)
-     * @type {number}
-     * @memberof DeployErc721RequestCollectionConfig
      */
     'royalty_bps'?: number;
     /**
      * Defaults to creator wallet
-     * @type {string}
-     * @memberof DeployErc721RequestCollectionConfig
      */
     'royalty_recipient'?: string;
 }

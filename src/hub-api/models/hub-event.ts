@@ -46,7 +46,6 @@ import type { RevokeMessageBody } from './revoke-message-body';
 
 /**
  * @type HubEvent
- * @export
  */
 export type HubEvent = { type: 'HUB_EVENT_TYPE_MERGE_MESSAGE' } & HubEventMergeMessage | { type: 'HUB_EVENT_TYPE_MERGE_ON_CHAIN_EVENT' } & HubEventMergeOnChainEvent | { type: 'HUB_EVENT_TYPE_MERGE_USERNAME_PROOF' } & HubEventMergeUsernameProof | { type: 'HUB_EVENT_TYPE_PRUNE_MESSAGE' } & HubEventPruneMessage | { type: 'HUB_EVENT_TYPE_REVOKE_MESSAGE' } & HubEventRevokeMessage;
 

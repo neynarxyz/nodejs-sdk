@@ -19,32 +19,13 @@ import type { LocationAddress } from './location-address';
 
 /**
  * Coordinates and place names for a location
- * @export
- * @interface Location
  */
 export interface Location {
-    /**
-     * 
-     * @type {number}
-     * @memberof Location
-     */
     'latitude': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof Location
-     */
     'longitude': number;
-    /**
-     * 
-     * @type {LocationAddress}
-     * @memberof Location
-     */
     'address'?: LocationAddress;
     /**
      * The radius in meters for the location search. Any location within this radius will be returned.
-     * @type {number}
-     * @memberof Location
      */
     'radius'?: number;
 }

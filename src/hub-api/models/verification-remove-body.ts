@@ -16,14 +16,10 @@
 
 /**
  * Contains the data required to remove a previously added blockchain address verification from a user\'s profile. This operation permanently removes the verification until explicitly re-added.
- * @export
- * @interface VerificationRemoveBody
  */
 export interface VerificationRemoveBody {
     /**
      * The Ethereum address (0x-prefixed) for which the verification should be removed. Must match a previously verified address in the user\'s profile.
-     * @type {string}
-     * @memberof VerificationRemoveBody
      */
     'address': string;
 }

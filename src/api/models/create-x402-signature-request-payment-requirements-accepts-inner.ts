@@ -14,77 +14,23 @@
 
 
 
-/**
- * 
- * @export
- * @interface CreateX402SignatureRequestPaymentRequirementsAcceptsInner
- */
 export interface CreateX402SignatureRequestPaymentRequirementsAcceptsInner {
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateX402SignatureRequestPaymentRequirementsAcceptsInner
-     */
     'scheme': CreateX402SignatureRequestPaymentRequirementsAcceptsInnerSchemeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateX402SignatureRequestPaymentRequirementsAcceptsInner
-     */
     'network': CreateX402SignatureRequestPaymentRequirementsAcceptsInnerNetworkEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateX402SignatureRequestPaymentRequirementsAcceptsInner
-     */
     'maxAmountRequired': string;
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof CreateX402SignatureRequestPaymentRequirementsAcceptsInner
      */
     'asset': string;
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof CreateX402SignatureRequestPaymentRequirementsAcceptsInner
      */
     'payTo': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateX402SignatureRequestPaymentRequirementsAcceptsInner
-     */
     'resource': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateX402SignatureRequestPaymentRequirementsAcceptsInner
-     */
     'description': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateX402SignatureRequestPaymentRequirementsAcceptsInner
-     */
     'mimeType'?: string;
-    /**
-     * 
-     * @type {{ [key: string]: any | null; }}
-     * @memberof CreateX402SignatureRequestPaymentRequirementsAcceptsInner
-     */
     'outputSchema'?: { [key: string]: any | null; } | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateX402SignatureRequestPaymentRequirementsAcceptsInner
-     */
     'maxTimeoutSeconds': number;
-    /**
-     * 
-     * @type {{ [key: string]: any | null; }}
-     * @memberof CreateX402SignatureRequestPaymentRequirementsAcceptsInner
-     */
     'extra'?: { [key: string]: any | null; } | null;
 }
 

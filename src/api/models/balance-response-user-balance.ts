@@ -20,29 +20,9 @@ import type { AddressBalance } from './address-balance';
 // @ts-ignore
 import type { UserDehydrated } from './user-dehydrated';
 
-/**
- * 
- * @export
- * @interface BalanceResponseUserBalance
- */
 export interface BalanceResponseUserBalance {
-    /**
-     * 
-     * @type {string}
-     * @memberof BalanceResponseUserBalance
-     */
     'object': BalanceResponseUserBalanceObjectEnum;
-    /**
-     * 
-     * @type {UserDehydrated}
-     * @memberof BalanceResponseUserBalance
-     */
     'user': UserDehydrated;
-    /**
-     * 
-     * @type {Array<AddressBalance>}
-     * @memberof BalanceResponseUserBalance
-     */
     'address_balances': Array<AddressBalance>;
 }
 

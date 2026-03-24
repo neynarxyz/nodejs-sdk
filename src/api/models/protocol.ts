@@ -16,8 +16,6 @@
 
 /**
  * Blockchain protocol for the linked wallet: evm for Ethereum/EVM-compatible chains (Base, Optimism, etc.) and solana for Solana
- * @export
- * @enum {string}
  */
 
 export const Protocol = {

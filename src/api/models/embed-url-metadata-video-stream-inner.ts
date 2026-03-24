@@ -14,29 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface EmbedUrlMetadataVideoStreamInner
- */
 export interface EmbedUrlMetadataVideoStreamInner {
-    /**
-     * 
-     * @type {string}
-     * @memberof EmbedUrlMetadataVideoStreamInner
-     */
     'codec_name'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof EmbedUrlMetadataVideoStreamInner
-     */
     'height_px'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EmbedUrlMetadataVideoStreamInner
-     */
     'width_px'?: number;
 }
 

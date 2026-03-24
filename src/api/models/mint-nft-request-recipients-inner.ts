@@ -23,7 +23,6 @@ import type { MintNftRequestRecipientsInnerOneOf1 } from './mint-nft-request-rec
 /**
  * @type MintNftRequestRecipientsInner
  * NFT mint recipient. Exactly one of \"address\" or \"fid\" must be set.
- * @export
  */
 export type MintNftRequestRecipientsInner = MintNftRequestRecipientsInnerOneOf | MintNftRequestRecipientsInnerOneOf1;
 

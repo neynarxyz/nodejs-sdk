@@ -16,26 +16,15 @@
 
 /**
  * Resolved mint recipient.
- * @export
- * @interface MintNft200ResponseTransactionsInnerOneOfRecipient
  */
 export interface MintNft200ResponseTransactionsInnerOneOfRecipient {
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof MintNft200ResponseTransactionsInnerOneOfRecipient
      */
     'address': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MintNft200ResponseTransactionsInnerOneOfRecipient
-     */
     'quantity': number;
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof MintNft200ResponseTransactionsInnerOneOfRecipient
      */
     'fid'?: number;
 }

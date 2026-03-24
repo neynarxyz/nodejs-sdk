@@ -20,23 +20,8 @@ import type { ConversationConversation } from './conversation-conversation';
 // @ts-ignore
 import type { NextCursor } from './next-cursor';
 
-/**
- * 
- * @export
- * @interface Conversation
- */
 export interface Conversation {
-    /**
-     * 
-     * @type {ConversationConversation}
-     * @memberof Conversation
-     */
     'conversation': ConversationConversation;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof Conversation
-     */
     'next'?: NextCursor;
 }
 

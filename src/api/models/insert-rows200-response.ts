@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface InsertRows200Response
- */
 export interface InsertRows200Response {
     /**
      * Number of rows inserted
-     * @type {number}
-     * @memberof InsertRows200Response
      */
     'insertedCount': number;
     /**
      * Inserted rows with generated values
-     * @type {Array<{ [key: string]: any | null; }>}
-     * @memberof InsertRows200Response
      */
     'rows': Array<{ [key: string]: any | null; }>;
 }

@@ -20,23 +20,8 @@ import type { Cast } from './cast';
 // @ts-ignore
 import type { NextCursor } from './next-cursor';
 
-/**
- * 
- * @export
- * @interface FeedResponse
- */
 export interface FeedResponse {
-    /**
-     * 
-     * @type {Array<Cast>}
-     * @memberof FeedResponse
-     */
     'casts': Array<Cast>;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof FeedResponse
-     */
     'next': NextCursor;
 }
 

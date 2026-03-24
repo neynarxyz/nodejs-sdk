@@ -31,7 +31,6 @@ import type { UserDataBody } from './user-data-body';
 
 /**
  * @type UserDataAddAllOfData
- * @export
  */
 export type UserDataAddAllOfData = CastAddAllOfDataAllOf & MessageDataUserDataAdd;
 

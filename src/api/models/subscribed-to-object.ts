@@ -14,59 +14,14 @@
 
 
 
-/**
- * 
- * @export
- * @interface SubscribedToObject
- */
 export interface SubscribedToObject {
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscribedToObject
-     */
     'object': SubscribedToObjectObjectEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscribedToObject
-     */
     'provider_name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscribedToObject
-     */
     'contract_address'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscribedToObject
-     */
     'protocol_version'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscribedToObject
-     */
     'chain'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscribedToObject
-     */
     'expires_at'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscribedToObject
-     */
     'subscribed_at'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscribedToObject
-     */
     'tier_id'?: string;
 }
 

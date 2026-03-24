@@ -29,126 +29,37 @@ import type { User } from './user';
 // @ts-ignore
 import type { UserDehydrated } from './user-dehydrated';
 
-/**
- * 
- * @export
- * @interface Channel
- */
 export interface Channel {
-    /**
-     * 
-     * @type {string}
-     * @memberof Channel
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Channel
-     */
     'url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Channel
-     */
     'name'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Channel
-     */
     'description'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Channel
-     */
     'object': ChannelObjectEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof Channel
-     */
     'created_at': string;
     /**
      * Number of followers the channel has.
-     * @type {number}
-     * @memberof Channel
      */
     'follower_count'?: number;
-    /**
-     * 
-     * @type {ChannelExternalLink}
-     * @memberof Channel
-     */
     'external_link'?: ChannelExternalLink;
-    /**
-     * 
-     * @type {string}
-     * @memberof Channel
-     */
     'image_url'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Channel
-     */
     'parent_url'?: string;
-    /**
-     * 
-     * @type {User}
-     * @memberof Channel
-     */
     'lead'?: User;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof Channel
-     */
     'moderator_fids'?: Array<number>;
-    /**
-     * 
-     * @type {number}
-     * @memberof Channel
-     */
     'member_count'?: number;
     /**
      * Use `lead` instead.
-     * @type {User}
-     * @memberof Channel
      * @deprecated
      */
     'moderator'?: User;
-    /**
-     * 
-     * @type {string}
-     * @memberof Channel
-     */
     'pinned_cast_hash'?: string;
     /**
-     * 
-     * @type {Array<User>}
-     * @memberof Channel
      * @deprecated
      */
     'hosts'?: Array<User>;
-    /**
-     * 
-     * @type {ChannelUserContext}
-     * @memberof Channel
-     */
     'viewer_context'?: ChannelUserContext;
-    /**
-     * 
-     * @type {Array<UserDehydrated>}
-     * @memberof Channel
-     */
     'description_mentioned_profiles'?: Array<UserDehydrated>;
     /**
      * Positions within the text (inclusive start, exclusive end) where each mention occurs.
-     * @type {Array<TextRange>}
-     * @memberof Channel
      */
     'description_mentioned_profiles_ranges'?: Array<TextRange>;
 }

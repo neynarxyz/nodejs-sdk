@@ -17,29 +17,9 @@
 // @ts-ignore
 import type { User } from './user';
 
-/**
- * 
- * @export
- * @interface BanRecord
- */
 export interface BanRecord {
-    /**
-     * 
-     * @type {string}
-     * @memberof BanRecord
-     */
     'object': BanRecordObjectEnum;
-    /**
-     * 
-     * @type {User}
-     * @memberof BanRecord
-     */
     'banned'?: User;
-    /**
-     * 
-     * @type {string}
-     * @memberof BanRecord
-     */
     'banned_at': string;
 }
 

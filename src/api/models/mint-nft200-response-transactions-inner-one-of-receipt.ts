@@ -16,27 +16,10 @@
 
 /**
  * Transaction receipt (if async is false).
- * @export
- * @interface MintNft200ResponseTransactionsInnerOneOfReceipt
  */
 export interface MintNft200ResponseTransactionsInnerOneOfReceipt {
-    /**
-     * 
-     * @type {string}
-     * @memberof MintNft200ResponseTransactionsInnerOneOfReceipt
-     */
     'status': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MintNft200ResponseTransactionsInnerOneOfReceipt
-     */
     'gas_used': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MintNft200ResponseTransactionsInnerOneOfReceipt
-     */
     'block_number': string;
 }
 

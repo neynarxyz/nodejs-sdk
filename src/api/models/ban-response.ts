@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface BanResponse
- */
 export interface BanResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof BanResponse
-     */
     'success': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof BanResponse
-     */
     'message'?: string | null;
 }
 

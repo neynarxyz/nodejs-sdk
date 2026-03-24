@@ -20,23 +20,8 @@ import type { MuteRecord } from './mute-record';
 // @ts-ignore
 import type { NextCursor } from './next-cursor';
 
-/**
- * 
- * @export
- * @interface MuteListResponse
- */
 export interface MuteListResponse {
-    /**
-     * 
-     * @type {Array<MuteRecord>}
-     * @memberof MuteListResponse
-     */
     'mutes': Array<MuteRecord>;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof MuteListResponse
-     */
     'next': NextCursor;
 }
 

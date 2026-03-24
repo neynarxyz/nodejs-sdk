@@ -17,41 +17,11 @@
 // @ts-ignore
 import type { SubscriptionTier } from './subscription-tier';
 
-/**
- * 
- * @export
- * @interface SubscriptionCheckResponseValue
- */
 export interface SubscriptionCheckResponseValue {
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionCheckResponseValue
-     */
     'object': SubscriptionCheckResponseValueObjectEnum;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SubscriptionCheckResponseValue
-     */
     'status': boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionCheckResponseValue
-     */
     'expires_at': number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionCheckResponseValue
-     */
     'subscribed_at': number | null;
-    /**
-     * 
-     * @type {SubscriptionTier}
-     * @memberof SubscriptionCheckResponseValue
-     */
     'tier': SubscriptionTier | null;
 }
 

@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { Verification } from './verification';
 
-/**
- * 
- * @export
- * @interface FetchVerifications200Response
- */
 export interface FetchVerifications200Response {
-    /**
-     * 
-     * @type {Array<Verification>}
-     * @memberof FetchVerifications200Response
-     */
     'verifications': Array<Verification>;
 }
 

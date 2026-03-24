@@ -23,311 +23,56 @@ import type { ImageObject } from './image-object';
 // @ts-ignore
 import type { VideoObject } from './video-object';
 
-/**
- * 
- * @export
- * @interface HtmlMetadata
- */
 export interface HtmlMetadata {
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'favicon'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'modifiedTime'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogArticleAuthor'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogArticleExpirationTime'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogArticleModifiedTime'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogArticlePublishedTime'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogArticlePublisher'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogArticleSection'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogArticleTag'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogAudio'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogAudioSecureURL'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogAudioType'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogAudioURL'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogAvailability'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogDate'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogDescription'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogDeterminer'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogEpisode'?: string;
-    /**
-     * 
-     * @type {Array<ImageObject>}
-     * @memberof HtmlMetadata
-     */
     'ogImage'?: Array<ImageObject>;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogLocale'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogLocaleAlternate'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogLogo'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogMovie'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogPriceAmount'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogPriceCurrency'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogProductAvailability'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogProductCondition'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogProductPriceAmount'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogProductPriceCurrency'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogProductRetailerItemId'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogSiteName'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogTitle'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogType'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogUrl'?: string;
-    /**
-     * 
-     * @type {Array<VideoObject>}
-     * @memberof HtmlMetadata
-     */
     'ogVideo'?: Array<VideoObject>;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogVideoActor'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogVideoActorId'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogVideoActorRole'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogVideoDirector'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogVideoDuration'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogVideoOther'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogVideoReleaseDate'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogVideoSecureURL'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogVideoSeries'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogVideoTag'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogVideoTvShow'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogVideoWriter'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'ogWebsite'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HtmlMetadata
-     */
     'updatedTime'?: string;
-    /**
-     * 
-     * @type {HtmlMetadataOembed}
-     * @memberof HtmlMetadata
-     */
     'oembed'?: HtmlMetadataOembed;
 }
 

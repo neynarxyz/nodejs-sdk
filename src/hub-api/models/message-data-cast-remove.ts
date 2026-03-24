@@ -29,7 +29,6 @@ import type { MessageType } from './message-type';
 /**
  * @type MessageDataCastRemove
  * Represents a request to remove (delete) a previously created cast. Only the original creator of a cast can remove it.
- * @export
  */
 export type MessageDataCastRemove = MessageDataCastRemoveAllOf & MessageDataCommon;
 

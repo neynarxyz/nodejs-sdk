@@ -16,8 +16,6 @@
 
 /**
  * The type of notification to mark as seen. If not provided, all notifications will be marked as seen.
- * @export
- * @enum {string}
  */
 
 export const NotificationType = {

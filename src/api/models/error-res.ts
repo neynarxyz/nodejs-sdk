@@ -16,33 +16,11 @@
 
 /**
  * Details for the error response
- * @export
- * @interface ErrorRes
  */
 export interface ErrorRes {
-    /**
-     * 
-     * @type {string}
-     * @memberof ErrorRes
-     */
     'code'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ErrorRes
-     */
     'message': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ErrorRes
-     */
     'property'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ErrorRes
-     */
     'status'?: number;
 }
 

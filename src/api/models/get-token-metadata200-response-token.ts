@@ -17,124 +17,78 @@
 // @ts-ignore
 import type { Network } from './network';
 
-/**
- * 
- * @export
- * @interface GetTokenMetadata200ResponseToken
- */
 export interface GetTokenMetadata200ResponseToken {
-    /**
-     * 
-     * @type {Network}
-     * @memberof GetTokenMetadata200ResponseToken
-     */
     'network': Network;
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof GetTokenMetadata200ResponseToken
      */
     'address': string;
     /**
      * Token name
-     * @type {string}
-     * @memberof GetTokenMetadata200ResponseToken
      */
     'name': string;
     /**
      * Token symbol
-     * @type {string}
-     * @memberof GetTokenMetadata200ResponseToken
      */
     'symbol': string;
     /**
      * Token decimals
-     * @type {number}
-     * @memberof GetTokenMetadata200ResponseToken
      */
     'decimals': number;
     /**
      * Total token supply
-     * @type {string}
-     * @memberof GetTokenMetadata200ResponseToken
      */
     'total_supply': string | null;
     /**
      * Token logo URL
-     * @type {string}
-     * @memberof GetTokenMetadata200ResponseToken
      */
     'image_url': string | null;
     /**
      * Token price in USD
-     * @type {string}
-     * @memberof GetTokenMetadata200ResponseToken
      */
     'price_usd': string | null;
     /**
      * Market capitalization in USD
-     * @type {string}
-     * @memberof GetTokenMetadata200ResponseToken
      */
     'market_cap': string | null;
     /**
      * Fully diluted valuation in USD
-     * @type {string}
-     * @memberof GetTokenMetadata200ResponseToken
      */
     'fdv': string | null;
     /**
      * Total liquidity in USD
-     * @type {string}
-     * @memberof GetTokenMetadata200ResponseToken
      */
     'liquidity': string | null;
     /**
      * 6-hour trading volume in USD
-     * @type {string}
-     * @memberof GetTokenMetadata200ResponseToken
      */
     'volume_6h': string | null;
     /**
      * 24-hour trading volume in USD
-     * @type {string}
-     * @memberof GetTokenMetadata200ResponseToken
      */
     'volume_24h': string | null;
     /**
      * 6-hour price change percentage
-     * @type {number}
-     * @memberof GetTokenMetadata200ResponseToken
      */
     'price_change_6h_pct': number | null;
     /**
      * 24-hour price change percentage
-     * @type {number}
-     * @memberof GetTokenMetadata200ResponseToken
      */
     'price_change_24h_pct': number | null;
     /**
      * Number of token holders
-     * @type {number}
-     * @memberof GetTokenMetadata200ResponseToken
      */
     'holder_count': number | null;
     /**
      * Token description
-     * @type {string}
-     * @memberof GetTokenMetadata200ResponseToken
      */
     'description': string | null;
     /**
      * Timestamp when price data was last updated (milliseconds)
-     * @type {number}
-     * @memberof GetTokenMetadata200ResponseToken
      */
     'price_updated_at': number | null;
     /**
      * Source of price data
-     * @type {string}
-     * @memberof GetTokenMetadata200ResponseToken
      */
     'price_source': GetTokenMetadata200ResponseTokenPriceSourceEnum | null;
 }

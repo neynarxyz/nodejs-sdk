@@ -14,16 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface NonceResponse
- */
 export interface NonceResponse {
     /**
      * The nonce value to sign the message
-     * @type {string}
-     * @memberof NonceResponse
      */
     'nonce': string;
 }

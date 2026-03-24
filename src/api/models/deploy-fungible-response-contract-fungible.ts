@@ -14,46 +14,26 @@
 
 
 
-/**
- * 
- * @export
- * @interface DeployFungibleResponseContractFungible
- */
 export interface DeployFungibleResponseContractFungible {
-    /**
-     * 
-     * @type {string}
-     * @memberof DeployFungibleResponseContractFungible
-     */
     'object'?: string;
     /**
      * Name of the token
-     * @type {string}
-     * @memberof DeployFungibleResponseContractFungible
      */
     'name'?: string;
     /**
      * Symbol of the token
-     * @type {string}
-     * @memberof DeployFungibleResponseContractFungible
      */
     'symbol'?: string;
     /**
      * URI of the token media
-     * @type {string}
-     * @memberof DeployFungibleResponseContractFungible
      */
     'media'?: string;
     /**
      * Contract address of the token
-     * @type {string}
-     * @memberof DeployFungibleResponseContractFungible
      */
     'address'?: string;
     /**
      * Decimal precision of the token
-     * @type {number}
-     * @memberof DeployFungibleResponseContractFungible
      */
     'decimals'?: number;
 }

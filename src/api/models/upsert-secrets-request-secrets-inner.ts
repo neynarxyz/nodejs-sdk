@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface UpsertSecretsRequestSecretsInner
- */
 export interface UpsertSecretsRequestSecretsInner {
     /**
      * Environment variable name
-     * @type {string}
-     * @memberof UpsertSecretsRequestSecretsInner
      */
     'key': string;
     /**
      * Environment variable value
-     * @type {string}
-     * @memberof UpsertSecretsRequestSecretsInner
      */
     'value': string;
 }

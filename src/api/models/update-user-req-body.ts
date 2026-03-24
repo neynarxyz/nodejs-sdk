@@ -20,77 +20,29 @@ import type { UpdateUserReqBodyLocation } from './update-user-req-body-location'
 // @ts-ignore
 import type { UpdateUserReqBodyVerifiedAccounts } from './update-user-req-body-verified-accounts';
 
-/**
- * 
- * @export
- * @interface UpdateUserReqBody
- */
 export interface UpdateUserReqBody {
     /**
      * UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
-     * @type {string}
-     * @memberof UpdateUserReqBody
      */
     'signer_uuid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserReqBody
-     */
     'bio'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserReqBody
-     */
     'pfp_url'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserReqBody
-     */
     'url'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserReqBody
-     */
     'username'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserReqBody
-     */
     'display_name'?: string;
-    /**
-     * 
-     * @type {UpdateUserReqBodyLocation}
-     * @memberof UpdateUserReqBody
-     */
     'location'?: UpdateUserReqBodyLocation;
     /**
      * Requires pro subscription.
-     * @type {string}
-     * @memberof UpdateUserReqBody
      */
     'banner'?: string;
     /**
      * Must be one of the verified addresses.
-     * @type {string}
-     * @memberof UpdateUserReqBody
      */
     'primary_eth_address'?: string;
     /**
      * Must be one of the verified addresses.
-     * @type {string}
-     * @memberof UpdateUserReqBody
      */
     'primary_sol_address'?: string;
-    /**
-     * 
-     * @type {UpdateUserReqBodyVerifiedAccounts}
-     * @memberof UpdateUserReqBody
-     */
     'verified_accounts'?: UpdateUserReqBodyVerifiedAccounts;
 }
 

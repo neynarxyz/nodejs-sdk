@@ -17,40 +17,25 @@
 // @ts-ignore
 import type { UserDehydrated } from './user-dehydrated';
 
-/**
- * 
- * @export
- * @interface TrendingTopic
- */
 export interface TrendingTopic {
     /**
      * The display name of the topic
-     * @type {string}
-     * @memberof TrendingTopic
      */
     'name': string;
     /**
      * A URL-friendly unique identifier for the topic
-     * @type {string}
-     * @memberof TrendingTopic
      */
     'slug': string;
     /**
      * The top-level category the topic belongs to
-     * @type {string}
-     * @memberof TrendingTopic
      */
     'top_level_topic': TrendingTopicTopLevelTopicEnum;
     /**
      * Short summary of the topic if available
-     * @type {string}
-     * @memberof TrendingTopic
      */
     'summary': string | null;
     /**
      * Up to five recent Farcaster users who posted about the topic
-     * @type {Array<UserDehydrated>}
-     * @memberof TrendingTopic
      */
     'authors': Array<UserDehydrated>;
 }

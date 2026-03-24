@@ -14,47 +14,18 @@
 
 
 
-/**
- * 
- * @export
- * @interface DeployErc721201ResponseCollection
- */
 export interface DeployErc721201ResponseCollection {
-    /**
-     * 
-     * @type {string}
-     * @memberof DeployErc721201ResponseCollection
-     */
     'type': DeployErc721201ResponseCollectionTypeEnum;
     /**
      * Network to mint on.
-     * @type {string}
-     * @memberof DeployErc721201ResponseCollection
      */
     'network': DeployErc721201ResponseCollectionNetworkEnum;
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof DeployErc721201ResponseCollection
      */
     'address': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeployErc721201ResponseCollection
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeployErc721201ResponseCollection
-     */
     'symbol': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeployErc721201ResponseCollection
-     */
     'transaction_hash': string;
 }
 

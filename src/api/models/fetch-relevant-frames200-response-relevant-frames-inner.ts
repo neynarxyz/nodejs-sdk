@@ -23,28 +23,14 @@ import type { User } from './user';
 // @ts-ignore
 import type { UserDehydrated } from './user-dehydrated';
 
-/**
- * 
- * @export
- * @interface FetchRelevantFrames200ResponseRelevantFramesInner
- */
 export interface FetchRelevantFrames200ResponseRelevantFramesInner {
-    /**
-     * 
-     * @type {FetchRelevantFrames200ResponseRelevantFramesInnerFrame}
-     * @memberof FetchRelevantFrames200ResponseRelevantFramesInner
-     */
     'frame': FetchRelevantFrames200ResponseRelevantFramesInnerFrame;
     /**
      * Array of the most relevant users
-     * @type {Array<User>}
-     * @memberof FetchRelevantFrames200ResponseRelevantFramesInner
      */
     'top_relevant_users': Array<User>;
     /**
      * Array of remaining relevant users in dehydrated form
-     * @type {Array<UserDehydrated>}
-     * @memberof FetchRelevantFrames200ResponseRelevantFramesInner
      */
     'remaining_relevant_users': Array<UserDehydrated>;
 }

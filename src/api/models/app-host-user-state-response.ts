@@ -17,16 +17,9 @@
 // @ts-ignore
 import type { AppHostUserStateResponseNotificationsEnabledInner } from './app-host-user-state-response-notifications-enabled-inner';
 
-/**
- * 
- * @export
- * @interface AppHostUserStateResponse
- */
 export interface AppHostUserStateResponse {
     /**
      * List of domains for which notifications are enabled for this user
-     * @type {Array<AppHostUserStateResponseNotificationsEnabledInner>}
-     * @memberof AppHostUserStateResponse
      */
     'notifications_enabled': Array<AppHostUserStateResponseNotificationsEnabledInner>;
 }

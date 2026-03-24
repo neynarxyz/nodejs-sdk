@@ -32,7 +32,6 @@ import type { VerificationAddEthAddressBody } from './verification-add-eth-addre
 /**
  * @type MessageDataVerificationAdd
  * Represents a message that adds verification of ownership for an Ethereum or Solana address to a user\'s profile. This verification proves that the user controls the specified blockchain address.
- * @export
  */
 export type MessageDataVerificationAdd = MessageDataCommon & MessageDataVerificationAddAllOf;
 

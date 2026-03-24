@@ -17,23 +17,8 @@
 // @ts-ignore
 import type { Message } from './message';
 
-/**
- * 
- * @export
- * @interface MergeMessageBody
- */
 export interface MergeMessageBody {
-    /**
-     * 
-     * @type {Message}
-     * @memberof MergeMessageBody
-     */
     'message': Message;
-    /**
-     * 
-     * @type {Array<Message>}
-     * @memberof MergeMessageBody
-     */
     'deletedMessages': Array<Message>;
 }
 

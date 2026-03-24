@@ -17,16 +17,9 @@
 // @ts-ignore
 import type { ReactionBody } from './reaction-body';
 
-/**
- * 
- * @export
- * @interface MessageDataReactionAllOf
- */
 export interface MessageDataReactionAllOf {
     /**
      * Contains the type of reaction (like/recast) and the target content being reacted to. The target can be specified either by castId or URL.
-     * @type {ReactionBody}
-     * @memberof MessageDataReactionAllOf
      */
     'reactionBody': ReactionBody;
 }

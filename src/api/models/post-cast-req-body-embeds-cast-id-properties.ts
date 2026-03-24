@@ -14,22 +14,10 @@
 
 
 
-/**
- * 
- * @export
- * @interface PostCastReqBodyEmbedsCastIdProperties
- */
 export interface PostCastReqBodyEmbedsCastIdProperties {
-    /**
-     * 
-     * @type {string}
-     * @memberof PostCastReqBodyEmbedsCastIdProperties
-     */
     'hash': string;
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof PostCastReqBodyEmbedsCastIdProperties
      */
     'fid': number;
 }

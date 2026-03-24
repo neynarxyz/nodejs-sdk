@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { ReactionAllOfData } from './reaction-all-of-data';
 
-/**
- * 
- * @export
- * @interface ReactionAllOf
- */
 export interface ReactionAllOf {
-    /**
-     * 
-     * @type {ReactionAllOfData}
-     * @memberof ReactionAllOf
-     */
     'data': ReactionAllOfData;
 }
 

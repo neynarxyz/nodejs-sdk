@@ -17,23 +17,8 @@
 // @ts-ignore
 import type { SubscriptionTierPrice } from './subscription-tier-price';
 
-/**
- * 
- * @export
- * @interface SubscriptionTier
- */
 export interface SubscriptionTier {
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionTier
-     */
     'id'?: number;
-    /**
-     * 
-     * @type {SubscriptionTierPrice}
-     * @memberof SubscriptionTier
-     */
     'price'?: SubscriptionTierPrice;
 }
 

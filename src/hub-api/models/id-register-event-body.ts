@@ -17,35 +17,10 @@
 // @ts-ignore
 import type { IdRegisterEventType } from './id-register-event-type';
 
-/**
- * 
- * @export
- * @interface IdRegisterEventBody
- */
 export interface IdRegisterEventBody {
-    /**
-     * 
-     * @type {string}
-     * @memberof IdRegisterEventBody
-     */
     'to': string;
-    /**
-     * 
-     * @type {IdRegisterEventType}
-     * @memberof IdRegisterEventBody
-     */
     'eventType': IdRegisterEventType;
-    /**
-     * 
-     * @type {string}
-     * @memberof IdRegisterEventBody
-     */
     'from': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IdRegisterEventBody
-     */
     'recoveryAddress': string;
 }
 

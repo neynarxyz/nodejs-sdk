@@ -53,148 +53,37 @@ import type { User } from './user';
 // @ts-ignore
 import type { UserDehydrated } from './user-dehydrated';
 
-/**
- * 
- * @export
- * @interface CastAndConversations
- */
 export interface CastAndConversations {
-    /**
-     * 
-     * @type {string}
-     * @memberof CastAndConversations
-     */
     'object': CastAndConversationsObjectEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastAndConversations
-     */
     'hash': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastAndConversations
-     */
     'parent_hash': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastAndConversations
-     */
     'parent_url': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastAndConversations
-     */
     'root_parent_url': string | null;
-    /**
-     * 
-     * @type {CastEmbeddedParentAuthor}
-     * @memberof CastAndConversations
-     */
     'parent_author': CastEmbeddedParentAuthor;
-    /**
-     * 
-     * @type {User}
-     * @memberof CastAndConversations
-     */
     'author': User;
-    /**
-     * 
-     * @type {UserDehydrated}
-     * @memberof CastAndConversations
-     */
     'app'?: UserDehydrated | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastAndConversations
-     */
     'text': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastAndConversations
-     */
     'timestamp': string;
-    /**
-     * 
-     * @type {Array<Embed>}
-     * @memberof CastAndConversations
-     */
     'embeds': Array<Embed>;
-    /**
-     * 
-     * @type {CastNotificationType}
-     * @memberof CastAndConversations
-     */
     'type'?: CastNotificationType;
-    /**
-     * 
-     * @type {CastReactions}
-     * @memberof CastAndConversations
-     */
     'reactions': CastReactions;
-    /**
-     * 
-     * @type {CastReplies}
-     * @memberof CastAndConversations
-     */
     'replies': CastReplies;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastAndConversations
-     */
     'thread_hash': string | null;
-    /**
-     * 
-     * @type {Array<User>}
-     * @memberof CastAndConversations
-     */
     'mentioned_profiles': Array<User>;
     /**
      * Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.
-     * @type {Array<TextRange>}
-     * @memberof CastAndConversations
      */
     'mentioned_profiles_ranges': Array<TextRange>;
-    /**
-     * 
-     * @type {Array<ChannelDehydrated>}
-     * @memberof CastAndConversations
-     */
     'mentioned_channels': Array<ChannelDehydrated>;
     /**
      * Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_channels list.
-     * @type {Array<TextRange>}
-     * @memberof CastAndConversations
      */
     'mentioned_channels_ranges': Array<TextRange>;
-    /**
-     * 
-     * @type {ChannelOrChannelDehydrated}
-     * @memberof CastAndConversations
-     */
     'channel': ChannelOrChannelDehydrated | null;
-    /**
-     * 
-     * @type {CastViewerContext}
-     * @memberof CastAndConversations
-     */
     'viewer_context'?: CastViewerContext;
-    /**
-     * 
-     * @type {ChannelUserContext}
-     * @memberof CastAndConversations
-     */
     'author_channel_context'?: ChannelUserContext;
     /**
      * note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth.
-     * @type {Array<CastAndConversationsRef>}
-     * @memberof CastAndConversations
      */
     'direct_replies': Array<CastAndConversationsRef>;
 }

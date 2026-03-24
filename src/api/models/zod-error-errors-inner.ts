@@ -14,41 +14,11 @@
 
 
 
-/**
- * 
- * @export
- * @interface ZodErrorErrorsInner
- */
 export interface ZodErrorErrorsInner {
-    /**
-     * 
-     * @type {string}
-     * @memberof ZodErrorErrorsInner
-     */
     'code': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ZodErrorErrorsInner
-     */
     'expected': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ZodErrorErrorsInner
-     */
     'received': string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof ZodErrorErrorsInner
-     */
     'path': Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof ZodErrorErrorsInner
-     */
     'message': string;
 }
 

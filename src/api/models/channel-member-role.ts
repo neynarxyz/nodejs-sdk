@@ -16,8 +16,6 @@
 
 /**
  * The role of a channel member
- * @export
- * @enum {string}
  */
 
 export const ChannelMemberRole = {

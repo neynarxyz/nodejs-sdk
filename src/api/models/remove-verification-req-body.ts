@@ -14,35 +14,16 @@
 
 
 
-/**
- * 
- * @export
- * @interface RemoveVerificationReqBody
- */
 export interface RemoveVerificationReqBody {
     /**
      * UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
-     * @type {string}
-     * @memberof RemoveVerificationReqBody
      */
     'signer_uuid': string;
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof RemoveVerificationReqBody
      */
     'address': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RemoveVerificationReqBody
-     */
     'block_hash': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RemoveVerificationReqBody
-     */
     'eth_signature': string;
 }
 

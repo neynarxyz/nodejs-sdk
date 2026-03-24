@@ -20,47 +20,18 @@ import type { DeployErc721RequestCollectionConfig } from './deploy-erc721-reques
 // @ts-ignore
 import type { DeployErc721RequestMintConfig } from './deploy-erc721-request-mint-config';
 
-/**
- * 
- * @export
- * @interface DeployErc721Request
- */
 export interface DeployErc721Request {
     /**
      * Network to mint on.
-     * @type {string}
-     * @memberof DeployErc721Request
      */
     'network': DeployErc721RequestNetworkEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeployErc721Request
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeployErc721Request
-     */
     'symbol': string;
     /**
      * Base URI for token metadata
-     * @type {string}
-     * @memberof DeployErc721Request
      */
     'base_uri': string;
-    /**
-     * 
-     * @type {DeployErc721RequestMintConfig}
-     * @memberof DeployErc721Request
-     */
     'mint_config'?: DeployErc721RequestMintConfig;
-    /**
-     * 
-     * @type {DeployErc721RequestCollectionConfig}
-     * @memberof DeployErc721Request
-     */
     'collection_config'?: DeployErc721RequestCollectionConfig;
 }
 

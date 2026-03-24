@@ -50,143 +50,34 @@ import type { User } from './user';
 // @ts-ignore
 import type { UserDehydrated } from './user-dehydrated';
 
-/**
- * 
- * @export
- * @interface Cast
- */
 export interface Cast {
-    /**
-     * 
-     * @type {string}
-     * @memberof Cast
-     */
     'object': CastObjectEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof Cast
-     */
     'hash': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Cast
-     */
     'parent_hash': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Cast
-     */
     'parent_url': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Cast
-     */
     'root_parent_url': string | null;
-    /**
-     * 
-     * @type {CastEmbeddedParentAuthor}
-     * @memberof Cast
-     */
     'parent_author': CastEmbeddedParentAuthor;
-    /**
-     * 
-     * @type {User}
-     * @memberof Cast
-     */
     'author': User;
-    /**
-     * 
-     * @type {UserDehydrated}
-     * @memberof Cast
-     */
     'app'?: UserDehydrated | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Cast
-     */
     'text': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Cast
-     */
     'timestamp': string;
-    /**
-     * 
-     * @type {Array<Embed>}
-     * @memberof Cast
-     */
     'embeds': Array<Embed>;
-    /**
-     * 
-     * @type {CastNotificationType}
-     * @memberof Cast
-     */
     'type'?: CastNotificationType;
-    /**
-     * 
-     * @type {CastReactions}
-     * @memberof Cast
-     */
     'reactions': CastReactions;
-    /**
-     * 
-     * @type {CastReplies}
-     * @memberof Cast
-     */
     'replies': CastReplies;
-    /**
-     * 
-     * @type {string}
-     * @memberof Cast
-     */
     'thread_hash': string | null;
-    /**
-     * 
-     * @type {Array<User>}
-     * @memberof Cast
-     */
     'mentioned_profiles': Array<User>;
     /**
      * Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.
-     * @type {Array<TextRange>}
-     * @memberof Cast
      */
     'mentioned_profiles_ranges': Array<TextRange>;
-    /**
-     * 
-     * @type {Array<ChannelDehydrated>}
-     * @memberof Cast
-     */
     'mentioned_channels': Array<ChannelDehydrated>;
     /**
      * Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_channels list.
-     * @type {Array<TextRange>}
-     * @memberof Cast
      */
     'mentioned_channels_ranges': Array<TextRange>;
-    /**
-     * 
-     * @type {ChannelOrChannelDehydrated}
-     * @memberof Cast
-     */
     'channel': ChannelOrChannelDehydrated | null;
-    /**
-     * 
-     * @type {CastViewerContext}
-     * @memberof Cast
-     */
     'viewer_context'?: CastViewerContext;
-    /**
-     * 
-     * @type {ChannelUserContext}
-     * @memberof Cast
-     */
     'author_channel_context'?: ChannelUserContext;
 }
 

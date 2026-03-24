@@ -29,7 +29,6 @@ import type { SignerUuidBody } from './signer-uuid-body';
 /**
  * @type AppHostPostEventReqBody
  * Request body for app host events. Can either provide a signed_message or a signer_uuid with event details.
- * @export
  */
 export type AppHostPostEventReqBody = SignedMessageBody | SignerUuidBody;
 

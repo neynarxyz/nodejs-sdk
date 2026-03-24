@@ -20,29 +20,9 @@ import type { Fungible } from './fungible';
 // @ts-ignore
 import type { FungibleBalanceBalance } from './fungible-balance-balance';
 
-/**
- * 
- * @export
- * @interface FungibleBalance
- */
 export interface FungibleBalance {
-    /**
-     * 
-     * @type {string}
-     * @memberof FungibleBalance
-     */
     'object': FungibleBalanceObjectEnum;
-    /**
-     * 
-     * @type {Fungible}
-     * @memberof FungibleBalance
-     */
     'token': Fungible;
-    /**
-     * 
-     * @type {FungibleBalanceBalance}
-     * @memberof FungibleBalance
-     */
     'balance': FungibleBalanceBalance;
 }
 

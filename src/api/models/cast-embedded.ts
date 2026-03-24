@@ -26,77 +26,17 @@ import type { EmbedDeep } from './embed-deep';
 // @ts-ignore
 import type { UserDehydrated } from './user-dehydrated';
 
-/**
- * 
- * @export
- * @interface CastEmbedded
- */
 export interface CastEmbedded {
-    /**
-     * 
-     * @type {string}
-     * @memberof CastEmbedded
-     */
     'hash': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastEmbedded
-     */
     'parent_hash': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastEmbedded
-     */
     'parent_url': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastEmbedded
-     */
     'root_parent_url': string | null;
-    /**
-     * 
-     * @type {CastEmbeddedParentAuthor}
-     * @memberof CastEmbedded
-     */
     'parent_author': CastEmbeddedParentAuthor;
-    /**
-     * 
-     * @type {UserDehydrated}
-     * @memberof CastEmbedded
-     */
     'author': UserDehydrated;
-    /**
-     * 
-     * @type {UserDehydrated}
-     * @memberof CastEmbedded
-     */
     'app'?: UserDehydrated | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastEmbedded
-     */
     'text': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastEmbedded
-     */
     'timestamp': string;
-    /**
-     * 
-     * @type {Array<EmbedDeep>}
-     * @memberof CastEmbedded
-     */
     'embeds': Array<EmbedDeep>;
-    /**
-     * 
-     * @type {ChannelDehydrated}
-     * @memberof CastEmbedded
-     */
     'channel': ChannelDehydrated | null;
 }
 

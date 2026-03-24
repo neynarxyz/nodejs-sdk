@@ -14,34 +14,21 @@
 
 
 
-/**
- * 
- * @export
- * @interface BuildRequest
- */
 export interface BuildRequest {
     /**
      * Deployment ID
-     * @type {string}
-     * @memberof BuildRequest
      */
     'deployment_id'?: string;
     /**
      * Kubernetes deployment name
-     * @type {string}
-     * @memberof BuildRequest
      */
     'name'?: string;
     /**
      * Kubernetes namespace
-     * @type {string}
-     * @memberof BuildRequest
      */
     'namespace'?: string;
     /**
      * Build tool to use. \"vercel\" runs vercel build for production deployment. \"npm\" runs npm run build for dev server recovery.
-     * @type {string}
-     * @memberof BuildRequest
      */
     'build_type'?: BuildRequestBuildTypeEnum;
 }

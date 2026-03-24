@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { OnChainEvent } from './on-chain-event';
 
-/**
- * 
- * @export
- * @interface FetchUserOnChainEvents200Response
- */
 export interface FetchUserOnChainEvents200Response {
-    /**
-     * 
-     * @type {Array<OnChainEvent>}
-     * @memberof FetchUserOnChainEvents200Response
-     */
     'events': Array<OnChainEvent>;
 }
 

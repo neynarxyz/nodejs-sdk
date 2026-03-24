@@ -25,63 +25,28 @@ import type { FrameV1State } from './frame-v1-state';
 
 /**
  * Mini app v1 object
- * @export
- * @interface FrameV1
  */
 export interface FrameV1 {
     /**
      * Version of the mini app, \'next\' for v2, \'vNext\' for v1
-     * @type {string}
-     * @memberof FrameV1
      */
     'version': string;
     /**
      * URL of the image
-     * @type {string}
-     * @memberof FrameV1
      */
     'image': string;
     /**
      * Launch URL of the mini app
-     * @type {string}
-     * @memberof FrameV1
      */
     'frames_url': string;
-    /**
-     * 
-     * @type {Array<FrameActionButton>}
-     * @memberof FrameV1
-     */
     'buttons'?: Array<FrameActionButton>;
     /**
      * Post URL to take an action on this mini app
-     * @type {string}
-     * @memberof FrameV1
      */
     'post_url'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FrameV1
-     */
     'title'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FrameV1
-     */
     'image_aspect_ratio'?: string;
-    /**
-     * 
-     * @type {FrameV1Input}
-     * @memberof FrameV1
-     */
     'input'?: FrameV1Input;
-    /**
-     * 
-     * @type {FrameV1State}
-     * @memberof FrameV1
-     */
     'state'?: FrameV1State;
 }
 

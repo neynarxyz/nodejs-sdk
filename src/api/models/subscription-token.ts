@@ -14,35 +14,10 @@
 
 
 
-/**
- * 
- * @export
- * @interface SubscriptionToken
- */
 export interface SubscriptionToken {
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionToken
-     */
     'symbol': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionToken
-     */
     'address': string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionToken
-     */
     'decimals': number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SubscriptionToken
-     */
     'erc20': boolean;
 }
 

@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface TokenBalanceBalance
- */
 export interface TokenBalanceBalance {
     /**
      * The balance in the token
-     * @type {string}
-     * @memberof TokenBalanceBalance
      */
     'in_token': string;
     /**
      * The balance in USDC
-     * @type {string}
-     * @memberof TokenBalanceBalance
      */
     'in_usdc': string;
 }

@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface GetDevStatus200ResponseOneOf
- */
 export interface GetDevStatus200ResponseOneOf {
-    /**
-     * 
-     * @type {number}
-     * @memberof GetDevStatus200ResponseOneOf
-     */
     'schema_version': GetDevStatus200ResponseOneOfSchemaVersionEnum;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof GetDevStatus200ResponseOneOf
-     */
     'ready_to_publish': boolean;
 }
 

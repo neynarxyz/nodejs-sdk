@@ -14,16 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface UpdateRows200Response
- */
 export interface UpdateRows200Response {
     /**
      * Number of rows updated
-     * @type {number}
-     * @memberof UpdateRows200Response
      */
     'updatedCount': number;
 }

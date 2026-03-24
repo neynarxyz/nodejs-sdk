@@ -17,11 +17,6 @@
 // @ts-ignore
 import type { User } from './user';
 
-/**
- * 
- * @export
- * @interface BulkUsersByAddressResponse
- */
 export interface BulkUsersByAddressResponse {
     [key: string]: Array<User>;
 

@@ -23,40 +23,25 @@ import type { GetTableSchema200ResponseForeignKeysInner } from './get-table-sche
 // @ts-ignore
 import type { GetTableSchema200ResponseIndexesInner } from './get-table-schema200-response-indexes-inner';
 
-/**
- * 
- * @export
- * @interface GetTableSchema200Response
- */
 export interface GetTableSchema200Response {
     /**
      * Table name
-     * @type {string}
-     * @memberof GetTableSchema200Response
      */
     'tableName': string;
     /**
      * Table columns
-     * @type {Array<GetTableSchema200ResponseColumnsInner>}
-     * @memberof GetTableSchema200Response
      */
     'columns': Array<GetTableSchema200ResponseColumnsInner>;
     /**
      * Table indexes
-     * @type {Array<GetTableSchema200ResponseIndexesInner>}
-     * @memberof GetTableSchema200Response
      */
     'indexes': Array<GetTableSchema200ResponseIndexesInner>;
     /**
      * Foreign key relationships
-     * @type {Array<GetTableSchema200ResponseForeignKeysInner>}
-     * @memberof GetTableSchema200Response
      */
     'foreignKeys': Array<GetTableSchema200ResponseForeignKeysInner>;
     /**
      * Primary key column names
-     * @type {Array<string>}
-     * @memberof GetTableSchema200Response
      */
     'primaryKeyColumns': Array<string>;
 }

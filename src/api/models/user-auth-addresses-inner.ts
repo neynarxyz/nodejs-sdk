@@ -17,23 +17,11 @@
 // @ts-ignore
 import type { UserDehydrated } from './user-dehydrated';
 
-/**
- * 
- * @export
- * @interface UserAuthAddressesInner
- */
 export interface UserAuthAddressesInner {
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof UserAuthAddressesInner
      */
     'address': string;
-    /**
-     * 
-     * @type {UserDehydrated}
-     * @memberof UserAuthAddressesInner
-     */
     'app': UserDehydrated;
 }
 

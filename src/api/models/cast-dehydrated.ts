@@ -17,35 +17,10 @@
 // @ts-ignore
 import type { UserDehydrated } from './user-dehydrated';
 
-/**
- * 
- * @export
- * @interface CastDehydrated
- */
 export interface CastDehydrated {
-    /**
-     * 
-     * @type {string}
-     * @memberof CastDehydrated
-     */
     'object': CastDehydratedObjectEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof CastDehydrated
-     */
     'hash': string;
-    /**
-     * 
-     * @type {UserDehydrated}
-     * @memberof CastDehydrated
-     */
     'author'?: UserDehydrated;
-    /**
-     * 
-     * @type {UserDehydrated}
-     * @memberof CastDehydrated
-     */
     'app'?: UserDehydrated | null;
 }
 

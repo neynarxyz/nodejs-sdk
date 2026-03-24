@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { Channel } from './channel';
 
-/**
- * 
- * @export
- * @interface ChannelResponseBulk
- */
 export interface ChannelResponseBulk {
-    /**
-     * 
-     * @type {Array<Channel>}
-     * @memberof ChannelResponseBulk
-     */
     'channels': Array<Channel>;
 }
 

@@ -16,20 +16,14 @@
 
 /**
  * Detailed breakdown of errors encountered during notification delivery.
- * @export
- * @interface NotificationCampaignStatsErrorBreakdown
  */
 export interface NotificationCampaignStatsErrorBreakdown {
     /**
      * A record mapping delivery error types to their occurrence counts.
-     * @type {{ [key: string]: number; }}
-     * @memberof NotificationCampaignStatsErrorBreakdown
      */
     'delivery_errors'?: { [key: string]: number; };
     /**
      * A record mapping HTTP status codes to their occurrence counts.
-     * @type {{ [key: string]: number; }}
-     * @memberof NotificationCampaignStatsErrorBreakdown
      */
     'http_errors'?: { [key: string]: number; };
 }

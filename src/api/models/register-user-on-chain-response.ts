@@ -17,29 +17,9 @@
 // @ts-ignore
 import type { User } from './user';
 
-/**
- * 
- * @export
- * @interface RegisterUserOnChainResponse
- */
 export interface RegisterUserOnChainResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof RegisterUserOnChainResponse
-     */
     'message'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RegisterUserOnChainResponse
-     */
     'transaction_hash'?: string;
-    /**
-     * 
-     * @type {User}
-     * @memberof RegisterUserOnChainResponse
-     */
     'user'?: User;
 }
 

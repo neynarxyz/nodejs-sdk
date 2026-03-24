@@ -25,7 +25,6 @@ import type { OnChainEventIdRegisterAllOf } from './on-chain-event-id-register-a
 
 /**
  * @type OnChainEventIdRegister
- * @export
  */
 export type OnChainEventIdRegister = OnChainEventCommon & OnChainEventIdRegisterAllOf;
 

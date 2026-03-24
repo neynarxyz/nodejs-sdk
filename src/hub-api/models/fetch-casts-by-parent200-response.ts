@@ -25,7 +25,6 @@ import type { PaginationResponse } from './pagination-response';
 
 /**
  * @type FetchCastsByParent200Response
- * @export
  */
 export type FetchCastsByParent200Response = FetchCastsByParent200ResponseAllOf & PaginationResponse;
 

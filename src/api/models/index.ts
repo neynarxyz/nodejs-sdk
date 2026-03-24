@@ -312,7 +312,6 @@ export * from './text-range';
 export * from './token-balance';
 export * from './token-balance-balance';
 export * from './token-balance-token';
-export * from './transaction-frame';
 export * from './transaction-frame-action';
 export * from './transaction-frame-config';
 export * from './transaction-frame-destination';

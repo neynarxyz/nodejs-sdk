@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { UserNameProof } from './user-name-proof';
 
-/**
- * 
- * @export
- * @interface MessageDataUsernameProofAllOf
- */
 export interface MessageDataUsernameProofAllOf {
-    /**
-     * 
-     * @type {UserNameProof}
-     * @memberof MessageDataUsernameProofAllOf
-     */
     'usernameProofBody': UserNameProof;
 }
 

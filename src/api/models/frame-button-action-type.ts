@@ -16,8 +16,6 @@
 
 /**
  * The action type of a mini app button. Action types \"mint\" & \"link\" are to be handled on the client side only and so they will produce a no/op for POST /farcaster/frame/action.
- * @export
- * @enum {string}
  */
 
 export const FrameButtonActionType = {

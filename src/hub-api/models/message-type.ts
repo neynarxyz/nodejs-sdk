@@ -16,22 +16,20 @@
 
 /**
  * Type of the MessageBody. - MESSAGE_TYPE_CAST_ADD: Add a new Cast - MESSAGE_TYPE_CAST_REMOVE: Remove an existing Cast - MESSAGE_TYPE_REACTION_ADD: Add a Reaction to a Cast - MESSAGE_TYPE_REACTION_REMOVE: Remove a Reaction from a Cast - MESSAGE_TYPE_LINK_ADD: Add a new Link - MESSAGE_TYPE_LINK_REMOVE: Remove an existing Link - MESSAGE_TYPE_VERIFICATION_ADD_ETH_ADDRESS: Add a Verification of an Ethereum Address - MESSAGE_TYPE_VERIFICATION_REMOVE: Remove a Verification - MESSAGE_TYPE_USER_DATA_ADD: Add metadata about a user - MESSAGE_TYPE_USERNAME_PROOF: Add or replace a username proof - MESSAGE_TYPE_FRAME_ACTION: A Farcaster Frame action
- * @export
- * @enum {string}
  */
 
 export const MessageType = {
-    CastAdd: 'MESSAGE_TYPE_CAST_ADD',
-    CastRemove: 'MESSAGE_TYPE_CAST_REMOVE',
-    ReactionAdd: 'MESSAGE_TYPE_REACTION_ADD',
-    ReactionRemove: 'MESSAGE_TYPE_REACTION_REMOVE',
-    LinkAdd: 'MESSAGE_TYPE_LINK_ADD',
-    LinkRemove: 'MESSAGE_TYPE_LINK_REMOVE',
-    VerificationAddEthAddress: 'MESSAGE_TYPE_VERIFICATION_ADD_ETH_ADDRESS',
-    VerificationRemove: 'MESSAGE_TYPE_VERIFICATION_REMOVE',
-    UserDataAdd: 'MESSAGE_TYPE_USER_DATA_ADD',
-    UsernameProof: 'MESSAGE_TYPE_USERNAME_PROOF',
-    FrameAction: 'MESSAGE_TYPE_FRAME_ACTION'
+    MessageTypeCastAdd: 'MESSAGE_TYPE_CAST_ADD',
+    MessageTypeCastRemove: 'MESSAGE_TYPE_CAST_REMOVE',
+    MessageTypeReactionAdd: 'MESSAGE_TYPE_REACTION_ADD',
+    MessageTypeReactionRemove: 'MESSAGE_TYPE_REACTION_REMOVE',
+    MessageTypeLinkAdd: 'MESSAGE_TYPE_LINK_ADD',
+    MessageTypeLinkRemove: 'MESSAGE_TYPE_LINK_REMOVE',
+    MessageTypeVerificationAddEthAddress: 'MESSAGE_TYPE_VERIFICATION_ADD_ETH_ADDRESS',
+    MessageTypeVerificationRemove: 'MESSAGE_TYPE_VERIFICATION_REMOVE',
+    MessageTypeUserDataAdd: 'MESSAGE_TYPE_USER_DATA_ADD',
+    MessageTypeUsernameProof: 'MESSAGE_TYPE_USERNAME_PROOF',
+    MessageTypeFrameAction: 'MESSAGE_TYPE_FRAME_ACTION'
 } as const;
 
 export type MessageType = typeof MessageType[keyof typeof MessageType];

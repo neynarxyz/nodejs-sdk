@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { PostCastReqBodyEmbedsCastIdProperties } from './post-cast-req-body-embeds-cast-id-properties';
 
-/**
- * 
- * @export
- * @interface PostCastReqBodyEmbedsOneOf
- */
 export interface PostCastReqBodyEmbedsOneOf {
-    /**
-     * 
-     * @type {PostCastReqBodyEmbedsCastIdProperties}
-     * @memberof PostCastReqBodyEmbedsOneOf
-     */
     'cast_id': PostCastReqBodyEmbedsCastIdProperties;
 }
 

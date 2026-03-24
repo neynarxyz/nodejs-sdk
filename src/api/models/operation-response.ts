@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface OperationResponse
- */
 export interface OperationResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OperationResponse
-     */
     'success'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof OperationResponse
-     */
     'message'?: string;
 }
 

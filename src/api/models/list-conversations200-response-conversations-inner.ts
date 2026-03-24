@@ -14,52 +14,33 @@
 
 
 
-/**
- * 
- * @export
- * @interface ListConversations200ResponseConversationsInner
- */
 export interface ListConversations200ResponseConversationsInner {
     /**
      * Conversation ID
-     * @type {string}
-     * @memberof ListConversations200ResponseConversationsInner
      */
     'id': string;
     /**
      * Creation timestamp
-     * @type {string}
-     * @memberof ListConversations200ResponseConversationsInner
      */
     'created_at': string;
     /**
      * Last update timestamp
-     * @type {string}
-     * @memberof ListConversations200ResponseConversationsInner
      */
     'updated_at': string;
     /**
      * Deployment ID
-     * @type {string}
-     * @memberof ListConversations200ResponseConversationsInner
      */
     'deployment_id': string;
     /**
      * Whether the conversation is an admin conversation
-     * @type {boolean}
-     * @memberof ListConversations200ResponseConversationsInner
      */
     'admin': boolean;
     /**
      * AI-generated title summarizing the conversation topic
-     * @type {string}
-     * @memberof ListConversations200ResponseConversationsInner
      */
     'title': string | null;
     /**
      * Preview of the last user message (truncated to ~80 chars)
-     * @type {string}
-     * @memberof ListConversations200ResponseConversationsInner
      */
     'last_message_preview': string | null;
 }

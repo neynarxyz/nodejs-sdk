@@ -17,23 +17,8 @@
 // @ts-ignore
 import type { HubEvent } from './hub-event';
 
-/**
- * 
- * @export
- * @interface FetchEvents200Response
- */
 export interface FetchEvents200Response {
-    /**
-     * 
-     * @type {number}
-     * @memberof FetchEvents200Response
-     */
     'nextPageEventId': number;
-    /**
-     * 
-     * @type {Array<HubEvent>}
-     * @memberof FetchEvents200Response
-     */
     'events': Array<HubEvent>;
 }
 

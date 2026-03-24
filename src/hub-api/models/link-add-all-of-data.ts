@@ -31,7 +31,6 @@ import type { MessageType } from './message-type';
 
 /**
  * @type LinkAddAllOfData
- * @export
  */
 export type LinkAddAllOfData = CastAddAllOfDataAllOf & MessageDataLink;
 

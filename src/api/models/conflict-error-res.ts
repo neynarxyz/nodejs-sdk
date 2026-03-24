@@ -16,33 +16,11 @@
 
 /**
  * Details for the conflict error response
- * @export
- * @interface ConflictErrorRes
  */
 export interface ConflictErrorRes {
-    /**
-     * 
-     * @type {string}
-     * @memberof ConflictErrorRes
-     */
     'code'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ConflictErrorRes
-     */
     'message': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ConflictErrorRes
-     */
     'property'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ConflictErrorRes
-     */
     'key'?: string;
 }
 

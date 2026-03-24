@@ -17,23 +17,8 @@
 // @ts-ignore
 import type { FetchTrendingFungibles200ResponseTrendingInnerFungible } from './fetch-trending-fungibles200-response-trending-inner-fungible';
 
-/**
- * 
- * @export
- * @interface FetchTrendingFungibles200ResponseTrendingInner
- */
 export interface FetchTrendingFungibles200ResponseTrendingInner {
-    /**
-     * 
-     * @type {string}
-     * @memberof FetchTrendingFungibles200ResponseTrendingInner
-     */
     'object': FetchTrendingFungibles200ResponseTrendingInnerObjectEnum;
-    /**
-     * 
-     * @type {FetchTrendingFungibles200ResponseTrendingInnerFungible}
-     * @memberof FetchTrendingFungibles200ResponseTrendingInner
-     */
     'fungible': FetchTrendingFungibles200ResponseTrendingInnerFungible;
 }
 

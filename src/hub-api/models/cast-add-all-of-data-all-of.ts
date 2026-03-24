@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { MessageType } from './message-type';
 
-/**
- * 
- * @export
- * @interface CastAddAllOfDataAllOf
- */
 export interface CastAddAllOfDataAllOf {
-    /**
-     * 
-     * @type {MessageType}
-     * @memberof CastAddAllOfDataAllOf
-     */
     'type': MessageType;
 }
 

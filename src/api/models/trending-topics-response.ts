@@ -20,23 +20,8 @@ import type { NextCursor } from './next-cursor';
 // @ts-ignore
 import type { TrendingTopic } from './trending-topic';
 
-/**
- * 
- * @export
- * @interface TrendingTopicsResponse
- */
 export interface TrendingTopicsResponse {
-    /**
-     * 
-     * @type {Array<TrendingTopic>}
-     * @memberof TrendingTopicsResponse
-     */
     'topics': Array<TrendingTopic>;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof TrendingTopicsResponse
-     */
     'next': NextCursor;
 }
 

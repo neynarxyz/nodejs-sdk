@@ -14,34 +14,21 @@
 
 
 
-/**
- * 
- * @export
- * @interface StartAppRequest
- */
 export interface StartAppRequest {
     /**
      * Deployment ID (UUID). Required if name not provided.
-     * @type {string}
-     * @memberof StartAppRequest
      */
     'deployment_id'?: string;
     /**
      * Farcaster ID of the user; if not provided, namespace must be provided
-     * @type {number}
-     * @memberof StartAppRequest
      */
     'fid'?: number;
     /**
      * Kubernetes deployment name. Required if deployment_id not provided.
-     * @type {string}
-     * @memberof StartAppRequest
      */
     'name'?: string;
     /**
      * Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID.
-     * @type {string}
-     * @memberof StartAppRequest
      */
     'namespace'?: string;
 }

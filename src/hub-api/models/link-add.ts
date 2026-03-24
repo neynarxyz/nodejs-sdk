@@ -31,7 +31,6 @@ import type { SignatureScheme } from './signature-scheme';
 
 /**
  * @type LinkAdd
- * @export
  */
 export type LinkAdd = LinkAddAllOf & MessageCommon;
 

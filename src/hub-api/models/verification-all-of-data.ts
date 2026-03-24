@@ -31,7 +31,6 @@ import type { VerificationAddEthAddressBody } from './verification-add-eth-addre
 
 /**
  * @type VerificationAllOfData
- * @export
  */
 export type VerificationAllOfData = CastAddAllOfDataAllOf & MessageDataVerificationAdd;
 

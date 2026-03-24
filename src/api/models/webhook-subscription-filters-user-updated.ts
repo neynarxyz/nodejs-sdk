@@ -14,17 +14,7 @@
 
 
 
-/**
- * 
- * @export
- * @interface WebhookSubscriptionFiltersUserUpdated
- */
 export interface WebhookSubscriptionFiltersUserUpdated {
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof WebhookSubscriptionFiltersUserUpdated
-     */
     'fids'?: Array<number>;
 }
 

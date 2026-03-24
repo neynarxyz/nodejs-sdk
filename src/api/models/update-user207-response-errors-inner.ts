@@ -14,17 +14,7 @@
 
 
 
-/**
- * 
- * @export
- * @interface UpdateUser207ResponseErrorsInner
- */
 export interface UpdateUser207ResponseErrorsInner {
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUser207ResponseErrorsInner
-     */
     'message': string;
 }
 

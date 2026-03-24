@@ -19,32 +19,13 @@ import type { LocationAddress } from './location-address';
 
 /**
  * Only send notifications to users near a given location.
- * @export
- * @interface SendFrameNotificationsReqBodyFiltersNearLocation
  */
 export interface SendFrameNotificationsReqBodyFiltersNearLocation {
-    /**
-     * 
-     * @type {number}
-     * @memberof SendFrameNotificationsReqBodyFiltersNearLocation
-     */
     'latitude': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SendFrameNotificationsReqBodyFiltersNearLocation
-     */
     'longitude': number;
-    /**
-     * 
-     * @type {LocationAddress}
-     * @memberof SendFrameNotificationsReqBodyFiltersNearLocation
-     */
     'address'?: LocationAddress;
     /**
      * The radius in meters for the location search. Any location within this radius will be returned.
-     * @type {number}
-     * @memberof SendFrameNotificationsReqBodyFiltersNearLocation
      */
     'radius'?: number;
 }

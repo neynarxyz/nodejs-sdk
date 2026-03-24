@@ -16,21 +16,12 @@
 
 /**
  * [DEPRECATED: Use \"cast\" key instead]
- * @export
- * @interface EmbedCastDeepCastId
  */
 export interface EmbedCastDeepCastId {
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof EmbedCastDeepCastId
      */
     'fid': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof EmbedCastDeepCastId
-     */
     'hash': string;
 }
 

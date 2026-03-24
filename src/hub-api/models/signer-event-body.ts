@@ -17,41 +17,11 @@
 // @ts-ignore
 import type { SignerEventType } from './signer-event-type';
 
-/**
- * 
- * @export
- * @interface SignerEventBody
- */
 export interface SignerEventBody {
-    /**
-     * 
-     * @type {string}
-     * @memberof SignerEventBody
-     */
     'key': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof SignerEventBody
-     */
     'keyType': number;
-    /**
-     * 
-     * @type {SignerEventType}
-     * @memberof SignerEventBody
-     */
     'eventType': SignerEventType;
-    /**
-     * 
-     * @type {string}
-     * @memberof SignerEventBody
-     */
     'metadata': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof SignerEventBody
-     */
     'metadataType': number;
 }
 

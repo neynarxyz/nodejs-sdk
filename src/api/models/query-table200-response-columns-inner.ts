@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface QueryTable200ResponseColumnsInner
- */
 export interface QueryTable200ResponseColumnsInner {
     /**
      * Column name
-     * @type {string}
-     * @memberof QueryTable200ResponseColumnsInner
      */
     'name': string;
     /**
      * Column data type
-     * @type {string}
-     * @memberof QueryTable200ResponseColumnsInner
      */
     'type': string;
 }

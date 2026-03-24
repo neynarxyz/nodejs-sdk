@@ -17,16 +17,9 @@
 // @ts-ignore
 import type { ListDeploymentFiles200ResponseFilesInner } from './list-deployment-files200-response-files-inner';
 
-/**
- * 
- * @export
- * @interface ListDeploymentFiles200Response
- */
 export interface ListDeploymentFiles200Response {
     /**
      * List of files and directories
-     * @type {Array<ListDeploymentFiles200ResponseFilesInner>}
-     * @memberof ListDeploymentFiles200Response
      */
     'files': Array<ListDeploymentFiles200ResponseFilesInner>;
 }

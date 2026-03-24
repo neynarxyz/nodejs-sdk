@@ -14,34 +14,21 @@
 
 
 
-/**
- * 
- * @export
- * @interface ListTables200ResponseTablesInner
- */
 export interface ListTables200ResponseTablesInner {
     /**
      * Table name
-     * @type {string}
-     * @memberof ListTables200ResponseTablesInner
      */
     'name': string;
     /**
      * Schema name
-     * @type {string}
-     * @memberof ListTables200ResponseTablesInner
      */
     'schema': string;
     /**
      * Table type
-     * @type {string}
-     * @memberof ListTables200ResponseTablesInner
      */
     'type': ListTables200ResponseTablesInnerTypeEnum;
     /**
      * Estimated row count from statistics
-     * @type {number}
-     * @memberof ListTables200ResponseTablesInner
      */
     'rowCountEstimate': number | null;
 }

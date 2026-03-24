@@ -17,53 +17,13 @@
 // @ts-ignore
 import type { DbStats } from './db-stats';
 
-/**
- * 
- * @export
- * @interface HubInfoResponse
- */
 export interface HubInfoResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof HubInfoResponse
-     */
     'version': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof HubInfoResponse
-     */
     'isSyncing': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof HubInfoResponse
-     */
     'nickname': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HubInfoResponse
-     */
     'rootHash': string;
-    /**
-     * 
-     * @type {DbStats}
-     * @memberof HubInfoResponse
-     */
     'dbStats'?: DbStats;
-    /**
-     * 
-     * @type {string}
-     * @memberof HubInfoResponse
-     */
     'peerId': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof HubInfoResponse
-     */
     'hubOperatorFid': number;
 }
 

@@ -17,29 +17,9 @@
 // @ts-ignore
 import type { Webhook } from './webhook';
 
-/**
- * 
- * @export
- * @interface WebhookResponse
- */
 export interface WebhookResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookResponse
-     */
     'message'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WebhookResponse
-     */
     'success'?: boolean;
-    /**
-     * 
-     * @type {Webhook}
-     * @memberof WebhookResponse
-     */
     'webhook'?: Webhook;
 }
 

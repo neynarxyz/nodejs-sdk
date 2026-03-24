@@ -17,23 +17,8 @@
 // @ts-ignore
 import type { DeployErc721201ResponseCollection } from './deploy-erc721201-response-collection';
 
-/**
- * 
- * @export
- * @interface DeployErc721201Response
- */
 export interface DeployErc721201Response {
-    /**
-     * 
-     * @type {string}
-     * @memberof DeployErc721201Response
-     */
     'object': DeployErc721201ResponseObjectEnum;
-    /**
-     * 
-     * @type {DeployErc721201ResponseCollection}
-     * @memberof DeployErc721201Response
-     */
     'collection': DeployErc721201ResponseCollection;
 }
 

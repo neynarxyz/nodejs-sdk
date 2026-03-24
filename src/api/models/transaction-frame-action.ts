@@ -16,26 +16,18 @@
 
 /**
  * Action button for primary CTA on the transaction mini app
- * @export
- * @interface TransactionFrameAction
  */
 export interface TransactionFrameAction {
     /**
      * Custom text for action button
-     * @type {string}
-     * @memberof TransactionFrameAction
      */
     'text'?: string;
     /**
      * Custom text color for action button
-     * @type {string}
-     * @memberof TransactionFrameAction
      */
     'text_color'?: string;
     /**
      * Custom button color for action button
-     * @type {string}
-     * @memberof TransactionFrameAction
      */
     'button_color'?: string;
 }

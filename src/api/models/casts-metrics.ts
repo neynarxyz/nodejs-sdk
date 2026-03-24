@@ -14,29 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface CastsMetrics
- */
 export interface CastsMetrics {
-    /**
-     * 
-     * @type {string}
-     * @memberof CastsMetrics
-     */
     'start': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CastsMetrics
-     */
     'resolution_in_seconds': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CastsMetrics
-     */
     'cast_count': number;
 }
 

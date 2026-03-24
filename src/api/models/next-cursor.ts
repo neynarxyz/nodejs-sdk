@@ -16,15 +16,8 @@
 
 /**
  * Returns next cursor
- * @export
- * @interface NextCursor
  */
 export interface NextCursor {
-    /**
-     * 
-     * @type {string}
-     * @memberof NextCursor
-     */
     'cursor': string | null;
 }
 

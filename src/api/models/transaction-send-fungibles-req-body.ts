@@ -17,29 +17,12 @@
 // @ts-ignore
 import type { TransactionSendFungiblesRecipient } from './transaction-send-fungibles-recipient';
 
-/**
- * 
- * @export
- * @interface TransactionSendFungiblesReqBody
- */
 export interface TransactionSendFungiblesReqBody {
-    /**
-     * 
-     * @type {string}
-     * @memberof TransactionSendFungiblesReqBody
-     */
     'network': TransactionSendFungiblesReqBodyNetworkEnum;
     /**
      * Contract address of the fungible token to send. If not provided, the default is the native token of the network.
-     * @type {string}
-     * @memberof TransactionSendFungiblesReqBody
      */
     'fungible_contract_address'?: string;
-    /**
-     * 
-     * @type {Array<TransactionSendFungiblesRecipient>}
-     * @memberof TransactionSendFungiblesReqBody
-     */
     'recipients': Array<TransactionSendFungiblesRecipient>;
 }
 

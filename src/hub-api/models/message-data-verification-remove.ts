@@ -32,7 +32,6 @@ import type { VerificationRemoveBody } from './verification-remove-body';
 /**
  * @type MessageDataVerificationRemove
  * Represents a message that removes an existing blockchain address verification from a user\'s profile. This allows users to disassociate previously verified addresses from their account.
- * @export
  */
 export type MessageDataVerificationRemove = MessageDataCommon & MessageDataVerificationRemoveAllOf;
 

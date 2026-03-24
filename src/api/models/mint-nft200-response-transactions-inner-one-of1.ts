@@ -19,20 +19,11 @@ import type { MintNft200ResponseTransactionsInnerOneOf1Recipient } from './mint-
 
 /**
  * Failed mint for a single recipient.
- * @export
- * @interface MintNft200ResponseTransactionsInnerOneOf1
  */
 export interface MintNft200ResponseTransactionsInnerOneOf1 {
-    /**
-     * 
-     * @type {MintNft200ResponseTransactionsInnerOneOf1Recipient}
-     * @memberof MintNft200ResponseTransactionsInnerOneOf1
-     */
     'recipient': MintNft200ResponseTransactionsInnerOneOf1Recipient;
     /**
      * Error message for this recipient.
-     * @type {string}
-     * @memberof MintNft200ResponseTransactionsInnerOneOf1
      */
     'error': string;
 }

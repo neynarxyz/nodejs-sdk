@@ -14,28 +14,17 @@
 
 
 
-/**
- * 
- * @export
- * @interface InsertRowsRequest
- */
 export interface InsertRowsRequest {
     /**
      * Deployment ID (UUID)
-     * @type {string}
-     * @memberof InsertRowsRequest
      */
     'deployment_id': string;
     /**
      * Farcaster ID of the user. Required for non-admin users.
-     * @type {number}
-     * @memberof InsertRowsRequest
      */
     'fid'?: number;
     /**
      * Rows to insert (max 100)
-     * @type {Array<{ [key: string]: any | null; }>}
-     * @memberof InsertRowsRequest
      */
     'rows': Array<{ [key: string]: any | null; }>;
 }

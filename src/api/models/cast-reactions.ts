@@ -20,37 +20,18 @@ import type { ReactionLike } from './reaction-like';
 // @ts-ignore
 import type { ReactionRecast } from './reaction-recast';
 
-/**
- * 
- * @export
- * @interface CastReactions
- */
 export interface CastReactions {
     /**
      * This has been deprecated and will always be an empty array. The property will be removed in the future
-     * @type {Array<ReactionLike>}
-     * @memberof CastReactions
      * @deprecated
      */
     'likes': Array<ReactionLike>;
     /**
      * This has been deprecated and will always be an empty array. The property will be removed in the future
-     * @type {Array<ReactionRecast>}
-     * @memberof CastReactions
      * @deprecated
      */
     'recasts': Array<ReactionRecast>;
-    /**
-     * 
-     * @type {number}
-     * @memberof CastReactions
-     */
     'likes_count': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CastReactions
-     */
     'recasts_count': number;
 }
 

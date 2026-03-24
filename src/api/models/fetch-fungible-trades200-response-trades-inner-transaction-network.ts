@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface FetchFungibleTrades200ResponseTradesInnerTransactionNetwork
- */
 export interface FetchFungibleTrades200ResponseTradesInnerTransactionNetwork {
-    /**
-     * 
-     * @type {string}
-     * @memberof FetchFungibleTrades200ResponseTradesInnerTransactionNetwork
-     */
     'object': FetchFungibleTrades200ResponseTradesInnerTransactionNetworkObjectEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof FetchFungibleTrades200ResponseTradesInnerTransactionNetwork
-     */
     'name': string;
 }
 

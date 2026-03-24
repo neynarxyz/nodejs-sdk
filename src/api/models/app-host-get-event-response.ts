@@ -17,23 +17,11 @@
 // @ts-ignore
 import type { AppHostGetEventResponseNotificationDetails } from './app-host-get-event-response-notification-details';
 
-/**
- * 
- * @export
- * @interface AppHostGetEventResponse
- */
 export interface AppHostGetEventResponse {
     /**
      * Legacy event type corresponding to the requested event type: - frame_added: User adds a mini app to their account - frame_removed: User removes a mini app from their account - notifications_enabled: User enables notifications for a mini app - notifications_disabled: User disables notifications for a mini app
-     * @type {string}
-     * @memberof AppHostGetEventResponse
      */
     'event': string;
-    /**
-     * 
-     * @type {AppHostGetEventResponseNotificationDetails}
-     * @memberof AppHostGetEventResponse
-     */
     'notificationDetails'?: AppHostGetEventResponseNotificationDetails;
 }
 

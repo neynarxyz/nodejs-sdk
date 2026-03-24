@@ -17,89 +17,55 @@
 // @ts-ignore
 import type { ListDeployments200ResponseInnerProductionAppStatus } from './list-deployments200-response-inner-production-app-status';
 
-/**
- * 
- * @export
- * @interface ListDeployments200ResponseInner
- */
 export interface ListDeployments200ResponseInner {
     /**
      * Deployment ID
-     * @type {string}
-     * @memberof ListDeployments200ResponseInner
      */
     'id': string;
     /**
      * Display name for the project
-     * @type {string}
-     * @memberof ListDeployments200ResponseInner
      */
     'display_name'?: string;
     /**
      * Public URL for the deployment
-     * @type {string}
-     * @memberof ListDeployments200ResponseInner
      */
     'url'?: string;
     /**
      * GitHub repository SSH URL
-     * @type {string}
-     * @memberof ListDeployments200ResponseInner
      */
     'github_url'?: string;
     /**
      * Deletion timestamp
-     * @type {string}
-     * @memberof ListDeployments200ResponseInner
      */
     'deleted_at': string | null;
     /**
      * Last update timestamp
-     * @type {string}
-     * @memberof ListDeployments200ResponseInner
      */
     'updated_at': string | null;
     /**
      * Creation timestamp
-     * @type {string}
-     * @memberof ListDeployments200ResponseInner
      */
     'created_at': string;
     /**
      * Kubernetes namespace
-     * @type {string}
-     * @memberof ListDeployments200ResponseInner
      */
     'namespace': string;
     /**
      * Kubernetes deployment name
-     * @type {string}
-     * @memberof ListDeployments200ResponseInner
      */
     'name': string;
     /**
      * Deployment is ready to serve app and accept prompts
-     * @type {boolean}
-     * @memberof ListDeployments200ResponseInner
      */
     'is_ready': boolean;
     /**
      * Whether a generated app exists in the deployment
-     * @type {boolean}
-     * @memberof ListDeployments200ResponseInner
      */
     'generated_app_exists': boolean;
     /**
      * Whether the generated app is currently serving
-     * @type {boolean}
-     * @memberof ListDeployments200ResponseInner
      */
     'generated_app_serving': boolean;
-    /**
-     * 
-     * @type {ListDeployments200ResponseInnerProductionAppStatus}
-     * @memberof ListDeployments200ResponseInner
-     */
     'production_app_status'?: ListDeployments200ResponseInnerProductionAppStatus;
 }
 

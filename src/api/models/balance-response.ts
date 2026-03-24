@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { BalanceResponseUserBalance } from './balance-response-user-balance';
 
-/**
- * 
- * @export
- * @interface BalanceResponse
- */
 export interface BalanceResponse {
-    /**
-     * 
-     * @type {BalanceResponseUserBalance}
-     * @memberof BalanceResponse
-     */
     'user_balance'?: BalanceResponseUserBalance;
 }
 

@@ -17,124 +17,78 @@
 // @ts-ignore
 import type { Network } from './network';
 
-/**
- * 
- * @export
- * @interface BatchGetTokenMetadata200ResponseTokensInner
- */
 export interface BatchGetTokenMetadata200ResponseTokensInner {
-    /**
-     * 
-     * @type {Network}
-     * @memberof BatchGetTokenMetadata200ResponseTokensInner
-     */
     'network': Network;
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof BatchGetTokenMetadata200ResponseTokensInner
      */
     'address': string;
     /**
      * Token name
-     * @type {string}
-     * @memberof BatchGetTokenMetadata200ResponseTokensInner
      */
     'name': string;
     /**
      * Token symbol
-     * @type {string}
-     * @memberof BatchGetTokenMetadata200ResponseTokensInner
      */
     'symbol': string;
     /**
      * Token decimals
-     * @type {number}
-     * @memberof BatchGetTokenMetadata200ResponseTokensInner
      */
     'decimals': number;
     /**
      * Total token supply
-     * @type {string}
-     * @memberof BatchGetTokenMetadata200ResponseTokensInner
      */
     'total_supply': string | null;
     /**
      * Token logo URL
-     * @type {string}
-     * @memberof BatchGetTokenMetadata200ResponseTokensInner
      */
     'image_url': string | null;
     /**
      * Token price in USD
-     * @type {string}
-     * @memberof BatchGetTokenMetadata200ResponseTokensInner
      */
     'price_usd': string | null;
     /**
      * Market capitalization in USD
-     * @type {string}
-     * @memberof BatchGetTokenMetadata200ResponseTokensInner
      */
     'market_cap': string | null;
     /**
      * Fully diluted valuation in USD
-     * @type {string}
-     * @memberof BatchGetTokenMetadata200ResponseTokensInner
      */
     'fdv': string | null;
     /**
      * Total liquidity in USD
-     * @type {string}
-     * @memberof BatchGetTokenMetadata200ResponseTokensInner
      */
     'liquidity': string | null;
     /**
      * 6-hour trading volume in USD
-     * @type {string}
-     * @memberof BatchGetTokenMetadata200ResponseTokensInner
      */
     'volume_6h': string | null;
     /**
      * 24-hour trading volume in USD
-     * @type {string}
-     * @memberof BatchGetTokenMetadata200ResponseTokensInner
      */
     'volume_24h': string | null;
     /**
      * 6-hour price change percentage
-     * @type {number}
-     * @memberof BatchGetTokenMetadata200ResponseTokensInner
      */
     'price_change_6h_pct': number | null;
     /**
      * 24-hour price change percentage
-     * @type {number}
-     * @memberof BatchGetTokenMetadata200ResponseTokensInner
      */
     'price_change_24h_pct': number | null;
     /**
      * Number of token holders
-     * @type {number}
-     * @memberof BatchGetTokenMetadata200ResponseTokensInner
      */
     'holder_count': number | null;
     /**
      * Token description
-     * @type {string}
-     * @memberof BatchGetTokenMetadata200ResponseTokensInner
      */
     'description': string | null;
     /**
      * Timestamp when price data was last updated (milliseconds)
-     * @type {number}
-     * @memberof BatchGetTokenMetadata200ResponseTokensInner
      */
     'price_updated_at': number | null;
     /**
      * Source of price data
-     * @type {string}
-     * @memberof BatchGetTokenMetadata200ResponseTokensInner
      */
     'price_source': BatchGetTokenMetadata200ResponseTokensInnerPriceSourceEnum | null;
 }

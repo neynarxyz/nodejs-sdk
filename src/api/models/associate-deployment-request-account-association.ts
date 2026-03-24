@@ -16,26 +16,18 @@
 
 /**
  * Signed domain association linking this deployment to a Farcaster account
- * @export
- * @interface AssociateDeploymentRequestAccountAssociation
  */
 export interface AssociateDeploymentRequestAccountAssociation {
     /**
      * Base64URL encoded JFS header
-     * @type {string}
-     * @memberof AssociateDeploymentRequestAccountAssociation
      */
     'header': string;
     /**
      * Base64URL encoded JFS payload
-     * @type {string}
-     * @memberof AssociateDeploymentRequestAccountAssociation
      */
     'payload': string;
     /**
      * Base64URL encoded JFS signature
-     * @type {string}
-     * @memberof AssociateDeploymentRequestAccountAssociation
      */
     'signature': string;
 }

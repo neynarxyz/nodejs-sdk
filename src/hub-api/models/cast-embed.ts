@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { CastId } from './cast-id';
 
-/**
- * 
- * @export
- * @interface CastEmbed
- */
 export interface CastEmbed {
-    /**
-     * 
-     * @type {CastId}
-     * @memberof CastEmbed
-     */
     'castId': CastId;
 }
 

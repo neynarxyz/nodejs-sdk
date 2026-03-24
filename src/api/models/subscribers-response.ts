@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { Subscriber } from './subscriber';
 
-/**
- * 
- * @export
- * @interface SubscribersResponse
- */
 export interface SubscribersResponse {
-    /**
-     * 
-     * @type {Array<Subscriber>}
-     * @memberof SubscribersResponse
-     */
     'subscribers'?: Array<Subscriber>;
 }
 

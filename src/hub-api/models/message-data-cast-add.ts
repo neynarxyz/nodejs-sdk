@@ -32,7 +32,6 @@ import type { MessageType } from './message-type';
 /**
  * @type MessageDataCastAdd
  * Represents a new cast (post) being created in the Farcaster network. A cast can include text content, mentions of other users, embedded URLs, and references to parent posts for replies.
- * @export
  */
 export type MessageDataCastAdd = MessageDataCastAddAllOf & MessageDataCommon;
 

@@ -17,65 +17,39 @@
 // @ts-ignore
 import type { NotificationCampaignStatsErrorBreakdown } from './notification-campaign-stats-error-breakdown';
 
-/**
- * 
- * @export
- * @interface NotificationCampaignStats
- */
 export interface NotificationCampaignStats {
     /**
      * The total number of notification tokens for intended recipients.
-     * @type {number}
-     * @memberof NotificationCampaignStats
      */
     'intended_recipient_notification_token_count': number | null;
     /**
      * An array of Farcaster FIDs of intended recipient applications.
-     * @type {Array<number>}
-     * @memberof NotificationCampaignStats
      */
     'intended_recipient_app_fids': Array<number>;
     /**
      * The number of notifications successfully sent.
-     * @type {number}
-     * @memberof NotificationCampaignStats
      */
     'successful_sends': number | null;
     /**
      * A record mapping app FIDs (as strings) to the number of successful sends for that app.
-     * @type {{ [key: string]: number; }}
-     * @memberof NotificationCampaignStats
      */
     'successful_sends_by_app_fid': { [key: string]: number; };
     /**
      * The total number of times notifications from this campaign have been opened.
-     * @type {number}
-     * @memberof NotificationCampaignStats
      */
     'total_opens': number | null;
     /**
      * A record mapping app FIDs (as strings) to the number of opens for that app.
-     * @type {{ [key: string]: number; }}
-     * @memberof NotificationCampaignStats
      */
     'total_opens_by_app_fid': { [key: string]: number; };
     /**
      * The number of unique recipients who opened a notification from this campaign.
-     * @type {number}
-     * @memberof NotificationCampaignStats
      */
     'unique_opens': number | null;
     /**
      * A record mapping app FIDs (as strings) to the number of unique opens for that app.
-     * @type {{ [key: string]: number; }}
-     * @memberof NotificationCampaignStats
      */
     'unique_opens_by_app_fid': { [key: string]: number; };
-    /**
-     * 
-     * @type {NotificationCampaignStatsErrorBreakdown}
-     * @memberof NotificationCampaignStats
-     */
     'error_breakdown': NotificationCampaignStatsErrorBreakdown;
 }
 

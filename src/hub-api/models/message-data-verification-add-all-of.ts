@@ -17,16 +17,9 @@
 // @ts-ignore
 import type { VerificationAddEthAddressBody } from './verification-add-eth-address-body';
 
-/**
- * 
- * @export
- * @interface MessageDataVerificationAddAllOf
- */
 export interface MessageDataVerificationAddAllOf {
     /**
      * Contains the blockchain address being verified, along with cryptographic proof of ownership through a signature.
-     * @type {VerificationAddEthAddressBody}
-     * @memberof MessageDataVerificationAddAllOf
      */
     'verificationAddEthAddressBody': VerificationAddEthAddressBody;
 }

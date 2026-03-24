@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { HtmlMetadata } from './html-metadata';
 
-/**
- * 
- * @export
- * @interface FetchRelevantFrames200ResponseRelevantFramesInnerFrameMetadata
- */
 export interface FetchRelevantFrames200ResponseRelevantFramesInnerFrameMetadata {
-    /**
-     * 
-     * @type {HtmlMetadata}
-     * @memberof FetchRelevantFrames200ResponseRelevantFramesInnerFrameMetadata
-     */
     'html': HtmlMetadata;
 }
 

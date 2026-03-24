@@ -23,41 +23,11 @@ import type { User } from './user';
 // @ts-ignore
 import type { UserDehydrated } from './user-dehydrated';
 
-/**
- * 
- * @export
- * @interface ReactionForCast
- */
 export interface ReactionForCast {
-    /**
-     * 
-     * @type {ReactionType}
-     * @memberof ReactionForCast
-     */
     'reaction_type': ReactionType;
-    /**
-     * 
-     * @type {UserDehydrated}
-     * @memberof ReactionForCast
-     */
     'app'?: UserDehydrated;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReactionForCast
-     */
     'reaction_timestamp': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReactionForCast
-     */
     'object': ReactionForCastObjectEnum;
-    /**
-     * 
-     * @type {User}
-     * @memberof ReactionForCast
-     */
     'user': User;
 }
 

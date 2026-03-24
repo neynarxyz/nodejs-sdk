@@ -22,39 +22,18 @@ import type { UserDehydrated } from './user-dehydrated';
 
 /**
  * Verification details of an address
- * @export
- * @interface Verification
  */
 export interface Verification {
-    /**
-     * 
-     * @type {string}
-     * @memberof Verification
-     */
     'object': VerificationObjectEnum;
     /**
      * Address string (hex for ethereum, base58 for solana)
-     * @type {string}
-     * @memberof Verification
      */
     'address': string;
-    /**
-     * 
-     * @type {Protocol}
-     * @memberof Verification
-     */
     'protocol': Protocol;
     /**
      * ISO timestamp when the verification was created
-     * @type {string}
-     * @memberof Verification
      */
     'verified_at': string;
-    /**
-     * 
-     * @type {UserDehydrated}
-     * @memberof Verification
-     */
     'app'?: UserDehydrated;
 }
 

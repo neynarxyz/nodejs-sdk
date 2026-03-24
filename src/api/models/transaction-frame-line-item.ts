@@ -14,28 +14,17 @@
 
 
 
-/**
- * 
- * @export
- * @interface TransactionFrameLineItem
- */
 export interface TransactionFrameLineItem {
     /**
      * Name of the line item in transaction
-     * @type {string}
-     * @memberof TransactionFrameLineItem
      */
     'name': string;
     /**
      * Description of the line item in transaction
-     * @type {string}
-     * @memberof TransactionFrameLineItem
      */
     'description': string;
     /**
      * Optional image URL for the line item in transaction
-     * @type {string}
-     * @memberof TransactionFrameLineItem
      */
     'image'?: string;
 }

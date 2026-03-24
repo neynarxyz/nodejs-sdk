@@ -14,17 +14,7 @@
 
 
 
-/**
- * 
- * @export
- * @interface CastReplies
- */
 export interface CastReplies {
-    /**
-     * 
-     * @type {number}
-     * @memberof CastReplies
-     */
     'count': number;
 }
 

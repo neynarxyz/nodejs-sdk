@@ -17,16 +17,9 @@
 // @ts-ignore
 import type { ListTables200ResponseTablesInner } from './list-tables200-response-tables-inner';
 
-/**
- * 
- * @export
- * @interface ListTables200Response
- */
 export interface ListTables200Response {
     /**
      * List of tables
-     * @type {Array<ListTables200ResponseTablesInner>}
-     * @memberof ListTables200Response
      */
     'tables': Array<ListTables200ResponseTablesInner>;
 }

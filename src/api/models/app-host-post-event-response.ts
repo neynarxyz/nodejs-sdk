@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface AppHostPostEventResponse
- */
 export interface AppHostPostEventResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof AppHostPostEventResponse
-     */
     'success': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof AppHostPostEventResponse
-     */
     'message'?: string;
 }
 

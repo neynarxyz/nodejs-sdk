@@ -17,23 +17,8 @@
 // @ts-ignore
 import type { CreateX402SignatureRequestPaymentRequirementsAcceptsInner } from './create-x402-signature-request-payment-requirements-accepts-inner';
 
-/**
- * 
- * @export
- * @interface CreateX402SignatureRequestPaymentRequirements
- */
 export interface CreateX402SignatureRequestPaymentRequirements {
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateX402SignatureRequestPaymentRequirements
-     */
     'x402Version': CreateX402SignatureRequestPaymentRequirementsX402VersionEnum;
-    /**
-     * 
-     * @type {Array<CreateX402SignatureRequestPaymentRequirementsAcceptsInner>}
-     * @memberof CreateX402SignatureRequestPaymentRequirements
-     */
     'accepts': Array<CreateX402SignatureRequestPaymentRequirementsAcceptsInner>;
 }
 

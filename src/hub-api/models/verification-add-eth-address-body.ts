@@ -16,26 +16,18 @@
 
 /**
  * Contains the data required to verify ownership of an Ethereum or Solana address. The verification process requires a cryptographic signature from the blockchain address and includes the block hash at the time of signing for timestamp verification.
- * @export
- * @interface VerificationAddEthAddressBody
  */
 export interface VerificationAddEthAddressBody {
     /**
      * The Ethereum (0x-prefixed) or Solana address that the user is claiming ownership of. Must match the address that produced the signature.
-     * @type {string}
-     * @memberof VerificationAddEthAddressBody
      */
     'address': string;
     /**
      * Base64-encoded signature produced by the blockchain address, proving ownership. For Ethereum, this is an ECDSA signature of a specific message format.
-     * @type {string}
-     * @memberof VerificationAddEthAddressBody
      */
     'ethSignature': string;
     /**
      * The hash of the most recent block when the signature was created. Used to verify the approximate time of signature creation.
-     * @type {string}
-     * @memberof VerificationAddEthAddressBody
      */
     'blockHash': string;
 }

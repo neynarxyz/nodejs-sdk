@@ -32,7 +32,6 @@ import type { MessageType } from './message-type';
 /**
  * @type MessageDataLink
  * Represents a social graph connection between users in the Farcaster network. Currently supports following relationships between users.
- * @export
  */
 export type MessageDataLink = MessageDataCommon & MessageDataLinkAllOf;
 

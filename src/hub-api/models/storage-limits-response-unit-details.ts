@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface StorageLimitsResponseUnitDetails
- */
 export interface StorageLimitsResponseUnitDetails {
-    /**
-     * 
-     * @type {string}
-     * @memberof StorageLimitsResponseUnitDetails
-     */
     'unitType'?: StorageLimitsResponseUnitDetailsUnitTypeEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof StorageLimitsResponseUnitDetails
-     */
     'unitSize'?: number;
 }
 

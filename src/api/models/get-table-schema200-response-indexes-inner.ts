@@ -14,34 +14,21 @@
 
 
 
-/**
- * 
- * @export
- * @interface GetTableSchema200ResponseIndexesInner
- */
 export interface GetTableSchema200ResponseIndexesInner {
     /**
      * Index name
-     * @type {string}
-     * @memberof GetTableSchema200ResponseIndexesInner
      */
     'name': string;
     /**
      * Columns in the index
-     * @type {Array<string>}
-     * @memberof GetTableSchema200ResponseIndexesInner
      */
     'columns': Array<string>;
     /**
      * Whether the index enforces uniqueness
-     * @type {boolean}
-     * @memberof GetTableSchema200ResponseIndexesInner
      */
     'isUnique': boolean;
     /**
      * Whether this is the primary key index
-     * @type {boolean}
-     * @memberof GetTableSchema200ResponseIndexesInner
      */
     'isPrimary': boolean;
 }

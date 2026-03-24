@@ -17,29 +17,9 @@
 // @ts-ignore
 import type { ZodErrorErrorsInner } from './zod-error-errors-inner';
 
-/**
- * 
- * @export
- * @interface ZodError
- */
 export interface ZodError {
-    /**
-     * 
-     * @type {string}
-     * @memberof ZodError
-     */
     'message': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ZodError
-     */
     'code': string;
-    /**
-     * 
-     * @type {Array<ZodErrorErrorsInner>}
-     * @memberof ZodError
-     */
     'errors': Array<ZodErrorErrorsInner>;
 }
 

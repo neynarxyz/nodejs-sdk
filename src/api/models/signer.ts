@@ -17,53 +17,22 @@
 // @ts-ignore
 import type { SharedSignerPermission } from './shared-signer-permission';
 
-/**
- * 
- * @export
- * @interface Signer
- */
 export interface Signer {
-    /**
-     * 
-     * @type {string}
-     * @memberof Signer
-     */
     'object'?: SignerObjectEnum;
     /**
      * UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
-     * @type {string}
-     * @memberof Signer
      */
     'signer_uuid': string;
     /**
      * Ed25519 public key
-     * @type {string}
-     * @memberof Signer
      */
     'public_key': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Signer
-     */
     'status': SignerStatusEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof Signer
-     */
     'signer_approval_url'?: string;
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof Signer
      */
     'fid'?: number;
-    /**
-     * 
-     * @type {Array<SharedSignerPermission>}
-     * @memberof Signer
-     */
     'permissions'?: Array<SharedSignerPermission>;
 }
 

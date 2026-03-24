@@ -20,29 +20,9 @@ import type { SubscribedToObject } from './subscribed-to-object';
 // @ts-ignore
 import type { User } from './user';
 
-/**
- * 
- * @export
- * @interface Subscriber
- */
 export interface Subscriber {
-    /**
-     * 
-     * @type {string}
-     * @memberof Subscriber
-     */
     'object': SubscriberObjectEnum;
-    /**
-     * 
-     * @type {User}
-     * @memberof Subscriber
-     */
     'user': User;
-    /**
-     * 
-     * @type {SubscribedToObject}
-     * @memberof Subscriber
-     */
     'subscribed_to': SubscribedToObject;
 }
 

@@ -17,29 +17,9 @@
 // @ts-ignore
 import type { User } from './user';
 
-/**
- * 
- * @export
- * @interface ReciprocalFollower
- */
 export interface ReciprocalFollower {
-    /**
-     * 
-     * @type {string}
-     * @memberof ReciprocalFollower
-     */
     'object': ReciprocalFollowerObjectEnum;
-    /**
-     * 
-     * @type {User}
-     * @memberof ReciprocalFollower
-     */
     'user': User;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReciprocalFollower
-     */
     'timestamp': string;
 }
 

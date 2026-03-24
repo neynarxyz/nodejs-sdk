@@ -14,29 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface SubscriptionMetadata
- */
 export interface SubscriptionMetadata {
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionMetadata
-     */
     'title': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionMetadata
-     */
     'symbol': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionMetadata
-     */
     'art_url': string;
 }
 

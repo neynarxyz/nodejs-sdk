@@ -14,16 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface UserFIDResponse
- */
 export interface UserFIDResponse {
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof UserFIDResponse
      */
     'fid': number;
 }

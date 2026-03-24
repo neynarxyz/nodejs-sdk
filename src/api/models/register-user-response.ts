@@ -23,41 +23,11 @@ import type { Signer } from './signer';
 // @ts-ignore
 import type { User } from './user';
 
-/**
- * 
- * @export
- * @interface RegisterUserResponse
- */
 export interface RegisterUserResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RegisterUserResponse
-     */
     'success': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof RegisterUserResponse
-     */
     'message': string;
-    /**
-     * 
-     * @type {Signer}
-     * @memberof RegisterUserResponse
-     */
     'signer'?: Signer;
-    /**
-     * 
-     * @type {Array<RegisterUserResponseSignersInner>}
-     * @memberof RegisterUserResponse
-     */
     'signers': Array<RegisterUserResponseSignersInner>;
-    /**
-     * 
-     * @type {User}
-     * @memberof RegisterUserResponse
-     */
     'user'?: User;
 }
 

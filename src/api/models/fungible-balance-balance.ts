@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface FungibleBalanceBalance
- */
 export interface FungibleBalanceBalance {
-    /**
-     * 
-     * @type {number}
-     * @memberof FungibleBalanceBalance
-     */
     'in_usd': number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof FungibleBalanceBalance
-     */
     'in_token': string;
 }
 

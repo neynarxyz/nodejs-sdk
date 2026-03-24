@@ -43,7 +43,6 @@ import type { UserViewerContext } from './user-viewer-context';
 
 /**
  * @type ChannelMemberUser
- * @export
  */
 export type ChannelMemberUser = User | UserDehydrated;
 

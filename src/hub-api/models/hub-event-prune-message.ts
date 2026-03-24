@@ -17,29 +17,9 @@
 // @ts-ignore
 import type { PruneMessageBody } from './prune-message-body';
 
-/**
- * 
- * @export
- * @interface HubEventPruneMessage
- */
 export interface HubEventPruneMessage {
-    /**
-     * 
-     * @type {string}
-     * @memberof HubEventPruneMessage
-     */
     'type': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof HubEventPruneMessage
-     */
     'id': number;
-    /**
-     * 
-     * @type {PruneMessageBody}
-     * @memberof HubEventPruneMessage
-     */
     'pruneMessageBody': PruneMessageBody;
 }
 

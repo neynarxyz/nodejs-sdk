@@ -19,32 +19,22 @@ import type { MintNftRequestRecipientsInner } from './mint-nft-request-recipient
 
 /**
  * Request body for NFT minting operation.
- * @export
- * @interface MintNftRequest
  */
 export interface MintNftRequest {
     /**
      * Network to mint on.
-     * @type {string}
-     * @memberof MintNftRequest
      */
     'network': MintNftRequestNetworkEnum;
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof MintNftRequest
      */
     'contract_address': string;
     /**
      * List of recipients to mint to (1-200 recipients allowed).
-     * @type {Array<MintNftRequestRecipientsInner>}
-     * @memberof MintNftRequest
      */
     'recipients': Array<MintNftRequestRecipientsInner>;
     /**
      * If true, returns immediately after sending the transaction.
-     * @type {boolean}
-     * @memberof MintNftRequest
      */
     'async'?: boolean;
 }

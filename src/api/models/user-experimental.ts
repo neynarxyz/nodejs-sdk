@@ -14,22 +14,10 @@
 
 
 
-/**
- * 
- * @export
- * @interface UserExperimental
- */
 export interface UserExperimental {
-    /**
-     * 
-     * @type {string}
-     * @memberof UserExperimental
-     */
     'deprecation_notice'?: string;
     /**
      * Score that represents the probability that the account is not spam.
-     * @type {number}
-     * @memberof UserExperimental
      */
     'neynar_user_score': number;
 }

@@ -17,17 +17,7 @@
 // @ts-ignore
 import type { OnChainEvent } from './on-chain-event';
 
-/**
- * 
- * @export
- * @interface MergeOnChainEventBody
- */
 export interface MergeOnChainEventBody {
-    /**
-     * 
-     * @type {OnChainEvent}
-     * @memberof MergeOnChainEventBody
-     */
     'onChainEvent': OnChainEvent;
 }
 

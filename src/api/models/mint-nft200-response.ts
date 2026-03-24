@@ -19,14 +19,10 @@ import type { MintNft200ResponseTransactionsInner } from './mint-nft200-response
 
 /**
  * Response for NFT minting operation.
- * @export
- * @interface MintNft200Response
  */
 export interface MintNft200Response {
     /**
      * Array of per-recipient mint results (success or error).
-     * @type {Array<MintNft200ResponseTransactionsInner>}
-     * @memberof MintNft200Response
      */
     'transactions': Array<MintNft200ResponseTransactionsInner>;
 }

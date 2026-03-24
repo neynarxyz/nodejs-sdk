@@ -20,23 +20,8 @@ import type { Cast } from './cast';
 // @ts-ignore
 import type { NextCursor } from './next-cursor';
 
-/**
- * 
- * @export
- * @interface FetchCastQuotes200Response
- */
 export interface FetchCastQuotes200Response {
-    /**
-     * 
-     * @type {Array<Cast>}
-     * @memberof FetchCastQuotes200Response
-     */
     'casts': Array<Cast>;
-    /**
-     * 
-     * @type {NextCursor}
-     * @memberof FetchCastQuotes200Response
-     */
     'next': NextCursor;
 }
 

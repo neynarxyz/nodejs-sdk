@@ -17,23 +17,8 @@
 // @ts-ignore
 import type { ListSecrets200ResponseSecretsInner } from './list-secrets200-response-secrets-inner';
 
-/**
- * 
- * @export
- * @interface ListSecrets200Response
- */
 export interface ListSecrets200Response {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ListSecrets200Response
-     */
     'success': boolean;
-    /**
-     * 
-     * @type {Array<ListSecrets200ResponseSecretsInner>}
-     * @memberof ListSecrets200Response
-     */
     'secrets': Array<ListSecrets200ResponseSecretsInner>;
 }
 

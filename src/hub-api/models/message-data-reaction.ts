@@ -32,7 +32,6 @@ import type { ReactionBody } from './reaction-body';
 /**
  * @type MessageDataReaction
  * Represents a user\'s reaction to content on the Farcaster network. Reactions can be likes or recasts of casts, allowing users to express appreciation or share content with their followers.
- * @export
  */
 export type MessageDataReaction = MessageDataCommon & MessageDataReactionAllOf;
 

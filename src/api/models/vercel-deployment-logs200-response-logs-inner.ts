@@ -14,34 +14,21 @@
 
 
 
-/**
- * 
- * @export
- * @interface VercelDeploymentLogs200ResponseLogsInner
- */
 export interface VercelDeploymentLogs200ResponseLogsInner {
     /**
      * Event type (stdout, stderr, etc.)
-     * @type {string}
-     * @memberof VercelDeploymentLogs200ResponseLogsInner
      */
     'type': string;
     /**
      * Log text content
-     * @type {string}
-     * @memberof VercelDeploymentLogs200ResponseLogsInner
      */
     'text'?: string;
     /**
      * Timestamp of the log event
-     * @type {number}
-     * @memberof VercelDeploymentLogs200ResponseLogsInner
      */
     'created': number;
     /**
      * Date of the log event
-     * @type {number}
-     * @memberof VercelDeploymentLogs200ResponseLogsInner
      */
     'date': number;
 }

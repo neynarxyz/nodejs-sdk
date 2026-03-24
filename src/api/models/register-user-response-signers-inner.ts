@@ -17,52 +17,21 @@
 // @ts-ignore
 import type { SharedSignerPermission } from './shared-signer-permission';
 
-/**
- * 
- * @export
- * @interface RegisterUserResponseSignersInner
- */
 export interface RegisterUserResponseSignersInner {
-    /**
-     * 
-     * @type {string}
-     * @memberof RegisterUserResponseSignersInner
-     */
     'object'?: RegisterUserResponseSignersInnerObjectEnum;
     /**
      * Ed25519 public key
-     * @type {string}
-     * @memberof RegisterUserResponseSignersInner
      */
     'public_key': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RegisterUserResponseSignersInner
-     */
     'status': RegisterUserResponseSignersInnerStatusEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof RegisterUserResponseSignersInner
-     */
     'signer_approval_url'?: string;
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof RegisterUserResponseSignersInner
      */
     'fid'?: number;
-    /**
-     * 
-     * @type {Array<SharedSignerPermission>}
-     * @memberof RegisterUserResponseSignersInner
-     */
     'permissions'?: Array<SharedSignerPermission>;
     /**
      * UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
-     * @type {string}
-     * @memberof RegisterUserResponseSignersInner
      */
     'uuid': string;
 }

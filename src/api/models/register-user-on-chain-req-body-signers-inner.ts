@@ -14,47 +14,21 @@
 
 
 
-/**
- * 
- * @export
- * @interface RegisterUserOnChainReqBodySignersInner
- */
 export interface RegisterUserOnChainReqBodySignersInner {
     /**
      * Hexadecimal number expressed as string with \'0x\' prefix
-     * @type {string}
-     * @memberof RegisterUserOnChainReqBodySignersInner
      */
     'signature': string;
     /**
      * Hexadecimal number expressed as string with \'0x\' prefix
-     * @type {string}
-     * @memberof RegisterUserOnChainReqBodySignersInner
      */
     'metadata': string;
     /**
      * Ed25519 public key
-     * @type {string}
-     * @memberof RegisterUserOnChainReqBodySignersInner
      */
     'public_key': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof RegisterUserOnChainReqBodySignersInner
-     */
     'key_type'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RegisterUserOnChainReqBodySignersInner
-     */
     'metadata_type'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RegisterUserOnChainReqBodySignersInner
-     */
     'deadline': number;
 }
 

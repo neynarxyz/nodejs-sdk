@@ -23,29 +23,9 @@ import type { UserProfileBanner } from './user-profile-banner';
 // @ts-ignore
 import type { UserProfileBio } from './user-profile-bio';
 
-/**
- * 
- * @export
- * @interface UserProfile
- */
 export interface UserProfile {
-    /**
-     * 
-     * @type {UserProfileBio}
-     * @memberof UserProfile
-     */
     'bio': UserProfileBio;
-    /**
-     * 
-     * @type {Location}
-     * @memberof UserProfile
-     */
     'location'?: Location;
-    /**
-     * 
-     * @type {UserProfileBanner}
-     * @memberof UserProfile
-     */
     'banner'?: UserProfileBanner;
 }
 

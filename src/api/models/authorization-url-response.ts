@@ -14,17 +14,7 @@
 
 
 
-/**
- * 
- * @export
- * @interface AuthorizationUrlResponse
- */
 export interface AuthorizationUrlResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof AuthorizationUrlResponse
-     */
     'authorization_url': string;
 }
 

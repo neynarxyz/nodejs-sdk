@@ -14,17 +14,7 @@
 
 
 
-/**
- * 
- * @export
- * @interface UpsertSecrets200Response
- */
 export interface UpsertSecrets200Response {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UpsertSecrets200Response
-     */
     'success': boolean;
 }
 

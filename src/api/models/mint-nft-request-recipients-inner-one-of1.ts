@@ -14,28 +14,14 @@
 
 
 
-/**
- * 
- * @export
- * @interface MintNftRequestRecipientsInnerOneOf1
- */
 export interface MintNftRequestRecipientsInnerOneOf1 {
-    /**
-     * 
-     * @type {any}
-     * @memberof MintNftRequestRecipientsInnerOneOf1
-     */
     'address'?: any;
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof MintNftRequestRecipientsInnerOneOf1
      */
     'fid': number;
     /**
      * Quantity to mint (must be at least 1). Defaults to 1.
-     * @type {number}
-     * @memberof MintNftRequestRecipientsInnerOneOf1
      */
     'quantity'?: number;
 }

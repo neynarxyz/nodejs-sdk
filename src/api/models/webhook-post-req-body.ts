@@ -17,29 +17,9 @@
 // @ts-ignore
 import type { WebhookSubscriptionFilters } from './webhook-subscription-filters';
 
-/**
- * 
- * @export
- * @interface WebhookPostReqBody
- */
 export interface WebhookPostReqBody {
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookPostReqBody
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookPostReqBody
-     */
     'url': string;
-    /**
-     * 
-     * @type {WebhookSubscriptionFilters}
-     * @memberof WebhookPostReqBody
-     */
     'subscription'?: WebhookSubscriptionFilters;
 }
 

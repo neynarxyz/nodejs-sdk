@@ -17,29 +17,9 @@
 // @ts-ignore
 import type { MergeMessageBody } from './merge-message-body';
 
-/**
- * 
- * @export
- * @interface HubEventMergeMessage
- */
 export interface HubEventMergeMessage {
-    /**
-     * 
-     * @type {string}
-     * @memberof HubEventMergeMessage
-     */
     'type': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof HubEventMergeMessage
-     */
     'id': number;
-    /**
-     * 
-     * @type {MergeMessageBody}
-     * @memberof HubEventMergeMessage
-     */
     'mergeMessageBody': MergeMessageBody;
 }
 

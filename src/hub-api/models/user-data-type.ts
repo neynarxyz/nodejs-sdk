@@ -16,16 +16,14 @@
 
 /**
  * Specifies which field of a user\'s profile is being updated. - USER_DATA_TYPE_PFP: Profile Picture URL for the user\'s avatar - USER_DATA_TYPE_DISPLAY: Display Name shown on the user\'s profile - USER_DATA_TYPE_BIO: Biography or description of the user - USER_DATA_TYPE_URL: Website or social media link for the user - USER_DATA_TYPE_USERNAME: Preferred username for the user
- * @export
- * @enum {string}
  */
 
 export const UserDataType = {
-    Pfp: 'USER_DATA_TYPE_PFP',
-    Display: 'USER_DATA_TYPE_DISPLAY',
-    Bio: 'USER_DATA_TYPE_BIO',
-    Url: 'USER_DATA_TYPE_URL',
-    Username: 'USER_DATA_TYPE_USERNAME'
+    UserDataTypePfp: 'USER_DATA_TYPE_PFP',
+    UserDataTypeDisplay: 'USER_DATA_TYPE_DISPLAY',
+    UserDataTypeBio: 'USER_DATA_TYPE_BIO',
+    UserDataTypeUrl: 'USER_DATA_TYPE_URL',
+    UserDataTypeUsername: 'USER_DATA_TYPE_USERNAME'
 } as const;
 
 export type UserDataType = typeof UserDataType[keyof typeof UserDataType];

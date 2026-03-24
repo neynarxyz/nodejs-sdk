@@ -31,7 +31,6 @@ import type { UserNameProof } from './user-name-proof';
 
 /**
  * @type MessageDataUsernameProof
- * @export
  */
 export type MessageDataUsernameProof = MessageDataCommon & MessageDataUsernameProofAllOf;
 

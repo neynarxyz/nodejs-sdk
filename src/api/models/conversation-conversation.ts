@@ -20,23 +20,8 @@ import type { Cast } from './cast';
 // @ts-ignore
 import type { CastAndConversations } from './cast-and-conversations';
 
-/**
- * 
- * @export
- * @interface ConversationConversation
- */
 export interface ConversationConversation {
-    /**
-     * 
-     * @type {CastAndConversations}
-     * @memberof ConversationConversation
-     */
     'cast': CastAndConversations;
-    /**
-     * 
-     * @type {Array<Cast>}
-     * @memberof ConversationConversation
-     */
     'chronological_parent_casts'?: Array<Cast>;
 }
 

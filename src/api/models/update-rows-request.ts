@@ -14,40 +14,25 @@
 
 
 
-/**
- * 
- * @export
- * @interface UpdateRowsRequest
- */
 export interface UpdateRowsRequest {
     /**
      * Deployment ID (UUID)
-     * @type {string}
-     * @memberof UpdateRowsRequest
      */
     'deployment_id': string;
     /**
      * Farcaster ID of the user. Required for non-admin users.
-     * @type {number}
-     * @memberof UpdateRowsRequest
      */
     'fid'?: number;
     /**
      * Column values to update
-     * @type {{ [key: string]: any | null; }}
-     * @memberof UpdateRowsRequest
      */
     'set': { [key: string]: any | null; };
     /**
      * WHERE conditions (equality only, required)
-     * @type {{ [key: string]: any | null; }}
-     * @memberof UpdateRowsRequest
      */
     'where': { [key: string]: any | null; };
     /**
      * Maximum rows to update (default: 1000)
-     * @type {number}
-     * @memberof UpdateRowsRequest
      */
     'limit'?: number;
 }

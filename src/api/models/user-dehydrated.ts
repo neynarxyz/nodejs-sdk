@@ -14,53 +14,19 @@
 
 
 
-/**
- * 
- * @export
- * @interface UserDehydrated
- */
 export interface UserDehydrated {
-    /**
-     * 
-     * @type {string}
-     * @memberof UserDehydrated
-     */
     'object': UserDehydratedObjectEnum;
     /**
      * The unique identifier of a farcaster user or app (unsigned integer)
-     * @type {number}
-     * @memberof UserDehydrated
      */
     'fid': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserDehydrated
-     */
     'username'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserDehydrated
-     */
     'display_name'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserDehydrated
-     */
     'pfp_url'?: string;
     /**
      * Ethereum address
-     * @type {string}
-     * @memberof UserDehydrated
      */
     'custody_address'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof UserDehydrated
-     */
     'score'?: number;
 }
 

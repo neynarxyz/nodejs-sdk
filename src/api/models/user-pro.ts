@@ -14,29 +14,12 @@
 
 
 
-/**
- * 
- * @export
- * @interface UserPro
- */
 export interface UserPro {
     /**
      * The subscription status of the user
-     * @type {string}
-     * @memberof UserPro
      */
     'status': UserProStatusEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserPro
-     */
     'subscribed_at': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserPro
-     */
     'expires_at': string;
 }
 

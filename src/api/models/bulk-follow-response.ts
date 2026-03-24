@@ -17,23 +17,8 @@
 // @ts-ignore
 import type { FollowResponse } from './follow-response';
 
-/**
- * 
- * @export
- * @interface BulkFollowResponse
- */
 export interface BulkFollowResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof BulkFollowResponse
-     */
     'success': boolean;
-    /**
-     * 
-     * @type {Array<FollowResponse>}
-     * @memberof BulkFollowResponse
-     */
     'details': Array<FollowResponse>;
 }
 

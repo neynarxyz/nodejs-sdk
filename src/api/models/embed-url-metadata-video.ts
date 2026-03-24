@@ -17,23 +17,8 @@
 // @ts-ignore
 import type { EmbedUrlMetadataVideoStreamInner } from './embed-url-metadata-video-stream-inner';
 
-/**
- * 
- * @export
- * @interface EmbedUrlMetadataVideo
- */
 export interface EmbedUrlMetadataVideo {
-    /**
-     * 
-     * @type {number}
-     * @memberof EmbedUrlMetadataVideo
-     */
     'duration_s'?: number;
-    /**
-     * 
-     * @type {Array<EmbedUrlMetadataVideoStreamInner>}
-     * @memberof EmbedUrlMetadataVideo
-     */
     'stream'?: Array<EmbedUrlMetadataVideoStreamInner>;
 }
 

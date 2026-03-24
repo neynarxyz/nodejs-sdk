@@ -28,7 +28,6 @@ import type { OembedVideoData } from './oembed-video-data';
 
 /**
  * @type HtmlMetadataOembed
- * @export
  */
 export type HtmlMetadataOembed = { type: 'link' } & OembedLinkData | { type: 'photo' } & OembedPhotoData | { type: 'rich' } & OembedRichData | { type: 'video' } & OembedVideoData;
 

@@ -37,7 +37,6 @@ import type { UserDehydrated } from './user-dehydrated';
 
 /**
  * @type ChannelOrChannelDehydrated
- * @export
  */
 export type ChannelOrChannelDehydrated = { object: 'channel' } & Channel | { object: 'channel_dehydrated' } & ChannelDehydrated;
 

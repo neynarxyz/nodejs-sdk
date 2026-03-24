@@ -26,47 +26,18 @@ import type { TransactionFrameStatus } from './transaction-frame-status';
 // @ts-ignore
 import type { TransactionFrameType } from './transaction-frame-type';
 
-/**
- * 
- * @export
- * @interface TransactionFramePay
- */
 export interface TransactionFramePay {
     /**
      * Unique identifier for the transaction mini app
-     * @type {string}
-     * @memberof TransactionFramePay
      */
     'id': string;
     /**
      * URL that can be used to access the transaction mini app
-     * @type {string}
-     * @memberof TransactionFramePay
      */
     'url': string;
-    /**
-     * 
-     * @type {TransactionFrameType}
-     * @memberof TransactionFramePay
-     */
     'type': TransactionFrameType;
-    /**
-     * 
-     * @type {TransactionFrameConfig}
-     * @memberof TransactionFramePay
-     */
     'config': TransactionFrameConfig;
-    /**
-     * 
-     * @type {TransactionFrameStatus}
-     * @memberof TransactionFramePay
-     */
     'status': TransactionFrameStatus;
-    /**
-     * 
-     * @type {FramePayTransactionReqBodyTransaction}
-     * @memberof TransactionFramePay
-     */
     'transaction': FramePayTransactionReqBodyTransaction;
 }
 

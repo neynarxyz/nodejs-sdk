@@ -16,20 +16,14 @@
 
 /**
  * Details for notification setup, only present when event is notifications_enabled
- * @export
- * @interface AppHostGetEventResponseNotificationDetails
  */
 export interface AppHostGetEventResponseNotificationDetails {
     /**
      * URL endpoint for sending notifications
-     * @type {string}
-     * @memberof AppHostGetEventResponseNotificationDetails
      */
     'url': string;
     /**
      * Token to use when sending notifications to this user
-     * @type {string}
-     * @memberof AppHostGetEventResponseNotificationDetails
      */
     'token': string;
 }
