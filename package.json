@@ -27,7 +27,7 @@
   "license": "MIT",
   "dependencies": {
     "@openapitools/openapi-generator-cli": "^2.31.0",
-    "axios": "^1.13.1",
+    "axios": "^1.14.0",
     "semver": "^7.6.3",
     "viem": "^2.21.44"
   },
