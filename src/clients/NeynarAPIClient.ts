@@ -3461,6 +3461,8 @@ adjustedParams['xWalletId'] = this.config.baseOptions?.headers?.['x-wallet-id'];
 }
 
 /**
+ * Retrieves billing and subscription details for the current organization, including plan status, product category, billing email, and effective plan.
+ *
  * @summary Get billing information for the current organization
  *
  *
@@ -3483,6 +3485,8 @@ public async billing(): Promise<Billing200Response> {
 
 
 /**
+ * Applies a subscription plan change for the current organization and returns the applied credit, charge amount, and whether the change takes effect immediately.
+ *
  * @summary Process subscription upgrade with credit
  *
  * @param {object} params
@@ -3511,6 +3515,8 @@ Object.assign(adjustedParams, params);
 }
 
 /**
+ * Calculates the billing impact of changing to a new subscription plan, including available credit, charge amount, and whether the billing date or usage carryover changes.
+ *
  * @summary Get upgrade preview with credit calculation
  *
  * @param {object} params

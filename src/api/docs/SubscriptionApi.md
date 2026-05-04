@@ -10,6 +10,7 @@ All URIs are relative to *https://api.neynar.com*
 # **upgrade**
 > Upgrade200Response upgrade(upgradeRequest)
 
+Applies a subscription plan change for the current organization and returns the applied credit, charge amount, and whether the change takes effect immediately.
 
 ### Example
 
@@ -66,6 +67,7 @@ const { status, data } = await apiInstance.upgrade(
 # **upgradePreview**
 > UpgradePreview200Response upgradePreview()
 
+Calculates the billing impact of changing to a new subscription plan, including available credit, charge amount, and whether the billing date or usage carryover changes.
 
 ### Example
 

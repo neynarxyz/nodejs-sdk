@@ -9,6 +9,7 @@ All URIs are relative to *https://api.neynar.com*
 # **billing**
 > Billing200Response billing()
 
+Retrieves billing and subscription details for the current organization, including plan status, product category, billing email, and effective plan.
 
 ### Example
 
