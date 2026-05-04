@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **deployment_id** | **string** | Deployment ID (UUID) | [default to undefined]
 **fid** | **number** | Farcaster ID of the user. Required for non-admin users. | [optional] [default to undefined]
-**set** | **{ [key: string]: any | null; }** | Column values to update | [default to undefined]
-**where** | **{ [key: string]: any | null; }** | WHERE conditions (equality only, required) | [default to undefined]
+**set** | **{ [key: string]: any; }** | Column values to update | [default to undefined]
+**where** | **{ [key: string]: any; }** | WHERE conditions (equality only, required) | [default to undefined]
 **limit** | **number** | Maximum rows to update (default: 1000) | [optional] [default to undefined]
 
 ## Example

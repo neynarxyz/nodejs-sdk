@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **domain** | **string** | Domain name | [default to undefined]
 **fid** | **number** | FID associated with the domain | [default to undefined]
 **manifest** | [**FarcasterManifest**](FarcasterManifest.md) |  | [default to undefined]
-**home_url_metadata** | **{ [key: string]: any | null; }** | Home URL metadata if available | [optional] [default to undefined]
+**home_url_metadata** | **{ [key: string]: any; }** | Home URL metadata if available | [optional] [default to undefined]
 **created_at** | **string** | Creation timestamp | [default to undefined]
 **updated_at** | **string** | Last update timestamp | [default to undefined]
 **was_found** | **boolean** | Whether the domain was found in the table before processing | [default to undefined]

@@ -306,7 +306,7 @@ const { status, data } = await apiInstance.getTransactionPayFrame(
 # **publishFrameNotifications**
 > SendFrameNotificationsResponse publishFrameNotifications(sendFrameNotificationsReqBody)
 
-Send notifications to interactors of a mini app
+Send notifications to interactors of a mini app. By default every broadcast is delivered synchronously and returns 200 with aggregate counts. When the `ASYNC_NOTIFICATIONS_ENABLED` server flag is on, broadcasts with more than 100 notification tokens are queued and return 202 with a campaign_id instead; poll the campaign stats endpoint for progress. Small broadcasts always stay synchronous.
 
 ### Example
 
@@ -352,7 +352,10 @@ const { status, data } = await apiInstance.publishFrameNotifications(
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** | Success |  -  |
+|**202** | 202 |  -  |
 |**400** | Bad Request |  -  |
+|**404** | Resource not found |  -  |
+|**422** | Unprocessable Content |  -  |
 |**500** | Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

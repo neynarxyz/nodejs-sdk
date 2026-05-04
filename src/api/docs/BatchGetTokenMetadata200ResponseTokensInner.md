@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **network** | [**Network**](Network.md) |  | [default to undefined]
-**address** | **string** | Ethereum address | [default to undefined]
+**address** | **string** | Token contract address | [default to undefined]
 **name** | **string** | Token name | [default to undefined]
 **symbol** | **string** | Token symbol | [default to undefined]
 **decimals** | **number** | Token decimals | [default to undefined]

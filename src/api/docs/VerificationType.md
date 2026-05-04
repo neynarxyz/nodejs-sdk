@@ -2,10 +2,18 @@
 
 Type of verification. 0 = EOA, 1 = contract
 
-## Enum
+## Properties
 
-* `NUMBER_0` (value: `0`)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
 
-* `NUMBER_1` (value: `1`)
+## Example
+
+```typescript
+import { VerificationType } from './api';
+
+const instance: VerificationType = {
+};
+```
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

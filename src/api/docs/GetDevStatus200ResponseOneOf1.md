@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **last_updated_at** | **string** |  | [default to undefined]
 **completed_at** | **string** |  | [default to undefined]
 **phases** | **{ [key: string]: { [key: string]: any; }; }** |  | [default to undefined]
-**metadata** | **{ [key: string]: any | null; }** |  | [default to undefined]
+**metadata** | **{ [key: string]: any; }** |  | [default to undefined]
 
 ## Example
 

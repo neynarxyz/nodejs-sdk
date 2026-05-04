@@ -11,8 +11,8 @@ Name | Type | Description | Notes
 **started_at** | **string** |  | [default to undefined]
 **last_updated_at** | **string** |  | [default to undefined]
 **completed_at** | **string** |  | [default to undefined]
-**phases** | **{ [key: string]: { [key: string]: any; }; }** |  | [default to undefined]
-**metadata** | **{ [key: string]: object | null; }** |  | [default to undefined]
+**phases** | **{ [key: string]: { [key: string]: object; }; }** |  | [default to undefined]
+**metadata** | **{ [key: string]: object; }** |  | [default to undefined]
 
 ## Example
 

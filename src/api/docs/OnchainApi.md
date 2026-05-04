@@ -8,17 +8,20 @@ All URIs are relative to *https://api.neynar.com*
 |[**createX402Signature**](#createx402signature) | **POST** /v2/signature/x402/ | Create x402 signature|
 |[**deployErc721**](#deployerc721) | **POST** /v2/farcaster/nft/deploy/erc721/ | Deploy ERC-721 collection|
 |[**deployFungible**](#deployfungible) | **POST** /v2/fungible/ | Deploy fungible|
+|[**fetchBulkRelevantFungibleOwners**](#fetchbulkrelevantfungibleowners) | **GET** /v2/farcaster/fungible/owner/relevant/bulk | Bulk relevant owners|
 |[**fetchFungibleTrades**](#fetchfungibletrades) | **GET** /v2/farcaster/fungible/trades/ | Get fungible trades|
 |[**fetchFungibles**](#fetchfungibles) | **GET** /v2/farcaster/fungibles/ | Fetch fungibles|
 |[**fetchRelevantFungibleOwners**](#fetchrelevantfungibleowners) | **GET** /v2/farcaster/fungible/owner/relevant/ | Relevant owners|
 |[**fetchTrendingFungibles**](#fetchtrendingfungibles) | **GET** /v2/farcaster/fungible/trending/ | Trending fungibles|
 |[**fetchUserBalance**](#fetchuserbalance) | **GET** /v2/farcaster/user/balance/ | Token balance|
+|[**generateImage**](#generateimage) | **POST** /v2/farcaster/nft/image/ | Generate an NFT image|
 |[**getTokenMetadata**](#gettokenmetadata) | **GET** /v2/onchain/token/metadata | Get token metadata|
 |[**getWalletBalances**](#getwalletbalances) | **GET** /v2/onchain/token/balances | Get wallet token balances|
 |[**mintNft**](#mintnft) | **POST** /v2/farcaster/nft/mint/ | Mint NFT(s)|
 |[**registerAccountOnchain**](#registeraccountonchain) | **POST** /v2/farcaster/user/register/ | Register Farcaster account onchain|
 |[**sendFungiblesToUsers**](#sendfungiblestousers) | **POST** /v2/farcaster/fungible/send/ | Send fungibles|
 |[**simulateNftMint**](#simulatenftmint) | **GET** /v2/farcaster/nft/mint/ | Simulate NFT mint calldata|
+|[**uploadTokenMetadata**](#uploadtokenmetadata) | **POST** /v2/farcaster/nft/metadata/token | Upload NFT token metadata|
 
 # **batchGetTokenMetadata**
 > BatchGetTokenMetadata200Response batchGetTokenMetadata()
@@ -280,6 +283,64 @@ const { status, data } = await apiInstance.deployFungible(
 |**200** | Success |  -  |
 |**400** | Bad Request |  -  |
 |**500** | Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **fetchBulkRelevantFungibleOwners**
+> BulkRelevantFungibleOwnersResponse fetchBulkRelevantFungibleOwners()
+
+Fetch relevant owners for multiple on chain assets in a single request, up to 10 contract addresses at a time.
+
+### Example
+
+```typescript
+import {
+    OnchainApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new OnchainApi(configuration);
+
+let contractAddresses: string; //Comma separated list of contract addresses, up to 10 at a time (default to undefined)
+let network: 'ethereum' | 'optimism' | 'base' | 'arbitrum' | 'solana'; //Network of the fungible assets. (default to undefined)
+let viewerFid: number; //If you provide a viewer_fid, the response will include token holders from the user\'s network, respecting their mutes and blocks and including viewer_context. (optional) (default to undefined)
+
+const { status, data } = await apiInstance.fetchBulkRelevantFungibleOwners(
+    contractAddresses,
+    network,
+    viewerFid
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **contractAddresses** | [**string**] | Comma separated list of contract addresses, up to 10 at a time | defaults to undefined|
+| **network** | [**&#39;ethereum&#39; | &#39;optimism&#39; | &#39;base&#39; | &#39;arbitrum&#39; | &#39;solana&#39;**]**Array<&#39;ethereum&#39; &#124; &#39;optimism&#39; &#124; &#39;base&#39; &#124; &#39;arbitrum&#39; &#124; &#39;solana&#39;>** | Network of the fungible assets. | defaults to undefined|
+| **viewerFid** | [**number**] | If you provide a viewer_fid, the response will include token holders from the user\&#39;s network, respecting their mutes and blocks and including viewer_context. | (optional) defaults to undefined|
+
+
+### Return type
+
+**BulkRelevantFungibleOwnersResponse**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Success |  -  |
+|**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -575,6 +636,65 @@ const { status, data } = await apiInstance.fetchUserBalance(
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **generateImage**
+> GenerateImage200Response generateImage(generateImageRequest)
+
+Generate a new image or edit existing images using AI. Returns a publicly accessible URL to the generated image.
+
+### Example
+
+```typescript
+import {
+    OnchainApi,
+    Configuration,
+    GenerateImageRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new OnchainApi(configuration);
+
+let xWalletId: string; //Wallet ID to use for transactions (default to undefined)
+let generateImageRequest: GenerateImageRequest; //
+
+const { status, data } = await apiInstance.generateImage(
+    xWalletId,
+    generateImageRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **generateImageRequest** | **GenerateImageRequest**|  | |
+| **xWalletId** | [**string**] | Wallet ID to use for transactions | defaults to undefined|
+
+
+### Return type
+
+**GenerateImage200Response**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Success |  -  |
+|**400** | Bad Request |  -  |
+|**403** | Forbidden |  -  |
+|**404** | Resource not found |  -  |
+|**500** | Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getTokenMetadata**
 > GetTokenMetadata200Response getTokenMetadata()
 
@@ -592,7 +712,7 @@ const configuration = new Configuration();
 const apiInstance = new OnchainApi(configuration);
 
 let network: 'ethereum' | 'optimism' | 'base' | 'arbitrum'; //A blockchain network e.g. \"ethereum\", \"optimism\", \"base\", \"arbitrum\" (default to undefined)
-let address: string; //Ethereum address (default to undefined)
+let address: string; //Token contract address (default to undefined)
 
 const { status, data } = await apiInstance.getTokenMetadata(
     network,
@@ -605,7 +725,7 @@ const { status, data } = await apiInstance.getTokenMetadata(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **network** | [**&#39;ethereum&#39; | &#39;optimism&#39; | &#39;base&#39; | &#39;arbitrum&#39;**]**Array<&#39;ethereum&#39; &#124; &#39;optimism&#39; &#124; &#39;base&#39; &#124; &#39;arbitrum&#39;>** | A blockchain network e.g. \&quot;ethereum\&quot;, \&quot;optimism\&quot;, \&quot;base\&quot;, \&quot;arbitrum\&quot; | defaults to undefined|
-| **address** | [**string**] | Ethereum address | defaults to undefined|
+| **address** | [**string**] | Token contract address | defaults to undefined|
 
 
 ### Return type
@@ -649,7 +769,7 @@ const configuration = new Configuration();
 const apiInstance = new OnchainApi(configuration);
 
 let networks: string; //Comma-separated list of networks to query. Each value must be a valid network (ethereum, optimism, base, arbitrum). (default to undefined)
-let address: string; //Ethereum address (default to undefined)
+let address: string; //Wallet address (default to undefined)
 let limit: number; //Number of results to return (max 100) (optional) (default to 50)
 let cursor: string; //Pagination cursor. (optional) (default to undefined)
 
@@ -666,7 +786,7 @@ const { status, data } = await apiInstance.getWalletBalances(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **networks** | [**string**] | Comma-separated list of networks to query. Each value must be a valid network (ethereum, optimism, base, arbitrum). | defaults to undefined|
-| **address** | [**string**] | Ethereum address | defaults to undefined|
+| **address** | [**string**] | Wallet address | defaults to undefined|
 | **limit** | [**number**] | Number of results to return (max 100) | (optional) defaults to 50|
 | **cursor** | [**string**] | Pagination cursor. | (optional) defaults to undefined|
 
@@ -748,7 +868,7 @@ const { status, data } = await apiInstance.mintNft(
 |**200** | Success |  -  |
 |**400** | Bad Request |  -  |
 |**401** | Unauthorized |  -  |
-|**402** | 402 |  -  |
+|**402** | Payment Required |  -  |
 |**404** | Resource not found |  -  |
 |**500** | Server Error |  -  |
 
@@ -923,6 +1043,65 @@ const { status, data } = await apiInstance.simulateNftMint(
 |-------------|-------------|------------------|
 |**200** | Success |  -  |
 |**400** | Bad Request |  -  |
+|**404** | Resource not found |  -  |
+|**500** | Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **uploadTokenMetadata**
+> UploadTokenMetadata200Response uploadTokenMetadata(uploadTokenMetadataRequest)
+
+Uploads metadata JSON to S3 for one or more tokens on a deployed contract. Requires contract ownership via the wallet header.
+
+### Example
+
+```typescript
+import {
+    OnchainApi,
+    Configuration,
+    UploadTokenMetadataRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new OnchainApi(configuration);
+
+let xWalletId: string; //Wallet ID to use for transactions (default to undefined)
+let uploadTokenMetadataRequest: UploadTokenMetadataRequest; //
+
+const { status, data } = await apiInstance.uploadTokenMetadata(
+    xWalletId,
+    uploadTokenMetadataRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **uploadTokenMetadataRequest** | **UploadTokenMetadataRequest**|  | |
+| **xWalletId** | [**string**] | Wallet ID to use for transactions | defaults to undefined|
+
+
+### Return type
+
+**UploadTokenMetadata200Response**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Success |  -  |
+|**400** | Bad Request |  -  |
+|**403** | Forbidden |  -  |
 |**404** | Resource not found |  -  |
 |**500** | Server Error |  -  |
 

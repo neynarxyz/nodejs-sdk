@@ -174,7 +174,7 @@ const { status, data } = await apiInstance.appHostPostEvent(
 |**400** | Bad Request |  -  |
 |**404** | Resource not found |  -  |
 |**500** | Server Error |  -  |
-|**502** | 502 |  -  |
+|**502** | Bad Gateway |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

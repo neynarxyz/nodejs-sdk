@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 **resource** | **string** |  | [default to undefined]
 **description** | **string** |  | [default to undefined]
 **mimeType** | **string** |  | [optional] [default to undefined]
-**outputSchema** | **{ [key: string]: any | null; }** |  | [optional] [default to undefined]
+**outputSchema** | **{ [key: string]: any; }** |  | [optional] [default to undefined]
 **maxTimeoutSeconds** | **number** |  | [default to undefined]
-**extra** | **{ [key: string]: any | null; }** |  | [optional] [default to undefined]
+**extra** | **{ [key: string]: any; }** |  | [optional] [default to undefined]
 
 ## Example
 

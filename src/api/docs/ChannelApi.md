@@ -671,7 +671,7 @@ const { status, data } = await apiInstance.followChannel(
 |**403** | Forbidden |  -  |
 |**404** | Resource not found |  -  |
 |**500** | Server Error |  -  |
-|**502** | 502 |  -  |
+|**502** | Bad Gateway |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1009,7 +1009,7 @@ const { status, data } = await apiInstance.unfollowChannel(
 |**403** | Forbidden |  -  |
 |**404** | Resource not found |  -  |
 |**500** | Server Error |  -  |
-|**502** | 502 |  -  |
+|**502** | Bad Gateway |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

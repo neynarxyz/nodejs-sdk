@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **conversation_id** | **string** | Optional conversation ID to continue an existing chat. If not provided, a new conversation will be created. | [optional] [default to undefined]
 **session_id** | **string** | Optional Claude SDK session ID to resume an existing Claude Code session. Enables session-based conversation continuity. | [optional] [default to undefined]
 **system_prompt_variant** | **string** | System prompt variant to use. Defaults to stable if not provided. | [optional] [default to undefined]
+**images** | [**Array&lt;PromptDeploymentStreamRequestImagesInner&gt;**](PromptDeploymentStreamRequestImagesInner.md) | Optional images for multimodal messages. Each image is base64-encoded. | [optional] [default to undefined]
 
 ## Example
 
@@ -28,6 +29,7 @@ const instance: PromptDeploymentStreamRequest = {
     conversation_id,
     session_id,
     system_prompt_variant,
+    images,
 };
 ```
 

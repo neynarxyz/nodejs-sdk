@@ -4,16 +4,22 @@ All URIs are relative to *https://api.neynar.com*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
+|[**assignCustomDomain**](#assigncustomdomain) | **PUT** /v2/studio/vercel/domain | Assign a custom subdomain to a deployed miniapp|
 |[**associateDeployment**](#associatedeployment) | **POST** /v2/studio/deployment/account-association | Set account association|
 |[**build**](#build) | **POST** /v2/studio/deployment/build | Build generated app with automatic error fixing|
+|[**cancelSession**](#cancelsession) | **POST** /v2/studio/deployment/session/cancel | Cancel an active Claude session for a deployment|
+|[**checkDomainAvailability**](#checkdomainavailability) | **GET** /v2/studio/vercel/domain/check | Check if a custom subdomain is available|
+|[**claimCreditDrop**](#claimcreditdrop) | **POST** /v2/studio/credit-drops/claim | Claim credit drop|
 |[**createDeployment**](#createdeployment) | **POST** /v2/studio/deployment/ | Create a miniapp generator deployment|
 |[**deleteDeployment**](#deletedeployment) | **DELETE** /v2/studio/deployment/ | Delete deployment(s)|
 |[**deleteRows**](#deleterows) | **DELETE** /v2/studio/deployment/database/tables/{table_name}/rows | Delete rows from table|
 |[**deleteSecrets**](#deletesecrets) | **DELETE** /v2/studio/deployment/secrets/ | Delete deployment secrets|
 |[**deployToVercel**](#deploytovercel) | **POST** /v2/studio/vercel/ | Deploy miniapp to Vercel|
 |[**executeSql**](#executesql) | **POST** /v2/studio/deployment/database/sql | Execute raw SQL query (admin only)|
+|[**exportZip**](#exportzip) | **GET** /v2/studio/deployment/export-zip | Export deployment source code as ZIP|
 |[**getAccountAssociation**](#getaccountassociation) | **GET** /v2/studio/deployment/account-association | Get account association of a miniapp|
 |[**getConversationMessages**](#getconversationmessages) | **GET** /v2/studio/deployment/conversations/messages | Get messages in a conversation|
+|[**getCreditDrop**](#getcreditdrop) | **GET** /v2/studio/credit-drops/ | Get most recent credit drop|
 |[**getDeployment**](#getdeployment) | **GET** /v2/studio/deployment/by-name-and-fid | Get deployment info|
 |[**getDeploymentFile**](#getdeploymentfile) | **GET** /v2/studio/deployment/file | Get deployment file contents|
 |[**getDevStatus**](#getdevstatus) | **GET** /v2/studio/deployment/dev-status | Get dev status of a miniapp|
@@ -25,6 +31,7 @@ All URIs are relative to *https://api.neynar.com*
 |[**listSecrets**](#listsecrets) | **GET** /v2/studio/deployment/secrets/ | List deployment secrets|
 |[**listTables**](#listtables) | **GET** /v2/studio/deployment/database/tables | List all tables in deployment database|
 |[**promptDeploymentStream**](#promptdeploymentstream) | **POST** /v2/studio/deployment/prompt/stream | Prompt a deployment with streaming response|
+|[**provision**](#provision) | **POST** /v2/studio/deployment/database/provision | Provision a database for a deployment|
 |[**queryTable**](#querytable) | **POST** /v2/studio/deployment/database/query | Query table data|
 |[**recover**](#recover) | **POST** /v2/studio/deployment/recover | Recover dev server with two-phase strategy|
 |[**startApp**](#startapp) | **POST** /v2/studio/deployment/start | Start generated miniapp|
@@ -35,6 +42,66 @@ All URIs are relative to *https://api.neynar.com*
 |[**upsertSecrets**](#upsertsecrets) | **POST** /v2/studio/deployment/secrets/ | Upsert deployment secrets|
 |[**vercelDeploymentLogs**](#verceldeploymentlogs) | **GET** /v2/studio/vercel/logs | Get Vercel deployment build logs|
 |[**vercelDeploymentStatus**](#verceldeploymentstatus) | **GET** /v2/studio/vercel/status | Get Vercel deployment status|
+
+# **assignCustomDomain**
+> AssignCustomDomain200Response assignCustomDomain(assignCustomDomainRequest)
+
+Assigns a custom *.neynar.app subdomain to the user\'s deployed miniapp. The new domain is added to the Vercel project alongside the existing auto-assigned domain. The productionDomain in the database is updated to the custom domain. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.
+
+### Example
+
+```typescript
+import {
+    StudioApi,
+    Configuration,
+    AssignCustomDomainRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new StudioApi(configuration);
+
+let fid: number; //Farcaster ID of the requesting user (default to undefined)
+let assignCustomDomainRequest: AssignCustomDomainRequest; //
+
+const { status, data } = await apiInstance.assignCustomDomain(
+    fid,
+    assignCustomDomainRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **assignCustomDomainRequest** | **AssignCustomDomainRequest**|  | |
+| **fid** | [**number**] | Farcaster ID of the requesting user | defaults to undefined|
+
+
+### Return type
+
+**AssignCustomDomain200Response**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Success |  -  |
+|**400** | Bad Request |  -  |
+|**403** | Forbidden |  -  |
+|**404** | Resource not found |  -  |
+|**409** | Conflict |  -  |
+|**500** | Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **associateDeployment**
 > AssociateDeployment200Response associateDeployment(associateDeploymentRequest)
@@ -142,7 +209,175 @@ void (empty response body)
 |**200** | Success |  -  |
 |**400** | Bad Request |  -  |
 |**404** | Resource not found |  -  |
+|**409** | Conflict |  -  |
 |**500** | Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **cancelSession**
+> CancelSession200Response cancelSession(cancelSessionRequest)
+
+Cancels an in-progress Claude Code session for a deployment. Safe to call even if no session is active — returns cancelled: false in that case.
+
+### Example
+
+```typescript
+import {
+    StudioApi,
+    Configuration,
+    CancelSessionRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new StudioApi(configuration);
+
+let cancelSessionRequest: CancelSessionRequest; //
+
+const { status, data } = await apiInstance.cancelSession(
+    cancelSessionRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **cancelSessionRequest** | **CancelSessionRequest**|  | |
+
+
+### Return type
+
+**CancelSession200Response**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Success |  -  |
+|**400** | Bad Request |  -  |
+|**404** | Resource not found |  -  |
+|**500** | Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **checkDomainAvailability**
+> CheckDomainAvailability200Response checkDomainAvailability()
+
+Checks whether a custom *.neynar.app subdomain is available for assignment. Validates format, checks reserved names, and verifies no other active deployment is using it. Note: Studio CU is tracked based on LLM token usage, not per API call.
+
+### Example
+
+```typescript
+import {
+    StudioApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new StudioApi(configuration);
+
+let fid: number; //Farcaster ID of the requesting user (default to undefined)
+let subdomain: string; //The desired subdomain (without .neynar.app suffix). Must be 3-63 characters, lowercase alphanumeric and hyphens only. (default to undefined)
+
+const { status, data } = await apiInstance.checkDomainAvailability(
+    fid,
+    subdomain
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **fid** | [**number**] | Farcaster ID of the requesting user | defaults to undefined|
+| **subdomain** | [**string**] | The desired subdomain (without .neynar.app suffix). Must be 3-63 characters, lowercase alphanumeric and hyphens only. | defaults to undefined|
+
+
+### Return type
+
+**CheckDomainAvailability200Response**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Success |  -  |
+|**400** | Bad Request |  -  |
+|**500** | Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **claimCreditDrop**
+> ClaimCreditDrop200Response claimCreditDrop(claimCreditDropRequest)
+
+Claims the most recent credit drop for the authenticated user. The drop\'s allowance is surfaced dynamically until expires_at and does not mutate extra_credits. Only drops created within the past 24 hours can be claimed.
+
+### Example
+
+```typescript
+import {
+    StudioApi,
+    Configuration,
+    ClaimCreditDropRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new StudioApi(configuration);
+
+let claimCreditDropRequest: ClaimCreditDropRequest; //
+
+const { status, data } = await apiInstance.claimCreditDrop(
+    claimCreditDropRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **claimCreditDropRequest** | **ClaimCreditDropRequest**|  | |
+
+
+### Return type
+
+**ClaimCreditDrop200Response**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Success |  -  |
+|**402** | Payment Required |  -  |
+|**404** | Resource not found |  -  |
+|**409** | Conflict |  -  |
+|**410** | Gone |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -420,6 +655,7 @@ const { status, data } = await apiInstance.deployToVercel(
 |**200** | Success |  -  |
 |**400** | Bad Request |  -  |
 |**404** | Resource not found |  -  |
+|**409** | Conflict |  -  |
 |**500** | Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -474,6 +710,71 @@ const { status, data } = await apiInstance.executeSql(
 |-------------|-------------|------------------|
 |**200** | Success |  -  |
 |**400** | Bad Request |  -  |
+|**403** | Forbidden |  -  |
+|**404** | Resource not found |  -  |
+|**500** | Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **exportZip**
+> exportZip()
+
+Downloads the generated miniapp source code as a binary ZIP archive (Content-Type: application/zip). Requires a paid Studio subscription (GROWTH, STUDIO_PLUS, STUDIO_MAX, or INTERNAL). The deployment must be running. The 200 response body is a raw binary stream, not JSON.
+
+### Example
+
+```typescript
+import {
+    StudioApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new StudioApi(configuration);
+
+let deploymentId: string; //Deployment ID (UUID). Required if name not provided. (optional) (default to undefined)
+let fid: number; //Farcaster ID of the user; if not provided, namespace must be provided (optional) (default to undefined)
+let name: string; //Kubernetes deployment name. Required if deployment_id not provided. (optional) (default to undefined)
+let namespace: string; //Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID. (optional) (default to undefined)
+
+const { status, data } = await apiInstance.exportZip(
+    deploymentId,
+    fid,
+    name,
+    namespace
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **deploymentId** | [**string**] | Deployment ID (UUID). Required if name not provided. | (optional) defaults to undefined|
+| **fid** | [**number**] | Farcaster ID of the user; if not provided, namespace must be provided | (optional) defaults to undefined|
+| **name** | [**string**] | Kubernetes deployment name. Required if deployment_id not provided. | (optional) defaults to undefined|
+| **namespace** | [**string**] | Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID. | (optional) defaults to undefined|
+
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Success |  -  |
+|**400** | Bad Request |  -  |
+|**402** | Payment Required |  -  |
 |**403** | Forbidden |  -  |
 |**404** | Resource not found |  -  |
 |**500** | Server Error |  -  |
@@ -543,7 +844,7 @@ const { status, data } = await apiInstance.getAccountAssociation(
 # **getConversationMessages**
 > GetConversationMessages200Response getConversationMessages()
 
-Retrieves all messages in a specific conversation. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.
+Retrieves messages in a specific conversation with cursor-based pagination (newest first). Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.
 
 ### Example
 
@@ -562,6 +863,8 @@ let fid: number; //Farcaster ID of the user; if not provided, namespace must be 
 let name: string; //Kubernetes deployment name. Required if deployment_id not provided. (optional) (default to undefined)
 let namespace: string; //Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID. (optional) (default to undefined)
 let includeDeleted: boolean; //Include deleted messages in the response. Defaults to false. (optional) (default to false)
+let limit: number; //Maximum number of messages to return per page. Defaults to 50, max 100. (optional) (default to 50)
+let cursor: string; //Pagination cursor for fetching older messages. Omit to start from most recent. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.getConversationMessages(
     conversationId,
@@ -569,7 +872,9 @@ const { status, data } = await apiInstance.getConversationMessages(
     fid,
     name,
     namespace,
-    includeDeleted
+    includeDeleted,
+    limit,
+    cursor
 );
 ```
 
@@ -583,6 +888,8 @@ const { status, data } = await apiInstance.getConversationMessages(
 | **name** | [**string**] | Kubernetes deployment name. Required if deployment_id not provided. | (optional) defaults to undefined|
 | **namespace** | [**string**] | Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID. | (optional) defaults to undefined|
 | **includeDeleted** | [**boolean**] | Include deleted messages in the response. Defaults to false. | (optional) defaults to false|
+| **limit** | [**number**] | Maximum number of messages to return per page. Defaults to 50, max 100. | (optional) defaults to 50|
+| **cursor** | [**string**] | Pagination cursor for fetching older messages. Omit to start from most recent. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -607,6 +914,59 @@ const { status, data } = await apiInstance.getConversationMessages(
 |**403** | Forbidden |  -  |
 |**404** | Resource not found |  -  |
 |**500** | Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getCreditDrop**
+> GetCreditDrop200Response getCreditDrop()
+
+Returns the most recent credit drop for the authenticated user. Returns the drop regardless of claimed/expired status.
+
+### Example
+
+```typescript
+import {
+    StudioApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new StudioApi(configuration);
+
+let fid: number; //Farcaster ID of the user (default to undefined)
+
+const { status, data } = await apiInstance.getCreditDrop(
+    fid
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **fid** | [**number**] | Farcaster ID of the user | defaults to undefined|
+
+
+### Return type
+
+**GetCreditDrop200Response**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Success |  -  |
+|**402** | Payment Required |  -  |
+|**404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1070,12 +1430,16 @@ const apiInstance = new StudioApi(configuration);
 let fid: number; //Farcaster ID of the user. Required for non-admin users. Studio admins can omit to query all deployments. (optional) (default to undefined)
 let limit: number; //Maximum number of deployments to return. Defaults to 50, max 1000. (optional) (default to 50)
 let offset: number; //Number of deployments to skip for pagination. Defaults to 0. (optional) (default to 0)
+let query: string; //Search string to filter deployments by name, display name, or FID. (optional) (default to undefined)
+let sortBy: 'created_at' | 'updated_at'; //Field to sort deployments by. Defaults to updated_at (most recently updated first). (optional) (default to 'updated_at')
 let includeDeleted: boolean; //Include deleted deployments in the response. Defaults to false. (optional) (default to false)
 
 const { status, data } = await apiInstance.listDeployments(
     fid,
     limit,
     offset,
+    query,
+    sortBy,
     includeDeleted
 );
 ```
@@ -1087,6 +1451,8 @@ const { status, data } = await apiInstance.listDeployments(
 | **fid** | [**number**] | Farcaster ID of the user. Required for non-admin users. Studio admins can omit to query all deployments. | (optional) defaults to undefined|
 | **limit** | [**number**] | Maximum number of deployments to return. Defaults to 50, max 1000. | (optional) defaults to 50|
 | **offset** | [**number**] | Number of deployments to skip for pagination. Defaults to 0. | (optional) defaults to 0|
+| **query** | [**string**] | Search string to filter deployments by name, display name, or FID. | (optional) defaults to undefined|
+| **sortBy** | [**&#39;created_at&#39; | &#39;updated_at&#39;**]**Array<&#39;created_at&#39; &#124; &#39;updated_at&#39;>** | Field to sort deployments by. Defaults to updated_at (most recently updated first). | (optional) defaults to 'updated_at'|
 | **includeDeleted** | [**boolean**] | Include deleted deployments in the response. Defaults to false. | (optional) defaults to false|
 
 
@@ -1277,9 +1643,66 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** | Success |  -  |
+|**202** | 202 |  -  |
 |**400** | Bad Request |  -  |
 |**404** | Resource not found |  -  |
-|**413** | 413 |  -  |
+|**413** | Content Too Large |  -  |
+|**500** | Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **provision**
+> Provision200Response provision(provisionRequest)
+
+Provisions a Neon PostgreSQL database for the deployment, or validates and attaches a user-provided (BYO) connection string. Idempotent — returns success if already provisioned.
+
+### Example
+
+```typescript
+import {
+    StudioApi,
+    Configuration,
+    ProvisionRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new StudioApi(configuration);
+
+let provisionRequest: ProvisionRequest; //
+
+const { status, data } = await apiInstance.provision(
+    provisionRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **provisionRequest** | **ProvisionRequest**|  | |
+
+
+### Return type
+
+**Provision200Response**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Success |  -  |
+|**400** | Bad Request |  -  |
+|**403** | Forbidden |  -  |
+|**404** | Resource not found |  -  |
 |**500** | Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1391,6 +1814,7 @@ void (empty response body)
 |**200** | Success |  -  |
 |**400** | Bad Request |  -  |
 |**404** | Resource not found |  -  |
+|**409** | Conflict |  -  |
 |**500** | Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1447,7 +1871,7 @@ const { status, data } = await apiInstance.startApp(
 |**400** | Bad Request |  -  |
 |**403** | Forbidden |  -  |
 |**404** | Resource not found |  -  |
-|**408** | 408 |  -  |
+|**408** | Request Timeout |  -  |
 |**500** | Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

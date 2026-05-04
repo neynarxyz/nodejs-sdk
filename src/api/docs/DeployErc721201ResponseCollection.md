@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **string** |  | [default to undefined]
-**network** | **string** | Network to mint on. | [default to undefined]
+**network** | **string** |  | [default to undefined]
 **address** | **string** | Ethereum address | [default to undefined]
 **name** | **string** |  | [default to undefined]
 **symbol** | **string** |  | [default to undefined]

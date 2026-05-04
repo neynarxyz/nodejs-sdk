@@ -17,6 +17,8 @@ Name | Type | Description | Notes
 **is_ready** | **boolean** | Deployment is ready to serve app and accept prompts | [default to undefined]
 **generated_app_exists** | **boolean** | Whether a generated app exists in the deployment | [default to undefined]
 **generated_app_serving** | **boolean** | Whether the generated app is currently serving | [default to undefined]
+**dev_server_state** | **string** | Dev server process state: stopped, starting, running, or crashed | [optional] [default to undefined]
+**has_database** | **boolean** | Whether the deployment has a Neon database configured | [optional] [default to undefined]
 **production_app_status** | [**ListDeployments200ResponseInnerProductionAppStatus**](ListDeployments200ResponseInnerProductionAppStatus.md) |  | [optional] [default to undefined]
 
 ## Example
@@ -37,6 +39,8 @@ const instance: ListDeployments200ResponseInner = {
     is_ready,
     generated_app_exists,
     generated_app_serving,
+    dev_server_state,
+    has_database,
     production_app_status,
 };
 ```

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **deployment_id** | **string** | Deployment ID (UUID) | [default to undefined]
 **fid** | **number** | Farcaster ID of the user. Required for non-admin users. | [optional] [default to undefined]
-**rows** | **Array&lt;{ [key: string]: any | null; }&gt;** | Rows to insert (max 100) | [default to undefined]
+**rows** | **Array&lt;{ [key: string]: any; }&gt;** | Rows to insert (max 100) | [default to undefined]
 
 ## Example
 

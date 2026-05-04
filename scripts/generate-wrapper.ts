@@ -21,8 +21,11 @@ interface ParameterInfo {
 const decoder = new StringDecoder("utf8");
 
 function decodeString(str) {
-  // First remove escaped backslashes
-  const unescaped = str.replace(/\\&/g, "&").replace(/\\/g, "");
+  if (str == null) return "";
+  const stringValue = String(str);
+
+  // First remove backslashes that OpenAPI Generator adds before HTML entities.
+  const unescaped = stringValue.replace(/\\&/g, "&");
 
   // Then decode HTML entities
   const htmlDecoded = unescaped
@@ -47,6 +50,10 @@ function decodeString(str) {
 
   // Then decode any remaining UTF-8 sequences if present
   return decoder.write(Buffer.from(htmlDecoded));
+}
+
+function sanitizeJSDocText(str) {
+  return decodeString(str).replace(/\*\//g, "* /").replace(/\r?\n/g, " ").trim();
 }
 
 function snakeToCamel(snakeStr) {
@@ -101,24 +108,28 @@ function kebabToPascalCase(str: string): string {
 // Helper function to get description from a property's JSDoc comment
 function getPropertyDescription(prop: ts.PropertySignature): string {
   const jsDocComment = ts.getJSDocCommentsAndTags(prop)[0];
-  if (!jsDocComment) return { description: "", isGlobalHeader: false };
+  if (!jsDocComment) return "";
 
-  const commentText = jsDocComment.getText();
+  const descriptionLines = jsDocComment
+    .getText()
+    .split(/\r?\n/)
+    .map((line) =>
+      line
+        .trim()
+        .replace(/^\/\*\*?/, "")
+        .replace(/\*\/$/, "")
+        .replace(/^\*\s?/, "")
+        .trim()
+    )
+    .filter(Boolean);
 
-  // Extract the first line of the comment which is typically the description
-  const match = commentText.match(/\/\*\*\s*\n\s*\*(.*?)(?=\n\s*\*\s*@|$)/s);
-  if (match && match[1]) {
-    // Remove empty lines and join the lines back together
-    const description = match[1]
-      .split("\n")
-      .map((line) => line.trim())
-      .filter((line) => line !== "*")
-      .filter((line) => line.trim() !== "")
-      .join(" ");
-
-    return description.trim();
+  const description = [];
+  for (const line of descriptionLines) {
+    if (line.startsWith("@")) break;
+    description.push(line);
   }
-  return "";
+
+  return description.join(" ").trim();
 }
 
 function convertOAS3TypeToTS(type: string): string {
@@ -365,9 +376,8 @@ function getJSDocComment(
       .forEach((param) => {
         const { name, acceptedType, isOptional, description } = param;
         const optionalText = isOptional ? "[optional] " : "";
-        const descriptionText = description
-          ? ` - ${decodeString(description)}`
-          : "";
+        const decodedDescription = sanitizeJSDocText(description);
+        const descriptionText = decodedDescription ? ` - ${decodedDescription}` : "";
 
         newJsDoc += ` * @param {${acceptedType}} params.${name} ${optionalText}${descriptionText}\n`;
       });
@@ -727,6 +737,7 @@ function generateWrapper(apiDir: string, outputFile: string) {
   const usedTypes = new Set<string>();
 
   let generatedMethodCount = 0;
+  const emittedMethodNames = new Set<string>();
 
   let wrapperCode = `
 export interface ${clientClassName}Options {
@@ -866,8 +877,16 @@ const client = new ${clientClassName}(config);\\n\`);
       return apiInterface.members
         .filter(ts.isMethodSignature)
         .map((method) => {
-          generatedMethodCount += 1;
           const methodName = method.name.getText();
+          if (emittedMethodNames.has(methodName)) {
+            console.warn(
+              `Skipping duplicate wrapper method "${methodName}" from ${apiName}.`
+            );
+            return "";
+          }
+
+          emittedMethodNames.add(methodName);
+          generatedMethodCount += 1;
 
           // Find the corresponding request interface if it exists
           const requestInterface = requestInterfaces.find((iface) =>

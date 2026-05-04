@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **address** | **string** | Ethereum address | [default to undefined]
 **quantity** | **number** |  | [default to undefined]
 **fid** | **number** | The unique identifier of a farcaster user or app (unsigned integer) | [optional] [default to undefined]
+**tokens** | [**Array&lt;MintNft200ResponseTransactionsInnerOneOfRecipientTokensInner&gt;**](MintNft200ResponseTransactionsInnerOneOfRecipientTokensInner.md) | Minted token IDs parsed from Transfer events (sync mode only). | [optional] [default to undefined]
 
 ## Example
 
@@ -19,6 +20,7 @@ const instance: MintNft200ResponseTransactionsInnerOneOfRecipient = {
     address,
     quantity,
     fid,
+    tokens,
 };
 ```
 

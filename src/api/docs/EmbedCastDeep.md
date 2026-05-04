@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cast_id** | [**EmbedCastDeepCastId**](EmbedCastDeepCastId.md) |  | [optional] [default to undefined]
+**cast_id** | [**CastId**](CastId.md) |  | [optional] [default to undefined]
 **cast** | [**CastDehydrated**](CastDehydrated.md) |  | [default to undefined]
 
 ## Example

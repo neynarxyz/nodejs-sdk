@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **messages** | [**Array&lt;GetConversationMessages200ResponseMessagesInner&gt;**](GetConversationMessages200ResponseMessagesInner.md) | List of messages | [default to undefined]
+**next** | [**NextCursor**](NextCursor.md) |  | [default to undefined]
 
 ## Example
 
@@ -14,6 +15,7 @@ import { GetConversationMessages200Response } from './api';
 
 const instance: GetConversationMessages200Response = {
     messages,
+    next,
 };
 ```
 

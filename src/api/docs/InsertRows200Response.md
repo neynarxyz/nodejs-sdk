@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **insertedCount** | **number** | Number of rows inserted | [default to undefined]
-**rows** | **Array&lt;{ [key: string]: any | null; }&gt;** | Inserted rows with generated values | [default to undefined]
+**rows** | **Array&lt;{ [key: string]: any; }&gt;** | Inserted rows with generated values | [default to undefined]
 
 ## Example
 
