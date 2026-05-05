@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**fid** | **number** | Farcaster ID of the user | [default to undefined]
-**env** | **{ [key: string]: string; }** | Environment variables for the deployment | [optional] [default to undefined]
 **display_name** | **string** | Display name for the deployment | [optional] [default to undefined]
+**env** | **{ [key: string]: string; }** | Environment variables for the deployment | [optional] [default to undefined]
+**fid** | **number** | Farcaster ID of the user | [default to undefined]
 
 ## Example
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 import { CreateDeploymentRequest } from './api';
 
 const instance: CreateDeploymentRequest = {
-    fid,
-    env,
     display_name,
+    env,
+    fid,
 };
 ```
 

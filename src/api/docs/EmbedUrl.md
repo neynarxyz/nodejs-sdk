@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**url** | **string** |  | [default to undefined]
 **metadata** | [**EmbedUrlMetadata**](EmbedUrlMetadata.md) |  | [optional] [default to undefined]
+**url** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { EmbedUrl } from './api';
 
 const instance: EmbedUrl = {
-    url,
     metadata,
+    url,
 };
 ```
 

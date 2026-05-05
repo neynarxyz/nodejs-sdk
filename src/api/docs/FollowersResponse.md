@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**users** | [**Array&lt;Follower&gt;**](Follower.md) |  | [default to undefined]
 **next** | [**NextCursor**](NextCursor.md) |  | [default to undefined]
+**users** | [**Array&lt;Follower&gt;**](Follower.md) |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { FollowersResponse } from './api';
 
 const instance: FollowersResponse = {
-    users,
     next,
+    users,
 };
 ```
 

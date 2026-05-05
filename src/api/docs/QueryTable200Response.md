@@ -6,11 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **columns** | [**Array&lt;QueryTable200ResponseColumnsInner&gt;**](QueryTable200ResponseColumnsInner.md) | Column metadata | [default to undefined]
-**rows** | **Array&lt;{ [key: string]: any; }&gt;** | Query result rows | [default to undefined]
-**totalCount** | **number** | Total number of rows in table | [default to undefined]
+**hasMore** | **boolean** | Whether more rows are available | [default to undefined]
 **limit** | **number** | Applied limit | [default to undefined]
 **offset** | **number** | Applied offset | [default to undefined]
-**hasMore** | **boolean** | Whether more rows are available | [default to undefined]
+**rows** | **Array&lt;{ [key: string]: any; }&gt;** | Query result rows | [default to undefined]
+**totalCount** | **number** | Total number of rows in table | [default to undefined]
 
 ## Example
 
@@ -19,11 +19,11 @@ import { QueryTable200Response } from './api';
 
 const instance: QueryTable200Response = {
     columns,
-    rows,
-    totalCount,
+    hasMore,
     limit,
     offset,
-    hasMore,
+    rows,
+    totalCount,
 };
 ```
 

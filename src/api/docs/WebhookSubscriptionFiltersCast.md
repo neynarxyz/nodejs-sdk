@@ -5,18 +5,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**exclude_author_fids** | **Array&lt;number&gt;** | Exclude casts that matches these authors. **Note:** This is applied as an AND operation against rest of the filters. Rest of the filters are bundled as an OR operation. | [optional] [default to undefined]
 **author_fids** | **Array&lt;number&gt;** |  | [optional] [default to undefined]
-**mentioned_fids** | **Array&lt;number&gt;** |  | [optional] [default to undefined]
-**parent_urls** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
-**root_parent_urls** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
-**parent_hashes** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
-**parent_author_fids** | **Array&lt;number&gt;** |  | [optional] [default to undefined]
-**text** | **string** | Regex pattern to match the text key of the cast. **Note:**  1) Regex must be parsed by Go\&#39;s RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex) 2) Use backslashes to escape special characters. For example: (?i)\\\\$degen should be written as (?i)\\\\\\\\$degen | [optional] [default to undefined]
-**embeds** | **string** | Regex pattern to match the embeded_url (key embeds) of the cast. **Note:**  1) Regex must be parsed by Go\&#39;s RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex) 2) Use backslashes to escape special characters. For example: \\\\b(farcaster|neynar)\\\\b should be written as \\\\\\\\b(farcaster|neynar)\\\\\\\\b | [optional] [default to undefined]
-**minimum_author_score** | **number** |  | [optional] [default to 0]
 **embedded_cast_author_fids** | **Array&lt;number&gt;** | Filter for casts that contain embedded casts authored by these FIDs | [optional] [default to undefined]
 **embedded_cast_hashes** | **Array&lt;string&gt;** | Filter for casts that quote/embed these specific cast hashes | [optional] [default to undefined]
+**embeds** | **string** | Regex pattern to match the embeded_url (key embeds) of the cast. **Note:**  1) Regex must be parsed by Go\&#39;s RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex) 2) Use backslashes to escape special characters. For example: \\\\b(farcaster|neynar)\\\\b should be written as \\\\\\\\b(farcaster|neynar)\\\\\\\\b | [optional] [default to undefined]
+**exclude_author_fids** | **Array&lt;number&gt;** | Exclude casts that matches these authors. **Note:** This is applied as an AND operation against rest of the filters. Rest of the filters are bundled as an OR operation. | [optional] [default to undefined]
+**mentioned_fids** | **Array&lt;number&gt;** |  | [optional] [default to undefined]
+**minimum_author_score** | **number** |  | [optional] [default to 0]
+**parent_author_fids** | **Array&lt;number&gt;** |  | [optional] [default to undefined]
+**parent_hashes** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
+**parent_urls** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
+**root_parent_urls** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
+**text** | **string** | Regex pattern to match the text key of the cast. **Note:**  1) Regex must be parsed by Go\&#39;s RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex) 2) Use backslashes to escape special characters. For example: (?i)\\\\$degen should be written as (?i)\\\\\\\\$degen | [optional] [default to undefined]
 
 ## Example
 
@@ -24,18 +24,18 @@ Name | Type | Description | Notes
 import { WebhookSubscriptionFiltersCast } from './api';
 
 const instance: WebhookSubscriptionFiltersCast = {
-    exclude_author_fids,
     author_fids,
-    mentioned_fids,
-    parent_urls,
-    root_parent_urls,
-    parent_hashes,
-    parent_author_fids,
-    text,
-    embeds,
-    minimum_author_score,
     embedded_cast_author_fids,
     embedded_cast_hashes,
+    embeds,
+    exclude_author_fids,
+    mentioned_fids,
+    minimum_author_score,
+    parent_author_fids,
+    parent_hashes,
+    parent_urls,
+    root_parent_urls,
+    text,
 };
 ```
 

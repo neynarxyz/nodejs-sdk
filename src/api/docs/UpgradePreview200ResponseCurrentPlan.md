@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **string** |  | [default to undefined]
-**price** | **number** |  | [default to undefined]
 **computeUnitsLimit** | **number** |  | [default to undefined]
 **computeUnitsUsed** | **number** |  | [default to undefined]
+**name** | **string** |  | [default to undefined]
+**price** | **number** |  | [default to undefined]
 
 ## Example
 
@@ -16,10 +16,10 @@ Name | Type | Description | Notes
 import { UpgradePreview200ResponseCurrentPlan } from './api';
 
 const instance: UpgradePreview200ResponseCurrentPlan = {
-    name,
-    price,
     computeUnitsLimit,
     computeUnitsUsed,
+    name,
+    price,
 };
 ```
 

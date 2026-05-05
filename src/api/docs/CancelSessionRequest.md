@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**conversation_id** | **string** | The conversation ID of the session to cancel | [default to undefined]
 **deployment_id** | **string** | Deployment ID (UUID). Required if name not provided. | [optional] [default to undefined]
 **fid** | **number** | Farcaster ID of the user; if not provided, namespace must be provided | [optional] [default to undefined]
 **name** | **string** | Kubernetes deployment name. Required if deployment_id not provided. | [optional] [default to undefined]
 **namespace** | **string** | Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID. | [optional] [default to undefined]
-**conversation_id** | **string** | The conversation ID of the session to cancel | [default to undefined]
 
 ## Example
 
@@ -17,11 +17,11 @@ Name | Type | Description | Notes
 import { CancelSessionRequest } from './api';
 
 const instance: CancelSessionRequest = {
+    conversation_id,
     deployment_id,
     fid,
     name,
     namespace,
-    conversation_id,
 };
 ```
 

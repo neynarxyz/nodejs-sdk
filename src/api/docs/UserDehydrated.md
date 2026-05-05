@@ -5,13 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **string** |  | [default to undefined]
-**fid** | **number** | The unique identifier of a farcaster user or app (unsigned integer) | [default to undefined]
-**username** | **string** |  | [optional] [default to undefined]
-**display_name** | **string** |  | [optional] [default to undefined]
-**pfp_url** | **string** |  | [optional] [default to undefined]
 **custody_address** | **string** | Ethereum address | [optional] [default to undefined]
+**display_name** | **string** |  | [optional] [default to undefined]
+**fid** | **number** | The unique identifier of a farcaster user or app (unsigned integer) | [default to undefined]
+**object** | **string** |  | [default to undefined]
+**pfp_url** | **string** |  | [optional] [default to undefined]
 **score** | **number** |  | [optional] [default to undefined]
+**username** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -19,13 +19,13 @@ Name | Type | Description | Notes
 import { UserDehydrated } from './api';
 
 const instance: UserDehydrated = {
-    object,
-    fid,
-    username,
-    display_name,
-    pfp_url,
     custody_address,
+    display_name,
+    fid,
+    object,
+    pfp_url,
     score,
+    username,
 };
 ```
 

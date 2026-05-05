@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **object** | **string** |  | [default to undefined]
-**user** | [**User**](User.md) |  | [default to undefined]
 **subscribed_to** | [**SubscribedToObject**](SubscribedToObject.md) |  | [default to undefined]
+**user** | [**User**](User.md) |  | [default to undefined]
 
 ## Example
 
@@ -16,8 +16,8 @@ import { Subscriber } from './api';
 
 const instance: Subscriber = {
     object,
-    user,
     subscribed_to,
+    user,
 };
 ```
 

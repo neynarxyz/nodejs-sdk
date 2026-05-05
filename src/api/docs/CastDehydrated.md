@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **string** |  | [default to undefined]
-**hash** | **string** |  | [default to undefined]
-**author** | [**UserDehydrated**](UserDehydrated.md) |  | [optional] [default to undefined]
 **app** | [**UserDehydrated**](UserDehydrated.md) |  | [optional] [default to undefined]
+**author** | [**UserDehydrated**](UserDehydrated.md) |  | [optional] [default to undefined]
+**hash** | **string** |  | [default to undefined]
+**object** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -16,10 +16,10 @@ Name | Type | Description | Notes
 import { CastDehydrated } from './api';
 
 const instance: CastDehydrated = {
-    object,
-    hash,
-    author,
     app,
+    author,
+    hash,
+    object,
 };
 ```
 

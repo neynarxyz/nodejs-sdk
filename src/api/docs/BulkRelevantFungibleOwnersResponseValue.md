@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**top_relevant_fungible_owners_hydrated** | [**Array&lt;User&gt;**](User.md) |  | [default to undefined]
 **all_relevant_fungible_owners_dehydrated** | [**Array&lt;UserDehydrated&gt;**](UserDehydrated.md) |  | [default to undefined]
+**top_relevant_fungible_owners_hydrated** | [**Array&lt;User&gt;**](User.md) |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { BulkRelevantFungibleOwnersResponseValue } from './api';
 
 const instance: BulkRelevantFungibleOwnersResponseValue = {
-    top_relevant_fungible_owners_hydrated,
     all_relevant_fungible_owners_dehydrated,
+    top_relevant_fungible_owners_hydrated,
 };
 ```
 

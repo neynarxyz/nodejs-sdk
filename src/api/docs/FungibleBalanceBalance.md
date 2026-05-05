@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**in_usd** | **number** |  | [default to undefined]
 **in_token** | **string** |  | [default to undefined]
+**in_usd** | **number** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { FungibleBalanceBalance } from './api';
 
 const instance: FungibleBalanceBalance = {
-    in_usd,
     in_token,
+    in_usd,
 };
 ```
 

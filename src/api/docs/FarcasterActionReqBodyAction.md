@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **string** | The type of action being performed. | [default to undefined]
 **payload** | **object** | The payload of the action being performed. | [optional] [default to undefined]
+**type** | **string** | The type of action being performed. | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { FarcasterActionReqBodyAction } from './api';
 
 const instance: FarcasterActionReqBodyAction = {
-    type,
     payload,
+    type,
 };
 ```
 

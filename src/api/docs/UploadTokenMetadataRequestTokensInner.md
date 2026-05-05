@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**token_id** | **string** |  | [default to undefined]
 **metadata** | [**UploadTokenMetadataRequestTokensInnerMetadata**](UploadTokenMetadataRequestTokensInnerMetadata.md) |  | [default to undefined]
+**token_id** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { UploadTokenMetadataRequestTokensInner } from './api';
 
 const instance: UploadTokenMetadataRequestTokensInner = {
-    token_id,
     metadata,
+    token_id,
 };
 ```
 

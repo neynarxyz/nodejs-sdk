@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**expires_at** | **string** |  | [default to undefined]
 **status** | **string** | The subscription status of the user | [default to undefined]
 **subscribed_at** | **string** |  | [default to undefined]
-**expires_at** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 import { UserPro } from './api';
 
 const instance: UserPro = {
+    expires_at,
     status,
     subscribed_at,
-    expires_at,
 };
 ```
 

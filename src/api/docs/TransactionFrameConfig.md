@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**action** | [**TransactionFrameAction**](TransactionFrameAction.md) |  | [optional] [default to undefined]
 **allowlist_fids** | **Array&lt;number&gt;** | Optional list of FIDs that are allowed to use this transaction mini app | [optional] [default to undefined]
 **line_items** | [**Array&lt;TransactionFrameLineItem&gt;**](TransactionFrameLineItem.md) | List of items included in the transaction | [default to undefined]
-**action** | [**TransactionFrameAction**](TransactionFrameAction.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 import { TransactionFrameConfig } from './api';
 
 const instance: TransactionFrameConfig = {
+    action,
     allowlist_fids,
     line_items,
-    action,
 };
 ```
 

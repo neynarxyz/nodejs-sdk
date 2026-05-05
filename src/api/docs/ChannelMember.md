@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**channel** | [**ChannelMemberChannel**](ChannelMemberChannel.md) |  | [default to undefined]
 **object** | **string** |  | [default to undefined]
 **role** | [**ChannelMemberRole**](ChannelMemberRole.md) |  | [default to undefined]
 **user** | [**ChannelMemberUser**](ChannelMemberUser.md) |  | [default to undefined]
-**channel** | [**ChannelMemberChannel**](ChannelMemberChannel.md) |  | [default to undefined]
 
 ## Example
 
@@ -16,10 +16,10 @@ Name | Type | Description | Notes
 import { ChannelMember } from './api';
 
 const instance: ChannelMember = {
+    channel,
     object,
     role,
     user,
-    channel,
 };
 ```
 

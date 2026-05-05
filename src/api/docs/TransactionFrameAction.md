@@ -6,9 +6,9 @@ Action button for primary CTA on the transaction mini app
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**button_color** | **string** | Custom button color for action button | [optional] [default to undefined]
 **text** | **string** | Custom text for action button | [optional] [default to undefined]
 **text_color** | **string** | Custom text color for action button | [optional] [default to undefined]
-**button_color** | **string** | Custom button color for action button | [optional] [default to undefined]
 
 ## Example
 
@@ -16,9 +16,9 @@ Name | Type | Description | Notes
 import { TransactionFrameAction } from './api';
 
 const instance: TransactionFrameAction = {
+    button_color,
     text,
     text_color,
-    button_color,
 };
 ```
 

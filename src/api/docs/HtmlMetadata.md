@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **favicon** | **string** |  | [optional] [default to undefined]
 **modifiedTime** | **string** |  | [optional] [default to undefined]
+**oembed** | [**HtmlMetadataOembed**](HtmlMetadataOembed.md) |  | [optional] [default to undefined]
 **ogArticleAuthor** | **string** |  | [optional] [default to undefined]
 **ogArticleExpirationTime** | **string** |  | [optional] [default to undefined]
 **ogArticleModifiedTime** | **string** |  | [optional] [default to undefined]
@@ -54,7 +55,6 @@ Name | Type | Description | Notes
 **ogVideoWriter** | **string** |  | [optional] [default to undefined]
 **ogWebsite** | **string** |  | [optional] [default to undefined]
 **updatedTime** | **string** |  | [optional] [default to undefined]
-**oembed** | [**HtmlMetadataOembed**](HtmlMetadataOembed.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -64,6 +64,7 @@ import { HtmlMetadata } from './api';
 const instance: HtmlMetadata = {
     favicon,
     modifiedTime,
+    oembed,
     ogArticleAuthor,
     ogArticleExpirationTime,
     ogArticleModifiedTime,
@@ -111,7 +112,6 @@ const instance: HtmlMetadata = {
     ogVideoWriter,
     ogWebsite,
     updatedTime,
-    oembed,
 };
 ```
 

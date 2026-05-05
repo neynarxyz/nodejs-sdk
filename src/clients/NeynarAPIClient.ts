@@ -37,7 +37,7 @@ import { SubscriptionApi } from '../api/apis/subscription-api';
 import { TopicApi } from '../api/apis/topic-api';
 import { UserApi } from '../api/apis/user-api';
 import { WebhookApi } from '../api/apis/webhook-api';
-import type { AddVerificationReqBody, AppHostGetEventEventEnum, AppHostGetEventResponse, AppHostPostEventReqBody, AppHostPostEventReqBodyEventEnum, AppHostPostEventResponse, AppHostUserStateResponse, AssignCustomDomain200Response, AssignCustomDomainRequest, AssociateDeployment200Response, AssociateDeploymentRequest, AuthorizationUrlResponse, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BatchGetTokenMetadata200Response, BestFriendsResponse, Billing200Response, BlockListResponse, BlockReqBody, BuildRequest, BulkCastsResponse, BulkFollowResponse, BulkRelevantFungibleOwnersResponse, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CancelSession200Response, CancelSessionRequest, CastEmbedCrawlResponse, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, CheckDomainAvailability200Response, ClaimCreditDrop200Response, ClaimCreditDropRequest, Conversation, ConversationSummary, CreateDeploymentRequest, CreateX402Signature200Response, CreateX402SignatureRequest, DeleteCastReqBody, DeleteDeployment200Response, DeleteDeploymentRequest, DeleteRows200Response, DeleteRowsRequest, DeleteSecretsRequest, DeployErc721201Response, DeployErc721Request, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeployToVercel200Response, DeployToVercelRequest, DeveloperManagedSigner, ErrorRes, ExecuteSql200Response, ExecuteSqlRequest, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FetchAllNotificationsTypeEnum, FetchAuthorizationUrlResponseTypeEnum, FetchBulkCastsSortTypeEnum, FetchBulkChannelsTypeEnum, FetchBulkRelevantFungibleOwnersNetworkEnum, FetchBulkUsersByEthOrSolAddressAddressTypesEnum, FetchCastMetricsIntervalEnum, FetchCastQuotes200Response, FetchCastQuotesTypeEnum, FetchCastReactionsTypesEnum, FetchFeedEmbedTypesEnum, FetchFeedFeedTypeEnum, FetchFeedFilterTypeEnum, FetchFeedForYouProviderEnum, FetchFrameCatalogCategoriesEnum, FetchFrameCatalogNetworksEnum, FetchFrameCatalogTimeWindowEnum, FetchFungibleTrades200Response, FetchFungibleTradesNetworkEnum, FetchFungibleTradesTimeWindowEnum, FetchRelevantFrames200Response, FetchRelevantFramesNetworksEnum, FetchRelevantFramesTimeWindowEnum, FetchRelevantFungibleOwnersNetworkEnum, FetchRepliesAndRecastsForUserFilterEnum, FetchSubscribedToForFidSubscriptionProviderEnum, FetchSubscribersForFidSubscriptionProviderEnum, FetchSubscriptionsForFidSubscriptionProviderEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedProviderEnum, FetchTrendingFeedTimeWindowEnum, FetchTrendingFungibles200Response, FetchTrendingFungiblesNetworkEnum, FetchTrendingFungiblesTimeWindowEnum, FetchUserBalanceNetworksEnum, FetchUserFollowersSortTypeEnum, FetchUserFollowingSortTypeEnum, FetchUserInteractions200Response, FetchUserInteractionsTypeEnum, FetchUserReactionsTypeEnum, FetchUserReciprocalFollowers200Response, FetchUserReciprocalFollowersSortTypeEnum, FetchVerifications200Response, FnameAvailabilityResponse, FollowReqBody, FollowersResponse, FrameCatalogResponse, FrameNotificationTokens, FramePayTransactionReqBody, FramePayTransactionReqBodyTransaction, FungiblesResponseSchema, GenerateImage200Response, GenerateImageRequest, GetAccountAssociation200Response, GetConversationMessages200Response, GetCreditDrop200Response, GetDeploymentFile200Response, GetDevStatus200Response, GetNotificationCampaignStats200Response, GetTableSchema200Response, GetTokenMetadata200Response, GetWalletBalances200Response, InsertRows200Response, InsertRowsRequest, InviteChannelMemberReqBody, ListConversations200Response, ListDeploymentFiles200Response, ListDeployments200ResponseInner, ListDeploymentsSortByEnum, ListSecrets200Response, ListTables200Response, LookupCastByHashOrUrlTypeEnum, LookupCastConversationFoldEnum, LookupCastConversationSortTypeEnum, LookupCastConversationTypeEnum, LookupChannelTypeEnum, MarkNotificationsAsSeenReqBody, MintNft200Response, MintNftRequest, MuteListResponse, MuteReqBody, MuteResponse, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, PromptDeploymentStreamRequest, Provision200Response, ProvisionRequest, QueryTable200Response, QueryTableRequest, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, RecoverRequest, RegisterAuthAddressDeveloperManagedSignedKeyReqBody, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignedKeyForDeveloperManagedAuthAddress200Response, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyPreRegistrationCallsInner, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserReqBodySigner, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchCastsSortTypeEnum, SearchFramesNetworksEnum, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, SignedMessageBodySignedMessage, Signer, SignerListResponse, SimulateNftMintNetworkEnum, SimulateNftMintResponse, StartApp200Response, StartAppRequest, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionsResponse, TransactionFrameConfig, TransactionFrameResponse, TransactionSendFungiblesRecipient, TransactionSendFungiblesReqBody, TransactionSendFungiblesReqBodyNetworkEnum, TransactionSendFungiblesResponse, TrendingChannelResponse, TrendingTopicsResponse, UpdateRows200Response, UpdateRowsRequest, UpdateUserReqBody, UpdateUserReqBodyLocation, UpdateUserReqBodyVerifiedAccounts, Upgrade200Response, UpgradePreview200Response, UpgradePreviewProductCategoryEnum, UpgradeRequest, UploadImage200Response, UploadImageUrlRequest, UploadTokenMetadata200Response, UploadTokenMetadataRequest, UpsertSecrets200Response, UpsertSecretsRequest, UserFIDResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, VercelDeploymentLogs200Response, VercelDeploymentStatus200Response, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
+import type { AddVerificationReqBody, AppHostGetEventEventEnum, AppHostGetEventResponse, AppHostPostEventReqBody, AppHostPostEventReqBodyEventEnum, AppHostPostEventResponse, AppHostUserStateResponse, AssignCustomDomain200Response, AssignCustomDomainRequest, AssociateDeployment200Response, AssociateDeploymentRequest, AuthorizationUrlResponse, BalanceResponse, BanListResponse, BanReqBody, BanResponse, BatchGetTokenMetadata200Response, BestFriendsResponse, Billing200Response, BlockListResponse, BlockReqBody, BuildRequest, BulkCastsResponse, BulkFollowResponse, BulkRelevantFungibleOwnersResponse, BulkUsersByAddressResponse, BulkUsersResponse, BuyStorageReqBody, CancelSession200Response, CancelSessionRequest, CastEmbedCrawlResponse, CastResponse, CastsMetricsResponse, CastsResponse, CastsSearchResponse, ChannelFollowReqBody, ChannelListResponse, ChannelMemberInviteListResponse, ChannelMemberListResponse, ChannelMemberRole, ChannelResponse, ChannelResponseBulk, ChannelSearchResponse, CheckDomainAvailability200Response, ClaimCreditDrop200Response, ClaimCreditDropRequest, Conversation, ConversationSummary, CreateDeploymentRequest, CreateX402Signature200Response, CreateX402SignatureRequest, DeleteCastReqBody, DeleteDeployment200Response, DeleteDeploymentRequest, DeleteRows200Response, DeleteRowsRequest, DeleteSecretsRequest, DeployErc721201Response, DeployErc721Request, DeployFungibleFactoryEnum, DeployFungibleMetadataNsfwEnum, DeployFungibleNetworkEnum, DeployFungibleResponse, DeployToVercel200Response, DeployToVercelRequest, DeveloperManagedSigner, ErrorRes, ExecuteSql200Response, ExecuteSqlRequest, FarcasterActionReqBody, FarcasterActionReqBodyAction, FeedResponse, FetchAllNotificationsTypeEnum, FetchAuthorizationUrlResponseTypeEnum, FetchBulkCastsSortTypeEnum, FetchBulkChannelsTypeEnum, FetchBulkRelevantFungibleOwnersNetworkEnum, FetchBulkUsersByEthOrSolAddressAddressTypesEnum, FetchCastMetricsIntervalEnum, FetchCastQuotes200Response, FetchCastQuotesTypeEnum, FetchCastReactionsTypesEnum, FetchFeedEmbedTypesEnum, FetchFeedFeedTypeEnum, FetchFeedFilterTypeEnum, FetchFeedForYouProviderEnum, FetchFrameCatalogCategoriesEnum, FetchFrameCatalogNetworksEnum, FetchFrameCatalogTimeWindowEnum, FetchFungibleTrades200Response, FetchFungibleTradesNetworkEnum, FetchFungibleTradesTimeWindowEnum, FetchRelevantFrames200Response, FetchRelevantFramesNetworksEnum, FetchRelevantFramesTimeWindowEnum, FetchRelevantFungibleOwnersNetworkEnum, FetchRepliesAndRecastsForUserFilterEnum, FetchSubscribedToForFidSubscriptionProviderEnum, FetchSubscribersForFidSubscriptionProviderEnum, FetchSubscriptionsForFidSubscriptionProviderEnum, FetchTrendingChannelsTimeWindowEnum, FetchTrendingFeedProviderEnum, FetchTrendingFeedTimeWindowEnum, FetchTrendingFungibles200Response, FetchTrendingFungiblesNetworkEnum, FetchTrendingFungiblesTimeWindowEnum, FetchUserBalanceNetworksEnum, FetchUserFollowersSortTypeEnum, FetchUserFollowingSortTypeEnum, FetchUserInteractions200Response, FetchUserInteractionsTypeEnum, FetchUserReactionsTypeEnum, FetchUserReciprocalFollowers200Response, FetchUserReciprocalFollowersSortTypeEnum, FetchVerifications200Response, FnameAvailabilityResponse, FollowReqBody, FollowersResponse, FrameCatalogResponse, FrameNotificationTokens, FramePayTransactionReqBody, FramePayTransactionReqBodyTransaction, FungiblesResponseSchema, GenerateImage200Response, GenerateImageRequest, GetAccountAssociation200Response, GetConversationMessages200Response, GetCreditDrop200Response, GetDeploymentFile200Response, GetDevStatus200Response, GetNotificationCampaignStats200Response, GetTableSchema200Response, GetTokenMetadata200Response, GetWalletBalances200Response, InsertRows200Response, InsertRowsRequest, InviteChannelMemberReqBody, ListConversations200Response, ListDeploymentFiles200Response, ListDeployments200ResponseInner, ListDeploymentsSortByEnum, ListSecrets200Response, ListTables200Response, LookupCastByHashOrUrlTypeEnum, LookupCastConversationFoldEnum, LookupCastConversationSortTypeEnum, LookupCastConversationTypeEnum, LookupChannelTypeEnum, LookupDeveloperManagedAuthAddress200Response, MarkNotificationsAsSeenReqBody, MintNft200Response, MintNftRequest, MuteListResponse, MuteReqBody, MuteResponse, NonceResponse, NotificationType, NotificationsResponse, OperationResponse, PostCastReqBody, PostCastReqBodyEmbeds, PostCastResponse, PromptDeploymentStreamRequest, Provision200Response, ProvisionRequest, QueryTable200Response, QueryTableRequest, ReactionReqBody, ReactionType, ReactionsCastResponse, ReactionsResponse, RecoverRequest, RegisterAuthAddressDeveloperManagedSignedKeyReqBody, RegisterDeveloperManagedSignedKeyReqBody, RegisterSignerKeyReqBody, RegisterUserOnChainReqBody, RegisterUserOnChainReqBodyPreRegistrationCallsInner, RegisterUserOnChainReqBodyRegistration, RegisterUserOnChainReqBodySignersInner, RegisterUserOnChainResponse, RegisterUserReqBody, RegisterUserReqBodyMetadata, RegisterUserReqBodyMetadataLocation, RegisterUserReqBodyMetadataVerifiedAccounts, RegisterUserReqBodySigner, RegisterUserResponse, RelevantFollowersResponse, RelevantFungibleOwnersResponse, RemoveChannelMemberReqBody, RemoveVerificationReqBody, RespondChannelInviteReqBody, SearchCastsModeEnum, SearchCastsSortTypeEnum, SearchFramesNetworksEnum, SendFrameNotificationsReqBody, SendFrameNotificationsReqBodyFilters, SendFrameNotificationsReqBodyNotification, SendFrameNotificationsResponse, SignedKeyRequestSponsor, SignedMessageBodySignedMessage, Signer, SignerListResponse, SimulateNftMintNetworkEnum, SimulateNftMintResponse, StartApp200Response, StartAppRequest, StorageAllocationsResponse, StorageUsageResponse, SubscribedToResponse, SubscribersResponse, SubscriptionCheckResponse, SubscriptionsResponse, TransactionFrameConfig, TransactionFrameResponse, TransactionSendFungiblesRecipient, TransactionSendFungiblesReqBody, TransactionSendFungiblesReqBodyNetworkEnum, TransactionSendFungiblesResponse, TrendingChannelResponse, TrendingTopicsResponse, UpdateRows200Response, UpdateRowsRequest, UpdateUserReqBody, Upgrade200Response, UpgradePreview200Response, UpgradePreviewProductCategoryEnum, UpgradeRequest, UploadImage200Response, UploadImageUrlRequest, UploadTokenMetadata200Response, UploadTokenMetadataRequest, UpsertSecrets200Response, UpsertSecretsRequest, UserFIDResponse, UserResponse, UserSearchResponse, UsersActiveChannelsResponse, UsersResponse, VercelDeploymentLogs200Response, VercelDeploymentStatus200Response, VerificationChainId, VerificationType, WebhookDeleteReqBody, WebhookListResponse, WebhookPatchReqBody, WebhookPatchReqBodyActiveEnum, WebhookPostReqBody, WebhookPutReqBody, WebhookResponse, WebhookSubscriptionFilters } from '../api';
 
 const { version: sdkVersion } = require("../../package.json");
 
@@ -232,27 +232,27 @@ const client = new NeynarAPIClient(config);\n`);
  * @summary User actions across apps
  *
  * @param {object} params
- * @param {string} params.signerUuid  - The signer_uuid of the user on behalf of whom the action is being performed.
- * @param {string} params.baseUrl  - The base URL of the app on which the action is being performed.
  * @param {FarcasterActionReqBodyAction} params.action 
+ * @param {string} params.baseUrl  - The base URL of the app on which the action is being performed.
+ * @param {string} params.signerUuid  - The signer_uuid of the user on behalf of whom the action is being performed.
  *
  * @returns {Promise<{ [key: string]: any; }>} A promise that resolves to a `{ [key: string]: any; }` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const signerUuid = 
- * const baseUrl = 
  * const action = 
+ * const baseUrl = 
+ * const signerUuid = 
  *
- * client.publishFarcasterAction({signerUuid, baseUrl, action}).then(response => {
+ * client.publishFarcasterAction({action, baseUrl, signerUuid}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-farcaster-action)
  *
  */
-public async publishFarcasterAction(params: { signerUuid: string, baseUrl: string, action: FarcasterActionReqBodyAction }): Promise<{ [key: string]: any; }> {
+public async publishFarcasterAction(params: { action: FarcasterActionReqBodyAction, baseUrl: string, signerUuid: string }): Promise<{ [key: string]: any; }> {
   const adjustedParams: any = {};
 const _params = { farcasterActionReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -267,27 +267,27 @@ Object.assign(adjustedParams, _params);
  * @summary Create transaction pay mini app
  *
  * @param {object} params
- * @param {FramePayTransactionReqBodyTransaction} params.transaction 
  * @param {TransactionFrameConfig} params.config 
  * @param {string} params.idem [optional]  - An Idempotency key is a unique identifier for the request. **Note:**  1) This is used to prevent duplicate requests. Use the same idem key on retry attempts. 2) This should be a unique identifier for each request. 3) Recommended format is a 16-character string generated by the developer at the time of making this request.
+ * @param {FramePayTransactionReqBodyTransaction} params.transaction 
  *
  * @returns {Promise<TransactionFrameResponse>} A promise that resolves to a `TransactionFrameResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const transaction = 
  * const config = 
  * const idem = 
+ * const transaction = 
  *
- * client.createTransactionPayFrame({transaction, config, idem}).then(response => {
+ * client.createTransactionPayFrame({config, idem, transaction}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/create-transaction-pay-frame)
  *
  */
-public async createTransactionPayFrame(params: { transaction: FramePayTransactionReqBodyTransaction, config: TransactionFrameConfig, idem?: string }): Promise<TransactionFrameResponse> {
+public async createTransactionPayFrame(params: { config: TransactionFrameConfig, idem?: string, transaction: FramePayTransactionReqBodyTransaction }): Promise<TransactionFrameResponse> {
   const adjustedParams: any = {};
 const _params = { framePayTransactionReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -438,31 +438,31 @@ Object.assign(adjustedParams, params);
  * @summary Send event
  *
  * @param {object} params
- * @param {SignedMessageBodySignedMessage} params.signedMessage 
  * @param {string} params.appDomain  - Domain of the mini app
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
- * @param {number} params.fid  - The unique identifier of a farcaster user or app (unsigned integer)
+ * @param {SignedMessageBodySignedMessage} params.signedMessage 
  * @param {AppHostPostEventReqBodyEventEnum} params.event  - Types of events that can occur between a user and an app host: - frame_added: User adds a mini app to their account - frame_removed: User removes a mini app from their account - notifications_enabled: User enables notifications for a mini app - notifications_disabled: User disables notifications for a mini app
+ * @param {number} params.fid  - The unique identifier of a farcaster user or app (unsigned integer)
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  *
  * @returns {Promise<AppHostPostEventResponse>} A promise that resolves to a `AppHostPostEventResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const signedMessage = 
  * const appDomain = 
- * const signerUuid = 
- * const fid = 
+ * const signedMessage = 
  * const event = 
+ * const fid = 
+ * const signerUuid = 
  *
- * client.appHostPostEvent({signedMessage, appDomain, signerUuid, fid, event}).then(response => {
+ * client.appHostPostEvent({appDomain, signedMessage, event, fid, signerUuid}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/app-host-post-event)
  *
  */
-public async appHostPostEvent(params: { signedMessage: SignedMessageBodySignedMessage, appDomain: string, signerUuid: string, fid: number, event: AppHostPostEventReqBodyEventEnum }): Promise<AppHostPostEventResponse> {
+public async appHostPostEvent(params: { appDomain: string, signedMessage: SignedMessageBodySignedMessage, event: AppHostPostEventReqBodyEventEnum, fid: number, signerUuid: string }): Promise<AppHostPostEventResponse> {
   const adjustedParams: any = {};
 const _params = { appHostPostEventReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -479,7 +479,7 @@ Object.assign(adjustedParams, _params);
  * @param {object} params
  * @param {string} params.address  - Ethereum address
  *
- * @returns {Promise<RegisterSignedKeyForDeveloperManagedAuthAddress200Response>} A promise that resolves to a `RegisterSignedKeyForDeveloperManagedAuthAddress200Response` object.
+ * @returns {Promise<LookupDeveloperManagedAuthAddress200Response>} A promise that resolves to a `LookupDeveloperManagedAuthAddress200Response` object.
  *
  * @example
  *
@@ -493,7 +493,7 @@ Object.assign(adjustedParams, _params);
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/lookup-developer-managed-auth-address)
  *
  */
-public async lookupDeveloperManagedAuthAddress(params: { address: string }): Promise<RegisterSignedKeyForDeveloperManagedAuthAddress200Response> {
+public async lookupDeveloperManagedAuthAddress(params: { address: string }): Promise<LookupDeveloperManagedAuthAddress200Response> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -510,11 +510,11 @@ Object.assign(adjustedParams, params);
  * @param {string} params.address  - Ethereum address
  * @param {number} params.appFid  - The unique identifier of a farcaster user or app (unsigned integer)
  * @param {number} params.deadline  - unix timestamp in seconds that controls how long the signed key request is valid for. (24 hours from now is recommended)
- * @param {string} params.signature  - Signature generated by the custody address of the app. Signed data includes app_fid, deadline, 32 bytes padded auth address. [Refer guide for more details.](https://docs.neynar.com/docs/auth-address-signature-generation)
  * @param {string} params.redirectUrl [optional]  - Url to redirect to after the signer is approved. **Note** : This should only be used when requesting a signer from a native mobile application.
+ * @param {string} params.signature  - Signature generated by the custody address of the app. Signed data includes app_fid, deadline, 32 bytes padded auth address. [Refer guide for more details.](https://docs.neynar.com/docs/auth-address-signature-generation)
  * @param {SignedKeyRequestSponsor} params.sponsor [optional] 
  *
- * @returns {Promise<RegisterSignedKeyForDeveloperManagedAuthAddress200Response>} A promise that resolves to a `RegisterSignedKeyForDeveloperManagedAuthAddress200Response` object.
+ * @returns {Promise<LookupDeveloperManagedAuthAddress200Response>} A promise that resolves to a `LookupDeveloperManagedAuthAddress200Response` object.
  *
  * @example
  *
@@ -522,18 +522,18 @@ Object.assign(adjustedParams, params);
  * const address = 
  * const appFid = 
  * const deadline = 
- * const signature = 
  * const redirectUrl = 
+ * const signature = 
  * const sponsor = 
  *
- * client.registerSignedKeyForDeveloperManagedAuthAddress({address, appFid, deadline, signature, redirectUrl, sponsor}).then(response => {
+ * client.registerSignedKeyForDeveloperManagedAuthAddress({address, appFid, deadline, redirectUrl, signature, sponsor}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/register-signed-key-for-developer-managed-auth-address)
  *
  */
-public async registerSignedKeyForDeveloperManagedAuthAddress(params: { address: string, appFid: number, deadline: number, signature: string, redirectUrl?: string, sponsor?: SignedKeyRequestSponsor }): Promise<RegisterSignedKeyForDeveloperManagedAuthAddress200Response> {
+public async registerSignedKeyForDeveloperManagedAuthAddress(params: { address: string, appFid: number, deadline: number, redirectUrl?: string, signature: string, sponsor?: SignedKeyRequestSponsor }): Promise<LookupDeveloperManagedAuthAddress200Response> {
   const adjustedParams: any = {};
 const _params = { registerAuthAddressDeveloperManagedSignedKeyReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -642,25 +642,25 @@ Object.assign(adjustedParams, _params);
  * @summary Unblock FID
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  * @param {number} params.blockedFid  - The unique identifier of a farcaster user or app (unsigned integer)
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const signerUuid = 
  * const blockedFid = 
+ * const signerUuid = 
  *
- * client.deleteBlock({signerUuid, blockedFid}).then(response => {
+ * client.deleteBlock({blockedFid, signerUuid}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-block)
  *
  */
-public async deleteBlock(params: { signerUuid: string, blockedFid: number }): Promise<OperationResponse> {
+public async deleteBlock(params: { blockedFid: number, signerUuid: string }): Promise<OperationResponse> {
   const adjustedParams: any = {};
 const _params = { blockReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -711,25 +711,25 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * @summary Block FID
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  * @param {number} params.blockedFid  - The unique identifier of a farcaster user or app (unsigned integer)
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const signerUuid = 
  * const blockedFid = 
+ * const signerUuid = 
  *
- * client.publishBlock({signerUuid, blockedFid}).then(response => {
+ * client.publishBlock({blockedFid, signerUuid}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-block)
  *
  */
-public async publishBlock(params: { signerUuid: string, blockedFid: number }): Promise<OperationResponse> {
+public async publishBlock(params: { blockedFid: number, signerUuid: string }): Promise<OperationResponse> {
   const adjustedParams: any = {};
 const _params = { blockReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -964,35 +964,35 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * @summary Post a cast
  *
  * @param {object} params
+ * @param {string} params.channelId [optional]  - Channel ID of the channel where the cast is to be posted. e.g. neynar, farcaster, warpcast
+ * @param {Array<PostCastReqBodyEmbeds>} params.embeds [optional] 
+ * @param {string} params.idem [optional]  - An Idempotency key is a unique identifier for the request. **Note:**  1) This is used to prevent duplicate requests. Use the same idem key on retry attempts. 2) This should be a unique identifier for each request. 3) Recommended format is a 16-character string generated by the developer at the time of making this request.
+ * @param {string} params.parent [optional]  - parent_url of the channel the cast is in, or hash of the cast
+ * @param {number} params.parentAuthorFid [optional]  - The unique identifier of a farcaster user or app (unsigned integer)
  * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  * @param {string} params.text [optional] 
- * @param {Array<PostCastReqBodyEmbeds>} params.embeds [optional] 
- * @param {string} params.parent [optional]  - parent_url of the channel the cast is in, or hash of the cast
- * @param {string} params.channelId [optional]  - Channel ID of the channel where the cast is to be posted. e.g. neynar, farcaster, warpcast
- * @param {string} params.idem [optional]  - An Idempotency key is a unique identifier for the request. **Note:**  1) This is used to prevent duplicate requests. Use the same idem key on retry attempts. 2) This should be a unique identifier for each request. 3) Recommended format is a 16-character string generated by the developer at the time of making this request.
- * @param {number} params.parentAuthorFid [optional]  - The unique identifier of a farcaster user or app (unsigned integer)
  *
  * @returns {Promise<PostCastResponse>} A promise that resolves to a `PostCastResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
+ * const channelId = 
+ * const embeds = 
+ * const idem = 
+ * const parent = 
+ * const parentAuthorFid = 
  * const signerUuid = 
  * const text = 
- * const embeds = 
- * const parent = 
- * const channelId = 
- * const idem = 
- * const parentAuthorFid = 
  *
- * client.publishCast({signerUuid, text, embeds, parent, channelId, idem, parentAuthorFid}).then(response => {
+ * client.publishCast({channelId, embeds, idem, parent, parentAuthorFid, signerUuid, text}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-cast)
  *
  */
-public async publishCast(params: { signerUuid: string, text?: string, embeds?: Array<PostCastReqBodyEmbeds>, parent?: string, channelId?: string, idem?: string, parentAuthorFid?: number }): Promise<PostCastResponse> {
+public async publishCast(params: { channelId?: string, embeds?: Array<PostCastReqBodyEmbeds>, idem?: string, parent?: string, parentAuthorFid?: number, signerUuid: string, text?: string }): Promise<PostCastResponse> {
   const adjustedParams: any = {};
 const _params = { postCastReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -1393,25 +1393,25 @@ Object.assign(adjustedParams, params);
  * @summary Follow a channel
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  * @param {string} params.channelId  - The unique identifier of a farcaster channel
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const signerUuid = 
  * const channelId = 
+ * const signerUuid = 
  *
- * client.followChannel({signerUuid, channelId}).then(response => {
+ * client.followChannel({channelId, signerUuid}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/follow-channel)
  *
  */
-public async followChannel(params: { signerUuid: string, channelId: string }): Promise<OperationResponse> {
+public async followChannel(params: { channelId: string, signerUuid: string }): Promise<OperationResponse> {
   const adjustedParams: any = {};
 const _params = { channelFollowReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -1426,29 +1426,29 @@ Object.assign(adjustedParams, _params);
  * @summary Invite
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  * @param {string} params.channelId  - The unique identifier of a farcaster channel
  * @param {number} params.fid  - The unique identifier of a farcaster user or app (unsigned integer)
  * @param {ChannelMemberRole} params.role 
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const signerUuid = 
  * const channelId = 
  * const fid = 
  * const role = 
+ * const signerUuid = 
  *
- * client.inviteChannelMember({signerUuid, channelId, fid, role}).then(response => {
+ * client.inviteChannelMember({channelId, fid, role, signerUuid}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/invite-channel-member)
  *
  */
-public async inviteChannelMember(params: { signerUuid: string, channelId: string, fid: number, role: ChannelMemberRole }): Promise<OperationResponse> {
+public async inviteChannelMember(params: { channelId: string, fid: number, role: ChannelMemberRole, signerUuid: string }): Promise<OperationResponse> {
   const adjustedParams: any = {};
 const _params = { inviteChannelMemberReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -1497,29 +1497,29 @@ Object.assign(adjustedParams, params);
  * @summary Remove user
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  * @param {string} params.channelId  - The unique identifier of a farcaster channel
  * @param {number} params.fid  - The unique identifier of a farcaster user or app (unsigned integer)
  * @param {ChannelMemberRole} params.role 
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const signerUuid = 
  * const channelId = 
  * const fid = 
  * const role = 
+ * const signerUuid = 
  *
- * client.removeChannelMember({signerUuid, channelId, fid, role}).then(response => {
+ * client.removeChannelMember({channelId, fid, role, signerUuid}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/remove-channel-member)
  *
  */
-public async removeChannelMember(params: { signerUuid: string, channelId: string, fid: number, role: ChannelMemberRole }): Promise<OperationResponse> {
+public async removeChannelMember(params: { channelId: string, fid: number, role: ChannelMemberRole, signerUuid: string }): Promise<OperationResponse> {
   const adjustedParams: any = {};
 const _params = { removeChannelMemberReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -1534,29 +1534,29 @@ Object.assign(adjustedParams, _params);
  * @summary Accept or reject an invite
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
+ * @param {boolean} params.accept  - Accept or reject the invite
  * @param {string} params.channelId  - The unique identifier of a farcaster channel
  * @param {ChannelMemberRole} params.role 
- * @param {boolean} params.accept  - Accept or reject the invite
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const signerUuid = 
+ * const accept = 
  * const channelId = 
  * const role = 
- * const accept = 
+ * const signerUuid = 
  *
- * client.respondChannelInvite({signerUuid, channelId, role, accept}).then(response => {
+ * client.respondChannelInvite({accept, channelId, role, signerUuid}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/respond-channel-invite)
  *
  */
-public async respondChannelInvite(params: { signerUuid: string, channelId: string, role: ChannelMemberRole, accept: boolean }): Promise<OperationResponse> {
+public async respondChannelInvite(params: { accept: boolean, channelId: string, role: ChannelMemberRole, signerUuid: string }): Promise<OperationResponse> {
   const adjustedParams: any = {};
 const _params = { respondChannelInviteReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -1606,25 +1606,25 @@ Object.assign(adjustedParams, params);
  * @summary Unfollow a channel
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  * @param {string} params.channelId  - The unique identifier of a farcaster channel
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const signerUuid = 
  * const channelId = 
+ * const signerUuid = 
  *
- * client.unfollowChannel({signerUuid, channelId}).then(response => {
+ * client.unfollowChannel({channelId, signerUuid}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/unfollow-channel)
  *
  */
-public async unfollowChannel(params: { signerUuid: string, channelId: string }): Promise<OperationResponse> {
+public async unfollowChannel(params: { channelId: string, signerUuid: string }): Promise<OperationResponse> {
   const adjustedParams: any = {};
 const _params = { channelFollowReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -2451,27 +2451,27 @@ Object.assign(adjustedParams, params);
  * @summary Send notifications
  *
  * @param {object} params
- * @param {Array<number>} params.targetFids [optional]  - An array of target FIDs to whom the notifications should be sent. Each FID must be a positive integer. Pass an empty array to send notifications to all FIDs with notifications enabled for the mini app.
  * @param {SendFrameNotificationsReqBodyFilters} params.filters [optional] 
  * @param {SendFrameNotificationsReqBodyNotification} params.notification 
+ * @param {Array<number>} params.targetFids [optional]  - An array of target FIDs to whom the notifications should be sent. Each FID must be a positive integer. Pass an empty array to send notifications to all FIDs with notifications enabled for the mini app.
  *
  * @returns {Promise<SendFrameNotificationsResponse>} A promise that resolves to a `SendFrameNotificationsResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const targetFids = 
  * const filters = 
  * const notification = 
+ * const targetFids = 
  *
- * client.publishFrameNotifications({targetFids, filters, notification}).then(response => {
+ * client.publishFrameNotifications({filters, notification, targetFids}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-frame-notifications)
  *
  */
-public async publishFrameNotifications(params: { targetFids?: Array<number>, filters?: SendFrameNotificationsReqBodyFilters, notification: SendFrameNotificationsReqBodyNotification }): Promise<SendFrameNotificationsResponse> {
+public async publishFrameNotifications(params: { filters?: SendFrameNotificationsReqBodyFilters, notification: SendFrameNotificationsReqBodyNotification, targetFids?: Array<number> }): Promise<SendFrameNotificationsResponse> {
   const adjustedParams: any = {};
 const _params = { sendFrameNotificationsReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -2931,45 +2931,45 @@ adjustedParams['xWalletId'] = this.config.baseOptions?.headers?.['x-wallet-id'];
  * @summary Deploy fungible
  *
  * @param {object} params
+ * @param {string} params.name  - Name of the token
  * @param {string} params.owner  - Ethereum address of the one who is creating the token
  * @param {string} params.symbol  - Symbol/Ticker for the token
- * @param {string} params.name  - Name of the token
- * @param {File} params.metadataMedia [optional]  - Media file associated with the token.  Supported formats are image/jpeg, image/gif and image/png
- * @param {string} params.metadataDescription [optional]  - Description of the token
- * @param {DeployFungibleMetadataNsfwEnum} params.metadataNsfw [optional]  - Indicates if the token is NSFW (Not Safe For Work).
- * @param {string} params.metadataWebsiteLink [optional]  - Website link related to the token
- * @param {string} params.metadataTwitter [optional]  - Twitter profile link
- * @param {string} params.metadataDiscord [optional]  - Discord server link
- * @param {string} params.metadataTelegram [optional]  - Telegram link
- * @param {DeployFungibleNetworkEnum} params.network [optional]  - Network/Chain name
  * @param {DeployFungibleFactoryEnum} params.factory [optional]  - Factory name - wow -> [wow.xyz](https://wow.xyz) - clanker -> [clanker.world](https://www.clanker.world)
+ * @param {string} params.metadataDescription [optional]  - Description of the token
+ * @param {string} params.metadataDiscord [optional]  - Discord server link
+ * @param {File | null} params.metadataMedia [optional]  - Media file associated with the token.  Supported formats are image/jpeg, image/gif and image/png
+ * @param {DeployFungibleMetadataNsfwEnum} params.metadataNsfw [optional]  - Indicates if the token is NSFW (Not Safe For Work).
+ * @param {string} params.metadataTelegram [optional]  - Telegram link
+ * @param {string} params.metadataTwitter [optional]  - Twitter profile link
+ * @param {string} params.metadataWebsiteLink [optional]  - Website link related to the token
+ * @param {DeployFungibleNetworkEnum} params.network [optional]  - Network/Chain name
  *
  * @returns {Promise<DeployFungibleResponse>} A promise that resolves to a `DeployFungibleResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
+ * const name = 
  * const owner = 
  * const symbol = 
- * const name = 
- * const metadataMedia = 
- * const metadataDescription = 
- * const metadataNsfw = 
- * const metadataWebsiteLink = 
- * const metadataTwitter = 
- * const metadataDiscord = 
- * const metadataTelegram = 
- * const network = 
  * const factory = 
+ * const metadataDescription = 
+ * const metadataDiscord = 
+ * const metadataMedia = 
+ * const metadataNsfw = 
+ * const metadataTelegram = 
+ * const metadataTwitter = 
+ * const metadataWebsiteLink = 
+ * const network = 
  *
- * client.deployFungible({ owner, symbol, name, metadataMedia, metadataDescription, metadataNsfw, metadataWebsiteLink, metadataTwitter, metadataDiscord, metadataTelegram, network, factory }).then(response => {
+ * client.deployFungible({ name, owner, symbol, factory, metadataDescription, metadataDiscord, metadataMedia, metadataNsfw, metadataTelegram, metadataTwitter, metadataWebsiteLink, network }).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/deploy-fungible)
  *
  */
-public async deployFungible(params: { owner: string, symbol: string, name: string, metadataMedia?: File, metadataDescription?: string, metadataNsfw?: DeployFungibleMetadataNsfwEnum, metadataWebsiteLink?: string, metadataTwitter?: string, metadataDiscord?: string, metadataTelegram?: string, network?: DeployFungibleNetworkEnum, factory?: DeployFungibleFactoryEnum }): Promise<DeployFungibleResponse> {
+public async deployFungible(params: { name: string, owner: string, symbol: string, factory?: DeployFungibleFactoryEnum, metadataDescription?: string, metadataDiscord?: string, metadataMedia?: File | null, metadataNsfw?: DeployFungibleMetadataNsfwEnum, metadataTelegram?: string, metadataTwitter?: string, metadataWebsiteLink?: string, network?: DeployFungibleNetworkEnum }): Promise<DeployFungibleResponse> {
   const adjustedParams: any = {};
 Object.assign(adjustedParams, params);
 
@@ -3328,8 +3328,8 @@ adjustedParams['xWalletId'] = this.config.baseOptions?.headers?.['x-wallet-id'];
  * @param {string} params.idem [optional]  - An Idempotency key is a unique identifier for the request. **Note:**  1) Pre-registration calls must be idempotent when using idempotency keys. 2) This is used to prevent duplicate requests. Use the same idem key on retry attempts. 3) This should be a unique identifier for each request. 4) Recommended format is a 16-character string generated by the developer at the time of making this request.
  * @param {Array<RegisterUserOnChainReqBodyPreRegistrationCallsInner>} params.preRegistrationCalls [optional] 
  * @param {RegisterUserOnChainReqBodyRegistration} params.registration 
- * @param {number} params.storageUnits [optional] 
  * @param {Array<RegisterUserOnChainReqBodySignersInner>} params.signers [optional] 
+ * @param {number} params.storageUnits [optional] 
  *
  * @returns {Promise<RegisterUserOnChainResponse>} A promise that resolves to a `RegisterUserOnChainResponse` object.
  *
@@ -3339,17 +3339,17 @@ adjustedParams['xWalletId'] = this.config.baseOptions?.headers?.['x-wallet-id'];
  * const idem = 
  * const preRegistrationCalls = 
  * const registration = 
- * const storageUnits = 
  * const signers = 
+ * const storageUnits = 
  *
- * client.registerAccountOnchain({idem, preRegistrationCalls, registration, storageUnits, signers}).then(response => {
+ * client.registerAccountOnchain({idem, preRegistrationCalls, registration, signers, storageUnits}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/register-account-onchain)
  *
  */
-public async registerAccountOnchain(params: { idem?: string, preRegistrationCalls?: Array<RegisterUserOnChainReqBodyPreRegistrationCallsInner>, registration: RegisterUserOnChainReqBodyRegistration, storageUnits?: number, signers?: Array<RegisterUserOnChainReqBodySignersInner> }): Promise<RegisterUserOnChainResponse> {
+public async registerAccountOnchain(params: { idem?: string, preRegistrationCalls?: Array<RegisterUserOnChainReqBodyPreRegistrationCallsInner>, registration: RegisterUserOnChainReqBodyRegistration, signers?: Array<RegisterUserOnChainReqBodySignersInner>, storageUnits?: number }): Promise<RegisterUserOnChainResponse> {
   const adjustedParams: any = {};
 const _params = { registerUserOnChainReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -3365,8 +3365,8 @@ adjustedParams['xWalletId'] = this.config.baseOptions?.headers?.['x-wallet-id'];
  * @summary Send fungibles
  *
  * @param {object} params
- * @param {TransactionSendFungiblesReqBodyNetworkEnum} params.network 
  * @param {string} params.fungibleContractAddress [optional]  - Contract address of the fungible token to send. If not provided, the default is the native token of the network.
+ * @param {TransactionSendFungiblesReqBodyNetworkEnum} params.network 
  * @param {Array<TransactionSendFungiblesRecipient>} params.recipients 
  *
  * @returns {Promise<TransactionSendFungiblesResponse>} A promise that resolves to a `TransactionSendFungiblesResponse` object.
@@ -3374,18 +3374,18 @@ adjustedParams['xWalletId'] = this.config.baseOptions?.headers?.['x-wallet-id'];
  * @example
  *
  * // Fill in the appropriate values
- * const network = 
  * const fungibleContractAddress = 
+ * const network = 
  * const recipients = 
  *
- * client.sendFungiblesToUsers({network, fungibleContractAddress, recipients}).then(response => {
+ * client.sendFungiblesToUsers({fungibleContractAddress, network, recipients}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/send-fungibles-to-users)
  *
  */
-public async sendFungiblesToUsers(params: { network: TransactionSendFungiblesReqBodyNetworkEnum, fungibleContractAddress?: string, recipients: Array<TransactionSendFungiblesRecipient> }): Promise<TransactionSendFungiblesResponse> {
+public async sendFungiblesToUsers(params: { fungibleContractAddress?: string, network: TransactionSendFungiblesReqBodyNetworkEnum, recipients: Array<TransactionSendFungiblesRecipient> }): Promise<TransactionSendFungiblesResponse> {
   const adjustedParams: any = {};
 const _params = { transactionSendFungiblesReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -3552,31 +3552,31 @@ Object.assign(adjustedParams, params);
  * @summary Delete reaction
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
+ * @param {string} params.idem [optional]  - An Idempotency key is a unique identifier for the request. **Note:**  1) This is used to prevent duplicate requests. Use the same idem key on retry attempts. 2) This should be a unique identifier for each request. 3) Recommended format is a 16-character string generated by the developer at the time of making this request.
  * @param {ReactionType} params.reactionType 
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  * @param {string} params.target  - Target cast hash (hex string starting with 0x) OR a valid URL.
  * @param {number} params.targetAuthorFid [optional]  - The unique identifier of a farcaster user or app (unsigned integer)
- * @param {string} params.idem [optional]  - An Idempotency key is a unique identifier for the request. **Note:**  1) This is used to prevent duplicate requests. Use the same idem key on retry attempts. 2) This should be a unique identifier for each request. 3) Recommended format is a 16-character string generated by the developer at the time of making this request.
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const signerUuid = 
+ * const idem = 
  * const reactionType = 
+ * const signerUuid = 
  * const target = 
  * const targetAuthorFid = 
- * const idem = 
  *
- * client.deleteReaction({signerUuid, reactionType, target, targetAuthorFid, idem}).then(response => {
+ * client.deleteReaction({idem, reactionType, signerUuid, target, targetAuthorFid}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-reaction)
  *
  */
-public async deleteReaction(params: { signerUuid: string, reactionType: ReactionType, target: string, targetAuthorFid?: number, idem?: string }): Promise<OperationResponse> {
+public async deleteReaction(params: { idem?: string, reactionType: ReactionType, signerUuid: string, target: string, targetAuthorFid?: number }): Promise<OperationResponse> {
   const adjustedParams: any = {};
 const _params = { reactionReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -3665,31 +3665,31 @@ Object.assign(adjustedParams, params);
  * @summary Post a reaction
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
+ * @param {string} params.idem [optional]  - An Idempotency key is a unique identifier for the request. **Note:**  1) This is used to prevent duplicate requests. Use the same idem key on retry attempts. 2) This should be a unique identifier for each request. 3) Recommended format is a 16-character string generated by the developer at the time of making this request.
  * @param {ReactionType} params.reactionType 
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  * @param {string} params.target  - Target cast hash (hex string starting with 0x) OR a valid URL.
  * @param {number} params.targetAuthorFid [optional]  - The unique identifier of a farcaster user or app (unsigned integer)
- * @param {string} params.idem [optional]  - An Idempotency key is a unique identifier for the request. **Note:**  1) This is used to prevent duplicate requests. Use the same idem key on retry attempts. 2) This should be a unique identifier for each request. 3) Recommended format is a 16-character string generated by the developer at the time of making this request.
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const signerUuid = 
+ * const idem = 
  * const reactionType = 
+ * const signerUuid = 
  * const target = 
  * const targetAuthorFid = 
- * const idem = 
  *
- * client.publishReaction({signerUuid, reactionType, target, targetAuthorFid, idem}).then(response => {
+ * client.publishReaction({idem, reactionType, signerUuid, target, targetAuthorFid}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-reaction)
  *
  */
-public async publishReaction(params: { signerUuid: string, reactionType: ReactionType, target: string, targetAuthorFid?: number, idem?: string }): Promise<OperationResponse> {
+public async publishReaction(params: { idem?: string, reactionType: ReactionType, signerUuid: string, target: string, targetAuthorFid?: number }): Promise<OperationResponse> {
   const adjustedParams: any = {};
 const _params = { reactionReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -3881,11 +3881,11 @@ Object.assign(adjustedParams, params);
  * @summary Register Signed Key
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
- * @param {string} params.signature  - Signature generated by the custody address of the app. Signed data includes app_fid, deadline, signer\'s public key
  * @param {number} params.appFid  - The unique identifier of a farcaster user or app (unsigned integer)
  * @param {number} params.deadline  - unix timestamp in seconds that controls how long the signed key request is valid for. (24 hours from now is recommended)
  * @param {string} params.redirectUrl [optional]  - Url to redirect to after the signer is approved. **Note** : This should only be used when requesting a signer from a native mobile application.
+ * @param {string} params.signature  - Signature generated by the custody address of the app. Signed data includes app_fid, deadline, signer\'s public key
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  * @param {SignedKeyRequestSponsor} params.sponsor [optional] 
  *
  * @returns {Promise<Signer>} A promise that resolves to a `Signer` object.
@@ -3893,21 +3893,21 @@ Object.assign(adjustedParams, params);
  * @example
  *
  * // Fill in the appropriate values
- * const signerUuid = 
- * const signature = 
  * const appFid = 
  * const deadline = 
  * const redirectUrl = 
+ * const signature = 
+ * const signerUuid = 
  * const sponsor = 
  *
- * client.registerSignedKey({signerUuid, signature, appFid, deadline, redirectUrl, sponsor}).then(response => {
+ * client.registerSignedKey({appFid, deadline, redirectUrl, signature, signerUuid, sponsor}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/register-signed-key)
  *
  */
-public async registerSignedKey(params: { signerUuid: string, signature: string, appFid: number, deadline: number, redirectUrl?: string, sponsor?: SignedKeyRequestSponsor }): Promise<Signer> {
+public async registerSignedKey(params: { appFid: number, deadline: number, redirectUrl?: string, signature: string, signerUuid: string, sponsor?: SignedKeyRequestSponsor }): Promise<Signer> {
   const adjustedParams: any = {};
 const _params = { registerSignerKeyReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -3922,11 +3922,11 @@ Object.assign(adjustedParams, _params);
  * @summary Register Signed Key
  *
  * @param {object} params
- * @param {string} params.publicKey  - Ed25519 public key
- * @param {string} params.signature  - Signature generated by the custody address of the app. Signed data includes app_fid, deadline, signer\'s public key
  * @param {number} params.appFid  - The unique identifier of a farcaster user or app (unsigned integer)
  * @param {number} params.deadline  - unix timestamp in seconds that controls how long the signed key request is valid for. (24 hours from now is recommended)
+ * @param {string} params.publicKey  - Ed25519 public key
  * @param {string} params.redirectUrl [optional]  - Url to redirect to after the signer is approved. **Note** : This should only be used when requesting a signer from a native mobile application.
+ * @param {string} params.signature  - Signature generated by the custody address of the app. Signed data includes app_fid, deadline, signer\'s public key
  * @param {SignedKeyRequestSponsor} params.sponsor [optional] 
  *
  * @returns {Promise<DeveloperManagedSigner>} A promise that resolves to a `DeveloperManagedSigner` object.
@@ -3934,21 +3934,21 @@ Object.assign(adjustedParams, _params);
  * @example
  *
  * // Fill in the appropriate values
- * const publicKey = 
- * const signature = 
  * const appFid = 
  * const deadline = 
+ * const publicKey = 
  * const redirectUrl = 
+ * const signature = 
  * const sponsor = 
  *
- * client.registerSignedKeyForDeveloperManagedSigner({publicKey, signature, appFid, deadline, redirectUrl, sponsor}).then(response => {
+ * client.registerSignedKeyForDeveloperManagedSigner({appFid, deadline, publicKey, redirectUrl, signature, sponsor}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/register-signed-key-for-developer-managed-signer)
  *
  */
-public async registerSignedKeyForDeveloperManagedSigner(params: { publicKey: string, signature: string, appFid: number, deadline: number, redirectUrl?: string, sponsor?: SignedKeyRequestSponsor }): Promise<DeveloperManagedSigner> {
+public async registerSignedKeyForDeveloperManagedSigner(params: { appFid: number, deadline: number, publicKey: string, redirectUrl?: string, signature: string, sponsor?: SignedKeyRequestSponsor }): Promise<DeveloperManagedSigner> {
   const adjustedParams: any = {};
 const _params = { registerDeveloperManagedSignedKeyReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -3964,8 +3964,8 @@ Object.assign(adjustedParams, _params);
  *
  * @param {object} params
  * @param {number} params.fid  - The unique identifier of a farcaster user or app (unsigned integer)
- * @param {number} params.units [optional]  - Number of storage units to buy. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links.
  * @param {string} params.idem [optional]  - An Idempotency key is a unique identifier for the request. **Note:**  1) This is used to prevent duplicate requests. Use the same idem key on retry attempts. 2) This should be a unique identifier for each request. 3) Recommended format is a 16-character string generated by the developer at the time of making this request.
+ * @param {number} params.units [optional]  - Number of storage units to buy. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links.
  *
  * @returns {Promise<StorageAllocationsResponse>} A promise that resolves to a `StorageAllocationsResponse` object.
  *
@@ -3973,17 +3973,17 @@ Object.assign(adjustedParams, _params);
  *
  * // Fill in the appropriate values
  * const fid = 
- * const units = 
  * const idem = 
+ * const units = 
  *
- * client.buyStorage({fid, units, idem}).then(response => {
+ * client.buyStorage({fid, idem, units}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/buy-storage)
  *
  */
-public async buyStorage(params: { fid: number, units?: number, idem?: string }): Promise<StorageAllocationsResponse> {
+public async buyStorage(params: { fid: number, idem?: string, units?: number }): Promise<StorageAllocationsResponse> {
   const adjustedParams: any = {};
 const _params = { buyStorageReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -5466,29 +5466,29 @@ Object.assign(adjustedParams, params);
  * @summary Delete verification
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  * @param {string} params.address  - Ethereum address
  * @param {string} params.blockHash 
  * @param {string} params.ethSignature 
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const signerUuid = 
  * const address = 
  * const blockHash = 
  * const ethSignature = 
+ * const signerUuid = 
  *
- * client.deleteVerification({signerUuid, address, blockHash, ethSignature}).then(response => {
+ * client.deleteVerification({address, blockHash, ethSignature, signerUuid}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/delete-verification)
  *
  */
-public async deleteVerification(params: { signerUuid: string, address: string, blockHash: string, ethSignature: string }): Promise<OperationResponse> {
+public async deleteVerification(params: { address: string, blockHash: string, ethSignature: string, signerUuid: string }): Promise<OperationResponse> {
   const adjustedParams: any = {};
 const _params = { removeVerificationReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -5839,33 +5839,33 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * @summary Add verification
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
  * @param {string} params.address  - Ethereum address
  * @param {string} params.blockHash 
- * @param {string} params.ethSignature 
- * @param {VerificationType} params.verificationType [optional] 
  * @param {VerificationChainId} params.chainId [optional] 
+ * @param {string} params.ethSignature 
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
+ * @param {VerificationType} params.verificationType [optional] 
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const signerUuid = 
  * const address = 
  * const blockHash = 
- * const ethSignature = 
- * const verificationType = 
  * const chainId = 
+ * const ethSignature = 
+ * const signerUuid = 
+ * const verificationType = 
  *
- * client.publishVerification({signerUuid, address, blockHash, ethSignature, verificationType, chainId}).then(response => {
+ * client.publishVerification({address, blockHash, chainId, ethSignature, signerUuid, verificationType}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-verification)
  *
  */
-public async publishVerification(params: { signerUuid: string, address: string, blockHash: string, ethSignature: string, verificationType?: VerificationType, chainId?: VerificationChainId }): Promise<OperationResponse> {
+public async publishVerification(params: { address: string, blockHash: string, chainId?: VerificationChainId, ethSignature: string, signerUuid: string, verificationType?: VerificationType }): Promise<OperationResponse> {
   const adjustedParams: any = {};
 const _params = { addVerificationReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -5880,35 +5880,35 @@ Object.assign(adjustedParams, _params);
  * @summary Register new account
  *
  * @param {object} params
- * @param {RegisterUserReqBodySigner} params.signer [optional] 
- * @param {string} params.signature 
- * @param {number} params.fid 
- * @param {string} params.requestedUserCustodyAddress 
  * @param {number} params.deadline 
+ * @param {number} params.fid 
  * @param {string} params.fname [optional] 
  * @param {RegisterUserReqBodyMetadata} params.metadata [optional] 
+ * @param {string} params.requestedUserCustodyAddress 
+ * @param {string} params.signature 
+ * @param {RegisterUserReqBodySigner} params.signer [optional] 
  *
  * @returns {Promise<RegisterUserResponse>} A promise that resolves to a `RegisterUserResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const signer = 
- * const signature = 
- * const fid = 
- * const requestedUserCustodyAddress = 
  * const deadline = 
+ * const fid = 
  * const fname = 
  * const metadata = 
+ * const requestedUserCustodyAddress = 
+ * const signature = 
+ * const signer = 
  *
- * client.registerAccount({signer, signature, fid, requestedUserCustodyAddress, deadline, fname, metadata}).then(response => {
+ * client.registerAccount({deadline, fid, fname, metadata, requestedUserCustodyAddress, signature, signer}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/register-account)
  *
  */
-public async registerAccount(params: { signer?: RegisterUserReqBodySigner, signature: string, fid: number, requestedUserCustodyAddress: string, deadline: number, fname?: string, metadata?: RegisterUserReqBodyMetadata }): Promise<RegisterUserResponse> {
+public async registerAccount(params: { deadline: number, fid: number, fname?: string, metadata?: RegisterUserReqBodyMetadata, requestedUserCustodyAddress: string, signature: string, signer?: RegisterUserReqBodySigner }): Promise<RegisterUserResponse> {
   const adjustedParams: any = {};
 const _params = { registerUserReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -5993,43 +5993,43 @@ Object.assign(adjustedParams, _params);
  * @summary Update user profile
  *
  * @param {object} params
- * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
- * @param {string} params.bio [optional] 
- * @param {string} params.pfpUrl [optional] 
- * @param {string} params.url [optional] 
- * @param {string} params.username [optional] 
- * @param {string} params.displayName [optional] 
- * @param {UpdateUserReqBodyLocation} params.location [optional] 
  * @param {string} params.banner [optional]  - Requires pro subscription.
+ * @param {string} params.bio [optional] 
+ * @param {string} params.displayName [optional] 
+ * @param {RegisterUserReqBodyMetadataLocation} params.location [optional] 
+ * @param {string} params.pfpUrl [optional] 
  * @param {string} params.primaryEthAddress [optional]  - Must be one of the verified addresses.
  * @param {string} params.primarySolAddress [optional]  - Must be one of the verified addresses.
- * @param {UpdateUserReqBodyVerifiedAccounts} params.verifiedAccounts [optional] 
+ * @param {string} params.signerUuid  - UUID of the signer. `signer_uuid` is paired with API key, can\'t use a `uuid` made with a different API key.
+ * @param {string} params.url [optional] 
+ * @param {string} params.username [optional] 
+ * @param {RegisterUserReqBodyMetadataVerifiedAccounts} params.verifiedAccounts [optional] 
  *
  * @returns {Promise<OperationResponse>} A promise that resolves to a `OperationResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const signerUuid = 
+ * const banner = 
  * const bio = 
- * const pfpUrl = 
- * const url = 
- * const username = 
  * const displayName = 
  * const location = 
- * const banner = 
+ * const pfpUrl = 
  * const primaryEthAddress = 
  * const primarySolAddress = 
+ * const signerUuid = 
+ * const url = 
+ * const username = 
  * const verifiedAccounts = 
  *
- * client.updateUser({signerUuid, bio, pfpUrl, url, username, displayName, location, banner, primaryEthAddress, primarySolAddress, verifiedAccounts}).then(response => {
+ * client.updateUser({banner, bio, displayName, location, pfpUrl, primaryEthAddress, primarySolAddress, signerUuid, url, username, verifiedAccounts}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/update-user)
  *
  */
-public async updateUser(params: { signerUuid: string, bio?: string, pfpUrl?: string, url?: string, username?: string, displayName?: string, location?: UpdateUserReqBodyLocation, banner?: string, primaryEthAddress?: string, primarySolAddress?: string, verifiedAccounts?: UpdateUserReqBodyVerifiedAccounts }): Promise<OperationResponse> {
+public async updateUser(params: { banner?: string, bio?: string, displayName?: string, location?: RegisterUserReqBodyMetadataLocation, pfpUrl?: string, primaryEthAddress?: string, primarySolAddress?: string, signerUuid: string, url?: string, username?: string, verifiedAccounts?: RegisterUserReqBodyMetadataVerifiedAccounts }): Promise<OperationResponse> {
   const adjustedParams: any = {};
 const _params = { updateUserReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -6129,8 +6129,8 @@ Object.assign(adjustedParams, params);
  *
  * @param {object} params
  * @param {string} params.name 
- * @param {string} params.url 
  * @param {WebhookSubscriptionFilters} params.subscription [optional] 
+ * @param {string} params.url 
  *
  * @returns {Promise<WebhookResponse>} A promise that resolves to a `WebhookResponse` object.
  *
@@ -6138,17 +6138,17 @@ Object.assign(adjustedParams, params);
  *
  * // Fill in the appropriate values
  * const name = 
- * const url = 
  * const subscription = 
+ * const url = 
  *
- * client.publishWebhook({name, url, subscription}).then(response => {
+ * client.publishWebhook({name, subscription, url}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/publish-webhook)
  *
  */
-public async publishWebhook(params: { name: string, url: string, subscription?: WebhookSubscriptionFilters }): Promise<WebhookResponse> {
+public async publishWebhook(params: { name: string, subscription?: WebhookSubscriptionFilters, url: string }): Promise<WebhookResponse> {
   const adjustedParams: any = {};
 const _params = { webhookPostReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -6164,8 +6164,8 @@ Object.assign(adjustedParams, _params);
  *
  * @param {object} params
  * @param {string} params.name 
- * @param {string} params.url 
  * @param {WebhookSubscriptionFilters} params.subscription [optional] 
+ * @param {string} params.url 
  * @param {string} params.webhookId 
  *
  * @returns {Promise<WebhookResponse>} A promise that resolves to a `WebhookResponse` object.
@@ -6174,18 +6174,18 @@ Object.assign(adjustedParams, _params);
  *
  * // Fill in the appropriate values
  * const name = 
- * const url = 
  * const subscription = 
+ * const url = 
  * const webhookId = 
  *
- * client.updateWebhook({name, url, subscription, webhookId}).then(response => {
+ * client.updateWebhook({name, subscription, url, webhookId}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/update-webhook)
  *
  */
-public async updateWebhook(params: { name: string, url: string, subscription?: WebhookSubscriptionFilters, webhookId: string }): Promise<WebhookResponse> {
+public async updateWebhook(params: { name: string, subscription?: WebhookSubscriptionFilters, url: string, webhookId: string }): Promise<WebhookResponse> {
   const adjustedParams: any = {};
 const _params = { webhookPutReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);
@@ -6200,25 +6200,25 @@ Object.assign(adjustedParams, _params);
  * @summary Update webhook status
  *
  * @param {object} params
- * @param {string} params.webhookId 
  * @param {WebhookPatchReqBodyActiveEnum} params.active 
+ * @param {string} params.webhookId 
  *
  * @returns {Promise<WebhookResponse>} A promise that resolves to a `WebhookResponse` object.
  *
  * @example
  *
  * // Fill in the appropriate values
- * const webhookId = 
  * const active = 
+ * const webhookId = 
  *
- * client.updateWebhookActiveStatus({webhookId, active}).then(response => {
+ * client.updateWebhookActiveStatus({active, webhookId}).then(response => {
  *   console.log('response:', response);
  * });
  *
  * For more information, refer to the [API documentation](https://docs.neynar.com/reference/update-webhook-active-status)
  *
  */
-public async updateWebhookActiveStatus(params: { webhookId: string, active: WebhookPatchReqBodyActiveEnum }): Promise<WebhookResponse> {
+public async updateWebhookActiveStatus(params: { active: WebhookPatchReqBodyActiveEnum, webhookId: string }): Promise<WebhookResponse> {
   const adjustedParams: any = {};
 const _params = { webhookPatchReqBody: camelCaseToSnakeCaseKeys(params) };
 Object.assign(adjustedParams, _params);

@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**token_id** | **string** |  | [default to undefined]
 **error** | **string** |  | [default to undefined]
+**token_id** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { UploadTokenMetadata200ResponseTokensInnerOneOf1 } from './api';
 
 const instance: UploadTokenMetadata200ResponseTokensInnerOneOf1 = {
-    token_id,
     error,
+    token_id,
 };
 ```
 

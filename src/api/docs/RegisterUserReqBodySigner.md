@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**uuid** | **string** |  | [default to undefined]
-**signed_key_request_metadata_signature** | **string** |  | [default to undefined]
 **app_fid** | **number** |  | [default to undefined]
 **deadline** | **number** |  | [default to undefined]
+**signed_key_request_metadata_signature** | **string** |  | [default to undefined]
+**uuid** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -16,10 +16,10 @@ Name | Type | Description | Notes
 import { RegisterUserReqBodySigner } from './api';
 
 const instance: RegisterUserReqBodySigner = {
-    uuid,
-    signed_key_request_metadata_signature,
     app_fid,
     deadline,
+    signed_key_request_metadata_signature,
+    uuid,
 };
 ```
 

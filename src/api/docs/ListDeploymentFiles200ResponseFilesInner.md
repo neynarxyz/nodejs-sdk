@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**is_directory** | **boolean** | Whether this is a directory | [default to undefined]
 **name** | **string** | File or directory name | [default to undefined]
 **path** | **string** | Full path relative to gen/ | [default to undefined]
-**is_directory** | **boolean** | Whether this is a directory | [default to undefined]
 
 ## Example
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 import { ListDeploymentFiles200ResponseFilesInner } from './api';
 
 const instance: ListDeploymentFiles200ResponseFilesInner = {
+    is_directory,
     name,
     path,
-    is_directory,
 };
 ```
 

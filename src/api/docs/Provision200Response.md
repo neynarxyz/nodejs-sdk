@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **boolean** |  | [default to undefined]
 **alreadyProvisioned** | **boolean** | True if the database was already provisioned | [default to undefined]
+**success** | **boolean** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { Provision200Response } from './api';
 
 const instance: Provision200Response = {
-    success,
     alreadyProvisioned,
+    success,
 };
 ```
 

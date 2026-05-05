@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**signed_message** | [**SignedMessageBodySignedMessage**](SignedMessageBodySignedMessage.md) |  | [default to undefined]
 **app_domain** | **string** | Domain of the mini app | [default to undefined]
+**signed_message** | [**SignedMessageBodySignedMessage**](SignedMessageBodySignedMessage.md) |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { SignedMessageBody } from './api';
 
 const instance: SignedMessageBody = {
-    signed_message,
     app_domain,
+    signed_message,
 };
 ```
 

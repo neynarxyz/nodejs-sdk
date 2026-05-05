@@ -5,16 +5,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **string** |  | [default to undefined]
-**provider_name** | **string** |  | [optional] [default to undefined]
-**contract_address** | **string** |  | [default to undefined]
 **chain** | **number** |  | [default to undefined]
-**metadata** | [**SubscriptionMetadata**](SubscriptionMetadata.md) |  | [default to undefined]
+**contract_address** | **string** |  | [default to undefined]
+**metadata** | [**SubscribedToMetadata**](SubscribedToMetadata.md) |  | [default to undefined]
+**object** | **string** |  | [default to undefined]
 **owner_address** | **string** |  | [default to undefined]
-**price** | [**SubscriptionPrice**](SubscriptionPrice.md) |  | [default to undefined]
-**tiers** | [**Array&lt;SubscriptionTier&gt;**](SubscriptionTier.md) |  | [optional] [default to undefined]
+**price** | [**SubscribedToPrice**](SubscribedToPrice.md) |  | [default to undefined]
 **protocol_version** | **number** |  | [default to undefined]
-**token** | [**SubscriptionToken**](SubscriptionToken.md) |  | [default to undefined]
+**provider_name** | **string** |  | [optional] [default to undefined]
+**tiers** | [**Array&lt;SubscriptionTier&gt;**](SubscriptionTier.md) |  | [optional] [default to undefined]
+**token** | [**SubscribedToToken**](SubscribedToToken.md) |  | [default to undefined]
 
 ## Example
 
@@ -22,15 +22,15 @@ Name | Type | Description | Notes
 import { Subscription } from './api';
 
 const instance: Subscription = {
-    object,
-    provider_name,
-    contract_address,
     chain,
+    contract_address,
     metadata,
+    object,
     owner_address,
     price,
-    tiers,
     protocol_version,
+    provider_name,
+    tiers,
     token,
 };
 ```

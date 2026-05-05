@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **string** |  | [default to undefined]
 **banned** | [**User**](User.md) |  | [optional] [default to undefined]
 **banned_at** | **string** |  | [default to undefined]
+**object** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 import { BanRecord } from './api';
 
 const instance: BanRecord = {
-    object,
     banned,
     banned_at,
+    object,
 };
 ```
 

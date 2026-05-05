@@ -6,9 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **columns** | [**Array&lt;QueryTable200ResponseColumnsInner&gt;**](QueryTable200ResponseColumnsInner.md) | Column metadata | [default to undefined]
-**rows** | **Array&lt;{ [key: string]: any; }&gt;** | Query result rows | [default to undefined]
-**rowCount** | **number** | Number of rows returned | [default to undefined]
 **executionTimeMs** | **number** | Query execution time in milliseconds | [default to undefined]
+**rowCount** | **number** | Number of rows returned | [default to undefined]
+**rows** | **Array&lt;{ [key: string]: any; }&gt;** | Query result rows | [default to undefined]
 
 ## Example
 
@@ -17,9 +17,9 @@ import { ExecuteSql200Response } from './api';
 
 const instance: ExecuteSql200Response = {
     columns,
-    rows,
-    rowCount,
     executionTimeMs,
+    rowCount,
+    rows,
 };
 ```
 

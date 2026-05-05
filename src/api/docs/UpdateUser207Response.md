@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **boolean** |  | [default to undefined]
 **errors** | [**Array&lt;UpdateUser207ResponseErrorsInner&gt;**](UpdateUser207ResponseErrorsInner.md) |  | [default to undefined]
+**success** | **boolean** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { UpdateUser207Response } from './api';
 
 const instance: UpdateUser207Response = {
-    success,
     errors,
+    success,
 };
 ```
 

@@ -6,9 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **string** |  | [default to undefined]
+**image_url** | **string** |  | [optional] [default to undefined]
 **name** | **string** |  | [default to undefined]
 **object** | **string** |  | [default to undefined]
-**image_url** | **string** |  | [optional] [default to undefined]
 **viewer_context** | [**ChannelUserContext**](ChannelUserContext.md) |  | [optional] [default to undefined]
 
 ## Example
@@ -18,9 +18,9 @@ import { ChannelDehydrated } from './api';
 
 const instance: ChannelDehydrated = {
     id,
+    image_url,
     name,
     object,
-    image_url,
     viewer_context,
 };
 ```

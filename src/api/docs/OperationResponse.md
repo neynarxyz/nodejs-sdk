@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **boolean** |  | [optional] [default to undefined]
 **message** | **string** |  | [optional] [default to undefined]
+**success** | **boolean** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { OperationResponse } from './api';
 
 const instance: OperationResponse = {
-    success,
     message,
+    success,
 };
 ```
 

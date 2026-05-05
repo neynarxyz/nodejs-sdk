@@ -6,11 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **from** | **string** | Ethereum address | [default to undefined]
+**nonce** | **string** |  | [default to undefined]
 **to** | **string** | Ethereum address | [default to undefined]
-**value** | **string** |  | [default to undefined]
 **validAfter** | **string** |  | [default to undefined]
 **validBefore** | **string** |  | [default to undefined]
-**nonce** | **string** |  | [default to undefined]
+**value** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -19,11 +19,11 @@ import { CreateX402Signature200ResponsePayloadAuthorization } from './api';
 
 const instance: CreateX402Signature200ResponsePayloadAuthorization = {
     from,
+    nonce,
     to,
-    value,
     validAfter,
     validBefore,
-    nonce,
+    value,
 };
 ```
 

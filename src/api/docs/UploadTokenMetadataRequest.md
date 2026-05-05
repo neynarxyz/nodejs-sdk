@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**network** | **string** |  | [default to undefined]
 **contract_address** | **string** | Ethereum address | [default to undefined]
+**network** | **string** |  | [default to undefined]
 **tokens** | [**Array&lt;UploadTokenMetadataRequestTokensInner&gt;**](UploadTokenMetadataRequestTokensInner.md) |  | [default to undefined]
 
 ## Example
@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 import { UploadTokenMetadataRequest } from './api';
 
 const instance: UploadTokenMetadataRequest = {
-    network,
     contract_address,
+    network,
     tokens,
 };
 ```

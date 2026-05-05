@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**schema_version** | **number** |  | [default to undefined]
 **ready_to_publish** | **boolean** |  | [default to undefined]
+**schema_version** | **number** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { GetDevStatus200ResponseOneOf } from './api';
 
 const instance: GetDevStatus200ResponseOneOf = {
-    schema_version,
     ready_to_publish,
+    schema_version,
 };
 ```
 

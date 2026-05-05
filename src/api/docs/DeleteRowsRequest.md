@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **deployment_id** | **string** | Deployment ID (UUID) | [default to undefined]
 **fid** | **number** | Farcaster ID of the user. Required for non-admin users. | [optional] [default to undefined]
-**where** | **{ [key: string]: any; }** | WHERE conditions (equality only, required) | [default to undefined]
 **limit** | **number** | Maximum rows to delete (default: 1000) | [optional] [default to undefined]
+**where** | **{ [key: string]: any; }** | WHERE conditions (equality only, required) | [default to undefined]
 
 ## Example
 
@@ -18,8 +18,8 @@ import { DeleteRowsRequest } from './api';
 const instance: DeleteRowsRequest = {
     deployment_id,
     fid,
-    where,
     limit,
+    where,
 };
 ```
 

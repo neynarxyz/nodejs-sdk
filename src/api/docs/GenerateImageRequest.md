@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**format** | **string** | Output image format (default: png) | [optional] [default to FormatEnum_Png]
+**height** | **number** | Output image height in pixels (default: 1024) | [optional] [default to 1024]
+**high_fidelity** | **boolean** | Use the high-fidelity model (slower but more detailed). Default: false. | [optional] [default to false]
 **prompt** | **string** | Text prompt describing the image to generate | [default to undefined]
 **source_image_urls** | **Array&lt;string&gt;** | Optional array of source image URLs to edit or use as reference (max 5) | [optional] [default to undefined]
 **width** | **number** | Output image width in pixels (default: 1024) | [optional] [default to 1024]
-**height** | **number** | Output image height in pixels (default: 1024) | [optional] [default to 1024]
-**format** | **string** | Output image format (default: png) | [optional] [default to FormatEnum_Png]
-**high_fidelity** | **boolean** | Use the high-fidelity model (slower but more detailed). Default: false. | [optional] [default to false]
 
 ## Example
 
@@ -18,12 +18,12 @@ Name | Type | Description | Notes
 import { GenerateImageRequest } from './api';
 
 const instance: GenerateImageRequest = {
+    format,
+    height,
+    high_fidelity,
     prompt,
     source_image_urls,
     width,
-    height,
-    format,
-    high_fidelity,
 };
 ```
 

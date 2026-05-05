@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**webhook_id** | **string** |  | [default to undefined]
 **active** | **string** |  | [default to undefined]
+**webhook_id** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { WebhookPatchReqBody } from './api';
 
 const instance: WebhookPatchReqBody = {
-    webhook_id,
     active,
+    webhook_id,
 };
 ```
 

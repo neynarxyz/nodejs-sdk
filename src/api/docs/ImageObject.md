@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**alt** | **string** |  | [optional] [default to undefined]
 **height** | **string** |  | [optional] [default to undefined]
 **type** | **string** |  | [optional] [default to undefined]
 **url** | **string** |  | [default to undefined]
 **width** | **string** |  | [optional] [default to undefined]
-**alt** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -17,11 +17,11 @@ Name | Type | Description | Notes
 import { ImageObject } from './api';
 
 const instance: ImageObject = {
+    alt,
     height,
     type,
     url,
     width,
-    alt,
 };
 ```
 

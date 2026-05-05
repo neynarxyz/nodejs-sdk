@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**signature** | **string** | Hexadecimal number expressed as string with \&#39;0x\&#39; prefix | [default to undefined]
-**metadata** | **string** | Hexadecimal number expressed as string with \&#39;0x\&#39; prefix | [default to undefined]
-**public_key** | **string** | Ed25519 public key | [default to undefined]
-**key_type** | **number** |  | [optional] [default to 1]
-**metadata_type** | **number** |  | [optional] [default to 1]
 **deadline** | **number** |  | [default to undefined]
+**key_type** | **number** |  | [optional] [default to 1]
+**metadata** | **string** | Hexadecimal number expressed as string with \&#39;0x\&#39; prefix | [default to undefined]
+**metadata_type** | **number** |  | [optional] [default to 1]
+**public_key** | **string** | Ed25519 public key | [default to undefined]
+**signature** | **string** | Hexadecimal number expressed as string with \&#39;0x\&#39; prefix | [default to undefined]
 
 ## Example
 
@@ -18,12 +18,12 @@ Name | Type | Description | Notes
 import { RegisterUserOnChainReqBodySignersInner } from './api';
 
 const instance: RegisterUserOnChainReqBodySignersInner = {
-    signature,
-    metadata,
-    public_key,
-    key_type,
-    metadata_type,
     deadline,
+    key_type,
+    metadata,
+    metadata_type,
+    public_key,
+    signature,
 };
 ```
 

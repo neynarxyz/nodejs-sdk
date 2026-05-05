@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **boolean** | Whether the request succeeded | [default to undefined]
 **logs** | [**Array&lt;VercelDeploymentLogs200ResponseLogsInner&gt;**](VercelDeploymentLogs200ResponseLogsInner.md) | Array of log events | [default to undefined]
+**success** | **boolean** | Whether the request succeeded | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { VercelDeploymentLogs200Response } from './api';
 
 const instance: VercelDeploymentLogs200Response = {
-    success,
     logs,
+    success,
 };
 ```
 

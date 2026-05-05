@@ -5,13 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**signer** | [**RegisterUserReqBodySigner**](RegisterUserReqBodySigner.md) |  | [optional] [default to undefined]
-**signature** | **string** |  | [default to undefined]
-**fid** | **number** |  | [default to undefined]
-**requested_user_custody_address** | **string** |  | [default to undefined]
 **deadline** | **number** |  | [default to undefined]
+**fid** | **number** |  | [default to undefined]
 **fname** | **string** |  | [optional] [default to undefined]
 **metadata** | [**RegisterUserReqBodyMetadata**](RegisterUserReqBodyMetadata.md) |  | [optional] [default to undefined]
+**requested_user_custody_address** | **string** |  | [default to undefined]
+**signature** | **string** |  | [default to undefined]
+**signer** | [**RegisterUserReqBodySigner**](RegisterUserReqBodySigner.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -19,13 +19,13 @@ Name | Type | Description | Notes
 import { RegisterUserReqBody } from './api';
 
 const instance: RegisterUserReqBody = {
-    signer,
-    signature,
-    fid,
-    requested_user_custody_address,
     deadline,
+    fid,
     fname,
     metadata,
+    requested_user_custody_address,
+    signature,
+    signer,
 };
 ```
 

@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**computeUnitsLimit** | **number** |  | [default to undefined]
 **name** | **string** |  | [default to undefined]
 **price** | **number** |  | [default to undefined]
-**computeUnitsLimit** | **number** |  | [default to undefined]
 
 ## Example
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 import { UpgradePreview200ResponseNewPlan } from './api';
 
 const instance: UpgradePreview200ResponseNewPlan = {
+    computeUnitsLimit,
     name,
     price,
-    computeUnitsLimit,
 };
 ```
 

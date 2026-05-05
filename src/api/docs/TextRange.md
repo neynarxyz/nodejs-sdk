@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**start** | **number** |  | [default to undefined]
 **end** | **number** |  | [default to undefined]
+**start** | **number** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { TextRange } from './api';
 
 const instance: TextRange = {
-    start,
     end,
+    start,
 };
 ```
 

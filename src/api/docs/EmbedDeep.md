@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cast_id** | [**CastId**](CastId.md) |  | [optional] [default to undefined]
 **cast** | [**CastDehydrated**](CastDehydrated.md) |  | [default to undefined]
-**url** | **string** |  | [default to undefined]
+**cast_id** | [**CastId**](CastId.md) |  | [optional] [default to undefined]
 **metadata** | [**EmbedUrlMetadata**](EmbedUrlMetadata.md) |  | [optional] [default to undefined]
+**url** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -16,10 +16,10 @@ Name | Type | Description | Notes
 import { EmbedDeep } from './api';
 
 const instance: EmbedDeep = {
-    cast_id,
     cast,
-    url,
+    cast_id,
     metadata,
+    url,
 };
 ```
 

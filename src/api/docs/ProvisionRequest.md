@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**connection_string** | **string** | Optional BYO PostgreSQL connection string. If omitted, a Neon database is auto-provisioned. | [optional] [default to undefined]
 **deployment_id** | **string** | Deployment ID (UUID) | [default to undefined]
 **fid** | **number** | Farcaster ID of the user | [default to undefined]
-**connection_string** | **string** | Optional BYO PostgreSQL connection string. If omitted, a Neon database is auto-provisioned. | [optional] [default to undefined]
 
 ## Example
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 import { ProvisionRequest } from './api';
 
 const instance: ProvisionRequest = {
+    connection_string,
     deployment_id,
     fid,
-    connection_string,
 };
 ```
 

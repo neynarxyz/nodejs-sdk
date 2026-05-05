@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**trait_type** | **string** |  | [default to undefined]
-**value** | [**UploadTokenMetadataRequestTokensInnerMetadataAttributesInnerValue**](UploadTokenMetadataRequestTokensInnerMetadataAttributesInnerValue.md) |  | [default to undefined]
 **display_type** | **string** |  | [optional] [default to undefined]
 **max_value** | **number** |  | [optional] [default to undefined]
+**trait_type** | **string** |  | [default to undefined]
+**value** | [**UploadTokenMetadataRequestTokensInnerMetadataAttributesInnerValue**](UploadTokenMetadataRequestTokensInnerMetadataAttributesInnerValue.md) |  | [default to undefined]
 
 ## Example
 
@@ -16,10 +16,10 @@ Name | Type | Description | Notes
 import { UploadTokenMetadataRequestTokensInnerMetadataAttributesInner } from './api';
 
 const instance: UploadTokenMetadataRequestTokensInnerMetadataAttributesInner = {
-    trait_type,
-    value,
     display_type,
     max_value,
+    trait_type,
+    value,
 };
 ```
 

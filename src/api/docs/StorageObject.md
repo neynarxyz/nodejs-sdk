@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**capacity** | **number** |  | [optional] [default to undefined]
 **object** | **string** |  | [optional] [default to undefined]
 **used** | **number** |  | [optional] [default to undefined]
-**capacity** | **number** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 import { StorageObject } from './api';
 
 const instance: StorageObject = {
+    capacity,
     object,
     used,
-    capacity,
 };
 ```
 

@@ -6,8 +6,8 @@ Failed mint for a single recipient.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**recipient** | [**MintNft200ResponseTransactionsInnerOneOf1Recipient**](MintNft200ResponseTransactionsInnerOneOf1Recipient.md) |  | [default to undefined]
 **error** | **string** | Error message for this recipient. | [default to undefined]
+**recipient** | [**MintNft200ResponseTransactionsInnerOneOf1Recipient**](MintNft200ResponseTransactionsInnerOneOf1Recipient.md) |  | [default to undefined]
 
 ## Example
 
@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 import { MintNft200ResponseTransactionsInnerOneOf1 } from './api';
 
 const instance: MintNft200ResponseTransactionsInnerOneOf1 = {
-    recipient,
     error,
+    recipient,
 };
 ```
 

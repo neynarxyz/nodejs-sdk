@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **boolean** |  | [default to undefined]
 **message** | **string** |  | [default to undefined]
 **signer** | [**Signer**](Signer.md) |  | [optional] [default to undefined]
 **signers** | [**Array&lt;RegisterUserResponseSignersInner&gt;**](RegisterUserResponseSignersInner.md) |  | [default to undefined]
+**success** | **boolean** |  | [default to undefined]
 **user** | [**User**](User.md) |  | [optional] [default to undefined]
 
 ## Example
@@ -17,10 +17,10 @@ Name | Type | Description | Notes
 import { RegisterUserResponse } from './api';
 
 const instance: RegisterUserResponse = {
-    success,
     message,
     signer,
     signers,
+    success,
     user,
 };
 ```

@@ -1,21 +1,21 @@
-# GetCreditDrop402Response
+# Upgrade400ResponsePaymentMethod
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**message** | **string** |  | [default to undefined]
-**code** | **string** |  | [default to undefined]
+**brand** | **string** |  | [default to undefined]
+**last4** | **string** |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import { GetCreditDrop402Response } from './api';
+import { Upgrade400ResponsePaymentMethod } from './api';
 
-const instance: GetCreditDrop402Response = {
-    message,
-    code,
+const instance: Upgrade400ResponsePaymentMethod = {
+    brand,
+    last4,
 };
 ```
 

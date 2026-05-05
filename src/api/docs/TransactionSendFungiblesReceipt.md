@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**fid** | **number** | The unique identifier of a farcaster user or app (unsigned integer) | [default to undefined]
 **amount** | **number** |  | [default to undefined]
-**status** | **string** |  | [default to undefined]
+**fid** | **number** | The unique identifier of a farcaster user or app (unsigned integer) | [default to undefined]
 **reason** | **string** | Reason for failure (if status is failed) | [optional] [default to undefined]
+**status** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -16,10 +16,10 @@ Name | Type | Description | Notes
 import { TransactionSendFungiblesReceipt } from './api';
 
 const instance: TransactionSendFungiblesReceipt = {
-    fid,
     amount,
-    status,
+    fid,
     reason,
+    status,
 };
 ```
 

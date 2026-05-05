@@ -5,15 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**network** | [**Network**](Network.md) |  | [default to undefined]
 **address** | **string** | Token contract address | [default to undefined]
-**name** | **string** | Token name | [default to undefined]
-**symbol** | **string** | Token symbol | [default to undefined]
-**decimals** | **number** | Token decimals | [default to undefined]
 **balance** | **string** | Raw token balance | [default to undefined]
 **balance_usd** | **string** | Balance value in USD | [default to undefined]
-**price_usd** | **string** | Token price in USD | [default to undefined]
+**decimals** | **number** | Token decimals | [default to undefined]
 **image_url** | **string** | Token logo URL | [default to undefined]
+**name** | **string** | Token name | [default to undefined]
+**network** | [**Network**](Network.md) |  | [default to undefined]
+**price_usd** | **string** | Token price in USD | [default to undefined]
+**symbol** | **string** | Token symbol | [default to undefined]
 
 ## Example
 
@@ -21,15 +21,15 @@ Name | Type | Description | Notes
 import { GetWalletBalances200ResponseBalancesInner } from './api';
 
 const instance: GetWalletBalances200ResponseBalancesInner = {
-    network,
     address,
-    name,
-    symbol,
-    decimals,
     balance,
     balance_usd,
-    price_usd,
+    decimals,
     image_url,
+    name,
+    network,
+    price_usd,
+    symbol,
 };
 ```
 

@@ -6,9 +6,9 @@ Transaction receipt (if async is false).
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**status** | **string** |  | [default to undefined]
-**gas_used** | **string** |  | [default to undefined]
 **block_number** | **string** |  | [default to undefined]
+**gas_used** | **string** |  | [default to undefined]
+**status** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -16,9 +16,9 @@ Name | Type | Description | Notes
 import { MintNft200ResponseTransactionsInnerOneOfReceipt } from './api';
 
 const instance: MintNft200ResponseTransactionsInnerOneOfReceipt = {
-    status,
-    gas_used,
     block_number,
+    gas_used,
+    status,
 };
 ```
 

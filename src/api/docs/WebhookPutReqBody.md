@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **string** |  | [default to undefined]
-**url** | **string** |  | [default to undefined]
 **subscription** | [**WebhookSubscriptionFilters**](WebhookSubscriptionFilters.md) |  | [optional] [default to undefined]
+**url** | **string** |  | [default to undefined]
 **webhook_id** | **string** |  | [default to undefined]
 
 ## Example
@@ -17,8 +17,8 @@ import { WebhookPutReqBody } from './api';
 
 const instance: WebhookPutReqBody = {
     name,
-    url,
     subscription,
+    url,
     webhook_id,
 };
 ```

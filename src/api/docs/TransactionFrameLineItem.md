@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **string** | Name of the line item in transaction | [default to undefined]
 **description** | **string** | Description of the line item in transaction | [default to undefined]
 **image** | **string** | Optional image URL for the line item in transaction | [optional] [default to undefined]
+**name** | **string** | Name of the line item in transaction | [default to undefined]
 
 ## Example
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 import { TransactionFrameLineItem } from './api';
 
 const instance: TransactionFrameLineItem = {
-    name,
     description,
     image,
+    name,
 };
 ```
 

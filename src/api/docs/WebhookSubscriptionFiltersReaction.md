@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **fids** | **Array&lt;number&gt;** |  | [optional] [default to undefined]
-**target_fids** | **Array&lt;number&gt;** |  | [optional] [default to undefined]
 **target_cast_hashes** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
+**target_fids** | **Array&lt;number&gt;** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -16,8 +16,8 @@ import { WebhookSubscriptionFiltersReaction } from './api';
 
 const instance: WebhookSubscriptionFiltersReaction = {
     fids,
-    target_fids,
     target_cast_hashes,
+    target_fids,
 };
 ```
 

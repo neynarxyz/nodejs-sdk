@@ -1,21 +1,21 @@
-# UpgradePreview400ResponsePaymentMethod
+# RegisterUserReqBodyMetadataLocation
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**brand** | **string** |  | [default to undefined]
-**last4** | **string** |  | [default to undefined]
+**latitude** | **number** |  | [default to undefined]
+**longitude** | **number** |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import { UpgradePreview400ResponsePaymentMethod } from './api';
+import { RegisterUserReqBodyMetadataLocation } from './api';
 
-const instance: UpgradePreview400ResponsePaymentMethod = {
-    brand,
-    last4,
+const instance: RegisterUserReqBodyMetadataLocation = {
+    latitude,
+    longitude,
 };
 ```
 

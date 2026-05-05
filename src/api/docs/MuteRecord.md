@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **string** |  | [default to undefined]
 **muted** | [**User**](User.md) |  | [default to undefined]
 **muted_at** | **string** |  | [default to undefined]
+**object** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 import { MuteRecord } from './api';
 
 const instance: MuteRecord = {
-    object,
     muted,
     muted_at,
+    object,
 };
 ```
 

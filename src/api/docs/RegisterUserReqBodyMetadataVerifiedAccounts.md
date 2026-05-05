@@ -1,21 +1,21 @@
-# UpdateUserReqBodyVerifiedAccounts
+# RegisterUserReqBodyMetadataVerifiedAccounts
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**x** | **string** |  | [optional] [default to undefined]
 **github** | **string** |  | [optional] [default to undefined]
+**x** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import { UpdateUserReqBodyVerifiedAccounts } from './api';
+import { RegisterUserReqBodyMetadataVerifiedAccounts } from './api';
 
-const instance: UpdateUserReqBodyVerifiedAccounts = {
-    x,
+const instance: RegisterUserReqBodyMetadataVerifiedAccounts = {
     github,
+    x,
 };
 ```
 

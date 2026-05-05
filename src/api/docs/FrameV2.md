@@ -6,13 +6,13 @@ Mini app v2 object
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**version** | **string** | Version of the mini app, \&#39;next\&#39; for v2, \&#39;vNext\&#39; for v1 | [default to undefined]
-**image** | **string** | URL of the image | [default to undefined]
-**frames_url** | **string** | Launch URL of the mini app | [default to undefined]
-**title** | **string** | Button title of a mini app | [optional] [default to undefined]
-**manifest** | [**FarcasterManifest**](FarcasterManifest.md) |  | [optional] [default to undefined]
 **author** | [**UserDehydrated**](UserDehydrated.md) |  | [optional] [default to undefined]
+**frames_url** | **string** | Launch URL of the mini app | [default to undefined]
+**image** | **string** | URL of the image | [default to undefined]
+**manifest** | [**FarcasterManifest**](FarcasterManifest.md) |  | [optional] [default to undefined]
 **metadata** | [**FetchRelevantFrames200ResponseRelevantFramesInnerFrameMetadata**](FetchRelevantFrames200ResponseRelevantFramesInnerFrameMetadata.md) |  | [optional] [default to undefined]
+**title** | **string** | Button title of a mini app | [optional] [default to undefined]
+**version** | **string** | Version of the mini app, \&#39;next\&#39; for v2, \&#39;vNext\&#39; for v1 | [default to undefined]
 
 ## Example
 
@@ -20,13 +20,13 @@ Name | Type | Description | Notes
 import { FrameV2 } from './api';
 
 const instance: FrameV2 = {
-    version,
-    image,
-    frames_url,
-    title,
-    manifest,
     author,
+    frames_url,
+    image,
+    manifest,
     metadata,
+    title,
+    version,
 };
 ```
 

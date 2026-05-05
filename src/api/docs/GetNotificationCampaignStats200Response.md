@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**notificationCampaigns** | [**Array&lt;NotificationCampaign&gt;**](NotificationCampaign.md) |  | [default to undefined]
 **next** | [**NextCursor**](NextCursor.md) |  | [default to undefined]
+**notificationCampaigns** | [**Array&lt;NotificationCampaign&gt;**](NotificationCampaign.md) |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { GetNotificationCampaignStats200Response } from './api';
 
 const instance: GetNotificationCampaignStats200Response = {
-    notificationCampaigns,
     next,
+    notificationCampaigns,
 };
 ```
 

@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cast_id** | [**CastId**](CastId.md) |  | [optional] [default to undefined]
 **cast** | [**CastEmbedded**](CastEmbedded.md) |  | [default to undefined]
+**cast_id** | [**CastId**](CastId.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { EmbedCast } from './api';
 
 const instance: EmbedCast = {
-    cast_id,
     cast,
+    cast_id,
 };
 ```
 

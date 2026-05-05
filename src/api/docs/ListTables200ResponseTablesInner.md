@@ -6,9 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **string** | Table name | [default to undefined]
+**rowCountEstimate** | **number** | Estimated row count from statistics | [default to undefined]
 **schema** | **string** | Schema name | [default to undefined]
 **type** | **string** | Table type | [default to undefined]
-**rowCountEstimate** | **number** | Estimated row count from statistics | [default to undefined]
 
 ## Example
 
@@ -17,9 +17,9 @@ import { ListTables200ResponseTablesInner } from './api';
 
 const instance: ListTables200ResponseTablesInner = {
     name,
+    rowCountEstimate,
     schema,
     type,
-    rowCountEstimate,
 };
 ```
 

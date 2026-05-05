@@ -5,15 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **string** |  | [optional] [default to undefined]
-**user** | [**UserDehydrated**](UserDehydrated.md) |  | [optional] [default to undefined]
 **casts** | [**StorageObject**](StorageObject.md) |  | [optional] [default to undefined]
-**reactions** | [**StorageObject**](StorageObject.md) |  | [optional] [default to undefined]
 **links** | [**StorageObject**](StorageObject.md) |  | [optional] [default to undefined]
-**verified_addresses** | [**StorageObject**](StorageObject.md) |  | [optional] [default to undefined]
-**username_proofs** | [**StorageObject**](StorageObject.md) |  | [optional] [default to undefined]
+**object** | **string** |  | [optional] [default to undefined]
+**reactions** | [**StorageObject**](StorageObject.md) |  | [optional] [default to undefined]
 **signers** | [**StorageObject**](StorageObject.md) |  | [optional] [default to undefined]
 **total_active_units** | **number** |  | [optional] [default to undefined]
+**user** | [**UserDehydrated**](UserDehydrated.md) |  | [optional] [default to undefined]
+**username_proofs** | [**StorageObject**](StorageObject.md) |  | [optional] [default to undefined]
+**verified_addresses** | [**StorageObject**](StorageObject.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -21,15 +21,15 @@ Name | Type | Description | Notes
 import { StorageUsageResponse } from './api';
 
 const instance: StorageUsageResponse = {
-    object,
-    user,
     casts,
-    reactions,
     links,
-    verified_addresses,
-    username_proofs,
+    object,
+    reactions,
     signers,
     total_active_units,
+    user,
+    username_proofs,
+    verified_addresses,
 };
 ```
 

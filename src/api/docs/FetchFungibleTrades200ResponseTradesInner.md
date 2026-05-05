@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **object** | **string** |  | [default to undefined]
-**trader** | [**UserDehydrated**](UserDehydrated.md) |  | [default to undefined]
 **pool** | [**FetchFungibleTrades200ResponseTradesInnerPool**](FetchFungibleTrades200ResponseTradesInnerPool.md) |  | [optional] [default to undefined]
+**trader** | [**UserDehydrated**](UserDehydrated.md) |  | [default to undefined]
 **transaction** | [**FetchFungibleTrades200ResponseTradesInnerTransaction**](FetchFungibleTrades200ResponseTradesInnerTransaction.md) |  | [default to undefined]
 
 ## Example
@@ -17,8 +17,8 @@ import { FetchFungibleTrades200ResponseTradesInner } from './api';
 
 const instance: FetchFungibleTrades200ResponseTradesInner = {
     object,
-    trader,
     pool,
+    trader,
     transaction,
 };
 ```

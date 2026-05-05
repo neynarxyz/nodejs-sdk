@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**constraintName** | **string** | Constraint name | [default to undefined]
 **columnName** | **string** | Local column name | [default to undefined]
-**referencedTable** | **string** | Referenced table name | [default to undefined]
+**constraintName** | **string** | Constraint name | [default to undefined]
 **referencedColumn** | **string** | Referenced column name | [default to undefined]
+**referencedTable** | **string** | Referenced table name | [default to undefined]
 
 ## Example
 
@@ -16,10 +16,10 @@ Name | Type | Description | Notes
 import { GetTableSchema200ResponseForeignKeysInner } from './api';
 
 const instance: GetTableSchema200ResponseForeignKeysInner = {
-    constraintName,
     columnName,
-    referencedTable,
+    constraintName,
     referencedColumn,
+    referencedTable,
 };
 ```
 

@@ -6,9 +6,9 @@ The token balance associated with a wallet address and a network
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**balance** | [**TokenBalanceBalance**](TokenBalanceBalance.md) |  | [default to undefined]
 **object** | **string** |  | [default to undefined]
 **token** | [**TokenBalanceToken**](TokenBalanceToken.md) |  | [default to undefined]
-**balance** | [**TokenBalanceBalance**](TokenBalanceBalance.md) |  | [default to undefined]
 
 ## Example
 
@@ -16,9 +16,9 @@ Name | Type | Description | Notes
 import { TokenBalance } from './api';
 
 const instance: TokenBalance = {
+    balance,
     object,
     token,
-    balance,
 };
 ```
 

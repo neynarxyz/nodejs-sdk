@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**notification_tokens** | [**Array&lt;FrameNotificationTokensNotificationTokensInner&gt;**](FrameNotificationTokensNotificationTokensInner.md) |  | [default to undefined]
 **next** | [**NextCursor**](NextCursor.md) |  | [default to undefined]
+**notification_tokens** | [**Array&lt;FrameNotificationTokensNotificationTokensInner&gt;**](FrameNotificationTokensNotificationTokensInner.md) |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { FrameNotificationTokens } from './api';
 
 const instance: FrameNotificationTokens = {
-    notification_tokens,
     next,
+    notification_tokens,
 };
 ```
 

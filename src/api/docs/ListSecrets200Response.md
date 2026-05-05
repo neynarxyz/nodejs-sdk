@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **boolean** |  | [default to undefined]
 **secrets** | [**Array&lt;ListSecrets200ResponseSecretsInner&gt;**](ListSecrets200ResponseSecretsInner.md) |  | [default to undefined]
+**success** | **boolean** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { ListSecrets200Response } from './api';
 
 const instance: ListSecrets200Response = {
-    success,
     secrets,
+    success,
 };
 ```
 

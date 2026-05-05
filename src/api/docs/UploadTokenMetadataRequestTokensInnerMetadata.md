@@ -5,14 +5,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **string** |  | [default to undefined]
-**description** | **string** |  | [optional] [default to undefined]
-**image** | **string** |  | [default to undefined]
-**external_url** | **string** |  | [optional] [default to undefined]
 **animation_url** | **string** |  | [optional] [default to undefined]
-**background_color** | **string** |  | [optional] [default to undefined]
-**youtube_url** | **string** |  | [optional] [default to undefined]
 **attributes** | [**Array&lt;UploadTokenMetadataRequestTokensInnerMetadataAttributesInner&gt;**](UploadTokenMetadataRequestTokensInnerMetadataAttributesInner.md) |  | [optional] [default to undefined]
+**background_color** | **string** |  | [optional] [default to undefined]
+**description** | **string** |  | [optional] [default to undefined]
+**external_url** | **string** |  | [optional] [default to undefined]
+**image** | **string** |  | [default to undefined]
+**name** | **string** |  | [default to undefined]
+**youtube_url** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -20,14 +20,14 @@ Name | Type | Description | Notes
 import { UploadTokenMetadataRequestTokensInnerMetadata } from './api';
 
 const instance: UploadTokenMetadataRequestTokensInnerMetadata = {
-    name,
-    description,
-    image,
-    external_url,
     animation_url,
-    background_color,
-    youtube_url,
     attributes,
+    background_color,
+    description,
+    external_url,
+    image,
+    name,
+    youtube_url,
 };
 ```
 

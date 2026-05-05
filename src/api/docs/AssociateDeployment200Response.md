@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **boolean** |  | [default to undefined]
 **message** | **string** | Status message from the miniapp generator | [default to undefined]
+**success** | **boolean** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { AssociateDeployment200Response } from './api';
 
 const instance: AssociateDeployment200Response = {
-    success,
     message,
+    success,
 };
 ```
 

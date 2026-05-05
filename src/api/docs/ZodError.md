@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**message** | **string** |  | [default to undefined]
 **code** | **string** |  | [default to undefined]
 **errors** | [**Array&lt;ZodErrorErrorsInner&gt;**](ZodErrorErrorsInner.md) |  | [default to undefined]
+**message** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 import { ZodError } from './api';
 
 const instance: ZodError = {
-    message,
     code,
     errors,
+    message,
 };
 ```
 

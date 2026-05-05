@@ -6,29 +6,29 @@ Reference to CastAndConversations to avoid circular reference
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **string** |  | [default to undefined]
-**hash** | **string** |  | [default to undefined]
-**parent_hash** | **string** |  | [default to undefined]
-**parent_url** | **string** |  | [default to undefined]
-**root_parent_url** | **string** |  | [default to undefined]
-**parent_author** | [**CastEmbeddedParentAuthor**](CastEmbeddedParentAuthor.md) |  | [default to undefined]
-**author** | [**User**](User.md) |  | [default to undefined]
 **app** | [**UserDehydrated**](UserDehydrated.md) |  | [optional] [default to undefined]
-**text** | **string** |  | [default to undefined]
-**timestamp** | **string** |  | [default to undefined]
+**author** | [**User**](User.md) |  | [default to undefined]
+**author_channel_context** | [**ChannelUserContext**](ChannelUserContext.md) |  | [optional] [default to undefined]
+**channel** | [**ChannelOrChannelDehydrated**](ChannelOrChannelDehydrated.md) |  | [default to undefined]
+**direct_replies** | **Array&lt;object&gt;** | note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth. | [default to undefined]
 **embeds** | [**Array&lt;Embed&gt;**](Embed.md) |  | [default to undefined]
-**type** | [**CastNotificationType**](CastNotificationType.md) |  | [optional] [default to undefined]
-**reactions** | [**CastReactions**](CastReactions.md) |  | [default to undefined]
-**replies** | [**CastReplies**](CastReplies.md) |  | [default to undefined]
-**thread_hash** | **string** |  | [default to undefined]
-**mentioned_profiles** | [**Array&lt;User&gt;**](User.md) |  | [default to undefined]
-**mentioned_profiles_ranges** | [**Array&lt;TextRange&gt;**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_profiles list. | [default to undefined]
+**hash** | **string** |  | [default to undefined]
 **mentioned_channels** | [**Array&lt;ChannelDehydrated&gt;**](ChannelDehydrated.md) |  | [default to undefined]
 **mentioned_channels_ranges** | [**Array&lt;TextRange&gt;**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_channels list. | [default to undefined]
-**channel** | [**ChannelOrChannelDehydrated**](ChannelOrChannelDehydrated.md) |  | [default to undefined]
+**mentioned_profiles** | [**Array&lt;User&gt;**](User.md) |  | [default to undefined]
+**mentioned_profiles_ranges** | [**Array&lt;TextRange&gt;**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_profiles list. | [default to undefined]
+**object** | **string** |  | [default to undefined]
+**parent_author** | [**CastParentAuthor**](CastParentAuthor.md) |  | [default to undefined]
+**parent_hash** | **string** |  | [default to undefined]
+**parent_url** | **string** |  | [default to undefined]
+**reactions** | [**CastReactions**](CastReactions.md) |  | [default to undefined]
+**replies** | [**CastReplies**](CastReplies.md) |  | [default to undefined]
+**root_parent_url** | **string** |  | [default to undefined]
+**text** | **string** |  | [default to undefined]
+**thread_hash** | **string** |  | [default to undefined]
+**timestamp** | **string** |  | [default to undefined]
+**type** | [**CastNotificationType**](CastNotificationType.md) |  | [optional] [default to undefined]
 **viewer_context** | [**CastViewerContext**](CastViewerContext.md) |  | [optional] [default to undefined]
-**author_channel_context** | [**ChannelUserContext**](ChannelUserContext.md) |  | [optional] [default to undefined]
-**direct_replies** | **Array&lt;object&gt;** | note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth. | [default to undefined]
 
 ## Example
 
@@ -36,29 +36,29 @@ Name | Type | Description | Notes
 import { CastAndConversationsRef } from './api';
 
 const instance: CastAndConversationsRef = {
-    object,
-    hash,
-    parent_hash,
-    parent_url,
-    root_parent_url,
-    parent_author,
-    author,
     app,
-    text,
-    timestamp,
+    author,
+    author_channel_context,
+    channel,
+    direct_replies,
     embeds,
-    type,
-    reactions,
-    replies,
-    thread_hash,
-    mentioned_profiles,
-    mentioned_profiles_ranges,
+    hash,
     mentioned_channels,
     mentioned_channels_ranges,
-    channel,
+    mentioned_profiles,
+    mentioned_profiles_ranges,
+    object,
+    parent_author,
+    parent_hash,
+    parent_url,
+    reactions,
+    replies,
+    root_parent_url,
+    text,
+    thread_hash,
+    timestamp,
+    type,
     viewer_context,
-    author_channel_context,
-    direct_replies,
 };
 ```
 

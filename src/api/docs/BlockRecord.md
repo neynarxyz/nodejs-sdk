@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **string** |  | [default to undefined]
 **blocked** | [**User**](User.md) |  | [optional] [default to undefined]
-**blocker** | [**User**](User.md) |  | [optional] [default to undefined]
 **blocked_at** | **string** |  | [default to undefined]
+**blocker** | [**User**](User.md) |  | [optional] [default to undefined]
+**object** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -16,10 +16,10 @@ Name | Type | Description | Notes
 import { BlockRecord } from './api';
 
 const instance: BlockRecord = {
-    object,
     blocked,
-    blocker,
     blocked_at,
+    blocker,
+    object,
 };
 ```
 

@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**x402Version** | **number** |  | [default to undefined]
 **accepts** | [**Array&lt;CreateX402SignatureRequestPaymentRequirementsAcceptsInner&gt;**](CreateX402SignatureRequestPaymentRequirementsAcceptsInner.md) |  | [default to undefined]
+**x402Version** | **number** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { CreateX402SignatureRequestPaymentRequirements } from './api';
 
 const instance: CreateX402SignatureRequestPaymentRequirements = {
-    x402Version,
     accepts,
+    x402Version,
 };
 ```
 

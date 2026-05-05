@@ -6,10 +6,10 @@ Adds context on the viewer\'s follow relationship with the user.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**following** | **boolean** | Indicates if the viewer is following the user. | [default to undefined]
-**followed_by** | **boolean** | Indicates if the viewer is followed by the user. | [default to undefined]
-**blocking** | **boolean** | Indicates if the viewer is blocking the user. | [default to undefined]
 **blocked_by** | **boolean** | Indicates if the viewer is blocked by the user. | [default to undefined]
+**blocking** | **boolean** | Indicates if the viewer is blocking the user. | [default to undefined]
+**followed_by** | **boolean** | Indicates if the viewer is followed by the user. | [default to undefined]
+**following** | **boolean** | Indicates if the viewer is following the user. | [default to undefined]
 
 ## Example
 
@@ -17,10 +17,10 @@ Name | Type | Description | Notes
 import { UserViewerContext } from './api';
 
 const instance: UserViewerContext = {
-    following,
-    followed_by,
-    blocking,
     blocked_by,
+    blocking,
+    followed_by,
+    following,
 };
 ```
 

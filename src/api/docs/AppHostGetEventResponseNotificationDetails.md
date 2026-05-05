@@ -6,8 +6,8 @@ Details for notification setup, only present when event is notifications_enabled
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**url** | **string** | URL endpoint for sending notifications | [default to undefined]
 **token** | **string** | Token to use when sending notifications to this user | [default to undefined]
+**url** | **string** | URL endpoint for sending notifications | [default to undefined]
 
 ## Example
 
@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 import { AppHostGetEventResponseNotificationDetails } from './api';
 
 const instance: AppHostGetEventResponseNotificationDetails = {
-    url,
     token,
+    url,
 };
 ```
 

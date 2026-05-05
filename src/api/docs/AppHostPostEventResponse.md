@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **boolean** |  | [default to undefined]
 **message** | **string** |  | [optional] [default to undefined]
+**success** | **boolean** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { AppHostPostEventResponse } from './api';
 
 const instance: AppHostPostEventResponse = {
-    success,
     message,
+    success,
 };
 ```
 

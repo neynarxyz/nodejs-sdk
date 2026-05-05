@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **string** |  | [default to undefined]
-**network** | **string** |  | [default to undefined]
 **address** | **string** | Ethereum address | [default to undefined]
 **name** | **string** |  | [default to undefined]
+**network** | **string** |  | [default to undefined]
 **symbol** | **string** |  | [default to undefined]
 **transaction_hash** | **string** |  | [default to undefined]
+**type** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -18,12 +18,12 @@ Name | Type | Description | Notes
 import { DeployErc721201ResponseCollection } from './api';
 
 const instance: DeployErc721201ResponseCollection = {
-    type,
-    network,
     address,
     name,
+    network,
     symbol,
     transaction_hash,
+    type,
 };
 ```
 

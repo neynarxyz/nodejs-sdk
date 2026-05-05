@@ -1,25 +1,23 @@
-# SubscriptionToken
+# SubscribedToMetadata
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**art_url** | **string** |  | [default to undefined]
 **symbol** | **string** |  | [default to undefined]
-**address** | **string** |  | [default to undefined]
-**decimals** | **number** |  | [default to undefined]
-**erc20** | **boolean** |  | [default to undefined]
+**title** | **string** |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import { SubscriptionToken } from './api';
+import { SubscribedToMetadata } from './api';
 
-const instance: SubscriptionToken = {
+const instance: SubscribedToMetadata = {
+    art_url,
     symbol,
-    address,
-    decimals,
-    erc20,
+    title,
 };
 ```
 

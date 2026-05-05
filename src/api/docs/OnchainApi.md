@@ -216,32 +216,32 @@ import {
 const configuration = new Configuration();
 const apiInstance = new OnchainApi(configuration);
 
+let name: string; //Name of the token (default to undefined)
 let owner: string; //Ethereum address of the one who is creating the token (default to undefined)
 let symbol: string; //Symbol/Ticker for the token (default to undefined)
-let name: string; //Name of the token (default to undefined)
-let metadataMedia: File; //Media file associated with the token.  Supported formats are image/jpeg, image/gif and image/png (optional) (default to undefined)
-let metadataDescription: string; //Description of the token (optional) (default to undefined)
-let metadataNsfw: string; //Indicates if the token is NSFW (Not Safe For Work). (optional) (default to undefined)
-let metadataWebsiteLink: string; //Website link related to the token (optional) (default to undefined)
-let metadataTwitter: string; //Twitter profile link (optional) (default to undefined)
-let metadataDiscord: string; //Discord server link (optional) (default to undefined)
-let metadataTelegram: string; //Telegram link (optional) (default to undefined)
-let network: string; //Network/Chain name (optional) (default to 'base')
 let factory: string; //Factory name - wow -> [wow.xyz](https://wow.xyz) - clanker -> [clanker.world](https://www.clanker.world) (optional) (default to 'wow')
+let metadataDescription: string; //Description of the token (optional) (default to undefined)
+let metadataDiscord: string; //Discord server link (optional) (default to undefined)
+let metadataMedia: File; //Media file associated with the token.  Supported formats are image/jpeg, image/gif and image/png (optional) (default to undefined)
+let metadataNsfw: string; //Indicates if the token is NSFW (Not Safe For Work). (optional) (default to undefined)
+let metadataTelegram: string; //Telegram link (optional) (default to undefined)
+let metadataTwitter: string; //Twitter profile link (optional) (default to undefined)
+let metadataWebsiteLink: string; //Website link related to the token (optional) (default to undefined)
+let network: string; //Network/Chain name (optional) (default to 'base')
 
 const { status, data } = await apiInstance.deployFungible(
+    name,
     owner,
     symbol,
-    name,
-    metadataMedia,
+    factory,
     metadataDescription,
-    metadataNsfw,
-    metadataWebsiteLink,
-    metadataTwitter,
     metadataDiscord,
+    metadataMedia,
+    metadataNsfw,
     metadataTelegram,
-    network,
-    factory
+    metadataTwitter,
+    metadataWebsiteLink,
+    network
 );
 ```
 
@@ -249,18 +249,18 @@ const { status, data } = await apiInstance.deployFungible(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
+| **name** | [**string**] | Name of the token | defaults to undefined|
 | **owner** | [**string**] | Ethereum address of the one who is creating the token | defaults to undefined|
 | **symbol** | [**string**] | Symbol/Ticker for the token | defaults to undefined|
-| **name** | [**string**] | Name of the token | defaults to undefined|
-| **metadataMedia** | [**File**] | Media file associated with the token.  Supported formats are image/jpeg, image/gif and image/png | (optional) defaults to undefined|
-| **metadataDescription** | [**string**] | Description of the token | (optional) defaults to undefined|
-| **metadataNsfw** | [**string**]**Array<&#39;true&#39; &#124; &#39;false&#39;>** | Indicates if the token is NSFW (Not Safe For Work). | (optional) defaults to undefined|
-| **metadataWebsiteLink** | [**string**] | Website link related to the token | (optional) defaults to undefined|
-| **metadataTwitter** | [**string**] | Twitter profile link | (optional) defaults to undefined|
-| **metadataDiscord** | [**string**] | Discord server link | (optional) defaults to undefined|
-| **metadataTelegram** | [**string**] | Telegram link | (optional) defaults to undefined|
-| **network** | [**string**]**Array<&#39;base&#39;>** | Network/Chain name | (optional) defaults to 'base'|
 | **factory** | [**string**]**Array<&#39;wow&#39; &#124; &#39;clanker&#39;>** | Factory name - wow -&gt; [wow.xyz](https://wow.xyz) - clanker -&gt; [clanker.world](https://www.clanker.world) | (optional) defaults to 'wow'|
+| **metadataDescription** | [**string**] | Description of the token | (optional) defaults to undefined|
+| **metadataDiscord** | [**string**] | Discord server link | (optional) defaults to undefined|
+| **metadataMedia** | [**File**] | Media file associated with the token.  Supported formats are image/jpeg, image/gif and image/png | (optional) defaults to undefined|
+| **metadataNsfw** | [**string**]**Array<&#39;true&#39; &#124; &#39;false&#39;>** | Indicates if the token is NSFW (Not Safe For Work). | (optional) defaults to undefined|
+| **metadataTelegram** | [**string**] | Telegram link | (optional) defaults to undefined|
+| **metadataTwitter** | [**string**] | Twitter profile link | (optional) defaults to undefined|
+| **metadataWebsiteLink** | [**string**] | Website link related to the token | (optional) defaults to undefined|
+| **network** | [**string**]**Array<&#39;base&#39;>** | Network/Chain name | (optional) defaults to 'base'|
 
 
 ### Return type

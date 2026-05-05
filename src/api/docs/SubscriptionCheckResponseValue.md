@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**expires_at** | **number** |  | [default to undefined]
 **object** | **string** |  | [default to undefined]
 **status** | **boolean** |  | [default to undefined]
-**expires_at** | **number** |  | [default to undefined]
 **subscribed_at** | **number** |  | [default to undefined]
 **tier** | [**SubscriptionTier**](SubscriptionTier.md) |  | [default to undefined]
 
@@ -17,9 +17,9 @@ Name | Type | Description | Notes
 import { SubscriptionCheckResponseValue } from './api';
 
 const instance: SubscriptionCheckResponseValue = {
+    expires_at,
     object,
     status,
-    expires_at,
     subscribed_at,
     tier,
 };

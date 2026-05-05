@@ -6,10 +6,10 @@ Request body for NFT minting operation.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**network** | **string** | Network to mint on. | [default to undefined]
-**contract_address** | **string** | Ethereum address | [default to undefined]
-**recipients** | [**Array&lt;MintNftRequestRecipientsInner&gt;**](MintNftRequestRecipientsInner.md) | List of recipients to mint to (1-200 recipients allowed). | [default to undefined]
 **async** | **boolean** | If true, returns immediately after sending the transaction. | [optional] [default to undefined]
+**contract_address** | **string** | Ethereum address | [default to undefined]
+**network** | **string** | Network to mint on. | [default to undefined]
+**recipients** | [**Array&lt;MintNftRequestRecipientsInner&gt;**](MintNftRequestRecipientsInner.md) | List of recipients to mint to (1-200 recipients allowed). | [default to undefined]
 
 ## Example
 
@@ -17,10 +17,10 @@ Name | Type | Description | Notes
 import { MintNftRequest } from './api';
 
 const instance: MintNftRequest = {
-    network,
-    contract_address,
-    recipients,
     async,
+    contract_address,
+    network,
+    recipients,
 };
 ```
 

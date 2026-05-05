@@ -7,8 +7,8 @@ Mint recipient that failed.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | **string** | Ethereum address | [optional] [default to undefined]
-**quantity** | **number** |  | [default to undefined]
 **fid** | **number** | The unique identifier of a farcaster user or app (unsigned integer) | [optional] [default to undefined]
+**quantity** | **number** |  | [default to undefined]
 
 ## Example
 
@@ -17,8 +17,8 @@ import { MintNft200ResponseTransactionsInnerOneOf1Recipient } from './api';
 
 const instance: MintNft200ResponseTransactionsInnerOneOf1Recipient = {
     address,
-    quantity,
     fid,
+    quantity,
 };
 ```
 

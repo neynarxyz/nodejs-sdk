@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**mediaType** | **string** | MIME type of the image, e.g. image/png | [default to undefined]
 **data** | **string** | Base64-encoded image data or data URL (data:image/png;base64,...) | [default to undefined]
+**mediaType** | **string** | MIME type of the image, e.g. image/png | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { PromptDeploymentStreamRequestImagesInner } from './api';
 
 const instance: PromptDeploymentStreamRequestImagesInner = {
-    mediaType,
     data,
+    mediaType,
 };
 ```
 

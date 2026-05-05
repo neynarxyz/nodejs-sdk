@@ -6,9 +6,9 @@ Coordinates and place names for a location
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**address** | [**LocationAddress**](LocationAddress.md) |  | [optional] [default to undefined]
 **latitude** | **number** |  | [default to undefined]
 **longitude** | **number** |  | [default to undefined]
-**address** | [**LocationAddress**](LocationAddress.md) |  | [optional] [default to undefined]
 **radius** | **number** | The radius in meters for the location search. Any location within this radius will be returned. | [optional] [default to undefined]
 
 ## Example
@@ -17,9 +17,9 @@ Name | Type | Description | Notes
 import { Location } from './api';
 
 const instance: Location = {
+    address,
     latitude,
     longitude,
-    address,
     radius,
 };
 ```

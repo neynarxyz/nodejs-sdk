@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **string** | Unique identifier for the transaction mini app | [default to undefined]
-**url** | **string** | URL that can be used to access the transaction mini app | [default to undefined]
-**type** | [**TransactionFrameType**](TransactionFrameType.md) |  | [default to undefined]
 **config** | [**TransactionFrameConfig**](TransactionFrameConfig.md) |  | [default to undefined]
+**id** | **string** | Unique identifier for the transaction mini app | [default to undefined]
 **status** | [**TransactionFrameStatus**](TransactionFrameStatus.md) |  | [default to undefined]
 **transaction** | [**FramePayTransactionReqBodyTransaction**](FramePayTransactionReqBodyTransaction.md) |  | [default to undefined]
+**type** | [**TransactionFrameType**](TransactionFrameType.md) |  | [default to undefined]
+**url** | **string** | URL that can be used to access the transaction mini app | [default to undefined]
 
 ## Example
 
@@ -18,12 +18,12 @@ Name | Type | Description | Notes
 import { TransactionFramePay } from './api';
 
 const instance: TransactionFramePay = {
-    id,
-    url,
-    type,
     config,
+    id,
     status,
     transaction,
+    type,
+    url,
 };
 ```
 

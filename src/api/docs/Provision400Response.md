@@ -1,21 +1,21 @@
-# UpdateUserReqBodyLocation
+# Provision400Response
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**latitude** | **number** |  | [default to undefined]
-**longitude** | **number** |  | [default to undefined]
+**code** | **string** |  | [optional] [default to undefined]
+**error** | **string** |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import { UpdateUserReqBodyLocation } from './api';
+import { Provision400Response } from './api';
 
-const instance: UpdateUserReqBodyLocation = {
-    latitude,
-    longitude,
+const instance: Provision400Response = {
+    code,
+    error,
 };
 ```
 

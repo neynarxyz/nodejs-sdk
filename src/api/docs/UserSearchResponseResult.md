@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**users** | [**Array&lt;User&gt;**](User.md) |  | [default to undefined]
 **next** | [**NextCursor**](NextCursor.md) |  | [optional] [default to undefined]
+**users** | [**Array&lt;User&gt;**](User.md) |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { UserSearchResponseResult } from './api';
 
 const instance: UserSearchResponseResult = {
-    users,
     next,
+    users,
 };
 ```
 

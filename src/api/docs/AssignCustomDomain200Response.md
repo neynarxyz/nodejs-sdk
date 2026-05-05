@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **boolean** |  | [default to undefined]
 **domain** | **string** | The full assigned domain (e.g., myapp.neynar.app) | [default to undefined]
 **previous_domain** | **string** | The previous production domain, if any | [optional] [default to undefined]
+**success** | **boolean** |  | [default to undefined]
 
 ## Example
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 import { AssignCustomDomain200Response } from './api';
 
 const instance: AssignCustomDomain200Response = {
-    success,
     domain,
     previous_domain,
+    success,
 };
 ```
 

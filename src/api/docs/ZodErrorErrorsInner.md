@@ -7,9 +7,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **string** |  | [default to undefined]
 **expected** | **string** |  | [default to undefined]
-**received** | **string** |  | [default to undefined]
-**path** | **Array&lt;string&gt;** |  | [default to undefined]
 **message** | **string** |  | [default to undefined]
+**path** | **Array&lt;string&gt;** |  | [default to undefined]
+**received** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -19,9 +19,9 @@ import { ZodErrorErrorsInner } from './api';
 const instance: ZodErrorErrorsInner = {
     code,
     expected,
-    received,
-    path,
     message,
+    path,
+    received,
 };
 ```
 

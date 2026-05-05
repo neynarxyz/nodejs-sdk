@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**total_active_units** | **number** |  | [optional] [default to undefined]
 **allocations** | [**Array&lt;StorageAllocation&gt;**](StorageAllocation.md) |  | [optional] [default to undefined]
+**total_active_units** | **number** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { StorageAllocationsResponse } from './api';
 
 const instance: StorageAllocationsResponse = {
-    total_active_units,
     allocations,
+    total_active_units,
 };
 ```
 

@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**topics** | [**Array&lt;TrendingTopic&gt;**](TrendingTopic.md) |  | [default to undefined]
 **next** | [**NextCursor**](NextCursor.md) |  | [default to undefined]
+**topics** | [**Array&lt;TrendingTopic&gt;**](TrendingTopic.md) |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { TrendingTopicsResponse } from './api';
 
 const instance: TrendingTopicsResponse = {
-    topics,
     next,
+    topics,
 };
 ```
 

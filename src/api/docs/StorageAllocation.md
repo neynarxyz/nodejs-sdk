@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **string** |  | [optional] [default to undefined]
-**user** | [**UserDehydrated**](UserDehydrated.md) |  | [optional] [default to undefined]
-**units** | **number** |  | [optional] [default to undefined]
 **expiry** | **string** |  | [optional] [default to undefined]
+**object** | **string** |  | [optional] [default to undefined]
 **timestamp** | **string** |  | [optional] [default to undefined]
+**units** | **number** |  | [optional] [default to undefined]
+**user** | [**UserDehydrated**](UserDehydrated.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -17,11 +17,11 @@ Name | Type | Description | Notes
 import { StorageAllocation } from './api';
 
 const instance: StorageAllocation = {
-    object,
-    user,
-    units,
     expiry,
+    object,
     timestamp,
+    units,
+    user,
 };
 ```
 

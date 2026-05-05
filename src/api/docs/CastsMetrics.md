@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**start** | **string** |  | [default to undefined]
-**resolution_in_seconds** | **number** |  | [default to undefined]
 **cast_count** | **number** |  | [default to undefined]
+**resolution_in_seconds** | **number** |  | [default to undefined]
+**start** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 import { CastsMetrics } from './api';
 
 const instance: CastsMetrics = {
-    start,
-    resolution_in_seconds,
     cast_count,
+    resolution_in_seconds,
+    start,
 };
 ```
 

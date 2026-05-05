@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **string** |  | [default to undefined]
-**name** | **string** | The token name e.g. \&quot;Ethereum\&quot; | [default to undefined]
-**symbol** | **string** | The token symbol e.g. \&quot;ETH\&quot; | [default to undefined]
 **address** | **string** | The contract address of the token (omitted for native token) | [optional] [default to undefined]
 **decimals** | **number** | The number of decimals the token uses | [optional] [default to undefined]
+**name** | **string** | The token name e.g. \&quot;Ethereum\&quot; | [default to undefined]
+**object** | **string** |  | [default to undefined]
+**symbol** | **string** | The token symbol e.g. \&quot;ETH\&quot; | [default to undefined]
 
 ## Example
 
@@ -17,11 +17,11 @@ Name | Type | Description | Notes
 import { TokenBalanceToken } from './api';
 
 const instance: TokenBalanceToken = {
-    object,
-    name,
-    symbol,
     address,
     decimals,
+    name,
+    object,
+    symbol,
 };
 ```
 

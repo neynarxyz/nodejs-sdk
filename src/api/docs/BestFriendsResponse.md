@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**users** | [**Array&lt;BestFriendsResponseUsersInner&gt;**](BestFriendsResponseUsersInner.md) |  | [default to undefined]
 **next** | [**NextCursor**](NextCursor.md) |  | [optional] [default to undefined]
+**users** | [**Array&lt;BestFriendsResponseUsersInner&gt;**](BestFriendsResponseUsersInner.md) |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { BestFriendsResponse } from './api';
 
 const instance: BestFriendsResponse = {
-    users,
     next,
+    users,
 };
 ```
 

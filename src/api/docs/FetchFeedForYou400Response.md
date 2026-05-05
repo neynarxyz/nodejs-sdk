@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**message** | **string** |  | [default to undefined]
 **code** | **string** |  | [default to undefined]
 **errors** | [**Array&lt;ZodErrorErrorsInner&gt;**](ZodErrorErrorsInner.md) |  | [default to undefined]
+**message** | **string** |  | [default to undefined]
 **property** | **string** |  | [optional] [default to undefined]
 **status** | **number** |  | [optional] [default to undefined]
 
@@ -17,9 +17,9 @@ Name | Type | Description | Notes
 import { FetchFeedForYou400Response } from './api';
 
 const instance: FetchFeedForYou400Response = {
-    message,
     code,
     errors,
+    message,
     property,
     status,
 };

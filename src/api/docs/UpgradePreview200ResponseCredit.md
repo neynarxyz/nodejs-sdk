@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**unusedUnits** | **number** |  | [default to undefined]
-**unitRate** | **number** |  | [default to undefined]
 **creditAmount** | **number** |  | [default to undefined]
+**unitRate** | **number** |  | [default to undefined]
+**unusedUnits** | **number** |  | [default to undefined]
 
 ## Example
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 import { UpgradePreview200ResponseCredit } from './api';
 
 const instance: UpgradePreview200ResponseCredit = {
-    unusedUnits,
-    unitRate,
     creditAmount,
+    unitRate,
+    unusedUnits,
 };
 ```
 

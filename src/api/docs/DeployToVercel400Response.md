@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **boolean** |  | [default to undefined]
 **error** | **string** |  | [default to undefined]
+**success** | **boolean** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { DeployToVercel400Response } from './api';
 
 const instance: DeployToVercel400Response = {
-    success,
     error,
+    success,
 };
 ```
 

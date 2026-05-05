@@ -7,8 +7,8 @@ The token balances associated with a wallet address
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **object** | **string** |  | [default to undefined]
-**verified_address** | [**AddressBalanceVerifiedAddress**](AddressBalanceVerifiedAddress.md) |  | [default to undefined]
 **token_balances** | [**Array&lt;TokenBalance&gt;**](TokenBalance.md) |  | [default to undefined]
+**verified_address** | [**AddressBalanceVerifiedAddress**](AddressBalanceVerifiedAddress.md) |  | [default to undefined]
 
 ## Example
 
@@ -17,8 +17,8 @@ import { AddressBalance } from './api';
 
 const instance: AddressBalance = {
     object,
-    verified_address,
     token_balances,
+    verified_address,
 };
 ```
 

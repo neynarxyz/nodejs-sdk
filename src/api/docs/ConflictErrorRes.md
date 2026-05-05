@@ -7,9 +7,9 @@ Details for the conflict error response
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **string** |  | [optional] [default to undefined]
+**key** | **string** |  | [optional] [default to undefined]
 **message** | **string** |  | [default to undefined]
 **property** | **string** |  | [optional] [default to undefined]
-**key** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -18,9 +18,9 @@ import { ConflictErrorRes } from './api';
 
 const instance: ConflictErrorRes = {
     code,
+    key,
     message,
     property,
-    key,
 };
 ```
 

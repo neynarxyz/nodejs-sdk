@@ -1,23 +1,19 @@
-# SubscriptionMetadata
+# CastParentAuthor
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**title** | **string** |  | [default to undefined]
-**symbol** | **string** |  | [default to undefined]
-**art_url** | **string** |  | [default to undefined]
+**fid** | **number** | The unique identifier of a farcaster user or app (unsigned integer) | [default to undefined]
 
 ## Example
 
 ```typescript
-import { SubscriptionMetadata } from './api';
+import { CastParentAuthor } from './api';
 
-const instance: SubscriptionMetadata = {
-    title,
-    symbol,
-    art_url,
+const instance: CastParentAuthor = {
+    fid,
 };
 ```
 

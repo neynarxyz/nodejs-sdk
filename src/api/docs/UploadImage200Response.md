@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **boolean** | Whether the upload was successful | [default to undefined]
-**message** | **string** | Status message | [default to undefined]
 **filename** | **string** | Uploaded filename | [optional] [default to undefined]
+**message** | **string** | Status message | [default to undefined]
+**success** | **boolean** | Whether the upload was successful | [default to undefined]
 **url** | **string** | URL path to access the image | [optional] [default to undefined]
 
 ## Example
@@ -16,9 +16,9 @@ Name | Type | Description | Notes
 import { UploadImage200Response } from './api';
 
 const instance: UploadImage200Response = {
-    success,
-    message,
     filename,
+    message,
+    success,
     url,
 };
 ```

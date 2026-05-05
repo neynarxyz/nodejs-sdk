@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **string** |  | [default to undefined]
 **address** | **string** |  | [default to undefined]
+**object** | **string** |  | [default to undefined]
 **protocol_family** | **string** |  | [optional] [default to undefined]
 **protocol_version** | **string** |  | [optional] [default to undefined]
 
@@ -16,8 +16,8 @@ Name | Type | Description | Notes
 import { FetchFungibleTrades200ResponseTradesInnerPool } from './api';
 
 const instance: FetchFungibleTrades200ResponseTradesInnerPool = {
-    object,
     address,
+    object,
     protocol_family,
     protocol_version,
 };

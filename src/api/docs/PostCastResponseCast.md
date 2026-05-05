@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**hash** | **string** |  | [default to undefined]
 **author** | [**PostCastResponseCastAuthor**](PostCastResponseCastAuthor.md) |  | [default to undefined]
+**hash** | **string** |  | [default to undefined]
 **text** | **string** |  | [default to undefined]
 
 ## Example
@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 import { PostCastResponseCast } from './api';
 
 const instance: PostCastResponseCast = {
-    hash,
     author,
+    hash,
     text,
 };
 ```

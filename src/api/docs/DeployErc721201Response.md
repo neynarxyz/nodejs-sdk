@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **string** |  | [default to undefined]
 **collection** | [**DeployErc721201ResponseCollection**](DeployErc721201ResponseCollection.md) |  | [default to undefined]
+**object** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { DeployErc721201Response } from './api';
 
 const instance: DeployErc721201Response = {
-    object,
     collection,
+    object,
 };
 ```
 

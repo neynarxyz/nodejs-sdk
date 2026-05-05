@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**network** | **string** |  | [default to undefined]
 **fungible_contract_address** | **string** | Contract address of the fungible token to send. If not provided, the default is the native token of the network. | [optional] [default to undefined]
+**network** | **string** |  | [default to undefined]
 **recipients** | [**Array&lt;TransactionSendFungiblesRecipient&gt;**](TransactionSendFungiblesRecipient.md) |  | [default to undefined]
 
 ## Example
@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 import { TransactionSendFungiblesReqBody } from './api';
 
 const instance: TransactionSendFungiblesReqBody = {
-    network,
     fungible_contract_address,
+    network,
     recipients,
 };
 ```

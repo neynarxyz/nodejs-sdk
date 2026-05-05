@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**balance** | [**FungibleBalanceBalance**](FungibleBalanceBalance.md) |  | [default to undefined]
 **object** | **string** |  | [default to undefined]
 **token** | [**Fungible**](Fungible.md) |  | [default to undefined]
-**balance** | [**FungibleBalanceBalance**](FungibleBalanceBalance.md) |  | [default to undefined]
 
 ## Example
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 import { FungibleBalance } from './api';
 
 const instance: FungibleBalance = {
+    balance,
     object,
     token,
-    balance,
 };
 ```
 

@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **boolean** |  | [default to undefined]
-**newPlan** | **string** |  | [default to undefined]
-**creditApplied** | **number** |  | [default to undefined]
 **chargeAmount** | **number** |  | [default to undefined]
+**creditApplied** | **number** |  | [default to undefined]
 **effectiveImmediately** | **boolean** |  | [default to undefined]
+**newPlan** | **string** |  | [default to undefined]
+**success** | **boolean** |  | [default to undefined]
 
 ## Example
 
@@ -17,11 +17,11 @@ Name | Type | Description | Notes
 import { Upgrade200Response } from './api';
 
 const instance: Upgrade200Response = {
-    success,
-    newPlan,
-    creditApplied,
     chargeAmount,
+    creditApplied,
     effectiveImmediately,
+    newPlan,
+    success,
 };
 ```
 

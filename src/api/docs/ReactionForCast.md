@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reaction_type** | [**ReactionType**](ReactionType.md) |  | [default to undefined]
 **app** | [**UserDehydrated**](UserDehydrated.md) |  | [optional] [default to undefined]
-**reaction_timestamp** | **string** |  | [default to undefined]
 **object** | **string** |  | [default to undefined]
+**reaction_timestamp** | **string** |  | [default to undefined]
+**reaction_type** | [**ReactionType**](ReactionType.md) |  | [default to undefined]
 **user** | [**User**](User.md) |  | [default to undefined]
 
 ## Example
@@ -17,10 +17,10 @@ Name | Type | Description | Notes
 import { ReactionForCast } from './api';
 
 const instance: ReactionForCast = {
-    reaction_type,
     app,
-    reaction_timestamp,
     object,
+    reaction_timestamp,
+    reaction_type,
     user,
 };
 ```

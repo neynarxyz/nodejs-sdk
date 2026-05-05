@@ -6,16 +6,16 @@ Response containing domain information, metadata, and validation errors if any
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**domain** | **string** | Domain name | [default to undefined]
-**fid** | **number** | FID associated with the domain | [default to undefined]
-**manifest** | [**FarcasterManifest**](FarcasterManifest.md) |  | [default to undefined]
-**home_url_metadata** | **{ [key: string]: any; }** | Home URL metadata if available | [optional] [default to undefined]
 **created_at** | **string** | Creation timestamp | [default to undefined]
+**domain** | **string** | Domain name | [default to undefined]
+**error_message** | **string** | High-level error message if processing failed | [optional] [default to undefined]
+**fid** | **number** | FID associated with the domain | [default to undefined]
+**home_url_metadata** | **{ [key: string]: any; }** | Home URL metadata if available | [optional] [default to undefined]
+**manifest** | [**FarcasterManifest**](FarcasterManifest.md) |  | [default to undefined]
 **updated_at** | **string** | Last update timestamp | [default to undefined]
+**validation_errors** | **Array&lt;string&gt;** | Validation errors from processing, if any | [optional] [default to undefined]
 **was_found** | **boolean** | Whether the domain was found in the table before processing | [default to undefined]
 **was_refreshed** | **boolean** | Whether the domain was refreshed/updated during this request | [default to undefined]
-**validation_errors** | **Array&lt;string&gt;** | Validation errors from processing, if any | [optional] [default to undefined]
-**error_message** | **string** | High-level error message if processing failed | [optional] [default to undefined]
 
 ## Example
 
@@ -23,16 +23,16 @@ Name | Type | Description | Notes
 import { MiniappDomainResponse } from './api';
 
 const instance: MiniappDomainResponse = {
-    domain,
-    fid,
-    manifest,
-    home_url_metadata,
     created_at,
+    domain,
+    error_message,
+    fid,
+    home_url_metadata,
+    manifest,
     updated_at,
+    validation_errors,
     was_found,
     was_refreshed,
-    validation_errors,
-    error_message,
 };
 ```
 

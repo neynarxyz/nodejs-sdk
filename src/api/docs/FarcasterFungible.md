@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **string** |  | [default to undefined]
-**fungible** | [**Fungible**](Fungible.md) |  | [default to undefined]
 **cast_count** | **number** | The total number of comments on the token | [default to undefined]
+**fungible** | [**Fungible**](Fungible.md) |  | [default to undefined]
+**object** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 import { FarcasterFungible } from './api';
 
 const instance: FarcasterFungible = {
-    object,
-    fungible,
     cast_count,
+    fungible,
+    object,
 };
 ```
 

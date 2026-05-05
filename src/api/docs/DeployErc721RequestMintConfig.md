@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**price_per_token** | **string** | Price per token in wei (0 &#x3D; free mint) | [optional] [default to '0']
-**max_per_wallet** | **number** | Max tokens per wallet (0 &#x3D; unlimited) | [optional] [default to 0]
-**max_per_tx** | **number** | Max tokens per transaction (0 &#x3D; unlimited) | [optional] [default to 0]
-**start_timestamp** | **number** | Unix timestamp (defaults to current time) | [optional] [default to undefined]
 **end_timestamp** | **number** | Unix timestamp (defaults to no end date) | [optional] [default to undefined]
+**max_per_tx** | **number** | Max tokens per transaction (0 &#x3D; unlimited) | [optional] [default to 0]
+**max_per_wallet** | **number** | Max tokens per wallet (0 &#x3D; unlimited) | [optional] [default to 0]
+**price_per_token** | **string** | Price per token in wei (0 &#x3D; free mint) | [optional] [default to '0']
+**start_timestamp** | **number** | Unix timestamp (defaults to current time) | [optional] [default to undefined]
 
 ## Example
 
@@ -17,11 +17,11 @@ Name | Type | Description | Notes
 import { DeployErc721RequestMintConfig } from './api';
 
 const instance: DeployErc721RequestMintConfig = {
-    price_per_token,
-    max_per_wallet,
-    max_per_tx,
-    start_timestamp,
     end_timestamp,
+    max_per_tx,
+    max_per_wallet,
+    price_per_token,
+    start_timestamp,
 };
 ```
 

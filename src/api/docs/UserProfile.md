@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**banner** | [**UserProfileBanner**](UserProfileBanner.md) |  | [optional] [default to undefined]
 **bio** | [**UserProfileBio**](UserProfileBio.md) |  | [default to undefined]
 **location** | [**Location**](Location.md) |  | [optional] [default to undefined]
-**banner** | [**UserProfileBanner**](UserProfileBanner.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 import { UserProfile } from './api';
 
 const instance: UserProfile = {
+    banner,
     bio,
     location,
-    banner,
 };
 ```
 

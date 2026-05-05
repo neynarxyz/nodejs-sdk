@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**receipt** | [**MintNft200ResponseTransactionsInnerOneOfReceipt**](MintNft200ResponseTransactionsInnerOneOfReceipt.md) |  | [optional] [default to undefined]
 **recipient** | [**MintNft200ResponseTransactionsInnerOneOf1Recipient**](MintNft200ResponseTransactionsInnerOneOf1Recipient.md) |  | [default to undefined]
 **transaction_hash** | **string** | Hexadecimal number expressed as string with \&#39;0x\&#39; prefix | [default to undefined]
-**receipt** | [**MintNft200ResponseTransactionsInnerOneOfReceipt**](MintNft200ResponseTransactionsInnerOneOfReceipt.md) |  | [optional] [default to undefined]
 **error** | **string** | Error message for this recipient. | [default to undefined]
 
 ## Example
@@ -16,9 +16,9 @@ Name | Type | Description | Notes
 import { MintNft200ResponseTransactionsInner } from './api';
 
 const instance: MintNft200ResponseTransactionsInner = {
+    receipt,
     recipient,
     transaction_hash,
-    receipt,
     error,
 };
 ```

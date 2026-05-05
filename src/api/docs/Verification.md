@@ -6,11 +6,11 @@ Verification details of an address
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **string** |  | [default to undefined]
 **address** | **string** | Address string (hex for ethereum, base58 for solana) | [default to undefined]
+**app** | [**UserDehydrated**](UserDehydrated.md) |  | [optional] [default to undefined]
+**object** | **string** |  | [default to undefined]
 **protocol** | [**Protocol**](Protocol.md) |  | [default to undefined]
 **verified_at** | **string** | ISO timestamp when the verification was created | [default to undefined]
-**app** | [**UserDehydrated**](UserDehydrated.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -18,11 +18,11 @@ Name | Type | Description | Notes
 import { Verification } from './api';
 
 const instance: Verification = {
-    object,
     address,
+    app,
+    object,
     protocol,
     verified_at,
-    app,
 };
 ```
 

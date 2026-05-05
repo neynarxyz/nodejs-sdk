@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **boolean** |  | [default to undefined]
 **deletedCount** | **number** |  | [optional] [default to undefined]
+**success** | **boolean** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { DeleteDeployment200Response } from './api';
 
 const instance: DeleteDeployment200Response = {
-    success,
     deletedCount,
+    success,
 };
 ```
 

@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**address_balances** | [**Array&lt;AddressBalance&gt;**](AddressBalance.md) |  | [default to undefined]
 **object** | **string** |  | [default to undefined]
 **user** | [**UserDehydrated**](UserDehydrated.md) |  | [default to undefined]
-**address_balances** | [**Array&lt;AddressBalance&gt;**](AddressBalance.md) |  | [default to undefined]
 
 ## Example
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 import { BalanceResponseUserBalance } from './api';
 
 const instance: BalanceResponseUserBalance = {
+    address_balances,
     object,
     user,
-    address_balances,
 };
 ```
 

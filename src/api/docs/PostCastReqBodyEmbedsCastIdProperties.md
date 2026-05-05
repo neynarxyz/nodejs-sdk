@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**hash** | **string** |  | [default to undefined]
 **fid** | **number** | The unique identifier of a farcaster user or app (unsigned integer) | [default to undefined]
+**hash** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { PostCastReqBodyEmbedsCastIdProperties } from './api';
 
 const instance: PostCastReqBodyEmbedsCastIdProperties = {
-    hash,
     fid,
+    hash,
 };
 ```
 

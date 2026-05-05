@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **string** |  | [default to undefined]
 **app** | [**UserDehydrated**](UserDehydrated.md) |  | [optional] [default to undefined]
+**object** | **string** |  | [default to undefined]
 **user** | [**User**](User.md) |  | [default to undefined]
 
 ## Example
@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 import { Follower } from './api';
 
 const instance: Follower = {
-    object,
     app,
+    object,
     user,
 };
 ```

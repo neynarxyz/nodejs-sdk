@@ -8,7 +8,7 @@ All URIs are relative to *https://api.neynar.com*
 |[**registerSignedKeyForDeveloperManagedAuthAddress**](#registersignedkeyfordevelopermanagedauthaddress) | **POST** /v2/farcaster/auth_address/developer_managed/signed_key/ | Register Signed Key|
 
 # **lookupDeveloperManagedAuthAddress**
-> RegisterSignedKeyForDeveloperManagedAuthAddress200Response lookupDeveloperManagedAuthAddress()
+> LookupDeveloperManagedAuthAddress200Response lookupDeveloperManagedAuthAddress()
 
 Fetches the status of a developer managed auth address by auth address
 
@@ -39,7 +39,7 @@ const { status, data } = await apiInstance.lookupDeveloperManagedAuthAddress(
 
 ### Return type
 
-**RegisterSignedKeyForDeveloperManagedAuthAddress200Response**
+**LookupDeveloperManagedAuthAddress200Response**
 
 ### Authorization
 
@@ -61,7 +61,7 @@ const { status, data } = await apiInstance.lookupDeveloperManagedAuthAddress(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **registerSignedKeyForDeveloperManagedAuthAddress**
-> RegisterSignedKeyForDeveloperManagedAuthAddress200Response registerSignedKeyForDeveloperManagedAuthAddress(registerAuthAddressDeveloperManagedSignedKeyReqBody)
+> LookupDeveloperManagedAuthAddress200Response registerSignedKeyForDeveloperManagedAuthAddress(registerAuthAddressDeveloperManagedSignedKeyReqBody)
 
 Allow apps to register an Ethereum addresses as authorized \"auth addresses\" for a user\'s Farcaster account, enabling seamless Sign-In With Farcaster (SIWF) across applications without repeated custody wallet authorizations.
 
@@ -93,7 +93,7 @@ const { status, data } = await apiInstance.registerSignedKeyForDeveloperManagedA
 
 ### Return type
 
-**RegisterSignedKeyForDeveloperManagedAuthAddress200Response**
+**LookupDeveloperManagedAuthAddress200Response**
 
 ### Authorization
 

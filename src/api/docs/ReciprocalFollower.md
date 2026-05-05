@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **object** | **string** |  | [default to undefined]
-**user** | [**User**](User.md) |  | [default to undefined]
 **timestamp** | **string** |  | [default to undefined]
+**user** | [**User**](User.md) |  | [default to undefined]
 
 ## Example
 
@@ -16,8 +16,8 @@ import { ReciprocalFollower } from './api';
 
 const instance: ReciprocalFollower = {
     object,
-    user,
     timestamp,
+    user,
 };
 ```
 

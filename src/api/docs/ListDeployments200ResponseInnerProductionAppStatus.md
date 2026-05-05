@@ -6,10 +6,10 @@ Production app deployment status from Vercel
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**project_id** | **string** | Vercel project ID | [default to undefined]
-**deployment_url** | **string** | Vercel deployment URL | [default to undefined]
-**deployment_state** | **string** | Deployment state (e.g., READY, BUILDING, ERROR) | [default to undefined]
 **created_at** | **number** | Deployment creation timestamp (Unix ms) | [default to undefined]
+**deployment_state** | **string** | Deployment state (e.g., READY, BUILDING, ERROR) | [default to undefined]
+**deployment_url** | **string** | Vercel deployment URL | [default to undefined]
+**project_id** | **string** | Vercel project ID | [default to undefined]
 **target** | **string** | Deployment target (e.g., production, preview) | [optional] [default to undefined]
 
 ## Example
@@ -18,10 +18,10 @@ Name | Type | Description | Notes
 import { ListDeployments200ResponseInnerProductionAppStatus } from './api';
 
 const instance: ListDeployments200ResponseInnerProductionAppStatus = {
-    project_id,
-    deployment_url,
-    deployment_state,
     created_at,
+    deployment_state,
+    deployment_url,
+    project_id,
     target,
 };
 ```

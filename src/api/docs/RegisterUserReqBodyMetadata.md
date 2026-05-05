@@ -6,12 +6,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **bio** | **string** |  | [optional] [default to undefined]
+**display_name** | **string** |  | [optional] [default to undefined]
+**location** | [**RegisterUserReqBodyMetadataLocation**](RegisterUserReqBodyMetadataLocation.md) |  | [optional] [default to undefined]
 **pfp_url** | **string** |  | [optional] [default to undefined]
 **url** | **string** |  | [optional] [default to undefined]
 **username** | **string** |  | [optional] [default to undefined]
-**display_name** | **string** |  | [optional] [default to undefined]
-**verified_accounts** | [**UpdateUserReqBodyVerifiedAccounts**](UpdateUserReqBodyVerifiedAccounts.md) |  | [optional] [default to undefined]
-**location** | [**UpdateUserReqBodyLocation**](UpdateUserReqBodyLocation.md) |  | [optional] [default to undefined]
+**verified_accounts** | [**RegisterUserReqBodyMetadataVerifiedAccounts**](RegisterUserReqBodyMetadataVerifiedAccounts.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -20,12 +20,12 @@ import { RegisterUserReqBodyMetadata } from './api';
 
 const instance: RegisterUserReqBodyMetadata = {
     bio,
+    display_name,
+    location,
     pfp_url,
     url,
     username,
-    display_name,
     verified_accounts,
-    location,
 };
 ```
 

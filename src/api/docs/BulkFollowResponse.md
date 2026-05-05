@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **boolean** |  | [default to undefined]
 **details** | [**Array&lt;FollowResponse&gt;**](FollowResponse.md) |  | [default to undefined]
+**success** | **boolean** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { BulkFollowResponse } from './api';
 
 const instance: BulkFollowResponse = {
-    success,
     details,
+    success,
 };
 ```
 

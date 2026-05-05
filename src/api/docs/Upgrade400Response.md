@@ -1,4 +1,4 @@
-# UpgradePreview400Response
+# Upgrade400Response
 
 
 ## Properties
@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **string** |  | [default to undefined]
 **message** | **string** |  | [default to undefined]
-**paymentMethod** | [**UpgradePreview400ResponsePaymentMethod**](UpgradePreview400ResponsePaymentMethod.md) |  | [optional] [default to undefined]
+**paymentMethod** | [**Upgrade400ResponsePaymentMethod**](Upgrade400ResponsePaymentMethod.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import { UpgradePreview400Response } from './api';
+import { Upgrade400Response } from './api';
 
-const instance: UpgradePreview400Response = {
+const instance: Upgrade400Response = {
     code,
     message,
     paymentMethod,

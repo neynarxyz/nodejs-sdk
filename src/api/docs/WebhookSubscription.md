@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**created_at** | **string** |  | [default to undefined]
+**filters** | [**WebhookSubscriptionFilters**](WebhookSubscriptionFilters.md) |  | [default to undefined]
 **object** | **string** |  | [default to undefined]
 **subscription_id** | **string** |  | [default to undefined]
-**filters** | [**WebhookSubscriptionFilters**](WebhookSubscriptionFilters.md) |  | [default to undefined]
-**created_at** | **string** |  | [default to undefined]
 **updated_at** | **string** |  | [default to undefined]
 
 ## Example
@@ -17,10 +17,10 @@ Name | Type | Description | Notes
 import { WebhookSubscription } from './api';
 
 const instance: WebhookSubscription = {
+    created_at,
+    filters,
     object,
     subscription_id,
-    filters,
-    created_at,
     updated_at,
 };
 ```

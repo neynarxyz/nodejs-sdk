@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **string** |  | [default to undefined]
-**provider_name** | **string** |  | [default to undefined]
-**contract_address** | **string** |  | [optional] [default to undefined]
-**protocol_version** | **number** |  | [optional] [default to undefined]
 **chain** | **number** |  | [optional] [default to undefined]
+**contract_address** | **string** |  | [optional] [default to undefined]
 **expires_at** | **string** |  | [optional] [default to undefined]
+**object** | **string** |  | [default to undefined]
+**protocol_version** | **number** |  | [optional] [default to undefined]
+**provider_name** | **string** |  | [default to undefined]
 **subscribed_at** | **string** |  | [optional] [default to undefined]
 **tier_id** | **string** |  | [optional] [default to undefined]
 
@@ -20,12 +20,12 @@ Name | Type | Description | Notes
 import { SubscribedToObject } from './api';
 
 const instance: SubscribedToObject = {
-    object,
-    provider_name,
-    contract_address,
-    protocol_version,
     chain,
+    contract_address,
     expires_at,
+    object,
+    protocol_version,
+    provider_name,
     subscribed_at,
     tier_id,
 };

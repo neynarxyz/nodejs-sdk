@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**initial_mint_price** | **string** |  | [optional] [default to undefined]
 **period_duration_seconds** | **number** |  | [optional] [default to undefined]
 **tokens_per_period** | **string** |  | [optional] [default to undefined]
-**initial_mint_price** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 import { SubscriptionTierPrice } from './api';
 
 const instance: SubscriptionTierPrice = {
+    initial_mint_price,
     period_duration_seconds,
     tokens_per_period,
-    initial_mint_price,
 };
 ```
 

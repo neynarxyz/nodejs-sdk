@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**account_association** | [**AssociateDeploymentRequestAccountAssociation**](AssociateDeploymentRequestAccountAssociation.md) |  | [default to undefined]
 **deployment_id** | **string** | Deployment ID (UUID). Required if name not provided. | [optional] [default to undefined]
 **fid** | **number** | Farcaster ID of the user; if not provided, namespace must be provided | [optional] [default to undefined]
 **name** | **string** | Kubernetes deployment name. Required if deployment_id not provided. | [optional] [default to undefined]
 **namespace** | **string** | Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID. | [optional] [default to undefined]
-**account_association** | [**AssociateDeploymentRequestAccountAssociation**](AssociateDeploymentRequestAccountAssociation.md) |  | [default to undefined]
 
 ## Example
 
@@ -17,11 +17,11 @@ Name | Type | Description | Notes
 import { AssociateDeploymentRequest } from './api';
 
 const instance: AssociateDeploymentRequest = {
+    account_association,
     deployment_id,
     fid,
     name,
     namespace,
-    account_association,
 };
 ```
 

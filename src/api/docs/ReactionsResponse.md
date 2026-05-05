@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reactions** | [**Array&lt;ReactionWithCastInfo&gt;**](ReactionWithCastInfo.md) |  | [default to undefined]
 **next** | [**NextCursor**](NextCursor.md) |  | [default to undefined]
+**reactions** | [**Array&lt;ReactionWithCastInfo&gt;**](ReactionWithCastInfo.md) |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { ReactionsResponse } from './api';
 
 const instance: ReactionsResponse = {
-    reactions,
     next,
+    reactions,
 };
 ```
 

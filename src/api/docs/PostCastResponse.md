@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **boolean** |  | [default to undefined]
 **cast** | [**PostCastResponseCast**](PostCastResponseCast.md) |  | [default to undefined]
+**success** | **boolean** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { PostCastResponse } from './api';
 
 const instance: PostCastResponse = {
-    success,
     cast,
+    success,
 };
 ```
 

@@ -5,13 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **string** |  | [optional] [default to undefined]
-**url** | **string** |  | [optional] [default to undefined]
-**token** | **string** |  | [optional] [default to undefined]
-**status** | **string** |  | [optional] [default to undefined]
-**fid** | **number** | The unique identifier of a farcaster user or app (unsigned integer) | [optional] [default to undefined]
 **created_at** | **string** |  | [optional] [default to undefined]
+**fid** | **number** | The unique identifier of a farcaster user or app (unsigned integer) | [optional] [default to undefined]
+**object** | **string** |  | [optional] [default to undefined]
+**status** | **string** |  | [optional] [default to undefined]
+**token** | **string** |  | [optional] [default to undefined]
 **updated_at** | **string** |  | [optional] [default to undefined]
+**url** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -19,13 +19,13 @@ Name | Type | Description | Notes
 import { FrameNotificationTokensNotificationTokensInner } from './api';
 
 const instance: FrameNotificationTokensNotificationTokensInner = {
-    object,
-    url,
-    token,
-    status,
-    fid,
     created_at,
+    fid,
+    object,
+    status,
+    token,
     updated_at,
+    url,
 };
 ```
 

@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**hash** | **string** |  | [default to undefined]
 **success** | **boolean** |  | [default to undefined]
 **target_fid** | **number** | The unique identifier of a farcaster user or app (unsigned integer) | [default to undefined]
-**hash** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 import { FollowResponse } from './api';
 
 const instance: FollowResponse = {
+    hash,
     success,
     target_fid,
-    hash,
 };
 ```
 

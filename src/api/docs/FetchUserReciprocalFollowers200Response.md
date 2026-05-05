@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**users** | [**Array&lt;ReciprocalFollower&gt;**](ReciprocalFollower.md) |  | [default to undefined]
 **next** | [**NextCursor**](NextCursor.md) |  | [default to undefined]
+**users** | [**Array&lt;ReciprocalFollower&gt;**](ReciprocalFollower.md) |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { FetchUserReciprocalFollowers200Response } from './api';
 
 const instance: FetchUserReciprocalFollowers200Response = {
-    users,
     next,
+    users,
 };
 ```
 

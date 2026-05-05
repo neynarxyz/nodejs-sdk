@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**signature** | **string** |  | [default to undefined]
 **authorization** | [**CreateX402Signature200ResponsePayloadAuthorization**](CreateX402Signature200ResponsePayloadAuthorization.md) |  | [default to undefined]
+**signature** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { CreateX402Signature200ResponsePayload } from './api';
 
 const instance: CreateX402Signature200ResponsePayload = {
-    signature,
     authorization,
+    signature,
 };
 ```
 

@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**fid** | **number** | The unique identifier of a farcaster user or app (unsigned integer) | [default to undefined]
 **amount** | **number** | Amount to send (must be greater than 0) | [default to undefined]
+**fid** | **number** | The unique identifier of a farcaster user or app (unsigned integer) | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { TransactionSendFungiblesRecipient } from './api';
 
 const instance: TransactionSendFungiblesRecipient = {
-    fid,
     amount,
+    fid,
 };
 ```
 

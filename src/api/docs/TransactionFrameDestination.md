@@ -6,9 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | **string** | Ethereum address | [default to undefined]
+**amount** | **number** | Amount to send (must be greater than 0) | [default to undefined]
 **network** | [**Network**](Network.md) |  | [default to undefined]
 **token_contract_address** | **string** | Token contract address for the payment (e.g. 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913 is USDC on Base) | [default to undefined]
-**amount** | **number** | Amount to send (must be greater than 0) | [default to undefined]
 
 ## Example
 
@@ -17,9 +17,9 @@ import { TransactionFrameDestination } from './api';
 
 const instance: TransactionFrameDestination = {
     address,
+    amount,
     network,
     token_contract_address,
-    amount,
 };
 ```
 

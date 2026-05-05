@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **claimed** | **boolean** |  | [default to undefined]
-**reward_amount** | **number** | Amount of credits added | [default to undefined]
 **new_extra_credits** | **number** | New total extra credits balance | [default to undefined]
+**reward_amount** | **number** | Amount of credits added | [default to undefined]
 
 ## Example
 
@@ -16,8 +16,8 @@ import { ClaimCreditDrop200Response } from './api';
 
 const instance: ClaimCreditDrop200Response = {
     claimed,
-    reward_amount,
     new_extra_credits,
+    reward_amount,
 };
 ```
 

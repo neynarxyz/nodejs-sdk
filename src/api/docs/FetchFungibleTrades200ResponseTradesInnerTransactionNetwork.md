@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **string** |  | [default to undefined]
 **name** | **string** |  | [default to undefined]
+**object** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { FetchFungibleTrades200ResponseTradesInnerTransactionNetwork } from './api';
 
 const instance: FetchFungibleTrades200ResponseTradesInnerTransactionNetwork = {
-    object,
     name,
+    object,
 };
 ```
 
