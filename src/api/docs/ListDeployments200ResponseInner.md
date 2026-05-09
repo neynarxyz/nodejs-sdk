@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **string** | Creation timestamp | [default to undefined]
 **deleted_at** | **string** | Deletion timestamp | [default to undefined]
-**dev_server_state** | **string** | Dev server process state: stopped, starting, running, or crashed | [optional] [default to undefined]
+**dev_server_state** | **string** | Dev server process state: stopped, starting, running, crashed, or hung | [optional] [default to undefined]
 **display_name** | **string** | Display name for the project | [optional] [default to undefined]
 **generated_app_exists** | **boolean** | Whether a generated app exists in the deployment | [default to undefined]
 **generated_app_serving** | **boolean** | Whether the generated app is currently serving | [default to undefined]
