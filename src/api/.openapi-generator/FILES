@@ -345,6 +345,8 @@ docs/RelevantFollowersResponse.md
 docs/RelevantFungibleOwnersResponse.md
 docs/RemoveChannelMemberReqBody.md
 docs/RemoveVerificationReqBody.md
+docs/ReportStudioUsage200Response.md
+docs/ReportStudioUsageRequest.md
 docs/RespondChannelInviteReqBody.md
 docs/SendFrameNotificationsReqBody.md
 docs/SendFrameNotificationsReqBodyFilters.md
@@ -779,6 +781,8 @@ models/relevant-followers-response.ts
 models/relevant-fungible-owners-response.ts
 models/remove-channel-member-req-body.ts
 models/remove-verification-req-body.ts
+models/report-studio-usage-request.ts
+models/report-studio-usage200-response.ts
 models/respond-channel-invite-req-body.ts
 models/send-frame-notifications-req-body-filters-near-location.ts
 models/send-frame-notifications-req-body-filters.ts

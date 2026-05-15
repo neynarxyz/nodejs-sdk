@@ -290,6 +290,8 @@ export * from './relevant-followers-response';
 export * from './relevant-fungible-owners-response';
 export * from './remove-channel-member-req-body';
 export * from './remove-verification-req-body';
+export * from './report-studio-usage200-response';
+export * from './report-studio-usage-request';
 export * from './respond-channel-invite-req-body';
 export * from './send-frame-notifications-req-body';
 export * from './send-frame-notifications-req-body-filters';

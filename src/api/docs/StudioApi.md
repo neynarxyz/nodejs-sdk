@@ -34,6 +34,7 @@ All URIs are relative to *https://api.neynar.com*
 |[**provision**](#provision) | **POST** /v2/studio/deployment/database/provision | Provision a database for a deployment|
 |[**queryTable**](#querytable) | **POST** /v2/studio/deployment/database/query | Query table data|
 |[**recover**](#recover) | **POST** /v2/studio/deployment/recover | Recover dev server with two-phase strategy|
+|[**reportStudioUsage**](#reportstudiousage) | **POST** /v2/studio/usage/report | Report studio compute unit usage|
 |[**startApp**](#startapp) | **POST** /v2/studio/deployment/start | Start generated miniapp|
 |[**stopApp**](#stopapp) | **POST** /v2/studio/deployment/stop | Stop generated miniapp|
 |[**updateRows**](#updaterows) | **PATCH** /v2/studio/deployment/database/tables/{table_name}/rows | Update rows in table|
@@ -1815,6 +1816,62 @@ void (empty response body)
 |**400** | Bad Request |  -  |
 |**404** | Resource not found |  -  |
 |**409** | Conflict |  -  |
+|**500** | Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **reportStudioUsage**
+> ReportStudioUsage200Response reportStudioUsage(reportStudioUsageRequest)
+
+Called by miniapp-generator instances to report Claude SDK usage. Idempotent — duplicate submissions (same idempotency_key) are accepted but not double-counted.
+
+### Example
+
+```typescript
+import {
+    StudioApi,
+    Configuration,
+    ReportStudioUsageRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new StudioApi(configuration);
+
+let reportStudioUsageRequest: ReportStudioUsageRequest; //
+
+const { status, data } = await apiInstance.reportStudioUsage(
+    reportStudioUsageRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **reportStudioUsageRequest** | **ReportStudioUsageRequest**|  | |
+
+
+### Return type
+
+**ReportStudioUsage200Response**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Success |  -  |
+|**400** | Bad Request |  -  |
+|**401** | Unauthorized |  -  |
+|**404** | Resource not found |  -  |
 |**500** | Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
