@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **banner** | [**UserProfileBanner**](UserProfileBanner.md) |  | [optional] [default to undefined]
 **bio** | [**UserProfileBio**](UserProfileBio.md) |  | [default to undefined]
+**live_at** | [**UserProfileLiveAt**](UserProfileLiveAt.md) |  | [optional] [default to undefined]
 **location** | [**Location**](Location.md) |  | [optional] [default to undefined]
 
 ## Example
@@ -17,6 +18,7 @@ import { UserProfile } from './api';
 const instance: UserProfile = {
     banner,
     bio,
+    live_at,
     location,
 };
 ```

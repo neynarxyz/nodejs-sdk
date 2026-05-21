@@ -13,15 +13,13 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { ConversationConversation } from './conversation-conversation';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { NextCursor } from './next-cursor';
 
-export interface Conversation {
-    'conversation': ConversationConversation;
-    'next'?: NextCursor;
+export interface UserProfileLiveAt {
+    'is_live': boolean;
+    'updated_at': string;
+    /**
+     * The URL of the user\'s current live activity
+     */
+    'url': string;
 }
 

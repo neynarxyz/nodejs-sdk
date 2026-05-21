@@ -452,6 +452,7 @@ docs/UserPro.md
 docs/UserProfile.md
 docs/UserProfileBanner.md
 docs/UserProfileBio.md
+docs/UserProfileLiveAt.md
 docs/UserResponse.md
 docs/UserSearchResponse.md
 docs/UserSearchResponseResult.md
@@ -879,6 +880,7 @@ models/user-power-lite-response.ts
 models/user-pro.ts
 models/user-profile-banner.ts
 models/user-profile-bio.ts
+models/user-profile-live-at.ts
 models/user-profile.ts
 models/user-response.ts
 models/user-search-response-result.ts

@@ -390,6 +390,7 @@ export * from './user-pro';
 export * from './user-profile';
 export * from './user-profile-banner';
 export * from './user-profile-bio';
+export * from './user-profile-live-at';
 export * from './user-response';
 export * from './user-search-response';
 export * from './user-search-response-result';
