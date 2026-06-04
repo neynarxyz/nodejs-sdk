@@ -89,6 +89,8 @@ export * from './create-x402-signature200-response-payload-authorization';
 export * from './create-x402-signature-request';
 export * from './create-x402-signature-request-payment-requirements';
 export * from './create-x402-signature-request-payment-requirements-accepts-inner';
+export * from './create-x402-siwx200-response';
+export * from './create-x402-siwx-request';
 export * from './delete-cast-req-body';
 export * from './delete-deployment200-response';
 export * from './delete-deployment-request';

@@ -6,6 +6,7 @@ All URIs are relative to *https://api.neynar.com*
 |------------- | ------------- | -------------|
 |[**batchGetTokenMetadata**](#batchgettokenmetadata) | **GET** /v2/onchain/token/metadata/batch | Batch get token metadata|
 |[**createX402Signature**](#createx402signature) | **POST** /v2/signature/x402/ | Create x402 signature|
+|[**createX402Siwx**](#createx402siwx) | **POST** /v2/signature/x402/siwx | Create x402 Sign-In-With-X payload|
 |[**deployErc721**](#deployerc721) | **POST** /v2/farcaster/nft/deploy/erc721/ | Deploy ERC-721 collection|
 |[**deployFungible**](#deployfungible) | **POST** /v2/fungible/ | Deploy fungible|
 |[**fetchBulkRelevantFungibleOwners**](#fetchbulkrelevantfungibleowners) | **GET** /v2/farcaster/fungible/owner/relevant/bulk | Bulk relevant owners|
@@ -119,6 +120,68 @@ const { status, data } = await apiInstance.createX402Signature(
 ### Return type
 
 **CreateX402Signature200Response**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Success |  -  |
+|**400** | Bad Request |  -  |
+|**401** | Unauthorized |  -  |
+|**403** | Forbidden |  -  |
+|**500** | Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **createX402Siwx**
+> CreateX402Siwx200Response createX402Siwx(createX402SiwxRequest)
+
+Create a Sign-In-With-X payload for a wallet-backed x402 resource.
+
+### Example
+
+```typescript
+import {
+    OnchainApi,
+    Configuration,
+    CreateX402SiwxRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new OnchainApi(configuration);
+
+let xWalletId: string; //Wallet ID to use for transactions (default to undefined)
+let xApiKey: string; // (default to undefined)
+let createX402SiwxRequest: CreateX402SiwxRequest; //
+
+const { status, data } = await apiInstance.createX402Siwx(
+    xWalletId,
+    xApiKey,
+    createX402SiwxRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **createX402SiwxRequest** | **CreateX402SiwxRequest**|  | |
+| **xWalletId** | [**string**] | Wallet ID to use for transactions | defaults to undefined|
+| **xApiKey** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+**CreateX402Siwx200Response**
 
 ### Authorization
 

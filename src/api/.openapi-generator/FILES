@@ -132,6 +132,8 @@ docs/CreateX402Signature200ResponsePayloadAuthorization.md
 docs/CreateX402SignatureRequest.md
 docs/CreateX402SignatureRequestPaymentRequirements.md
 docs/CreateX402SignatureRequestPaymentRequirementsAcceptsInner.md
+docs/CreateX402Siwx200Response.md
+docs/CreateX402SiwxRequest.md
 docs/DeleteCastReqBody.md
 docs/DeleteDeployment200Response.md
 docs/DeleteDeploymentRequest.md
@@ -580,6 +582,8 @@ models/create-x402-signature-request.ts
 models/create-x402-signature200-response-payload-authorization.ts
 models/create-x402-signature200-response-payload.ts
 models/create-x402-signature200-response.ts
+models/create-x402-siwx-request.ts
+models/create-x402-siwx200-response.ts
 models/delete-cast-req-body.ts
 models/delete-deployment-request.ts
 models/delete-deployment200-response.ts
