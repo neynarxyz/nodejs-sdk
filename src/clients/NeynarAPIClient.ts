@@ -3122,7 +3122,7 @@ adjustedParams['xNeynarExperimental'] = this.config.baseOptions?.headers?.['x-ne
  * @summary Relevant owners
  *
  * @param {object} params
- * @param {string} params.contractAddress  - Contract address of the fungible asset (Ethereum or Solana)
+ * @param {string} params.contractAddress  - Contract address of the fungible asset
  * @param {FetchRelevantFungibleOwnersNetworkEnum} params.network  - Network of the fungible asset.
  * @param {number} params.viewerFid [optional]  - If you provide a viewer_fid, the response will include token holders from the user's network, respecting their mutes and blocks and including viewer_context; if not provided, the response will show top token holders across the network—both sets can be combined to generate a longer list if desired.
  *

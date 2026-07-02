@@ -366,7 +366,7 @@ const configuration = new Configuration();
 const apiInstance = new OnchainApi(configuration);
 
 let contractAddresses: string; //Comma separated list of contract addresses, up to 10 at a time (default to undefined)
-let network: 'ethereum' | 'optimism' | 'base' | 'arbitrum' | 'solana'; //Network of the fungible assets. (default to undefined)
+let network: 'ethereum' | 'optimism' | 'base' | 'arbitrum'; //Network of the fungible assets. (default to undefined)
 let viewerFid: number; //If you provide a viewer_fid, the response will include token holders from the user\'s network, respecting their mutes and blocks and including viewer_context. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.fetchBulkRelevantFungibleOwners(
@@ -381,7 +381,7 @@ const { status, data } = await apiInstance.fetchBulkRelevantFungibleOwners(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **contractAddresses** | [**string**] | Comma separated list of contract addresses, up to 10 at a time | defaults to undefined|
-| **network** | [**&#39;ethereum&#39; | &#39;optimism&#39; | &#39;base&#39; | &#39;arbitrum&#39; | &#39;solana&#39;**]**Array<&#39;ethereum&#39; &#124; &#39;optimism&#39; &#124; &#39;base&#39; &#124; &#39;arbitrum&#39; &#124; &#39;solana&#39;>** | Network of the fungible assets. | defaults to undefined|
+| **network** | [**&#39;ethereum&#39; | &#39;optimism&#39; | &#39;base&#39; | &#39;arbitrum&#39;**]**Array<&#39;ethereum&#39; &#124; &#39;optimism&#39; &#124; &#39;base&#39; &#124; &#39;arbitrum&#39;>** | Network of the fungible assets. | defaults to undefined|
 | **viewerFid** | [**number**] | If you provide a viewer_fid, the response will include token holders from the user\&#39;s network, respecting their mutes and blocks and including viewer_context. | (optional) defaults to undefined|
 
 
@@ -544,8 +544,8 @@ import {
 const configuration = new Configuration();
 const apiInstance = new OnchainApi(configuration);
 
-let contractAddress: string; //Contract address of the fungible asset (Ethereum or Solana) (default to undefined)
-let network: 'ethereum' | 'optimism' | 'base' | 'arbitrum' | 'solana'; //Network of the fungible asset. (default to undefined)
+let contractAddress: string; //Contract address of the fungible asset (default to undefined)
+let network: 'ethereum' | 'optimism' | 'base' | 'arbitrum'; //Network of the fungible asset. (default to undefined)
 let viewerFid: number; //If you provide a viewer_fid, the response will include token holders from the user\'s network, respecting their mutes and blocks and including viewer_context; if not provided, the response will show top token holders across the network—both sets can be combined to generate a longer list if desired. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.fetchRelevantFungibleOwners(
@@ -559,8 +559,8 @@ const { status, data } = await apiInstance.fetchRelevantFungibleOwners(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **contractAddress** | [**string**] | Contract address of the fungible asset (Ethereum or Solana) | defaults to undefined|
-| **network** | [**&#39;ethereum&#39; | &#39;optimism&#39; | &#39;base&#39; | &#39;arbitrum&#39; | &#39;solana&#39;**]**Array<&#39;ethereum&#39; &#124; &#39;optimism&#39; &#124; &#39;base&#39; &#124; &#39;arbitrum&#39; &#124; &#39;solana&#39;>** | Network of the fungible asset. | defaults to undefined|
+| **contractAddress** | [**string**] | Contract address of the fungible asset | defaults to undefined|
+| **network** | [**&#39;ethereum&#39; | &#39;optimism&#39; | &#39;base&#39; | &#39;arbitrum&#39;**]**Array<&#39;ethereum&#39; &#124; &#39;optimism&#39; &#124; &#39;base&#39; &#124; &#39;arbitrum&#39;>** | Network of the fungible asset. | defaults to undefined|
 | **viewerFid** | [**number**] | If you provide a viewer_fid, the response will include token holders from the user\&#39;s network, respecting their mutes and blocks and including viewer_context; if not provided, the response will show top token holders across the network—both sets can be combined to generate a longer list if desired. | (optional) defaults to undefined|
 
 
