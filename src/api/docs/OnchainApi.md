@@ -40,7 +40,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new OnchainApi(configuration);
 
-let networks: string; //Comma-separated list of blockchain networks. Each value must be a valid network (ethereum, optimism, base, arbitrum). (default to undefined)
+let networks: string; //Comma-separated list of blockchain networks. Each value must be a valid network (ethereum, optimism, base, arbitrum, robinhood). (default to undefined)
 let addresses: string; //Comma-separated list of token contract addresses corresponding to each network (default to undefined)
 
 const { status, data } = await apiInstance.batchGetTokenMetadata(
@@ -53,7 +53,7 @@ const { status, data } = await apiInstance.batchGetTokenMetadata(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **networks** | [**string**] | Comma-separated list of blockchain networks. Each value must be a valid network (ethereum, optimism, base, arbitrum). | defaults to undefined|
+| **networks** | [**string**] | Comma-separated list of blockchain networks. Each value must be a valid network (ethereum, optimism, base, arbitrum, robinhood). | defaults to undefined|
 | **addresses** | [**string**] | Comma-separated list of token contract addresses corresponding to each network | defaults to undefined|
 
 
@@ -774,7 +774,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new OnchainApi(configuration);
 
-let network: 'ethereum' | 'optimism' | 'base' | 'arbitrum'; //A blockchain network e.g. \"ethereum\", \"optimism\", \"base\", \"arbitrum\" (default to undefined)
+let network: 'ethereum' | 'optimism' | 'base' | 'arbitrum' | 'robinhood'; //A blockchain network e.g. \"ethereum\", \"optimism\", \"base\", \"arbitrum\", \"robinhood\" (default to undefined)
 let address: string; //Token contract address (default to undefined)
 
 const { status, data } = await apiInstance.getTokenMetadata(
@@ -787,7 +787,7 @@ const { status, data } = await apiInstance.getTokenMetadata(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **network** | [**&#39;ethereum&#39; | &#39;optimism&#39; | &#39;base&#39; | &#39;arbitrum&#39;**]**Array<&#39;ethereum&#39; &#124; &#39;optimism&#39; &#124; &#39;base&#39; &#124; &#39;arbitrum&#39;>** | A blockchain network e.g. \&quot;ethereum\&quot;, \&quot;optimism\&quot;, \&quot;base\&quot;, \&quot;arbitrum\&quot; | defaults to undefined|
+| **network** | [**&#39;ethereum&#39; | &#39;optimism&#39; | &#39;base&#39; | &#39;arbitrum&#39; | &#39;robinhood&#39;**]**Array<&#39;ethereum&#39; &#124; &#39;optimism&#39; &#124; &#39;base&#39; &#124; &#39;arbitrum&#39; &#124; &#39;robinhood&#39;>** | A blockchain network e.g. \&quot;ethereum\&quot;, \&quot;optimism\&quot;, \&quot;base\&quot;, \&quot;arbitrum\&quot;, \&quot;robinhood\&quot; | defaults to undefined|
 | **address** | [**string**] | Token contract address | defaults to undefined|
 
 
@@ -831,7 +831,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new OnchainApi(configuration);
 
-let networks: string; //Comma-separated list of networks to query. Each value must be a valid network (ethereum, optimism, base, arbitrum). (default to undefined)
+let networks: string; //Comma-separated list of networks to query. Each value must be a valid network (ethereum, optimism, base, arbitrum, robinhood). (default to undefined)
 let address: string; //Wallet address (default to undefined)
 let limit: number; //Number of results to return (max 100) (optional) (default to 50)
 let cursor: string; //Pagination cursor. (optional) (default to undefined)
@@ -848,7 +848,7 @@ const { status, data } = await apiInstance.getWalletBalances(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **networks** | [**string**] | Comma-separated list of networks to query. Each value must be a valid network (ethereum, optimism, base, arbitrum). | defaults to undefined|
+| **networks** | [**string**] | Comma-separated list of networks to query. Each value must be a valid network (ethereum, optimism, base, arbitrum, robinhood). | defaults to undefined|
 | **address** | [**string**] | Wallet address | defaults to undefined|
 | **limit** | [**number**] | Number of results to return (max 100) | (optional) defaults to 50|
 | **cursor** | [**string**] | Pagination cursor. | (optional) defaults to undefined|

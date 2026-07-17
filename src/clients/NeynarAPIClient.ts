@@ -2829,7 +2829,7 @@ adjustedParams['authorization'] = this.config.baseOptions?.headers?.['authorizat
  * @summary Batch get token metadata
  *
  * @param {object} params
- * @param {string[]} params.networks  - Comma-separated list of blockchain networks. Each value must be a valid network (ethereum, optimism, base, arbitrum).
+ * @param {string[]} params.networks  - Comma-separated list of blockchain networks. Each value must be a valid network (ethereum, optimism, base, arbitrum, robinhood).
  * @param {string[]} params.addresses  - Comma-separated list of token contract addresses corresponding to each network
  *
  * @returns {Promise<BatchGetTokenMetadata200Response>} A promise that resolves to a `BatchGetTokenMetadata200Response` object.
@@ -3251,7 +3251,7 @@ adjustedParams['xWalletId'] = this.config.baseOptions?.headers?.['x-wallet-id'];
  * @summary Get token metadata
  *
  * @param {object} params
- * @param {string[]} params.networks  - Comma-separated list of blockchain networks. Each value must be a valid network (ethereum, optimism, base, arbitrum).
+ * @param {string[]} params.networks  - Comma-separated list of blockchain networks. Each value must be a valid network (ethereum, optimism, base, arbitrum, robinhood).
  * @param {string[]} params.addresses  - Comma-separated list of token contract addresses corresponding to each network
  *
  * @returns {Promise<GetTokenMetadata200Response>} A promise that resolves to a `GetTokenMetadata200Response` object.
@@ -3289,7 +3289,7 @@ if (adjustedParams.addresses && Array.isArray(adjustedParams.addresses)) {
  * @summary Get wallet token balances
  *
  * @param {object} params
- * @param {string[]} params.networks  - Comma-separated list of networks to query. Each value must be a valid network (ethereum, optimism, base, arbitrum).
+ * @param {string[]} params.networks  - Comma-separated list of networks to query. Each value must be a valid network (ethereum, optimism, base, arbitrum, robinhood).
  * @param {string} params.address  - Wallet address
  * @param {number} params.limit [optional]  - Number of results to return (max 100) (Default: 50, Maximum: 100)
  * @param {string} params.cursor [optional]  - Pagination cursor.
