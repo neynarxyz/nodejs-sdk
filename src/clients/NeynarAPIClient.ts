@@ -3755,7 +3755,7 @@ public async createSigner(): Promise<Signer> {
 }
 
 /**
- * Fetch authorization url (Fetched authorized url useful for SIWN login operation)
+ * Fetch authorization url (Fetched authorized url useful for SIWN login operation) DEPRECATED: Sign In With Neynar is being retired. Use Neynar-managed signers instead: https://docs.neynar.com/docs/integrate-managed-signers
  *
  * @summary Fetch authorization url
  *

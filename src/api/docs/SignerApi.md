@@ -61,7 +61,7 @@ This endpoint does not have any parameters.
 # **fetchAuthorizationUrl**
 > AuthorizationUrlResponse fetchAuthorizationUrl()
 
-Fetch authorization url (Fetched authorized url useful for SIWN login operation)
+Fetch authorization url (Fetched authorized url useful for SIWN login operation) DEPRECATED: Sign In With Neynar is being retired. Use Neynar-managed signers instead: https://docs.neynar.com/docs/integrate-managed-signers
 
 ### Example
 
@@ -111,6 +111,7 @@ const { status, data } = await apiInstance.fetchAuthorizationUrl(
 |**200** | Success |  -  |
 |**400** | Bad Request |  -  |
 |**401** | Unauthorized |  -  |
+|**410** | Gone |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
