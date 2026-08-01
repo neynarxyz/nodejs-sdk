@@ -3053,7 +3053,7 @@ if (adjustedParams.contractAddresses && Array.isArray(adjustedParams.contractAdd
  * @summary Get fungible trades
  *
  * @param {object} params
- * @param {FetchFungibleTradesNetworkEnum} params.network 
+ * @param {FetchFungibleTradesNetworkEnum} params.network  - A blockchain network e.g. "ethereum", "optimism", "base", "arbitrum", "robinhood"
  * @param {string} params.address  - Contract address
  * @param {FetchFungibleTradesTimeWindowEnum} params.timeWindow [optional]  - Time window for trades e.g. "1h", "6h", "12h", "24h", "7d"
  * @param {number} params.minAmountUsd [optional]  - Minimum USD amount to filter trades
@@ -3156,7 +3156,7 @@ Object.assign(adjustedParams, params);
  * @summary Trending fungibles
  *
  * @param {object} params
- * @param {FetchTrendingFungiblesNetworkEnum} params.network 
+ * @param {FetchTrendingFungiblesNetworkEnum} params.network  - A blockchain network e.g. "ethereum", "optimism", "base", "arbitrum", "robinhood"
  * @param {FetchTrendingFungiblesTimeWindowEnum} params.timeWindow [optional]  - Time window for trending calculations e.g. "1h", "6h", "12h", "24h", "7d"
  *
  * @returns {Promise<FetchTrendingFungibles200Response>} A promise that resolves to a `FetchTrendingFungibles200Response` object.

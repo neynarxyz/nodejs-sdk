@@ -423,7 +423,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new OnchainApi(configuration);
 
-let network: 'base'; // (default to undefined)
+let network: 'ethereum' | 'optimism' | 'base' | 'arbitrum' | 'robinhood'; //A blockchain network e.g. \"ethereum\", \"optimism\", \"base\", \"arbitrum\", \"robinhood\" (default to undefined)
 let address: string; //Contract address (default to undefined)
 let timeWindow: '1h' | '6h' | '12h' | '24h' | '7d'; //Time window for trades e.g. \"1h\", \"6h\", \"12h\", \"24h\", \"7d\" (optional) (default to '24h')
 let minAmountUsd: number; //Minimum USD amount to filter trades (optional) (default to undefined)
@@ -440,7 +440,7 @@ const { status, data } = await apiInstance.fetchFungibleTrades(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **network** | [**&#39;base&#39;**]**Array<&#39;base&#39;>** |  | defaults to undefined|
+| **network** | [**&#39;ethereum&#39; | &#39;optimism&#39; | &#39;base&#39; | &#39;arbitrum&#39; | &#39;robinhood&#39;**]**Array<&#39;ethereum&#39; &#124; &#39;optimism&#39; &#124; &#39;base&#39; &#124; &#39;arbitrum&#39; &#124; &#39;robinhood&#39;>** | A blockchain network e.g. \&quot;ethereum\&quot;, \&quot;optimism\&quot;, \&quot;base\&quot;, \&quot;arbitrum\&quot;, \&quot;robinhood\&quot; | defaults to undefined|
 | **address** | [**string**] | Contract address | defaults to undefined|
 | **timeWindow** | [**&#39;1h&#39; | &#39;6h&#39; | &#39;12h&#39; | &#39;24h&#39; | &#39;7d&#39;**]**Array<&#39;1h&#39; &#124; &#39;6h&#39; &#124; &#39;12h&#39; &#124; &#39;24h&#39; &#124; &#39;7d&#39;>** | Time window for trades e.g. \&quot;1h\&quot;, \&quot;6h\&quot;, \&quot;12h\&quot;, \&quot;24h\&quot;, \&quot;7d\&quot; | (optional) defaults to '24h'|
 | **minAmountUsd** | [**number**] | Minimum USD amount to filter trades | (optional) defaults to undefined|
@@ -602,7 +602,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new OnchainApi(configuration);
 
-let network: 'base'; // (default to undefined)
+let network: 'ethereum' | 'optimism' | 'base' | 'arbitrum' | 'robinhood'; //A blockchain network e.g. \"ethereum\", \"optimism\", \"base\", \"arbitrum\", \"robinhood\" (default to undefined)
 let timeWindow: '1h' | '6h' | '12h' | '24h' | '7d'; //Time window for trending calculations e.g. \"1h\", \"6h\", \"12h\", \"24h\", \"7d\" (optional) (default to '24h')
 
 const { status, data } = await apiInstance.fetchTrendingFungibles(
@@ -615,7 +615,7 @@ const { status, data } = await apiInstance.fetchTrendingFungibles(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **network** | [**&#39;base&#39;**]**Array<&#39;base&#39;>** |  | defaults to undefined|
+| **network** | [**&#39;ethereum&#39; | &#39;optimism&#39; | &#39;base&#39; | &#39;arbitrum&#39; | &#39;robinhood&#39;**]**Array<&#39;ethereum&#39; &#124; &#39;optimism&#39; &#124; &#39;base&#39; &#124; &#39;arbitrum&#39; &#124; &#39;robinhood&#39;>** | A blockchain network e.g. \&quot;ethereum\&quot;, \&quot;optimism\&quot;, \&quot;base\&quot;, \&quot;arbitrum\&quot;, \&quot;robinhood\&quot; | defaults to undefined|
 | **timeWindow** | [**&#39;1h&#39; | &#39;6h&#39; | &#39;12h&#39; | &#39;24h&#39; | &#39;7d&#39;**]**Array<&#39;1h&#39; &#124; &#39;6h&#39; &#124; &#39;12h&#39; &#124; &#39;24h&#39; &#124; &#39;7d&#39;>** | Time window for trending calculations e.g. \&quot;1h\&quot;, \&quot;6h\&quot;, \&quot;12h\&quot;, \&quot;24h\&quot;, \&quot;7d\&quot; | (optional) defaults to '24h'|
 
 
