@@ -4271,7 +4271,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Creates and deploys an instance of the miniapp generator for a user. Requires authentication via API key in the request header. Note: Studio CU is tracked based on LLM token usage, not per API call.
+ * Creates and deploys an instance of the miniapp generator for a user. Requires authentication via API key in the request header. Note: app creation is disabled as Neynar Studio is being discontinued; this endpoint now returns 403. Note: Studio CU is tracked based on LLM token usage, not per API call.
  *
  * @summary Create a miniapp generator deployment
  *
@@ -4453,7 +4453,7 @@ Object.assign(adjustedParams, params);
 }
 
 /**
- * Downloads the generated miniapp source code as a binary ZIP archive (Content-Type: application/zip). Requires a paid Studio subscription (GROWTH, STUDIO_PLUS, STUDIO_MAX, or INTERNAL). The deployment must be running. The 200 response body is a raw binary stream, not JSON.
+ * Downloads the generated miniapp source code as a binary ZIP archive (Content-Type: application/zip). Requires a paid Studio subscription (GROWTH, STUDIO_PLUS, STUDIO_MAX, or INTERNAL). If the deployment is running, the ZIP reflects the live working tree; otherwise it is served from the deployment\'s GitHub backup (last published state). The 200 response body is a raw binary stream, not JSON.
  *
  * @summary Export deployment source code as ZIP
  *

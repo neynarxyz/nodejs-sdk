@@ -385,7 +385,7 @@ const { status, data } = await apiInstance.claimCreditDrop(
 # **createDeployment**
 > ListDeployments200ResponseInner createDeployment(createDeploymentRequest)
 
-Creates and deploys an instance of the miniapp generator for a user. Requires authentication via API key in the request header. Note: Studio CU is tracked based on LLM token usage, not per API call.
+Creates and deploys an instance of the miniapp generator for a user. Requires authentication via API key in the request header. Note: app creation is disabled as Neynar Studio is being discontinued; this endpoint now returns 403. Note: Studio CU is tracked based on LLM token usage, not per API call.
 
 ### Example
 
@@ -432,6 +432,7 @@ const { status, data } = await apiInstance.createDeployment(
 |-------------|-------------|------------------|
 |**200** | Success |  -  |
 |**400** | Bad Request |  -  |
+|**403** | Forbidden |  -  |
 |**500** | Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -720,7 +721,7 @@ const { status, data } = await apiInstance.executeSql(
 # **exportZip**
 > exportZip()
 
-Downloads the generated miniapp source code as a binary ZIP archive (Content-Type: application/zip). Requires a paid Studio subscription (GROWTH, STUDIO_PLUS, STUDIO_MAX, or INTERNAL). The deployment must be running. The 200 response body is a raw binary stream, not JSON.
+Downloads the generated miniapp source code as a binary ZIP archive (Content-Type: application/zip). Requires a paid Studio subscription (GROWTH, STUDIO_PLUS, STUDIO_MAX, or INTERNAL). If the deployment is running, the ZIP reflects the live working tree; otherwise it is served from the deployment\'s GitHub backup (last published state). The 200 response body is a raw binary stream, not JSON.
 
 ### Example
 
