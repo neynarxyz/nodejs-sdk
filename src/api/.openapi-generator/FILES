@@ -172,7 +172,6 @@ docs/FarcasterManifestFrame.md
 docs/FeedApi.md
 docs/FeedResponse.md
 docs/FetchCastQuotes200Response.md
-docs/FetchFeedForYou400Response.md
 docs/FetchFungibleTrades200Response.md
 docs/FetchFungibleTrades200ResponseTradesInner.md
 docs/FetchFungibleTrades200ResponseTradesInnerPool.md
@@ -183,6 +182,7 @@ docs/FetchRelevantFrames200Response.md
 docs/FetchRelevantFrames200ResponseRelevantFramesInner.md
 docs/FetchRelevantFrames200ResponseRelevantFramesInnerFrame.md
 docs/FetchRelevantFrames200ResponseRelevantFramesInnerFrameMetadata.md
+docs/FetchTrendingFeed400Response.md
 docs/FetchTrendingFungibles200Response.md
 docs/FetchTrendingFungibles200ResponseTrendingInner.md
 docs/FetchTrendingFungibles200ResponseTrendingInnerFungible.md
@@ -621,7 +621,6 @@ models/farcaster-manifest-frame.ts
 models/farcaster-manifest.ts
 models/feed-response.ts
 models/fetch-cast-quotes200-response.ts
-models/fetch-feed-for-you400-response.ts
 models/fetch-fungible-trades200-response-trades-inner-pool.ts
 models/fetch-fungible-trades200-response-trades-inner-transaction-net-transfer.ts
 models/fetch-fungible-trades200-response-trades-inner-transaction-network.ts
@@ -632,6 +631,7 @@ models/fetch-relevant-frames200-response-relevant-frames-inner-frame-metadata.ts
 models/fetch-relevant-frames200-response-relevant-frames-inner-frame.ts
 models/fetch-relevant-frames200-response-relevant-frames-inner.ts
 models/fetch-relevant-frames200-response.ts
+models/fetch-trending-feed400-response.ts
 models/fetch-trending-fungibles200-response-trending-inner-fungible-price.ts
 models/fetch-trending-fungibles200-response-trending-inner-fungible.ts
 models/fetch-trending-fungibles200-response-trending-inner.ts

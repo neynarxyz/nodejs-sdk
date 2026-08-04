@@ -1,4 +1,4 @@
-# FetchFeedForYou400Response
+# FetchTrendingFeed400Response
 
 
 ## Properties
@@ -14,9 +14,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { FetchFeedForYou400Response } from './api';
+import { FetchTrendingFeed400Response } from './api';
 
-const instance: FetchFeedForYou400Response = {
+const instance: FetchTrendingFeed400Response = {
     code,
     errors,
     message,

@@ -9,7 +9,6 @@ All URIs are relative to *https://api.neynar.com*
 |[**fetchFeedByChannelIds**](#fetchfeedbychannelids) | **GET** /v2/farcaster/feed/channels/ | By channel IDs|
 |[**fetchFeedByParentUrls**](#fetchfeedbyparenturls) | **GET** /v2/farcaster/feed/parent_urls/ | By parent URLs|
 |[**fetchFeedByTopic**](#fetchfeedbytopic) | **GET** /v2/farcaster/feed/topic/ | By topic|
-|[**fetchFeedForYou**](#fetchfeedforyou) | **GET** /v2/farcaster/feed/for_you/ | For you|
 |[**fetchPopularCastsByUser**](#fetchpopularcastsbyuser) | **GET** /v2/farcaster/feed/user/popular/ | 10 most popular casts|
 |[**fetchRepliesAndRecastsForUser**](#fetchrepliesandrecastsforuser) | **GET** /v2/farcaster/feed/user/replies_and_recasts/ | Replies and recasts|
 |[**fetchTrendingFeed**](#fetchtrendingfeed) | **GET** /v2/farcaster/feed/trending/ | Trending feeds|
@@ -397,73 +396,6 @@ const { status, data } = await apiInstance.fetchFeedByTopic(
 |**200** | Success |  -  |
 |**400** | Bad Request |  -  |
 |**500** | Server Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **fetchFeedForYou**
-> FeedResponse fetchFeedForYou()
-
-Fetch a personalized For You feed for a user
-
-### Example
-
-```typescript
-import {
-    FeedApi,
-    Configuration
-} from './api';
-
-const configuration = new Configuration();
-const apiInstance = new FeedApi(configuration);
-
-let fid: number; //FID of user whose feed you want to create (default to undefined)
-let xNeynarExperimental: boolean; //Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
-let viewerFid: number; //Providing this will return a feed that respects this user\'s mutes and blocks and includes `viewer_context`. (optional) (default to undefined)
-let provider: 'neynar'; //The provider of the For You feed. (optional) (default to 'neynar')
-let limit: number; //Number of results to fetch (optional) (default to 25)
-let cursor: string; //Pagination cursor. (optional) (default to undefined)
-
-const { status, data } = await apiInstance.fetchFeedForYou(
-    fid,
-    xNeynarExperimental,
-    viewerFid,
-    provider,
-    limit,
-    cursor
-);
-```
-
-### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **fid** | [**number**] | FID of user whose feed you want to create | defaults to undefined|
-| **xNeynarExperimental** | [**boolean**] | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | (optional) defaults to false|
-| **viewerFid** | [**number**] | Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | (optional) defaults to undefined|
-| **provider** | [**&#39;neynar&#39;**]**Array<&#39;neynar&#39;>** | The provider of the For You feed. | (optional) defaults to 'neynar'|
-| **limit** | [**number**] | Number of results to fetch | (optional) defaults to 25|
-| **cursor** | [**string**] | Pagination cursor. | (optional) defaults to undefined|
-
-
-### Return type
-
-**FeedResponse**
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-|**200** | Success |  -  |
-|**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
