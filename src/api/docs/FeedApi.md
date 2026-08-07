@@ -11,7 +11,6 @@ All URIs are relative to *https://api.neynar.com*
 |[**fetchFeedByTopic**](#fetchfeedbytopic) | **GET** /v2/farcaster/feed/topic/ | By topic|
 |[**fetchPopularCastsByUser**](#fetchpopularcastsbyuser) | **GET** /v2/farcaster/feed/user/popular/ | 10 most popular casts|
 |[**fetchRepliesAndRecastsForUser**](#fetchrepliesandrecastsforuser) | **GET** /v2/farcaster/feed/user/replies_and_recasts/ | Replies and recasts|
-|[**fetchTrendingFeed**](#fetchtrendingfeed) | **GET** /v2/farcaster/feed/trending/ | Trending feeds|
 |[**fetchUserFollowingFeed**](#fetchuserfollowingfeed) | **GET** /v2/farcaster/feed/following/ | Following|
 
 # **fetchCastsForUser**
@@ -109,7 +108,7 @@ const apiInstance = new FeedApi(configuration);
 
 let xNeynarExperimental: boolean; //Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 let feedType: 'following' | 'filter'; //Defaults to following (requires FID or address). If set to filter (requires filter_type) (optional) (default to 'following')
-let filterType: 'fids' | 'parent_url' | 'channel_id' | 'embed_url' | 'embed_types' | 'global_trending'; //Used when feed_type=filter. Options include fids (requires fids), parent_url (requires parent_url), channel_id (requires channel_id), embed_url (requires embed_url), embed_types (requires embed_types), or global_trending. (optional) (default to undefined)
+let filterType: 'fids' | 'parent_url' | 'channel_id' | 'embed_url' | 'embed_types'; //Used when feed_type=filter. Options include fids (requires fids), parent_url (requires parent_url), channel_id (requires channel_id), embed_url (requires embed_url), or embed_types (requires embed_types). (optional) (default to undefined)
 let fid: number; //(Optional) FID of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type (optional) (default to undefined)
 let fids: string; //Used when filter_type=FIDs . Create a feed based on a list of FIDs. Max array size is 100. Requires feed_type and filter_type. (optional) (default to undefined)
 let parentUrl: string; //Used when filter_type=parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type. (optional) (default to undefined)
@@ -146,7 +145,7 @@ const { status, data } = await apiInstance.fetchFeed(
 |------------- | ------------- | ------------- | -------------|
 | **xNeynarExperimental** | [**boolean**] | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | (optional) defaults to false|
 | **feedType** | [**&#39;following&#39; | &#39;filter&#39;**]**Array<&#39;following&#39; &#124; &#39;filter&#39;>** | Defaults to following (requires FID or address). If set to filter (requires filter_type) | (optional) defaults to 'following'|
-| **filterType** | [**&#39;fids&#39; | &#39;parent_url&#39; | &#39;channel_id&#39; | &#39;embed_url&#39; | &#39;embed_types&#39; | &#39;global_trending&#39;**]**Array<&#39;fids&#39; &#124; &#39;parent_url&#39; &#124; &#39;channel_id&#39; &#124; &#39;embed_url&#39; &#124; &#39;embed_types&#39; &#124; &#39;global_trending&#39;>** | Used when feed_type&#x3D;filter. Options include fids (requires fids), parent_url (requires parent_url), channel_id (requires channel_id), embed_url (requires embed_url), embed_types (requires embed_types), or global_trending. | (optional) defaults to undefined|
+| **filterType** | [**&#39;fids&#39; | &#39;parent_url&#39; | &#39;channel_id&#39; | &#39;embed_url&#39; | &#39;embed_types&#39;**]**Array<&#39;fids&#39; &#124; &#39;parent_url&#39; &#124; &#39;channel_id&#39; &#124; &#39;embed_url&#39; &#124; &#39;embed_types&#39;>** | Used when feed_type&#x3D;filter. Options include fids (requires fids), parent_url (requires parent_url), channel_id (requires channel_id), embed_url (requires embed_url), or embed_types (requires embed_types). | (optional) defaults to undefined|
 | **fid** | [**number**] | (Optional) FID of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type | (optional) defaults to undefined|
 | **fids** | [**string**] | Used when filter_type&#x3D;FIDs . Create a feed based on a list of FIDs. Max array size is 100. Requires feed_type and filter_type. | (optional) defaults to undefined|
 | **parentUrl** | [**string**] | Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type. | (optional) defaults to undefined|
@@ -515,81 +514,6 @@ const { status, data } = await apiInstance.fetchRepliesAndRecastsForUser(
 |-------------|-------------|------------------|
 |**200** | Success |  -  |
 |**400** | Bad Request |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **fetchTrendingFeed**
-> FeedResponse fetchTrendingFeed()
-
-Fetch trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
-
-### Example
-
-```typescript
-import {
-    FeedApi,
-    Configuration
-} from './api';
-
-const configuration = new Configuration();
-const apiInstance = new FeedApi(configuration);
-
-let xNeynarExperimental: boolean; //Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
-let limit: number; //Number of results to fetch (optional) (default to 10)
-let cursor: string; //Pagination cursor (optional) (default to undefined)
-let viewerFid: number; //Providing this will return a feed that respects this user\'s mutes and blocks and includes `viewer_context`. (optional) (default to undefined)
-let timeWindow: '1h' | '6h' | '12h' | '24h' | '7d'; //Time window for trending casts (7d window for channel feeds only) (optional) (default to '24h')
-let channelId: string; //Channel ID to filter trending casts. Less active channels might have no casts in the time window selected. Provide either `channel_id` or `parent_url`, not both. (optional) (default to undefined)
-let parentUrl: string; //Parent URL to filter trending casts. Less active channels might have no casts in the time window selected. Provide either `channel_id` or `parent_url`, not both. (optional) (default to undefined)
-let provider: 'neynar'; //The provider of the trending casts feed. (optional) (default to 'neynar')
-
-const { status, data } = await apiInstance.fetchTrendingFeed(
-    xNeynarExperimental,
-    limit,
-    cursor,
-    viewerFid,
-    timeWindow,
-    channelId,
-    parentUrl,
-    provider
-);
-```
-
-### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **xNeynarExperimental** | [**boolean**] | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | (optional) defaults to false|
-| **limit** | [**number**] | Number of results to fetch | (optional) defaults to 10|
-| **cursor** | [**string**] | Pagination cursor | (optional) defaults to undefined|
-| **viewerFid** | [**number**] | Providing this will return a feed that respects this user\&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | (optional) defaults to undefined|
-| **timeWindow** | [**&#39;1h&#39; | &#39;6h&#39; | &#39;12h&#39; | &#39;24h&#39; | &#39;7d&#39;**]**Array<&#39;1h&#39; &#124; &#39;6h&#39; &#124; &#39;12h&#39; &#124; &#39;24h&#39; &#124; &#39;7d&#39;>** | Time window for trending casts (7d window for channel feeds only) | (optional) defaults to '24h'|
-| **channelId** | [**string**] | Channel ID to filter trending casts. Less active channels might have no casts in the time window selected. Provide either &#x60;channel_id&#x60; or &#x60;parent_url&#x60;, not both. | (optional) defaults to undefined|
-| **parentUrl** | [**string**] | Parent URL to filter trending casts. Less active channels might have no casts in the time window selected. Provide either &#x60;channel_id&#x60; or &#x60;parent_url&#x60;, not both. | (optional) defaults to undefined|
-| **provider** | [**&#39;neynar&#39;**]**Array<&#39;neynar&#39;>** | The provider of the trending casts feed. | (optional) defaults to 'neynar'|
-
-
-### Return type
-
-**FeedResponse**
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-|**200** | Success |  -  |
-|**400** | Bad Request |  -  |
-|**404** | Resource not found |  -  |
-|**500** | Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -182,7 +182,6 @@ docs/FetchRelevantFrames200Response.md
 docs/FetchRelevantFrames200ResponseRelevantFramesInner.md
 docs/FetchRelevantFrames200ResponseRelevantFramesInnerFrame.md
 docs/FetchRelevantFrames200ResponseRelevantFramesInnerFrameMetadata.md
-docs/FetchTrendingFeed400Response.md
 docs/FetchTrendingFungibles200Response.md
 docs/FetchTrendingFungibles200ResponseTrendingInner.md
 docs/FetchTrendingFungibles200ResponseTrendingInnerFungible.md
@@ -227,6 +226,7 @@ docs/GetDevStatus200Response.md
 docs/GetDevStatus200ResponseOneOf.md
 docs/GetDevStatus200ResponseOneOf1.md
 docs/GetNotificationCampaignStats200Response.md
+docs/GetNotificationCampaignStats400Response.md
 docs/GetTableSchema200Response.md
 docs/GetTableSchema200ResponseColumnsInner.md
 docs/GetTableSchema200ResponseForeignKeysInner.md
@@ -631,7 +631,6 @@ models/fetch-relevant-frames200-response-relevant-frames-inner-frame-metadata.ts
 models/fetch-relevant-frames200-response-relevant-frames-inner-frame.ts
 models/fetch-relevant-frames200-response-relevant-frames-inner.ts
 models/fetch-relevant-frames200-response.ts
-models/fetch-trending-feed400-response.ts
 models/fetch-trending-fungibles200-response-trending-inner-fungible-price.ts
 models/fetch-trending-fungibles200-response-trending-inner-fungible.ts
 models/fetch-trending-fungibles200-response-trending-inner.ts
@@ -673,6 +672,7 @@ models/get-dev-status200-response-one-of.ts
 models/get-dev-status200-response-one-of1.ts
 models/get-dev-status200-response.ts
 models/get-notification-campaign-stats200-response.ts
+models/get-notification-campaign-stats400-response.ts
 models/get-table-schema200-response-columns-inner.ts
 models/get-table-schema200-response-foreign-keys-inner.ts
 models/get-table-schema200-response-indexes-inner.ts
