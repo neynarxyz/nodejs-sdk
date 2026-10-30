@@ -91,8 +91,41 @@ function exportLine(
   return `${exportKeyword} { ${exportName} } from '${moduleSpecifier}';`;
 }
 
+/**
+ * axios >= 1.20 types `AxiosInstance.request<T, R>()` as returning
+ * `Promise<AxiosResponseResult<...>>`, which references an unexported
+ * `unique symbol`. The generated `createRequestFunction` relies on an inferred
+ * return type, so declaration emit fails with TS2527. Pin the return type to
+ * `Promise<R>` (the type the SDK has always exposed). Idempotent.
+ */
+function patchCreateRequestFunction(generatedRoot: string) {
+  const commonPath = path.join(generatedRoot, "common.ts");
+  if (!fs.existsSync(commonPath)) return;
+  const original = fs.readFileSync(commonPath, "utf-8");
+  const patched = original
+    .replace(
+      "(axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {",
+      "(axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH): Promise<R> => {"
+    )
+    .replace(
+      "return axios.request<T, R>(axiosRequestArgs);",
+      "return axios.request<T, R>(axiosRequestArgs) as Promise<R>;"
+    );
+  if (patched !== original) {
+    fs.writeFileSync(commonPath, patched);
+  } else if (!original.includes("BASE_PATH): Promise<R> => {")) {
+    console.warn(
+      `createRequestFunction in ${path.relative(
+        process.cwd(),
+        commonPath
+      )} did not match the expected shape; check the build for TS2527.`
+    );
+  }
+}
+
 function main() {
   const generatedRoot = path.resolve(process.cwd(), process.argv[2] ?? "src/api");
+  patchCreateRequestFunction(generatedRoot);
   const barrelPath = path.join(generatedRoot, "api.ts");
   const barrel = fs.readFileSync(barrelPath, "utf-8");
   const moduleSpecifiers = Array.from(
