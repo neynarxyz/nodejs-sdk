@@ -12,5 +12,6 @@ export const isApiErrorResponse = (
   error: any
 ): error is SetRequired<AxiosError<ErrorRes>, "response"> => {
   if (!(error instanceof AxiosError)) return false;
-  return error.response?.data !== undefined && "message" in error.response.data;
+  const data = error.response?.data;
+  return data !== null && typeof data === "object" && typeof data.message === "string";
 };

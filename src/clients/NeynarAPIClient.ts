@@ -216,10 +216,7 @@ const client = new NeynarAPIClient(config);\n`);
   public static isApiErrorResponse(
     error: any
   ): error is SetRequired<AxiosError<ErrorRes>, "response"> {
-    if (!(error instanceof AxiosError)) return false;
-    return (
-      error.response?.data !== undefined && "message" in error.response.data
-    );
+    return isApiErrorResponse(error);
   }
 
   
