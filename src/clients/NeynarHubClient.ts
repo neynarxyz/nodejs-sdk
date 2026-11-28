@@ -171,10 +171,7 @@ const client = new NeynarHubClient(config);\n`);
   public static isApiErrorResponse(
     error: any
   ) {
-    if (!(error instanceof AxiosError)) return false;
-    return (
-      error.response?.data !== undefined && "message" in error.response.data
-    );
+    return isApiErrorResponse(error);
   }
 
   

@@ -841,10 +841,7 @@ const client = new ${clientClassName}(config);\\n\`);
       ? ': error is SetRequired<AxiosError<ErrorRes>, "response">'
       : ""
   } {
-    if (!(error instanceof AxiosError)) return false;
-    return (
-      error.response?.data !== undefined && "message" in error.response.data
-    );
+    return isApiErrorResponse(error);
   }
 
   ${apiFiles

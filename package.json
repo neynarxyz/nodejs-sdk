@@ -13,6 +13,7 @@
     "v1-to-v2-migration.md"
   ],
   "scripts": {
+    "test": "node --require ts-node/register/transpile-only --test tests/is-api-error-response.test.cjs",
     "clean": "del-cli ./build/*",
     "build": "yarn run clean && tsc",
     "generate:api": "del-cli src/api && openapi-generator-cli generate -i ./oas/src/api/spec.yaml -g typescript-axios -o ./src/api --config ./openapi-generator-config.json --inline-schema-options 'REFACTOR_ALLOF_INLINE_SCHEMAS=true' && ts-node -P tsconfig.scripts.json scripts/fix-api-barrel.ts src/api",
